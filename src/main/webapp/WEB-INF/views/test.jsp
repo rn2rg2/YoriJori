@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <!-- reset css 상단에 배치 -->
-<link rel="stylesheet" type="text/css" href="/common/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/yorijori/common/css/reset.css" />
 
 <!-- jQuery Setting -->
 <script
@@ -24,7 +24,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- 각자 해당 폴더 생성하고  작성한 css 링크 아래에 넣기-->
-<!-- 경로는 /common/css/폴더명/css명 -->
+<!-- 경로는 /yorijori/common/css/폴더명/css명 -->
 </head>
 
 <body>
@@ -33,5 +33,5 @@
 </body>
 
 <!--  각자 해당 폴더 생성하고  작성한 js 파일 만들어서 링크 아래에 넣기-->
-<!-- 경로는 /common/js/폴더명/js명 -->
+<!-- 경로는 /yorijori/common/js/폴더명/js명 -->
 </html>
