@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="myPageTab"
+		template="/WEB-INF/views/myPage/myTabbar.jsp">
+		<put-attribute name="content"
+			value="/WEB-INF/views/myPage/my_User_info2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="defaultMyPage" extends="myPageTab"></definition>
+
+	<definition name="myPageRecipeList" extends="myPageTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/myPage/myRecipeList.jsp" />
+	</definition>
+
+	<definition name="myPageCommentList" extends="myPageTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/myPage/myCommentList.jsp" />
+	</definition>
+
+	<definition name="myPageChat" extends="myPageTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/myPage/myChat.jsp" />
+	</definition>
+</tiles-definitions>	
