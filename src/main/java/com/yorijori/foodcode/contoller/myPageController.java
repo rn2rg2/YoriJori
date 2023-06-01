@@ -11,6 +11,7 @@ public class myPageController {
 		return "defaultMyPage";
 	}
 
+	
 	@RequestMapping("/recipeList")
 	public String recipeList() {
 		return "myPageRecipeList";
