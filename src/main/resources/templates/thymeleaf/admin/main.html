@@ -10,6 +10,7 @@
 
 <!-- reset css 상단에 배치 -->
 <link rel="stylesheet" type="text/css" href="common/css/reset.css" />
+
 <!-- VENDOR CSS -->
 <link rel="stylesheet"
 	href="common/css/admin/assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -27,12 +28,12 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
 	rel="stylesheet">
 <!-- ICONS -->
-<link rel="apple-touch-icon" sizes="76x76"
+<!-- <link rel="apple-touch-icon" sizes="76x76"
 	href="common/css/admin/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
 	href="common/css/admin/assets/img/favicon.png">
 </head>
-
+ -->
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
@@ -74,15 +75,10 @@
 							</ul></li>
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"><img
-								src="common/css/admin/assets/img/user.png" class="img-circle"
-								alt="Avatar"> <span>관리자</span> <i
+							data-toggle="dropdown"> <span>관리자 페이지</span> <i
 								class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My
-											Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul></li>
 
@@ -230,11 +226,20 @@
 									<div class="panel-footer">
 										<div class="row">
 											<div class="col-md-6">
-												<span class="panel-note"><i class="fa fa-clock-o"></i>
-													Last 24 hours</span>
+												<!-- <a href="#" class="btn btn-primary">View All Purchases</a> -->
 											</div>
 											<div class="col-md-6 text-right">
-												<a href="#" class="btn btn-primary">View All Purchases</a>
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-end">
+														<li class="page-item disabled"><a class="page-link"
+															href="#" tabindex="-1">Previous</a></li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">Next</a>
+														</li>
+													</ul>
+												</nav>
 											</div>
 										</div>
 									</div>
@@ -306,11 +311,21 @@
 									<div class="panel-footer">
 										<div class="row">
 											<div class="col-md-6">
-												<span class="panel-note"><i class="fa fa-clock-o"></i>
-													Last 24 hours</span>
+												<!-- <a href="#" class="btn btn-primary">View All Purchases</a> -->
 											</div>
 											<div class="col-md-6 text-right">
-												<a href="#" class="btn btn-primary">View All Purchases</a>
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-end">
+														<li class="page-item disabled"><a class="page-link"
+															href="#" tabindex="-1">Previous</a></li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">Next</a>
+														</li>
+													</ul>
+												</nav>
+
 											</div>
 										</div>
 									</div>
@@ -373,8 +388,29 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-6">
+										<!-- <a href="#" class="btn btn-primary">View All Purchases</a> -->
+									</div>
+									<div class="col-md-6 text-right">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-end">
+												<li class="page-item disabled"><a class="page-link"
+													href="#" tabindex="-1">Previous</a></li>
+												<li class="page-item"><a class="page-link" href="#">1</a></li>
+												<li class="page-item"><a class="page-link" href="#">2</a></li>
+												<li class="page-item"><a class="page-link" href="#">3</a></li>
+												<li class="page-item"><a class="page-link" href="#">Next</a>
+												</li>
+											</ul>
+										</nav>
+
+									</div>
+								</div>
+							</div>
 						</div>
-						<!-- END TABLE HOVER -->
+
 					</div>
 				</div>
 			</div>
@@ -424,6 +460,27 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-6">
+										<!-- <a href="#" class="btn btn-primary">View All Purchases</a> -->
+									</div>
+									<div class="col-md-6 text-right">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-end">
+												<li class="page-item disabled"><a class="page-link"
+													href="#" tabindex="-1">Previous</a></li>
+												<li class="page-item"><a class="page-link" href="#">1</a></li>
+												<li class="page-item"><a class="page-link" href="#">2</a></li>
+												<li class="page-item"><a class="page-link" href="#">3</a></li>
+												<li class="page-item"><a class="page-link" href="#">Next</a>
+												</li>
+											</ul>
+										</nav>
+
+									</div>
+								</div>
+							</div>
 						</div>
 
 					</div>
@@ -439,7 +496,9 @@
 						<h3 class="page-title">쿠킹클래스</h3>
 						<div class="panel">
 							<div class="panel-heading">
+
 								<h3 class="panel-title">쿠킹클래스</h3>
+
 							</div>
 							<div class="panel-body">
 								<table class="table table-hover">
@@ -478,6 +537,26 @@
 								</table>
 							</div>
 							<!-- END TABLE HOVER -->
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-6"></div>
+
+									<div class="col-md-6 text-right">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-end">
+												<li class="page-item disabled"><a class="page-link"
+													href="#" tabindex="-1">Previous</a></li>
+												<li class="page-item"><a class="page-link" href="#">1</a></li>
+												<li class="page-item"><a class="page-link" href="#">2</a></li>
+												<li class="page-item"><a class="page-link" href="#">3</a></li>
+												<li class="page-item"><a class="page-link" href="#">Next</a>
+												</li>
+											</ul>
+										</nav>
+
+									</div>
+								</div>
+							</div>
 						</div>
 
 
