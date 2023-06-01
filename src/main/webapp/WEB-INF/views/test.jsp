@@ -25,6 +25,8 @@
 
 <!-- 각자 해당 폴더 생성하고  작성한 css 링크 아래에 넣기-->
 <!-- 경로는 common/css/폴더명/css명 -->
+<link rel="stylesheet" href="/yorijori/common/css/classListSlider.css"/>
+<link rel="stylesheet" href="/yorijori/common/css/classListShine.css"/>
 </head>
 
 <body>
