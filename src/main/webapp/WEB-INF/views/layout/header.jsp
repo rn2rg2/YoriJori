@@ -8,14 +8,29 @@
 <meta charset="UTF-8">
 <title>header</title>
 
-	    <link href="css/footer.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+		<!-- 테스트 -->
+	    <!-- 헤더 -->
+		<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/test.css" />
+		<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/footer.css" />
+	    <script src="https://kit.fontawesome.com/8055a0c4b7.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	    
+
+<!--
+
+//-->
+
+
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+<!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-2 py-3 py-lg-0" style="position: sticky; top: 0; z-index: 100;">
     <div class="container">
         <a href="index.html" class="navbar-brand p-0">
-            <img src="img/yolijoli_logo1.png" alt="" style="height: 40px;">
+            <img src="images/logo.png" alt="" style="height: 40px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -28,15 +43,15 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">레시피</a>
                     <div class="dropdown-menu m-0">
-                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                        <a href="team.html" class="dropdown-item">Our Dentist</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="appointment.html" class="dropdown-item">Appointment</a>
+                        <a href="price.html" class="dropdown-item">레시피 1</a>
+                        <a href="team.html" class="dropdown-item">레시피 2</a>
+                        <a href="testimonial.html" class="dropdown-item">레시피 3</a>
+                        <a href="appointment.html" class="dropdown-item">레시피 4</a>
                     </div>
                 </div>
                 <form class="d-flex position-relative"> <!--position-relative 추가-->
                     <input class="form-control me-2 custom-search-input" type="search" placeholder="레시피 검색..." aria-label="Search" 
-                    style="border-radius: 30px; text-align: center;   width: 300px; background-color: #f3f3f3;">
+                    style="border-radius: 30px; text-align: center;   width: 325px; height: 50px; background-color: #f3f3f3;">
                     <button class="btn btn-link custom-search-button" type="submit"><i class="fas fa-search"></i></button>
                 </form>
 
@@ -51,5 +66,6 @@
         </div>
     </div>
 </nav>
+
 </body>
 </html>
