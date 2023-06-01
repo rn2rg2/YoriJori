@@ -60,6 +60,7 @@
                     <div class="dropdown-menu m-0">
                         <a href="signup.html" class="dropdown-item">로그인</a>
                         <a href="signup.html" class="dropdown-item">회원가입</a>
+                        <a href="/yorijori/mypage" class="dropdown-item">마이페이지</a>
                     </div>
                 </div>
             </div>
