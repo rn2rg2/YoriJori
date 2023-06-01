@@ -26,6 +26,7 @@
 </script>
 </head>
 <body>
+<!-- 카테고리 - 버튼 형식으로 변경 / 정렬 - 드롭다운 추가 / classDB - 주소 컬럼 추가 / 페이지 수 추가(12개이후부터면 넘어가게) /  -->
 	<div class="swiper-container">
 		<h2 class="cookingclass-font">추천 클래스 목록</h2>
 		<swiper-container class="mySwiper" pagination="true"
@@ -47,7 +48,7 @@
 	<div class="all-cookingclass">
 		<h2 class="cookingclass-font">전체 쿠킹 클래스 목록</h2>
 		<div class="dropdown">
-			<input type="text" class="search-bar" placeholder="입력하세요!"/>
+			<input type="text" class="search-bar" placeholder=" 검색어 입력"/>
 			<button type="button" class="btn btn-primary dropdown-toggle"
 				data-toggle="dropdown">카테고리 선택</button>
 			<div class="dropdown-menu">
@@ -58,6 +59,7 @@
 				<a class="dropdown-item-text" href="11">양식</a>
 				<a class="dropdown-item-text" href="11">기타</a>
 			</div>
+			<button type="button" class="search btn"><i class="fa-solid fa-magnifying-glass"></i></button>
 			<div class="hover14 column">
 				<div>
 					<figure>

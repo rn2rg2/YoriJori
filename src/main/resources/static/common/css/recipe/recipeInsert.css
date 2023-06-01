@@ -1,0 +1,82 @@
+@charset "UTF-8";
+body{
+	margin-left: 50px;
+	margin-right: 50px;
+	font-weight: bolder;
+}
+h2{
+	font-weight: bolder;
+}
+.recipe-form{
+	margin-top: 100px;
+}
+.container{
+	width:90%;
+	padding: 0;
+	max-width: none;
+}
+.btn-primary {
+    color: #6c757d;
+    background-color: #ffffff;
+    border-color: #d15628;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+label {
+	font-size: 15px;
+	display: block;
+}
+input::placeholder {
+	font-style: italic;
+	color: #d15628;
+}
+/* 버튼 */
+.btn, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary.focus, .btn-primary:focus, .btn-primary:hover{
+	background-color: white;
+	color: #d15628;
+	border-color: #d15628;
+	transition: none;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary.focus, .btn-primary:focus {
+	box-shadow:0 0 0 0 #fff;
+}
+.btn.focus, .btn:focus{
+	box-shadow:0 0 0 0 #fff;
+}
+.dropdown-item:active {
+	background-color: #d15628;
+}
+.dropdown-toggle{
+	position: relative;
+	margin-left: 0;
+	margin-right: 20px;
+	display: inline-block;
+	width: 150px;
+	text-align: left;
+}
+.dropdown-toggle::after{
+	position: absolute;
+	right: 10px;
+	top:50%;
+}
+.category{
+	
+}
+.last-button {
+	margin-right: 0;
+}
+.form-control{
+	border-color: #d15628;
+	width: 80%;
+}
+.des{
+	height: calc(3em + 1.5rem + 4px);
+	vertical-align: top;
+}
+
+
+
+
+
+

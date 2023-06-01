@@ -156,6 +156,9 @@ body{
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary.focus, .btn-primary:focus {
 	box-shadow:0 0 0 0 #fff;
 }
+.btn.focus, .btn:focus{
+	box-shadow:0 0 0 0 #fff;
+}
 .dropdown-item:active {
 	background-color: #d15628;
 }
@@ -171,4 +174,6 @@ body{
     box-sizing: border-box;
     border-radius: 5px;
 }
-
+.search-bar:focus{
+	box-shadow:0 0 0 0 #fff;
+}
