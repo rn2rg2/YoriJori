@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>header</title>
 
-
+		<!-- 테스트 -->
 	    <!-- 헤더 -->
 		<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/test.css" />
 		<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/footer.css" />
