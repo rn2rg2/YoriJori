@@ -97,12 +97,18 @@ input::placeholder {
 	background: #d15628 !important;
 	color: white !important;
 }
-table, tbody{
+/* 재료 테이블 */
+table{
+	width:"100%";
+border: 1px solid #d15628;
+font-weight: bold;	
+}
+tr{
 border: 1px solid #d15628;
 font-weight: bold;	
 }
 td:nth-child(2){
-	border-right: 1px solid #d15628;
+	border-right: 2px solid #d15628;
 }
 td{
 	text-align: center;
@@ -124,4 +130,11 @@ input::placeholder{
 	font-family: 'segoe print';
 	font-style: italic;
 	font-size: 45px;
+}
+
+/* 써머노트 */
+.note-editor.note-frame{
+	width: 50%;
+	display: inherit;
+	margin: 0;
 }
