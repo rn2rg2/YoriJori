@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 	
 
-	@RequestMapping("/adminpage")
+	@RequestMapping("/admin")
 	public String getAdminPage() {
 		return "thymeleaf/admin/main";
 	}

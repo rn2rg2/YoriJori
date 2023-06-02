@@ -53,7 +53,6 @@ th {
 	padding-top: 15px;
 	padding-bottom: 10px;
 } */
-
 section {
 	width: 100%;
 	min-height: 1000px;
@@ -65,7 +64,7 @@ footer {
 	background-color: #181818;
 	color: white;
 	font-size: 50px;
- 	text-align: center; 
+	text-align: center;
 	line-height: 250px;
 }
 
@@ -401,7 +400,7 @@ html.fullscreen-bg, html.fullscreen-bg body, html.fullscreen-bg #wrapper
 	.navbar-nav>li>a {
 		padding: 15px 20px;
 	}
-	.navbar-nav>li>a span:not (.badge ), .navbar-nav>li>a .icon-submenu {
+	.navbar-nav>li>a span:not(.badge ), .navbar-nav>li>a .icon-submenu {
 		display: none;
 	}
 	.navbar-nav .open .dropdown-menu {
@@ -595,6 +594,37 @@ ul.notifications>li>.more:hover, ul.notifications>li>.more:focus {
 
 .sidebar .nav .nav>li>a.active a {
 	color: #fff;
+}
+/********************
+ * Search 
+ ********************/
+.search_reset {
+	display: flex;
+}
+
+.searchWrap {
+	display: flex;
+	align-items: center;
+	padding: 11px 20px;
+	background: #F5F5F5;
+	border-radius: 60px;
+}
+
+.searchWrap input[type="text"] {
+	width: 260px;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 16px;
+}
+.searchWrap input[type="button"]{
+	width: 13px;
+    height: 13px;
+    margin-left: 15px;
+    background: url(/yorijori/images/common/search.svg)no-repeat center center / contain;
+    border: none;
+    text-indent: -99999px;
+    flex-shrink: 0;
 }
 
 /********************
@@ -1008,29 +1038,8 @@ ul.activity-list>li {
 	padding: 25px 0;
 }
 
-ul
-.activity-list
->
-li
-:not
- 
-(
-:last-child
- 
-)
-{
-border-bottom
-:
- 
-1
-px
- 
-solid
- 
-#F0F0F0
-;
-
-
+ul.activity-list>li:not(:last-child){
+	border-bottom :1px solid #F0F0F0;
 }
 ul.activity-list>li .avatar {
 	width: 40px;
