@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +40,9 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+
 <%-- <tiles:insertAttribute name="header" /> --%>
+
 
 	<h2>레시피 등록</h2>
 	<div class="container">
@@ -61,24 +62,24 @@ $(document).ready(function() {
 			<div class="form-group">
 				<label>카테고리</label>
 				<div class="category">
-					<button type="button" class="btn btn-primary dropdown-toggle insert"
+					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">음식용도</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">용도1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle insert"
+					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">조리방법</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">방법1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle insert"
+					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">음식분류 1</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">한식</a> <a
 							class="dropdown-item insert-item" href="javascript:0">중식</a>
 					</div>
 					<button type="button"
-						class="btn btn-primary dropdown-toggle last-button insert"
+						class="btn btn-primary dropdown-toggle last-button"
 						data-toggle="dropdown">음식분류 2</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">고기류</a> <a
@@ -90,17 +91,17 @@ $(document).ready(function() {
 			<div class="form-group">
 				<label>기타</label>
 				<div class="category">
-					<button type="button" class="btn btn-primary dropdown-toggle insert"
+					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">인분</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">용도1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle insert"
+					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">시간</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">방법1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle insert"
+					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">난이도</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item insert-item" href="javascript:0">한식</a> <a
@@ -108,6 +109,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</div>
+
 			
 			<br/>
 			<br/>
@@ -194,5 +196,6 @@ $(document).ready(function() {
 	</div>
 	<%-- <tiles:insertAttribute name="footer" /> --%>
 	
+
 </body>
 </html>
