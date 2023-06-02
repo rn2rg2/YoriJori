@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 	@RequestMapping("/main")
 	public String mainpage (Model model) {
-		return "index";
+		return "thymeleaf/mainpage/index";
 	}
 	@RequestMapping("/test24")
 	public String test (Model model) {
-		return "main";
+		return "thymeleaf/test";
 	}
 }
