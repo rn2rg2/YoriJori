@@ -4,20 +4,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/mypage")
 public class MyPageController {
 
-	@RequestMapping("/mypage")
+	@RequestMapping("/profile")
 	public String mainPage() {
 		return "defaultMyPage";
 	}
-
-	
-	@RequestMapping("/recipeList")
+	@RequestMapping("/recipelist")
 	public String recipeList() {
 		return "myPageRecipeList";
 	}
 
-	@RequestMapping("/commentList")
+	@RequestMapping("/commentlist")
 	public String commentList() {
 		return "myPageCommentList";
 	}
@@ -25,6 +24,16 @@ public class MyPageController {
 	@RequestMapping("/chat")
 	public String chat() {
 		return "myPageChat";
+	}
+	
+	@RequestMapping("/refri")
+	public String refri() {
+		return "";
+	}
+	
+	@RequestMapping("/tray")
+	public String tray() {
+		return "";
 	}
 
 }
