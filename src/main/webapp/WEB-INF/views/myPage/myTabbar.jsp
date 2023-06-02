@@ -33,28 +33,36 @@
 }
 .primary-nav a {
 	padding: 1em;
-	background-color: #BADA55;
+	background-color: #808080; /* 탭 배경색 원하시는대로 하시면 됩니다*/
 	color: #fff;
 	font-weight: bold;
 	text-decoration: none;
 }
 .primary-nav a:hover {
-	background-color: #A3C43B;
+	background-color: #e4e4e4; /* 호버 됐을시 현재 배경 색깔 */
+	color: #ffae88;
 }
 </style>
 </head>
 
 <body>
+	<div>
+		<tiles:insertAttribute name="header"/>
+	</div>
+		<br/>
 	<ul class="tabs  primary-nav">
-		<li class="tabs__item"><a href="/yorijori/myPage.do" class="tabs__link">기본정보</a></li>
-		<li class="tabs__item"><a href="/yorijori/recipeList" class="tabs__link">기록보관소</a></li>
-		<li class="tabs__item"><a href="/yorijori/commentList" class="tabs__link">댓글 / 리뷰</a></li>
-		<li class="tabs__item"><a href="/yorijori/chat" class="tabs__link">유저 쪽지</a></li>
-		<li class="tabs__item"><a href="#" class="tabs__link">나만의 냉장고</a></li>
-		<li class="tabs__item"><a href="#" class="tabs__link">나만의 식판</a></li>	
+		<li class="tabs__item"><a href="/yorijori/mypage/profile" class="tabs__link">기본정보</a></li>
+		<li class="tabs__item"><a href="/yorijori/mypage/recipelist" class="tabs__link">기록보관소</a></li>
+		<li class="tabs__item"><a href="/yorijori/mypage/commentlist" class="tabs__link">댓글 / 리뷰</a></li>
+		<li class="tabs__item"><a href="/yorijori/mypage/chat" class="tabs__link">유저 쪽지</a></li>
+		<li class="tabs__item"><a href="/yorijori/mypage/refri" class="tabs__link">나만의 냉장고</a></li>
+		<li class="tabs__item"><a href="/yorijori/mypage/tray" class="tabs__link">나만의 식판</a></li>	
 	</ul>
 	<div>
 		<tiles:insertAttribute name="content"/>
+	</div>
+	<div>
+		<tiles:insertAttribute name="footer"/>
 	</div>
 </body>
 </html>

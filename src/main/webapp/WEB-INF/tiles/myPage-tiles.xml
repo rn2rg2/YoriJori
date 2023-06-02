@@ -5,24 +5,38 @@
 <tiles-definitions>
 	<definition name="myPageTab"
 		template="/WEB-INF/views/myPage/myTabbar.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/layout/header.jsp"></put-attribute>
 		<put-attribute name="content"
 			value="/WEB-INF/views/myPage/my_User_info2.jsp"></put-attribute>
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layout/footer.jsp"></put-attribute>
 	</definition>
-
+	
+	<!-- 프로필 -->
 	<definition name="defaultMyPage" extends="myPageTab"></definition>
 
+	<!-- 저장한 레시피 -->
 	<definition name="myPageRecipeList" extends="myPageTab">
 		<put-attribute name="content"
 			value="/WEB-INF/views/myPage/myRecipeList.jsp" />
 	</definition>
 
+	<!-- 내가 작성한 댓글 / 리뷰 모음 -->
 	<definition name="myPageCommentList" extends="myPageTab">
 		<put-attribute name="content"
 			value="/WEB-INF/views/myPage/myCommentList.jsp" />
 	</definition>
 
+	<!-- 유저 채팅 -->
 	<definition name="myPageChat" extends="myPageTab">
 		<put-attribute name="content"
 			value="/WEB-INF/views/myPage/myChat.jsp" />
 	</definition>
+	
+	<!-- 냉장고 -->
+	
+	<!-- 식판 -->
+	
+	
 </tiles-definitions>	
