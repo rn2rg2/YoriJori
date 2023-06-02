@@ -11,4 +11,8 @@ public class IndexController {
 	public String mainpage (Model model) {
 		return "index";
 	}
+	@RequestMapping("/test24")
+	public String test (Model model) {
+		return "main";
+	}
 }
