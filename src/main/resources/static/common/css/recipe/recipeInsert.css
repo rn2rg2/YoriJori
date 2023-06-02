@@ -32,11 +32,13 @@ input::placeholder {
 	color: #d15628;
 }
 /* 버튼 */
-.btn, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary.focus, .btn-primary:focus, .btn-primary:hover{
-	background-color: white;
-	color: #d15628;
-	border-color: #d15628;
-	transition: none;
+
+.insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.dropdown-toggle, .insert.focus, .insert:focus, .insert:hover, .insert{
+	background-color: white !important;
+	color: #d15628 !important;
+	border-color: #d15628 !important;
+	transition: none !important;
+
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary.focus, .btn-primary:focus {
 	box-shadow:0 0 0 0 #fff;
@@ -44,8 +46,8 @@ input::placeholder {
 .btn.focus, .btn:focus{
 	box-shadow:0 0 0 0 #fff;
 }
-.dropdown-item:active {
-	background-color: #d15628;
+.insert-item:active {
+	background-color: #d15628 !important;
 }
 .dropdown-toggle{
 	position: relative;
@@ -74,9 +76,68 @@ input::placeholder {
 	height: calc(3em + 1.5rem + 4px);
 	vertical-align: top;
 }
+.submit-btn{
+	display: block !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+.form-group label{
+	display: block !important;
+}
+/* 재료 */
+.imp-list{
+	overflow:auto;
+	height: 100px;
+}
+.imp-group{
+	width: 50%;
+}
+.imp{
+	margin-bottom: 5px;
+}
+.selected{
+	background: #d15628 !important;
+	color: white !important;
+}
+/* 재료 테이블 */
+table{
+	width:"100%";
+border: 1px solid #d15628;
+font-weight: bold;	
+}
+tr{
+border: 1px solid #d15628;
+font-weight: bold;	
+}
+td:nth-child(2){
+	border-right: 2px solid #d15628;
+}
+td{
+	text-align: center;
+}
+td input{
+	width: 100px;
+	border: #d15628;
+	text-align: center;
+	height: 50px;
+}
+input::placeholder{
+	color: #6c757d;
+}
 
+/* 요리순서 */
+.cooking-step{
+	color:  #d15628;
+	font-weight: bolder;
+	font-family: 'segoe print';
+	font-style: italic;
+	font-size: 45px;
+}
 
-
-
-
+/* 써머노트 */
+.note-editor.note-frame{
+	width: 50%;
+	display: inherit;
+	margin: 0;
+}
 

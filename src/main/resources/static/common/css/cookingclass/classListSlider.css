@@ -49,3 +49,22 @@
 	display: block;
 	padding-bottom: 50px;
 }
+.swiper-button-next {
+  background: url(/godiva/img/common/next.png) no-repeat;
+  background-size: 50% auto;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  background: url(/godiva/img/common/prev.png) no-repeat;
+}
+.swiper-button-next, .swiper-button-prev{
+	color: #d15628;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+.swiper-pagination-bullets{
+	background:#d15628;
+}

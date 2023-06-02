@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="/yorijori/common/css/cookingclass/classListSlider.css" />
 <link rel="stylesheet" href="/yorijori/common/css/cookingclass/classListShine.css" />
 <title>쿠킹클래스 리스트</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <script type="text/javascript">
 	
 </script>
@@ -31,7 +32,7 @@
 		<h2 class="cookingclass-font">추천 클래스 목록</h2>
 		<swiper-container class="mySwiper" pagination="true"
 			pagination-clickable="true" navigation="true" space-between="30"
-			centered-slides="true" autoplay-delay="2500"
+			centered-slides="true" autoplay-delay="3000"
 			autoplay-disable-on-interaction="false"> <swiper-slide>
 		<img
 			src="https://recipe1.ezmember.co.kr/cache/recipe/2020/03/09/03ad3def1a2fd41666413d41c27d93a41.png" />
@@ -44,6 +45,7 @@
 		<img
 			src="https://recipe1.ezmember.co.kr/cache/recipe/2020/03/09/03ad3def1a2fd41666413d41c27d93a41.png" />
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-container>
+		
 	</div>
 	<div class="all-cookingclass">
 		<h2 class="cookingclass-font">전체 쿠킹 클래스 목록</h2>
