@@ -39,11 +39,11 @@
             <div class="navbar-nav mx-auto py-0">
                 <a href="index.html" class="nav-item nav-link active">홈페이지</a>
                 <a href="about.html" class="nav-item nav-link">커뮤니티</a>
-                <a href="service.html" class="nav-item nav-link">쿠킹 클래스</a>
+                <a href="/yorijori/cookingclass/list" class="nav-item nav-link">쿠킹 클래스</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">레시피</a>
                     <div class="dropdown-menu m-0">
-                        <a href="price.html" class="dropdown-item">레시피 1</a>
+                        <a href="/yorijori/recipe/insert" class="dropdown-item">레시피 등록</a>
                         <a href="team.html" class="dropdown-item">레시피 2</a>
                         <a href="testimonial.html" class="dropdown-item">레시피 3</a>
                         <a href="appointment.html" class="dropdown-item">레시피 4</a>
