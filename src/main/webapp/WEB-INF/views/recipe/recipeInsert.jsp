@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,8 @@
 	href="/yorijori/common/css/recipe/recipeInsert.css">
 </head>
 <body>
+<tiles:insertAttribute name="header" />
+
 	<h2>레시피 등록</h2>
 	<div class="container">
 		<form action="/action_page.php">
@@ -38,24 +41,24 @@
 			<div class="form-group">
 				<label>카테고리</label>
 				<div class="category">
-					<button type="button" class="btn btn-primary dropdown-toggle"
+					<button type="button" class="btn btn-primary dropdown-toggle insert"
 						data-toggle="dropdown">음식용도</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">용도1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle"
+					<button type="button" class="btn btn-primary dropdown-toggle insert"
 						data-toggle="dropdown">조리방법</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">방법1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle"
+					<button type="button" class="btn btn-primary dropdown-toggle insert"
 						data-toggle="dropdown">음식분류 1</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">한식</a> <a
 							class="dropdown-item" href="javascript:0">중식</a>
 					</div>
 					<button type="button"
-						class="btn btn-primary dropdown-toggle last-button"
+						class="btn btn-primary dropdown-toggle last-button insert"
 						data-toggle="dropdown">음식분류 2</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">고기류</a> <a
@@ -66,17 +69,17 @@
 			<div class="form-group">
 				<label>기타</label>
 				<div class="category">
-					<button type="button" class="btn btn-primary dropdown-toggle"
+					<button type="button" class="btn btn-primary dropdown-toggle insert"
 						data-toggle="dropdown">인분</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">용도1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle"
+					<button type="button" class="btn btn-primary dropdown-toggle insert"
 						data-toggle="dropdown">시간</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">방법1</a>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle"
+					<button type="button" class="btn btn-primary dropdown-toggle insert"
 						data-toggle="dropdown">난이도</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="javascript:0">한식</a> <a
@@ -84,14 +87,21 @@
 					</div>
 				</div>
 			</div>
+			<br/>
+			<br/>
+			<div class="form-group">
+				<label>재료</label>
+			</div>
 			<div class="form-group form-check">
 				<label class="form-check-label"> <input
 					class="form-check-input" type="checkbox" name="remember">
 					Remember me
 				</label>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary insert">Submit</button>
 		</form>
 	</div>
+	
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>
