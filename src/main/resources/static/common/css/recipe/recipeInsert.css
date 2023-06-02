@@ -15,13 +15,13 @@ h2{
 	padding: 0;
 	max-width: none;
 }
-.category .insert {
+.btn-primary {
     color: #6c757d;
     background-color: #ffffff;
     border-color: #d15628;
+    display:block;
     margin-left: auto;
     margin-right: auto;
-    
 }
 label {
 	font-size: 15px;
@@ -32,16 +32,16 @@ input::placeholder {
 	color: #d15628;
 }
 /* 버튼 */
-.insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.dropdown-toggle, .insert.focus, .insert:focus, .insert:hover{
-	background-color: white !important;
-	color: #d15628 !important;
-	border-color: #d15628 !important;
-	transition: none !important;
+.btn, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary.focus, .btn-primary:focus, .btn-primary:hover{
+	background-color: white;
+	color: #d15628;
+	border-color: #d15628;
+	transition: none;
 }
-.insert:not(:disabled):not(.disabled).active:focus, .insert:not(:disabled):not(.disabled):active:focus, .show>.insert.dropdown-toggle:focus,.insert.focus, .insert:focus {
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary.focus, .btn-primary:focus {
 	box-shadow:0 0 0 0 #fff;
 }
-.insert.focus, .insert:focus{
+.btn.focus, .btn:focus{
 	box-shadow:0 0 0 0 #fff;
 }
 .dropdown-item:active {
@@ -61,7 +61,7 @@ input::placeholder {
 	top:50%;
 }
 .category{
-	display: block;
+	
 }
 .last-button {
 	margin-right: 0;

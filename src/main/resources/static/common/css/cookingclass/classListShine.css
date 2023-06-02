@@ -19,11 +19,8 @@ h1+p a:hover {
 
 .column {
 	width: 100%;
-	 display: block;
+	 display: inline-block;
     vertical-align: top;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 30px;
 }
 
 .column:last-child {
@@ -86,9 +83,11 @@ figure:hover+span {
 	opacity: 1;
 }
 
+/* Shine */
 .hover14 figure {
 	position: relative;
 }
+
 .hover14 figure::before {
 	position: absolute;
 	top: 0;
@@ -98,24 +97,28 @@ figure:hover+span {
 	content: '';
 	width: 50%;
 	height: 100%;
-	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, .3) 100%);
+	background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, .3) 100%);
 	-webkit-transform: skewX(-25deg);
 	transform: skewX(-25deg);
 }
+
 .hover14 figure:hover::before {
 	-webkit-animation: shine .75s;
 	animation: shine .75s;
 }
-@-webkit-keyframes shine {
-	100% {
-		left: 125%;
-	}
+
+@
+-webkit-keyframes shine { 100% {
+	left: 125%;
 }
-@keyframes shine {
-	100% {
-		left: 125%;
-	}
+
+}
+@
+keyframes shine { 100% {
+	left: 125%;
 }
 
 }
@@ -130,41 +133,34 @@ figure>img {
 div .cookingclass-font{
 	font-size: 35px;
 	font-weight: bolder;
-	color: #444;
 }
 
-.all-margin{
-	max-width:1200px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.all-margin::before{
-	content:"";
-	margin-top: 50px;
-	margin-bottom: 50px;
-	display: block;
+body{
+	margin-left: 50px;
+	margin-right: 50px;
+	box-sizing: border-box;
 }
 
-.column div:nth-child(1),.column div:nth-child(2),.column div:nth-child(3){
+.column div:nth-child(1),.column div:nth-child(2),.column div:nth-child(3),.column div:nth-child(4){
 	margin-top: 20px;
 }
 
 
 /* 버튼 */
-.btn-primary, .search{
-	background-color: white !important;
-	color: #d15628 !important;
-	border-color: #d15628 !important;
-	transition: none !important;
+.btn, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary.focus, .btn-primary:focus, .btn-primary:hover{
+	background-color: white;
+	color: #d15628;
+	border-color: #d15628;
+	transition: none;
 }
-.dropdown .btn-primary:not(:disabled):not(.disabled).active:focus, .dropdown .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.dropdown .btn-primary.dropdown-toggle:focus,.dropdown .btn-primary.focus, .dropdown .btn-primary:focus {
-	box-shadow:0 0 0 0 #fff !important;
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary.focus, .btn-primary:focus {
+	box-shadow:0 0 0 0 #fff;
 }
 .btn.focus, .btn:focus{
-	box-shadow:0 0 0 0 #fff !important;
+	box-shadow:0 0 0 0 #fff;
 }
 .dropdown-item:active {
-	background-color: #d15628 !important;
+	background-color: #d15628;
 }
 
 /* 서치바 */

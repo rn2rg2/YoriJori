@@ -10,6 +10,6 @@ public class RecipeController {
 	
 	@RequestMapping("/insert")
 	private String insertRecipe(Model model) {
-		return "insert";
+		return "recipe/recipeInsert";
 	}
 }

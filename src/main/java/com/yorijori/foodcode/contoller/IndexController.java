@@ -12,8 +12,10 @@ public class IndexController {
 		return "thymeleaf/mainpage/index";
 		
 	}
+
 	@RequestMapping("/test24")
 	public String test (Model model) {
 		return "thymeleaf/test";
 	}
+
 }

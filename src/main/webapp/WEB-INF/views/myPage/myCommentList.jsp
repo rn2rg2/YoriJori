@@ -15,6 +15,7 @@
 
 <style type="text/css">
 body {
+	margin-top: 20px;
 }
 .project-list-table {
 	border-collapse: separate;

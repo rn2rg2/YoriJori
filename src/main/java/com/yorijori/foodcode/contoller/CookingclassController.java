@@ -8,6 +8,6 @@ public class CookingclassController {
 	
 	@RequestMapping("/list")
 	public String showCookingclassList() {
-		return "list";
+		return "cookingclass/classList";
 	}
 }
