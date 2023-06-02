@@ -32,7 +32,7 @@ input::placeholder {
 	color: #d15628;
 }
 /* 버튼 */
-.insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.dropdown-toggle, .insert.focus, .insert:focus, .insert:hover{
+.insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.dropdown-toggle, .insert.focus, .insert:focus, .insert:hover, .insert{
 	background-color: white !important;
 	color: #d15628 !important;
 	border-color: #d15628 !important;
@@ -44,8 +44,8 @@ input::placeholder {
 .insert.focus, .insert:focus{
 	box-shadow:0 0 0 0 #fff;
 }
-.dropdown-item:active {
-	background-color: #d15628;
+.insert-item:active {
+	background-color: #d15628 !important;
 }
 .dropdown-toggle{
 	position: relative;
@@ -74,9 +74,54 @@ input::placeholder {
 	height: calc(3em + 1.5rem + 4px);
 	vertical-align: top;
 }
+.submit-btn{
+	display: block !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+.form-group label{
+	display: block !important;
+}
+/* 재료 */
+.imp-list{
+	overflow:auto;
+	height: 100px;
+}
+.imp-group{
+	width: 50%;
+}
+.imp{
+	margin-bottom: 5px;
+}
+.selected{
+	background: #d15628 !important;
+	color: white !important;
+}
+table, tbody{
+border: 1px solid #d15628;
+font-weight: bold;	
+}
+td:nth-child(2){
+	border-right: 1px solid #d15628;
+}
+td{
+	text-align: center;
+}
+td input{
+	width: 100px;
+	border: #d15628;
+	text-align: center;
+	height: 50px;
+}
+input::placeholder{
+	color: #6c757d;
+}
 
-
-
-
-
-
+/* 요리순서 */
+.cooking-step{
+	color:  #d15628;
+	font-weight: bolder;
+	font-family: 'segoe print';
+	font-style: italic;
+	font-size: 45px;
+}

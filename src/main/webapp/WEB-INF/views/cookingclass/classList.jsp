@@ -25,6 +25,7 @@
 <link rel="stylesheet"
 	href="/yorijori/common/css/cookingclass/classListShine.css" />
 <title>쿠킹클래스 리스트</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <script type="text/javascript">
 	
 </script>
@@ -42,7 +43,7 @@
 	<div class="swiper-container">
 		<swiper-container class="mySwiper" pagination="true"
 			pagination-clickable="true" navigation="true" space-between="30"
-			centered-slides="true" autoplay-delay="2500"
+			centered-slides="true" autoplay-delay="3000"
 			autoplay-disable-on-interaction="false"> <swiper-slide>
 		<img
 			src="https://www.shutterstock.com/image-photo/collage-food-dishes-variety-vegetables-260nw-2201244983.jpg" />
@@ -53,6 +54,7 @@
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-slide> <swiper-slide> <img
 			src="https://www.shutterstock.com/image-photo/collage-food-dishes-variety-vegetables-260nw-2201244983.jpg" />
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-container>
+		
 	</div>
 	
 	
