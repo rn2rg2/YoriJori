@@ -1,9 +1,10 @@
 @charset "UTF-8";
- .btn{
 
-  background-color: orange;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  float: right;
- }
+button.btns.btn-default {
+    width: 100px;
+    background-color: orange;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+

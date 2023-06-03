@@ -8,12 +8,15 @@ width: 280px; text-align: left;
 .main-section .table tr:nth-child(4) td {
 	height: 300px; 
 }
-.btn{
-  	background-color: orange;
- 	border: none;
-  	border-radius: 10px;
-  	color: white;
- }
+
+button.buttons.btn-primary {
+    width: 100px;
+    background-color: orange;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
 .btns {
     float: right;
 }

@@ -9,19 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BoardController {
 	@RequestMapping("/list")
 	public String boardList() {
-		return "board/list";
+
+		return "thymeleaf/board/list";
 	}
 	@RequestMapping("/read")
 	public String boardRead() {
-		return "board/read";
+		return "thymeleaf/layout/boardLayout";
 	}
 	@RequestMapping("/write")
 	public String boardWrite() {
-		return "board/write";
-	}
-	@RequestMapping("/reply")
-	public String boardreply() {
-		return "board/reply";
-	}		
+		return "thymeleaf/board/write";
+	}	
+
 	
 }
