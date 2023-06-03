@@ -10,6 +10,6 @@ public class RecipeController {
 	
 	@RequestMapping("/insert")
 	private String insertRecipe(Model model) {
-		return "recipe/recipeInsert";
+		return "thymeleaf/recipe/recipeInsert";
 	}
 }

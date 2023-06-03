@@ -31,8 +31,13 @@ h1+p a:hover {
 	content: '';
 	clear: both;
 	display: block;
+	padding-bottom: 100px;
 }
-
+.page-nav{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 .column div {
 	position: relative;
 	float: left;
@@ -127,15 +132,12 @@ figure>img {
 	height: 100%;
 }
 
-.all-cookingclass{
-	padding-top: 100px;
-}
 div .cookingclass-font{
 	font-size: 35px;
 	font-weight: bolder;
 }
 
-body{
+.all-margin{
 	margin-left: 50px;
 	margin-right: 50px;
 	box-sizing: border-box;
@@ -147,16 +149,16 @@ body{
 
 
 /* 버튼 */
-.btn, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary.focus, .btn-primary:focus, .btn-primary:hover{
+.searbtn, .searbtn:not(:disabled):not(.disabled).active, .searbtn:not(:disabled):not(.disabled):active, .show>.searbtn.dropdown-toggle, .searbtn.focus, .searbtn:focus, .searbtn:hover{
 	background-color: white;
 	color: #d15628;
-	border-color: #d15628;
+	border: 1px solid #d15628;
 	transition: none;
 }
-.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary.focus, .btn-primary:focus {
+.searbtn:not(:disabled):not(.disabled).active:focus, .searbtn:not(:disabled):not(.disabled):active:focus, .show>.searbtn.dropdown-toggle:focus,.searbtn.focus, .searbtn:focus {
 	box-shadow:0 0 0 0 #fff;
 }
-.btn.focus, .btn:focus{
+.searbtn.focus, .searbtn:focus{
 	box-shadow:0 0 0 0 #fff;
 }
 .dropdown-item:active {
@@ -177,3 +179,28 @@ body{
 .search-bar:focus{
 	box-shadow:0 0 0 0 #fff;
 }
+
+
+.cookingclass-font{
+	margin-top: 100px;
+	margin-bottom: 50px;
+	border-bottom: 2px solid #d15628;
+}
+
+/* 페이지네이션 */
+.page-item.active .page-link {
+	background-color: #d15628;
+	border-color: #d15628;
+}
+.page-link{
+color: #d15628;
+	}
+.pagination{
+	justify-content: center;
+}	
+.page-nav {
+	display: block;
+	content: :"";
+	padding-bottom: 100px;
+}	
+
