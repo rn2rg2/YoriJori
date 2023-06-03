@@ -1,10 +1,13 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" type="text/css"
+	href="/yorijori/common/css/reset.css" />
 <!-- include libraries(jQuery, bootstrap) -->
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -19,36 +22,14 @@
 	rel="stylesheet">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
-<!-- include summernote-ko-KR -->
-<script src="/resources/js/summernote-ko-KR.js"></script>
-<title>글쓰기</title>
 
-<script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			placeholder : 'content',
-			minHeight : 370,
-			maxHeight : null,
-			focus : true,
-			lang : 'ko-KR'
-		});
-	});
-</script>
- <style type="text/css">
- .btn-success, .btn-default{
-  
-  background-color: orange;
-  border: none;
-  font-size: 15%;
-  padding: 16px 40px;
-  border-radius: 10px;
-  color: white;
- }
- </style>
+<link rel="stylesheet" href="/yorijori/common/css/board/write.css" />
+
+<title>글쓰기</title>
 </head>
 <body>
 
-	<div style="width: 60%; margin: auto;">
+	<div style="width: 80%; margin: auto;">
 		<form method="post" action="/write">
 			<div class="mb-3">
 
@@ -60,11 +41,10 @@
 			<div class="mb-3">
 				<label for="reg_id">작성자</label> <input type="hidden" name="id"
 					value="${user.id}">
-
-
 			</div>
-			<br />
-			<textarea id="summernote" name="content"></textarea>
+
+			<textarea id="summernote" name="content"
+				style="width: 100%; height: 500px;"></textarea>
 			<div class="form-group">
 				<div class="col-md-2 text-right">
 					<label for="files" class="control-label"></label>
@@ -74,23 +54,34 @@
 						id="files" placeholder="파일선택" multiple="multiple">
 				</div>
 			</div>
-			<br/>
+			
+
 			<div class="form-group">
 				<div class="col-lg-5 text-center"></div>
 				<div class="col-lg-1 text-center">
-					<button type="submit" class="btn btn-success"
-						style="width: 100px; ">등록</button>
+					<button type="submit" class="btn btn-success">등록</button>
 				</div>
 				<div class="col-lg-1 text-center">
-					<button type="reset" class="btn btn-default"
-						style="width: 100px;"
-						onclick="location.href='/yorijori/boardlist'">취소</button>
+					<button type="reset" class="btn btn-default" style="width: 100px;"
+						onclick="location.href='/yorijori/board/list'">취소</button>
 				</div>
-
 			</div>
 		</form>
 	</div>
 
 </body>
+<script>
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			placeholder : 'content',
+			minHeight : 370,
+			maxHeight : null,
+			focus : true,
+			lang : 'ko-KR'
+		});
+	});
+</script>
 </html>
+
+
 

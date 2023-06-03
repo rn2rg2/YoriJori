@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 		<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/test.css" />
 		<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/footer.css" />
-	    <script src="https://kit.fontawesome.com/8055a0c4b7.js" crossorigin="anonymous"></script>
+<!-- 	    <script src="https://kit.fontawesome.com/8055a0c4b7.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+ --></head>
 <body>
 	    <footer id="footer" class="footer">
         <div class="container">
