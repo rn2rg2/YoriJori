@@ -28,8 +28,10 @@
 </head>
 <body>
 <!-- 카테고리 - 버튼 형식으로 변경 / 정렬 - 드롭다운 추가 / classDB - 주소 컬럼 추가 / 페이지 수 추가(12개이후부터면 넘어가게) /  -->
+<div class="all-margin">
+<h2 class="cookingclass-font">추천 클래스 목록</h2>
+</div>
 	<div class="swiper-container">
-		<h2 class="cookingclass-font">추천 클래스 목록</h2>
 		<swiper-container class="mySwiper" pagination="true"
 			pagination-clickable="true" navigation="true" space-between="30"
 			centered-slides="true" autoplay-delay="3000"
@@ -37,16 +39,17 @@
 		<img
 			src="https://recipe1.ezmember.co.kr/cache/recipe/2020/03/09/03ad3def1a2fd41666413d41c27d93a41.png" />
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-slide> <swiper-slide> <img
-			src="https://recipe1.ezmember.co.kr/cache/recipe/2020/03/09/03ad3def1a2fd41666413d41c27d93a41.png" />
+			src="https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg" />
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-slide> <swiper-slide>
 		<img
-			src="https://recipe1.ezmember.co.kr/cache/recipe/2020/03/09/03ad3def1a2fd41666413d41c27d93a41.png" />
+			src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/039/267/original/pixta_32269376_M.jpg?2019&d=750x400" />
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-slide> <swiper-slide>
 		<img
-			src="https://recipe1.ezmember.co.kr/cache/recipe/2020/03/09/03ad3def1a2fd41666413d41c27d93a41.png" />
+			src="https://media.istockphoto.com/id/183752521/ko/%EC%82%AC%EC%A7%84/%EB%B9%84%EB%B9%84%EB%B0%A5.jpg?s=612x612&w=0&k=20&c=KYJvlowh1O2NXOQyeqXAFVwHkiETondgUBRMZGmxPxo=" />
 		<span>여기에 이미지에 대한 설명 작성</span></swiper-container>
 		
 	</div>
+	<div class="all-margin">
 	<div class="all-cookingclass">
 		<h2 class="cookingclass-font">전체 쿠킹 클래스 목록</h2>
 		<div class="dropdown">
@@ -62,6 +65,7 @@
 				<a class="dropdown-item-text" href="11">기타</a>
 			</div>
 			<button type="button" class="search btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+			</div>
 			<div class="hover14 column">
 				<div>
 					<figure>
@@ -151,6 +155,8 @@
 				</div>
 			</div>
 		</div>
+		</div>
+		
 		<script
 			src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 </body>
