@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>요리조리</title>
+	<th:block th:replace="~{thymeleaf/include/header :: header}"></th:block>
+</head>
+<body>
+	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
+	<th:block layout:fragment="content"></th:block>
+	<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
+</body>
+</html>
