@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
@@ -28,6 +26,8 @@
 </head>
 <body>
 <!-- 카테고리 - 버튼 형식으로 변경 / 정렬 - 드롭다운 추가 / classDB - 주소 컬럼 추가 / 페이지 수 추가(12개이후부터면 넘어가게) /  -->
+<th:block th:replace="thymeleaf/include/top :: top"></th:block>
+
 <div class="all-margin">
 <h2 class="cookingclass-font">추천 클래스 목록</h2>
 </div>
@@ -156,7 +156,7 @@
 			</div>
 		</div>
 		</div>
-		
+		<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
 		<script
 			src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 </body>
