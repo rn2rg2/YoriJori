@@ -4,44 +4,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css"
+	href="/yorijori/common/css/reset.css" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>과제</title>
 <meta charset="utf-8">
-<style type="text/css">
- .btn{
-  
-  background-color: orange;
-  border: none;
-  font-size: 15%;
-  padding: 16px 40px;
-  border-radius: 10px;
-  color: white;
- }</style>
+<link rel="stylesheet" href="/yorijori/common/css/board/list.css" />
 </head>
 <body>
-
-	<div class="container">
-
+	<div style="width: 80%; margin: auto">
 		<table id="example" class="table table-haver">
 			<thead>
-
-				<th>글번호</th>
-				<th>작성자</th>
-				<th>제목</th>
-				<th>조회수</th>
-
+			<tr>
+				<th style="width: 10%">글번호</th>
+				<th style="width: 70%">제목</th>
+				<th style="width: 10%">작성자</th>
+				<th style="width: 10%">조회수</th>
+			</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>1</td>
+					<td><a href="/yorijori/board/read">OK</a></td>
 					<td>Filter</td>
-					<td><a href="/yorijori/boardread">OK</a></td>
 					<td>3</td>
 				</tr>
-
 			</tbody>
 		</table>
 	</div>
@@ -55,11 +45,9 @@
 			<input type="submit" value="검색">
 			
 		</form>
-					<div class="col-lg-8 text-center">
+			<div class="col-lg-8 text-center">
 				<button type="reset" class="btn btn-default"
-						style="width: 100px;"
-						onclick="location.href='/yorijori/boardwrite'"
-						>등록</button>
+						onclick="location.href='/yorijori/board/write'">등록</button>
 			</div>
 </body>
 </html>

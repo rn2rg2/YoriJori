@@ -5,26 +5,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
-	//member로 옮길 예정!!
-	@RequestMapping("/register")
-	public String register() {
-		return "member/register";
-	}
-	@RequestMapping("/boardlist")
+	@RequestMapping("/list")
 	public String boardList() {
-		return "board/boardList";
+		return "board/list";
 	}
-	@RequestMapping("/boardread")
+	@RequestMapping("/read")
 	public String boardRead() {
-		return "board/boardRead";
+		return "board/read";
 	}
-	@RequestMapping("/boardwrite")
+	@RequestMapping("/write")
 	public String boardWrite() {
-		return "board/boardWrite";
+		return "board/write";
 	}
-	@RequestMapping("/boardreply")
+	@RequestMapping("/reply")
 	public String boardreply() {
-		return "board/boardReply";
+		return "board/reply";
 	}		
+	
 }

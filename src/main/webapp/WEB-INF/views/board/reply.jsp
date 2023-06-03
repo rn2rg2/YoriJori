@@ -7,17 +7,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <style type="text/css">
- #subBtn{
-  
-  background-color: orange;
-  border: none;
-  font-size: 10%;
-  padding: 16px 40px;
-  border-radius: 10px;
-  color: white;
- }
- </style>
+<link rel="stylesheet" type="text/css"
+	href="/yorijori/common/css/reset.css" />
+<link rel="stylesheet" href="/yorijori/common/css/board/reply.css" />
 </head>
 <body>
 <div class="container">
@@ -31,12 +23,9 @@
                 <table class="table">                    
                     <tr>
                         <td>
-                            <textarea style="width: 1100px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
-                            <br>
+                            <textarea style="width: 100%" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>  
                             <div>
-                               <%--  <a href='#' onClick="fn_comment('${result.code }')" class="btn pull-right btn-success">등록</a> --%>
-                                <input id="subBtn" type="button" value="등록" style="float: right; background-color: orange;border-style:none; color: white" onclick="fn_comment('${result.code }')"/>
-                                
+								<button type="reset" class="btn btn-default" onclick="location.href='/yorijori/board/write'">등록</button>                       
                             </div>
                         </td>
                     </tr>
