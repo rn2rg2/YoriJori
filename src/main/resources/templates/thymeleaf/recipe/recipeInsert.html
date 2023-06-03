@@ -5,21 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>레시피 등록</title>
-<!-- <link rel="stylesheet" type="text/css"
-	href="/yorijori/common/css/reset.css" /> -->
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/8b61787525.js"
-	crossorigin="anonymous"></script>
- -->
 <!-- include summernote css/js-->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
@@ -43,6 +28,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
+	<div class="all-margin">
 		<h2>레시피 등록</h2>
 		<div class="container">
 			<form action="/action_page.php">
@@ -178,8 +164,9 @@
 				<br /> <br />
 
 				<div class="form-group form-insert">
-					<label>요리순서</label> <span class="cooking-step">STEP 1</span>
-					<textarea id="summernote" name="editordata"></textarea>
+					<label>요리순서</label><div class="cooking-num"> <div class="cooking-step">STEP 1</div>
+					<div class="sum"><textarea id="summernote" name="editordata"></textarea></div>
+					</div>
 				</div>
 
 
@@ -199,7 +186,7 @@
 			</form>
 		</div>
 	</div>
-
+</div>
 
 </body>
 </html>

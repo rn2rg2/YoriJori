@@ -1,5 +1,5 @@
 @charset "UTF-8";
-body{
+.all-margin{
 	margin-left: 50px;
 	margin-right: 50px;
 	font-weight: bolder;
@@ -23,9 +23,10 @@ h2{
     margin-right: auto;
     
 }
-label {
+.all-margin label {
 	font-size: 15px;
 	display: block;
+	padding-top: 15px;
 }
 .insert-control::placeholder {
 	font-style: italic;
@@ -130,12 +131,15 @@ td input{
 	font-family: 'segoe print';
 	font-style: italic;
 	font-size: 45px;
+	display: inline;
+	padding-right: 100px;
 }
 
 /* 써머노트 */
-.note-editor.note-frame{
-	width: 50%;
-	display: inherit;
-	margin: 0;
+.cooking-num{
+	display: flex;
+	align-items: center;
 }
-
+.sum{
+	width: 50%;
+}
