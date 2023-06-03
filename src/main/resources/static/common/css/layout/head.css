@@ -33,6 +33,15 @@ h6,
     font-weight: 500 !important;
 }
 
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+ol, ul {
+    list-style: none;
+}
 .btn {
     font-family: 'Jost', sans-serif;
     font-weight: 600;
@@ -76,6 +85,442 @@ h6,
     padding-right: 0;
     text-align: center;
 }
+/* 
+	header 
+ */
+.header {
+    /* position: relative; */
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.header-inner {
+    position: relative;
+    max-width: 1100px;
+    min-height: 120px;
+    margin: 0 auto;
+}
+
+.header-inner .logo {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 263px;
+    height: 83px;
+    background: url(/yorijori/images/icon/yorijori_logo1.png);
+    background-repeat: no-repeat;
+}
+
+
+
+.header-inner .logo > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+
+.header-inner .util {
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.util > ul {
+    overflow: hidden;
+}
+
+.util > ul > li {
+    float: left;
+    position: relative;
+    padding: 0 12px 0 0;
+    font-size: 13px;
+    color: #4D4D4D;
+}
+
+
+.header-inner .header-search {
+    position: absolute;
+    top: 60px;
+    left: 370px;
+    text-align: center;
+    z-index: 100;
+    width: 380px;
+}
+
+.top-search {
+    position: relative;
+    display: inline-block;
+    width: 380px;
+    height: 40px;
+    border: 1px solid #FFA751;
+    border-radius: 6px;
+    background: #fff;
+    padding: 0 45px 0 15px;
+}
+
+.top-search .input-search {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    font-size: 13px;
+    color: #555;
+    text-align: left;
+    background: transparent;
+}
+
+.top-search .btn-top-search {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    transform: translateY(-50%);
+}
+
+button .blind {
+    position: relative;
+    font-size: 0;
+    color: transparent;
+}
+
+.btn-top-search:after {
+    display: inline-block;
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: url(/yorijori/images/common/search.svg);
+    vertical-align: top;
+    background-size: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.header-search .search-layer {
+    display: none;
+    width: 100%;
+    min-height: 100px;
+    background: #fff;
+    border: 1px solid #FFA751;
+    border-top: 0;
+    border-radius: 0 0 6px 6px;
+}
+
+.autoResultBox {
+    text-align: left;
+    padding: 12px 15px;
+    display: none;
+}
+
+.search-layer .tit-area {
+    padding: 12px 15px;
+}
+
+.search-layer .tit-area > h2 {
+    color: #222;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.search-layer .search-rank {
+    padding: 0 15px;
+    overflow: hidden;
+}
+
+.search-rank .list:last-child {
+    border-right: 0;
+}
+.search-rank .list {
+    position: relative;
+    display: flex;
+    gap: 10px 30px;
+    width: 100%;
+    height: calc(20px * 5 + 10px * 4);
+    flex-flow: column wrap;
+}
+
+.search-rank .list > li {
+    position: relative;
+    text-align: left;
+    width: calc((100% - 30px) / 2);
+}
+
+.search-rank li > a {
+    display: flex;
+    height: 20px;
+    align-items: center;
+    position: relative;
+}
+
+
+.search-rank li .num {
+    display: inline-block;
+    width: 14px;
+    margin-right: 6px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #222;
+    font-weight: 500;
+}
+
+.search-rank li .word {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    white-space: nowrap;
+    word-break: break-all;
+    width: 110px;
+    color: #333;
+}
+
+.search-rank li .state {
+    position: absolute;
+    top: 50%;
+    left: calc(14px + 6px + 110px + 5px);
+    font-size: 11px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+.text-green {
+    color: #2E9F41 !important;
+}
+
+.search-layer .search-bottom {
+    border-top: 1px solid #e6e6e6;
+    margin-top: 16px;
+}
+
+.search-bottom .tit {
+    position: relative;
+    padding: 12px 15px 6px;
+    display: flex;
+    height: calc(12px * 2 + 20px);
+    align-items: center;
+}
+
+.search-bottom .tit > h3 {
+    font-size: 13px;
+    color: #333;
+    font-weight: 700;
+    text-align: left;
+}
+
+.search-bottom .tit .text-guide-sm {
+    margin-left: auto;
+    font-size: 13px;
+    line-height: 16px;
+    color: #999;
+}
+
+button span {
+    position: relative;
+}
+
+.search-bottom .latest-search {
+    padding-bottom: 15px;
+}
+
+.latest-search .srch-list li {
+    display: block;
+    padding: 8px 14px;
+}
+
+.srch-keyword {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.srch-keyword > .txt {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.txt, .txt span {
+    word-break: break-all;
+}
+
+.srch-keyword > .btn-x-xs {
+    position: absolute;
+    right: -10px;
+    padding: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.btn-x-xs [class^="ico-x-"] {
+    width: 8px;
+    height: 8px;
+}
+
+.ico-x-grey2 {
+    color: #b9b9b9;
+}
+
+.srch-keyword > .btn-x-xs .blind {
+    position: absolute;
+}
+
+button .blind {
+    position: relative;
+    font-size: 0;
+    color: transparent;
+}
+
+.header-inner .my-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+}
+
+.my-menu > ul {
+    font-size: 0;
+}
+
+.my-menu > ul > li {
+    display: inline-block;
+    vertical-align: top;
+    margin : auto 15px;
+}
+
+.btn-util-coupon {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-image: url(/yorijori/images/common/recipe_icon.png);
+    background-size: auto 48px;
+    background-position: 0% center;
+}
+
+.btn-util-mypage {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-image: url(/yorijori/images/common/user_icon.png);
+    background-size: auto 48px;
+    background-position: 50% center;
+}
+
+.btn-util-cart {
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background-image: url(/yorijori/images/common/chat_icon.png);
+    background-size: auto 48px;
+    background-position: 100% center;
+}
+
+.btn-util-cart .count {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "Malgun Gothic";
+    text-align: center;
+    line-height: 1.6;
+    background: #FF542A;
+    border-radius: 50%;
+}
+
+.gnb-wrap {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    z-index: 101;
+}
+.gnb-wrap .inner {
+/*     display: flex; */
+    position: relative;
+    width: 100%;
+    /* min-width: 1100px;
+    max-width: 1100px; */
+    height: 100%;
+    margin: 0 auto;
+    /* padding-left: 140px; */
+}
+
+.gnb-wrap .category-wrap {
+    position: absolute;
+    width: 160px;
+    bottom: 0;
+    left: -20px;
+}
+.category-wrap .btn-menu-all {
+    position: relative;
+    display: block;
+    width: 160px;
+    color: #333;
+    font-size: 17px;
+    font-weight: 500;
+    transition: .1s;
+    -webkit-transition: .1s;
+    padding: 19px 0;
+    /* line-height: 1; */
+    line-height: 20px;
+}
+.btn-menu-all:before {
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    content: '';
+    vertical-align: middle;
+    /* background: url(/resources/pc/images/icon/ico_gnb_all.png) 0 0; */
+    margin: -3px 10px 0 20px;
+}
+
+.btn-menu-all:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 21px;
+    right: 0;
+    width: 1px;
+    height: 16px;
+    background: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #spinner {
     opacity: 0;
@@ -97,6 +542,8 @@ h6,
     bottom: 45px;
     z-index: 99;
 }
+
+
 
 .top-shape::before {
     position: absolute;
@@ -334,5 +781,10 @@ h6,
 }
 
 nav {
-  height: 45px;
+  /* height: 45px; */
+}
+
+navbar-nav .dropdown{
+	margin-right: 20px;
+	margin-left : 20px;
 }
