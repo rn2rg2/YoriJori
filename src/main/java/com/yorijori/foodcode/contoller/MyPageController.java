@@ -4,27 +4,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/mypage")
 public class MyPageController {
-
-	@RequestMapping("/mypage")
-	public String mainPage() {
-		return "defaultMyPage";
-	}
-
 	
-	@RequestMapping("/recipeList")
-	public String recipeList() {
-		return "myPageRecipeList";
+	@RequestMapping("/profile")
+	public String profile() {
+		return "thymeleaf/mypage/my_user_info2";
 	}
 
-	@RequestMapping("/commentList")
+	@RequestMapping("/recipelist")
+	public String recipeList() {
+		return "thymeleaf/mypage/recipelist";
+	}
+
+	@RequestMapping("/commentlist")
 	public String commentList() {
-		return "myPageCommentList";
+		return "thymeleaf/mypage/commentlist"; 
 	}
 
 	@RequestMapping("/chat")
 	public String chat() {
-		return "myPageChat";
+		return "thymeleaf/mypage/chat";
 	}
 
 }

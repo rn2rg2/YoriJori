@@ -1,96 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <head>
 <meta charset="utf-8">
 
 
 <title>contacts list table - Bootdey.com</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/erp/common/css/myPage/myCommentList.css" />
+<script data-cfasync="false"
+	src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<!-- <script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<style type="text/css">
-body {
-	margin-top: 20px;
-}
-.project-list-table {
-	border-collapse: separate;
-	border-spacing: 0 12px
-}
-.project-list-table tr {
-	background-color: #fff
-}
-.table-nowrap td, .table-nowrap th {
-	white-space: nowrap;
-}
-.table-borderless>:not(caption)>*>* {
-	border-bottom-width: 0;
-}
-.table>:not(caption)>*>* {
-	padding: 0.75rem 0.75rem;
-	background-color: var(- -bs-table-bg);
-	border-bottom-width: 1px;
-	box-shadow: inset 0 0 0 9999px var(- -bs-table-accent-bg);
-}
-.avatar-sm {
-	height: 2rem;
-	width: 2rem;
-}
-.rounded-circle {
-	border-radius: 50% !important;
-}
-.me-2 {
-	margin-right: 0.5rem !important;
-}
-img, svg {
-	vertical-align: middle;
-}
-a {
-	color: #3b76e1;
-	text-decoration: none;
-}
-.badge-soft-danger {
-	color: #f56e6e !important;
-	background-color: rgba(245, 110, 110, .1);
-}
-.badge-soft-success {
-	color: #63ad6f !important;
-	background-color: rgba(99, 173, 111, .1);
-}
-.badge-soft-primary {
-	color: #3b76e1 !important;
-	background-color: rgba(59, 118, 225, .1);
-}
-.badge-soft-info {
-	color: #57c9eb !important;
-	background-color: rgba(87, 201, 235, .1);
-}
-.avatar-title {
-	align-items: center;
-	background-color: #3b76e1;
-	color: #fff;
-	display: flex;
-	font-weight: 500;
-	height: 100%;
-	justify-content: center;
-	width: 100%;
-}
-.bg-soft-primary {
-	background-color: rgba(59, 118, 225, .25) !important;
-}
-select {
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-}
-select:focus {
-	outline: none;
-}
-</style>
+	rel="stylesheet"> -->
+<link rel="stylesheet"
+	href="/yorijori/common/css/mypage/commentlist.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
 	integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
@@ -101,7 +28,7 @@ select:focus {
 	crossorigin="anonymous" />
 </head>
 <body>
-	<div class="container">
+	<div class="container" layout:fragment="content">
 		<div class="row align-items-center">
 			<div class="col-md-6">
 				<div class="mb-3">
@@ -114,8 +41,7 @@ select:focus {
 				<div
 					class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
 					<div>
-						<select
-							name="language" id="language">
+						<select name="language" id="language">
 							<option value="comment" style="color: green;">Comment</option>
 							<option value="review" style="color: orange;">Review</option>
 						</select>
@@ -144,9 +70,7 @@ select:focus {
 							class="table project-list-table table-nowrap align-middle table-borderless">
 							<thead>
 								<tr>
-									<th scope="col" class="ps-4" style="width: 50px;">
-
-									</th>
+									<th scope="col" class="ps-4" style="width: 50px;"></th>
 									<th scope="col">레시피 제목</th>
 									<th scope="col">내용(최대 50자만 보이게끔..?)</th>
 									<th scope="col">등록일</th>
@@ -154,10 +78,8 @@ select:focus {
 							</thead>
 							<tbody>
 								<tr>
-									<th scope="row" class="ps-4">
-									</th>
-									<td><a href="#"
-										class="text-body">감자탕 조리법</a></td>
+									<th scope="row" class="ps-4"></th>
+									<td><a href="#" class="text-body">감자탕 조리법</a></td>
 
 
 									<td>댓글 내용</td>
@@ -536,10 +458,9 @@ select:focus {
 			</div>
 		</div>
 		<div class="row g-0 align-items-center pb-4">
-			<div class="col-sm-6">
-			</div>
+			<div class="col-sm-6"></div>
 			<!-- 한 페이지에 1~20개 정도 보여주고 2번 페이지에서 21~40 까지 보여주는 -->
-<!-- 			<div class="col-sm-6">
+			<!-- 			<div class="col-sm-6">
 				<div class="float-sm-end">
 					<ul class="pagination mb-sm-0">
 						<li class="page-item disabled"><a href="#" class="page-link"><i
@@ -556,13 +477,6 @@ select:focus {
 			</div> -->
 		</div>
 	</div>
-	<script data-cfasync="false"
-		src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript">
-		
-	</script>
+
 </body>
 </html>
