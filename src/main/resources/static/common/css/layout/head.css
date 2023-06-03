@@ -89,8 +89,7 @@ ol, ul {
 	header 
  */
 .header {
-    /* position: relative; */
-    position: fixed;
+    position: relative;
     width: 100%;
     z-index: 100;
     background-color: #fff;

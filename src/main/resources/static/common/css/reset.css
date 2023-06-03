@@ -38,8 +38,7 @@ font-family: 'NanumHimNaeRaNeunMarBoDan';
 
 html, body {
 	height: 100%;
-	font-family: 'NanumHimNaeRaNeunMarBoDan', sans-serif;
-	font-size:20px;
+	font-family: 'NanumGothicBold', sans-serif;
 }
 
 img, picture, video, canvas, svg {
@@ -53,10 +52,6 @@ button {
 	cursor: pointer;
 }
 
-p{
-	font-family: 'NanumHimNaeRaNeunMarBoDan', sans-serif;
-	font-size:25px;
-}
 a {
 	text-decoration: none;
 }
