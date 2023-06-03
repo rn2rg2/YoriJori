@@ -1,0 +1,155 @@
+@charset "UTF-8";
+.all-margin{
+	margin-left: 100px;
+	margin-right: 100px;
+	font-weight: bolder;
+	margin-top: 80px;
+}
+.all-margin h3{
+	font-size: calc(2rem + .6vw)
+}
+.view2_pic {
+    margin: 0 auto;
+    position: relative;
+    background: #fff;
+    display: block;
+}
+.centeredcrop:before{
+	content: "";
+	padding-bottom: 50px;
+	display: block;
+	border-top: 2px solid #d15628;
+}
+.centeredcrop:after{
+	content: "";
+	padding-bottom: 50px;
+	display: block;
+	border-bottom: 2px solid #d15628;
+}
+.centeredcrop img{
+	  margin: 0 auto;
+	 object-fit: cover; 
+	 width: 80%;
+	  height: 500px;
+}
+.class-img{
+	background-image: https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/73fcaaae705ce89a5efe3a0825cec43c.jpg;
+	width: 500px;
+	height: 500px;
+}
+
+.view2_summary.st2 .price_box .dc {
+    font-size: 50px;
+    color: #d15628;
+    font-family : "NanumHimNaeRaNeunMarBoDan";
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: inline-block;
+    margin-right: 4px;
+}
+.view2_summary.st2 .price_box .price {
+    font-size: 90px;
+    color: #000;
+    font-family : "NanumHimNaeRaNeunMarBoDan";
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: inline-block;
+    margin-right: 6px;
+
+}
+.view2_summary.st2 .price_box .del {
+    font-size: 16px;
+    color: #999;
+    line-height: 1;
+    margin-right: 4px;
+    text-decoration: line-through;
+   display: inline-block;
+}
+.all-margin small{
+	    font-size: 50%;
+}
+.st2 img {
+	margin-top:10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+}
+.st2 .nickname{
+	display: inline-block;
+	float: right;
+	margin-top:40px;
+	margin-right: 10px;
+	font-size: 30px;
+}
+.price_box{
+	display: block;
+}
+.price_box:after {
+	content: '';
+	display: block;
+	padding-bottom: 50px;
+}
+.insert {
+    color: #ffffff;
+    background-color: #d15628;
+    border-color: #d15628;
+    border-radius:10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: block;
+    width: 400px;
+    height: 70px;
+    font-size: 40px;
+      font-family : "NanumHimNaeRaNeunMarBoDan";
+      box-sizing: content-box;
+}
+
+/* Nav Bar */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.nav {
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  display: inline-block;
+  padding: 13px 13px;
+  color: #212529;
+  margin-right: 5px;
+}
+
+.nav-link:hover {
+  text-decoration:none;
+  background-color: #d0ebff;
+  border-bottom: 2px solid #339af0
+}
+.nav-link.current {
+  border-bottom: 2px solid #1971c2;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    font-size: 1.1rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .nav-link {
+    padding: 20px 20px;
+  }
+
+}
