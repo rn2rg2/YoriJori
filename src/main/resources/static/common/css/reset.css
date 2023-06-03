@@ -7,12 +7,17 @@ font-family: 'NanumGothic';
 font-family: 'NanumGothicBold';
 font-family: 'NanumGothicExtraBold';
 */
+@import url(https://hangeul.pstatic.net/hangeul_static/css/NanumHimNaeRaNeunMarBoDan.css);
 
+/*
+font-family: 'NanumHimNaeRaNeunMarBoDan';
+*/
 * {
 	margin: 0;
 	padding: 0;
 	font: inherit;
 	color: inherit;
+	
 }
 
 *, :after, :before {
@@ -33,7 +38,8 @@ font-family: 'NanumGothicExtraBold';
 
 html, body {
 	height: 100%;
-	font-family: 'NanumGothic', sans-serif;
+	font-family: 'NanumHimNaeRaNeunMarBoDan', sans-serif;
+	font-size:20px;
 }
 
 img, picture, video, canvas, svg {
@@ -47,8 +53,12 @@ button {
 	cursor: pointer;
 }
 
+p{
+	font-family: 'NanumHimNaeRaNeunMarBoDan', sans-serif;
+	font-size:25px;
+}
 a {
-	text-decoration: none
+	text-decoration: none;
 }
 
 table {
