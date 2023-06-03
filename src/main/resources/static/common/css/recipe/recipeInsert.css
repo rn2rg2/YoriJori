@@ -27,18 +27,18 @@ label {
 	font-size: 15px;
 	display: block;
 }
-input::placeholder {
+.insert-control::placeholder {
 	font-style: italic;
 	color: #d15628;
 }
 /* 버튼 */
-.insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.dropdown-toggle, .insert.focus, .insert:focus, .insert:hover, .insert{
+.insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.insert-drop, .insert.focus, .insert:focus, .insert:hover, .insert{
 	background-color: white !important;
 	color: #d15628 !important;
 	border-color: #d15628 !important;
 	transition: none !important;
 }
-.insert:not(:disabled):not(.disabled).active:focus, .insert:not(:disabled):not(.disabled):active:focus, .show>.insert.dropdown-toggle:focus,.insert.focus, .insert:focus {
+.insert:not(:disabled):not(.disabled).active:focus, .insert:not(:disabled):not(.disabled):active:focus, .show>.insert.insert-drop:focus,.insert.focus, .insert:focus {
 	box-shadow:0 0 0 0 #fff;
 }
 .insert.focus, .insert:focus{
@@ -47,7 +47,7 @@ input::placeholder {
 .insert-item:active {
 	background-color: #d15628 !important;
 }
-.dropdown-toggle{
+.insert-drop{
 	position: relative;
 	margin-left: 0;
 	margin-right: 20px;
@@ -55,7 +55,7 @@ input::placeholder {
 	width: 150px;
 	text-align: left;
 }
-.dropdown-toggle::after{
+.insert-drop::after{
 	position: absolute;
 	right: 10px;
 	top:50%;
@@ -66,7 +66,7 @@ input::placeholder {
 .last-button {
 	margin-right: 0;
 }
-.form-control{
+.insert-control{
 	border-color: #d15628;
 	width: 80%;
 }
@@ -79,7 +79,7 @@ input::placeholder {
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
-.form-group label{
+.form-insert label{
 	display: block !important;
 }
 /* 재료 */
@@ -98,12 +98,12 @@ input::placeholder {
 	color: white !important;
 }
 /* 재료 테이블 */
-table{
+.imp-quantity{
 	width:"100%";
 border: 1px solid #d15628;
 font-weight: bold;	
 }
-tr{
+.tr{
 border: 1px solid #d15628;
 font-weight: bold;	
 }
@@ -119,10 +119,10 @@ td input{
 	text-align: center;
 	height: 50px;
 }
-input::placeholder{
-	color: #6c757d;
+.insert-drop{
+	background-color: #d15628;
+	border-color: #d15628;
 }
-
 /* 요리순서 */
 .cooking-step{
 	color:  #d15628;
