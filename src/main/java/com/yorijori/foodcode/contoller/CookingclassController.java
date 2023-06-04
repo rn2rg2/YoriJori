@@ -10,4 +10,9 @@ public class CookingclassController {
 	public String showCookingclassList() {
 		return "thymeleaf/cookingclass/classList";
 	}
+	
+	@RequestMapping("/read")
+	public String showCookingclass() {
+		return "thymeleaf/cookingclass/classRead";
+	}
 }

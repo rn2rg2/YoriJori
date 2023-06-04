@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="/yorijori/common/css/cookingclass/classRead.css" />
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+	  const $navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'), 0);
+	  
+	  if ($navLinks.length > 0) {
+	    $navLinks.forEach( el => {
+	      if(window.location.pathname == el.getAttribute("href")){
+	         el.className += " current";
+	      }
+	    })
+	  }
+	});
+</script>
+<title>쿠킹 클래스</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="all-margin">
+			<h3>감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]</h3>
+			<div class="view2_pic">
+				<div class="centeredcrop">
+					<img id="main_thumbs"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/73fcaaae705ce89a5efe3a0825cec43c.jpg"
+						alt="main thumb" class="portrait">
+				</div>
+			</div>
+			<div class="view2_summary st2">
+				<div class="price_box">
+					<p class="dc">
+						63<small>%</small>
+					</p>
+
+					<p class="price">
+						30,000<small>원</small>
+					</p>
+					<p class="del">80,000원</p>
+					<a class="app_block_link_remove user_info2_pic"><img
+						src="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/29/900013400086b533aef0411aeb3ee7d71.png"></a>
+					<div class="nickname">유저닉네임</div>
+				</div>
+			</div>
+
+			<div class="view2_summary_info">
+				<dl class="info_delivery">
+					<dt>
+						<img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_clock2.png"
+							alt="시간아이콘" width="29">강의시간
+					</dt>
+					<dd>49분</dd>
+				</dl>
+				<dl class="info_delivery">
+					<dt>
+						<img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_calendar.png"
+							alt="기간아이콘" width="29">수강 기간
+					</dt>
+					<dd>180일</dd>
+				</dl>
+				<div class="info_ea">
+					<img
+						src="https://recipe1.ezmember.co.kr/img/mobile/icon_people.png"
+						alt="수강아이콘" width="29"
+						style="padding-right: 5px; vertical-align: text-bottom;"><b>23</b>명
+					수강
+
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary insert submit-btn">지금바로
+				신청하기</button>
+			<nav class="nav">
+				<a href="/" class="nav-link">Home</a> <a href="/products/"
+					class="nav-link">Products</a> <a href="/about/" class="nav-link">About</a>
+				<a href="/blog/" class="nav-link">Blog</a>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

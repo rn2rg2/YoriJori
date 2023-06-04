@@ -3,9 +3,7 @@
 	margin-left: 50px;
 	margin-right: 50px;
 	font-weight: bolder;
-}
-h2{
-	font-weight: bolder;
+	margin-top: 80px;
 }
 .recipe-form{
 	margin-top: 100px;
@@ -142,4 +140,11 @@ td input{
 }
 .sum{
 	width: 50%;
+}
+
+.insert-font{
+	font-weight: bolder;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	border-bottom: 2px solid #d15628;
 }

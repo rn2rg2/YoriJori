@@ -11,11 +11,11 @@
 # Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 --------------------------------------------------------------*/
 /* Fonts */
-:root {
+/* :root {
   --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-primary: "Amatic SC", sans-serif;
   --font-secondary: "Inter", sans-serif;
-}
+} */
 
 /* Colors */
 :root {
@@ -241,70 +241,12 @@ section {
   }
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
-.header {
-  background: #fff;
-  transition: all 0.5s;
-  z-index: 997;
-  
-  border-bottom: 1px solid #fff;
-}
 
-@media (max-width: 575px) {
-  .header {
-    height: 70px;
-  }
-}
-
-.header.sticked {
-  border-color: #fff;
-  border-color: #eee;
-}
-
-.header .logo img {
-  max-height: 40px;
-  margin-right: 6px;
-}
-
-.header .logo h1 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #000;
-  margin: 0;
-  font-family: var(--font-secondary);
-}
-
-.header .logo h1 span {
-  color: var(--color-primary);
-}
-
-.header .btn-book-a-table,
-.header .btn-book-a-table:focus {
-  font-size: 14px;
-  color: #fff;
-  background: var(--color-primary);
-  padding: 8px 20px;
-  margin-left: 30px;
-  border-radius: 50px;
-  transition: 0.3s;
-}
-
-.header .btn-book-a-table:hover,
-.header .btn-book-a-table:focus:hover {
-  color: #fff;
-  background: rgba(206, 18, 18, 0.8);
-}
-
-section {
-  scroll-margin-top: 90px;
-}
 
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
-@media (min-width: 1280px) {
+/* @media (min-width: 1280px) {
   .navbar {
     padding: 0;
   }
@@ -437,9 +379,9 @@ section {
   }
 }
 
-/*--------------------------------------------------------------
+--------------------------------------------------------------
 # Mobile Navigation
---------------------------------------------------------------*/
+--------------------------------------------------------------
 @media (max-width: 1279px) {
   .navbar {
     position: fixed;
@@ -550,7 +492,7 @@ section {
     z-index: 9996;
   }
 }
-
+ */
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
