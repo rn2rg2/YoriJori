@@ -10,4 +10,16 @@ public class MemberController {
 	public String register() {
 		return "member/register";
 	}
+	@RequestMapping("/signup1")
+	public String signUp1() {
+		return "thymeleaf/member/signUpForm1";
+	}
+	@RequestMapping("/signup2")
+	public String signUp2() {
+		return "thymeleaf/member/signUpForm2";
+	}
+	@RequestMapping("/signup3")
+	public String signUp3() {
+		return "thymeleaf/member/signUpForm3";
+	}	
 }

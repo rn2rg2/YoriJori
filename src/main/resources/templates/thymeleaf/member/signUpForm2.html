@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"  
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{thymeleaf/layout/signUpLayout}">
+<head>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="/yorijori/common/css/member/signUpForm2.css" />
+</head>
+<body>
+	<div layout:fragment="content" class="join-container join-container2" style="display: block;">
+		<div class="join-area">
+			<h2 class="join-title">회원가입</h2>
+			<fieldset class="form-group-area">
+				<legend style="color: #999999;">회원가입을 위해 항목을 작성해주세요</legend>
+				<!-- 아이디 -->
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">아이디<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width: 88%" name="member-join-general-id-text"
+							class="input-text w571" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
+							value=""> <span class="input-group-btn">
+							<button type="button" id="btn-id-check"
+								class="btn-form btn-default-ex"
+								onclick="onClickMemberJoinVerifyLoginIdBtn();">
+								<span>중복확인</span>
+							</button>
+						</span>
+					</div>
+					<div id="member-join-general-id-text-error"></div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">이름<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width: 100%" name="member-join-general-id-text"
+							class="input-text w571" placeholder=""
+							value=""> <span class="input-group-btn">
+						</span>
+					</div>
+				</div>				
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">닉네임<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width: 100%" name="member-join-general-id-text"
+							class="input-text w571" placeholder=""
+							value=""> <span class="input-group-btn">
+						</span>
+					</div>
+				</div>				
+				<!-- 비밀번호 -->
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-pw-text" class="form-label">비밀번호<i
+							class="es2"></i></label>
+					</div>
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<label for="member-join-general-pw-text" class="blind">비밀번호
+							입력</label> <input type="password" id="member-join-general-pw-text"
+							name="member-join-general-pw-text" class="input-text w571"
+							placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
+							onblur="onEventMemberJoinPasswords();"
+							onkeyup="onEventMemberJoinPasswords();">
+					</div>
+					<div class="input-group type-lg w-full">
+						<label for="member-join-general-pw-confirm-text" class="blind">비밀번호
+							확인</label> <input type="password"
+							id="member-join-general-pw-confirm-text"
+							name="member-join-general-pw-confirm-text"
+							class="input-text w571" placeholder="비밀번호 확인"
+							onblur="onEventMemberJoinPasswords();"
+							onkeyup="onEventMemberJoinPasswords();">
+					</div>
+					<p class="text-guide-sm2" id="pw-guide-text1"
+						style="display: none;">※ 6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수.</p>
+					<p class="text-guide-sm2" id="pw-guide-text2"
+						style="display: none;">※ 특수문자는 !, @, #, $, %, ^, &amp;, * 만 사용
+						가능.</p>
+					<p class="valid error" id="pw-error-text1" style="display: none;">비밀번호가
+						일치하지 않습니다.</p>
+				</div>
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">주민등록번호<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width:48%; padding-right: 6px;" name="member-join-general-id-text"
+							class="input-text w571" 
+							value=""> 
+						<span style="padding: 7px;"> - </span>
+						<span>
+						<input type="text" id="member-join-general-id-text"
+							style="width: 48%" name="member-join-general-id-text"
+							class="input-text w571"
+							value="">
+						</span>
+						<span class="input-group-btn">	</span>
+					</div>
+				</div>
+				<!--// form-group -->
+
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-email-text" class="form-label">이메일<i
+							class="es2"></i></label>
+					</div>
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-email-text"
+							name="member-join-general-email-text" class="input-text w571"
+							placeholder="이메일 주소" value=""
+							onblur="onFocusOutMemberJoinEmailText();" 
+							style="width: 50%;">
+								<span>@</span>
+								<span>
+								 	<select id="select">
+							            <option value="" disabled selected>E-Mail 선택</option>
+							            <option value="naver.com" id="naver.com">naver.com</option>
+							            <option value="hanmail.net" id="hanmail.net">hanmail.net</option>
+							            <option value="gmail.com" id="gmail.com">gmail.com</option>
+							            <option value="nate.com" id="nate.com">nate.com</option>
+							            <option value="directly" id="textEmail">직접 입력하기</option>
+							        </select>
+								</span>
+					</div>
+				</div>	
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-email-text" class="form-label">휴대폰번호<i
+							class="es2"></i></label>
+					</div>
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+					<div>
+						<select id="select" style="width: 30%; margin-bottom: 5px;">
+							<option value="KT" id="KT">KT</option>
+							<option value="LG" id="LG">LG</option>
+				            <option value="SKT" id="SKT">SKT</option>
+						</select>
+					</div>
+					<span>
+						<select id="select" style="width: 20%">
+							<option value="" disabled selected>휴대폰 번호</option>
+							<option value="010" id="010">010</option>
+							<option value="011" id="011">011</option>
+				            <option value="016" id="016">016</option>
+				            <option value="010" id="017">017</option>
+				            <option value="019" id="019">019</option>
+				            <option value="directly" id="textEmail">직접 입력하기</option>
+						</select>	
+					</span>
+						<span>-</span>
+						<input type="text" id=selectPhone
+							style="width: 30%;">		
+						<span>-</span>
+						<input type="text" id=selectPhone
+							style="width: 30%;">							
+						<button type="button" id="btn-phone"
+								class="btn-form btn-default-ex"
+								style="height: 50px; width: 15%;">
+						<span>인증번호전송</span>
+						</button>
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">인증번호 입력<i
+							class="es2"></i></label>
+					</div>
+						<div>
+						<input type="text" id=selectPhone
+							style="width: 30%;">
+						</div>		
+					</div>
+				</div>				
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">가입이유<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width: 100%" name="member-join-general-id-text"
+							class="input-text w571" placeholder=""
+							value=""> <span class="input-group-btn">
+						</span>
+					</div>
+					<div id="member-join-general-id-text-error"></div>
+				</div>					
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">선호식품<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width: 100%" name="member-join-general-id-text"
+							class="input-text w571" placeholder=""
+							value=""> <span class="input-group-btn">
+						</span>
+					</div>
+				</div>	
+				<div class="form-group">
+					<div class="form-head">
+						<label for="member-join-general-id-text" class="form-label">알레르기<i
+							class="es2"></i></label>
+					</div>			
+					<!--// form-head -->
+					<div class="input-group type-lg w-full">
+						<input type="text" id="member-join-general-id-text"
+							style="width: 100%" name="member-join-general-id-text"
+							class="input-text w571" placeholder=""
+							value=""> <span class="input-group-btn">
+						</span>
+					</div>
+				</div>	
+					<div id="member-join-general-email-text-error"></div>
+			</fieldset>
+			<div class="btn-bottom-area">
+				<button type="submit" id="member-join-general-submit-btn"
+					class="btn-basic-lg2 btn-dim"
+					onclick="location.href='/yorijori/member/signup3'">
+					<span>회원가입</span>
+				</button>
+				<!-- 활성화시 removeClass btn-dim -->
+			</div>
+			<!--// btn-bottom-area -->
+		</div>
+		<!--// join-area -->
+
+
+</div>
+</body>
+</html>
