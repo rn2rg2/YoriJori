@@ -17,8 +17,8 @@
       width: 100%;
       height: 50%;
       display: block;
-      border-bottom: 2px solid #d15628;
-      border-top:  2px solid #d15628;
+      border-bottom: 2px solid #f67a42;
+      border-top:  2px solid #f67a42;
     }
 
     swiper-slide {
@@ -58,12 +58,12 @@
   background: url(/godiva/img/common/prev.png) no-repeat;
 }
 .swiper-button-next, .swiper-button-prev{
-	color: #d15628;
+	color: #f67a42;
 }
 .swiper-button-next::after,
 .swiper-button-prev::after {
   display: none;
 }
 .swiper-pagination-bullets{
-	background:#d15628;
+	background:#f67a42;
 }

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .all-margin{
-	margin-left: 50px;
-	margin-right: 50px;
+	margin-left: 5%;
+	margin-right: 5%;
 	font-weight: bolder;
 	margin-top: 80px;
 }
@@ -16,7 +16,7 @@
 .category .insert {
     color: #6c757d;
     background-color: #ffffff;
-    border-color: #d15628;
+    border-color: #f67a42;
     margin-left: auto;
     margin-right: auto;
     
@@ -28,13 +28,13 @@
 }
 .insert-control::placeholder {
 	font-style: italic;
-	color: #d15628;
+	color: #f67a42;
 }
 /* 버튼 */
 .insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.insert-drop, .insert.focus, .insert:focus, .insert:hover, .insert{
 	background-color: white !important;
-	color: #d15628 !important;
-	border-color: #d15628 !important;
+	color: #f67a42 !important;
+	border-color: #f67a42 !important;
 	transition: none !important;
 }
 .insert:not(:disabled):not(.disabled).active:focus, .insert:not(:disabled):not(.disabled):active:focus, .show>.insert.insert-drop:focus,.insert.focus, .insert:focus {
@@ -44,7 +44,7 @@
 	box-shadow:0 0 0 0 #fff;
 }
 .insert-item:active {
-	background-color: #d15628 !important;
+	background-color: #f67a42 !important;
 }
 .insert-drop{
 	position: relative;
@@ -66,7 +66,7 @@
 	margin-right: 0;
 }
 .insert-control{
-	border-color: #d15628;
+	border-color: #f67a42;
 	width: 80%;
 }
 .des{
@@ -93,38 +93,38 @@
 	margin-bottom: 5px;
 }
 .selected{
-	background: #d15628 !important;
+	background: #f67a42 !important;
 	color: white !important;
 }
 /* 재료 테이블 */
 .imp-quantity{
 	width:"100%";
-border: 1px solid #d15628;
+border: 1px solid #f67a42;
 font-weight: bold;	
 }
 .tr{
-border: 1px solid #d15628;
+border: 1px solid #f67a42;
 font-weight: bold;	
 }
 td:nth-child(2){
-	border-right: 2px solid #d15628;
+	border-right: 2px solid #f67a42;
 }
 td{
 	text-align: center;
 }
 td input{
 	width: 100px;
-	border: #d15628;
+	border: #f67a42;
 	text-align: center;
 	height: 50px;
 }
 .insert-drop{
-	background-color: #d15628;
-	border-color: #d15628;
+	background-color: #f67a42;
+	border-color: #f67a42;
 }
 /* 요리순서 */
 .cooking-step{
-	color:  #d15628;
+	color:  #f67a42;
 	font-weight: bolder;
 	font-family: 'segoe print';
 	font-style: italic;
@@ -146,5 +146,5 @@ td input{
 	font-weight: bolder;
 	margin-top: 100px;
 	margin-bottom: 50px;
-	border-bottom: 2px solid #d15628;
+	border-bottom: 2px solid #f67a42;
 }

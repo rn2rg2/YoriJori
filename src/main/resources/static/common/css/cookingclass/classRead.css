@@ -1,11 +1,11 @@
 @charset "UTF-8";
 .all-margin{
-	margin-left: 100px;
-	margin-right: 100px;
+	margin-left: 5%;
+	margin-right: 5%;
 	font-weight: bolder;
 	margin-top: 80px;
 }
-.all-margin h3{
+.title{
 	font-size: calc(2rem + .6vw)
 }
 .view2_pic {
@@ -18,13 +18,13 @@
 	content: "";
 	padding-bottom: 50px;
 	display: block;
-	border-top: 2px solid #d15628;
+	border-top: 2px solid #f67a42;
 }
 .centeredcrop:after{
 	content: "";
 	padding-bottom: 50px;
 	display: block;
-	border-bottom: 2px solid #d15628;
+	border-bottom: 2px solid #f67a42;
 }
 .centeredcrop img{
 	  margin: 0 auto;
@@ -40,7 +40,7 @@
 
 .view2_summary.st2 .price_box .dc {
     font-size: 50px;
-    color: #d15628;
+    color: #f67a42;
     font-family : "NanumHimNaeRaNeunMarBoDan";
     font-weight: 500;
     letter-spacing: -0.02em;
@@ -95,27 +95,25 @@
 }
 .insert {
     color: #ffffff;
-    background-color: #d15628;
-    border-color: #d15628;
+    background-color: #f67a42;
+    border-color: #f67a42;
     border-radius:10px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
     display: block;
     width: 400px;
     height: 70px;
     font-size: 40px;
       font-family : "NanumHimNaeRaNeunMarBoDan";
       box-sizing: content-box;
+      text-align: center;
+    vertical-align: middle;
+    padding: 0.375rem 0.75rem;
 }
 
 /* Nav Bar */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-}
 .nav {
   text-align: center;
   font-size: 1rem;
@@ -130,13 +128,16 @@ body {
   display: inline-block;
   padding: 13px 13px;
   color: #212529;
-  margin-right: 5px;
 }
 
-.nav-link:hover {
+.selected {
   text-decoration:none;
-  background-color: #d0ebff;
-  border-bottom: 2px solid #339af0
+  background-color: #f6c88b;
+  border-bottom: 2px solid #f67a42;
+  color: #f67a42
+}
+.nav-link:hover{
+	color: #f67a42
 }
 .nav-link.current {
   border-bottom: 2px solid #1971c2;
@@ -145,11 +146,46 @@ body {
 @media (min-width: 768px) {
   .nav {
     font-size: 1.1rem;
-    padding-left: 10px;
-    padding-right: 10px;
   }
   .nav-link {
     padding: 20px 20px;
+    border-top: 2px solid #f67a42;
   }
 
 }
+.nav-link{
+	width: calc(100%/4);
+}
+
+/* 탭 설정 */
+.all-tab{
+	margin-left: 50px;
+}
+.tab-title{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-family: "NanumHimNaeRaNeunMarBoDan";
+	font-size: 50px;
+}
+.tab-section b, .tab-section a{
+	color: #000 !important;
+}
+.tab-section b{
+	font-weight: bold;
+}
+.line-left{
+	margin-bottom: 30px;
+}
+.tab-section img {
+    vertical-align: middle;
+    margin-bottom: 30px;
+}
+.tab-section:after {
+	content: "";
+	display: block;
+	margin-bottom: 100px;
+}
+.line-title{
+	margin-top: 50px;
+}
+.tab-section

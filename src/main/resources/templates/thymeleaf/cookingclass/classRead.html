@@ -6,25 +6,12 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="/yorijori/common/css/cookingclass/classRead.css" />
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-	  const $navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'), 0);
-	  
-	  if ($navLinks.length > 0) {
-	    $navLinks.forEach( el => {
-	      if(window.location.pathname == el.getAttribute("href")){
-	         el.className += " current";
-	      }
-	    })
-	  }
-	});
-</script>
 <title>쿠킹 클래스</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<div class="all-margin">
-			<h3>감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]</h3>
+			<h3 class="title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]</h3>
 			<div class="view2_pic">
 				<div class="centeredcrop">
 					<img id="main_thumbs"
@@ -74,14 +61,121 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary insert submit-btn">지금바로
-				신청하기</button>
-			<nav class="nav">
-				<a href="/" class="nav-link">Home</a> <a href="/products/"
-					class="nav-link">Products</a> <a href="/about/" class="nav-link">About</a>
-				<a href="/blog/" class="nav-link">Blog</a>
+			<button type="button" class="insert">지금바로 신청하기</button>
+			<nav class="nav" id="tab-button-nav">
+				<a href="javascript:" class="nav-link selected"
+					data-tab-section="tab-section-1">클래스 소개</a> <a href="javascript:"
+					class="nav-link" data-tab-section="tab-section-2">강사소개</a> <a
+					href="javascript:" class="nav-link"
+					data-tab-section="tab-section-3">커리큘럼</a> <a href="javascript:"
+					class="nav-link" data-tab-section="tab-section-4">강사님의 다른 클래스</a>
 			</nav>
+			<div class="all-tab">
+				<div id="tab-section-1" class="tab-section">
+					<!-- 클래스 소개: title-img(max:3)-content 한 블럭으로 사용  -->
+					<h3 class="tab-title">" 클래스 소개 "</h3>
+					<div class="line-title"
+						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+						<a>빨간 딸기와 새하얀 생크림의 만남!</a><br> <b>딸기생크림케이크</b>
+					</div>
+					<div class="line-img">
+					<img style="border-radius: 6px;"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+					<img style="border-radius: 6px;"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+					<img style="border-radius: 6px;"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+					</div>
+					
+					<div class="line-content">
+					<div style="padding: 8px 4px 0px; font-size: 20px;">딸기생크림케이크</div>
+					<span style="font-size: 16px; letter-spacing: -0.8px;">새콤달콤한
+						딸기와 부드러운 생크림의 조합을 느낄 수 있는 딸기생크림케이크 만드는 법을 알려드려요.</span>
+					</div>
+					
+					<div class="line-title"
+						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+						<a>이 클래스만의 <b>특별한 점</b>은 무엇일까요?</a>
+					</div>
+
+				</div>
+
+				<div id="tab-section-2" class="tab-section" hidden>
+					<!-- 강사소개: 클래스 소개와 형식 동일 -->
+					<h3 class="tab-title">" 강사소개 "</h3>
+					<div class="line-title"
+						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+						<a>빨간 딸기와 새하얀 생크림의 만남!</a><br> <b>딸기생크림케이크</b>
+					</div>
+					<div class="line-img">
+					<img style="border-radius: 6px;"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+					<img style="border-radius: 6px;"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+					<img style="border-radius: 6px;"
+						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+					</div>
+					
+					<div class="line-content">
+					<div style="padding: 8px 4px 0px; font-size: 20px;">딸기생크림케이크</div>
+					<span style="font-size: 16px; letter-spacing: -0.8px;">새콤달콤한
+						딸기와 부드러운 생크림의 조합을 느낄 수 있는 딸기생크림케이크 만드는 법을 알려드려요.</span>
+					</div>
+					
+					<div class="line-title"
+						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+						<a>이 클래스만의 <b>특별한 점</b>은 무엇일까요?</a>
+					</div>
+					
+				</div>
+
+				<div id="tab-section-3" class="tab-section" hidden>
+					<!--  -->
+					<h3 class="tab-title">" 커리큘럼 "</h3>
+					<ul>
+						<li ><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+						<li><b>재료 준비</b><a class="time">/10분</a></li>
+						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+					</ul>
+				</div>
+
+				<div id="tab-section-4" class="tab-section" hidden>
+					<!--  -->
+					<h3 class="tab-title">" 강사님의 다른 클래스 "</h3>
+				</div>
+				<script>
+/* css변경 */
+				$(".nav-link").click(function(){
+			    	$(".selected").attr("class","nav-link")
+			    	  $(this).attr("class","nav-link selected")
+			    })
+			    /* hidden 변경 */
+    const $nav = document.querySelector('#tab-button-nav')
+    const $sections = document.querySelectorAll('.tab-section');
+
+    $nav.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('nav-link')) {
+        return;
+      }
+      const focusedTabId = e.target.dataset.tabSection;
+
+      $sections.forEach(($section) => {
+        if ($section.id === focusedTabId) {
+          $section.removeAttribute('hidden');
+        } else {
+          $section.setAttribute('hidden', true);
+        }
+      });
+    });
+    
+  </script>
+			</div>
+
 		</div>
+		<!-- all-margin close  -->
 	</div>
 </body>
 </html>
