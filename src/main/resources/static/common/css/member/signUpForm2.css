@@ -1,0 +1,120 @@
+@charset "UTF-8";
+.join-container2 .join-area {
+    border-radius: 20px;
+}
+.join-area {
+    width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 60px 100px 90px;
+}
+.join-container2 .join-area .form-group .form-head {
+    position: relative;
+    top: initial;
+    left: initial;
+    padding-bottom: 8px;
+}
+.join-title {
+    margin-bottom: 40px;
+}
+.join-container2 .form-group .form-head > .form-label {
+    font-weight: 500;
+}
+fieldset {
+    border: 0;
+}
+/* 필수입력표시 */
+.form-group .form-label .es2 {
+    margin-left: 6px;
+    margin-top: 6px;
+    vertical-align: super;
+}
+
+.es2 {
+    width: 4px;
+    height: 4px;
+    background: #FF6001;
+    display: inline-block;
+    border-radius: 50%;
+}
+.input-group.type-lg.w-full {
+    display: block;
+}
+<!-- 중복확인버튼 -->
+.join-area .input-group.type-lg .input-group-btn .btn-form.btn-valid {
+    border-color: #ff6001;
+    color: #ff6001;
+}
+  .join-container2 .input-group.type-lg .input-group-btn .btn-form, #btn-phone  {
+	border-color : #ff6001;
+    color: white;
+	background-color : #ff6001;	
+    border-radius: 6px;
+    border-width: thin;
+    border-left: 5px;
+    font-size: 13px;
+}
+.input-group .input-group-btn .btn-form.btn-default {
+    border: 1px solid #333;
+}
+.join-area .form-group-area .input-group.type-lg .btn-form.btn-valid {
+    border-color: #ff6001;
+    color: #ff6001;
+}
+.input-group.type-lg .input-group-btn .btn-form {
+    height: 50px;
+    padding: 0 10px;
+    min-width: auto;
+    font-size: 13px;
+}
+/*텍스트 입력  */
+.input-group > .input-text {
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-text, #select, #selectPhone {
+    height: 50px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 6px;
+	margin-bottom: 10px;
+}
+.input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.input-group.type-lg > .input-text + .input-group-btn:last-child {
+    padding: 0 0 0 6px;
+}
+group .form-head ~ .input-group .form-group .input-group ~ .input-group {
+    margin-top: 6px;
+}
+/* 이메일 선택  */
+
+#select {
+	border-radius: 6px;
+	width: 46.9%;
+}
+#member-join-general-submit-btn {
+	color: #fff; 
+    background: #ccc;
+    border: 1px solid #ccc;
+    width: 690px;
+    border-right: 5px;
+    border-radius: 6px;
+    margin-top: 5px;
+    height: 50px;
+}
+.btn-bottom-area{position:relative;text-align:center;}
+
+#selectPhone{
+	border-radius: 6px;
+}

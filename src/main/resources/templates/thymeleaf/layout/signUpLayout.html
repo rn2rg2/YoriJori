@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link rel="stylesheet"
+	href="/yorijori/common/css/member/signUpForm1.css" />
+<link rel="stylesheet"
+	href="/yorijori/common/css/member/signUpForm2.css" />
+	<link rel="stylesheet"
+	href="/yorijori/common/css/member/signUpForm3.css" />
+<th:block th:replace="~{thymeleaf/include/header :: header}"></th:block>
+<body>
+	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
+	<th:block layout:fragment="content"></th:block>
+</body>
+<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
+</html>
