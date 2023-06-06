@@ -12138,7 +12138,7 @@ h5,
 }
 
 .ftco-section {
-    padding: 4em 0;
+    padding: 1em 0;
 }
 
 .ftco-no-pt {
@@ -12585,3 +12585,14 @@ section {
     background-repeat: no-repeat;
     text-align: center;
 }
+/* .main-section-content{
+	position:relative;
+}
+._content{
+	position:relative;
+	top: 11em;
+}	
+.header-section{
+	background : var(--light);
+}
+ */

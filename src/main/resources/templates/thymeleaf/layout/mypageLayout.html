@@ -8,19 +8,25 @@
 <body>
 	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
 	<br />
-	<ul class="tabs  primary-nav" th:fragment="mypagetab">
-		<li class="tabs__item"><a href="/yorijori/mypage/profile"
-			class="tabs__link">기본정보</a></li>
-		<li class="tabs__item"><a href="/yorijori/mypage/recipelist"
-			class="tabs__link">기록보관소</a></li>
-		<li class="tabs__item"><a href="/yorijori/mypage/commentlist"
-			class="tabs__link">댓글 / 리뷰</a></li>
-		<li class="tabs__item"><a href="/yorijori/mypage/chat"
-			class="tabs__link">유저 쪽지</a></li>
-		<li class="tabs__item"><a href="#" class="tabs__link">나만의 냉장고</a></li>
-		<li class="tabs__item"><a href="#" class="tabs__link">나만의 식판</a></li>
-	</ul>
-	<th:block layout:fragment="content"></th:block>
+	<section class="main-section-content">
+		<div class="_content">
+			<ul class="tabs  primary-nav" th:fragment="mypagetab">
+				<li class="tabs__item"><a href="/yorijori/mypage/profile"
+					class="tabs__link">기본정보</a></li>
+				<li class="tabs__item"><a href="/yorijori/mypage/recipelist"
+					class="tabs__link">기록보관소</a></li>
+				<li class="tabs__item"><a href="/yorijori/mypage/commentlist"
+					class="tabs__link">댓글 / 리뷰</a></li>
+				<li class="tabs__item"><a href="/yorijori/mypage/chat"
+					class="tabs__link">유저 쪽지</a></li>
+				<li class="tabs__item"><a href="#" class="tabs__link">나만의
+						냉장고</a></li>
+				<li class="tabs__item"><a href="#" class="tabs__link">나만의
+						식판</a></li>
+			</ul>
+			<th:block layout:fragment="content"></th:block>
+		</div>
+	</section>
 </body>
 <th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
 </html>
