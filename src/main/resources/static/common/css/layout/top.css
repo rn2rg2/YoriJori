@@ -35,8 +35,23 @@
         Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
-    - -font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
+    /* https://colorhunt.co/palette/ffd31dd63447f57b51f6eedf */
+	--main-theme-color-red : #D63447;
+	--main-theme-color-yellow : #FFD31D;
+	--main-theme-color-orange : #F57B51;
+	--main-theme-color-white : #F6EEDF;
+	/* https://colorhunt.co/palette/fd5d5dff8080fff7bcc0eda6 */
+	--sub-theme-color1: #FD5D5D; /* 연한 딸기색*/
+	--sub-theme-color2: #FF8080; /* 연한 핑 */
+	--sub-theme-color3: #FFF7BC; /* 연한 노란색  */
+	--sub-theme-color4: #C0EDA6; /* 연한 연두색  */
+	/* https://colorhunt.co/palette/c0d8c0f5eedcdd4a48ecb390 */
+	--sub-theme-color5: #C0D8C0; /* 연한 녹 */
+	--sub-theme-color6: #F5EEDC; /* 베이지 색  */
+	--sub-theme-color7: #DD4A48; /* 토마토  */
+	--sub-theme-color8: #ECB390; /* 연한 갈 */
 }
 
 *,
@@ -12146,14 +12161,14 @@ h5,
 }
 
 .ftco-navbar-light {
-    background: #F67A42 !important;
+    background: var(--sub-theme-color1) !important;
     z-index: 3;
     padding: 0;
 }
 
 @media (max-width : 991.98px) {
     .ftco-navbar-light {
-        background: #F67A42 !important;
+        background: var(--sub-theme-color1) !important;
         position: relative;
         top: 0;
         padding: 10px 15px;
@@ -12173,7 +12188,8 @@ h5,
     padding-left: 20px;
     padding-right: 20px;
     font-weight: 500;
-    color: #fff;
+/*     color: #fff; */
+    color: var(--main-theme-color-white);
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
@@ -12188,7 +12204,7 @@ h5,
     display: block;
     width: 0;
     height: 2px;
-    background: #F67A42;
+    background: var(--sub-theme-color1);
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
@@ -12203,7 +12219,8 @@ h5,
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
-    color: #000;
+/*     color: #000; */
+    color: var(--main-theme-color-yellow);
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover:before {
@@ -12216,11 +12233,13 @@ h5,
         padding-right: 0;
         padding-top: .7rem;
         padding-bottom: .7rem;
-        color: rgba(255, 255, 255, 0.7);
+        /* color: rgba(255, 255, 255, 0.7); */
+        color: var(--main-theme-color-yellow);
     }
 
     .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
-        color: #fff;
+        /* color: #fff; */
+        color: var(--main-theme-color-yellow);
     }
 }
 
@@ -12232,7 +12251,8 @@ h5,
 
 .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu {
     border: none;
-    background: #FDF4E3;
+/*     background: #FDF4E3; */
+    background: var(--sub-theme-color3);
     -webkit-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
     -moz-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
     box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
@@ -12241,19 +12261,20 @@ h5,
 
 .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item {
     font-size: 1em;
-    color: #000
+    color: #000;
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item:hover,
 .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item:focus {
-    background: #FFB862;
-    color: #fff;
+    background: #FFB862; 
+    /* color: #fff; */
+    color : var(--main-theme-color-red);
 }
 
 @media (max-width : 991.98px) {
     .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu {
         display: block !important;
-        background: #FDF4E3;
+        background: #FDF4E3;	
     }
 
     .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item {
@@ -12262,8 +12283,9 @@ h5,
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
-    color: #fff;
-    background: #F67A42;
+/*     color: #fff; */
+    color: var(--main-theme-color-orange);
+    background: var(--sub-theme-color1);
     border-radius: 0px;
 }
 
@@ -12276,14 +12298,15 @@ h5,
 
 @media (max-width : 991.98px) {
     .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
-        color: #fff;
-        background: #F67A42;
+/*         color: #fff; */
+        color: var(--main-theme-color-orange);
+        background: var(--sub-theme-color1);
         border-radius: 4px;
     }
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item.active>a {
-    color: #F67A42;
+    color: var(--sub-theme-color1);
 }
 
 @media (max-width : 991.98px) {
@@ -12356,8 +12379,8 @@ h5,
 }
 
 .social-media p a:hover {
-    background: #F67A42;
-    border-color: #F67A42;
+    background: var(--sub-theme-color1);
+    border-color: var(--sub-theme-color1);
 }
 
 .social-media p a:hover span {
@@ -12409,7 +12432,7 @@ h5,
 .searchform .search {
     width: 50px;
     height: 50px;
-    background: #F67A42 !important;
+    background: var(--sub-theme-color1) !important;
 }
 
 .searchform .search span {
