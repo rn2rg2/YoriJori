@@ -3,27 +3,34 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <head>
-<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
+<link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
 </head>
 </head>
 <body>
-	<div class="container-fluid refri-div" layout:fragment="content">
+	<div class="container-fluid tray-div" layout:fragment="content">
 		<div class="row">
-			<div class="col-md-8 refri-image">
-				<div class="refri-top"></div>
-				<div class="refri-bottom"></div>
+			<div class="col-md-9 tray_frame">
+				<div class="row">
+					<div class="col-md-4 plate1"></div>
+					<div class="col-md-4 plate2"></div>
+					<div class="col-md-4 plate3"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 plate_rice"></div>
+					<div class="col-md-6 plate_soup"></div>
+				</div>
 			</div>
-			<div class="col-md-4 ingredients-layout">
+			<div class="col-md-3 ingredients-layout">
 				<div class="ingredients-info">
 					<!-- search bar -->
 					<div id="searbar_ingredient"
 						th:insert="~{thymeleaf/common/search :: searchbar('재료','재료','재료','재료')}">
 					</div>
-					
+
 					<!-- 재료 목록 보기  -->
-					<div class="ingredient_list_view" th:insert="~{thymeleaf/common/ingredient :: ingredient}">
-					</div>
-					
+					<div class="ingredient_list_view"
+						th:insert="~{thymeleaf/common/ingredient :: ingredient}"></div>
+
 					<!-- 페이지네이션  -->
 					<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
 					</nav>

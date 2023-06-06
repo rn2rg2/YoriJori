@@ -1,5 +1,10 @@
 @charset "UTF-8";
-
+.all-margin{
+	margin-left: 5%;
+	margin-right: 5%;
+	font-weight: bolder;
+	margin-top: 80px;
+}
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 300;
@@ -141,13 +146,6 @@ div .cookingclass-font {
 	font-weight: bolder;
 }
 
-.all-margin{
-	margin-left: 50px;
-	margin-right: 50px;
-	font-weight: bolder;
-	margin-top: 80px;
-}
-
 .column div:nth-child(1), .column div:nth-child(2), .column div:nth-child(3),
 	.column div:nth-child(4) {
 	margin-top: 20px;
@@ -158,8 +156,8 @@ div .cookingclass-font {
 	 (:disabled ):not (.disabled ):active, .show>.searbtn.dropdown-toggle,
 	.searbtn.focus, .searbtn:focus, .searbtn:hover {
 	background-color: white;
-	color: #d15628;
-	border: 1px solid #d15628;
+	color: #f67a42;
+	border: 1px solid #f67a42;
 	transition: none;
 }
 
@@ -174,14 +172,14 @@ div .cookingclass-font {
 }
 
 .dropdown-item:active {
-	background-color: #d15628;
+	background-color: #f67a42;
 }
 
 /* 서치바 */
 .search-bar {
 	line-height: 1.5;
 	text-align: left;
-	border: 1px solid #d15628;
+	border: 1px solid #f67a42;
 	height: 38px;
 	width: 250px;
 	box-sizing: border-box;
@@ -195,17 +193,17 @@ div .cookingclass-font {
 .cookingclass-font {
 	margin-top: 100px;
 	margin-bottom: 50px;
-	border-bottom: 2px solid #d15628;
+	border-bottom: 2px solid #f67a42;
 }
 
 /* 페이지네이션 */
 .page-item.active .page-link {
-	background-color: #d15628;
-	border-color: #d15628;
+	background-color: #f67a42;
+	border-color: #f67a42;
 }
 
 .page-link {
-	color: #d15628;
+	color: #f67a42;
 }
 
 .pagination {
