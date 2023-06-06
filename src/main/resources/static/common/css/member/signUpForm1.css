@@ -1,0 +1,89 @@
+@charset "UTF-8";
+.terms-section .frame-sm .form-head p {
+    font-size: 13px;
+    color: #999999;
+    font-weight: 400;
+}
+.custom-checkbox input[type="checkbox"] + label{
+	display:inline-block; 
+	position:relative; 
+	cursor:pointer;
+	vertical-align: top;
+}
+custom-checkbox .checkbox + label{
+	padding-left:26px; 
+	min-height:18px;
+}
+.terms-inner-list .terms-inner-box{
+	background:#f8f8f8; 
+	padding:12px; 
+	margin-top:10px; 
+	max-height:125px; 
+	overflow-y:auto; 
+	color: #333;
+	font-size: 13px;
+	line-height:18px
+}
+ol, ul{
+	list-style:none;
+}
+.terms-inner-list .terms-inner-box {
+    background: #f8f8f8;
+    padding: 12px;
+    margin-top: 10px;
+    max-height: 125px;
+    overflow-y: auto;
+    color: #333;
+    font-size: 13px;
+    line-height: 18px;
+}
+.terms-section .frame-sm .form-group{width:520px;margin:0 auto;}
+.terms-section .frame-sm .form-head h3{font-size:26px;color:#333333;font-weight: 700;padding-bottom:4px;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+
+element.style {
+}
+.terms-section .terms-btn-wrap button {
+    width: 520px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 16px 0;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.btn-dim, button[disabled] {
+    color: #fff;
+    background: #ccc;
+    border: 1px solid #ccc;
+    cursor: default;
+}
+.terms-inner-list > li .custom-checkbox input[type="checkbox"] + label {
+    font-size: 13px;
+    color: #666;
+}
+.bl-text-type2, .bl-list-type2 > li {
+    color: #999;
+    font-size: 12px;
+    padding-left: 15px;
+    word-break: break-word;
+    text-align: left;
+}
+.terms-section .terms-toggle-box {
+    border-top: none;
+    border-bottom: 1px solid #ccc;
+    margin-top: 0;
+    padding: 24px 0 12px 0;
+}
+.custom-checkbox > .notice-text {
+    padding: 3px 0 0 26px;
+    font-size: 12px;
+    color: #999;
+}
+.terms-section .terms-btn-wrap {
+    padding-top: 40px;
+}
+.text-center {
+    text-align: center !important;
+}
+
