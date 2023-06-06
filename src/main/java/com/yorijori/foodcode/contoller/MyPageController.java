@@ -26,5 +26,13 @@ public class MyPageController {
 	public String chat() {
 		return "thymeleaf/mypage/chat";
 	}
+	@RequestMapping("/refri")
+	public String refri() {
+		return "thymeleaf/mypage/refri";
+	}
+	@RequestMapping("/tray")
+	public String tray() {
+		return "thymeleaf/mypage/tray";
+	}
 
 }

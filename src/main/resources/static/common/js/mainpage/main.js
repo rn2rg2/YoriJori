@@ -38,3 +38,6 @@ if (!numbersAnimated && isElementVisible($("#stats-counter"))) {
   numbersAnimated = true; 
   setTimeout(animateNumbers, 0); y
 }
+
+
+
