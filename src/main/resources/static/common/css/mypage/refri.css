@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/* .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
+}  */
+.refri-div {
+	margin-top: 2em;
+}
+
+.refri-image {
+	background-image: url("/yorijori/images/common/refri.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	width: 100%;
+	height: 700px;
+}
+
+.refri-top {
+	height: 65%;
+}
+
+.refri-bottom {
+	height: 35%;
+}
+
+.ingredients-layout {
+	width: 100%;
+}
+
+.ingredients-info {	
+	
+}
+
+.ingredients-search-from {
+	margin: 2em 0;
+}
+
+.ingredients-result {
+	
+}
+
+.drop-targets {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.box {
+	height: 150px;
+	width: 150px;
+	border: solid 3px #ccc;
+	margin: 10px;
+	/* align items in the box */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.drag-over {
+	border: dashed 3px red;
+}
+
+.item {
+	height: 75px;
+	width: 75px;
+	background-color: #F0DB4F;
+}
+
+.hide {
+	display: none;
+}

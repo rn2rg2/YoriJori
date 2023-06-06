@@ -57,7 +57,7 @@
 												class="sr-only">마이페이지</i></span></a>
 									</p>
 								</div>
-	
+
 							</div>
 						</div>
 					</div>
@@ -81,8 +81,11 @@
 							class="nav-link dropdown-toggle" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="#">레시피목록</a> <a
-									class="dropdown-item" href="/yorijori/recipe/insert">레시피등록
+								<a class="dropdown-item" href="#">레시피 목록</a> <a
+									class="dropdown-item" href="/yorijori/recipe/insert">레시피 등록
+								</a>
+								<a
+									class="dropdown-item" href="/yorijori/recipe/insert">재료 목록 
 								</a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
@@ -115,21 +118,30 @@
 						</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="/yorijori/mypage/profile">내정보
-								</a> <a class="dropdown-item" href="#">나의기록 </a> <a
-									class="dropdown-item" href="#">댓글/리뷰</a> <a
-									class="dropdown-item" href="#">채팅목록 </a> <a
-									class="dropdown-item" href="#">나만의 냉장고 </a> <a
-									class="dropdown-item" href="#">나의 식판 </a>
+								</a> <a class="dropdown-item" href="/yorijori/mypage/recipelist">나의기록 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/commentlist">댓글/리뷰</a> <a
+									class="dropdown-item" href="/yorijori/mypage/chat">채팅목록 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/refri">나만의 냉장고 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/tray">나의 식판 </a>
 							</div></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		
+
 
 		<!-- HEADER INNER -->
+
+		<a href="#" title="Back to Top"
+			style="display: scroll; position: fixed; bottom: 30px; right: 30px;"
+			onfocus='this.blur()'> <img
+			src="/yorijori/images/common/top-button.png"
+			style="width: 40px; height: 40px; border-radius: 15px;" />
+
+		</a>
 		<script src="/yorijori/common/js/common/top.js"></script>
 	</header>
+
 	<!-- HEADER -->
 
 </body>

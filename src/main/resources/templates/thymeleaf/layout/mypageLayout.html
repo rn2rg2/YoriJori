@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="/yorijori/common/css/mypage/tabbar.css" />
 <body>
 	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
-	<br />
 	<section class="main-section-content">
 		<div class="_content">
 			<ul class="tabs  primary-nav" th:fragment="mypagetab">
@@ -19,14 +18,14 @@
 					class="tabs__link">댓글 / 리뷰</a></li>
 				<li class="tabs__item"><a href="/yorijori/mypage/chat"
 					class="tabs__link">유저 쪽지</a></li>
-				<li class="tabs__item"><a href="#" class="tabs__link">나만의
-						냉장고</a></li>
-				<li class="tabs__item"><a href="#" class="tabs__link">나만의
-						식판</a></li>
+				<li class="tabs__item"><a href="/yorijori/mypage/refri"
+					class="tabs__link">나만의 냉장고</a></li>
+				<li class="tabs__item"><a href="/yorijori/mypage/tray"
+					class="tabs__link">나만의 식판</a></li>
 			</ul>
 			<th:block layout:fragment="content"></th:block>
 		</div>
 	</section>
+	<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
 </body>
-<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
 </html>
