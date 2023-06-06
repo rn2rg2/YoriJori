@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/*	
+	커스텀 용 폰트 모음 
+	출처 : https://hangeul.naver.com/font/clova
+*/
+/* 힘내라 어쩌구 체 
+강조하는 용 bold 용 글씨에 적합  */
+@import url(https://hangeul.pstatic.net/hangeul_static/css/NanumHimNaeRaNeunMarBoDan.css);
+/*
+font-family: 'NanumHimNaeRaNeunMarBoDan';
+*/
+
+/* 범솜체 
+둥글둥글하고 큰 글 씨용 */
+@import url(https://hangeul.pstatic.net/hangeul_static/css/NanumBeomSomCe.css);
+/* 
+font-family: 'NanumBeomSomCe';
+ */
+ 
+ /* 아인 맘 글씨 체 
+ h 태그용 
+ */
+@import url(https://hangeul.pstatic.net/hangeul_static/css/NanumAInMamSonGeurSsi.css);
+ /* 
+font-family: 'NanumAInMamSonGeurSsi';
+ */
+
+/* 맛있는 체  
+레시피 본문에 좋아보임 
+*/ 
+@import url(https://hangeul.pstatic.net/hangeul_static/css/NanumMasIssNeunCe.css);
+  /* 
+font-family: 'NanumMasIssNeunCe';
+ */
+ 
+/* 영어 글씨 체 */ 
+@font-face {
+	font-family: "LilitaOne-Regular";
+	src: url("/font/LilitaOne-Regular.ttf") format("truetype"); 
+    font-weight: 500;
+}
