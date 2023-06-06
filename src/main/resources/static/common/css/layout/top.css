@@ -12182,12 +12182,12 @@ h5,
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link {
-    font-size: 1em;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-weight: 500;
+
+    font-size: 1.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-weight: 700;
+   	font-family : 'NanumAInMamSonGeurSsi';
 /*     color: #fff; */
     color: var(--main-theme-color-white);
     text-transform: uppercase;
@@ -12260,8 +12260,11 @@ h5,
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item {
-    font-size: 1em;
-    color: #000;
+
+	font-weight: 700;
+   	font-family : 'NanumMasIssNeunCe';
+    font-size: 1.5em;
+
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item .dropdown-menu .dropdown-item:hover,
