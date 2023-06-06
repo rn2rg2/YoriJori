@@ -12539,6 +12539,9 @@ section {
     font-size: 13px;
 
 }
+.util>ul>li>a{
+	color : var(--sub-theme-color7);
+}
 
 .my-menu>ul {
     font-size: 0;
