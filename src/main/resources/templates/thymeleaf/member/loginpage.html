@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="/yorijori/common/css/member/login.css" />
+</head>
+<body>
+	 <div class="center">
+        <div class="login-wrapper" style="height: 550px;">
+            <h2><a href="/yorijori/main"><img src="/yorijori/images/icon/yorijori_logo1.png" alt="" style="height: 60px;"></a></h2>
+            <form method="post" action="서버의url" id="login-form">
+                <input type="text" name="userName" placeholder="Email" style="font-size: 18px;">
+                <input type="password" name="userPassword" placeholder="Password" style="font-size: 18px;">
+                <a href="/yorijori/member/signup1" class="but">회원가입</a>
+                <label for="remember-check">
+                    <input type="checkbox" id="remember-check" style="margin-bottom: 20px;;">아이디 저장하기
+                    
+                </label>
+                <input type="submit" value="로그인" style="color: white; background-color: #d15729;">
+                
+                <a href="https://kauth.kakao.com/oauth/authorize?client_id=45497eb8c2b23537157164970e87e0f1&redirect_uri=http://localhost:8088/yorijori/member/login&response_type=code"><img src="/yorijori/images/common/kakao_login.png" style="width: 100%; height: 48px;"></a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
