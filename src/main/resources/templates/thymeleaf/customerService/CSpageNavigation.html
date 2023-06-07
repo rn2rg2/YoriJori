@@ -2,10 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>nav</title>
 </head>
 <body>
 <!-- 템플릿 좌측에 들어가는 navigation -->
-
+<div class="page-navigation" th:fragment="nav">
+<ul>
+  <li class="nav-item">
+    <a class="nav-link current" href="/yorijori/cs/help">공지사항</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/yorijori/cs/notification">자주 묻는 질문</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/yorijori/cs/inquiry">문의하기</a> <!-- 자바스크립트로 팝업 -->
+  </li>
+</ul>
+</div>
 </body>
 </html>
