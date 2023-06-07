@@ -1,0 +1,34 @@
+@charset "UTF-8";
+.page-navigation {
+	float: left;
+	margin-top: 52px;
+	width: 250px;
+}
+.page-navigation ul{
+	display: inline-block;
+}
+.page-navigation ul li {
+	font-size: 16px;
+	margin-bottom: 15px;
+	position: relative;
+}
+.page-navigation ul .current {
+	font-weight: 700;
+}
+
+.page-navigation li a:after {
+	background-color: #222;
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 0;
+	height: 1px;
+	transition: width 0.25s ease-out;
+}
+.page-navigation li a{
+	padding: 0;
+}
+.page-navigation li a:hover:after {
+	width: 100%;
+}
