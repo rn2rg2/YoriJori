@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<head>
+<link rel="stylesheet"
+	href="/yorijori/common/css/customerService/insert.css" />
+<meta charset="UTF-8">
+<title>공지 게시글 작성</title>
+<!-- include summernote css/js-->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			placeholder : 'content',
+			minHeight : 370,
+			maxHeight : null,
+			focus : true,
+			lang : 'ko-KR'
+		});
+		$(".dropdown-item").on("click",function(){
+	        var text=$(this).html()
+				$("#category").html(text)
+				$("#category").val($(this).attr("id"))
+	    })
+	});
+</script>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="all-margin">
+			<div class="all-content">
+				<h3>관리자용 게시글 등록</h3>
+				<form action="">
+					<div class="form-group form-insert">
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle cate" type="button"
+								data-toggle="dropdown" aria-expanded="false" id="category" value="">카테고리선택</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item tem" href="javascrip:;" id="help">자주하는질문</a> <a
+									class="dropdown-item tem" href="javascrip:;" id="noti">공지사항</a>
+							</div>
+						</div>
+						<div class="sum"><textarea id="summernote" name="editordata"></textarea></div>
+						<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
