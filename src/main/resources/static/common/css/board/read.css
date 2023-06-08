@@ -2,8 +2,12 @@
 .main-section .table th { 
 	width: 120px; 
 }
+tr, td, th{
+	font-family: 'NanumAInMamSonGeurSsi';
+}
 .main-section .table td {
-width: 280px; text-align: left; 
+	width: 280px; 
+	text-align: left; 
 }
 .main-section .table tr:nth-child(4) td {
 	height: 300px; 
@@ -11,11 +15,14 @@ width: 280px; text-align: left;
 
 button.buttons.btn-primary {
     width: 100px;
-    background-color: orange;
-    border: none;
+	background-color: #FD5D5D;    
+	border: none;
     border-radius: 10px;
     color: white;
+   	font-family: 'NanumAInMamSonGeurSsi';
+    
 }
+
 
 .btns {
     float: right;

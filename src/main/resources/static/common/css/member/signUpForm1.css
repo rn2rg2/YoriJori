@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 .terms-section .frame-sm .form-head p {
     font-size: 13px;
     color: #999999;
@@ -13,6 +19,10 @@
 custom-checkbox .checkbox + label{
 	padding-left:26px; 
 	min-height:18px;
+}
+h2{
+    font-family: 'Pretendard-Regular';
+    font-weight: bold;
 }
 .terms-inner-list .terms-inner-box{
 	background:#f8f8f8; 
@@ -41,8 +51,7 @@ ol, ul{
 .terms-section .frame-sm .form-head h3{font-size:26px;color:#333333;font-weight: 700;padding-bottom:4px;}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 
-element.style {
-}
+
 .terms-section .terms-btn-wrap button {
     width: 520px;
     margin: 0 auto;
@@ -54,8 +63,8 @@ element.style {
 
 .btn-dim, button[disabled] {
     color: #fff;
-    background: #ccc;
-    border: 1px solid #ccc;
+    background: #FD5D5D;
+    border: 1px solid #FD5D5D ;
     cursor: default;
 }
 .terms-inner-list > li .custom-checkbox input[type="checkbox"] + label {

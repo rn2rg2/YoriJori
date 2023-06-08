@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 .join-container2 .join-area {
     border-radius: 20px;
 }
@@ -14,8 +20,11 @@
     left: initial;
     padding-bottom: 8px;
 }
+
 .join-title {
     margin-bottom: 40px;
+   	font-family: 'Pretendard-Regular';
+    font-weight: bold;
 }
 .join-container2 .form-group .form-head > .form-label {
     font-weight: 500;
@@ -46,9 +55,9 @@ fieldset {
     color: #ff6001;
 }
   .join-container2 .input-group.type-lg .input-group-btn .btn-form, #btn-phone  {
-	border-color : #ff6001;
+	border-color : #FD5D5D;
     color: white;
-	background-color : #ff6001;	
+	background-color : #FD5D5D;	
     border-radius: 6px;
     border-width: thin;
     border-left: 5px;
@@ -105,7 +114,7 @@ group .form-head ~ .input-group .form-group .input-group ~ .input-group {
 }
 #member-join-general-submit-btn {
 	color: #fff; 
-    background: #ccc;
+    background: #FD5D5D;
     border: 1px solid #ccc;
     width: 690px;
     border-right: 5px;
