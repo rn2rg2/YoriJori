@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+/* .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
+}  */
+/* .tray-div {
+	margin-top: 2em;
+}
+ */
+.tray_frame {
+	background-image: url("/yorijori/images/common/tray.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	background-size: cover;
+}
+
+.plate1 {
+	background-image: url("/yorijori/images/common/banchan_plate.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	width: 100%;
+	height: 350px;
+}
+
+.plate2 {
+	background-image: url("/yorijori/images/common/banchan_plate2.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	width: 100%;
+	height: 350px;
+}
+
+.plate3 {
+	background-image: url("/yorijori/images/common/banchan_plate3.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	width: 100%;
+	height: 350px;
+}
+
+.plate_rice {
+	background-image: url("/yorijori/images/common/bab_plate.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	width: 100%;
+	height: 350px;
+}
+
+.plate_soup {
+	background-image: url("/yorijori/images/common/gook_plate.png");
+	background-repeat: no-repeat;
+	/*백그라운드 위치 옵션을 center 정중앙에 위치  */
+	background-position: center;
+	width: 100%;
+	height: 350px;
+}
+
+
+.ingredients-layout {
+	width: 100%;
+}
+
+.ingredients-info {
+	
+}
+
+.ingredients-search-from {
+	margin: 1em 0;
+}
+
+.ingredients-result {
+	
+}
+
+.recipe_info > img{
+	width : 100%;
+	min-height : 10em;
+	height : 100%;
+}
+
+.tray_info_box {
+	display: flex;
+	justify-content: space-around;
+	margin-top : 5rem;
+}
+
+.tray_info_box>img {
+	width: 10em;
+	height: 10em;
+	border: 3px solid white;
+	border-radius: 70px;
+	-moz-border-radius: 70px;
+	-khtml-border-radius: 70px;
+	-webkit-border-radius: 70px;
+}
+.about_tray_btn{
+	display:flex;
+}
+
+
+.drop-targets {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.drag-over {
+	border: dashed 3px red;
+}
+
+
+
+#item {
+	z-index: 100;
+}
+
+.hide {
+	display: none;
+}

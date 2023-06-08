@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/CSLayout}">
+<head>
+<meta charset="UTF-8">
+<title>문의하기</title>
+<link rel="stylesheet"
+	href="/yorijori/common/css/customerService/inquiry.css" />
+	<link rel="stylesheet"
+	href="/yorijori/common/css/customerService/list.css" />
+	<script type="text/javascript" src="/yorijori/common/js/customerService/CSpageNavigation.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".current").attr("class","nav-link")
+	$("#inquiry").attr("class","nav-link current")
+})
+</script>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="all-margin">
+		<button type="button" class="insert" onclick="location.href='/yorijori/cs/inquiry/form'">문의하기</button>
+	</div>
+	</div>
+</body>
+</html>

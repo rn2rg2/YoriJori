@@ -1,0 +1,88 @@
+@charset "UTF-8";
+body{
+	background-color: #f1f1f2;
+}
+.all-margin{
+	margin: 5px auto 5px auto;
+	padding:50px 10px 50px 10px;
+	box-sizing: border-box;
+	width: 70%;
+	font-family: "NanumGothic";
+	background-color: #fff;
+}
+.qnaTableBody li{
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px 0 20px 0;
+	border-bottom:1px solid #dcdcdc;
+	position: relative;
+}
+.qnaTableBody .hide{
+    font-size: 13px;
+    font-weight: 400;     
+}
+.all-margin ul{
+	margin-top: 50px;
+	margin-bottom: 0px;
+}
+.all-margin h3{
+	font-weight: bold;
+	font-family: "NanumGothic";
+	position: relative;
+}
+.deskTitle{
+	position: relative;
+}
+.all-margin i{
+	font-weight: bold;
+	font-family: "Font Awesome 5 Free";
+	color: var(--main-theme-color-red);
+	opacity: 0.7;
+	position:  absolute;
+	right: 0;
+	top: 5px;
+	font-size: 40px;
+	cursor: pointer;
+}
+.all-margin h4{
+	font-family: "NanumGothic";
+	color: #777;
+	font-size: 15px;
+	font-weight: bold;
+}
+.all-margin h6{
+	margin-left: 30px;
+	margin-bottom: 0;
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: "NanumGothic";
+}
+.all-margin a{
+	display: block;
+}
+.all-margin h6:before{
+	content: '\f0d7';
+	position:  absolute;
+	font-family: "Font Awesome 5 Free";
+	font-weight: bold;
+	left: 0px;
+	color: #000;
+}
+.hide p{
+	color: #000 !important;
+	font-size: 15px;
+	font-family: "NanumGothic";
+	display: block;
+}
+.hide{
+	display:none;
+	background-color: #dcdcdc;
+	padding: 15px 10px 15px;
+	width: 95%;
+	margin: 20px auto 0 auto;
+}
+.all-content{
+	width: 90%;
+	margin: 0 auto 0 auto;
+}

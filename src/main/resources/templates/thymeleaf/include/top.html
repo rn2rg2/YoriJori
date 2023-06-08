@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 
+
 <body>
 	<!-- Navbar Start -->
 	<!-- 	<header id="header" class="header ftco-section" th:fragment="top"> -->
-	<header class="ftco-section" th:fragment="top">
+	<header class="ftco-section header-section" th:fragment="top">
 		<div class="header-inner">
 			<h1 class="logo">
 				<a href="/yorijori/main"><span class="blind"></span></a>
 			</h1>
 			<div class="util">
 				<ul>
-					<li><a href="#">로그인</a></li>
+
+					<li><a href="#" onclick="openGreetingPopup()">로그인</a></li>
 					<li><a href="/yorijori/member/signup1">회원가입</a></li>
 					<li><a href="#">고객센터</a></li>
 				</ul>
 			</div>
 		</div>
+		
+		
+		<!-- 팝업! -->	
+		 <div id="greetingPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; z-index: 99999;">
 
+			<div class="center" style="">
+				<div class="login-wrapper" style="height: 550px;">
+								<button onclick="closeGreetingPopup()">닫기</button>
+					<h2 >
+						<img alt="" src="/yorijori/images/icon/yorijori_logo1.png" style="  margin-left: auto;
+  margin-right: auto; height: 60px;">
+					</h2>
+					<form method="post" action="서버의url" id="login-form">
+						<input type="text" name="userName" placeholder="Email"
+							style="font-size: 18px; border: none;"> <input type="password"
+							name="userPassword" placeholder="Password"
+							style="font-size: 18px; border: none;"> <a
+							href="/yorijori/member/signup1" class="but">회원가입</a> <label
+							for="remember-check"> <input type="checkbox"
+							id="remember-check" style="margin-bottom: 20px;">아이디 저장하기
+
+						</label> <input type="submit" value="로그인"
+							style="color: white; background-color: #d15729; border: none;"> <a
+							href="https://kauth.kakao.com/oauth/authorize?client_id=45497eb8c2b23537157164970e87e0f1&redirect_uri=http://localhost:8088/yorijori/member/login&response_type=code"><img
+							src="/yorijori/images/common/kakao_login.png"
+							style="width: 100%; height: 48px; "></a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 팝업! -->
+		
+		
 		<div class="container-fluid px-md-5 mb-4">
 			<div class="row justify-content-between header_top_div">
 				<div class="col-md-5 d-flex logo_div">
@@ -57,7 +91,7 @@
 												class="sr-only">마이페이지</i></span></a>
 									</p>
 								</div>
-	
+
 							</div>
 						</div>
 					</div>
@@ -81,8 +115,11 @@
 							class="nav-link dropdown-toggle" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="#">레시피목록</a> <a
-									class="dropdown-item" href="/yorijori/recipe/insert">레시피등록
+								<a class="dropdown-item" href="/yorijori/recipe/list">레시피 목록</a> <a
+									class="dropdown-item" href="/yorijori/recipe/insert">레시피 등록
+								</a>
+								<a
+									class="dropdown-item" href="/yorijori/ingredient/list">재료 목록 
 								</a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
@@ -115,21 +152,152 @@
 						</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="/yorijori/mypage/profile">내정보
-								</a> <a class="dropdown-item" href="#">나의기록 </a> <a
-									class="dropdown-item" href="#">댓글/리뷰</a> <a
-									class="dropdown-item" href="#">채팅목록 </a> <a
-									class="dropdown-item" href="#">나만의 냉장고 </a> <a
-									class="dropdown-item" href="#">나의 식판 </a>
+								</a> <a class="dropdown-item" href="/yorijori/mypage/recipelist">나의기록 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/commentlist">댓글/리뷰</a> <a
+									class="dropdown-item" href="/yorijori/mypage/chat">채팅목록 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/refri">나만의 냉장고 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/tray">나의 식판 </a>
+
 							</div></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+
+		<script type="text/javascript">
+	    function openGreetingPopup() {
+	        document.body.classList.add("popup-opened");
+	        document.getElementById("greetingPopup").style.display = "block";
+	    }
+
+	    function closeGreetingPopup() {
+	        document.body.classList.remove("popup-opened");
+	        document.getElementById("greetingPopup").style.display = "none";
+	    }
+    </script>
+		<!-- HEADER INNER -->
+
+		<a href="#" title="Back to Top"
+			style="display: scroll; position: fixed; bottom: 30px; right: 30px;"
+			onfocus='this.blur()'> <img
+			src="/yorijori/images/common/top-button.png"
+			style="width: 40px; height: 40px; border-radius: 15px;" />
+
+		</a>
+		
+		
+		<script src="/yorijori/common/js/common/top.js"></script>
+		
+		
+		
+		<style>
+		    body.popup-opened {
+        overflow: hidden; /* 스크롤 막기 */
+    }
+
+    body.popup-opened::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* 어둡게 처리할 배경 색상 */
+        z-index: 9998;
+    }
 		
 
-		<!-- HEADER INNER -->
-		<script src="/yorijori/common/js/common/top.js"></script>
+		 .center {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 500px;
+		}
+		
+		.login-wrapper{
+		    width: 400px;
+		    height: auto;
+		    padding: 30px;
+		    box-sizing: border-box;
+		    text-align: center;
+		    margin-left : auto;
+		    margin-right: auto;
+		    background-color: white;
+		}
+		
+		.login-wrapper > h2{
+		    font-size: 24px;
+		    color: black;
+		    margin-bottom: 20px;
+		}
+		#login-form > input{
+		    width: 100%;
+		    height: 48px;
+		    padding: 0 10px;
+		    box-sizing: border-box;
+		    margin-bottom: 16px;
+		    border-radius: 6px;
+		    background-color: #F8F8F8;
+		    
+		    
+		}
+		#login-form > label{
+		    margin-top: 10px
+		    ;
+		}
+		
+		#login-form > input::placeholder{
+		    color: #D2D2D2;
+		}
+		#login-form > input[type="submit"]{
+		    color: #fff;
+		    font-size: 16px;
+		    background-color: black;
+		    color: black;
+		    margin-top: -5px;
+		}
+		
+		
+		
+		#login-form > input[type="checkbox"]{
+		    display: none;
+		}
+		#login-form > label{
+		    color: #999999;
+		}
+		#login-form input[type="checkbox"] + label{
+		    cursor: pointer;
+		    padding-left: 26px;
+		    background-image: url("checkbox.png");
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		}
+		#login-form input[type="checkbox"]:checked + label{
+		    background-image: url("checkbox-active.png");
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		}
+		
+		
+		
+		.but {
+		    margin-right: 50px; 
+		    text-decoration: none; 
+		    color: black;
+		    
+		    
+		}
+		.but:hover {
+		    margin-right: 50px; 
+		    text-decoration: none; 
+		    color: white;
+		    background-color: #d15729  ;
+		    
+		    
+		}
+		</style>
 	</header>
+
 	<!-- HEADER -->
 
 </body>

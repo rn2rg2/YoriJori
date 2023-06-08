@@ -188,4 +188,28 @@
 .line-title{
 	margin-top: 50px;
 }
-.tab-section
+.tab-section ul{
+	margin-left: 50px;
+}
+.tab-section li{
+	border: 2px solid #f67a42;
+	border-radius: 10px;
+	list-style: decimal;
+	padding: 10px;
+	margin-bottom:20px;
+	display: block;
+	position: relative;
+	width: 600px;
+}
+li .time{
+	position:absolute;
+	color: #f67a42;
+	right: 10px;
+	font-family: "NanumHimNaeRaNeunMarBoDan";
+	font-size: 20px;
+	border: 2px solid #568acf;
+	border-radius: 50%;
+	padding-left: 10px;
+	padding-right: 10px;
+	bottom: 5px;
+}

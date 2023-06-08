@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{thymeleaf/layout/mypageLayout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -13,110 +13,76 @@ layout:decorate="~{thymeleaf/layout/mypageLayout}">
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <link rel="stylesheet"
 	href="/yorijori/common/css/mypage/my_user_info2.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+	integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+	crossorigin="anonymous" />
 </head>
 <body>
-	<div class="container rounded bg-white mt-5 mb-5" layout:fragment="content">
+<th:block th:replace="~{thymeleaf/mypage/changepass :: changepass}"></th:block>
+	<div class="container rounded bg-white mt-5" layout:fragment="content">
 		<div class="row">
-			<div class="col-md-3 border-right">
+			<div class="col-md-4 border-right">
 				<div
 					class="d-flex flex-column align-items-center text-center p-3 py-5">
-					<img class="rounded-circle mt-5" width="150px"
-						src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-						class="font-weight-bold">Edogaru</span> 
-						<span class="text-black-50">사용자 이름</span> 
-						<span class="text-black-50">사용자 온도(글자로만 보여줄거면 이렇게)</span>
-						<div class="bar" style="--percent: 50;"></div>
-						<span class="text-black-50">사용자 선호 식품</span>
+					<img class="rounded-circle mt-5"
+						src="https://bootdey.com/img/Content/avatar/avatar1.png"
+						width="200"><span class="font-weight-bold">이름</span> <span>닉네임</span>
+					<span id="temp">유저 온도</span> <br /> <span id="purpose">유저의
+						요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의
+						요리 목적입니다.유저의 요리 목적입니다.</span>
 				</div>
-
 			</div>
-			<div class="col-md-5 border-right">
+			<div class="col-md-8">
 				<div class="p-3 py-5">
 					<div class="d-flex justify-content-between align-items-center mb-3">
-						<h4 class="text-right">Profile Settings</h4>
+						<h6 class="text-right">프로필 수정하기</h6>
 					</div>
 					<div class="row mt-2">
 						<div class="col-md-6">
-							<label class="labels">Name</label><input type="text"
-								class="form-control" placeholder="first name" value="">
+							<input type="text" class="form-control" placeholder="이름" value="">
 						</div>
 						<div class="col-md-6">
-							<label class="labels">Surname</label><input type="text"
-								class="form-control" value="" placeholder="surname">
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<label class="labels">Mobile Number</label><input type="text"
-								class="form-control" placeholder="enter phone number" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">Address Line 1</label><input type="text"
-								class="form-control" placeholder="enter address line 1" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">Address Line 2</label><input type="text"
-								class="form-control" placeholder="enter address line 2" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">Postcode</label><input type="text"
-								class="form-control" placeholder="enter address line 2" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">State</label><input type="text"
-								class="form-control" placeholder="enter address line 2" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">Area</label><input type="text"
-								class="form-control" placeholder="enter address line 2" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">Email ID</label><input type="text"
-								class="form-control" placeholder="enter email id" value="">
-						</div>
-						<div class="col-md-12">
-							<label class="labels">Education</label><input type="text"
-								class="form-control" placeholder="education" value="">
+							<input type="text" class="form-control" value=""
+								placeholder="닉네임">
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-md-6">
-							<label class="labels">Country</label><input type="text"
-								class="form-control" placeholder="country" value="">
+							<input type="text" class="form-control" placeholder="알레르기"
+								value="">
 						</div>
 						<div class="col-md-6">
-							<label class="labels">State/Region</label><input type="text"
-								class="form-control" value="" placeholder="state">
+							<input type="text" class="form-control" value=""
+								placeholder="선호식품">
 						</div>
 					</div>
-					<div class="mt-5 text-center">
-						<button class="btn btn-primary profile-button">버튼 대신 이미지로 대체
-							</button>
+					<div class="row mt-3">
+						<div class="col-md-6">
+							<input type="text" class="form-control" placeholder="Email"
+								value="">
+						</div>
+						<div class="col-md-6">
+							<input type="text" class="form-control" value=""
+								placeholder="전화번호">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="p-3 py-5">
-					<div
-						class="d-flex justify-content-between align-items-center experience">
-						<span>Edit Experience</span><span
-							class="border px-3 p-1 add-experience"><i
-							class="fa fa-plus"></i>&nbsp;Experience</span>
-					</div>
-					<br>
-					<div class="col-md-12">
-						<label class="labels">Experience in Designing</label><input
-							type="text" class="form-control" placeholder="experience"
-							value="">
-					</div>
-					<br>
-					<div class="col-md-12">
-						<label class="labels">Additional Details</label><input type="text"
-							class="form-control" placeholder="additional details" value="">
-					</div>
+				<div class="mt-5 text-right">
+					<button class="btn btn-primary profile-button" type="button">수정사항
+						저장</button>
+					<button class="btn btn-primary profile-button" type="button" id="changePasswordButton">비밀번호
+						변경</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#changePasswordButton').click(function() {
+			$('#changepassmodal').modal('show');
+		});
+	});
+	</script>
 </body>
 </html>

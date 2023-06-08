@@ -92,3 +92,7 @@ select {
 select:focus {
 	outline: none;
 }
+
+.container {
+	max-width: 1100px;
+}
