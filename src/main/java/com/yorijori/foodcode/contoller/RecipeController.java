@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/recipe")
 @Controller
 public class RecipeController {
+	@RequestMapping("/view")
+	private String viewRecipe(Model model) {
+		return "thymeleaf/recipe/recipeview";
+	}
 	@RequestMapping("/list")
 	private String listRecipe(Model model) {
 		return "thymeleaf/recipe/recipelist";
