@@ -1,10 +1,11 @@
 /**
  * 
  */
-const item = document.querySelector('.item');
+const items = document.querySelectorAll('.item');
 const boxes = document.querySelectorAll('.box');
-
-item.addEventListener('dragstart', dragStart);
+items.forEach(item => {
+	item.addEventListener('dragstart', dragStart);
+});
 
 boxes.forEach(box => {
     box.addEventListener('dragenter', dragEnter)
@@ -14,11 +15,11 @@ boxes.forEach(box => {
 });
 
 function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-
-    setTimeout(() => {
-        e.target.classList.add('hide');
-    }, 0);
+	e.dataTransfer.setData('text',"");
+	e.dataTransfer.setData('text', e.target.id);
+// setTimeout(() => {
+// e.target.classList.add('hide');
+// }, 0);
 }
 
 function dragEnter(e) {
@@ -37,11 +38,18 @@ function dragLeave(e) {
 
 function drop(e) {
     e.target.classList.remove('drag-over');
+    let div = document.createElement('div')
+    div.classList.add("tray_info_box");
+    div.addEventListener('dragstart', dragStart);
+    console.log(e);
+    const id = e.dataTransfer.getData('text');
+    const draggable = document.getElementById(id).cloneNode(true);
+    
+    div.append(draggable);
+    if ( e.target.classList[1] == "box" ) {
+    	e.target.appendChild(div);
+    }
+//    e.target.appendChild(div);
 
-    const id = e.dataTransfer.getData('text/plain');
-    const draggable = document.getElementById(id);
-
-    e.target.appendChild(draggable);
-
-    draggable.classList.remove('hide');
+    // draggable.classList.remove('hide');
 }

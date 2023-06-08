@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{thymeleaf/layout/mypageLayout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -24,7 +24,7 @@ layout:decorate="~{thymeleaf/layout/mypageLayout}">
 
 			<!-- For demo purpose -->
 			<div>
-				<hr/>
+				<hr />
 			</div>
 			<!-- End -->
 
@@ -40,204 +40,18 @@ layout:decorate="~{thymeleaf/layout/mypageLayout}">
 								<a href="#" class="text-dark">레시피 제목</a>
 							</h5>
 							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
 							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">조회수 </span>
-								</p>
-								<div
-									class="badge badge-danger px-3 rounded-pill font-weight-normal"
-									style="color: orange;">별점 정보</div>
-							</div>
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
 						</div>
 					</div>
 				</div>
 				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-2.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">Blorange</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">PNG</span>
-								</p>
-								<div
-									class="badge badge-primary px-3 rounded-pill font-weight-normal">Trend</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-3.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">And She Realized</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPG</span>
-								</p>
-								<div
-									class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-4.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">DOSE Juice</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPEG</span>
-								</p>
-								<div
-									class="badge badge-success px-3 rounded-pill font-weight-normal">Hot</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-5.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">Pineapple</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">PNG</span>
-								</p>
-								<div
-									class="badge badge-primary px-3 rounded-pill font-weight-normal">New</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-6.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">Yellow banana</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPG</span>
-								</p>
-								<div
-									class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-7.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">Teal Gameboy</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPEG</span>
-								</p>
-								<div
-									class="badge badge-info px-3 rounded-pill font-weight-normal">Hot</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-8.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">Color in Guatemala.</a>
-							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
-							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">PNG</span>
-								</p>
-								<div
-									class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
 				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 					<div class="bg-white rounded shadow-sm">
 						<img
@@ -245,97 +59,233 @@ layout:decorate="~{thymeleaf/layout/mypageLayout}">
 							alt="" class="img-fluid card-img-top">
 						<div class="p-4">
 							<h5>
-								<a href="#" class="text-dark">Red paint cup</a>
+								<a href="#" class="text-dark">레시피 제목</a>
 							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
 							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPG</span>
-								</p>
-								<div
-									class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
-							</div>
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
 						</div>
 					</div>
 				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
 				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 					<div class="bg-white rounded shadow-sm">
 						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-2.jpg"
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
 							alt="" class="img-fluid card-img-top">
 						<div class="p-4">
 							<h5>
-								<a href="#" class="text-dark">Lorem ipsum dolor</a>
+								<a href="#" class="text-dark">레시피 제목</a>
 							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
 							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">PNG</span>
-								</p>
-								<div
-									class="badge badge-primary px-3 rounded-pill font-weight-normal">Trend</div>
-							</div>
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
 						</div>
 					</div>
 				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
 				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 					<div class="bg-white rounded shadow-sm">
 						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-3.jpg"
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
 							alt="" class="img-fluid card-img-top">
 						<div class="p-4">
 							<h5>
-								<a href="#" class="text-dark">Lorem ipsum dolor</a>
+								<a href="#" class="text-dark">레시피 제목</a>
 							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
 							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPG</span>
-								</p>
-								<div
-									class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
-							</div>
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
 						</div>
 					</div>
 				</div>
-				<!-- End -->
-
-				<!-- Gallery item -->
 				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 					<div class="bg-white rounded shadow-sm">
 						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-4.jpg"
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
 							alt="" class="img-fluid card-img-top">
 						<div class="p-4">
 							<h5>
-								<a href="#" class="text-dark">Lorem ipsum dolor</a>
+								<a href="#" class="text-dark">레시피 제목</a>
 							</h5>
-							<p class="small text-muted mb-0">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit</p>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
 							<div
-								class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-								<p class="small mb-0">
-									<i class="fa fa-picture-o mr-2"></i><span
-										class="font-weight-bold">JPEG</span>
-								</p>
-								<div
-									class="badge badge-success px-3 rounded-pill font-weight-normal">Hot</div>
-							</div>
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+					<div class="bg-white rounded shadow-sm">
+						<img
+							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
+							alt="" class="img-fluid card-img-top">
+						<div class="p-4">
+							<h5>
+								<a href="#" class="text-dark">레시피 제목</a>
+							</h5>
+							<p class="small text-muted mb-0">유저 닉네임</p>
+
+							<p class="small mb-0">
+								<span class="font-weight-bold">조회수 </span>
+							</p>
+							<div
+								class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								4.22 별점 정보</div>
+
 						</div>
 					</div>
 				</div>
@@ -343,7 +293,18 @@ layout:decorate="~{thymeleaf/layout/mypageLayout}">
 
 			</div>
 			<div class="py-5 text-right">
-				<a href="#" class="btn btn-dark px-5 py-3 text-uppercase">추천 레시피 링크 걸기?</a>
+				<form action="/erp/board/search.do" method="post">
+					<select name="tag">
+						<option value="id">작성자</option>
+						<option value="title">제목</option>
+					</select> <input type="text" name="search" /> <input type="submit"
+						value="검색">
+				</form>
+				<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
+				</nav>
+
+				<a href="#" class="btn btn-dark px-5 py-3 text-uppercase">추천 레시피
+					링크 걸기?</a>
 			</div>
 		</div>
 	</div>
