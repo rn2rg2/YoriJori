@@ -4,12 +4,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <title>board</title>
+<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBeomSomCe.css">
 </head>
 <body>
-	
-	<br/>
-	<section th:fragment="content1" class="main-section" style="width: 80% ;margin :auto">
-		<table class="table table-bordered">
+	<section th:fragment="content1" class="main-section mb-5" style="width: 80% ;margin :auto;">
+		<table class="table table-bordered" >
 			<tr>
 				<th>번호</th>
 				<td>111</td>
@@ -34,15 +33,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		
 			<button type="button" class="buttons btn-primary"
 				onclick="location.href='/yorijori/board/write"
-				style="background-color: orange">수정</button>
+				>수정</button>
 				
 			<button type="button" class="buttons btn-primary"
 				onclick="location.href='/yorijori/board/list"
-				style="background-color: orange">삭제</button>
+				>삭제</button>
 
 			<button type="button" class="buttons btn-primary"
 				onclick="location.href='/yorijori/board/list'"
-				style="background-color: orange">목록</button>	
+				>목록</button>	
 		</div>
 
 	</section>	

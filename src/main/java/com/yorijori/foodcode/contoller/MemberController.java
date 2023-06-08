@@ -21,5 +21,5 @@ public class MemberController {
 	@RequestMapping("/signup3")
 	public String signUp3() {
 		return "thymeleaf/member/signUpForm3";
-	}	
+	}
 }

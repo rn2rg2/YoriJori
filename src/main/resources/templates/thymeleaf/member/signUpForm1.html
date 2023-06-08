@@ -7,6 +7,26 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="/yorijori/common/css/member/signUpForm1.css" />
+<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBeomSomCe.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#member-join-general-agree-all-check").click(function() {
+		if($("#member-join-general-agree-all-check").is(":checked")) $("input[name=member-join-general-agree-user-info-check]").prop("checked", true);
+		else $("input[name=member-join-general-agree-user-info-check]").prop("checked", false);
+	});
+	
+	$("input[name=member-join-general-agree-user-info-check]").click(function() {
+		var total = $("input[name=member-join-general-agree-user-info-check]").length;
+		var checked = $("input[name=member-join-general-agree-user-info-check]:checked").length;
+		
+		if(total != checked) $("#member-join-general-agree-all-check").prop("checked", false);
+		else $("#member-join-general-agree-all-check").prop("checked", true); 
+	});
+});
+
+</script>
 </head>
 <body>
 	<section id="contents" class="container" layout:fragment="content" style="margin-top: 5px;" >
@@ -24,7 +44,7 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 				<div class="frame-sm">
 					<div class="form-group">
 						<div class="form-head">
-							<h3 class="">이용약관 동의</h3>
+							<h2 class="">이용약관 동의</h2>
 							<p>요리조리 회원가입을 위해 이용약관을 동의해주세요.</p>
 						</div>
 						<!--// form-head -->
@@ -33,8 +53,9 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 								<div class="custom-checkbox" onclick="termsBtn();">
 									<input type="checkbox" id="member-join-general-agree-all-check"
 										class="checkbox ui-check-all"
-										name="member-join-general-agree-all-check"
-										onclick="onClickMemberJoinCheckAll();"> 
+										name="selectall"
+										value="selectall"
+										onclick='selectAll(this)'> 
 										<label for="member-join-general-agree-all-check"
 										style="font-weight: bold;">
 										약관 전체동의</label>
@@ -50,9 +71,10 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 										<div class="custom-checkbox left-item1" onclick="termsBtn();">
 											<input type="checkbox"
 												id="member-join-general-agree-terms-check" class="checkbox"
-												name="member-join-general-agree-terms-check"
-												onclick="onClickMemberJoinCheckItem();"> <label
-												for="member-join-general-agree-terms-check"><span
+												name="member-join-general-agree-user-info-check"
+												 onclick='checkSelectAll(this)'/> 
+												<label
+												for="member-join-general-agree-user-info-check"><span
 												class="text-guide-sm2">(필수)</span> 회원가입 약관동의</label>
 										</div>
 									</div> <!--// inner-flex -->
@@ -392,7 +414,7 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 												id="member-join-general-agree-user-info-check"
 												class="checkbox"
 												name="member-join-general-agree-user-info-check"
-												onclick="onClickMemberJoinCheckItem();"> <label
+												onclick='checkSelectAll(this)'> <label
 												for="member-join-general-agree-user-info-check"><span
 												class="text-guide-sm2">(필수)</span> 개인정보 수집 및 이용 동의</label>
 										</div>
@@ -450,8 +472,8 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 											<input type="checkbox"
 												id="member-join-general-agree2-user-info-check"
 												class="checkbox"
-												name="member-join-general-agree2-user-info-check"
-												onclick="onClickMemberJoinCheckItem();"> <label
+												name="member-join-general-agree-user-info-check"
+												onclick='checkSelectAll(this)'> <label
 												for="member-join-general-agree2-user-info-check"><span
 												class="text-guide-sm2">(선택)</span> 개인정보 수집 및 이용 동의</label>
 										</div>
@@ -506,8 +528,8 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 										<div class="custom-checkbox left-item1">
 											<input type="checkbox"
 												id="member-join-general-agree-email-check" class="checkbox"
-												name="member-join-general-agree-email-check"
-												onclick="onClickMemberJoinCheckItem();"> <label
+												name="member-join-general-agree-user-info-check"
+												onclick='checkSelectAll(this)'> <label
 												for="member-join-general-agree-email-check"><span
 												class="text-guide-sm2">(선택)</span> 이메일수신동의 <span
 												class="add-service-text">(상품 및 서비스 안내, 이벤트 정보 및 혜택제공)</span></label>
@@ -519,8 +541,8 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 										<div class="custom-checkbox left-item1">
 											<input type="checkbox"
 												id="member-join-general-agree-sms-check" class="checkbox"
-												name="member-join-general-agree-sms-check"
-												onclick="onClickMemberJoinCheckItem();"> <label
+												name="member-join-general-agree-user-info-check"
+												onclick='checkSelectAll(this)'> <label
 												for="member-join-general-agree-sms-check"><span
 												class="text-guide-sm2">(선택)</span> SMS(문자,카카오톡) 수신동의 <span
 												class="add-service-text">(상품 및 서비스 안내, 이벤트 정보 및 혜택제공)</span></label>
