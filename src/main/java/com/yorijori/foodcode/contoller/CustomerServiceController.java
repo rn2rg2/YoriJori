@@ -12,10 +12,7 @@ public class CustomerServiceController {
 	public String showHelpList() {
 		return "thymeleaf/customerService/helpList"; 
 	}
-	@RequestMapping("/help/in") //관리자용
-	public String showHelpInsert() {
-		return "thymeleaf/customerService/helpInsert"; 
-	}
+
 	@RequestMapping("/inquiry") //
 	public String showInquiry() {
 		return "thymeleaf/customerService/inquiry"; 
@@ -28,9 +25,9 @@ public class CustomerServiceController {
 	public String showNotificationList() {
 		return "thymeleaf/customerService/notificationList"; 
 	}
-	@RequestMapping("/notification/in") //관리자용
+	@RequestMapping("/insert") //관리자용
 	public String showNotificationInsert() {
-		return "thymeleaf/customerService/notificationInsert"; 
+		return "thymeleaf/customerService/notiInsert"; 
 	}
 	
 	@RequestMapping("/test") //관리자용
