@@ -38,15 +38,17 @@ function dragLeave(e) {
 
 function drop(e) {
     e.target.classList.remove('drag-over');
+    e.target.innerHTML = "";
     let div = document.createElement('div')
     div.classList.add("tray_info_box");
     div.addEventListener('dragstart', dragStart);
-    console.log(e);
+    
     const id = e.dataTransfer.getData('text');
     const draggable = document.getElementById(id).cloneNode(true);
     
     div.append(draggable);
-    if ( e.target.classList[1] == "box" ) {
+    console.log(e.target.classList[2]);
+    if ( e.target.classList[2] == "box" ) {
     	e.target.appendChild(div);
     }
 //    e.target.appendChild(div);

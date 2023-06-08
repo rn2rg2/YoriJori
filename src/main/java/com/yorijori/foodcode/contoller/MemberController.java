@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	@RequestMapping("/login")
+	public String login() {
+		return "thymeleaf/member/loginpage";
+	}
 	@RequestMapping("/register")
 	public String register() {
 		return "member/register";
