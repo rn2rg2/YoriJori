@@ -10,6 +10,11 @@ body{
 	font-family: "NanumGothic";
 	background-color: #fff;
 }
+.all-content{
+	width: 90%;
+	margin: 0 auto 0 auto;
+}
+
 .qnaTableBody li{
 	display: flex;
 	flex-wrap: wrap;
@@ -81,8 +86,4 @@ body{
 	padding: 15px 10px 15px;
 	width: 95%;
 	margin: 20px auto 0 auto;
-}
-.all-content{
-	width: 90%;
-	margin: 0 auto 0 auto;
 }
