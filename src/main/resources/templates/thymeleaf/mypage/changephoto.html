@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+		<div class="modal-dialog" role="document" th:fragment="changepass">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add New Chat 😉</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<input type="text" id="modal_search" placeholder="Add New Chat 😉"
+							onfocus="this.value=''" />
+					</form>
+				</div>
+				<div id="modal_result">
+					<div >
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Search!</button>
+				</div>
+			</div>
+		</div>
+
+</body>
+</html>
