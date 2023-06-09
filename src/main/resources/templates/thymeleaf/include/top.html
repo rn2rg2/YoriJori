@@ -12,7 +12,8 @@
 			</h1>
 			<div class="util">
 				<ul>
-					<li><a href="#" onclick="openGreetingPopup()">로그인</a></li>
+
+					<li><button id="openButton" onclick="openGreetingPopup()" style="color: #DD4A48">로그인</button></li>
 					<li><a href="/yorijori/member/signup1">회원가입</a></li>
 					<li><a href="#">고객센터</a></li>
 				</ul>
@@ -24,18 +25,25 @@
 		 <div id="greetingPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; z-index: 99999;">
 
 			<div class="center" style="">
+			
 				<div class="login-wrapper" style="height: 550px;">
-								<button onclick="closeGreetingPopup()">닫기</button>
 					<h2 >
-						<img alt="" src="/yorijori/images/icon/yorijori_logo1.png" style="  margin-left: auto;
-  margin-right: auto; height: 60px;">
+						<button onclick="closeGreetingPopup()" style="margin-left: 325px;"><i class="fa-solid fa-x"></i></button>
+						
+						<img alt="" src="/yorijori/images/icon/yorijori_logo1.png" style="  margin-left: auto; margin-right: auto; height: 60px;">
 					</h2>
 					<form method="post" action="서버의url" id="login-form">
 						<input type="text" name="userName" placeholder="Email"
 							style="font-size: 18px; border: none;"> <input type="password"
 							name="userPassword" placeholder="Password"
-							style="font-size: 18px; border: none;"> <a
-							href="/yorijori/member/signup1" class="but">회원가입</a> <label
+							style="font-size: 18px; border: none;"> 
+							<div>
+							<a href="/yorijori/member/signup1" class="but">회원가입</a>
+							</br>
+							<a href="/yorijori/member/signup1" class="but">아이디 및 비밀번호 찾기</a> 
+							</div>
+							
+							<label
 							for="remember-check"> <input type="checkbox"
 							id="remember-check" style="margin-bottom: 20px;">아이디 저장하기
 
@@ -118,7 +126,7 @@
 									class="dropdown-item" href="/yorijori/recipe/insert">레시피 등록
 								</a>
 								<a
-									class="dropdown-item" href="/yorijori/recipe/insert">재료 목록 
+									class="dropdown-item" href="/yorijori/ingredient/list">재료 목록 
 								</a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
@@ -164,15 +172,25 @@
 		</nav>
 
 		<script type="text/javascript">
-	    function openGreetingPopup() {
-	        document.body.classList.add("popup-opened");
-	        document.getElementById("greetingPopup").style.display = "block";
-	    }
+		function openGreetingPopup() {
+		    document.body.classList.add("popup-opened");
+		    document.getElementById("greetingPopup").style.display = "block";
+		}
 
-	    function closeGreetingPopup() {
-	        document.body.classList.remove("popup-opened");
-	        document.getElementById("greetingPopup").style.display = "none";
-	    }
+		function closeGreetingPopup() {
+		    document.body.classList.remove("popup-opened");
+		    document.getElementById("greetingPopup").style.display = "none";
+		}
+
+		// 이 코드를 추가하면 박스 밖을 클릭할 때 창이 닫힙니다.
+		document.addEventListener('click', function(event) {
+		    var isClickInsideBox = document.getElementById('greetingPopup').contains(event.target);
+		    var isClickOnOpenButton = event.target === document.getElementById('openButton');
+		  
+		    if (!isClickInsideBox && !isClickOnOpenButton) {
+		        closeGreetingPopup();
+		    }
+		});
     </script>
 		<!-- HEADER INNER -->
 
@@ -280,14 +298,14 @@
 		
 		
 		.but {
-		    margin-right: 50px; 
+			text-align: center;
+		    
 		    text-decoration: none; 
 		    color: black;
 		    
 		    
 		}
-		.but:hover {
-		    margin-right: 50px; 
+		.but:hover {	    
 		    text-decoration: none; 
 		    color: white;
 		    background-color: #d15729  ;

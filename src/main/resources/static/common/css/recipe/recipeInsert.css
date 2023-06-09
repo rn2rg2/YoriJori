@@ -1,9 +1,24 @@
 @charset "UTF-8";
+body{
+	background-color: #f1f1f2;
+	font-family: "NanumGothic";
+}
 .all-margin{
-	margin-left: 5%;
-	margin-right: 5%;
-	font-weight: bolder;
-	margin-top: 80px;
+	margin: 5px auto 5px auto;
+	padding:50px 10px 50px 10px;
+	box-sizing: border-box;
+	width: 70%;
+	font-family: "NanumGothic";
+	background-color: #fff;
+}
+.all-content{
+	width: 90%;
+	margin: 0 auto 0 auto;
+}
+.all-margin h3{
+	font-weight: bold;
+	font-family: "NanumGothic";
+	position: relative;
 }
 .recipe-form{
 	margin-top: 100px;
@@ -16,7 +31,7 @@
 .category .insert {
     color: #6c757d;
     background-color: #ffffff;
-    border-color: #f67a42;
+    border-color: var(--main-theme-color-red);
     margin-left: auto;
     margin-right: auto;
     
@@ -28,14 +43,14 @@
 }
 .insert-control::placeholder {
 	font-style: italic;
-	color: #f67a42;
+	color: #c1c1c6;
 }
 /* 버튼 */
 .insert:not(:disabled):not(.disabled).active, .insert:not(:disabled):not(.disabled):active, .show>.insert.insert-drop, .insert.focus, .insert:focus, .insert:hover, .insert{
-	background-color: white !important;
-	color: #f67a42 !important;
-	border-color: #f67a42 !important;
-	transition: none !important;
+	background-color: white;
+	color: var(--main-theme-color-red);
+	border-color: var(--main-theme-color-red);
+	transition: none;
 }
 .insert:not(:disabled):not(.disabled).active:focus, .insert:not(:disabled):not(.disabled):active:focus, .show>.insert.insert-drop:focus,.insert.focus, .insert:focus {
 	box-shadow:0 0 0 0 #fff;
@@ -44,7 +59,7 @@
 	box-shadow:0 0 0 0 #fff;
 }
 .insert-item:active {
-	background-color: #f67a42 !important;
+	background-color: var(--main-theme-color-red) !important;
 }
 .insert-drop{
 	position: relative;
@@ -53,6 +68,16 @@
 	display: inline-block;
 	width: 150px;
 	text-align: left;
+}
+.selected{
+	background: var(--main-theme-color-red) !important;
+	color: white !important;
+	margin-bottom: 5px;
+}
+.insert-drop:focus, .insert-drop:active, .insert-drop:hover, .show>.btn-primary.insert-drop{
+	background-color:var(--main-theme-color-red) !important;
+	box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5) !important;
+	border-color:  var(--main-theme-color-red);
 }
 .insert-drop::after{
 	position: absolute;
@@ -66,8 +91,13 @@
 	margin-right: 0;
 }
 .insert-control{
-	border-color: #f67a42;
+	border: 1px solid var(--main-theme-color-red);
 	width: 80%;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+.insert-control:focus{
+	border: 1px solid #000;
 }
 .des{
 	height: calc(3em + 1.5rem + 4px);
@@ -80,6 +110,7 @@
 }
 .form-insert label{
 	display: block !important;
+	font-size: 20px;
 }
 /* 재료 */
 .imp-list{
@@ -91,42 +122,38 @@
 }
 .imp{
 	margin-bottom: 5px;
-}
-.selected{
-	background: #f67a42 !important;
-	color: white !important;
-}
+}	
 /* 재료 테이블 */
 .imp-quantity{
 	width:"100%";
-border: 1px solid #f67a42;
+border: 1px solid var(--main-theme-color-red);
 font-weight: bold;	
 }
 .tr{
-border: 1px solid #f67a42;
+border: 1px solid var(--main-theme-color-red);
 font-weight: bold;	
 }
 td:nth-child(2){
-	border-right: 2px solid #f67a42;
+	border-right: 2px solid var(--main-theme-color-red);
 }
 td{
 	text-align: center;
 }
 td input{
 	width: 100px;
-	border: #f67a42;
+	border: var(--main-theme-color-red);
 	text-align: center;
 	height: 50px;
 }
 .insert-drop{
-	background-color: #f67a42;
-	border-color: #f67a42;
+	background-color: var(--main-theme-color-red);
+	border-color: var(--main-theme-color-red);
 }
 /* 요리순서 */
 .cooking-step{
-	color:  #f67a42;
+	color:  var(--main-theme-color-red);
 	font-weight: bolder;
-	font-family: 'segoe print';
+	font-family: "NanumHimNaeRaNeunMarBoDan";
 	font-style: italic;
 	font-size: 45px;
 	display: inline;
@@ -142,9 +169,20 @@ td input{
 	width: 50%;
 }
 
-.insert-font{
-	font-weight: bolder;
-	margin-top: 100px;
-	margin-bottom: 50px;
-	border-bottom: 2px solid #f67a42;
+/* insert-control */
+.price{
+	padding: 5px;
+	width: 70%;
+}
+.inline{
+	display: inline-block;
+}
+label a{
+	font-size: 15px;
+	color: gray !important;
+}
+
+/* cookclass */
+.cookclass label{
+	margin-bottom: 30px;
 }

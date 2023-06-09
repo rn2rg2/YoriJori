@@ -1,41 +1,539 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
 <head>
-</head>
-
+<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
 </head>
 <body>
-	<div class="row" th:fragment="ingredient">
-		<div class="col-md-4">
-			<div class="card">
-				<img class="card-img-top" alt="Bootstrap Thumbnail First"
-					src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
-				<h5 class="card-title">Card title</h5>
-
+	<div class="container" layout:fragment="content">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="sidebar">
+					<div class="widget border-0">
+						<div class="search">
+							<input class="form-control" type="text" placeholder="검색">
+						</div>
+					</div>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>필터</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#dateposted"
+								role="button" aria-expanded="false" aria-controls="dateposted">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="dateposted">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted1"> <label class="custom-control-label"
+										for="dateposted1">조회 순</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted2"> <label class="custom-control-label"
+										for="dateposted2">좋아요 순</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted3"> <label class="custom-control-label"
+										for="dateposted3">댓글 많은 순</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted4"> <label class="custom-control-label"
+										for="dateposted4">등록 순</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>메뉴 타입</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#specialism"
+								role="button" aria-expanded="false" aria-controls="specialism">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="specialism">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="specialism1"> <label class="custom-control-label"
+										for="specialism1">메인메뉴</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="specialism2"> <label class="custom-control-label"
+										for="specialism2">반찬</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="specialism3"> <label class="custom-control-label"
+										for="specialism3">디저트</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>식사별</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#jobtype"
+								role="button" aria-expanded="false" aria-controls="jobtype">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="jobtype">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox fulltime-job">
+									<input type="checkbox" class="custom-control-input"
+										id="jobtype1"> <label class="custom-control-label"
+										for="jobtype1">아침 메뉴</label>
+								</div>
+								<div class="custom-control custom-checkbox parttime-job">
+									<input type="checkbox" class="custom-control-input"
+										id="jobtype2"> <label class="custom-control-label"
+										for="jobtype2">점심 메뉴</label>
+								</div>
+								<div class="custom-control custom-checkbox freelance-job">
+									<input type="checkbox" class="custom-control-input"
+										id="jobtype3"> <label class="custom-control-label"
+										for="jobtype3">저녁 메뉴</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>Experience</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#experience"
+								role="button" aria-expanded="false" aria-controls="experience">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="experience">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="experience2"> <label class="custom-control-label"
+										for="experience2">1년전 게시물</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="experience3"> <label class="custom-control-label"
+										for="experience3">2년전 게시물</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="experience4"> <label class="custom-control-label"
+										for="experience4">3년전 게시물</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="experience5"> <label class="custom-control-label"
+										for="experience5">4년전 게시물</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>좋아요</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary"
+								role="button" aria-expanded="false"
+								aria-controls="Offeredsalary"> <i
+								class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="Offeredsalary">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="Offeredsalary1"> <label
+										class="custom-control-label" for="Offeredsalary1">10k
+										- 20k</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="Offeredsalary2"> <label
+										class="custom-control-label" for="Offeredsalary2">20k
+										- 30k</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="Offeredsalary3"> <label
+										class="custom-control-label" for="Offeredsalary3">30k
+										- 40k</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="Offeredsalary4"> <label
+										class="custom-control-label" for="Offeredsalary4">40k
+										- 50k</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="Offeredsalary5"> <label
+										class="custom-control-label" for="Offeredsalary5">50k
+										- 60k</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>레시피</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#gender"
+								role="button" aria-expanded="false" aria-controls="gender"><i
+								class="fas fa-chevron-down"></i></a>
+						</div>
+						<div class="collapse show" id="gender">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="gender1"> <label class="custom-control-label"
+										for="gender1">공식 레시피</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="gender2"> <label class="custom-control-label"
+										for="gender2">유저 레시피</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget border-0">
+						<div class="widget-add">
+							<img class="img-fluid" src="images/add-banner.png" alt="">
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="card">
-				<img class="card-img-top" alt="Bootstrap Thumbnail Second"
-					src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-				<div class="card-block">
-					<h5 class="card-title">Card title</h5>
+			<div class="col-lg-9">
 
+				<div class="container-fluid">
+					<div class="px-lg-5">
+
+						<!-- For demo purpose -->
+						<div>
+							<hr />
+						</div>
+						<!-- End -->
+
+						<div class="row">
+							<!-- Gallery item -->
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 ">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="사과" id="사과">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- End -->
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="귀리">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="귤">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="수육">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="된장">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="김치">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="간장">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="수박">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="삼겹살">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="오렌지">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="귀리">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/default.png" alt=""
+										class="img-fluid card-img-top ingre_card" name="메밀">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">재료명</a>
+										</h5>
+										<p class="small text-muted mb-0">총 칼로리</p>
+
+										<p class="small mb-0">
+											<span class="font-weight-bold">1000kcal </span>
+										</p>
+										<div
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											4.22 별점 정보</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- End -->
+
+						</div>
+						<div class="py-5">
+							<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
+							</nav>
+
+						</div>
+					</div>
+
+					<!-- pixabay API -->
+					<!-- https://pixabay.com/api/docs/ -->
+					<script type="text/javascript">
+						var API_KEY = '37115377-f6fd186d562cd098e29d60b94';
+						$(function() {
+							ingre_cards = $('.ingre_card');
+							$('.ingre_card').each(function(index, ingre_card) {
+								//console.log(ingre_card);
+								setRecipeImg(ingre_card.name);
+							});
+						});
+
+						function setRecipeImg(name) {
+							var src = "/yorijori/images/common/default.png";
+							var URL = "https://pixabay.com/api/?key=" + API_KEY
+									+ "&q=" + encodeURIComponent(name)
+									+ "&image_type=photo&lang=ko&per_page=20";
+							$
+									.getJSON(
+											URL,
+											function(data) {
+												/* console.log(data); */
+												if (parseInt(data.totalHits) > 0) {
+													let download_count = 0;
+													$
+															.each(
+																	data.hits,
+																	function(i,
+																			hit) {
+																		//console.log(hit);
+																		let split_data = hit.tags
+																				.split(",")
+																		if (split_data[0] == name) {
+																			if (download_count > hit.likes) {
+																				download_count = download_count;
+																			} else {
+																				download_count = hit.likes;
+																				src = hit.webformatURL;
+																			}
+																		}
+
+																	});
+
+												} else {
+													//console.log('No hits');
+												}
+												$(`img[name=${name}]`).attr(
+														"src", src);
+											});
+						}
+					</script>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="card">
-				<img class="card-img-top" alt="Bootstrap Thumbnail Third"
-					src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-				<div class="card-block">
-					<h5 class="card-title">Card title</h5>
-
-				</div>
-			</div>
-		</div>
-
 	</div>
-
 </body>
 </html>

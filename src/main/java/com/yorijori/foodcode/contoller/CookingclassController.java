@@ -15,4 +15,9 @@ public class CookingclassController {
 	public String showCookingclass() {
 		return "thymeleaf/cookingclass/classRead";
 	}
+	
+	@RequestMapping("/in")
+	public String insertCookingclass() {
+		return "thymeleaf/cookingclass/classInsert";
+	}
 }
