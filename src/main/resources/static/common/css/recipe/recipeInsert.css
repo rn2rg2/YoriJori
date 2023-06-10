@@ -194,4 +194,46 @@ label a{
 	margin-top: 50px;
 	cursor: pointer;
 	font-size: 25px;
+	color: var(--main-theme-color-red);
+}
+.cookclass{
+	position: relative;
+}
+.cookclass ul{
+	margin: 0 100px 0 100px;
+	text-align: center;
+}
+.cookclass li{
+	position: relative;
+	margin: 0 auto 0 auto;
+	font-size:20px;
+	margin-bottom: 0.5%;
+}
+.cookclass li:before {
+	content: '\f00c';
+	font-weight: bold;
+	font-family: "Font Awesome 5 Free";
+	font-size:20px;
+	color: var(--main-theme-color-red);
+	position: absolute;
+	left: -1%;
+}
+
+.cur-plus{
+	position: relative;
+	float: right;
+	margin-right: 7%;
+	cursor: pointer;
+}
+.cur-plus i{
+	color: var(--main-theme-color-red);
+}
+.cur{
+	width: 80%;
+	font-size: 20px;
+}
+.time{
+	margin-left: 20px;
+	width: 10%;
+	font-size: 20px;
 }

@@ -7,12 +7,12 @@ body{
 	padding:50px 10px 50px 10px;
 	box-sizing: border-box;
 	width: 70%;
-	font-family: "NanumGothic";
+	font-family: 'Pretendard-Regular';
 	background-color: #fff;
 }
 .all-margin h3{
 	font-weight: bold;
-	font-family: "NanumGothic";
+	font-family: 'Pretendard-Regular';
 	position: relative;
 	padding-bottom: 40px;
 }
