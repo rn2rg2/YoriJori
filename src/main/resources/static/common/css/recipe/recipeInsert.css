@@ -190,3 +190,8 @@ label a{
 .cookclass label{
 	margin-bottom: 30px;
 }
+.plus{
+	margin-top: 50px;
+	cursor: pointer;
+	font-size: 25px;
+}

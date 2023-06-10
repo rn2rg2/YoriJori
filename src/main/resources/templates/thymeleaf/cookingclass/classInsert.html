@@ -14,7 +14,7 @@
 
 <link rel="stylesheet"
 	href="/yorijori/common/css/recipe/recipeInsert.css">
-	
+
 <script>
 	$(document).ready(function() {
 		$('.summernote').summernote({
@@ -26,6 +26,14 @@
 		});
 		$(".insert").on("click", function() {
 			$(this).toggleClass(".imp selected");
+		})
+		$("#class-content").on("click",function() {
+			var copy = $("#copy").clone();
+			$("#classcon").append(copy);
+		})
+		$("#teacher-content").on("click",function() {
+			var copy = $("#copy").clone();
+				$("#teachercon").append(copy);
 		})
 	});
 </script>
@@ -70,8 +78,9 @@
 			<div class="all-margin">
 				<div class="all-content">
 					<div class="container">
-						<div class="form-group form-insert cookclass">
+						<div class="form-group form-insert cookclass" id="classcon">
 							<label>클래스 소개<a>(사진 세개까지 첨부가능)</a></label>
+							<div id="copy-class">
 							<div class="line-title"
 								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
 								<textarea class="insert-control des subheading" id="des"
@@ -79,7 +88,10 @@
 딸기생크림케이크" name="pswd"></textarea>
 							</div>
 							<textarea class="summernote" name="editordata"></textarea>
+							</div>
 						</div>
+						<a class="plus" id="class-content"><i
+								class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
 					</div>
 				</div>
 			</div>
@@ -88,8 +100,9 @@
 			<div class="all-margin">
 				<div class="all-content">
 					<div class="container">
-						<div class="form-group form-insert cookclass">
+						<div class="form-group form-insert cookclass" id="teachercon">
 							<label>강사 소개<a>(사진 세개까지 첨부가능)</a></label>
+							<div id="copy-teacher">
 							<div class="line-title"
 								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
 								<textarea class="insert-control des subheading" id="des"
@@ -97,7 +110,10 @@
 딸기생크림케이크" name="pswd"></textarea>
 							</div>
 							<textarea class="summernote" name="editordata"></textarea>
+							</div>
 						</div>
+						<a class="plus" id="teacher-content"><i
+								class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
 					</div>
 				</div>
 			</div>
@@ -106,11 +122,11 @@
 					<div class="container">
 						<div class="form-group form-insert cookclass">
 							<label>커리큘럼</label>
-							
+
 						</div>
 					</div>
 				</div>
-				</div>
+			</div>
 		</form>
 	</div>
 </body>
