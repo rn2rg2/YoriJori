@@ -12,11 +12,17 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <link rel="stylesheet"
+	href="/yorijori/common/css/mypage/changepassmodal.css" />
+<link rel="stylesheet"
 	href="/yorijori/common/css/mypage/my_user_info2.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
 	integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
 	crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<script
+	src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 </head>
 <body>
 	<div class="container rounded bg-white mt-5" layout:fragment="content">
@@ -28,18 +34,23 @@
 		<div class="modal fade" id="changephotomodal" tabindex="-1"
 			role="dialog" aria-labelledby="changephotomodalLabel"
 			aria-hidden="true">
-			<th:block th:replace="~{thymeleaf/mypage/changepass :: changepass}"></th:block>
+			<th:block th:replace="~{thymeleaf/mypage/changephoto :: changephoto}"></th:block>
 		</div>
 		<div class="row">
 			<div class="col-md-4 border-right">
 				<div
 					class="d-flex flex-column align-items-center text-center p-3 py-5">
-					<a href=""><img class="rounded-circle mt-5"
-						src="https://bootdey.com/img/Content/avatar/avatar1.png"
-						width="200"></a> <span class="font-weight-bold">이름</span> <span>닉네임</span>
-					<span id="temp">유저 온도</span> <br /> <span id="purpose">유저의
-						요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의
-						요리 목적입니다.유저의 요리 목적입니 다.</span>
+
+					<div class="image-container">
+						<img class="rounded-circle mt-5"
+							src="https://bootdey.com/img/Content/avatar/avatar1.png"
+							width="200">
+					</div>
+
+					<span class="font-weight-bold">이름</span> <span>닉네임</span> <span
+						id="temp">유저 온도</span> <br /> <span id="purpose">유저의 요리
+						목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리
+						목적입니다.유저의 요리 목적입니 다.</span>
 				</div>
 			</div>
 			<div class="col-md-8">
@@ -56,16 +67,7 @@
 								placeholder="닉네임">
 						</div>
 					</div>
-					<div class="row mt-3">
-						<div class="col-md-6">
-							<input type="text" class="form-control" placeholder="알레르기"
-								value="">
-						</div>
-						<div class="col-md-6">
-							<input type="text" class="form-control" value=""
-								placeholder="선호식품">
-						</div>
-					</div>
+
 					<div class="row mt-3">
 						<div class="col-md-6">
 							<input type="text" class="form-control" placeholder="Email"
@@ -76,7 +78,60 @@
 								placeholder="전화번호">
 						</div>
 					</div>
+					<h6>선호식품</h6>
+					<div class="input-group type-lg w-full">
+						<select name="favoritefood" id="favoritefood" multiple>
+							<option value="1">사과</option>
+							<option value="2">바나나</option>
+							<option value="3">버터</option>
+							<option value="4">우유</option>
+							<option value="5">돼지고기</option>
+							<option value="6">ㅁ고기</option>
+							<option value="7">ㅁㄷ고기</option>
+							<option value="8">ㄷㄱ고기</option>
+							<option value="9">ㅂㅈ고기</option>
+							<option value="10">ㅈㅂ고기</option>
+							<option value="11">뒤틀린 황천의 무슨무슨 무슨 고기괴괴고괴고괴괴기ㅗ괴ㅚ괴고기ㅗㄱ</option>
+							<option value="12">뚫어 송태섭!!!!!!</option>
+							<option value="13">죽어
+								정우성ㅏㅣ먼ㄹ;ㅣㅁ넝;리ㅏㅓㅁ니;아ㅓㄹ;미ㅏ넝ㄹ;ㅏㅣ먼아라아알아ㅜ라ㅜ아ㅜ라우라ㅜ아루!!</option>
+							<option value="14">오메에와 모 신데이루 오메에와 모 모 신데이루 오메에와 모 신데이루
+								!</option>
+							<option value="15">오메에와 모 신데이루 오메에와 모 모 신데이루 오메에와 모
+								신데이루ㅁㄴㅇㄹ !</option>
+							<option value="16">오메에와 모 신데이루 오메에와 모 모 신데이루 오ㄹㄹㄹ메에와 모
+								신데이루 !</option>
+							<option value="17">오메에와 모 신데이루 오메에와 모 모 신데이루 123오메에와 모
+								신데이루 !</option>
+						</select>
+						<script>
+							new MultiSelectTag('favoritefood', {
+								rounded : true, // default true
+								shadow : true
+							// default false
+							})
+						</script>
+					</div>
+					<br>
+					<h6>알레르기</h6>
+					<div class="input-group type-lg w-full">
+						<select name="allergy" id="allergy" multiple>
+							<option value="1">사과</option>
+							<option value="2">바나나</option>
+							<option value="3">버터</option>
+							<option value="4">우유</option>
+							<option value="5">돼지고기</option>
+						</select>
+						<script>
+							new MultiSelectTag('allergy', {
+								rounded : true, // default true
+								shadow : true
+							// default false
+							})
+						</script>
+					</div>
 				</div>
+
 				<div class="mt-5 text-right">
 					<button class="btn btn-primary profile-button" type="button">수정사항
 						저장</button>
@@ -85,14 +140,8 @@
 				</div>
 			</div>
 		</div>
-
+		<script type="text/javascript">	
+		</script>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#changePasswordButton').click(function() {
-				$('#changepassmodal').modal('show');
-			});
-		});
-	</script>
 </body>
 </html>

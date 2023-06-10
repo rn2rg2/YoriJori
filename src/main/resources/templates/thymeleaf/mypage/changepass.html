@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="/yorijori/common/css/mypage/modal/changepassmodal.css" />
+
 </head>
 <body>
 	<div class="modal-dialog" role="document" th:fragment="changepass">
@@ -20,19 +19,18 @@
 			</div>
 			<div class="modal-body">
 				<form>
-					<input type="password" id="modal_search" placeholder="기존 비밀번호 "
-					style="width: 200px; height:50px; font-size: 15px; border-radius: 15px"
+					<input type="password" class="origin_pass" placeholder="기존 비밀번호 "
 						onfocus="this.value=''" />
 				</form>
 				<br>
 				<form>
-					<input type="password" id="modal_search" placeholder="새로운 비밀번호"
-					style="width: 200px; font-size: 15px "
+					<input type="password" class="new_pass" placeholder="새로운 비밀번호"
+					
 						onfocus="this.value=''" />
 				</form>
 				<form>
-					<input type="password" id="modal_search" placeholder="새로운 비밀번호 확인"
-					style="width: 200px; font-size: 15px "
+					<input type="password" class="new_pass" placeholder="새로운 비밀번호 확인"
+					
 						onfocus="this.value=''" />
 				</form>
 				<hr>
