@@ -22,289 +22,584 @@
 	<div class="container-fluid" layout:fragment="content">
 		<div class="px-lg-5">
 
-			<!-- For demo purpose -->
-			<div>
-				<hr />
-			</div>
+
 			<!-- End -->
 
 			<div class="row">
-				<!-- Gallery item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
+				<div class="col-lg-2">
+					<div class="sidebar">
+						<div class="widget border-0"></div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								<h6>필터</h6>
+								<a class="ml-auto" data-toggle="collapse" href="#dateposted"
+									role="button" aria-expanded="false" aria-controls="dateposted">
+									<i class="fas fa-chevron-down" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div class="collapse show" id="dateposted">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="dateposted1"> <label class="custom-control-label"
+											for="dateposted1">조회 순</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="dateposted2"> <label class="custom-control-label"
+											for="dateposted2">좋아요 순</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="dateposted3"> <label class="custom-control-label"
+											for="dateposted3">댓글 많은 순</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="dateposted4"> <label class="custom-control-label"
+											for="dateposted4">등록 순</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="dateposted5"> <label class="custom-control-label"
+											for="dateposted5">날짜 순</label>
+									</div>
+								</div>
+							</div>
+						</div>
 
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								<h6>레시피</h6>
+								<a class="ml-auto" data-toggle="collapse" href="#gender"
+									role="button" aria-expanded="false" aria-controls="gender"><i
+									class="fas fa-chevron-down" aria-hidden="true"></i></a>
+							</div>
+							<div class="collapse show" id="gender">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="gender1"> <label class="custom-control-label"
+											for="gender1">공식 레시피</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="gender2"> <label class="custom-control-label"
+											for="gender2">유저 레시피</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="widget border-0">
+							<div class="widget-add">
+								<img class="img-fluid" src="images/add-banner.png" alt="">
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End -->
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
+				<div class="col-lg-9">
+					<div class="job-filter mb-4 d-sm-flex align-items-center">
+						<div class="search">
+							<input class="form-control" type="text" placeholder="검색">
+						</div>
+						<div class="col-md-6">
+						
+								<div>
+									<select name="recipesearch" id="recipesearch">
+										<option value="userName" >유저 이름으로 검색</option>
+										<option value="recipeName" >레시피 제목으로 검색</option>
+									</select>
+								</div>
+							
+						</div>
+						<div class="job-shortby ml-sm-auto d-flex align-items-center">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
 
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
 
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-3 mb-3">
+							<div class="candidate-list candidate-grid">
+								<div class="candidate-list-image">
+									<img class="img-fluid"
+										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+										alt="">
+								</div>
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
+
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
+											<br>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
+												별점 정보</div>
+											<ul class="list-unstyled">
+												<li><i class="fa-solid fa-eye"></i>2323조회</li>
+												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
+											</ul>
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time">
+										<a class="candidate-list-favourite order-2" href="#"><i
+											class="far fa-heart" aria-hidden="true"></i></a> <span
+											class="candidate-list-time order-1"><i
+											class="far fa-clock pr-1" aria-hidden="true"></i>6월 8일</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="row" style="margin-bottom: 20px;">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<ul class="pagination justify-content-center mb-0">
+								<li class="page-item active" aria-current="page"><span
+									class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">4</a></li>
+								<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<li class="page-item"><a class="page-link" href="#">다음</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-					<div class="bg-white rounded shadow-sm">
-						<img
-							src="https://bootstrapious.com/i/snippets/sn-gallery/img-1.jpg"
-							alt="" class="img-fluid card-img-top">
-						<div class="p-4">
-							<h5>
-								<a href="#" class="text-dark">레시피 제목</a>
-							</h5>
-							<p class="small text-muted mb-0">유저 닉네임</p>
-
-							<p class="small mb-0">
-								<span class="font-weight-bold">조회수 </span>
-							</p>
-							<div
-								class="badge badge-danger px-3 rounded-pill font-weight-normal">
-								4.22 별점 정보</div>
-
-						</div>
-					</div>
-				</div>
-				<!-- End -->
-
-			</div>
-			<div class="py-5 text-right">
-				<form action="/erp/board/search.do" method="post">
-					<select name="tag">
-						<option value="id">작성자</option>
-						<option value="title">제목</option>
-					</select> <input type="text" name="search" /> <input type="submit"
-						value="검색">
-				</form>
-				<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-				</nav>
-
-				<a href="#" class="btn btn-dark px-5 py-3 text-uppercase">추천 레시피
-					링크 걸기?</a>
 			</div>
 		</div>
 	</div>
