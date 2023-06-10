@@ -13,6 +13,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <link rel="stylesheet"
 	href="/yorijori/common/css/mypage/changepassmodal.css" />
+	<link rel="stylesheet"
+	href="/yorijori/common/css/mypage/changephotomodal.css" />
 <link rel="stylesheet"
 	href="/yorijori/common/css/mypage/my_user_info2.css" />
 <link rel="stylesheet"
@@ -50,7 +52,7 @@
 					<span class="font-weight-bold">이름</span> <span>닉네임</span> <span
 						id="temp">유저 온도</span> <br /> <span id="purpose">유저의 요리
 						목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리 목적입니다.유저의 요리
-						목적입니다.유저의 요리 목적입니 다.</span>
+						목적입니다.유저의 요리 목적입니 다.  </span>
 				</div>
 			</div>
 			<div class="col-md-8">
@@ -140,7 +142,12 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">	
+		<script type="text/javascript">
+		$(document).ready(function() {
+			  $('.image-container').on('click', function() {
+			    $('#changephotomodal').modal('show');
+			  });
+			});
 		</script>
 	</div>
 </body>

@@ -1,3 +1,4 @@
+<!-- 프로필 사진 변경에 대한 모달페이지 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,32 +6,37 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<div class="modal-dialog" role="document" th:fragment="changephoto">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Add New Chat 😉</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<input type="text" id="modal_search" placeholder="Add New Chat 😉"
-							onfocus="this.value=''" />
-					</form>
-				</div>
-				<div id="modal_result">
-					<div >
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Search!</button>
-				</div>
+	<div class="modal-dialog" role="document" th:fragment="changephoto">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="changephotomodal">사진 / 요리 목적 변경</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" style="align-self: center;">
+				<img id="vProfileImageModalSrc"
+					src="https://recipe1.ezmember.co.kr/cache/rpf/2023/05/17/8ac90c162178ac25908d2027bc561af0.jpg"
+					style="max-width: 300px; max-height: 300px;">
+			</div>
+			<div class="cook_purpose">
+				<textarea class="cook_purpose_input" placeholder="요리 목적(100자 이내로 작성해주시길 바랍니다.)" rows="5"
+					cols="50"> 요리 목적입니다.요리 목적입니다.요리 목적입니다.요리 목적입니다.요리 목적입니다.요리 목적입니다.요리 목적입니다.스크롤도 추가 돼 있습니다 확인하실 수 있습니다.
+				</textarea>
+			</div>
+			<div id="modal_result">
+				<div></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success"
+					onclick="document.getElementById('fileInput').click()">사진
+					변경하기</button>
+				<input type="file" id="fileInput" style="display: none;" />
+				<button type="button" class="btn btn-primary">저장하기</button>
 			</div>
 		</div>
+	</div>
 
 </body>
 </html>
