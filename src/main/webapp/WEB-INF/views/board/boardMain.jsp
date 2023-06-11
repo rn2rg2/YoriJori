@@ -9,15 +9,15 @@
 </head>
 <body>
 	<div>
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
+		<%-- <tiles:insertAttribute name="header"></tiles:insertAttribute> --%>
 	</div>
-	<div>
+<%-- 	<div>
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
 	<br/><br/>
 	<br/><br/>
 	<div>
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-	</div>
+	</div> --%>
 </body>
 </html>

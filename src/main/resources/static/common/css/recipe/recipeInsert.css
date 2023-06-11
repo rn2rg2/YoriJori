@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* 레이아웃 */
 body{
-	background-color: #f1f1f2;
+	/* background-color: #f1f1f2; */
 	font-family: "NanumGothic";
 }
 .all-margin{
@@ -28,11 +28,11 @@ body{
 .recipe-form{
 	margin-top: 100px;
 }
-.container{
+/* .container{
 	width:90%;
 	padding: 0;
 	max-width: none;
-}
+} */
 .category .insert {
     color: #6c757d;
     background-color: #ffffff;
