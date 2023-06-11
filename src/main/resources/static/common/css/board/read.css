@@ -4,6 +4,7 @@
 }
 tr, td, th{
 	font-family: 'NanumAInMamSonGeurSsi';
+	font-size: 18px;
 }
 .main-section .table td {
 	width: 280px; 
@@ -20,6 +21,7 @@ button.buttons.btn-primary {
     border-radius: 10px;
     color: white;
    	font-family: 'NanumAInMamSonGeurSsi';
+   	border-color: #FD5D5D;
     
 }
 

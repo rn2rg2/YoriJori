@@ -1,7 +1,14 @@
 @charset "UTF-8";
+
+div#ftco-nav {
+    text-align: center;
+}
+ul.navbar-nav.m-auto {
+    display: inline-block;
+}
   .btn-success, .btn-default{
   width: 100px;
-  background-color: orange;
+  background-color: #FD5D5D;
   border: none;
   border-radius: 10px;
   color: white;

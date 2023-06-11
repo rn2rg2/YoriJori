@@ -24,6 +24,22 @@ $(document).ready(function() {
 		if(total != checked) $("#member-join-general-agree-all-check").prop("checked", false);
 		else $("#member-join-general-agree-all-check").prop("checked", true); 
 	});
+
+	 $("form").submit(function(event) {
+		 var checkboxes = $(this).find(".required-checkbox");
+		 var isChecked = false;    
+		    checkboxes.each(function() {
+		      if ($(this).is(":checked")) {
+		        isChecked = true;
+		        return false; // 반복문을 종료합니다.
+		      }
+		    });
+		    
+		    if (!isChecked) {
+		    	$(".myButtonClass").prop("disabled", true);
+		    }
+	});
+
 });
 
 </script>
@@ -75,7 +91,7 @@ $(document).ready(function() {
 												 onclick='checkSelectAll(this)'/> 
 												<label
 												for="member-join-general-agree-user-info-check"><span
-												class="text-guide-sm2">(필수)</span> 회원가입 약관동의</label>
+												class="text-guide-sm2 required-checkbox">(필수)</span> 회원가입 약관동의</label>
 										</div>
 									</div> <!--// inner-flex -->
 									<div class="terms-inner-box ui-slide-content"
@@ -416,7 +432,7 @@ $(document).ready(function() {
 												name="member-join-general-agree-user-info-check"
 												onclick='checkSelectAll(this)'> <label
 												for="member-join-general-agree-user-info-check"><span
-												class="text-guide-sm2">(필수)</span> 개인정보 수집 및 이용 동의</label>
+												class="text-guide-sm2 required-checkbox">(필수)</span> 개인정보 수집 및 이용 동의</label>
 										</div>
 									</div>
 									<!--// inner-flex -->
@@ -562,7 +578,7 @@ $(document).ready(function() {
 					</div>
 					<!--// form-group -->
 					<div class="terms-btn-wrap text-center" style="margin-bottom: 5px;">
-						<button class="btn-dim" type="button"
+						<button class="btn-dim myButtonClass" type="button"
 						onclick="location.href='/yorijori/member/signup2'"
 						>다음</button>
 					</div>
