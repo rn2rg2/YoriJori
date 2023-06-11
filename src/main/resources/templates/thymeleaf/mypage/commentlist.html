@@ -23,41 +23,66 @@
 	integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
 	integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
 	crossorigin="anonymous" />
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$('input[name="comment-type"]').change(
+						function() {
+							if ($(this).is(':checked')) {
+								// 선택된 체크박스 외의 다른 체크박스들의 체크를 해제
+								$('input[name="comment-type"]').not(this).prop(
+										'checked', false);
+							}
+						});
+			});
+</script>
 </head>
 <body>
 	<div class="container" layout:fragment="content">
-		<div class="row align-items-center">
-			<div class="col-md-6">
-				<div class="mb-3">
-					<h5 class="card-title">
-						댓글 / 리뷰 리스트 <span class="text-muted fw-normal ms-2">(조회된 수)</span>
-					</h5>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div
-					class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-					<div>
-						<select name="language" id="language">
-							<option value="comment" style="color: green;">Comment</option>
-							<option value="review" style="color: orange;">Review</option>
-						</select>
+		<h3 class="menu-h3-common">작성한 댓글 / 리뷰 조회 (n개 조회됨)</h3>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="sidebar">
+					<div class="widget border-0"></div>
+
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>댓글 / 리뷰</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#commenttype"
+								role="button" aria-expanded="false" aria-controls="commenttype"><i
+								class="fas fa-chevron-down" aria-hidden="true"></i></a>
+						</div>
+						<!-- aria-controls 랑 collapse show 쪽에 있는 id 랑 값이 같아야 열고 닫을 수 있음 href 값도 #똑같은 이름 줘야 한다. -->
+						<div class="collapse show" id="commenttype">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="commenttype1"> <label class="custom-control-label"
+										for="commenttype1">댓글</label>
+										<!-- id랑 for 도 동일해야 함 -->
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="commenttype2"> <label class="custom-control-label"
+										for="commenttype2">리뷰</label>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class>
+			<div class="col-lg-9">
+				<div>
 					<div class="table-responsive">
 						<table
 							class="table project-list-table table-nowrap align-middle table-borderless">
 							<thead>
 								<tr>
-									<th scope="col" class="ps-4" style="width: 50px;"></th>
 									<th scope="col">레시피 제목</th>
 									<th scope="col">내용(최대 50자만 보이게끔..?)</th>
 									<th scope="col">등록일</th>
@@ -65,112 +90,98 @@
 							</thead>
 							<tbody>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 								<tr>
-									<th scope="row" class="ps-4"></th>
 									<td><a href="#" class="text-body">감자탕 조리법</a></td>
-
-
 									<td>댓글 내용</td>
 									<td>날짜</td>
 								</tr>
 							</tbody>
 						</table>
-						<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-				</nav>
+						<div class="job-filter mb-4 d-sm-flex align-items-center">
+							<div class="search">
+								<input class="form-control" type="text" placeholder="검색">
+							</div>
+							<div class="col-md-4">
+
+								<select name="recipesearch" id="recipesearch">
+									<option value="userName">유저 이름으로 검색</option>
+									<option value="recipeName">레시피 제목으로 검색</option>
+								</select>
+
+							</div>
+
+						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row g-0 align-items-center pb-4">
-			<div class="col-sm-6"></div>
-			<!-- 한 페이지에 1~20개 정도 보여주고 2번 페이지에서 21~40 까지 보여주는 -->
-			<!-- 			<div class="col-sm-6">
-				<div class="float-sm-end">
-					<ul class="pagination mb-sm-0">
-						<li class="page-item disabled"><a href="#" class="page-link"><i
-								class="mdi mdi-chevron-left"></i></a></li>
-						<li class="page-item active"><a href="#" class="page-link">1</a></li>
-						<li class="page-item"><a href="#" class="page-link">2</a></li>
-						<li class="page-item"><a href="#" class="page-link">3</a></li>
-						<li class="page-item"><a href="#" class="page-link">4</a></li>
-						<li class="page-item"><a href="#" class="page-link">5</a></li>
-						<li class="page-item"><a href="#" class="page-link"><i
-								class="mdi mdi-chevron-right"></i></a></li>
-					</ul>
-				</div>
-			</div> -->
-		</div>
+		<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+		<!-- 		<div class="row g-0 align-items-center pb-4"> -->
+		<!-- 			<div class="col-sm-6"></div> -->
+		<!-- 			<!-- 한 페이지에 1~20개 정도 보여주고 2번 페이지에서 21~40 까지 보여주는 -->
+		-->
+		<!-- 			<!-- 			<div class="col-sm-6"> -->
+		<!-- 				<div class="float-sm-end"> -->
+		<!-- 					<ul class="pagination mb-sm-0"> -->
+		<!-- 						<li class="page-item disabled"><a href="#" class="page-link"><i -->
+		<!-- 								class="mdi mdi-chevron-left"></i></a></li> -->
+		<!-- 						<li class="page-item active"><a href="#" class="page-link">1</a></li> -->
+		<!-- 						<li class="page-item"><a href="#" class="page-link">2</a></li> -->
+		<!-- 						<li class="page-item"><a href="#" class="page-link">3</a></li> -->
+		<!-- 						<li class="page-item"><a href="#" class="page-link">4</a></li> -->
+		<!-- 						<li class="page-item"><a href="#" class="page-link">5</a></li> -->
+		<!-- 						<li class="page-item"><a href="#" class="page-link"><i -->
+		<!-- 								class="mdi mdi-chevron-right"></i></a></li> -->
+		<!-- 					</ul> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		-->
+		<!-- 		</div> -->
 	</div>
 
 </body>
