@@ -11,10 +11,10 @@
 			value="/WEB-INF/views/board/reply.jsp" />	
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>	
 	</definition>	
-	<definition name="*/*" template="/WEB-INF/views/board/boardMain.jsp">
+	<!-- <definition name="*/*" template="/WEB-INF/views/board/boardMain.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>	
-	</definition>
+	</definition> -->
 </tiles-definitions>

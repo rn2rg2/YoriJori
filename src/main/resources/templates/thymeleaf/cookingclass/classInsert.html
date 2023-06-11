@@ -29,12 +29,12 @@
 		})
 		$("#class-plus").on("click", function() {
 			var copy_content1 = $("#copy-class").clone();
-			copy_content1.attr("style","display='block'")
+			copy_content1.attr("style", "display='block'")
 			$("#classcon").append(copy_content1);
 		})
 		$("#teacher-plus").on("click", function() {
 			var copy_content2 = $("#copy-teacher").clone();
-			copy_content2.attr("style","display='block'")
+			copy_content2.attr("style", "display='block'")
 			$("#teachercon").append(copy_content2);
 		})
 		$("#cur-plus").on("click", function() {
@@ -45,12 +45,12 @@
 </script>
 </head>
 <body>
-	<div layout:fragment="content">
+	<div layout:fragment="content" class="mb-5">
 		<form action="">
-			<div class="all-margin">
-				<div class="all-content">
-					<h3>쿠킹 클래스 등록</h3>
-					<div class="container">
+			<div class="container mb-5">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="menu-h3-common">쿠킹 클래스 등록</h3>
 
 
 						<div class="form-group form-insert">
@@ -75,15 +75,14 @@
 							일
 						</div>
 						<input hidden="" name="user_id" value="">
-
 					</div>
 				</div>
 			</div>
 
 			<!-- 클래스소개 -->
-			<div class="all-margin">
-				<div class="all-content">
-					<div class="container">
+			<div class="container mb-5">
+				<div class="row">
+					<div class="col-md-12">
 						<div class="form-group form-insert cookclass" id="classcon">
 							<label>클래스 소개<a>(사진 세개까지 첨부가능)</a></label>
 							<div id="copy-class" style="display: none;">
@@ -112,9 +111,9 @@
 			</div>
 
 			<!--강사 소개  -->
-			<div class="all-margin">
-				<div class="all-content">
-					<div class="container">
+			<div class="container mb-5">
+				<div class="row">
+					<div class="col-md-12">
 						<div class="form-group form-insert cookclass" id="teachercon">
 							<label>강사 소개<a>(사진 세개까지 첨부가능)</a></label>
 							<div id="copy-teacher" style="display: none;">
@@ -141,26 +140,25 @@
 					</div>
 				</div>
 			</div>
-			<div class="all-margin">
-				<div class="all-content">
-					<div class="container">
+			<div class="container mb-5">
+				<div class="row">
+					<div class="col-md-12">
 						<div class="form-group form-insert cookclass">
 							<label>커리큘럼</label>
 							<ul style="display: none;">
 								<li id="copy-cur"><input type="text"
-								class="insert-control cur" id=""
-								placeholder="재료 준비 및 손질" name=""><input type="text"
-								class="insert-control time" id=""
-								placeholder="10" name=""> 분</li>
+									class="insert-control cur" id="" placeholder="재료 준비 및 손질"
+									name=""><input type="text" class="insert-control time"
+									id="" placeholder="10" name=""> 분</li>
 							</ul>
 							<ul id="all-cur">
-								<li ><input type="text"
-								class="insert-control cur" id=""
-								placeholder="재료 준비 및 손질" name=""><input type="text"
-								class="insert-control time" id=""
-								placeholder="10" name=""> 분</li>
+								<li><input type="text" class="insert-control cur" id=""
+									placeholder="재료 준비 및 손질" name=""><input type="text"
+									class="insert-control time" id="" placeholder="10" name="">
+									분</li>
 							</ul>
-							<a class="cur-plus" id="cur-plus"><i class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
+							<a class="cur-plus" id="cur-plus"><i
+								class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
 						</div>
 					</div>
 				</div>

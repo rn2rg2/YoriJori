@@ -1,5 +1,5 @@
 @charset "UTF-8";
-  html, body {
+/*   html, body {
       position: relative;
       height: 100%;
     }
@@ -8,62 +8,67 @@
       color: #000;
       margin: 0;
       padding: 0;
-    }
-	.swiper-container{
-		width: 100%;
-		height: 100%;
-	}
-    swiper-container {
-      width: 100%;
-      height: 50%;
-      display: block;
-      border-bottom: 2px solid #f67a42;
-      border-top:  2px solid #f67a42;
-    }
+    } */
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
 
-    swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      display: flex;
-      width: 100%;
-      height: 50%;
-    }
+swiper-container {
+	width: 100%;
+	height: 50%;
+	display: block;
+	border-bottom: 2px solid #f67a42;
+	border-top: 2px solid #f67a42;
+}
 
-    swiper-slide img {
-    width: 100%;
-    height: 700px;
-    object-fit: cover;  
-    vertical-align: inherit;
-      
-    }
-    swiper-slide span{
-    	position: absolute;
-    	bottom: 0px;
-    	right: 0px;
-    	color: white;
-    }
-    .swiper-container::after {
+swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	display: flex;
+	width: 100%;
+	height: 50%;
+}
+
+swiper-slide img {
+	width: 100%;
+	height: 700px;
+	object-fit: cover;
+	vertical-align: inherit;
+}
+
+swiper-slide span {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	color: white;
+}
+
+.swiper-container::after {
 	content: '';
 	clear: both;
 	display: block;
-    }
+}
+
 .swiper-button-next {
-  background: url(/godiva/img/common/next.png) no-repeat;
-  background-size: 50% auto;
-  background-position: center;
+	background: url(/godiva/img/common/next.png) no-repeat;
+	background-size: 50% auto;
+	background-position: center;
 }
 
 .swiper-button-prev {
-  background: url(/godiva/img/common/prev.png) no-repeat;
+	background: url(/godiva/img/common/prev.png) no-repeat;
 }
-.swiper-button-next, .swiper-button-prev{
+
+.swiper-button-next, .swiper-button-prev {
 	color: #f67a42;
 }
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  display: none;
+
+.swiper-button-next::after, .swiper-button-prev::after {
+	display: none;
 }
-.swiper-pagination-bullets{
-	background:#f67a42;
+
+.swiper-pagination-bullets {
+	background: #f67a42;
 }
