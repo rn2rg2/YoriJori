@@ -4,10 +4,19 @@
 <link rel="stylesheet"
 	href="/yorijori/common/css/customerService/CSpageNavigation.css" />
 <th:block th:replace="~{thymeleaf/include/header :: header}"></th:block>
+<style>
+.cslayout_content {
+	min-height: 50em;
+}
+</style>
+
 <body>
 	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
-	<th:block th:replace="~{thymeleaf/customerService/CSpageNavigation :: nav}"></th:block>
-	<th:block layout:fragment="content"></th:block>
+	<th:block
+		th:replace="~{thymeleaf/customerService/CSpageNavigation :: nav}"></th:block>
+	<div class="cslayout_content">
+		<th:block layout:fragment="content"></th:block>
+	</div>
 </body>
 <th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
 </html>

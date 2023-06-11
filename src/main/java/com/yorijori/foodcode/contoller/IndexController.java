@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 	@RequestMapping("/main")
 	public String mainpage (Model model) {
-		return "thymeleaf/mainpage/index";
+		return "thymeleaf/index";
 		
 	}
 

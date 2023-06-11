@@ -41,9 +41,9 @@
     margin-bottom: 20px;
     background-image: url(https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png);
 }
-.row{
+/* .row{
 	margin-bottom: 20px;
-}
+} */
 .font-weight-bold{ /* 프사와 이름 간격 조정 이름에다가 margin top 을 줬음 */
 	margin-top:20px;
 }
