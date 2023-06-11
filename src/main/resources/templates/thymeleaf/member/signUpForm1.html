@@ -13,8 +13,12 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 
 $(document).ready(function() {
 	$("#member-join-general-agree-all-check").click(function() {
-		if($("#member-join-general-agree-all-check").is(":checked")) $("input[name=member-join-general-agree-user-info-check]").prop("checked", true);
-		else $("input[name=member-join-general-agree-user-info-check]").prop("checked", false);
+		if($("#member-join-general-agree-all-check").is(":checked")) {
+			$("input[name=member-join-general-agree-user-info-check]").prop("checked", true);
+		} else {
+			$("input[name=member-join-general-agree-user-info-check]").prop("checked", false);
+		}
+		
 	});
 	
 	$("input[name=member-join-general-agree-user-info-check]").click(function() {
@@ -24,31 +28,27 @@ $(document).ready(function() {
 		if(total != checked) $("#member-join-general-agree-all-check").prop("checked", false);
 		else $("#member-join-general-agree-all-check").prop("checked", true); 
 	});
-
-	 $("form").submit(function(event) {
-		 var checkboxes = $(this).find(".required-checkbox");
-		 var isChecked = false;    
-		    checkboxes.each(function() {
-		      if ($(this).is(":checked")) {
-		        isChecked = true;
-		        return false; // 반복문을 종료합니다.
-		      }
-		    });
-		    
-		    if (!isChecked) {
-		    	$(".myButtonClass").prop("disabled", true);
-		    }
-	});
-
 });
+
+function fnSubmit () {
+	// location.href='/yorijori/member/signup2'
+	
+	var requireOption1 = $("#member-join-general-agree-terms-check").is(':checked');
+	var requireOption2 = $("#member-join-general-agree-user-info-check").is(':checked');
+	
+	if (requireOption1 && requireOption2) {
+		location.href='/yorijori/member/signup2';
+	} else {
+		alert("필수 항목을 선택해주세요.");
+	}
+}
 
 </script>
 </head>
 <body>
 	<section id="contents" class="container" layout:fragment="content" style="margin-top: 5px;" >
 		<form id="join-general-form" name="join-general-form"
-			action="https://www.rankingdak.com/member/join/actionJoinGeneral"
-			method="post" onsubmit="return onSubmitJoinGeneral();"
+			method="post"
 			accept-charset="UTF-8">
 			<input type="hidden" name="_csrf"
 				value="f597c75b-aa37-4221-9f62-ffc644ddc215"><input
@@ -66,12 +66,12 @@ $(document).ready(function() {
 						<!--// form-head -->
 						<div class="terms-toggle-box">
 							<div class="box-head">
-								<div class="custom-checkbox" onclick="termsBtn();">
+								<div class="custom-checkbox">
 									<input type="checkbox" id="member-join-general-agree-all-check"
 										class="checkbox ui-check-all"
 										name="selectall"
 										value="selectall"
-										onclick='selectAll(this)'> 
+										> 
 										<label for="member-join-general-agree-all-check"
 										style="font-weight: bold;">
 										약관 전체동의</label>
@@ -84,14 +84,14 @@ $(document).ready(function() {
 								<!-- 회원가입 약관동의 -->
 								<li class="ui-toggle-slide">
 									<div class="inner-flex">
-										<div class="custom-checkbox left-item1" onclick="termsBtn();">
+										<div class="custom-checkbox left-item1" >
 											<input type="checkbox"
 												id="member-join-general-agree-terms-check" class="checkbox"
 												name="member-join-general-agree-user-info-check"
-												 onclick='checkSelectAll(this)'/> 
+												 /> 
 												<label
-												for="member-join-general-agree-user-info-check"><span
-												class="text-guide-sm2 required-checkbox">(필수)</span> 회원가입 약관동의</label>
+												for="member-join-general-agree-terms-check"><span
+												class="text-guide-sm2">(필수)</span> 회원가입 약관동의</label>
 										</div>
 									</div> <!--// inner-flex -->
 									<div class="terms-inner-box ui-slide-content"
@@ -425,14 +425,14 @@ $(document).ready(function() {
 								</li>
 								<li class="ui-toggle-slide">
 									<div class="inner-flex">
-										<div class="custom-checkbox left-item1" onclick="termsBtn();">
+										<div class="custom-checkbox left-item1" >
 											<input type="checkbox"
 												id="member-join-general-agree-user-info-check"
 												class="checkbox"
 												name="member-join-general-agree-user-info-check"
-												onclick='checkSelectAll(this)'> <label
+												> <label
 												for="member-join-general-agree-user-info-check"><span
-												class="text-guide-sm2 required-checkbox">(필수)</span> 개인정보 수집 및 이용 동의</label>
+												class="text-guide-sm2">(필수)</span> 개인정보 수집 및 이용 동의</label>
 										</div>
 									</div>
 									<!--// inner-flex -->
@@ -484,12 +484,12 @@ $(document).ready(function() {
 								<!--// ui-toggle-slide -->
 								<li class="ui-toggle-slide">
 									<div class="inner-flex">
-										<div class="custom-checkbox left-item1" onclick="termsBtn();">
+										<div class="custom-checkbox left-item1" >
 											<input type="checkbox"
 												id="member-join-general-agree2-user-info-check"
 												class="checkbox"
 												name="member-join-general-agree-user-info-check"
-												onclick='checkSelectAll(this)'> <label
+												> <label
 												for="member-join-general-agree2-user-info-check"><span
 												class="text-guide-sm2">(선택)</span> 개인정보 수집 및 이용 동의</label>
 										</div>
@@ -545,7 +545,7 @@ $(document).ready(function() {
 											<input type="checkbox"
 												id="member-join-general-agree-email-check" class="checkbox"
 												name="member-join-general-agree-user-info-check"
-												onclick='checkSelectAll(this)'> <label
+												> <label
 												for="member-join-general-agree-email-check"><span
 												class="text-guide-sm2">(선택)</span> 이메일수신동의 <span
 												class="add-service-text">(상품 및 서비스 안내, 이벤트 정보 및 혜택제공)</span></label>
@@ -558,7 +558,7 @@ $(document).ready(function() {
 											<input type="checkbox"
 												id="member-join-general-agree-sms-check" class="checkbox"
 												name="member-join-general-agree-user-info-check"
-												onclick='checkSelectAll(this)'> <label
+												> <label
 												for="member-join-general-agree-sms-check"><span
 												class="text-guide-sm2">(선택)</span> SMS(문자,카카오톡) 수신동의 <span
 												class="add-service-text">(상품 및 서비스 안내, 이벤트 정보 및 혜택제공)</span></label>
@@ -578,8 +578,8 @@ $(document).ready(function() {
 					</div>
 					<!--// form-group -->
 					<div class="terms-btn-wrap text-center" style="margin-bottom: 5px;">
-						<button class="btn-dim myButtonClass" type="button"
-						onclick="location.href='/yorijori/member/signup2'"
+						<button class="btn-dim" type="button"
+						onclick="javascript:fnSubmit();"
 						>다음</button>
 					</div>
 				</div>

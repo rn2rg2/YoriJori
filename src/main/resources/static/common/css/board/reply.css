@@ -5,6 +5,10 @@ button.btns.btn-default {
     border-radius: 10px;
     color: white;
 }
+button.btn.btn-info.pull-right {
+    background-color: #FD5D5D;
+    border-style: none;
+}
 .text-success-comments{
 	font-family: 'NanumAInMamSonGeurSsi';
 	font-weight:bold;
