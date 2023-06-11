@@ -15,6 +15,13 @@
 	$(document).ready(function() {
 		$(".current").attr("class", "nav-link")
 		$("#inquiry").attr("class", "nav-link current")
+		
+		$(".insert").on("click",function(){
+            var url = "/yorijori/cs/inquiry/form";
+            var name = "요리조리 문의하기";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no ,scrollbars=no"
+            window.open(url, name, option);
+        })
 	})
 </script>
 </head>
@@ -25,7 +32,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<button type="button" class="insert"
-						onclick="location.href='/yorijori/cs/inquiry/form'">문의하기</button>
+						>문의하기</button>
 						
 				</div>
 			</div>
