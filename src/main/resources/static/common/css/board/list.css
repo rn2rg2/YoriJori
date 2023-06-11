@@ -21,3 +21,6 @@ a{
 .dropdown-toggle::after {
 	display: none;
 }
+.board_content{
+	min-height: 45em;
+}
