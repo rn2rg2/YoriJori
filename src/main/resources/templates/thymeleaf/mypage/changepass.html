@@ -1,28 +1,68 @@
+<!-- 비밀번호 변경에 대한 모달페이지 -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/mypage/my_user_info2}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
-	<div class="modal" tabindex="-1" id="changepassmodal" th:fragment="changepass">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Modal title</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<p>Modal body text goes here.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
+	<div class="modal-dialog" role="document" th:fragment="changepass">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">비밀번호 변경</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<input type="password" class="origin_pass" placeholder="기존 비밀번호 "
+						onfocus="this.value=''" />
+				</form>
+				<br>
+				<form>
+					<input type="password" class="new_pass" placeholder="새로운 비밀번호"
+					
+						onfocus="this.value=''" />
+				</form>
+				<form>
+					<input type="password" class="new_pass" placeholder="새로운 비밀번호 확인"
+					
+						onfocus="this.value=''" />
+				</form>
+				<hr>
+				<div class="captcha_member">
+						<!-- [D]이미지캡차시 display:block -->
+						<div id="captcha_image_legend" style="display:block; width: 50%">
+							<p class="captcha_txt">Please enter the code shown below.</p>
+							<div id="image_captcha_div" class="captcha_box">
+								<span class="captcha_img"><img name="captchaImage" id="chptchaimg" src="https://nid.naver.com/login/image/captcha/nhncaptchav4.gif?key=PYU9GwJbyvcIpADp&amp;1" width="100%" height="87" alt="Code"></span>
+								<a href="javascript:reCaptcha('');" id="aReCaptcha" onclick="clickcr(this,'npw.recpch','','',event);return false;" class="btn_refresh"><span class="sp">Try a new code</span></a>
+						
+							</div>
+						</div>	
+						<!-- 자동 입력 방지 문자 -->
+						<div id="bdr_autoValue" class="spc_row">
+							<label id="lbCapcha" for="autoValue" class="lbl_in" style="display: block">Code</label>
+							<span class="int_box">
+								<!-- 캡챠 어뷰징 방지를 위해 maxlength는 제거함 : 2014-02-11- euli0912 -->		
+								<input type="text" name="autoValue" id="autoValue" class="int" title="Code" style="width:200px" onkeydown="checkNumber();" onfocus="hiddenText('lbCapcha')" onblur="showText('lbCapcha','autoValue')">
+							</span>
+						</div>
+					</div>
+			</div>
+			<div id="modal_result">
+				<div></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">변경하기</button>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

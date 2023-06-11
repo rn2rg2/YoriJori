@@ -1,0 +1,32 @@
+.cook_purpose{
+	align-self: center;
+	margin-bottom: 20px;
+	
+}
+.cook_purpose_input{
+	color: #fd5d5d;
+    height: 100px;
+    width: 400px;
+    border-radius: 5px;
+    border: solid #fd5d5d;
+    padding-inline: 5px;
+}
+.cook_purpose_input:focus {
+  color: black;
+}
+.cook_purpose_input::-webkit-scrollbar {
+	width: 10px;
+}
+
+.cook_purpose_input::-webkit-scrollbar-thumb {
+	background-color: #fd5d5d;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.cook_purpose_input::-webkit-scrollbar-track {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}

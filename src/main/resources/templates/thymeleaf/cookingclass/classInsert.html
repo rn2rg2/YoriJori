@@ -14,7 +14,7 @@
 
 <link rel="stylesheet"
 	href="/yorijori/common/css/recipe/recipeInsert.css">
-	
+
 <script>
 	$(document).ready(function() {
 		$('.summernote').summernote({
@@ -26,6 +26,20 @@
 		});
 		$(".insert").on("click", function() {
 			$(this).toggleClass(".imp selected");
+		})
+		$("#class-plus").on("click", function() {
+			var copy_content1 = $("#copy-class").clone();
+			copy_content1.attr("style","display='block'")
+			$("#classcon").append(copy_content1);
+		})
+		$("#teacher-plus").on("click", function() {
+			var copy_content2 = $("#copy-teacher").clone();
+			copy_content2.attr("style","display='block'")
+			$("#teachercon").append(copy_content2);
+		})
+		$("#cur-plus").on("click", function() {
+			var copy = $("#copy-cur").clone();
+			$("#all-cur").append(copy);
 		})
 	});
 </script>
@@ -42,22 +56,22 @@
 						<div class="form-group form-insert">
 							<label>클래스 제목</label> <input type="text"
 								class="insert-control title" id=""
-								placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" name="l">
+								placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" name="">
 						</div>
 
 						<div class="form-group form-insert inline">
 							<label>클래스 가격</label> <input type="text"
-								class="insert-control price" id="" placeholder="" name="l">
+								class="insert-control price" id="" placeholder="" name="">
 							원
 						</div>
 						<div class="form-group form-insert inline">
 							<label>강의시간</label> <input type="text"
-								class="insert-control price" id="" placeholder="" name="l">
+								class="insert-control price" id="" placeholder="" name="">
 							분
 						</div>
 						<div class="form-group form-insert inline">
 							<label>수강기한</label> <input type="text"
-								class="insert-control price" id="" placeholder="" name="l">
+								class="insert-control price" id="" placeholder="" name="">
 							일
 						</div>
 						<input hidden="" name="user_id" value="">
@@ -70,16 +84,29 @@
 			<div class="all-margin">
 				<div class="all-content">
 					<div class="container">
-						<div class="form-group form-insert cookclass">
+						<div class="form-group form-insert cookclass" id="classcon">
 							<label>클래스 소개<a>(사진 세개까지 첨부가능)</a></label>
-							<div class="line-title"
-								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-								<textarea class="insert-control des subheading" id="des"
-									placeholder="빨간 딸기와 새하얀 생크림의 만남!
+							<div id="copy-class" style="display: none;">
+								<div class="line-title"
+									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+									<textarea class="insert-control des subheading" id="des"
+										placeholder="빨간 딸기와 새하얀 생크림의 만남!
 딸기생크림케이크" name="pswd"></textarea>
+								</div>
+								<textarea class="summernote" name="editordata"></textarea>
 							</div>
-							<textarea class="summernote" name="editordata"></textarea>
+							<div id="class-content">
+								<div class="line-title"
+									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+									<textarea class="insert-control des subheading" id="des"
+										placeholder="빨간 딸기와 새하얀 생크림의 만남!
+딸기생크림케이크" name="pswd"></textarea>
+								</div>
+								<textarea class="summernote" name="editordata"></textarea>
+							</div>
 						</div>
+						<a class="plus" id="class-plus"><i
+							class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
 					</div>
 				</div>
 			</div>
@@ -88,16 +115,29 @@
 			<div class="all-margin">
 				<div class="all-content">
 					<div class="container">
-						<div class="form-group form-insert cookclass">
+						<div class="form-group form-insert cookclass" id="teachercon">
 							<label>강사 소개<a>(사진 세개까지 첨부가능)</a></label>
-							<div class="line-title"
-								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-								<textarea class="insert-control des subheading" id="des"
-									placeholder="빨간 딸기와 새하얀 생크림의 만남!
+							<div id="copy-teacher" style="display: none;">
+								<div class="line-title"
+									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+									<textarea class="insert-control des subheading" id="des"
+										placeholder="빨간 딸기와 새하얀 생크림의 만남!
 딸기생크림케이크" name="pswd"></textarea>
+								</div>
+								<textarea class="summernote" name="editordata"></textarea>
 							</div>
-							<textarea class="summernote" name="editordata"></textarea>
+							<div id="teacher-content">
+								<div class="line-title"
+									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+									<textarea class="insert-control des subheading" id="des"
+										placeholder="빨간 딸기와 새하얀 생크림의 만남!
+딸기생크림케이크" name="pswd"></textarea>
+								</div>
+								<textarea class="summernote" name="editordata"></textarea>
+							</div>
 						</div>
+						<a class="plus" id="teacher-plus"><i
+							class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
 					</div>
 				</div>
 			</div>
@@ -106,11 +146,25 @@
 					<div class="container">
 						<div class="form-group form-insert cookclass">
 							<label>커리큘럼</label>
-							
+							<ul style="display: none;">
+								<li id="copy-cur"><input type="text"
+								class="insert-control cur" id=""
+								placeholder="재료 준비 및 손질" name=""><input type="text"
+								class="insert-control time" id=""
+								placeholder="10" name=""> 분</li>
+							</ul>
+							<ul id="all-cur">
+								<li ><input type="text"
+								class="insert-control cur" id=""
+								placeholder="재료 준비 및 손질" name=""><input type="text"
+								class="insert-control time" id=""
+								placeholder="10" name=""> 분</li>
+							</ul>
+							<a class="cur-plus" id="cur-plus"><i class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
 						</div>
 					</div>
 				</div>
-				</div>
+			</div>
 		</form>
 	</div>
 </body>
