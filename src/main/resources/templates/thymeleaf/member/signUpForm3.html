@@ -3,13 +3,39 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{thymeleaf/layout/signUpLayout}">
 <head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="/yorijori/common/css/member/signUpForm3.css" />
-<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBeomSomCe.css">
+<script type="text/javascript">
+	$(document).ready(function() {
+		// 이 코드를 추가하면 박스 밖을 클릭할 때 창이 닫힙니다.
+		document.addEventListener('click', function(event) {
+		    var isClickInsideBox = document.getElementById('greetingPopup').contains(event.target);
+		    var isClickOnOpenButton = event.target === document.getElementById('btnLoginPopup');
+		  
+		    if (!isClickInsideBox && !isClickOnOpenButton) {
+		        closeGreetingPopup();
+		    }
+		});
+		
+		$("#btnLoginPopup").click(function() {
+			openLoginPopup();
+		});
+	});
+	
+	function openLoginPopup() {
+	    // document.body.classList.add("popup-opened");
+	    $("#joinCompleteBody").addClass("popup-opened");
+	    document.getElementById("greetingPopup").style.display = "block";
+	}
+
+	function closeGreetingPopup() {
+	    document.body.classList.remove("popup-opened");
+	    document.getElementById("greetingPopup").style.display = "none";
+	}
+
+</script>
+<link rel="stylesheet" href="/yorijori/common/css/member/signUpForm3.css" />
 </head>
-<body>
+<body id="joinCompleteBody">
 <div class="wrap " layout:fragment="content" >
 <section id="contents" class="container" style="padding-bottom: 0px;">
 	<div class="join-certified frame-full">
@@ -21,12 +47,13 @@ layout:decorate="~{thymeleaf/layout/signUpLayout}">
 	                <span>요리조리 서비스를 이용하기 위해 로그인을 진행해주세요.</span>
 	            </div>
 	            <div class="certified-btn-wrap text-center" style="text-align: center;">
-	                <button class="certified-btn" id="openButton" onclick="openGreetingPopup()">로그인</button>
+	                <button class="certified-btn" id="btnLoginPopup" onclick="javascript:openLoginPopup();">로그인</button>
 	            </div>
 	        </div>
 	    </div>
 	</div>
 </section>
+
 </div>
 </body>
 </html>

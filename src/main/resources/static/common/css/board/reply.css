@@ -5,6 +5,10 @@ button.btns.btn-default {
     border-radius: 10px;
     color: white;
 }
+button.btn.btn-info.pull-right {
+    background-color: #FD5D5D;
+    border-style: none;
+}
 .text-success-comments{
 	font-family: 'NanumAInMamSonGeurSsi';
 	font-weight:bold;
@@ -12,16 +16,17 @@ button.btns.btn-default {
 }
 .form-control{
 	font-family: 'NanumAInMamSonGeurSsi';
+	font-size : 1.5em !important;
 }
 small, .meta,  .commentsName, .pull-right  {
 	font-family: 'NanumAInMamSonGeurSsi';
 	font-weight:bold;
-	font-size: 18px;
+	font-size: 1em;
 }
-body{
+/* body{
     background:#eee;
 }
-
+ */
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -43,8 +48,8 @@ a {
 }
 
 .blog-comment{
-    padding-left: 10%;
-	width: 1100px;
+/*     padding-left: 10%;
+	width: 1100px; */
 }
 
 .blog-comment ul{
@@ -87,11 +92,14 @@ a {
 }
 
 .blog-comment .meta {
-	font-size: 13px;
+	font-size: 1.5em;
 	color: #aaaaaa;
 	padding-bottom: 8px;
 	margin-bottom: 10px !important;
 	border-bottom: 1px solid #eee;
+}
+.blog-comment .meta > a{
+	font-size: inherit;
 }
 
 .blog-comment ul.comments ul{

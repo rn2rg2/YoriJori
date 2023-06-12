@@ -1,18 +1,26 @@
 @charset "UTF-8";
 
-.btn {
-	width: 100px;
-	background-color: #FD5D5D;
-	border: none;
-	border-radius: 10px;
-	color: white;
+ .btn{
+  width: 100px;
+  background-color: #FD5D5D;
+  border: none;
+  border-radius: 10px;
+  color: white;
+ }
+ .bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: #FD5D5D!important;
 }
-
-.bg-dark { -
-	-bs-bg-opacity: 1;
-	background-color: #FD5D5D !important;
+.notice{
+	background-color: #eee;
 }
-
-.board_content {
-	min-height: 50em;
+a{
+	text-decoration: none;
+	color:inherit;
+}
+.dropdown-toggle::after {
+	display: none;
+}
+.board_content{
+	min-height: 45em;
 }

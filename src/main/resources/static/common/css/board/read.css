@@ -4,8 +4,12 @@
 }
 tr, td, th{
 	font-family: 'NanumAInMamSonGeurSsi';
-	font-size: 18px;
+	font-size: 1.4em;
 }
+.main-section{
+	min-height : 45em;
+}
+
 .main-section .table td {
 	width: 280px; 
 	text-align: left; 
@@ -17,11 +21,11 @@ tr, td, th{
 button.buttons.btn-primary {
     width: 100px;
 	background-color: #FD5D5D;    
-	border: none;
     border-radius: 10px;
     color: white;
    	font-family: 'NanumAInMamSonGeurSsi';
    	border-color: #FD5D5D;
+   	font-size : 1.5em
     
 }
 
