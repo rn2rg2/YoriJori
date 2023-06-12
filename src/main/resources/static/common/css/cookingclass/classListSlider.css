@@ -26,13 +26,28 @@ swiper-slide img {
 	height: 700px;
 	object-fit: cover;
 	vertical-align: inherit;
+	opacity: 0.8;
 }
 
-swiper-slide span {
+swiper-slide .class-price {
 	position: absolute;
 	bottom: 0px;
-	right: 0px;
-	color: white;
+	right: 20px;
+	color: #000;
+	font-size: 80px;
+		font-family: 'NanumSeongSirCe';
+	font-style:italic;
+	font-weight:bold;
+	text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+swiper-slide .class-title {
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	color: #000;
+	font-family: 'NanumSeongSirCe';
+	font-size: 50px;
+	text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
 }
 
 .swiper-container::after {
@@ -61,4 +76,11 @@ swiper-slide span {
 
 .swiper-pagination-bullets {
 	background: #f67a42;
+}
+/* 타이틀 */
+.sub-title{
+	font-family: 'NanumBuJangNimNunCiCe';
+	font-size: 50px;
+	font-weight: bold;
+	font-style: italic;
 }
