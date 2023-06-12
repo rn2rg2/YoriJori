@@ -26,7 +26,7 @@
 		<div id="greetingPopup"
 			style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; z-index: 99999;">
 
-			<div class="center" style="">
+			<div class="center">
 
 				<div class="login-wrapper" style="height: 550px;">
 					<h2>
@@ -177,9 +177,12 @@
 		</nav>
 
 		<script type="text/javascript">
+		
 			function openGreetingPopup() {
-				document.body.classList.add("popup-opened");
+				//document.body.classList.add("popup-opened");
+				$("body").addClass("popup-opened");
 				document.getElementById("greetingPopup").style.display = "block";
+				
 			}
 
 			function closeGreetingPopup() {
@@ -211,7 +214,6 @@
 
 
 		<script src="/yorijori/common/js/common/top.js"></script>
-
 
 	</header>
 
