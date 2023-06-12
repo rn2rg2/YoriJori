@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cookingclass")
 @Controller
 public class CookingclassController {
-	
+	@RequestMapping("/Instructor")
+	public String classListInstructor() {
+		return "thymeleaf/cookingclass/classListInstructor";
+	}
 	@RequestMapping("/list")
 	public String showCookingclassList() {
 		return "thymeleaf/cookingclass/classList";
