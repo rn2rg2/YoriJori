@@ -1,4 +1,4 @@
-package com.yorijori.foodcode.contoller;
+package com.yorijori.foodcode.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

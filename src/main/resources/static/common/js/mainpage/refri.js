@@ -53,3 +53,20 @@ function drop(e) {
 
     // draggable.classList.remove('hide');
 }
+
+const dataSource = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ];
+//페이지별 개수
+const inputSize = 6;
+const pageId = $('#pagination_div');
+const make_list = function(data){
+	const list_container = $('.ingredient_list_view');
+	let viewHtml = "";
+	for ( let i = 0 ; i< data.length; i ++ ){
+		
+	}
+	
+	console.log(data);
+}
+//페이지 네이션 생성
+make_pagination(pageId, dataSource,inputSize, make_list);
+
