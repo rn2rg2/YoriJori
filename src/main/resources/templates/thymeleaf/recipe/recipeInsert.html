@@ -2,209 +2,215 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
-<meta charset="UTF-8">
-<title>레시피 등록</title>
-<!-- include summernote css/js-->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<th:block layout:fragment="header">
+	<!-- include summernote css/js-->
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
+		rel="stylesheet">
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
-<link rel="stylesheet"
-	href="/yorijori/common/css/recipe/recipeInsert.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
-<script
-	src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+	<link rel="stylesheet"
+		href="/yorijori/common/css/recipe/recipeInsert.css">
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+	<script
+		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
-<script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			placeholder : 'content',
-			minHeight : 700,
-			maxHeight : 700,
-			focus : false,
-			lang : 'ko-KR'
+	<script>
+		$(document).ready(function() {
+			$('#summernote').summernote({
+				placeholder : 'content',
+				minHeight : 500,
+				maxHeight : 500,
+				focus : false,
+				lang : 'ko-KR'
+			});
+			/* 엔터금지 */
+			document.addEventListener('keydown', function(event) {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+				}
+				;
+			}, true);
+
+			new MultiSelectTag('imp', {
+				rounded : true,
+				shadow : true
+			})
+
+			$(".dropdown-item").on("click", function() {
+				const $this = $(this)
+				var parent_id = "#" + $this.attr("data-parent")
+				var text = $this.html()
+				var va = $this.attr("data-value")
+				$(parent_id).html(text)
+				$(parent_id).val(va)
+			})
 		});
-		/* 엔터금지 */
-		document.addEventListener('keydown', function(event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
-			}
-			;
-		}, true);
+	</script>
+</th:block>
 
-		new MultiSelectTag('imp', {
-			rounded : true,
-			shadow : true
-		})
-		
-		$(".dropdown-item").on("click",function(){
-	        const $this=$(this)
-	        var parent_id="#"+$this.attr("data-parent")
-	        var text=$this.html()
-	        var va=$this.attr("data-value")
-	            $(parent_id).html(text)
-	            $(parent_id).val(va)
-	    })
-	});
-</script>
-
-</head>
-<body>
-	<div layout:fragment="content">
-		<form action="">
-			<div class="container mb-5">
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class="menu-h3-common">레시피 등록</h3>
-						<div class="container">
+<th:block layout:fragment="content">
+	<form action="">
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="menu-h3-common">레시피 등록</h3>
 
 
-							<div class="form-group form-insert">
-								<label>레시피 제목</label> <input type="text"
-									class="insert-control title" id="" placeholder="맛좋은 게살 버거"
-									name="l">
+					<div class="form-group form-insert">
+						<label>레시피 제목</label> <input type="text"
+							class="insert-control title" id="" placeholder="맛좋은 게살 버거"
+							name="l">
+					</div>
+
+					<div class="form-group form-insert">
+						<label>레시피 한줄소개</label>
+						<textarea class="insert-control des" id="des"
+							placeholder="향긋한 게살향이 듬뿍나는 맛있는 게살버거~~" name="pswd"></textarea>
+					</div>
+
+					<div class="form-group form-insert">
+						<label>카테고리</label>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="usage">음식용도</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="usage" data-value="usage1">용도1</a>
 							</div>
-
-							<div class="form-group form-insert">
-								<label>레시피 한줄소개</label>
-								<textarea class="insert-control des" id="des"
-									placeholder="향긋한 게살향이 듬뿍나는 맛있는 게살버거~~" name="pswd"></textarea>
+						</div>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="method">조리방법</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="method" data-value="method1">방법1</a>
 							</div>
-
-							<div class="form-group form-insert">
-								<label>카테고리</label>
-								<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown" id="usage">음식용도</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="usage" data-value="usage1">용도1</a>
-									</div>
-									</div>
-									<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown" id="method">조리방법</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="method" data-value="method1">방법1</a>
-									</div>
-									</div>
-									<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown" id="division1">음식분류 1</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="ko">한식</a>
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="cn">중식</a>
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="jp">일식</a>
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="en">양식</a>
-									</div>
-									</div>
-									<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop last-button"
-										data-toggle="dropdown" id="division2">음식분류 2</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division2" data-value="meat">고기류</a>
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division2" data-value="fish">생선류</a>
-									</div>
-								</div>
+						</div>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="division1">음식분류 1</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="division1" data-value="ko">한식</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="division1" data-value="cn">중식</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="division1" data-value="jp">일식</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="division1" data-value="en">양식</a>
 							</div>
-
-							<div class="form-group form-insert">
-								<label>기타</label>
-								<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown" id="serving">인분</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="serving" data-value="1serving">1인분</a>
-									</div>
-									</div>
-									<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown" id="time">시간</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="time" data-value="10min">10분</a>
-									</div>
-									</div>
-									<div class="category">
-									<button type="button"
-										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown" id="difficulty">난이도</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="difficulty" data-value="easy">하</a>
-										<a class="dropdown-item insert-item" href="javascript:0" data-parent="difficulty" data-value="normal">중</a>
-									</div>
-								</div>
+						</div>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop last-button"
+								data-toggle="dropdown" id="division2">음식분류 2</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="division2" data-value="meat">고기류</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="division2" data-value="fish">생선류</a>
 							</div>
-
-
-							<br /> <br />
-
-							<div class="form-group form-insert imp-group">
-								<label>재료</label><select name="countries" id="imp" multiple>
-									<option value="1">양배추</option>
-									<option value="2">버터</option>
-									<option value="3">사과</option>
-									<option value="4">물</option>
-									<option value="5">우유</option>
-								</select> <br /> <label>재료량</label>
-								<div class="imp-quantity-div">
-									<table class="imp-quantity">
-										<tbody>
-											<tr class="tr">
-												<td><input type="text" value="사과"></td>
-												<td><input type="text" value="" placeholder="ex) 1/2개"></td>
-												<td><input type="text" value="양배추"></td>
-												<td><input type="text" value="" placeholder="ex) 100g"></td>
-											</tr>
-											<tr class="tr">
-												<td><input type="text" value="재료3"></td>
-												<td><input type="text" placeholder="ex) 한스푼"></td>
-												<td><input type="text" value="재료4"></td>
-												<td><input type="text" placeholder="ex) 500ml"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-
-							<br /> <br />
-
-							<div class="form-group form-insert">
-								<label>요리순서</label>
-								<div class="cooking-num">
-									<div class="sum">
-										<textarea id="summernote" name="editordata"></textarea>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div class="form-group form-insert">
-								<label>요리팁</label>
-								<textarea class="insert-control des" id="des"
-									placeholder="게살 잘 바르는 팁!!!" name="pswd"></textarea>
-							</div>
-
-							<div class="form-group form-insert">
-								<label>태그</label> <input type="text" class="insert-control"
-									id="" placeholder="딸기, 키위, 다이어트, 비만" name="l">
-							</div>
-							<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
-
 						</div>
 					</div>
+
+					<div class="form-group form-insert">
+						<label>기타</label>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="serving">인분</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="serving" data-value="1serving">1인분</a>
+							</div>
+						</div>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="time">시간</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="time" data-value="10min">10분</a>
+							</div>
+						</div>
+						<div class="category">
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="difficulty">난이도</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item insert-item" href="javascript:0"
+									data-parent="difficulty" data-value="easy">하</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="difficulty" data-value="normal">중</a>
+							</div>
+						</div>
+					</div>
+
+
+					<br /> <br />
+
+					<div class="form-group form-insert imp-group">
+						<label>재료</label><select name="countries" id="imp" multiple>
+							<option value="1">양배추</option>
+							<option value="2">버터</option>
+							<option value="3">사과</option>
+							<option value="4">물</option>
+							<option value="5">우유</option>
+						</select> <br /> <label>재료량</label>
+						<div class="imp-quantity-div">
+							<table class="imp-quantity">
+								<tbody>
+									<tr class="tr">
+										<td><input type="text" value="사과"></td>
+										<td><input type="text" value="" placeholder="ex) 1/2개"></td>
+										<td><input type="text" value="양배추"></td>
+										<td><input type="text" value="" placeholder="ex) 100g"></td>
+									</tr>
+									<tr class="tr">
+										<td><input type="text" value="재료3"></td>
+										<td><input type="text" placeholder="ex) 한스푼"></td>
+										<td><input type="text" value="재료4"></td>
+										<td><input type="text" placeholder="ex) 500ml"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<br /> <br />
+
+					<div class="form-group form-insert">
+						<label>요리과정</label>
+						<div class="cooking-num">
+							<div class="sum">
+								<textarea id="summernote" name="editordata"></textarea>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="form-group form-insert">
+						<label>요리팁</label>
+						<textarea class="insert-control des" id="des"
+							placeholder="게살 잘 바르는 팁!!!" name="pswd"></textarea>
+					</div>
+
+					<div class="form-group form-insert">
+						<label>태그</label> <input type="text" class="insert-control" id=""
+							placeholder="딸기, 키위, 다이어트, 비만" name="l">
+					</div>
+					<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
+
 				</div>
 			</div>
-		</form>
-	</div>
-</body>
+		</div>
+	</form>
+</th:block>
 </html>

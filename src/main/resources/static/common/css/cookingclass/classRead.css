@@ -6,7 +6,9 @@
 	margin-top: 80px;
 }
 .title{
-	font-size: calc(2rem + .6vw)
+	font-size: 2rem;
+	border: none;
+	margin: 0;
 }
 .view2_pic {
     margin: 0 auto;
@@ -18,13 +20,13 @@
 	content: "";
 	padding-bottom: 50px;
 	display: block;
-	border-top: 2px solid #f67a42;
+	border-top: 2px solid var(--main-theme-color-red);
 }
 .centeredcrop:after{
 	content: "";
 	padding-bottom: 50px;
 	display: block;
-	border-bottom: 2px solid #f67a42;
+	border-bottom: 2px solid var(--main-theme-color-red);
 }
 .centeredcrop img{
 	  margin: 0 auto;
@@ -40,7 +42,7 @@
 
 .view2_summary.st2 .price_box .dc {
     font-size: 50px;
-    color: #f67a42;
+    color: var(--main-theme-color-red);
     font-family : "NanumHimNaeRaNeunMarBoDan";
     font-weight: 500;
     letter-spacing: -0.02em;
@@ -95,8 +97,8 @@
 }
 .insert {
     color: #ffffff;
-    background-color: #f67a42;
-    border-color: #f67a42;
+    background-color: var(--main-theme-color-red);
+    border-color: var(--main-theme-color-red);
     border-radius:10px;
     margin-left: auto;
     margin-right: auto;
@@ -133,11 +135,11 @@
 .selected {
   text-decoration:none;
   background-color: #f6c88b;
-  border-bottom: 2px solid #f67a42;
-  color: #f67a42
+  border-bottom: 2px solid var(--main-theme-color-red);
+  color: var(--main-theme-color-red)
 }
 .nav-link:hover{
-	color: #f67a42
+	color: var(--main-theme-color-red)
 }
 .nav-link.current {
   border-bottom: 2px solid #1971c2;
@@ -149,7 +151,7 @@
   }
   .nav-link {
     padding: 20px 20px;
-    border-top: 2px solid #f67a42;
+    border-top: 2px solid var(--main-theme-color-red);
   }
 
 }
@@ -192,7 +194,7 @@
 	margin-left: 50px;
 }
 .tab-section li{
-	border: 2px solid #f67a42;
+	border: 2px solid var(--main-theme-color-red);
 	border-radius: 10px;
 	list-style: decimal;
 	padding: 10px;
@@ -203,7 +205,7 @@
 }
 li .time{
 	position:absolute;
-	color: #f67a42;
+	color: var(--main-theme-color-red);
 	right: 10px;
 	font-family: "NanumHimNaeRaNeunMarBoDan";
 	font-size: 20px;

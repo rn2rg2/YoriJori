@@ -2,157 +2,159 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="/yorijori/common/css/cookingclass/classRead.css" />
-<title>쿠킹 클래스</title>
-</head>
-<body>
-	<div layout:fragment="content">
-		<div class="all-margin">
-			<h3 class="title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]</h3>
-			<div class="view2_pic">
-				<div class="centeredcrop">
-					<img id="main_thumbs"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/73fcaaae705ce89a5efe3a0825cec43c.jpg"
-						alt="main thumb" class="portrait">
+<th:block layout:fragment="header">
+	<link rel="stylesheet"
+		href="/yorijori/common/css/cookingclass/classRead.css" />
+</th:block>
+<th:block layout:fragment="content">
+	<div class="container mb-5">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="menu-h3-common title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스
+					[딸기생크림케이크]</h3>
+				<div class="view2_pic">
+					<div class="centeredcrop">
+						<img id="main_thumbs"
+							src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/73fcaaae705ce89a5efe3a0825cec43c.jpg"
+							alt="main thumb" class="portrait">
+					</div>
 				</div>
-			</div>
-			<div class="view2_summary st2">
-				<div class="price_box">
-					<p class="dc">
-						63<small>%</small>
-					</p>
+				<div class="view2_summary st2">
+					<div class="price_box">
+						<p class="dc">
+							63<small>%</small>
+						</p>
 
-					<p class="price">
-						30,000<small>원</small>
-					</p>
-					<p class="del">80,000원</p>
-					<a class="app_block_link_remove user_info2_pic"><img
-						src="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/29/900013400086b533aef0411aeb3ee7d71.png"></a>
-					<div class="nickname">유저닉네임</div>
+						<p class="price">
+							30,000<small>원</small>
+						</p>
+						<p class="del">80,000원</p>
+						<a class="app_block_link_remove user_info2_pic"><img
+							src="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/29/900013400086b533aef0411aeb3ee7d71.png"></a>
+						<div class="nickname">유저닉네임</div>
+					</div>
 				</div>
-			</div>
 
-			<div class="view2_summary_info">
-				<dl class="info_delivery">
-					<dt>
+				<div class="view2_summary_info">
+					<dl class="info_delivery">
+						<dt>
+							<img
+								src="https://recipe1.ezmember.co.kr/img/mobile/icon_clock2.png"
+								alt="시간아이콘" width="29">강의시간
+						</dt>
+						<dd>49분</dd>
+					</dl>
+					<dl class="info_delivery">
+						<dt>
+							<img
+								src="https://recipe1.ezmember.co.kr/img/mobile/icon_calendar.png"
+								alt="기간아이콘" width="29">수강 기간
+						</dt>
+						<dd>180일</dd>
+					</dl>
+					<div class="info_ea">
 						<img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_clock2.png"
-							alt="시간아이콘" width="29">강의시간
-					</dt>
-					<dd>49분</dd>
-				</dl>
-				<dl class="info_delivery">
-					<dt>
-						<img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_calendar.png"
-							alt="기간아이콘" width="29">수강 기간
-					</dt>
-					<dd>180일</dd>
-				</dl>
-				<div class="info_ea">
-					<img
-						src="https://recipe1.ezmember.co.kr/img/mobile/icon_people.png"
-						alt="수강아이콘" width="29"
-						style="padding-right: 5px; vertical-align: text-bottom;"><b>23</b>명
-					수강
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_people.png"
+							alt="수강아이콘" width="29"
+							style="padding-right: 5px; vertical-align: text-bottom;"><b>23</b>명
+						수강
 
+					</div>
 				</div>
-			</div>
-			<button type="button" class="insert">지금바로 신청하기</button>
-			<nav class="nav" id="tab-button-nav">
-				<a href="javascript:" class="nav-link selected"
-					data-tab-section="tab-section-1">클래스 소개</a> <a href="javascript:"
-					class="nav-link" data-tab-section="tab-section-2">강사소개</a> <a
-					href="javascript:" class="nav-link"
-					data-tab-section="tab-section-3">커리큘럼</a> <a href="javascript:"
-					class="nav-link" data-tab-section="tab-section-4">강사님의 다른 클래스</a>
-			</nav>
-			<div class="all-tab">
-				<div id="tab-section-1" class="tab-section">
-					<!-- 클래스 소개: title-img(max:3)-content 한 블럭으로 사용  -->
-					<h3 class="tab-title">" 클래스 소개 "</h3>
-					<div class="line-title"
-						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-						<a>빨간 딸기와 새하얀 생크림의 만남!</a><br> <b>딸기생크림케이크</b>
-					</div>
-					<div class="line-img">
-					<img style="border-radius: 6px;"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
-					<img style="border-radius: 6px;"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
-					<img style="border-radius: 6px;"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
-					</div>
-					
-					<div class="line-content">
-					<div style="padding: 8px 4px 0px; font-size: 20px;">딸기생크림케이크</div>
-					<span style="font-size: 16px; letter-spacing: -0.8px;">새콤달콤한
-						딸기와 부드러운 생크림의 조합을 느낄 수 있는 딸기생크림케이크 만드는 법을 알려드려요.</span>
-					</div>
-					
-					<div class="line-title"
-						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-						<a>이 클래스만의 <b>특별한 점</b>은 무엇일까요?</a>
+				<button type="button" class="insert">지금바로 신청하기</button>
+				<nav class="nav" id="tab-button-nav">
+					<a href="javascript:" class="nav-link selected"
+						data-tab-section="tab-section-1">클래스 소개</a> <a href="javascript:"
+						class="nav-link" data-tab-section="tab-section-2">강사소개</a> <a
+						href="javascript:" class="nav-link"
+						data-tab-section="tab-section-3">커리큘럼</a> <a href="javascript:"
+						class="nav-link" data-tab-section="tab-section-4">강사님의 다른 클래스</a>
+				</nav>
+				<div class="all-tab">
+					<div id="tab-section-1" class="tab-section">
+						<!-- 클래스 소개: title-img(max:3)-content 한 블럭으로 사용  -->
+						<h3 class="tab-title">" 클래스 소개 "</h3>
+						<div class="line-title"
+							style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+							<a>빨간 딸기와 새하얀 생크림의 만남!</a><br> <b>딸기생크림케이크</b>
+						</div>
+						<div class="line-img">
+							<img style="border-radius: 6px;"
+								src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+							<img style="border-radius: 6px;"
+								src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+							<img style="border-radius: 6px;"
+								src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+						</div>
+
+						<div class="line-content">
+							<div style="padding: 8px 4px 0px; font-size: 20px;">딸기생크림케이크</div>
+							<span style="font-size: 16px; letter-spacing: -0.8px;">새콤달콤한
+								딸기와 부드러운 생크림의 조합을 느낄 수 있는 딸기생크림케이크 만드는 법을 알려드려요.</span>
+						</div>
+
+						<div class="line-title"
+							style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+							<a>이 클래스만의 <b>특별한 점</b>은 무엇일까요?
+							</a>
+						</div>
+
 					</div>
 
-				</div>
+					<div id="tab-section-2" class="tab-section" hidden>
+						<!-- 강사소개: 클래스 소개와 형식 동일 -->
+						<h3 class="tab-title">" 강사소개 "</h3>
+						<div class="line-title"
+							style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+							<a>빨간 딸기와 새하얀 생크림의 만남!</a><br> <b>딸기생크림케이크</b>
+						</div>
+						<div class="line-img">
+							<img style="border-radius: 6px;"
+								src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+							<img style="border-radius: 6px;"
+								src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+							<img style="border-radius: 6px;"
+								src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
+						</div>
 
-				<div id="tab-section-2" class="tab-section" hidden>
-					<!-- 강사소개: 클래스 소개와 형식 동일 -->
-					<h3 class="tab-title">" 강사소개 "</h3>
-					<div class="line-title"
-						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-						<a>빨간 딸기와 새하얀 생크림의 만남!</a><br> <b>딸기생크림케이크</b>
-					</div>
-					<div class="line-img">
-					<img style="border-radius: 6px;"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
-					<img style="border-radius: 6px;"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
-					<img style="border-radius: 6px;"
-						src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/b2a9a9f64bc0677b36bd1f30da640aa8.jpg">
-					</div>
-					
-					<div class="line-content">
-					<div style="padding: 8px 4px 0px; font-size: 20px;">딸기생크림케이크</div>
-					<span style="font-size: 16px; letter-spacing: -0.8px;">새콤달콤한
-						딸기와 부드러운 생크림의 조합을 느낄 수 있는 딸기생크림케이크 만드는 법을 알려드려요.</span>
-					</div>
-					
-					<div class="line-title"
-						style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-						<a>이 클래스만의 <b>특별한 점</b>은 무엇일까요?</a>
-					</div>
-					
-				</div>
+						<div class="line-content">
+							<div style="padding: 8px 4px 0px; font-size: 20px;">딸기생크림케이크</div>
+							<span style="font-size: 16px; letter-spacing: -0.8px;">새콤달콤한
+								딸기와 부드러운 생크림의 조합을 느낄 수 있는 딸기생크림케이크 만드는 법을 알려드려요.</span>
+						</div>
 
-				<div id="tab-section-3" class="tab-section" hidden>
-					<!--  -->
-					<h3 class="tab-title">" 커리큘럼 "</h3>
-					<ul>
-						<li ><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
-						<li><b>재료 준비</b><a class="time">/10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
-						<li ><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
-						<li><b>재료 준비</b><a class="time">10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
-						<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
-					</ul>
-				</div>
+						<div class="line-title"
+							style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+							<a>이 클래스만의 <b>특별한 점</b>은 무엇일까요?
+							</a>
+						</div>
 
-				<div id="tab-section-4" class="tab-section" hidden>
-					<!--  -->
-					<h3 class="tab-title">" 강사님의 다른 클래스 "</h3>
-				</div>
-				<script>
+					</div>
+
+					<div id="tab-section-3" class="tab-section" hidden>
+						<!--  -->
+						<h3 class="tab-title">" 커리큘럼 "</h3>
+						<ul>
+							<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+							<li><b>재료 준비</b><a class="time">/10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">/10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
+							<li><b>재료 준비</b><a class="time">10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
+							<li><b>셰프와 클래스 소개</b><a class="time">10분</a></li>
+						</ul>
+					</div>
+
+					<div id="tab-section-4" class="tab-section" hidden>
+						<!--  -->
+						<h3 class="tab-title">" 강사님의 다른 클래스 "</h3>
+					</div>
+					<script>
 /* css변경 */
 				$(".nav-link").click(function(){
 			    	$(".selected").attr("class","nav-link")
@@ -178,10 +180,9 @@
     });
     
   </script>
+				</div>
 			</div>
-
 		</div>
-		<!-- all-margin close  -->
 	</div>
-</body>
+</th:block>
 </html>
