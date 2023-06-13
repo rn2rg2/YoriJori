@@ -8,8 +8,7 @@ swiper-container {
 	width: 100%;
 	height: 50%;
 	display: block;
-	border-bottom: 2px solid var(--main-theme-color-red);
-	border-top: 2px solid var(--main-theme-color-red);
+	margin-bottom: 5rem;
 }
 
 swiper-slide {
@@ -78,9 +77,7 @@ swiper-slide .class-title {
 	background: #f67a42;
 }
 /* 타이틀 */
-.sub-title{
-	font-family: 'NanumBuJangNimNunCiCe';
-	font-size: 50px;
-	font-weight: bold;
-	font-style: italic;
+.borderx{
+	border: 0;
+	margin: 0;
 }

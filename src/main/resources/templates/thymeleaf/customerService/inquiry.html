@@ -2,41 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/CSLayout}">
-<head>
-<meta charset="UTF-8">
-<title>문의하기</title>
-<link rel="stylesheet"
-	href="/yorijori/common/css/customerService/inquiry.css" />
-<link rel="stylesheet"
-	href="/yorijori/common/css/customerService/list.css" />
-<script type="text/javascript"
-	src="/yorijori/common/js/customerService/CSpageNavigation.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".current").attr("class", "nav-link")
-		$("#inquiry").attr("class", "nav-link current")
-		
-		$(".insert").on("click",function(){
-            var url = "/yorijori/cs/inquiry/form";
-            var name = "요리조리 문의하기";
-            var option = "width = 500, height = 500, top = 100, left = 200, location = no ,scrollbars=no"
-            window.open(url, name, option);
-        })
-	})
-</script>
-</head>
-<body>
-	<div layout:fragment="content">
-		<div class="container">
-			<h3 class="menu-h3-common">문의하기</h3>
-			<div class="row">
-				<div class="col-md-12">
-					<button type="button" class="insert"
-						>문의하기</button>
-						
-				</div>
+<th:block layout:fragment="header">
+	<link rel="stylesheet"
+		href="/yorijori/common/css/customerService/inquiry.css" />
+	<link rel="stylesheet"
+		href="/yorijori/common/css/customerService/list.css" />
+	<script type="text/javascript"
+		src="/yorijori/common/js/customerService/CSpageNavigation.js"></script>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$(".current").attr("class", "nav-link")
+							$("#inquiry").attr("class", "nav-link current")
+
+							$(".insert")
+									.on(
+											"click",
+											function() {
+												var url = "/yorijori/cs/inquiry/form";
+												var name = "요리조리 문의하기";
+												var option = "width = 500, height = 500, top = 100, left = 200, location = no ,scrollbars=no"
+												window.open(url, name, option);
+											})
+						})
+	</script>
+</th:block>
+
+<th:block layout:fragment="content">
+	<div class="container">
+		<h3 class="menu-h3-common">문의하기</h3>
+		<div class="row">
+			<div class="col-md-12">
+				<button type="button" class="insert">문의하기</button>
+
 			</div>
 		</div>
 	</div>
-</body>
+</th:block>
 </html>
