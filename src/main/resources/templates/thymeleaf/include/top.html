@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-
-
-<body>
-	<!-- Navbar Start -->
-	<!-- 	<header id="header" class="header ftco-section" th:fragment="top"> -->
-	<header class="ftco-section header-section" th:fragment="top">
+<!-- Navbar Start -->
+<!-- 	<header id="header" class="header ftco-section" th:fragment="top"> -->
+<th:block th:fragment="top">
+	<header class="ftco-section header-section">
 		<div class="header-inner">
 			<h1 class="logo">
 				<a href="/yorijori/main"><span class="blind"></span></a>
@@ -144,8 +142,8 @@
 							class="nav-link dropdown-toggle" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">랭킹</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="/yorijori/ranking/list">레시피랭킹</a> <a
-									class="dropdown-item" href="#">검색어랭킹</a> <a
+								<a class="dropdown-item" href="/yorijori/ranking/list">레시피랭킹</a>
+								<a class="dropdown-item" href="#">검색어랭킹</a> <a
 									class="dropdown-item" href="#">회원랭킹</a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
@@ -176,33 +174,7 @@
 			</div>
 		</nav>
 
-		<script type="text/javascript">
-		
-			function openGreetingPopup() {
-				//document.body.classList.add("popup-opened");
-				$("body").addClass("popup-opened");
-				document.getElementById("greetingPopup").style.display = "block";
-				
-			}
 
-			function closeGreetingPopup() {
-				document.body.classList.remove("popup-opened");
-				document.getElementById("greetingPopup").style.display = "none";
-			}
-
-			// 이 코드를 추가하면 박스 밖을 클릭할 때 창이 닫힙니다.
-			document.addEventListener('click', function(event) {
-				var isClickInsideBox = document.getElementById('greetingPopup')
-						.contains(event.target);
-				var isClickOnOpenButton = event.target === document
-						.getElementById('openButton');
-
-				if (!isClickInsideBox && !isClickOnOpenButton) {
-					closeGreetingPopup();
-				}
-			});
-		</script>
-		<!-- HEADER INNER -->
 
 		<a href="#" title="Back to Top"
 			style="display: scroll; position: fixed; bottom: 30px; right: 30px;"
@@ -216,8 +188,34 @@
 		<script src="/yorijori/common/js/common/top.js"></script>
 
 	</header>
+	<script type="text/javascript">
+		function openGreetingPopup() {
+			//document.body.classList.add("popup-opened");
+			$("body").addClass("popup-opened");
+			document.getElementById("greetingPopup").style.display = "block";
+			console.log("test");
 
-	<!-- HEADER -->
+		}
 
-</body>
+		function closeGreetingPopup() {
+			document.body.classList.remove("popup-opened");
+			document.getElementById("greetingPopup").style.display = "none";
+		}
+
+		// 이 코드를 추가하면 박스 밖을 클릭할 때 창이 닫힙니다.
+		document.addEventListener('click', function(event) {
+			var isClickInsideBox = document.getElementById('greetingPopup')
+					.contains(event.target);
+			var isClickOnOpenButton = event.target === document
+					.getElementById('openButton');
+
+			if (!isClickInsideBox && !isClickOnOpenButton) {
+				closeGreetingPopup();
+			}
+		});
+	</script>
+</th:block>
+
+<!-- HEADER -->
+
 </html>

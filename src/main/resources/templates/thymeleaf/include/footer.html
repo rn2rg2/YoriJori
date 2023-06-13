@@ -1,13 +1,13 @@
-
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-<head>
+<!-- <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
-<body>
-	<footer id="footer" class="footer" th:fragment="footer">
+<body> -->
+<th:block th:fragment="footer">
+	<footer id="footer" class="footer">
 		<div class="container">
 			<div class="row gy-3">
 				<div class="col-lg-3 col-md-6 d-flex">
@@ -15,7 +15,7 @@
 					<div>
 						<h4>Address</h4>
 						<p>
-							멀티캠퍼스 <br /> 서울특별시 광진구 <br/>능동로 195-16 6층 <br />
+							멀티캠퍼스 <br /> 서울특별시 광진구 <br />능동로 195-16 6층 <br />
 						</p>
 					</div>
 				</div>
@@ -58,7 +58,8 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</footer>
-</body>
+</th:block>
+<!-- </body> -->
 </html>

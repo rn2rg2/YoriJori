@@ -1,6 +1,7 @@
 package com.yorijori.foodcode.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -24,11 +25,20 @@ public class MyWebConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
-		
+
 //		registry.addInterceptor(new LoginCheckInterceptor()) // .order(1) //
 //		  .addPathPatterns("/**"); //
 //		  .excludePathPatterns("/index.do","/emp/login.do","/emp/spring/login",
 //		  "/board/list.do","/board/ajax/list.do","/images/**","/css/**","/js/**");
-		  }
+	}
+
+	/*
+	 * CORS 세팅
+	*/
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**").allowedOrigins("http://localhost:8088/yorijori").allowedMethods("*")
+				.allowCredentials(false).maxAge(3000);
+	}
 
 }
