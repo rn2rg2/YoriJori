@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
-<style>
-</style>
-</head>
-<body>
-	<nav class="d-flex justify-content-center" th:fragment="pagination">
+
+<th:block th:fragment="pagination">
+
+	<div id="pagination_div" class="mb-3"></div>
+
+	<!-- <nav class="d-flex justify-content-center" >
 		<form class="rowg-3">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link" href="#">이전 </a>
@@ -17,7 +16,7 @@
 				<li class="page-item"><a class="page-link" href="#">다음 </a></li>
 			</ul>
 		</form>
-	</nav>
+	</nav> -->
 
-</body>
+</th:block>
 </html>

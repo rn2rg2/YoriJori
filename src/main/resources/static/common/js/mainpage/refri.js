@@ -49,7 +49,28 @@ function drop(e) {
     if ( e.target.classList[1] == "box" ) {
     	e.target.appendChild(div);
     }
-//    e.target.appendChild(div);
+// e.target.appendChild(div);
 
     // draggable.classList.remove('hide');
 }
+
+// 페이지별 개수
+const totalPages = 35;
+const visiblePages = 6;
+const pageId = $('#pagination_div');
+const make_list = function(page){
+	const list_container = $('.ingredient_list_view');
+	// let choice = $("#_choice").val();
+	// let search = $("#_search").val();
+	
+	// $("#tbody").html(""); // 테이블 초기화
+	const url = "/yorijori/getIngredient/list";
+	const param = { "choice":choice, "search":search, "page":page };
+	getAjax( url, param, test);
+}
+const test = function(data){
+	console.log(data);
+}
+// 페이지 네이션 생성
+makePagination(pageId, totalPages , visiblePages, make_list);
+
