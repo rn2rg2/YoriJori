@@ -23,8 +23,8 @@
 	$(document).ready(function() {
 		$('#summernote').summernote({
 			placeholder : 'content',
-			minHeight : 370,
-			maxHeight : null,
+			minHeight : 700,
+			maxHeight : 700,
 			focus : false,
 			lang : 'ko-KR'
 		});
@@ -40,6 +40,15 @@
 			rounded : true,
 			shadow : true
 		})
+		
+		$(".dropdown-item").on("click",function(){
+	        const $this=$(this)
+	        var parent_id="#"+$this.attr("data-parent")
+	        var text=$this.html()
+	        var va=$this.attr("data-value")
+	            $(parent_id).html(text)
+	            $(parent_id).val(va)
+	    })
 	});
 </script>
 
@@ -71,29 +80,37 @@
 								<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown">음식용도</button>
+										data-toggle="dropdown" id="usage">음식용도</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">용도1</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="usage" data-value="usage1">용도1</a>
 									</div>
+									</div>
+									<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown">조리방법</button>
+										data-toggle="dropdown" id="method">조리방법</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">방법1</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="method" data-value="method1">방법1</a>
 									</div>
+									</div>
+									<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown">음식분류 1</button>
+										data-toggle="dropdown" id="division1">음식분류 1</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">한식</a>
-										<a class="dropdown-item insert-item" href="javascript:0">중식</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="ko">한식</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="cn">중식</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="jp">일식</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division1" data-value="en">양식</a>
 									</div>
+									</div>
+									<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop last-button"
-										data-toggle="dropdown">음식분류 2</button>
+										data-toggle="dropdown" id="division2">음식분류 2</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">고기류</a>
-										<a class="dropdown-item insert-item" href="javascript:0">생선류</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division2" data-value="meat">고기류</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="division2" data-value="fish">생선류</a>
 									</div>
 								</div>
 							</div>
@@ -103,22 +120,26 @@
 								<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown">인분</button>
+										data-toggle="dropdown" id="serving">인분</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">용도1</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="serving" data-value="1serving">1인분</a>
 									</div>
+									</div>
+									<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown">시간</button>
+										data-toggle="dropdown" id="time">시간</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">방법1</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="time" data-value="10min">10분</a>
 									</div>
+									</div>
+									<div class="category">
 									<button type="button"
 										class="btn btn-primary dropdown-toggle insert-drop"
-										data-toggle="dropdown">난이도</button>
+										data-toggle="dropdown" id="difficulty">난이도</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item insert-item" href="javascript:0">한식</a>
-										<a class="dropdown-item insert-item" href="javascript:0">중식</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="difficulty" data-value="easy">하</a>
+										<a class="dropdown-item insert-item" href="javascript:0" data-parent="difficulty" data-value="normal">중</a>
 									</div>
 								</div>
 							</div>
@@ -159,7 +180,6 @@
 							<div class="form-group form-insert">
 								<label>요리순서</label>
 								<div class="cooking-num">
-									<div class="cooking-step">STEP 1</div>
 									<div class="sum">
 										<textarea id="summernote" name="editordata"></textarea>
 									</div>

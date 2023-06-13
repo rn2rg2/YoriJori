@@ -85,7 +85,7 @@ body{
 	top:50%;
 }
 .category{
-	display: block;
+	display: inline-block;
 }
 .last-button {
 	margin-right: 0;
