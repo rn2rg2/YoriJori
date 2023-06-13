@@ -129,7 +129,7 @@ function error_run(obj, msg, statusMsg) {
  * pagination
  */
 
-function makePagination(div_id, totalPages, visiblePages) {
+function makePagination(div_id, totalPages, visiblePages, fn) {
 	div_id.twbsPagination({
 		totalPages : totalPages,
 		// 페이지당 보이는 글의수는
@@ -143,8 +143,9 @@ function makePagination(div_id, totalPages, visiblePages) {
 
 		prev : "이전",
 		next : "다음",
+		initiateStartPageClick:false,	// onPageClick 자동호출 방지
 		onPageClick : function(event, page) {
-			console.log(page);
+			fn(page);
 		}
 	});
 }
