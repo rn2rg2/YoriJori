@@ -10,7 +10,7 @@ public class AdminController {
 
 	@RequestMapping("/admin")
 	public String getAdminPage() {
-		return "thymeleaf/admin/main";
+		return "thymeleaf/admin/index";
 	}
 
 }

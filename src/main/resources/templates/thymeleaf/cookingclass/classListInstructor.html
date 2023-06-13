@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/yorijori/common/css/cookingclass/classListInstructor.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
+<title>쿠킹클래스</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+<div class="row">
+    <div class="col-lg-12 card-margin">
+        <div class="card search-form">
+            <div class="card-body p-0">
+                <form id="search-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row no-gutters">
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>전체</option>
+                                        <option>한식</option>
+                                        <option>양식</option>
+                                        <option>중식</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                                    <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                                </div>
+                                <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                    <button type="submit" class="btn btn-base">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+        <div class="col-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <div class="row search-body">
+                        <div class="col-lg-12">
+                            <div class="search-result">
+                                <div class="result-header">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="records">강사목록</div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="result-actions">
+                                                <div class="result-sorting">
+                                                    <span>필터</span>
+                                                    <select class="form-control border-0" id="exampleOption">
+                                                        <option value="1">인기순</option>
+                                                        <option value="2">좋아요 순</option>
+                                                        <option value="3">최신순</option>
+                                                    </select>
+                                                </div>
+                                                <div class="result-views">
+                                                    <button type="button" class="btn btn-soft-base btn-icon">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-list"
+                                                        >
+                                                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                                                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                                                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                                                            <line x1="3" y1="6" x2="3" y2="6"></line>
+                                                            <line x1="3" y1="12" x2="3" y2="12"></line>
+                                                            <line x1="3" y1="18" x2="3" y2="18"></line>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-body">
+                                    <div class="table-responsive">
+                                        <table class="table widget-26">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="widget-26-job-emp-img">
+                                                            <img src="https://i.namu.wiki/i/dbs3BnZm-dS2693bei8S6fKNsb02qOppQywpcx7sQ8QhrRApCoDhCsCEIUyZ30yEO5-qAdXSMwWwEs9yEFgTnC7-h0Gq0Htyc_NL6dsPzbmXzSYRPG1t2w4Mo_SLXhU-jthQxfOMDMObg-jeZmA15Q.webp" alt="Company" />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-title">
+                                                        	<span>1위</span>
+                                                            <a href="#">백종원</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-info">
+                                                            <p class="m-0"><a href="#" class="employer-name">3,232 좋아요</a></p>
+                                                            <p class="m-0"><a href="#" class="employer-name">5,232 조회</a></p>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                       	<span>강의비</span>
+                                                        <div class="widget-26-job-salary">150,000원</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-category bg-soft-warning">
+                                                            <i class="indicator bg-warning"></i>
+                                                            <span>한식</span>
+                                                        </div>
+                                                        <div class="widget-26-job-category bg-soft-warning">
+                                                            <i class="indicator bg-warning"></i>
+                                                            <span>중식</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-starred">
+                                                            <a href="#">
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    viewBox="0 0 24 24"
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    stroke-width="2"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="feather feather-star"
+                                                                >
+                                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                                                                <tr>
+                                                    <td>
+                                                        <div class="widget-26-job-emp-img">
+                                                            <img src="https://i.namu.wiki/i/dbs3BnZm-dS2693bei8S6fKNsb02qOppQywpcx7sQ8QhrRApCoDhCsCEIUyZ30yEO5-qAdXSMwWwEs9yEFgTnC7-h0Gq0Htyc_NL6dsPzbmXzSYRPG1t2w4Mo_SLXhU-jthQxfOMDMObg-jeZmA15Q.webp" alt="Company" />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-title">
+                                                        	<span>1위</span>
+                                                            <a href="#">백종원</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-info">
+                                                            <p class="m-0"><a href="#" class="employer-name">3,232 좋아요</a></p>
+                                                            <p class="m-0"><a href="#" class="employer-name">5,232 조회</a></p>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                       	<span>강의비</span>
+                                                        <div class="widget-26-job-salary">150,000원</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-category bg-soft-warning">
+                                                            <i class="indicator bg-warning"></i>
+                                                            <span>한식</span>
+                                                        </div>
+                                                        <div class="widget-26-job-category bg-soft-warning">
+                                                            <i class="indicator bg-warning"></i>
+                                                            <span>중식</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-starred">
+                                                            <a href="#">
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="24"
+                                                                    height="24"
+                                                                    viewBox="0 0 24 24"
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    stroke-width="2"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="feather feather-star"
+                                                                >
+                                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="d-flex justify-content-center">
+                        <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
+                            <li class="page-item">
+                                <a class="page-link no-border" href="#">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link no-border" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link no-border" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link no-border" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link no-border" href="#">4</a></li>
+                            <li class="page-item">
+                                <a class="page-link no-border" href="#">
+                                    <span aria-hidden="true">»</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	</div>
+</body>
+</html>

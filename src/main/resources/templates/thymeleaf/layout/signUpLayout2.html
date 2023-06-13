@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="~{thymeleaf/include/header :: header}"></th:block>
+<th:block layout:fragment="header"></th:block>
+<body>
+	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
+	<th:block layout:fragment="content"></th:block>
+	<script>
+	$(document).ready(function(){
+		
+		$("body").addClass("popup-opened");
+		document.getElementById("greetingPopup").style.display = "block";
+			
+	
+		function closeGreetingPopup() {
+			document.body.classList.remove("popup-opened");
+			document.getElementById("greetingPopup").style.display = "none";
+		}
+
+		// 이 코드를 추가하면 박스 밖을 클릭할 때 창이 닫힙니다.
+		document.addEventListener('click', function(event) {
+			var isClickInsideBox = document.getElementById('greetingPopup')
+					.contains(event.target);
+			var isClickOnOpenButton = event.target === document
+					.getElementById('openButton');
+
+			if (!isClickInsideBox && !isClickOnOpenButton) {
+				closeGreetingPopup();
+			}
+		});
+	});
+	
+	</script>
+
+</body>
+<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
+</html>
