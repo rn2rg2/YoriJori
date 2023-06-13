@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<title>공통 헤더 (네비게이션 바)</title>
-<!--/* 공통 스타일 */-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<link rel="stylesheet"
-	href="/common/js/admin/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet" href="/common/css/admin/adminlte.css">
-<link rel="stylesheet" href="/common/css/admin/docs.css">
-
-<!--/* 페이지 전용 스타일 */-->
-</head>
-<body>
+<th:block th:fragment="header">
 	<header>
 		<nav class="main-header navbar navbar-expand navbar-light">
 			<!--/* Left navbar links */-->
@@ -180,5 +167,5 @@
 			</ul>
 		</nav>
 	</header>
-</body>
+</th:block>
 </html>
