@@ -126,21 +126,26 @@ function error_run(obj, msg, statusMsg) {
 	alert("오류발생 === > " + obj + "," + msg + "," + statusMsg);
 }
 /*
-pagination
-*/
+ * pagination
+ */
 
-function make_pagination(div_id, data, inputSize, fn){
-	div_id.pagination({
-	    dataSource: data,
-	    pageSize: inputSize,
-	    showGoInput: true,
-	    showGoButton: true,
-	    autoHidePrevious: true,
-	    autoHideNext: true,
-	    callback: function(data, pagination) {
-	        // template method of yourself
-	    	fn(data);
-	    }
-	})
+function makePagination(div_id, totalPages, visiblePages) {
+	div_id.twbsPagination({
+		totalPages : totalPages,
+		// 페이지당 보이는 글의수는
+		visiblePages : visiblePages,
+
+		// " « "라는 문자열로 최신글 방향을 표시
+		first : '<span sris-hidden="true">«</span>',
+
+		// " » "라는 문자열로 마지막글 방향을 표시
+		last : '<span sris-hidden="true">»</span>',
+
+		prev : "이전",
+		next : "다음",
+		onPageClick : function(event, page) {
+			console.log(page);
+		}
+	});
 }
 
