@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,12 +43,16 @@ public class MemberController {
 	
 	// 카카오 로그인 
 	@RequestMapping(value="/signkakao", method=RequestMethod.GET)
-	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code,Model model) throws Exception {
 		System.out.println("#########" + code);
 		String access_Token = ms.getAccessToken(code);
         
 		// 위에서 만든 코드 아래에 코드 추가
 		HashMap<String, Object> userInfo = ms.getUserInfo(access_Token);
+		
+		model.addAttribute("nickname", userInfo.get("nickname"));
+		model.addAttribute("email", userInfo.get("email"));
+
 		
 		return "thymeleaf/member/signUpForm2";
 		
