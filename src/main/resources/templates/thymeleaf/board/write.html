@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org" 
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
+<th:block layout:fragment="header">
 <title>Board Write</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <link rel="stylesheet" type="text/css" href="/yorijori/common/css/reset.css" /> -->
@@ -32,9 +32,9 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
       $('#title').focus();/* write클릭 시 focus title로  옮기기 */
    });
 </script>
-</head>
-<body>
-   <div  class="mb-5" style="width: 80%; margin: auto;" layout:fragment="content">
+</th:block>
+<th:block layout:fragment="content">
+   <div  class="mb-5" style="width: 80%; margin: auto;">
       <form method="post" action="/write">
          <div class="mb-5">
 
@@ -65,9 +65,6 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
          </div>
          <br/>
       </form>
-
    </div>
-
-</body>
-
+</th:block>
 </html>

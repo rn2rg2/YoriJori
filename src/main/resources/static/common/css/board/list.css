@@ -24,3 +24,6 @@ a{
 .board_content{
 	min-height: 45em;
 }
+table#example {
+    border-bottom: 2px solid #dee2e6;
+}
