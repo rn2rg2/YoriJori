@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CookingClassFormDTO {
+public class PaymentDTO {
+	private int paymentId;
 	private int cookFormNo;
-	private int cookNo;
-	private String userId;
-	private String paymentMethod;
+	private int amount;
+	private String method;
 	private Date date;
-	private Date upDate;
 	private int state;
 }

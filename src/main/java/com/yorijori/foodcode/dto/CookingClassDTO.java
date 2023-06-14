@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +18,8 @@ public class CookingClassDTO {
 	private String category;
 	private int time;
 	private int count;
-	private int price_dc;
-	private String date;
-	private String up_date;
+	private int priceDc;
+	private Date date;
+	private Date up_date;
 	private int state;
 }
