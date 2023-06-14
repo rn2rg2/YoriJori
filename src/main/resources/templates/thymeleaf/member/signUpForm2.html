@@ -2,16 +2,14 @@
 <html xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/signUpLayout}">
-<head>
-
+<th:block layout:fragment="header">
 <link rel="stylesheet"
 	href="/yorijori/common/css/member/signUpForm2.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 <script
 	src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-
- <script>
+<script>
 function fnSubmit (){
 	var requiredId = $("#id").val();
 	var requiredName = $("#requiredname").val();
@@ -27,15 +25,19 @@ function fnSubmit (){
 	}
 }
   </script>
-</head>
-<body>
+</th:block>
+<th:block layout:fragment="content">
 <form id="signup-form">
-<div layout:fragment="content" class="join-container join-container2"
+<div class="join-container join-container2"
 		style="display: block;">
+	<div class="container mb-5">
+      <div class="row">
+         <div class="col-md-12">
+            <h3 class="menu-h3-common">회원가입</h3>
+		
 		<div class="join-area">
-			<h2 class="join-title">회원가입</h2>
 			<fieldset class="form-group-area">
-				<legend style="color: #999999;">회원가입을 위해 항목을 작성해주세요</legend>
+				<legend style="font-size: 22px;">회원가입을 위해 항목을 작성해주세요</legend>
 				<!-- 아이디 -->
 				<div class="form-group">
 					<div class="form-head">
@@ -271,6 +273,9 @@ function fnSubmit (){
 		</div>
 		<!--// join-area -->	
 	</div>
-	</form>
-	</body>
+	</div>
+	</div>
+	</div>
+</form>
+</th:block>
 </html>

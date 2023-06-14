@@ -145,7 +145,8 @@ function makePagination(div_id, totalPages, visiblePages, fn) {
 		next : "다음",
 		initiateStartPageClick:false,	// onPageClick 자동호출 방지
 		onPageClick : function(event, page) {
-			fn(page);
+			console.log(page);
+			fn(page-1);
 		}
 	});
 }

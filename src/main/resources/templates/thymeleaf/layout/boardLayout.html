@@ -3,11 +3,13 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <link rel="stylesheet" href="/yorijori/common/css/board/read.css"/>
 <link rel="stylesheet" href="/yorijori/common/css/board/reply.css" />
+<head>
 <th:block th:replace="~{thymeleaf/include/header :: header}"></th:block>
+</head>
 <body>
 	<th:block th:replace="~{thymeleaf/include/top :: top}"></th:block>
 	<th:block th:replace="~{thymeleaf/board/read :: content1}"></th:block>
 	<th:block th:replace="~{thymeleaf/board/reply :: content2}"></th:block>
+	<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>	
 </body>
-<th:block th:replace="~{thymeleaf/include/footer :: footer}"></th:block>
 </html>

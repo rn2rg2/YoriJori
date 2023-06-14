@@ -54,28 +54,47 @@ function drop(e) {
     // draggable.classList.remove('hide');
 }
 
-// 페이지별 개수
-const totalPages = 35;
-const visiblePages = 6;
-const pageId = $('#pagination_div');
 
-const make_list = function(page){
-	const list_container = $('.ingredient_list_view');
-	// let choice = $("#_choice").val();
-	// let search = $("#_search").val();
-	
-	// $("#tbody").html(""); // 테이블 초기화
-	const url = "/yorijori/getIngredient/list";
-	const param = { "choice":choice, "search":search, "page":page };
-	getAjax( url, param, test);
-}
+
 const test = function(data){
 	console.log(data);
 }
 
+/* $('.selectpicker').selectpicker(); */
+/*
+ * getAjax("https://jsonplaceholder.typicode.com/todos", { "id" :
+ * 1},function(data){ console.log(data); });
+ */
+
+
+const make_list = function(page){
+	const pagePerCount = 6;
+	const url = "/yorijori/ingredient/getListByPage";
+	console.log(page);
+	let param = {"page":page, "pagePerCount" : pagePerCount}
+	getAjax(url, param, function (data){
+		//console.log(data);
+		
+	})
+	
+}
+
 
 /*
-페이지 네이션 생성
-*/
-makePagination(pageId, totalPages , visiblePages, make_list);
+ * 실행시 load되는 곳
+ */
+$(document).ready(function(){
+	// 재료 전체 수
+	var totalPages = $('#countVal').val();
+	// 페이지별 개수
+	const pageId = $('#pagination_div');
+	const visiblePages = 6;
+	
+	/*
+	 * 페이지 네이션 생성
+	 */
+	makePagination(pageId, totalPages , visiblePages, make_list);
+	
+	
+	});
 

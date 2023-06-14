@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionFileDTO {
+	private int id;
 	private int questionNo;
 	private String orgFileName;
 	private String storeFileName;

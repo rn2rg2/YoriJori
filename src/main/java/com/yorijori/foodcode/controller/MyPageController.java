@@ -1,6 +1,7 @@
 package com.yorijori.foodcode.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -27,7 +28,9 @@ public class MyPageController {
 		return "thymeleaf/mypage/chat";
 	}
 	@RequestMapping("/refri")
-	public String refri() {
+	public String refri(Model model) {
+		int count = 40;
+		model.addAttribute("count", count);
 		return "thymeleaf/mypage/refri";
 	}
 	@RequestMapping("/tray")
