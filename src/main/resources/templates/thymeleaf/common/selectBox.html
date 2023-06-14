@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="select_red(id,name,value) ">
+	<select class="selectpicker" th:id="${id}" data-style="btn-danger"
+		th:name="${name}">
+		<option th:text="${value}"></option>
+	</select>
+</th:block>
+<th:block th:fragment="">
+</th:block>
+
+</html>

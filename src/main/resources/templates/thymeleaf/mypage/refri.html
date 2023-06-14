@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container-fluid refri-div" layout:fragment="content">
-	<h3 class="menu-h3-common">나만의 냉장고</h3>
+		<h3 class="menu-h3-common">나만의 냉장고</h3>
 		<div class="row">
 			<div class="col-md-8 refri-image drop-targets">
 				<div class="refri-top box"></div>
@@ -17,9 +17,13 @@
 			<div class="col-md-4 ingredients-layout">
 				<div class="ingredients-info">
 					<!-- search bar -->
-					<div id="searbar_ingredient"
-						th:insert="~{thymeleaf/common/search :: searchbar('재료','재료','재료','재료')}">
-					</div>
+					<!-- <div
+						th:insert="~{thymeleaf/common/selectBox :: select_red('ingredient_id','test','카테고리')}">
+					</div> -->
+				</div>
+				<div id="searbar_ingredient"
+					th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','searchIngredient')}"></div>
+				<div>
 
 					<!-- 레시피 목록 보기  -->
 					<div class="ingredient_list_view mb-3">
@@ -132,8 +136,6 @@
 						<button class="btn btn-success m-sm-1" type="button">냉장고
 							등록</button>
 					</div>
-
-
 				</div>
 
 			</div>
@@ -146,9 +148,7 @@
 
 		<hr />
 		<div class="container-fluid mt-2 mb-5">
-			<h3 class="mb-2">
-				냉장고에 있는 재료
-			</h3>
+			<h3 class="mb-2">냉장고에 있는 재료</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<table class="table table-hover table-sm">

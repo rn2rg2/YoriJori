@@ -66,11 +66,12 @@ const make_list = function(page){
 	
 	// $("#tbody").html(""); // 테이블 초기화
 	const url = "/yorijori/getIngredient/list";
-	const param = { "choice":choice, "search":search, "page":page };
+	const param = { "page":page , "pagePerCount" : pagePerCount};
 	getAjax( url, param, test);
 }
 const test = function(data){
 	console.log(data);
+	str = "<li>" + data.id + "</li>"
 }
 
 
@@ -78,4 +79,7 @@ const test = function(data){
 페이지 네이션 생성
 */
 makePagination(pageId, totalPages , visiblePages, make_list);
+
+/*$('.selectpicker').selectpicker();*/
+
 
