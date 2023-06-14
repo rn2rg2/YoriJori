@@ -2,168 +2,164 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
-<meta charset="UTF-8">
-<title>쿠킹 클래스 등록</title>
-<!-- include summernote css/js-->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<th:block layout:fragment="header">
+	<!-- include summernote css/js-->
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
+		rel="stylesheet">
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
-<link rel="stylesheet"
-	href="/yorijori/common/css/recipe/recipeInsert.css">
+	<link rel="stylesheet"
+		href="/yorijori/common/css/recipe/recipeInsert.css">
 
-<script>
-	$(document).ready(function() {
-		$('.summernote').summernote({
-			placeholder : 'content',
-			minHeight : 370,
-			maxHeight : null,
-			focus : true,
-			lang : 'ko-KR'
+	<script>
+		$(document).ready(function() {
+			$('.summernote').summernote({
+				placeholder : 'content',
+				minHeight : 370,
+				maxHeight : null,
+				focus : true,
+				lang : 'ko-KR'
+			});
+			$(".insert").on("click", function() {
+				$(this).toggleClass(".imp selected");
+			})
+			$("#class-plus").on("click", function() {
+				var copy_content1 = $("#copy-class").clone();
+				copy_content1.attr("style", "display='block'")
+				$("#classcon").append(copy_content1);
+			})
+			$("#teacher-plus").on("click", function() {
+				var copy_content2 = $("#copy-teacher").clone();
+				copy_content2.attr("style", "display='block'")
+				$("#teachercon").append(copy_content2);
+			})
+			$("#cur-plus").on("click", function() {
+				var copy = $("#copy-cur").clone();
+				$("#all-cur").append(copy);
+			})
 		});
-		$(".insert").on("click", function() {
-			$(this).toggleClass(".imp selected");
-		})
-		$("#class-plus").on("click", function() {
-			var copy_content1 = $("#copy-class").clone();
-			copy_content1.attr("style", "display='block'")
-			$("#classcon").append(copy_content1);
-		})
-		$("#teacher-plus").on("click", function() {
-			var copy_content2 = $("#copy-teacher").clone();
-			copy_content2.attr("style", "display='block'")
-			$("#teachercon").append(copy_content2);
-		})
-		$("#cur-plus").on("click", function() {
-			var copy = $("#copy-cur").clone();
-			$("#all-cur").append(copy);
-		})
-	});
-</script>
-</head>
-<body>
-	<div layout:fragment="content" class="mb-5">
-		<form action="">
-			<div class="container mb-5">
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class="menu-h3-common">쿠킹 클래스 등록</h3>
+	</script>
+</th:block>
+<th:block layout:fragment="content">
+	<form action="">
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="menu-h3-common">쿠킹 클래스 등록</h3>
 
 
-						<div class="form-group form-insert">
-							<label>클래스 제목</label> <input type="text"
-								class="insert-control title" id=""
-								placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" name="">
-						</div>
+					<div class="form-group form-insert">
+						<label>클래스 제목</label> <input type="text"
+							class="insert-control title" id=""
+							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" name="">
+					</div>
 
-						<div class="form-group form-insert inline">
-							<label>클래스 가격</label> <input type="text"
-								class="insert-control price" id="" placeholder="" name="">
-							원
+					<div class="form-group form-insert inline">
+						<label>클래스 가격</label> <input type="text"
+							class="insert-control price" id="" placeholder="" name="">
+						원
+					</div>
+					<div class="form-group form-insert inline">
+						<label>강의시간</label> <input type="text"
+							class="insert-control price" id="" placeholder="" name="">
+						분
+					</div>
+					<div class="form-group form-insert inline">
+						<label>수강기한</label> <input type="text"
+							class="insert-control price" id="" placeholder="" name="">
+						일
+					</div>
+					<input hidden="" name="user_id" value="">
+				</div>
+			</div>
+		</div>
+
+		<!-- 클래스소개 -->
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group form-insert cookclass" id="classcon">
+						<label>클래스 소개<a>(사진 세개까지 첨부가능)</a></label>
+						<div id="copy-class" style="display: none;">
+							<div class="line-title"
+								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+								<textarea class="insert-control des subheading" id="des"
+									placeholder="빨간 딸기와 새하얀 생크림의 만남!
+딸기생크림케이크" name="pswd"></textarea>
+							</div>
+							<textarea class="summernote" name="editordata"></textarea>
 						</div>
-						<div class="form-group form-insert inline">
-							<label>강의시간</label> <input type="text"
-								class="insert-control price" id="" placeholder="" name="">
-							분
+						<div id="class-content">
+							<div class="line-title"
+								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+								<textarea class="insert-control des subheading" id="des"
+									placeholder="빨간 딸기와 새하얀 생크림의 만남!
+딸기생크림케이크" name="pswd"></textarea>
+							</div>
+							<textarea class="summernote" name="editordata"></textarea>
 						</div>
-						<div class="form-group form-insert inline">
-							<label>수강기한</label> <input type="text"
-								class="insert-control price" id="" placeholder="" name="">
-							일
+					</div>
+					<a class="plus" id="class-plus"><i
+						class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
+				</div>
+			</div>
+		</div>
+
+		<!--강사 소개  -->
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group form-insert cookclass" id="teachercon">
+						<label>강사 소개<a>(사진 세개까지 첨부가능)</a></label>
+						<div id="copy-teacher" style="display: none;">
+							<div class="line-title"
+								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+								<textarea class="insert-control des subheading" id="des"
+									placeholder="빨간 딸기와 새하얀 생크림의 만남!
+딸기생크림케이크" name="pswd"></textarea>
+							</div>
+							<textarea class="summernote" name="editordata"></textarea>
 						</div>
-						<input hidden="" name="user_id" value="">
+						<div id="teacher-content">
+							<div class="line-title"
+								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
+								<textarea class="insert-control des subheading" id="des"
+									placeholder="빨간 딸기와 새하얀 생크림의 만남!
+딸기생크림케이크" name="pswd"></textarea>
+							</div>
+							<textarea class="summernote" name="editordata"></textarea>
+						</div>
+					</div>
+					<a class="plus" id="teacher-plus"><i
+						class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
+				</div>
+			</div>
+		</div>
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group form-insert cookclass">
+						<label>커리큘럼</label>
+						<ul style="display: none;">
+							<li id="copy-cur"><input type="text"
+								class="insert-control cur" id="" placeholder="재료 준비 및 손질"
+								name=""><input type="text" class="insert-control time"
+								id="" placeholder="10" name=""> 분</li>
+						</ul>
+						<ul id="all-cur">
+							<li><input type="text" class="insert-control cur" id=""
+								placeholder="재료 준비 및 손질" name=""><input type="text"
+								class="insert-control time" id="" placeholder="10" name="">
+								분</li>
+						</ul>
+						<a class="cur-plus" id="cur-plus"><i
+							class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
 					</div>
 				</div>
 			</div>
-
-			<!-- 클래스소개 -->
-			<div class="container mb-5">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group form-insert cookclass" id="classcon">
-							<label>클래스 소개<a>(사진 세개까지 첨부가능)</a></label>
-							<div id="copy-class" style="display: none;">
-								<div class="line-title"
-									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-									<textarea class="insert-control des subheading" id="des"
-										placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-								</div>
-								<textarea class="summernote" name="editordata"></textarea>
-							</div>
-							<div id="class-content">
-								<div class="line-title"
-									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-									<textarea class="insert-control des subheading" id="des"
-										placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-								</div>
-								<textarea class="summernote" name="editordata"></textarea>
-							</div>
-						</div>
-						<a class="plus" id="class-plus"><i
-							class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
-					</div>
-				</div>
-			</div>
-
-			<!--강사 소개  -->
-			<div class="container mb-5">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group form-insert cookclass" id="teachercon">
-							<label>강사 소개<a>(사진 세개까지 첨부가능)</a></label>
-							<div id="copy-teacher" style="display: none;">
-								<div class="line-title"
-									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-									<textarea class="insert-control des subheading" id="des"
-										placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-								</div>
-								<textarea class="summernote" name="editordata"></textarea>
-							</div>
-							<div id="teacher-content">
-								<div class="line-title"
-									style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-									<textarea class="insert-control des subheading" id="des"
-										placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-								</div>
-								<textarea class="summernote" name="editordata"></textarea>
-							</div>
-						</div>
-						<a class="plus" id="teacher-plus"><i
-							class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
-					</div>
-				</div>
-			</div>
-			<div class="container mb-5">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group form-insert cookclass">
-							<label>커리큘럼</label>
-							<ul style="display: none;">
-								<li id="copy-cur"><input type="text"
-									class="insert-control cur" id="" placeholder="재료 준비 및 손질"
-									name=""><input type="text" class="insert-control time"
-									id="" placeholder="10" name=""> 분</li>
-							</ul>
-							<ul id="all-cur">
-								<li><input type="text" class="insert-control cur" id=""
-									placeholder="재료 준비 및 손질" name=""><input type="text"
-									class="insert-control time" id="" placeholder="10" name="">
-									분</li>
-							</ul>
-							<a class="cur-plus" id="cur-plus"><i
-								class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-</body>
+		</div>
+	</form>
+</th:block>
 </html>

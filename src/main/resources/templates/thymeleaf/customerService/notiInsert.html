@@ -2,11 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
+<th:block layout:fragment="header">
 <link rel="stylesheet"
 	href="/yorijori/common/css/customerService/insert.css" />
-<meta charset="UTF-8">
-<title>공지 게시글 작성</title>
 <!-- include summernote css/js-->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
@@ -29,9 +27,8 @@
 		})
 	});
 </script>
-</head>
-<body>
-	<div layout:fragment="content">
+</th:block>
+<th:block layout:fragment="content">
 		<div class="container mb-5">
 			<h3 class="menu-h3-common">관리자용 게시글 등록</h3>
 			<div class="row">
@@ -56,6 +53,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
+</th:block>
 </html>
