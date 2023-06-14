@@ -58,6 +58,7 @@ function drop(e) {
 const totalPages = 35;
 const visiblePages = 6;
 const pageId = $('#pagination_div');
+
 const make_list = function(page){
 	const list_container = $('.ingredient_list_view');
 	// let choice = $("#_choice").val();
@@ -71,6 +72,10 @@ const make_list = function(page){
 const test = function(data){
 	console.log(data);
 }
-// 페이지 네이션 생성
+
+
+/*
+페이지 네이션 생성
+*/
 makePagination(pageId, totalPages , visiblePages, make_list);
 
