@@ -69,8 +69,8 @@ const test = function(data){
 
 const make_list = function(page){
 	const pagePerCount = 6;
-	const url = "/yorijori/ingredient/getListByPage";
 	console.log(page);
+	const url = "/yorijori/ingredient/getListByPage";
 	let param = {"page":page, "pagePerCount" : pagePerCount}
 	getAjax(url, param, function (data){
 		//console.log(data);
