@@ -7,14 +7,11 @@
 		<option th:text="${value}"></option>
 	</select>
 </th:block>
-<th:block th:fragment="select_depth(id,depthId,name,value)">
-	<div style="overflow: hidden;">
-		<select class="selectpicker" th:id="${id}">
-			<option th:text="${value}"></option>
-		</select> <select class="selectpicker" data-container="body" th:name="${name}">
-			<option th:text="${value}"></option>
-		</select>
-		<div>
+<th:block th:fragment="select_multi(id,name,count,value)">
+	<select class="selectpicker" th:id="${id}" data-width="auto"
+		th:name="${name}" multiple data-max-options="${count}">
+		<option th:text="${value}"></option>
+	</select>
 </th:block>
 
 </html>

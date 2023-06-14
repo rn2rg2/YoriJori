@@ -2,13 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mypageLayout}">
-<head>
-<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
-</head>
-</head>
-<body>
-	<div class="container-fluid refri-div" layout:fragment="content">
+<th:block layout:fragment="content">
+	<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
+	<div class="container-fluid refri-div" >
 		<h3 class="menu-h3-common">나만의 냉장고</h3>
+		<input type="hidden" id="countVal" th:value="${count}" />
 		<div class="row">
 			<div class="col-md-8 refri-image drop-targets">
 				<div class="refri-top box"></div>
@@ -27,7 +25,7 @@
 
 					<!-- 레시피 목록 보기  -->
 					<div class="ingredient_list_view mb-3">
-						<div class="row">
+						<div class="row" id="list_page">
 							<!-- Gallery item -->
 							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
 								<div class="bg-white rounded shadow-sm item recipe_info"
@@ -208,5 +206,5 @@
 		</div> -->
 		<script src="/yorijori/common/js/mainpage/refri.js"></script>
 	</div>
-</body>
+</th:block>
 </html>
