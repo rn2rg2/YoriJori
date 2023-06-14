@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserTrayListDTO {
+public class UserTrayListEntity {
+	private int id;
 	private int trayNo;
 	private int trayOrder;
 	private int recipeNo;

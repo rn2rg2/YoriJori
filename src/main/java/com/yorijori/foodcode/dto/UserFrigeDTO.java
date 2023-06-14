@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserFrigeDTO {
+	private int id;
 	private String userId;
 	private int mailNo;
 	private Date date;
