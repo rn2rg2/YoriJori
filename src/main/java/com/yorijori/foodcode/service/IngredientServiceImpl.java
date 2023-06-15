@@ -44,4 +44,12 @@ public class IngredientServiceImpl implements IngredientService {
 		ingredientDAO.delete(matlNo);
 		// TODO Auto-generated method stub
 	}
+	@Override
+	public long countAll() {
+		return ingredientDAO.countAll();
+	}
+	@Override
+	public List<Ingredients> selectByPage(int pageNo, int pagePerCount){
+		return ingredientDAO.selectByPage(pageNo, pagePerCount);
+	};
 }

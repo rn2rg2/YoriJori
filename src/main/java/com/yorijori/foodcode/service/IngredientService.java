@@ -14,4 +14,8 @@ public interface IngredientService {
 
 	void delete(int matlNo);
 
+	long countAll();
+
+	List<Ingredients> selectByPage(int pageNo, int pagePerCount);
+
 }

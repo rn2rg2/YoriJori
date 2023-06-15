@@ -14,6 +14,8 @@ public interface IngredientDAO {
 
 	List<Ingredients> selectAll();
 
-	List<Ingredients> selectAllByPage(int pageNo, int pagePerCount);
+	long countAll();
+
+	List<Ingredients> selectByPage(int pageNo, int pagePerCount);
 
 }

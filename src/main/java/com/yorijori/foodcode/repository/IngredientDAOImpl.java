@@ -46,11 +46,16 @@ public class IngredientDAOImpl implements IngredientDAO {
 	}
 
 	@Override
-	public List<Ingredients> selectAllByPage(int pageNo, int pagePerCount) {
+	public List<Ingredients> selectByPage(int pageNo, int pagePerCount) {
 		// TODO Auto-generated method stub
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "matlNo"));
 		Page<Ingredients> page = repository.findAll(pageRequest);
 		List<Ingredients> list = page.getContent();
 		return list;
+	}
+	
+	@Override
+	public long countAll() {
+		return repository.count(); 
 	}
 }

@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserWishListApi {
-	private int id;			//key
-	private String userId;	
-	private int rcpSeq;		//레시피번호
+public class UserTrayListDTO {
+	private int id;
+	private int trayNo;
+	private int trayOrder;
+	private int recipeNo;
+	private int state;
 }
