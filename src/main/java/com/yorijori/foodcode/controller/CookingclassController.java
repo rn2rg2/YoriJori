@@ -42,7 +42,13 @@ public class CookingclassController {
 	}
 	
 	@RequestMapping("/read")
-	public String showCookingclass(int cookNo) {
+	public String showCookingclass(Model model, int cookNo) {
+		CookingClass cookingclass = service.readClass(cookNo);
+		CookingClassContent content = service.readContent(cookNo);
+		CookingClassCurriculum curriculum= service.readCurriculum(cookNo);
+		model.addAttribute("cookingclass", cookingclass);
+		model.addAttribute("content", content);
+		model.addAttribute("curriculum", curriculum);
 		return "thymeleaf/cookingclass/classRead";
 	}
 	

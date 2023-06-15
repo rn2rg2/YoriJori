@@ -58,7 +58,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public CookingClass readClass(int cookNo) {
-		// TODO Auto-generated method stub
+		//return classRepo.findById(cookNo);
 		return null;
 	}
 
