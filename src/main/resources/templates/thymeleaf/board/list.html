@@ -61,6 +61,12 @@
 									<td>3</td>
 								</tr>
 							</tbody>
+							<!-- <tr th:each="board:${boardlist}">
+								<td><span th:text="${board.comm_no }"></span></td>
+								<td><a th:href="@{/yorijori/board/read(comm_no=${board.comm_no},state=${'READ'})}"><span th:text="${board.title }"></span></a></td>
+								<td><span th:text="${board.user_id}"></span></td>
+								<td><span th:text="${board.view }"></span></td>
+							</tr> -->
 						</table>
 					</div>
 					<form action="" method="post" style="text-align: center">

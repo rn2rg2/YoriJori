@@ -16,6 +16,8 @@ public interface IngredientService {
 
 	long countAll();
 
-	List<Ingredients> selectByPage(int pageNo, int pagePerCount);
+	List<Ingredients> selectByPage(int pageNo, String category);
+
+	List<Ingredients> selectBySearch(int pageNo, String category, String searchData);
 
 }

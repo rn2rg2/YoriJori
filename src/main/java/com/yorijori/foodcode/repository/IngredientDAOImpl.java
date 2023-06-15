@@ -45,17 +45,40 @@ public class IngredientDAOImpl implements IngredientDAO {
 		return null;
 	}
 
-	@Override
-	public List<Ingredients> selectByPage(int pageNo, int pagePerCount) {
-		// TODO Auto-generated method stub
-		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "matlNo"));
-		Page<Ingredients> page = repository.findAll(pageRequest);
-		List<Ingredients> list = page.getContent();
-		return list;
-	}
 	
 	@Override
 	public long countAll() {
 		return repository.count(); 
 	}
+
+	@Override
+	public List<Ingredients> selectByPage(int pageNo) {
+		// TODO Auto-generated method stub
+		PageRequest pageRequest = PageRequest.of(pageNo, 12, Sort.by(Sort.Direction.DESC, "matlNo"));
+		Page<Ingredients> page = repository.findAll(pageRequest);
+		List<Ingredients> list = page.getContent();
+		return list;
+	}
+	@Override
+	public List<Ingredients> selectByCategory(int pageNo, String category) {
+		// TODO Auto-generated method stub
+		PageRequest pageRequest = PageRequest.of(pageNo, 12, Sort.by(Sort.Direction.DESC, "matlNo"));
+		Page<Ingredients> page = repository.findByCategory(category, pageRequest);
+		List<Ingredients> list = page.getContent();
+		return list;
+	}
+	@Override
+	public List<Ingredients> selectBySearch(int pageNo, String category, String searchData) {
+		// TODO Auto-generated method stub
+		PageRequest pageRequest = PageRequest.of(pageNo, 12, Sort.by(Sort.Direction.DESC, "matlNo"));
+		Page<Ingredients> page = null;
+		if (category.equals("all")) {
+			page = repository.findByMatlNameContaining(searchData,pageRequest);
+		} else {
+			page = repository.findByMatlNameContainingAndCategoryContaining(searchData, category, pageRequest);
+		}
+		List<Ingredients> list = page.getContent();
+		return list;
+	}
+
 }
