@@ -44,14 +44,6 @@
 						</dt>
 						<dd>49분</dd>
 					</dl>
-					<dl class="info_delivery">
-						<dt>
-							<img
-								src="https://recipe1.ezmember.co.kr/img/mobile/icon_calendar.png"
-								alt="기간아이콘" width="29">수강 기간
-						</dt>
-						<dd>180일</dd>
-					</dl>
 					<div class="info_ea">
 						<img
 							src="https://recipe1.ezmember.co.kr/img/mobile/icon_people.png"
@@ -63,12 +55,12 @@
 				</div>
 				<button type="button" class="insert">지금바로 신청하기</button>
 				<nav class="nav" id="tab-button-nav">
-					<a href="javascript:" class="nav-link selected"
+					<a href="javascript:" class="nav-link navli selected"
 						data-tab-section="tab-section-1">클래스 소개</a> <a href="javascript:"
-						class="nav-link" data-tab-section="tab-section-2">강사소개</a> <a
-						href="javascript:" class="nav-link"
+						class="nav-link navli" data-tab-section="tab-section-2">강사소개</a> <a
+						href="javascript:" class="nav-link navli"
 						data-tab-section="tab-section-3">커리큘럼</a> <a href="javascript:"
-						class="nav-link" data-tab-section="tab-section-4">강사님의 다른 클래스</a>
+						class="nav-link navli" data-tab-section="tab-section-4">강사님의 다른 클래스</a>
 				</nav>
 				<div class="all-tab">
 					<div id="tab-section-1" class="tab-section">
@@ -156,16 +148,16 @@
 					</div>
 					<script>
 /* css변경 */
-				$(".nav-link").click(function(){
-			    	$(".selected").attr("class","nav-link")
-			    	  $(this).attr("class","nav-link selected")
+				$(".navli").click(function(){
+			    	$(".selected").attr("class","nav-link navli")
+			    	  $(this).attr("class","nav-link navli selected")
 			    })
 			    /* hidden 변경 */
     const $nav = document.querySelector('#tab-button-nav')
     const $sections = document.querySelectorAll('.tab-section');
 
     $nav.addEventListener('click', (e) => {
-      if (!e.target.classList.contains('nav-link')) {
+      if (!e.target.classList.contains('navli')) {
         return;
       }
       const focusedTabId = e.target.dataset.tabSection;

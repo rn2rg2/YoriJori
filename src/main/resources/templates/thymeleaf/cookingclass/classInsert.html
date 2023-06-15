@@ -19,9 +19,35 @@
 				placeholder : 'content',
 				minHeight : 370,
 				maxHeight : null,
-				focus : true,
-				lang : 'ko-KR'
+				focus : false,
+				lang : 'ko-KR',
+				callbacks : { 
+	                //onImageUpload = 이미지 업로드시 작동하는 콜백함수
+	                onImageUpload : function(files, editor, welEditable) {
+	            // 파일 업로드(다중업로드를 위해 반복문 사용)
+	                for (var i = files.length - 1; i >= 0; i--) {
+	                        uploadSummernoteImageFile(files[i],
+	                        this);
+	                        }
+	                }
+	            }//end callbacks 
 			});
+			 function uploadSummernoteImageFile(file, editor) {
+		            data = new FormData();
+		            data.append("file", file);
+		            $.ajax({
+		                url : "summernoteImage",
+		                data : data,
+		                type : "POST",
+		                dataType : 'JSON',
+		                contentType : false,
+		                processData : false,
+		                success : function(data) {
+		                    //항상 업로드된 파일의 url이 있어야 한다.
+		                    $(editor).summernote('insertImage', contextPath+data.url);
+		                }
+		            });
+		            } 
 			$(".insert").on("click", function() {
 				$(this).toggleClass(".imp selected");
 			})
@@ -43,35 +69,34 @@
 	</script>
 </th:block>
 <th:block layout:fragment="content">
-	<form action="">
+	<form action="/cookingclass/in">
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="menu-h3-common">쿠킹 클래스 등록</h3>
-
+					<input hidden="" name="userId" value="soyseo99">
 
 					<div class="form-group form-insert">
 						<label>클래스 제목</label> <input type="text"
-							class="insert-control title" id=""
-							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" name="">
+							class="insert-control title" name="title"
+							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]">
 					</div>
 
 					<div class="form-group form-insert inline">
 						<label>클래스 가격</label> <input type="text"
-							class="insert-control price" id="" placeholder="" name="">
+							class="insert-control price" id="" placeholder="" name="price">
 						원
 					</div>
 					<div class="form-group form-insert inline">
 						<label>강의시간</label> <input type="text"
-							class="insert-control price" id="" placeholder="" name="">
+							class="insert-control price" id="" placeholder="" name="time">
 						분
 					</div>
-					<div class="form-group form-insert inline">
-						<label>수강기한</label> <input type="text"
-							class="insert-control price" id="" placeholder="" name="">
-						일
+					<div class="form-group form-insert">
+						<label>클래스 썸네일</label>
+						<input type="button" value="사진추가" name="thumbnail">
+						
 					</div>
-					<input hidden="" name="user_id" value="">
 				</div>
 			</div>
 		</div>
@@ -157,6 +182,13 @@
 						<a class="cur-plus" id="cur-plus"><i
 							class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-12">
+				<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
 				</div>
 			</div>
 		</div>

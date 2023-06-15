@@ -35,6 +35,6 @@ public class CookingClass {
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp
-	private Date up_date;
+	private Date upDate;
 	private int state;
 }

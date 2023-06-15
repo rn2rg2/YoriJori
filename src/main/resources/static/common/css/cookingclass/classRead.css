@@ -1,10 +1,5 @@
 @charset "UTF-8";
-.all-margin{
-	margin-left: 5%;
-	margin-right: 5%;
-	font-weight: bolder;
-	margin-top: 80px;
-}
+
 .title{
 	font-size: 2rem;
 	border: none;
@@ -125,7 +120,7 @@
   margin-top: 20px;
 }
 
-.nav-link {
+.navli {
   text-decoration: none;
   display: inline-block;
   padding: 13px 13px;
@@ -138,10 +133,10 @@
   border-bottom: 2px solid var(--main-theme-color-red);
   color: var(--main-theme-color-red)
 }
-.nav-link:hover{
+.navli:hover{
 	color: var(--main-theme-color-red)
 }
-.nav-link.current {
+.navli.current {
   border-bottom: 2px solid #1971c2;
 }
 
@@ -149,13 +144,13 @@
   .nav {
     font-size: 1.1rem;
   }
-  .nav-link {
+  .navli {
     padding: 20px 20px;
     border-top: 2px solid var(--main-theme-color-red);
   }
 
 }
-.nav-link{
+.navli{
 	width: calc(100%/4);
 }
 

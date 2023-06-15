@@ -2,13 +2,9 @@
 /* body{
 	background-color: #f1f1f2;
 } */
-.all-margin{
-	margin: 5px auto 5px auto;
-	padding:50px 10px 50px 10px;
+.concon{
 	box-sizing: border-box;
-	width: 70%;
 	font-family: 'Pretendard-Regular';
-	background-color: #fff; 
 }
 .all-content{
 	width: 90%;
@@ -22,15 +18,18 @@
 	border-bottom:1px solid #dcdcdc;
 	position: relative;
 }
+.qnaTableBody li:first-child{
+	border-top:1px solid #dcdcdc;
+}
 .qnaTableBody .hide{
     font-size: 13px;
     font-weight: 400;     
 }
-.all-margin ul{
+.concon ul{
 	margin-top: 50px;
 	margin-bottom: 0px;
 }
-.all-margin h3{
+.concon h3{
 	font-weight: bold;
 	font-family: 'Pretendard-Regular';;
 	position: relative;
@@ -55,18 +54,18 @@
 	font-size: 15px;
 	font-weight: bold;
 }
-.all-margin h6{
+.concon h6{
 	margin-left: 30px;
-	margin-bottom: 0;
+	margin-bottom: 0; 
 	display: block;
 	font-size: 15px;
 	font-weight: bold;
 	font-family: 'Pretendard-Regular';;
 }
-.all-margin a{
+.concon a{
 	display: block;
 }
-.all-margin h6:before{
+.concon h6:before{
 	content: '\f0d7';
 	position:  absolute;
 	font-family: "Font Awesome 5 Free";
