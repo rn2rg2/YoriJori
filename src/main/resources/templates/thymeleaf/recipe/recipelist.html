@@ -2,21 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
-<meta charset="UTF-8">
-<title>레시피 등록</title>
 <!-- include summernote css/js-->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
 	integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
-	crossorigin="anonymous" />
-<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
+	crossorigin="anonymous" /> -->
+<th:block layout:fragment="header">
+	<link rel="stylesheet"
+		href="/yorijori/common/css/recipe/recipelist.css">
+</th:block>
 
-
-
-</head>
-<body>
-	<div layout:fragment="content">
+<th:block layout:fragment="content">
+	<div>
 		<div class="container">
 			<h3 class="menu-h3-common">레시피 목록</h3>
 			<div class="row">
@@ -29,12 +26,35 @@
 						</div>
 						<div class="widget">
 							<div class="widget-title widget-collapse">
+								<h6>레시피</h6>
+								<a class="ml-auto" data-toggle="collapse" href="#gender"
+									role="button" aria-expanded="false" aria-controls="gender"><i
+									class="fas fa-chevron-down"></i></a>
+							</div>
+							<div class="collapse show" id="gender">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="gender1"> <label class="custom-control-label"
+											for="gender1">공식 레시피</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="gender2"> <label class="custom-control-label"
+											for="gender2">유저 레시피</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
 								<h6>필터</h6>
 								<a class="ml-auto" data-toggle="collapse" href="#dateposted"
 									role="button" aria-expanded="false" aria-controls="dateposted">
 									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
+
 							<div class="collapse show" id="dateposted">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
@@ -193,31 +213,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="widget">
-							<div class="widget-title widget-collapse">
-								<h6>레시피</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#gender"
-									role="button" aria-expanded="false" aria-controls="gender"><i
-									class="fas fa-chevron-down"></i></a>
-							</div>
-							<div class="collapse show" id="gender">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="gender1"> <label class="custom-control-label"
-											for="gender1">공식 레시피</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="gender2"> <label class="custom-control-label"
-											for="gender2">유저 레시피</label>
-									</div>
-								</div>
-							</div>
-						</div>
+
 						<div class="widget border-0">
 							<div class="widget-add">
-								<img class="img-fluid" src="images/add-banner.png" alt="">
+								<!-- <img class="img-fluid" src="images/add-banner.png" alt=""> -->
 							</div>
 						</div>
 					</div>
@@ -231,7 +230,7 @@
 						<div class="job-shortby ml-sm-auto d-flex align-items-center">
 						</div>
 					</div>
-					<div class="row">
+					<div class="row recipe_content">
 						<div class="col-sm-6 col-lg-4 mb-4">
 							<div class="candidate-list candidate-grid">
 								<div class="candidate-list-image">
@@ -270,7 +269,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-4 mb-4">
+						<!-- <div class="col-sm-6 col-lg-4 mb-4">
 							<div class="candidate-list candidate-grid">
 								<div class="candidate-list-image">
 									<img class="img-fluid"
@@ -520,11 +519,13 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="row">
 						<div class="col-12 text-center mt-4 mt-sm-5">
-							<ul class="pagination justify-content-center mb-0">
+							<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
+							</nav>
+							<!-- <ul class="pagination justify-content-center mb-0">
 								<li class="page-item active" aria-current="page"><span
 									class="page-link">1 </span> <span class="sr-only">(current)</span></li>
 								<li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -533,13 +534,130 @@
 								<li class="page-item"><a class="page-link" href="#">5</a></li>
 								<li class="page-item"><a class="page-link" href="#">다음</a>
 								</li>
-							</ul>
+							</ul> -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script th:inline="javascript">
+		let pageNo = 0;
+		let pagePerResult = 9;
+		let currentPage = 0;
+		
+		// pagination 들어갈 div
+		const pageId = $('#pagination_div');
 
-</body>
+		$(document).ready(
+				function() {
+					/* makePagination(pageId, totalPages, pagePerResult,
+							currentPage + 1, getServerAPI); */
+					$('#gender1').change(function() {
+						getServerAPI(0);
+					})
+
+				});
+
+		const getServerAPI = function(page) {
+			pageNo = page + 1;
+			$.ajax({
+				url : "/yorijori/recipe/list/server/" + pageNo + "/"
+						+ pagePerResult,
+				type : "post",
+				success : function(resultdata) { //result data는 ajax요청 성공 후 서버에서 전달하는 데이터
+					// row 초기화
+					$('.recipe_content').empty();
+					//json문자열을 파싱
+					var jsonObj = JSON.parse(resultdata);
+					let dataCount = jsonObj.response.total_Count;
+					jsonObj = jsonObj.response.list;
+					$.each(jsonObj, function(index, data) {
+
+						makeList(data, index);
+						let totalPages = 1;
+						if (dataCount > pagePerResult) {
+							totalPages = dataCount / pagePerResult
+						}
+						makePagination(pageId, totalPages,
+								pagePerResult, currentPage + 1,
+								getServerAPI);
+					})
+
+					// 총 페이지지 네이션 수 
+
+				}
+			})
+		}
+		const makeList = function(data, index) {
+
+			// Create a container div
+			var containerDiv = $('<div>').addClass('col-sm-6 col-lg-4 mb-4');
+
+			// Create candidate-list div
+			var candidateListDiv = $('<div>').addClass(
+					'candidate-list candidate-grid');
+
+			// Create candidate-list-image div
+			var candidateListImageDiv = $('<div>').addClass(
+					'candidate-list-image');
+			var image = $('<img>').addClass('img-fluid').attr('src',
+					'/yorijori/images/common/default.png').attr('alt', '');
+			candidateListImageDiv.append(image);
+
+			// Create candidate-list-details div
+			var candidateListDetailsDiv = $('<div>').addClass(
+					'candidate-list-details');
+
+			// Create candidate-list-info div
+			var candidateListInfoDiv = $('<div>').addClass(
+					'candidate-list-info');
+
+			// Create candidate-list-title div
+			var candidateListTitleDiv = $('<div>').addClass(
+					'candidate-list-title');
+			var title = $('<h5>').append(
+					$('<a>').attr('href', '/yorijori/recipe/view').text(
+							data.fd_Nm));
+			candidateListTitleDiv.append(title);
+
+			// Create candidate-list-option div
+			var candidateListOptionDiv = $('<div>').addClass(
+					'candidate-list-option');
+			var badge1 = $('<div>').addClass(
+					'badge badge-danger px-3 rounded-pill font-weight-normal')
+					.text(data.fd_Grupp_Nm);
+			var ul = $('<ul>').addClass('list-unstyled');
+			candidateListOptionDiv.append(badge1);
+			candidateListOptionDiv.append($('<br>'));
+			candidateListOptionDiv.append(ul);
+
+			candidateListInfoDiv.append(candidateListTitleDiv);
+			candidateListInfoDiv.append(candidateListOptionDiv);
+
+			// Create candidate-list-favourite-time div
+			var candidateListFavouriteTimeDiv = $('<div>').addClass(
+					'candidate-list-favourite-time');
+			var favouriteLink = $('<a>').addClass(
+					'candidate-list-favourite order-2').attr('href', '#').html(
+					'<i class="far fa-heart"></i>');
+			var timeSpan = $('<span>').addClass('candidate-list-time order-1')
+					.html(
+							'<i class="far fa-solid fa-utensils pr-1"></i>'
+									+ "필요 재료 수 : " + data.food_Cnt);
+			candidateListFavouriteTimeDiv.append(favouriteLink);
+			candidateListFavouriteTimeDiv.append(timeSpan);
+
+			candidateListDetailsDiv.append(candidateListInfoDiv);
+			candidateListDetailsDiv.append(candidateListFavouriteTimeDiv);
+
+			candidateListDiv.append(candidateListImageDiv);
+			candidateListDiv.append(candidateListDetailsDiv);
+
+			containerDiv.append(candidateListDiv);
+			$('.recipe_content').append(containerDiv);
+		}
+	</script>
+
+</th:block>
 </html>
