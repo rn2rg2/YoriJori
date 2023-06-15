@@ -23,7 +23,7 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
 <script>
    $(document).ready(function() {
       $('#summernote').summernote({
-         placeholder : 'content',
+         placeholder : 'contents',
          minHeight : 370,
          maxHeight : null,
          focus : false,
@@ -31,11 +31,27 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
       });
       $('#title').focus();/* write클릭 시 focus title로  옮기기 */
    });
+   
+   function fnSaveAction() {
+	   var param = $("#myForm").serialize();
+	   $.ajax({
+	        type: "POST",
+	        url: "write",
+	        dataType: "json",
+	        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+	        error: function() {
+	          console.log('통신실패!!');
+	        },
+	        success: function(data) {
+	          console.log("통신데이터 값 : " + data);
+	        }
+	      });
+   }
 </script>
 </th:block>
 <th:block layout:fragment="content">
    <div  class="mb-5" style="width: 80%; margin: auto;">
-      <form method="post" action="/write">
+      <form id="myForm" method="post" action="/yorijori/board/write" enctype="multipart/form-data">
          <div class="mb-5">
 
             <label for="title">제목</label> <input type="text"
@@ -44,10 +60,20 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
 
          </div>
          <div class="mb-5">
-            <label for="reg_id">작성자</label> <input type="hidden" name="id"
-               value="${user.id}">
+            <label id="user_id" th:text="${user_id}" for="reg_id"></label><input type="hidden" name="user_id"
+               value="123" >
          </div>
-         <textarea class="mb-5" id="summernote" name="content"
+       	<div class="form-group">
+			<label>게시글 유형</label>
+			<div class="mb-5">
+				<select id="category" name="category" class="form-control">
+					<option value="맛집추천">맛집추천</option>
+					<option value="오늘뭐먹지">오늘뭐먹지</option>
+					<option value="레시피질문">레시피질문</option>
+				</select>
+			</div>
+		</div>
+         <textarea class="mb-5" id="summernote" name="contents"
             style="width: 100%; height: 500px;"></textarea>
          <div class="form-group">
             <div class="col-md-2 text-right">
@@ -59,8 +85,11 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
                <button type="submit" class="btn btn-success" style="float: right;">취소</button>
             </div>
             <div class="text-center">
+               <!-- 
                <button type="reset" class="btn btn-default" style="width: 100px; float: right;"
-                  onclick="location.href='/yorijori/board/list'">등록</button>
+                  onclick="javascript:fnSaveAction();">등록</button>
+                   -->
+               <button type="submit" class="btn btn-default" style="width: 100px; float: right;">등록</button>
             </div>
          </div>
          <br/>
