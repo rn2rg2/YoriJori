@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class paymentDTO {
-	private int paymentId;
-	private int cookFormNo;
-	private int amount;
-	private String method;
-	private String date;
-	private int state;
+public class CookingClassCurriculumDTO {
+	private int id;
+	private int cookNo;
+	private String name;
+	private int time;
+	private int cur_no;
 }
