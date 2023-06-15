@@ -8,15 +8,22 @@
 			<h1 class="logo">
 				<a href="/yorijori/main"><span class="blind"></span></a>
 			</h1>
-			<div class="util">
+			<div class="util" th:if="${logout == null}">
 				<ul>
-
-					<li><button id="openButton" onclick="openGreetingPopup()"
-							style="color: #DD4A48">로그인</button></li>
+					<li><button th:if="${logout == null}" id="openButton"
+							onclick="openGreetingPopup()" style="color: #DD4A48">로그인</button></li>
 					<li><a href="/yorijori/member/signup1">회원가입</a></li>
 					<li><a href="/yorijori/cs/help">고객센터</a></li>
 				</ul>
 			</div>
+			<div class="util" th:unless="${logout == null}">
+				<ul>
+					<li><a href="/yorijori/member/logout">로그아웃</a></li>
+					<li><a href="/yorijori/member/signup1">회원가입</a></li>
+					<li><a href="/yorijori/cs/help">고객센터</a></li>
+				</ul>
+			</div>
+
 		</div>
 
 
@@ -35,7 +42,7 @@
 						<img alt="" src="/yorijori/images/icon/yorijori_logo1.png"
 							style="margin-left: auto; margin-right: auto; height: 60px;">
 					</h2>
-					<form method="post" action="서버의url" id="login-form">
+					<form method="post" action="/yorijori/member/login" id="login-form">
 						<input type="text" name="userName" placeholder="Email"
 							style="font-size: 18px; border: none;"> <input
 							type="password" name="userPassword" placeholder="Password"
