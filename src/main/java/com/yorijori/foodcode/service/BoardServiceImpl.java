@@ -21,7 +21,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardDTO> selectAll() {
+	public List<Board> selectAll() {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
 	}
@@ -39,19 +39,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> search() {
+	public List<Board> search() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<BoardDTO> search(String tag, String data) {
+	public List<Board> search(String tag, String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<BoardDTO> findByCategory(String category) {
+	public List<Board> findByCategory(String category) {
 		// TODO Auto-generated method stub
 		return null;
 	}

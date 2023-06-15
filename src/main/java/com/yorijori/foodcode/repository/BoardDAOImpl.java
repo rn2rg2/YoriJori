@@ -2,37 +2,37 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.repository.BoardRepository;
 @Repository
 public class BoardDAOImpl implements BoardDAO {
-	private EntityManager entityManager;
+	private BoardRepository repository;
 	
 	@Autowired
-	public BoardDAOImpl(EntityManager entityManager) {
+	public BoardDAOImpl(BoardRepository repository) {
 		super();
-		this.entityManager = entityManager;
+		this.repository = repository;
 	}
 
 	@Override
 	public Board insert(Board board) {
 		//System.out.println("DAO");
 		//System.out.println(board.toString());
-		entityManager.persist(board);
+		repository.save(board);
 		return board;
 	}
 
 	@Override
-	public List<BoardDTO> selectAll() {
-		String jpql="select board from Board as board";
-		List<BoardDTO> list = entityManager.createQuery(jpql,BoardDTO.class)
-							.getResultList();
-		return list;
+	public List<Board> selectAll() {
+		/*
+		 * String jpql="select board from Board as board"; List<BoardDTO> list =
+		 * entityManager.createQuery(jpql,BoardDTO.class) .getResultList();
+		 */
+		return repository.findAll();
 	}
 
 	@Override
@@ -48,13 +48,13 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardDTO> search(String tag, String data) {
+	public List<Board> search(String tag, String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<BoardDTO> findByCategory(String category) {
+	public List<Board> findByCategory(String category) {
 		// TODO Auto-generated method stub
 		return null;
 	}

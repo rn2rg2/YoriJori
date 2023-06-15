@@ -33,28 +33,6 @@ public class Board {
 	@UpdateTimestamp
 	private Date up_date;
 	private int state;
-	
-	public Board(String user_id, String title, String contents, String category, int state) {
-		super();
-		this.comm_no = comm_no;
-		this.user_id = user_id;
-		this.title = title;
-		this.contents = contents;
-		this.category = category;
-		this.state = state;
-	}
-
-	@Override
-	public String toString() {
-		return "Board [comm_no=" + comm_no + ", user_id=" + user_id + ", title=" + title + ", contents=" + contents
-				+ ", category=" + category + ", view=" + view + ", date=" + date + ", up_date=" + up_date + ", state="
-				+ state + "]";
-	}
-
-	
-	
-
-
 
 }
 

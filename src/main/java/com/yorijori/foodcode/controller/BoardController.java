@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.service.BoardService;
 
@@ -26,7 +24,7 @@ public class BoardController {
 	
 	@RequestMapping ("/list")
 	public String boardList(Model model) {
-		List<BoardDTO> list = service.selectAll();
+		List<Board> list = service.selectAll();
 		model.addAttribute("boardlist",list);
 		System.out.println("aaaaaaaaaaaaaa"+list); 
 		return "thymeleaf/board/list";
