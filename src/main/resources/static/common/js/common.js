@@ -428,6 +428,13 @@ function fn_nowDate(gubun) {
 	return date;
 
 }
+/*
+사이 공백 제거 함수
+*/
+function replaceSpace(data){
+	return data.replace(/ /g,"");
+}
+
 
 /*
  * ajax 함수 Get

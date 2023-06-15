@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="searchbar(msg,id)">
+<th:block th:fragment="searchbar(msg,inputId,btnId)">
 <style>
 ._search_btn:hover {
 	color: #fff;
@@ -22,9 +22,9 @@
 	<div class="input-group mb-3">
 		<input type="text" class="form-control input-text"
 			th:placeholder="${msg}" aria-label="Recipient's username"
-			aria-describedby="basic-addon2">
+			aria-describedby="basic-addon2" th:id="${inputId}">
 		<div class="input-group-append">
-			<button class="btn btn-danger btn-lg _search_btn" type="button" th:id="${id}">
+			<button class="btn btn-danger btn-lg _search_btn" type="button" th:id="${btnId}">
 				<i class="fa fa-search"></i>
 			</button>
 		</div>

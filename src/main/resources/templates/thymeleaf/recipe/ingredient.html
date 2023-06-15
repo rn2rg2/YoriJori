@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<head>
+<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<h3 class="menu-h3-common">재료 목록</h3>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="sidebar">
+					<div class="widget border-0">
+						<!-- 검색 창 init -->
+						<div id="searbar_ingredient"
+							th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+						<!-- 						<div class="search">
+							<input class="form-control" type="text" placeholder="검색">
+						</div> -->
+					</div>
+
+					<!-- 사이드 탭  -->
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h6>카테고리 별</h6>
+							<a class="ml-auto" data-toggle="collapse" href="#dateposted"
+								role="button" aria-expanded="false" aria-controls="dateposted">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="dateposted">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted1"> <label class="custom-control-label"
+										for="dateposted1">곡류 및 그 제품</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted2"> <label class="custom-control-label"
+										for="dateposted2">감자 및 전분류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted3"> <label class="custom-control-label"
+										for="dateposted3">당류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted4"> <label class="custom-control-label"
+										for="dateposted4">견과류 및 종실류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted5"> <label class="custom-control-label"
+										for="dateposted5">채소류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted6"> <label class="custom-control-label"
+										for="dateposted6">버섯류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted7"> <label class="custom-control-label"
+										for="dateposted7">육류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted8"> <label class="custom-control-label"
+										for="dateposted8">난류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted9"> <label class="custom-control-label"
+										for="dateposted9">어패류 및 기타 수산물</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted10"> <label class="custom-control-label"
+										for="dateposted10">해조류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted11"> <label class="custom-control-label"
+										for="dateposted11">우유 및 유제품류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted12"> <label class="custom-control-label"
+										for="dateposted12">유지류</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="dateposted13"> <label class="custom-control-label"
+										for="dateposted13">조미료류</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="widget border-0">
+						<div class="widget-add">
+							<!-- <img class="img-fluid" src="images/add-banner.png" alt=""> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-9">
+
+				<div class="container-fluid">
+					<!-- 					<div class="px-lg-5">
+					
+ -->
+					<div class="job-filter mb-4 d-sm-flex align-items-center">
+						<div class="job-alert-bt">
+							<a class="btn btn-md btn-dark"
+								href="/yorijori/ingredient/list/0/all"><i
+								class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화</a> <a
+								class="btn btn-md btn-dark" href="#"><i
+								class="fa-solid fa-utensils"></i>ㅤ재료 등록</a>
+						</div>
+						<div class="job-shortby ml-sm-auto d-flex align-items-center">
+						</div>
+					</div>
+					<div>
+						<hr />
+					</div>
+					<!-- End -->
+
+					<div class="row">
+						<!-- Gallery item -->
+
+						<div class="col-xl-4 col-lg-4 col-md-6 mb-4"
+							th:each="data, idx : ${list}">
+							<div class="bg-white rounded shadow-sm">
+								<img th:src="| /yorijori/data/ingredient/${data.imgPath}| "
+									alt="" class="img-fluid card-img-top ingre_card"
+									th:name="${data.matlName}">
+								<div class="p-4">
+									<h5>
+										<a href="#" class="text-dark" th:text="${data.matlName}">재료명</a>
+									</h5>
+									<p class="small text-muted mb-0">총 칼로리</p>
+
+									<p class="small mb-0">
+										<span class="font-weight-bold" th:text="${data.energy}">1000kcal
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="py-5">
+						<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
+						</nav>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 자바스크립트 인라인 사용 전 -->
+		<script th:inline="javascript">
+			// 재료 전체 수
+			let dataCount = [[${count}]];
+			// 현재 페이지
+			let currentPage = [[${page}]];
+			console.log(currentPage);
+			// 페이지별 개수
+			let pagePerCount = 12;
+			// 총 페이지지 네이션 수 
+			let totalPages = 1;
+			if ( dataCount > pagePerCount ){
+				totalPages = dataCount/pagePerCount
+			}
+			// 카테고리
+			let category = [[${category}]];
+			// 목록 가져오는 공통 url
+			let url = "/yorijori/ingredient/list";
+			// 검색 데이터
+			let searchData = [[${searchData}]]
+
+			$(document).ready(function() {
+					// 서치 데이터가 있는 경우 input box에 표시
+					if (searchData != null ) {
+						$("#inputSearchData").val(searchData);
+					}
+					
+					//카테고리 체크 상태 유지
+					$('.custom-control-label').each(function(index, item){
+						var inputbox = $(this).siblings('.custom-control-input')
+						if ( replaceSpace(item.textContent) == category ) {
+							inputbox.prop('checked', true);
+						};
+						
+					});
+					
+				  	// pagination 들어갈 div
+					const pageId = $('#pagination_div');
+					//페이지 클릭시 실행 될 함 수 
+					const move_list = function(page) {
+						window.location.href = url + "/" + page + "/" + category; 
+					}
+					// pagination init
+					makePagination(pageId, totalPages, pagePerCount, currentPage + 1, move_list);
+					
+					// 검색 입력 후 엔터 클릭이벤트
+					$("#inputSearchData").on("keyup",function(key){
+						if(key.keyCode==13) {
+							fnSearch();
+				        }
+					})
+					
+					// 검색 버튼 클릭 시 
+					$('#searchIngredient').click(function(){
+						fnSearch();
+					})
+					
+					// 검색 함수
+					const fnSearch = function(){
+						let searchData = $("#inputSearchData").val();
+						let url = "/yorijori/ingredient/list";
+						currentPage = 0 ;
+						window.location.href = url + "/" + currentPage + "/" + category + "/" + searchData; 
+					}
+					
+					
+					// 카테고리 별 분류
+					$('.custom-control-input').change(function() {
+				      if (this.checked) {
+			    	 	category = $(this).siblings('.custom-control-label').text();
+			    	 	category = replaceSpace(category);
+			    	 	currentPage = 0;
+			    	 	url = url + "/" + currentPage + "/" + category;
+			    	 	if (searchData == null ) { // 값이 빈경우
+			    	 		console.log("search box no value")
+			    	 	} else { // 값이 있는 경우
+			    	 		url = url + "/" + searchData;
+			    	 	}
+			    	 	window.location.href = url;
+				      }
+				    });
+					
+				});
+
+			</script>
+		<!-- <script src="/yorijori/common/js/ingredient/list.js" th:inline="javascript"></script> -->
+	</div>
+</body>
+</html>
