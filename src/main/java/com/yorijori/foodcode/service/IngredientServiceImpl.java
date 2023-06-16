@@ -13,7 +13,7 @@ import com.yorijori.foodcode.repository.IngredientDAO;
 @Transactional
 public class IngredientServiceImpl implements IngredientService {
 	IngredientDAO ingredientDAO;
-	
+
 	@Autowired
 	public IngredientServiceImpl(IngredientDAO ingredientDao) {
 		super();
@@ -25,7 +25,6 @@ public class IngredientServiceImpl implements IngredientService {
 		// TODO Auto-generated method stub
 		return ingredientDAO.insert(ingredients);
 	}
-
 
 	@Override
 	public void update(Ingredients updatedata) {
@@ -39,9 +38,32 @@ public class IngredientServiceImpl implements IngredientService {
 		// TODO Auto-generated method stub
 		return ingredientDAO.selectAll();
 	}
+
 	@Override
 	public void delete(int matlNo) {
 		ingredientDAO.delete(matlNo);
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public long countAll() {
+		return ingredientDAO.countAll();
+	}
+
+	@Override
+	public List<Ingredients> selectByPage(int pageNo, String category) {
+		List<Ingredients> list = null;
+		if (category.equals("all")) {
+			list = ingredientDAO.selectByPage(pageNo);
+		} else {
+			list = ingredientDAO.selectByCategory(pageNo, category);
+		}
+		return list;
+	}
+	
+	@Override
+	public List<Ingredients> selectBySearch(int pageNo, String category, String searchData) {
+		return ingredientDAO.selectBySearch(pageNo, category, searchData);
+	}
+
 }

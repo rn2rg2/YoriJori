@@ -2,8 +2,6 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,13 +22,15 @@ public class BoardDAOImpl implements BoardDAO {
 	public Board insert(Board board) {
 		//System.out.println("DAO");
 		//System.out.println(board.toString());
+
 		return repository.save(board);
 		
+
 	}
 
 	@Override
 	public List<Board> selectAll() {
-		
+
 		return repository.findAll();
 	}
 

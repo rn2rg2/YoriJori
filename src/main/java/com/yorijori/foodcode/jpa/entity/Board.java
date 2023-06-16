@@ -38,11 +38,6 @@ public class Board {
 	@UpdateTimestamp
 	private Date up_date;
 	private int state;
-	
-	
-	
-	
-
 
 
 }

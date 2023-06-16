@@ -1,6 +1,6 @@
 package com.yorijori.foodcode.jpa.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,22 +19,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="cooking_class")
-public class CookingClass {
+@Table(name="recipe_qa")
+public class RecipeQa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cookNo;
+	private int qaNo;
+	private int recipeno;
 	private String userId;
-	private String title;
-	private String thumbnail;
-	private int price;
-	private String category;
-	private int time;
-	private int count;
-	private int priceDc;
+	private String contents;
+	private boolean depthLevel;
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp
 	private Date upDate;
-	private int state;
+	private int state; //default 0
 }

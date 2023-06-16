@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,11 +25,32 @@ public class IngredientController {
 	}
 	
 
-	@RequestMapping("/list")
-	public String profile(Model model) {
-		return "thymeleaf/common/ingredient";
+	@RequestMapping("/list/{page}/{category}")
+	public String getListByCategory(@PathVariable int page, @PathVariable String category,Model model) {
+		long count = ingredientService.countAll();
+		List<Ingredients> list = ingredientService.selectByPage(page, category);
+		model.addAttribute("page", page);
+		if (category.equals("all")) {
+			model.addAttribute("count", count);
+		} else {
+			model.addAttribute("count", list.size());
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("category", category);
+		return "thymeleaf/recipe/ingredient";
 	}
-
+	
+	@RequestMapping("/list/{page}/{category}/{searchData}")
+	public String getListByCategory(@PathVariable int page,@PathVariable String category, @PathVariable String searchData, Model model) {
+		List<Ingredients> list = ingredientService.selectBySearch(page, category, searchData);
+		model.addAttribute("page", page);
+		model.addAttribute("count", list.size());
+		model.addAttribute("list", list);
+		model.addAttribute("category", category);
+		model.addAttribute("searchData", searchData);
+		
+		return "thymeleaf/recipe/ingredient";
+	}
 
 	@GetMapping("/getListByPage")
 	@ResponseBody
@@ -39,3 +61,4 @@ public class IngredientController {
 	}
 	
 }
+ 

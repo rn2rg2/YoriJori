@@ -14,4 +14,10 @@ public interface IngredientService {
 
 	void delete(int matlNo);
 
+	long countAll();
+
+	List<Ingredients> selectByPage(int pageNo, String category);
+
+	List<Ingredients> selectBySearch(int pageNo, String category, String searchData);
+
 }

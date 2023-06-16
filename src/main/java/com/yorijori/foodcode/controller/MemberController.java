@@ -4,17 +4,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yorijori.foodcode.jpa.entity.MemberEntity;
 import com.yorijori.foodcode.service.KakaoService;
+import com.yorijori.foodcode.service.LoginService;
 
 
 @Controller
@@ -22,12 +27,31 @@ import com.yorijori.foodcode.service.KakaoService;
 public class MemberController {
 	@Autowired
 	private KakaoService ms;
+    @Autowired
+    private LoginService userService;
+
 	
+    @GetMapping("/login/page")
+    public String login() {
+        return "thymeleaf/member/loginpage";
+    }
 	
-	@RequestMapping("/login")
-	public String login() {
-		return "thymeleaf/member/loginpage";
-	}
+    @PostMapping("/login")
+    public String login(@RequestParam("userName") String userName, @RequestParam("userPassword") String userPassword,Model model) {
+        MemberEntity loginUser = userService.loginUser(userName, userPassword);
+
+        if (loginUser != null && loginUser.getPass().equals(userPassword)) {
+            model.addAttribute("logout", "logout");
+            return "thymeleaf/index";
+        }
+        return "thymeleaf/member/loginpage";
+        
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+        return "thymeleaf/index";
+    }
 	@RequestMapping("/register")
 	public String register() {
 		return "member/register";

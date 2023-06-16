@@ -428,6 +428,13 @@ function fn_nowDate(gubun) {
 	return date;
 
 }
+/*
+사이 공백 제거 함수
+*/
+function replaceSpace(data){
+	return data.replace(/ /g,"");
+}
+
 
 /*
  * ajax 함수 Get
@@ -463,17 +470,18 @@ function error_run(obj, msg, statusMsg) {
 }
 /*
  * pagination
+ * makePagination(pagination 띄울 페이지, 전체 페이지 수 ( 전체 게시물 / 한화면 게시물 ), 현재페이지, 실행할 함수) 
  */
 
-function makePagination(div_id, totalPages, visiblePages, fn) {
+function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
 	div_id.twbsPagination({
 		totalPages : totalPages,
 		// 페이지당 보이는 글의수는
 		visiblePages : visiblePages,
-
+		// 로딩시 뜨는 페이지 
+		startPage : currentPage,
 		// " « "라는 문자열로 최신글 방향을 표시
 		first : '<span sris-hidden="true">«</span>',
-
 		// " » "라는 문자열로 마지막글 방향을 표시
 		last : '<span sris-hidden="true">»</span>',
 

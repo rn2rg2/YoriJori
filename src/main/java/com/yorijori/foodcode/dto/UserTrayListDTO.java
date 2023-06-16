@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentDTO {
-	private int paymentId;
-	private int cookFormNo;
-	private int amount;
-	private String method;
-	private Date date;
+public class UserTrayListDTO {
+	private int id;
+	private int trayNo;
+	private int trayOrder;
+	private int recipeNo;
 	private int state;
 }
