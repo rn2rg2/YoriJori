@@ -12,54 +12,20 @@
 
 	<script src="/yorijori/common/js/mainpage/main.js"></script>
 	<script src="/yorijori/common/js/mainpage/main2.js"></script>
-
 </th:block>
 <th:block layout:fragment="content">
-	<!-- 영상 자동재생 -->
-<!--  	<div class="container-fluid">
-
-		<iframe
-			src="https://www.youtube.com/embed/w-WWJCbGuaY?autoplay=1&mute=1"
-			title="YouTube video player" frameborder="0"
-			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-			allowfullscreen
-			style="overflow-x:hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
-	</div> -->
 
 	<!-- 헤더 -->
 	<section id="hero" class="hero d-flex align-items-center section-bg"
 		th:fragment="backup">
-		<div class="container">
-			<div class="row justify-content-between gy-5">
-				<div
-					class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-					<h2 data-aos="fade-up">
-						간편하게 <br>따라하는<br>요리 레시피
-					</h2>
-					<p data-aos="fade-up" data-aos-delay="100">맛있는 레시피를 비롯해, 다양한 요리
-						팁과 노하우를 공유하고 참여자들과 함께 레시피를 등록하며 성장해보세요!</p>
-					<div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-						<a href="#book-a-table" class="btn-book-a-table"
-							style="text-decoration: none;">레시피 보기</a> <a href="#"
-							class="glightbox btn-watch-video d-flex align-items-center"><i
-							class="bi bi-play-circle"></i><span></span></a>
-					</div>
-				</div>
-				<div
-					class="col-lg-5 order-1 order-lg-2 text-center text-lg-start slide">
-					<ul>
-						<li><img src="images/main/product-1.jpg" class="img-fluid"
-							alt="" data-aos="zoom-out" data-aos-delay="300"></li>
-						<li><img src="images/main/product-2.jpg" class="img-fluid"
-							alt="" data-aos="zoom-out" data-aos-delay="300"></li>
-						<li><img src="images/main/product-3.jpg" class="img-fluid"
-							alt="" data-aos="zoom-out" data-aos-delay="300"></li>
-						<li><img src="images/main/product-4.jpg" class="img-fluid"
-							alt="" data-aos="zoom-out" data-aos-delay="300"></li>
-					</ul>
-				</div>
-			</div>
+
+		<div class="bg-video">
+			<video class="bg-video__content" autoplay muted loop>
+				<source src="/yorijori/images/main.mp4" type="video/mp4" />
+			</video>
 		</div>
+
+
 	</section>
 	<div class="container-xxl py-5">
 		<div class="container">
