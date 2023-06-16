@@ -23,13 +23,13 @@ import lombok.NoArgsConstructor;
 public class BoardComment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int comment_no ;
-	private int  comm_no ;
-	private String user_id;
+	private int commentNo ;
+	private int  commNo ;
+	private String userId;
 	private String contents ;
 	@CreationTimestamp
 	private Date date ;
 	@UpdateTimestamp
-	private Date up_date;
+	private Date upDate;
 	private int state ;
 }
