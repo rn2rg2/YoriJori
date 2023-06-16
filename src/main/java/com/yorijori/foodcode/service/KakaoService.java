@@ -140,8 +140,13 @@ public class KakaoService {
 			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+			String id = element.getAsJsonObject().get("id").getAsString();
 
-			userInfo.put("nickname", nickname); // 닉네임 정보를 HashMap에 저장
+			userInfo.put("nickname", nickname);
+			userInfo.put("email", email);
+			userInfo.put("id", id);
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
