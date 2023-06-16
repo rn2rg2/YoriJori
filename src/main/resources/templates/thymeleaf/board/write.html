@@ -45,8 +45,8 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
 
          </div>
          <div class="mb-5">
-            <label id="user_id" th:text="${'testuser'}" for="reg_id"></label><input type="hidden" name="user_id"
-               value="testuser" >
+            <label id="user_id"  for="reg_id"></label><input type="hidden" name="userId"
+               th:text="${session.userInfo.userId}" th:value="${session.userInfo.userId}">
          </div>
        	<div class="form-group">
 			<label>게시글 유형</label>

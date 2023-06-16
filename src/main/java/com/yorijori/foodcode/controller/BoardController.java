@@ -1,7 +1,8 @@
 package com.yorijori.foodcode.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class BoardController {
 	}
 	//게시판 글쓰기 view
 	@GetMapping("/write")
-	public String boardWrite() {
+	public String boardWrite(HttpSession session) {
 		return "thymeleaf/board/write";
 	}
 	//게시판 글쓰기 기능
