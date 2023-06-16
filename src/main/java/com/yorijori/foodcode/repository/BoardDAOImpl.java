@@ -30,6 +30,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public Board select(int commNo) {
+		return repository.findByCommNo(commNo);
+	}
+	@Override
 	public List<Board> selectAll() {
 
 		return repository.findAll(Sort.by(Sort.Direction.DESC, "commNo"));

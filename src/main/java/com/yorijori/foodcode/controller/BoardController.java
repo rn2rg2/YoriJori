@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,8 +32,10 @@ public class BoardController {
 		System.out.println("aaaaaaaaaaaaaa"+list); 
 		return "thymeleaf/board/list";
 	}
-	@RequestMapping("/read")
-	public String boardRead() {
+	@RequestMapping("/read/{commNo}/{state}")
+	public String boardRead(@PathVariable int commNo, @PathVariable int state, Model model) {
+		Board board = service.select(commNo);
+		model.addAttribute("board", board);
 		return "thymeleaf/layout/boardLayout";
 	}
 	//게시판 글쓰기 view

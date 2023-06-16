@@ -22,6 +22,8 @@ function isNull(input) {
 
 }
 
+
+
 /**
  * 
  * 입력값이 스페이스 이외의 의미있는 값이 있는지 체크한다
@@ -34,9 +36,7 @@ function isNull(input) {
  */
 
 function isEmpty(input) {
-
-	if (input.value == null || input.value.replace(/ /gi, "") == "") {
-
+	if (input.val() == null || input.val().replace(/ /gi, "") == "") {
 		return true;
 
 	} else {
@@ -46,6 +46,19 @@ function isEmpty(input) {
 	}
 
 }
+
+/*
+ * sweetalert
+ * 
+ */
+function error_alert(msg, input){
+	Swal.fire(
+	        msg,
+	        '<b style="color:red;">'+input+'</b>칸을 확인해주세요',
+	        'error'
+	      )
+}
+
 
 /**
  * 
@@ -494,3 +507,11 @@ function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
 		}
 	});
 }
+
+
+
+
+
+
+
+

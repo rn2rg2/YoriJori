@@ -19,6 +19,10 @@ public class BoardServiceImpl implements BoardService {
 		super();
 		this.dao = dao;
 	}
+	@Override
+	public Board select(int commNo) {
+		return dao.select(commNo);
+	}
 	
 	@Override
 	public List<Board> selectAll() {
