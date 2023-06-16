@@ -22,6 +22,8 @@ function isNull(input) {
 
 }
 
+
+
 /**
  * 
  * 입력값이 스페이스 이외의 의미있는 값이 있는지 체크한다
@@ -33,10 +35,10 @@ function isNull(input) {
  * 
  */
 
-function isEmpty(input) {
+function isEmpty(input, msg) {
 
 	if (input.value == null || input.value.replace(/ /gi, "") == "") {
-
+		error_alert(msg);
 		return true;
 
 	} else {
@@ -46,6 +48,19 @@ function isEmpty(input) {
 	}
 
 }
+
+/*
+ * sweetalert
+ * 
+ */
+const error_alert = function(msg){
+	swal(
+	        '필수 항목 미 입력',
+	        '<b style="color:red;">'+msg+'</b>칸을 확인해주세요',
+	        'error'
+	      )
+}
+
 
 /**
  * 
@@ -494,3 +509,11 @@ function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
 		}
 	});
 }
+
+
+
+
+
+
+
+
