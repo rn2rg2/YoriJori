@@ -1,10 +1,7 @@
 package com.yorijori.foodcode.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yorijori.foodcode.jpa.entity.MemberEntity;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.KakaoService;
 import com.yorijori.foodcode.service.LoginService;
 
@@ -38,7 +34,7 @@ public class MemberController {
 	
     @PostMapping("/login")
     public String login(@RequestParam("userName") String userName, @RequestParam("userPassword") String userPassword, HttpSession session) {
-        MemberEntity loginUser = userService.loginUser(userName, userPassword);
+        UserInfo loginUser = userService.loginUser(userName, userPassword);
 
         if (loginUser != null && loginUser.getPass().equals(userPassword)) {
         	session.setAttribute("userInfo", loginUser);

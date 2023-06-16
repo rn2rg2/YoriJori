@@ -1,7 +1,8 @@
 package com.yorijori.foodcode.jpa.repository;
  
-import com.yorijori.foodcode.jpa.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MemberRepository extends JpaRepository<MemberEntity, String> {
+import com.yorijori.foodcode.jpa.entity.UserInfo;
+
+public interface MemberRepository extends JpaRepository<UserInfo, String> {
 }

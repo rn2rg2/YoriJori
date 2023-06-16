@@ -12,41 +12,26 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
-@Table(name="user_info")
 @Entity
-public class MemberEntity {
+@Table(name="user_info")
+
+public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
 	private String user_id;
-	@Column
 	private String role;
-	@Column
 	private String nickname;
-	@Column(name = "pass")	
 	private String pass;
-	@Column
 	private String email;
-	@Column
 	private String name;
-	@Column
 	private int phone_number;
-	@Column
 	private String ssn;
-	@Column
 	private String img_path;
-	@Column
 	private int point;
-	@Column
 	private String prefer;
-	@Column
 	private String purpose;
-	@Column
 	private String allergy;
-	@Column
 	private int state;
-	@Column
 	private Date date;
-	@Column
 	private int kakaoID;
 }

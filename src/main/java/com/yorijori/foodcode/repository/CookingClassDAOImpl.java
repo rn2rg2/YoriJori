@@ -1,6 +1,7 @@
 package com.yorijori.foodcode.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -31,7 +32,10 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public void delete(int state,int cookNo) {
-		//CookingClass cookingclass=classRepo.findById(cookNo);
+		CookingClass cookingclass= classRepo.findById(cookNo).get();
+		cookingclass.setCookNo(cookNo);
+		cookingclass.setState(1);
+		
 	}
 
 	@Override

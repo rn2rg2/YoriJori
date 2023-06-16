@@ -42,7 +42,7 @@ public class BoardController {
 	//게시판 글쓰기 기능
 	@PostMapping("/write")
 	public String boardwrite(Board board) {
-		System.out.println("Controller");
+		//System.out.println("Controller");
 		//System.out.println(board.toString());
 		service.insert(board);
 		return "redirect:/board/list";

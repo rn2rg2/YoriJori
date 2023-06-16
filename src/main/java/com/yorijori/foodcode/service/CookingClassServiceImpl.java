@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
@@ -11,6 +12,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.repository.CookingClassDAO;
 
 @Service
+@Transactional
 public class CookingClassServiceImpl implements CookingClassService {
 	CookingClassDAO dao;
 	@Autowired

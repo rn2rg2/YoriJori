@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
 public class Board {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int comm_no;
-	private String user_id;
+	private int commNo;
+	private String userId;
 	private String title;
 	private String contents;
 	private String category;
@@ -36,7 +36,7 @@ public class Board {
 	@CreationTimestamp
 	private Date date ;
 	@UpdateTimestamp
-	private Date up_date;
+	private Date upDate;
 	private int state;
 
 

@@ -239,7 +239,8 @@
 											<a href="/yorijori/cookingclass/read"><span th:text="${class.title}"></span></a>
 										</h5>
 									</div>
-									<div class="candidate-list-option">
+									<div class="candidate-list-option" >
+										<a th:href="@{/cookingclass/delete(cookNo=${class.cookNo})}">삭제</a>
 										<div
 											class="badge badge-danger px-3 rounded-pill font-weight-normal"><span th:text="${class.userId}"></span></div>
 										<div
