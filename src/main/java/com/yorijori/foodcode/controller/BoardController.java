@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class BoardController {
 	
 	@RequestMapping ("/list")
 	public String boardList(Model model) {
-		List<BoardDTO> list = service.selectAll();
+		List<Board> list = service.selectAll();
 		model.addAttribute("boardlist",list);
 		System.out.println("aaaaaaaaaaaaaa"+list); 
 		return "thymeleaf/board/list";
@@ -37,18 +38,16 @@ public class BoardController {
 	}
 	//게시판 글쓰기 view
 	@GetMapping("/write")
-	public String boardWrite(Model model) {
-		String user_id = "exampleUserId"; // 임의로 사용자 id 설정
-	    model.addAttribute("user_id", user_id);
+	public String boardWrite() {
 		return "thymeleaf/board/write";
 	}
 	//게시판 글쓰기 기능
 	@PostMapping("/write")
 	public String boardwrite(Board board) {
-		//System.out.println("Controller");
+		System.out.println("Controller");
 		//System.out.println(board.toString());
 		service.insert(board);
-		return "thymeleaf/board/write";
+		return "redirect:/board/list";
 	}
 	
 }
