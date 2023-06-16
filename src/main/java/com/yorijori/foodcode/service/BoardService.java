@@ -13,5 +13,6 @@ public interface BoardService {
 
 	List<Board> search();
 	List<Board> search(String tag,String data);
-	List<Board> findByCategory(String category);		
+	List<Board> findByCategory(String category);
+	Board select(int commNo);		
 }

@@ -17,5 +17,6 @@ public interface BoardDAO {
 	//검색
 	List<Board> search(String tag,String data);
 	//카테고리검색
-	List<Board> findByCategory(String category);		
+	List<Board> findByCategory(String category);
+	Board select(int commNo);		
 }

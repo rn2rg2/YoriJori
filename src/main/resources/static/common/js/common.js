@@ -54,7 +54,7 @@ function isEmpty(input) {
 function error_alert(msg, input){
 	Swal.fire(
 	        msg,
-	        '<b style="color:red;">'+input+'</b>칸을 <br>확인해주세요',
+	        '<b style="color:red;">'+input+'</b>칸을 확인해주세요',
 	        'error'
 	      )
 }

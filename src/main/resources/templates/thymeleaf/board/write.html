@@ -80,9 +80,9 @@
 	</div>
 	<script>
 		function boardSubmit(event) {
-			var titleCheck = isEmpty($('#title'));
+			var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
 			var contentCheck = isEmpty($('#summernote'));
-			if (titleCheck) {
+			if (titleCheck) { 
 				error_alert('제목 미 입력', '제목');
 				return false;
 			} else if (contentCheck) {
