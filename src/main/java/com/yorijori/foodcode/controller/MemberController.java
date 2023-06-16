@@ -37,11 +37,11 @@ public class MemberController {
     }
 	
     @PostMapping("/login")
-    public String login(@RequestParam("userName") String userName, @RequestParam("userPassword") String userPassword,Model model) {
+    public String login(@RequestParam("userName") String userName, @RequestParam("userPassword") String userPassword, HttpSession session) {
         MemberEntity loginUser = userService.loginUser(userName, userPassword);
 
         if (loginUser != null && loginUser.getPass().equals(userPassword)) {
-            model.addAttribute("logout", "logout");
+        	session.setAttribute("userInfo", loginUser);
             return "thymeleaf/index";
         }
         return "thymeleaf/member/loginpage";

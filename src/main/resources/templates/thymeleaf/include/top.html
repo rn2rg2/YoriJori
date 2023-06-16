@@ -8,15 +8,15 @@
 			<h1 class="logo">
 				<a href="/yorijori/main"><span class="blind"></span></a>
 			</h1>
-			<div class="util" th:if="${logout == null}">
+			<div class="util" th:if="${session.userInfo == null}">
 				<ul>
-					<li><button th:if="${logout == null}" id="openButton"
+					<li><button th:if="${session.userInfo == null}" id="openButton"
 							onclick="openGreetingPopup()" style="color: #DD4A48">로그인</button></li>
 					<li><a href="/yorijori/member/signup1">회원가입</a></li>
 					<li><a href="/yorijori/cs/help">고객센터</a></li>
 				</ul>
 			</div>
-			<div class="util" th:unless="${logout == null}">
+			<div class="util" th:unless="${session.userInfo == null}">
 				<ul>
 					<li><a href="/yorijori/member/logout">로그아웃</a></li>
 					<li><a href="/yorijori/member/signup1">회원가입</a></li>
