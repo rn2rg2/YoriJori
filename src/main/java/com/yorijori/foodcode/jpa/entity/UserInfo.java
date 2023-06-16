@@ -18,15 +18,15 @@ import lombok.Data;
 public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String user_id;
+	private String userId;
 	private String role;
 	private String nickname;
 	private String pass;
 	private String email;
 	private String name;
-	private int phone_number;
+	private int phoneNumber;
 	private String ssn;
-	private String img_path;
+	private String imgPath;
 	private int point;
 	private String prefer;
 	private String purpose;
