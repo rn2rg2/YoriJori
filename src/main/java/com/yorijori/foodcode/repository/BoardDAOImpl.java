@@ -22,16 +22,15 @@ public class BoardDAOImpl implements BoardDAO {
 	public Board insert(Board board) {
 		//System.out.println("DAO");
 		//System.out.println(board.toString());
-		repository.save(board);
-		return board;
+
+		return repository.save(board);
+		
+
 	}
 
 	@Override
 	public List<Board> selectAll() {
-		/*
-		 * String jpql="select board from Board as board"; List<BoardDTO> list =
-		 * entityManager.createQuery(jpql,BoardDTO.class) .getResultList();
-		 */
+
 		return repository.findAll();
 	}
 

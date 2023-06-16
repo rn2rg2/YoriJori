@@ -32,21 +32,6 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
       $('#title').focus();/* write클릭 시 focus title로  옮기기 */
    });
    
-   function fnSaveAction() {
-	   var param = $("#myForm").serialize();
-	   $.ajax({
-	        type: "POST",
-	        url: "write",
-	        dataType: "json",
-	        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-	        error: function() {
-	          console.log('통신실패!!');
-	        },
-	        success: function(data) {
-	          console.log("통신데이터 값 : " + data);
-	        }
-	      });
-   }
 </script>
 </th:block>
 <th:block layout:fragment="content">
@@ -60,8 +45,8 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
 
          </div>
          <div class="mb-5">
-            <label id="user_id" th:text="${user_id}" for="reg_id"></label><input type="hidden" name="user_id"
-               value="123" >
+            <label id="user_id" th:text="${'testuser'}" for="reg_id"></label><input type="hidden" name="user_id"
+               value="testuser" >
          </div>
        	<div class="form-group">
 			<label>게시글 유형</label>
@@ -85,10 +70,6 @@ layout:decorate="~{thymeleaf/layout/mainLayout}">
                <button type="submit" class="btn btn-success" style="float: right;">취소</button>
             </div>
             <div class="text-center">
-               <!-- 
-               <button type="reset" class="btn btn-default" style="width: 100px; float: right;"
-                  onclick="javascript:fnSaveAction();">등록</button>
-                   -->
                <button type="submit" class="btn btn-default" style="width: 100px; float: right;">등록</button>
             </div>
          </div>
