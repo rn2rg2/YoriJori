@@ -27,13 +27,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int update(BoardDTO board) {
+	public int update(Board board) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(BoardDTO board) {
+	public int delete(Board board) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -55,8 +55,6 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public Board insert(Board board) {
