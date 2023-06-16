@@ -3,6 +3,7 @@ package com.yorijori.foodcode.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.dto.BoardDTO;
@@ -31,7 +32,8 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<Board> selectAll() {
 
-		return repository.findAll();
+		return repository.findAll(Sort.by(Sort.Direction.DESC, "commNo"));
+		
 	}
 
 	@Override
