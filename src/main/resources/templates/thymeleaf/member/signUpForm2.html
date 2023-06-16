@@ -46,7 +46,7 @@ function fnSubmit (){
 </th:block>
 <th:block layout:fragment="content">
 
-<form id="signup-form">
+<form id="signup-form" method="post" action="/yorijori/member/signUp">
 
 <div class="join-container join-container2"
 		style="display: block;">
@@ -67,7 +67,7 @@ function fnSubmit (){
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
 						<input type="text" 
-							style="width: 88%" name="member-join-general-id-text"
+							style="width: 88%" name="user_id"
 							id = "id"
 							class="input-text w571 required-select" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
 							value=""> 
@@ -86,7 +86,7 @@ function fnSubmit (){
 					</div>
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
-					<input type="text" style="width: 100%" id="requiredname"
+					<input type="text" style="width: 100%" id="requiredname" name="name"
     				class="input-text w571 required-select"
     				th:value="${nickname != null ? nickname : ''}" placeholder="기본">					
     				</div>
@@ -99,7 +99,7 @@ function fnSubmit (){
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
 						<input type="text" style="width: 88%"
-						id="nickName"
+						id="nickName" name="nickname"
 							class="input-text w571" placeholder="" value=""> 
 							<span class="input-group-btn">
 							<button type="button" id="btn-id-check"
@@ -118,7 +118,7 @@ function fnSubmit (){
 						<label for="member-join-general-pw-text" class="blind">비밀번호
 							입력</label> 
 							<input type="password" id="password"
-							name="member-join-general-pw-text" class="input-text w571 required-select"
+							name="pass" class="input-text w571 required-select"
 							placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수">
 					</div>
 					<div class="input-group type-lg w-full">
@@ -147,11 +147,11 @@ function fnSubmit (){
 						<input type="text" 
 							style="width: 48%; padding-right: 6px;"
 							id="ssn1"
-							name="member-join-general-id-text" class="input-text w571"
+							name="ssn" class="input-text w571"
 							value=""> 
 							<span style="padding: 7px;"> - </span> <span>
 							<input type="text" style="width: 48%" 
-							id="ssn2"
+							id="ssn2" name="ssh2"
 							class="input-text w571">
 						</span> <span class="input-group-btn"> </span>
 					</div>
@@ -166,9 +166,9 @@ function fnSubmit (){
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
 						<input type="text" id="e-mail"
-							name="member-join-general-email-text" class="input-text w571" th:value="${email != null ? email : ''}"
+							name="email" class="input-text w571" th:value="${email != null ? email : ''}"
 							placeholder="이메일 주소" style="width: 50%;">
-						<span>@</span> <span> <select id="select">
+						<span>@</span> <span> <select id="select" name="email">
 								<option value="" disabled selected>E-Mail 선택</option>
 								<option value="naver.com" id="naver.com">naver.com</option>
 								<option value="hanmail.net" id="hanmail.net">hanmail.net</option>
@@ -192,7 +192,7 @@ function fnSubmit (){
 								<option value="SKT" id="SKT">SKT</option>
 							</select>
 						</div>
-						<span> <select id="select" style="width: 20%">
+						<span> <select id="select" style="width: 20%" name="number1">
 								<option value="" disabled selected>휴대폰 번호</option>
 								<option value="010" id="010">010</option>
 								<option value="011" id="011">011</option>
@@ -203,9 +203,9 @@ function fnSubmit (){
 						</select>
 						</span> 
 						<span>-</span> 
-						<input type="text" id=selectPhone
+						<input type="text" id=selectPhone name="number2"
 							style="width: 30%;"> <span>-</span> 
-						<input type="text" id=selectPhone style="width: 30%;">
+						<input type="text" id=selectPhone style="width: 30%;" name="number3">
 						<button type="button" id="btn-phone"
 							class="btn-form btn-default-ex" style="height: 50px; width: 15%;">
 							<span>인증번호전송</span>
@@ -241,11 +241,11 @@ function fnSubmit (){
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
 						<select name="allergy" id="allergy" multiple>
-							<option value="1">갑각류</option>
-							<option value="2">해산물</option>
-							<option value="3">우유</option>
-							<option value="4">견과류</option>
-							<option value="5">육류</option>
+							<option value="갑각류">갑각류</option>
+							<option value="해산물">해산물</option>
+							<option value="우유">우유</option>
+							<option value="견과류">견과류</option>
+							<option value="육류">육류</option>
 						</select>
 						<script>
 							new MultiSelectTag('allergy', {
@@ -262,12 +262,12 @@ function fnSubmit (){
 							class="es2"></i></label>
 					</div>
 					<div class="input-group type-lg w-full">
-						<select name="preferredFood" id="preferredFood" multiple>
-							<option value="1">사과</option>
-							<option value="2">바나나</option>
-							<option value="3">버터</option>
-							<option value="4">우유</option>
-							<option value="5">돼지고기</option>
+						<select name="prefer" id="preferredFood" multiple>
+							<option value="사과">사과</option>
+							<option value="바나나">바나나</option>
+							<option value="버터">버터</option>
+							<option value="우유">우유</option>
+							<option value="돼지고기">돼지고기</option>
 						</select>
 						<script>
 							new MultiSelectTag('preferredFood', {
@@ -295,6 +295,9 @@ function fnSubmit (){
 	</div>
 	</div>
 	</div>
-</form>
+					<input name="kakaoID" th:value="${id != null ? id : ''}">
+
+	
+	</form>
 </th:block>
 </html>
