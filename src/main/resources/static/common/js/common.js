@@ -35,10 +35,8 @@ function isNull(input) {
  * 
  */
 
-function isEmpty(input, msg) {
-
-	if (input.value == null || input.value.replace(/ /gi, "") == "") {
-		error_alert(msg);
+function isEmpty(input) {
+	if (input.val() == null || input.val().replace(/ /gi, "") == "") {
 		return true;
 
 	} else {
@@ -53,10 +51,10 @@ function isEmpty(input, msg) {
  * sweetalert
  * 
  */
-const error_alert = function(msg){
-	swal(
-	        '필수 항목 미 입력',
-	        '<b style="color:red;">'+msg+'</b>칸을 확인해주세요',
+function error_alert(msg, input){
+	Swal.fire(
+	        msg,
+	        '<b style="color:red;">'+input+'</b>칸을 <br>확인해주세요',
 	        'error'
 	      )
 }

@@ -1,80 +1,98 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
-<title>Board Write</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <link rel="stylesheet" type="text/css" href="/yorijori/common/css/reset.css" /> -->
-<!-- include libraries(jQuery, bootstrap) -->
+	<title>Board Write</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- <link rel="stylesheet" type="text/css" href="/yorijori/common/css/reset.css" /> -->
+	<!-- include libraries(jQuery, bootstrap) -->
 
-<script
-   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-   src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<!-- include summernote css/js-->
-<link
-   href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-   rel="stylesheet">
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+	<!-- include summernote css/js-->
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
+		rel="stylesheet">
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
-<link rel="stylesheet" href="/yorijori/common/css/board/write.css" />
-<script>
-   $(document).ready(function() {
-      $('#summernote').summernote({
-         placeholder : 'contents',
-         minHeight : 370,
-         maxHeight : null,
-         focus : false,
-         lang : 'ko-KR'
-      });
-      $('#title').focus();/* write클릭 시 focus title로  옮기기 */
-   });
-   
-</script>
+	<link rel="stylesheet" href="/yorijori/common/css/board/write.css" />
+	<script>
+		$(document).ready(function() {
+			$('#summernote').summernote({
+				placeholder : 'contents',
+				minHeight : 370,
+				maxHeight : null,
+				focus : false,
+				lang : 'ko-KR'
+			});
+			$('#title').focus();/* write클릭 시 focus title로  옮기기 */
+		});
+	</script>
 </th:block>
 <th:block layout:fragment="content">
-   <div  class="mb-5" style="width: 80%; margin: auto;">
-      <form id="myForm" method="post" action="/yorijori/board/write" enctype="multipart/form-data">
-         <div class="mb-5">
-
-            <label for="title">제목</label> <input type="text"
-               class="form-control" name="title" id="title"
-               placeholder="제목을 입력해 주세요">
-
-         </div>
-         <div class="mb-5">
-            <label id="user_id"  for="reg_id"></label><input type="hidden" name="userId"
-               th:text="${session.userInfo.userId}" th:value="${session.userInfo.userId}">
-         </div>
-       	<div class="form-group">
-			<label>게시글 유형</label>
+	<div class="mb-5" style="width: 80%; margin: auto;">
+		<form id="myForm" method="post" enctype="multipart/form-data" action="/yorijori/board/write"
+			onsubmit="return boardSubmit(event);">
 			<div class="mb-5">
-				<select id="category" name="category" class="form-control">
-					<option value="맛집추천">맛집추천</option>
-					<option value="오늘뭐먹지">오늘뭐먹지</option>
-					<option value="레시피질문">레시피질문</option>
-				</select>
+
+				<label for="title">제목</label> <input type="text"
+					class="form-control" name="title" id="title"
+					placeholder="제목을 입력해 주세요">
+
 			</div>
-		</div>
-         <textarea class="mb-5" id="summernote" name="contents"
-            style="width: 100%; height: 500px;"></textarea>
-         <div class="form-group">
-            <div class="col-md-2 text-right">
-               <label for="files" class="control-label"></label>
-            </div>
-         </div>
-         <div class="form-group mb-5">
-            <div class="text-center">
-               <button type="submit" class="btn btn-success" style="float: right;">취소</button>
-            </div>
-            <div class="text-center">
-               <button type="submit" class="btn btn-default" style="width: 100px; float: right;">등록</button>
-            </div>
-         </div>
-         <br/>
-      </form>
-   </div>
+			<div class="mb-5">
+				<label id="user_id" for="reg_id"></label><input type="hidden"
+					name="userId" th:text="${session.userInfo.userId}"
+					th:value="${session.userInfo.userId}">
+			</div>
+			<div class="form-group">
+				<label>게시글 유형</label>
+				<div class="mb-5">
+					<select id="category" name="category" class="form-control">
+						<option value="맛집추천">맛집추천</option>
+						<option value="오늘뭐먹지">오늘뭐먹지</option>
+						<option value="레시피질문">레시피질문</option>
+					</select>
+				</div>
+			</div>
+			<textarea class="mb-5" id="summernote" name="contents"
+				style="width: 100%; height: 500px;"></textarea>
+			<div class="form-group">
+				<div class="col-md-2 text-right">
+					<label for="files" class="control-label"></label>
+				</div>
+			</div>
+			<div class="form-group mb-5">
+				<div class="text-center">
+					<button type="submit" class="btn btn-success" style="float: right;">취소</button>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-default"
+						style="width: 100px; float: right;">등록</button>
+				</div>
+			</div>
+			<br />
+		</form>
+	</div>
+	<script>
+		function boardSubmit(event) {
+			var titleCheck = isEmpty($('#title'));
+			var contentCheck = isEmpty($('#summernote'));
+			if (titleCheck) {
+				error_alert('제목 미 입력', '제목');
+				return false;
+			} else if (contentCheck) {
+				error_alert('타이틀 미 입력', '타이틀');
+				return false;
+			} else if (!titleCheck && !contentCheck) {
+				return true;
+			}
+
+		}
+	</script>
 </th:block>
 </html>
