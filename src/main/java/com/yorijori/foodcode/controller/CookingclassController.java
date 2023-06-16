@@ -3,7 +3,6 @@ package com.yorijori.foodcode.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.yorijori.foodcode.dto.CookingClassDTO;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
-import com.yorijori.foodcode.service.CookingClassService;import groovyjarjarantlr4.v4.parse.ANTLRParser.parserRule_return;
+import com.yorijori.foodcode.service.CookingClassService;
 @RequestMapping("/cookingclass")
 @Controller
 public class CookingclassController {
@@ -37,8 +35,6 @@ public class CookingclassController {
 	public String showCookingclassList(Model model) {
 		List<CookingClass> classList = service.selectAllClass();
 		model.addAttribute("classList",classList);
-		//model.addAttribute("session", session);
-		System.out.println("출력전 확인"+classList);
 		return "thymeleaf/cookingclass/classList";
 	}
 	
@@ -54,7 +50,7 @@ public class CookingclassController {
 	}
 	@RequestMapping("/delete")
 	public String deleteClass(int cookNo){
-		service.delete(1, cookNo);
+		service.delete(cookNo);
 		return "redirect:/cookingclass/list";
 	}
 	
@@ -65,7 +61,11 @@ public class CookingclassController {
 	@PostMapping("/in")
 	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum) {
 		service.insert(cookingclass, content, curriculum);
-		return "thymeleaf/cookingclass/classList";
+		
+		System.out.println(cookingclass);
+		System.out.println(content);
+		System.out.println(curriculum);
+		return "redirect:/cookingclass/list";
 	}
 	
 }

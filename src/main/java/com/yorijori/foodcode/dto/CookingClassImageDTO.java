@@ -12,6 +12,6 @@ public class CookingClassImageDTO {
 	private int contentNo;
 	private int cookNo;
 	private String image;
-	private String category;
+	private String imgCategory;
 	private int imageNo;
 }

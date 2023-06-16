@@ -31,7 +31,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	}
 
 	@Override
-	public void delete(int state,int cookNo) {
+	public void delete(int cookNo) {
 		CookingClass cookingclass= classRepo.findById(cookNo).get();
 		cookingclass.setCookNo(cookNo);
 		cookingclass.setState(1);
@@ -40,7 +40,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public List<CookingClass> selectAllClass() {
-		return classRepo.findAll();
+		return classRepo.findByState(0);
 	}
 
 	@Override
@@ -62,20 +62,17 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public CookingClass readClass(int cookNo) {
-		//return classRepo.findById(cookNo);
-		return null;
+		return classRepo.findById(cookNo).get();
 	}
 
 	@Override
 	public CookingClassContent readContent(int cookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return contentRepo.findById(cookNo).get();
 	}
 
 	@Override
 	public CookingClassCurriculum readCurriculum(int cookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return curriculumRepo.findById(cookNo).get();
 	}
 
 
@@ -92,9 +89,8 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 
 	@Override
-	public void insertCurriculum(CookingClassCurriculum curriculm) {
-		// TODO Auto-generated method stub
-		
+	public void insertCurriculum(CookingClassCurriculum curriculum) {
+		curriculumRepo.save(curriculum);
 	}
 
 

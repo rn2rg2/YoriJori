@@ -10,7 +10,7 @@ public interface CookingClassDAO {
 	public void insertClass(CookingClass cookingclass);
 	public void insertContent(CookingClassContent content);
 	public void insertCurriculum(CookingClassCurriculum curriculum);
-	public void delete(int state,int cookNo);
+	public void delete(int cookNo);
 	public void updateClass(CookingClass cookingclass);
 	public void updateContent(CookingClassContent content);
 	public void updateCurriculum(CookingClassCurriculum curriculum);

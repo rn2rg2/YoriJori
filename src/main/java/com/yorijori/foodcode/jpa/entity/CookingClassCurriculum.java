@@ -20,7 +20,7 @@ public class CookingClassCurriculum {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int cookNo;
-	private String name;
-	private int time;
-	private int cur_no;
+	private String curName;
+	private String curTime;
+	private int curNo;
 }

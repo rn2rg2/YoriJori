@@ -14,67 +14,64 @@
 		href="/yorijori/common/css/recipe/recipeInsert.css">
 
 	<script>
-		$(document).ready(function() {
-			$('.summernote').summernote({
-				placeholder : 'content',
-				minHeight : 370,
-				maxHeight : null,
-				focus : false,
-				lang : 'ko-KR',
-				callbacks : { 
-	                //onImageUpload = 이미지 업로드시 작동하는 콜백함수
-	                onImageUpload : function(files, editor, welEditable) {
-	            // 파일 업로드(다중업로드를 위해 반복문 사용)
-	                for (var i = files.length - 1; i >= 0; i--) {
-	                        uploadSummernoteImageFile(files[i],
-	                        this);
-	                        }
-	                }
-	            }//end callbacks 
-			});
-			 function uploadSummernoteImageFile(file, editor) {
-		            data = new FormData();
-		            data.append("file", file);
-		            $.ajax({
-		                url : "summernoteImage",
-		                data : data,
-		                type : "POST",
-		                dataType : 'JSON',
-		                contentType : false,
-		                processData : false,
-		                success : function(data) {
-		                    //항상 업로드된 파일의 url이 있어야 한다.
-		                    $(editor).summernote('insertImage', contextPath+data.url);
-		                }
-		            });
-		            } 
-			$(".insert").on("click", function() {
-				$(this).toggleClass(".imp selected");
-			})
-			$("#class-plus").on("click", function() {
-				var copy_content1 = $("#copy-class").clone();
-				copy_content1.attr("style", "display='block'")
-				$("#classcon").append(copy_content1);
-			})
-			$("#teacher-plus").on("click", function() {
-				var copy_content2 = $("#copy-teacher").clone();
-				copy_content2.attr("style", "display='block'")
-				$("#teachercon").append(copy_content2);
-			})
-			$("#cur-plus").on("click", function() {
-				var copy = $("#copy-cur").clone();
-				$("#all-cur").append(copy);
-			})
-		});
+		$(document)
+				.ready(
+						function() {
+							$('.summernote')
+									.summernote(
+											{
+												placeholder : 'content',
+												minHeight : 370,
+												maxHeight : null,
+												focus : false,
+												lang : 'ko-KR',
+												callbacks: {
+													onImageUpload : function(files){
+														sendFile(files[0],this);
+													}
+												}
+
+
+											//end callbacks 
+											});
+							function sendFile(file, editor){
+								var data = new FormData();
+								data.append("file", file);
+								console.log(file);
+								$.ajax({
+									data : data,
+									type : "POST",
+									url : "SummerNoteImageFile",
+									contentType : false,
+									processData : false,
+									success : function(data){
+										console.log(data);
+										console.log(editor);
+										$(editor).summernote("insertImage",data.url);
+									}
+								});
+							}
+
+							$(".insert").on("click", function() {
+								$(this).toggleClass(".imp selected");
+							})
+							$("#cur-plus").on("click", function() {
+								var copy = $("#copy-cur").clone();
+								copy.children("#name").val('')
+								copy.children("#time").val('')
+								$("#all-cur").append(copy);
+							})
+						});
 	</script>
 </th:block>
 <th:block layout:fragment="content">
-	<form action="/cookingclass/in">
+	<form action="/yorijori/cookingclass/in" method="post">
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="menu-h3-common">쿠킹 클래스 등록</h3>
-					<input hidden="" name="userId" th:value="${session.userInfo.userId}">
+					<input hidden="" name="userId"
+						th:value="${session.userInfo.userId}">
 
 					<div class="form-group form-insert">
 						<label>클래스 제목</label> <input type="text"
@@ -92,10 +89,14 @@
 							class="insert-control price" id="" placeholder="" name="time">
 						분
 					</div>
+					<div class="form-group form-insert inline">
+						<label>카테고리</label> <input type="text"
+							class="insert-control price" id="" placeholder="" name="category">
+					</div>
 					<div class="form-group form-insert">
-						<label>클래스 썸네일</label>
-						<input type="button" value="사진추가" name="thumbnail">
-						
+						<label>클래스 썸네일</label> <input type="button" value="사진추가"
+							name="thumbnail">
+
 					</div>
 				</div>
 			</div>
@@ -106,28 +107,12 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group form-insert cookclass" id="classcon">
-						<label>클래스 소개<a>(사진 세개까지 첨부가능)</a></label>
-						<div id="copy-class" style="display: none;">
-							<div class="line-title"
-								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-								<textarea class="insert-control des subheading" id="des"
-									placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-							</div>
-							<textarea class="summernote" name="editordata"></textarea>
-						</div>
+						<label>클래스 소개</label>
 						<div id="class-content">
-							<div class="line-title"
-								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-								<textarea class="insert-control des subheading" id="des"
-									placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-							</div>
-							<textarea class="summernote" name="editordata"></textarea>
+						<input hidden="" name="conCategory" value="클래스 소개">
+							<textarea class="summernote" name="content"></textarea>
 						</div>
 					</div>
-					<a class="plus" id="class-plus"><i
-						class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
 				</div>
 			</div>
 		</div>
@@ -137,28 +122,13 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group form-insert cookclass" id="teachercon">
-						<label>강사 소개<a>(사진 세개까지 첨부가능)</a></label>
-						<div id="copy-teacher" style="display: none;">
-							<div class="line-title"
-								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-								<textarea class="insert-control des subheading" id="des"
-									placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-							</div>
-							<textarea class="summernote" name="editordata"></textarea>
-						</div>
+						<label>강사 소개</label>
 						<div id="teacher-content">
-							<div class="line-title"
-								style="padding: 0px 0px 0px 10px; text-align: left; letter-spacing: -0.05em; font-size: 180%; border-left-color: #000; border-left-width: 4px; border-left-style: solid;">
-								<textarea class="insert-control des subheading" id="des"
-									placeholder="빨간 딸기와 새하얀 생크림의 만남!
-딸기생크림케이크" name="pswd"></textarea>
-							</div>
-							<textarea class="summernote" name="editordata"></textarea>
+							<input hidden="" name="conCategory" value="강사 소개">
+							<textarea class="summernote" name="content"></textarea>
 						</div>
 					</div>
-					<a class="plus" id="teacher-plus"><i
-						class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a>
+
 				</div>
 			</div>
 		</div>
@@ -166,21 +136,16 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group form-insert cookclass">
-						<label>커리큘럼</label>
-						<ul style="display: none;">
-							<li id="copy-cur"><input type="text"
-								class="insert-control cur" id="" placeholder="재료 준비 및 손질"
-								name=""><input type="text" class="insert-control time"
-								id="" placeholder="10" name=""> 분</li>
-						</ul>
+						<label id="cur">커리큘럼<a class="cur-plus" id="cur-plus"><i
+								class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a></label>
+				
 						<ul id="all-cur">
-							<li><input type="text" class="insert-control cur" id=""
-								placeholder="재료 준비 및 손질" name=""><input type="text"
-								class="insert-control time" id="" placeholder="10" name="">
+							<li id="copy-cur"><input type="text" class="insert-control cur" id="name"
+								placeholder="재료 준비 및 손질" name="curName" value=""><input type="text"
+								class="insert-control time" id="time" placeholder="10" name="curTime" value="">
 								분</li>
 						</ul>
-						<a class="cur-plus" id="cur-plus"><i
-							class="fa-sharp fa-solid fa-circle-plus"></i> 추가</a>
+
 					</div>
 				</div>
 			</div>
@@ -188,7 +153,7 @@
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
-				<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
+					<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
 				</div>
 			</div>
 		</div>
