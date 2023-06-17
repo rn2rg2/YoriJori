@@ -12714,6 +12714,13 @@ body.popup-opened::before {
     margin-bottom: 30px;
     font-family: 'Pretendard-Regular';
 }
+#heart-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   z-index: 9999; /* Adjust the value as needed */
+}
 
 /* .main-section-content{
 	position:relative;

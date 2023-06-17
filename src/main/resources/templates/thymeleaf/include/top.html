@@ -3,6 +3,7 @@
 <!-- Navbar Start -->
 <!-- 	<header id="header" class="header ftco-section" th:fragment="top"> -->
 <th:block th:fragment="top">
+	<script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 	<header class="ftco-section header-section">
 		<div class="header-inner">
 			<h1 class="logo">
@@ -10,8 +11,9 @@
 			</h1>
 			<div class="util" th:if="${session.userInfo == null}">
 				<ul>
-					<li><button th:if="${session.userInfo == null}" id="openButton"
-							onclick="openGreetingPopup()" style="color: #DD4A48">로그인</button></li>
+					<li><button th:if="${session.userInfo == null}"
+							id="openButton" onclick="openGreetingPopup()"
+							style="color: #DD4A48">로그인</button></li>
 					<li><a href="/yorijori/member/signup1">회원가입</a></li>
 					<li><a href="/yorijori/cs/help">고객센터</a></li>
 				</ul>
@@ -136,8 +138,8 @@
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="/yorijori/recipe/list">레시피 목록</a>
 								<a class="dropdown-item" href="/yorijori/recipe/insert">레시피
-									등록 </a> <a class="dropdown-item" href="/yorijori/ingredient/list/0/12">재료
-									목록 </a>
+									등록 </a> <a class="dropdown-item"
+									href="/yorijori/ingredient/list/0/12">재료 목록 </a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
 							class="nav-link dropdown-toggle" id="dropdown04"
@@ -162,7 +164,8 @@
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="/yorijori/cookingclass/list">목록보기</a>
 								<a class="dropdown-item" href="/yorijori/cookingclass/in">클래스등록</a>
-								<a class="dropdown-item" href="/yorijori/cookingclass/Instructor">강사목록</a> <a
+								<a class="dropdown-item"
+									href="/yorijori/cookingclass/Instructor">강사목록</a> <a
 									class="dropdown-item" href="#">문의</a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
@@ -193,10 +196,12 @@
 			style="width: 40px; height: 40px; border-radius: 15px;" />
 
 		</a>
-
+		<!-- 좋아요 표시되는  -->
+		<div id="heart-container"></div>
 
 		<script src="/yorijori/common/js/common/top.js"></script>
 		<script src="/yorijori/common/js/common.js"></script>
+		<script src="/yorijori/common/js/common/clickHeart.js"></script>
 
 	</header>
 	<script type="text/javascript">
@@ -225,6 +230,7 @@
 			}
 		});
 	</script>
+	
 </th:block>
 
 <!-- HEADER -->
