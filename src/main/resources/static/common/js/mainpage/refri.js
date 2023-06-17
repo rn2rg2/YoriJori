@@ -72,29 +72,20 @@ const make_list = function(page){
 	console.log(page);
 	const url = "/yorijori/ingredient/getListByPage";
 	let param = {"page":page, "pagePerCount" : pagePerCount}
-	getAjax(url, param, function (data){
-		//console.log(data);
+	postAjax(url, param, function (data){
+		console.log(data);
 		
 	})
 	
+}
+
+const clean_refri = function(){
+	$('.refri-top').empty();
+	$('.refri-bottom').empty();
 }
 
 
 /*
  * 실행시 load되는 곳
  */
-$(document).ready(function(){
-	// 재료 전체 수
-	var totalPages = $('#countVal').val();
-	// 페이지별 개수
-	const pageId = $('#pagination_div');
-	const visiblePages = 6;
-	
-	/*
-	 * 페이지 네이션 생성
-	 */
-	makePagination(pageId, totalPages , visiblePages, make_list);
-	
-	
-	});
 

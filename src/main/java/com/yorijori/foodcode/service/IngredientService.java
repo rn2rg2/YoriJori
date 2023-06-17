@@ -20,4 +20,6 @@ public interface IngredientService {
 
 	List<Ingredients> selectBySearch(int pageNo, String category, String searchData);
 
+	List<Ingredients> selectByPagePerCount(int pageNo, int pagePerCount);
+
 }

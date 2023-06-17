@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,11 +53,10 @@ public class IngredientController {
 		return "thymeleaf/recipe/ingredient";
 	}
 
-	@GetMapping("/getListByPage")
+	@PostMapping("/getListByPage")
 	@ResponseBody
 	public List<Ingredients> getListByPage(int page, int pagePerCount) {
-		System.out.println(page);
-		List<Ingredients> list = null;
+		List<Ingredients> list = ingredientService.selectByPagePerCount(page, pagePerCount);
 		return list;
 	}
 	

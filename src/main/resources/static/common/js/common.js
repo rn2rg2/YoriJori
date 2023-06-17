@@ -509,6 +509,26 @@ function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
 }
 
 
+function makePageAjax(div_id, totalPages, visiblePages, fn) {
+	div_id.twbsPagination({
+		totalPages : totalPages,
+		// 페이지당 보이는 글의수는
+		visiblePages : visiblePages,
+		// " « "라는 문자열로 최신글 방향을 표시
+		first : '<span sris-hidden="true">«</span>',
+		// " » "라는 문자열로 마지막글 방향을 표시
+		last : '<span sris-hidden="true">»</span>',
+
+		prev : "이전",
+		next : "다음",
+		initiateStartPageClick : false, // onPageClick 자동호출 방지
+		onPageClick : function(event, page) {
+			console.log(page);
+			fn(page - 1);
+		}
+	});
+}
+
 
 
 

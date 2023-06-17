@@ -49,6 +49,13 @@ public class IngredientServiceImpl implements IngredientService {
 	public long countAll() {
 		return ingredientDAO.countAll();
 	}
+	
+	@Override
+	public List<Ingredients> selectByPagePerCount(int pageNo, int pagePerCount) {
+		List<Ingredients> list = null;
+			list = ingredientDAO.selectByPagePerCount(pageNo,pagePerCount);
+		return list;
+	}
 
 	@Override
 	public List<Ingredients> selectByPage(int pageNo, String category) {
