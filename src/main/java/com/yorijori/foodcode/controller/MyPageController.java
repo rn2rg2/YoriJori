@@ -27,15 +27,6 @@ public class MyPageController {
 	public String chat() {
 		return "thymeleaf/mypage/chat";
 	}
-	@RequestMapping("/refri")
-	public String refri(Model model) {
-		int count = 40;
-		model.addAttribute("count", count);
-		return "thymeleaf/mypage/refri";
-	}
-	@RequestMapping("/tray")
-	public String tray() {
-		return "thymeleaf/mypage/tray";
-	}
+
 
 }
