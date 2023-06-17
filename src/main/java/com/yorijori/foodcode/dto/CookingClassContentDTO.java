@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class CookingClassContentDTO {
 	private int contentNo;
 	private int cookNo;
-	private String subTitle;
-	private String category;
+	private String conCategory;
 	private String content;
 }

@@ -19,7 +19,6 @@ public class CookingClassContent {
 	@Id
 	private int contentNo;
 	private int cookNo;
-	private String subTitle;
-	private String category;
+	private String conCategory;
 	private String content;
 }

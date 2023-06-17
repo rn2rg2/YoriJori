@@ -23,8 +23,8 @@ public class CookingClassServiceImpl implements CookingClassService {
 
 
 	@Override
-	public void delete(int state,int cookNo) {
-		dao.delete(state, cookNo);
+	public void delete(int cookNo) {
+		dao.delete(cookNo);
 	}
 
 	@Override
@@ -35,6 +35,8 @@ public class CookingClassServiceImpl implements CookingClassService {
 	@Override
 	public void insert(CookingClass cookingclass, CookingClassContent content, CookingClassCurriculum curriculum) {
 		dao.insertClass(cookingclass);
+		content.setCookNo(cookingclass.getCookNo());
+		curriculum.setCookNo(cookingclass.getCookNo());
 		dao.insertContent(content);
 		dao.insertCurriculum(curriculum);
 	}
@@ -50,22 +52,19 @@ public class CookingClassServiceImpl implements CookingClassService {
 
 	@Override
 	public CookingClass readClass(int cookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.readClass(cookNo);
 	}
 
 
 	@Override
 	public CookingClassContent readContent(int cookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.readContent(cookNo);
 	}
 
 
 	@Override
 	public CookingClassCurriculum readCurriculum(int cookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.readCurriculum(cookNo);
 	}
 
 	

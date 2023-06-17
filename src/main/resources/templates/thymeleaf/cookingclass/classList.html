@@ -57,7 +57,7 @@
 				<div class="sidebar">
 					<div class="widget border-0">
 						<div class="search">
-							<input class="form-control" type="text" placeholder="검색">
+							<th:block th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,inputId,btnId)}">
 						</div>
 					</div>
 					<div class="widget">
@@ -73,22 +73,17 @@
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input"
 										id="dateposted1"> <label class="custom-control-label"
-										for="dateposted1">조회 순</label>
+										for="dateposted1">이름 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input"
 										id="dateposted2"> <label class="custom-control-label"
-										for="dateposted2">좋아요 순</label>
+										for="dateposted2">등록 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input"
 										id="dateposted3"> <label class="custom-control-label"
-										for="dateposted3">댓글 많은 순</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted4"> <label class="custom-control-label"
-										for="dateposted4">등록 순</label>
+										for="dateposted3">신청자 많은 순</label>
 								</div>
 							</div>
 						</div>
@@ -225,7 +220,6 @@
 				<div class="row" id="list">
 				
 				
-				
 					<div class="col-sm-6 col-lg-4 mb-4" th:each="class:${classList}">
 						<div class="candidate-list candidate-grid">
 							<div class="candidate-list-image">
@@ -255,7 +249,7 @@
 									</div>
 								</div>
 								<div class="candidate-list-favourite-time">
-									<a class="candidate-list-favourite order-2" href="#"></a> <span
+									<a class="candidate-list-favourite order-2" href="#프로필조회?"><!-- <img th:src="${class.userId}"> --></a> <span
 										class="candidate-list-time order-1"><i
 										class="far fa-clock pr-1"></i><span th:text="${class.date}"></span></span>
 								</div>

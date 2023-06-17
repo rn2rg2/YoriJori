@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CookingClassCurriculumDTO {
 	private int id;
 	private int cookNo;
-	private String name;
-	private int time;
-	private int cur_no;
+	private String curName;
+	private int curTime;
+	private int curNo;
 }

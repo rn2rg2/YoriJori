@@ -76,6 +76,9 @@ swiper-slide .class-title {
 .swiper-pagination-bullets {
 	background: #f67a42;
 }
+.order-2 img{
+	 object-fit: cover;
+}
 /* 타이틀 */
 .borderx{
 	border: 0;
