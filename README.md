@@ -15,3 +15,10 @@ Spring Boot
 - Spring Boot DevTools
 - MySQL Driver
 - Mybatis
+- Spring boot JPA
+
+관련 라이브러리 및 플러그인 
+- mo.js ( 좋아요 애니메이션 )
+- twbsPagination.js ( 페이지네이션 )
+- bootstrap-select ( select box )
+- sweetalert2 ( alert 창 custom )
