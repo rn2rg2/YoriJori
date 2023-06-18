@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,17 +16,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="recipe_qa")
+@ToString(exclude = {"recipeNo"})
 public class RecipeQa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int qaNo;
-	private int recipeno;
+	//private int recipeNo;
 	private String userId;
 	private String contents;
 	private boolean depthLevel;
@@ -33,4 +37,8 @@ public class RecipeQa {
 	@UpdateTimestamp
 	private Date upDate;
 	private int state; //default 0
+	
+	@ManyToOne
+	@JoinColumn(name = "recipeNo", nullable=false)
+	private Recipe recipeNo;
 }
