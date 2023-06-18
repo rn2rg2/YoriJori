@@ -28,15 +28,13 @@ swiper-slide img {
 	opacity: 0.8;
 }
 
-swiper-slide .class-price {
+.class-price{
 	position: absolute;
-	bottom: 0px;
-	right: 20px;
+	top: 4rem;
+	left: 10px;
 	color: #000;
-	font-size: 80px;
-		font-family: 'NanumSeongSirCe';
-	font-style:italic;
-	font-weight:bold;
+	font-family: 'NanumSeongSirCe';
+	font-size: 50px;
 	text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
 }
 swiper-slide .class-title {
