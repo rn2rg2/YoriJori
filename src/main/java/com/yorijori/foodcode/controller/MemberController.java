@@ -47,6 +47,9 @@ public class MemberController {
 
         if (loginUser != null && loginUser.getPass().equals(userPassword)) {
         	session.setAttribute("userInfo", loginUser);
+        	if (loginUser.getRole().equals("관리자")) {
+        		return "redirect:/admin/main";
+        	}
             return "thymeleaf/index";
         }
         return "thymeleaf/member/loginpage";

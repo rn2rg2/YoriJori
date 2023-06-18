@@ -25,7 +25,7 @@ public class UserFrige{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String userId;
-	private int mailNo;
+	private int matlNo;
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp

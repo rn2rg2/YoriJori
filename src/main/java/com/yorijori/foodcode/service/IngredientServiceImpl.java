@@ -49,6 +49,10 @@ public class IngredientServiceImpl implements IngredientService {
 	public long countAll() {
 		return ingredientDAO.countAll();
 	}
+	@Override
+	public long countAllBySearchData(String matlName) {
+		return ingredientDAO.countByMatlNameContaining(matlName);
+	}
 	
 	@Override
 	public List<Ingredients> selectByPagePerCount(int pageNo, int pagePerCount) {
@@ -69,8 +73,9 @@ public class IngredientServiceImpl implements IngredientService {
 	}
 	
 	@Override
-	public List<Ingredients> selectBySearch(int pageNo, String category, String searchData) {
-		return ingredientDAO.selectBySearch(pageNo, category, searchData);
+	public List<Ingredients> selectBySearch(int pageNo, String category, String searchData, int pagePerCount) {
+		return ingredientDAO.selectBySearch(pageNo, category, searchData, pagePerCount);
 	}
+	
 
 }

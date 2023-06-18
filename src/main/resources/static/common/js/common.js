@@ -22,16 +22,13 @@ function isNull(input) {
 
 }
 
-
-
 /**
  * 
  * 입력값이 스페이스 이외의 의미있는 값이 있는지 체크한다
  * 
  * if (isEmpty(form.keyword)){
  * 
- * alert('값을 입력하여주세요');
- *  }
+ * alert('값을 입력하여주세요'); }
  * 
  */
 
@@ -51,14 +48,9 @@ function isEmpty(input) {
  * sweetalert
  * 
  */
-function error_alert(msg, input){
-	Swal.fire(
-	        msg,
-	        '<b style="color:red;">'+input+'</b>칸을 확인해주세요',
-	        'error'
-	      )
+function error_alert(msg, input) {
+	Swal.fire(msg, '<b style="color:red;">' + input + '</b>칸을 확인해주세요', 'error')
 }
-
 
 /**
  * 
@@ -68,8 +60,7 @@ function error_alert(msg, input){
  * 
  * if (containsChars(form.name, "!,*&^%$#@~;")){
  * 
- * alert("특수문자를 사용할수 없습니다");
- *  }
+ * alert("특수문자를 사용할수 없습니다"); }
  * 
  */
 
@@ -97,8 +88,7 @@ function containsChars(input, chars) {
  * 
  * if (containsChars(form.name, "ABO")){
  * 
- * alert("혈액형 필드에는 A,B,O 문자만 사용할수 있습니다.");
- *  }
+ * alert("혈액형 필드에는 A,B,O 문자만 사용할수 있습니다."); }
  * 
  */
 
@@ -120,8 +110,7 @@ function containsCharsOnly(input, chars) {
 
 /**
  * 
- * 입력값이 알파벳인지 체크
- * * 
+ * 입력값이 알파벳인지 체크 *
  */
 
 function isAlphabet(input) {
@@ -244,8 +233,7 @@ function isValidFormat(input, format) {
  * 
  * if (!isValidEmail(form.email)){
  * 
- * alert("올바른 이메일 주소가 아닙니다");
- *  }
+ * alert("올바른 이메일 주소가 아닙니다"); }
  * 
  */
 
@@ -277,8 +265,7 @@ function isValidPhone(input) {
  * 
  * if (getByteLength(form.title) > 100){
  * 
- * alert("제목은 한글 50자 (영문 100자) 이상 입력할수 없습니다");
- *  }
+ * alert("제목은 한글 50자 (영문 100자) 이상 입력할수 없습니다"); }
  * 
  */
 
@@ -442,12 +429,11 @@ function fn_nowDate(gubun) {
 
 }
 /*
-사이 공백 제거 함수
-*/
-function replaceSpace(data){
-	return data.replace(/ /g,"");
+ * 사이 공백 제거 함수
+ */
+function replaceSpace(data) {
+	return data.replace(/ /g, "");
 }
-
 
 /*
  * ajax 함수 Get
@@ -482,16 +468,17 @@ function error_run(obj, msg, statusMsg) {
 	alert("오류발생 === > " + obj + "," + msg + "," + statusMsg);
 }
 /*
- * pagination
- * makePagination(pagination 띄울 페이지, 전체 페이지 수 ( 전체 게시물 / 한화면 게시물 ), 현재페이지, 실행할 함수) 
+ * pagination makePagination(pagination 띄울 페이지, 전체 페이지 수 ( 전체 게시물 / 한화면 게시물 ),
+ * 현재페이지, 실행할 함수)
  */
 
 function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
+
 	div_id.twbsPagination({
 		totalPages : totalPages,
 		// 페이지당 보이는 글의수는
 		visiblePages : visiblePages,
-		// 로딩시 뜨는 페이지 
+		// 로딩시 뜨는 페이지
 		startPage : currentPage,
 		// " « "라는 문자열로 최신글 방향을 표시
 		first : '<span sris-hidden="true">«</span>',
@@ -508,8 +495,8 @@ function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
 	});
 }
 
-
 function makePageAjax(div_id, totalPages, visiblePages, fn) {
+	// Destroy existing pagination if it exists
 	div_id.twbsPagination({
 		totalPages : totalPages,
 		// 페이지당 보이는 글의수는
@@ -523,16 +510,7 @@ function makePageAjax(div_id, totalPages, visiblePages, fn) {
 		next : "다음",
 		initiateStartPageClick : false, // onPageClick 자동호출 방지
 		onPageClick : function(event, page) {
-			console.log(page);
 			fn(page - 1);
 		}
 	});
 }
-
-
-
-
-
-
-
-

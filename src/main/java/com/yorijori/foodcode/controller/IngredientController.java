@@ -43,7 +43,7 @@ public class IngredientController {
 	
 	@RequestMapping("/list/{page}/{category}/{searchData}")
 	public String getListByCategory(@PathVariable int page,@PathVariable String category, @PathVariable String searchData, Model model) {
-		List<Ingredients> list = ingredientService.selectBySearch(page, category, searchData);
+		List<Ingredients> list = ingredientService.selectBySearch(page, category, searchData, 12);
 		model.addAttribute("page", page);
 		model.addAttribute("count", list.size());
 		model.addAttribute("list", list);
@@ -59,6 +59,17 @@ public class IngredientController {
 		List<Ingredients> list = ingredientService.selectByPagePerCount(page, pagePerCount);
 		return list;
 	}
-	
+    @PostMapping("/getListBySearchData")
+	@ResponseBody
+	public List<Ingredients> getListByPage(int page, int pagePerCount, 	String searchData) {
+		List<Ingredients> list = ingredientService.selectBySearch(page, "all", searchData, pagePerCount);
+		return list;
+	}
+	@PostMapping("/getListCount")
+	@ResponseBody
+	public long getListByPage(String searchData) {
+		long count = ingredientService.countAllBySearchData(searchData);
+		return count;
+	}
 }
  

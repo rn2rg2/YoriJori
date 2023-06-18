@@ -16,6 +16,7 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	UserFrigeRepository frigerepository;
 	UserTrayRepository trayrepository;
 	UserTrayListRepository traylistrepository;
+	
 	@Autowired
 	public RefriTrayDAOImpl(UserFrigeRepository frigerepository, UserTrayRepository trayrepository,
 			UserTrayListRepository traylistrepository) {
