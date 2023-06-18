@@ -175,7 +175,7 @@
 			// 총 페이지지 네이션 수 
 			let totalPages = 1;
 			if ( dataCount > pagePerCount ){
-				totalPages = dataCount/pagePerCount
+				 totalPages =Math.ceil( dataCount/pagePerCount );
 			}
 			// 카테고리
 			let category = [[${category}]];
