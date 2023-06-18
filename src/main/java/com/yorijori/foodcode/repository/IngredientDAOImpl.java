@@ -51,6 +51,10 @@ public class IngredientDAOImpl implements IngredientDAO {
 		return repository.count(); 
 	}
 	@Override
+	public long countByMatlNameContaining(String matlName) {
+		return repository.countByMatlNameContaining(matlName); 
+	}
+	@Override
 	public List<Ingredients> selectByPagePerCount(int pageNo,int pagePerCount) {
 		// TODO Auto-generated method stub
 		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, "matlNo"));
@@ -76,9 +80,9 @@ public class IngredientDAOImpl implements IngredientDAO {
 		return list;
 	}
 	@Override
-	public List<Ingredients> selectBySearch(int pageNo, String category, String searchData) {
+	public List<Ingredients> selectBySearch(int pageNo, String category, String searchData, int pagePerCount) {
 		// TODO Auto-generated method stub
-		PageRequest pageRequest = PageRequest.of(pageNo, 12, Sort.by(Sort.Direction.DESC, "matlNo"));
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "matlNo"));
 		Page<Ingredients> page = null;
 		if (category.equals("all")) {
 			page = repository.findByMatlNameContaining(searchData,pageRequest);

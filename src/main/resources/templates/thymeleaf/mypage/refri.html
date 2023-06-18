@@ -4,9 +4,8 @@
 	layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <th:block layout:fragment="content">
 	<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
-	<div class="container-fluid refri-div" >
+	<div class="container-fluid refri-div">
 		<h3 class="menu-h3-common">나만의 냉장고</h3>
-		<input type="hidden" id="countVal" th:value="${count}" />
 		<div class="row">
 			<div class="col-md-8 refri-image drop-targets">
 				<div class="refri-top box"></div>
@@ -20,14 +19,14 @@
 					</div> -->
 				</div>
 				<div id="searbar_ingredient"
-							th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+					th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 				<div>
 
 					<!-- 레시피 목록 보기  -->
 					<div class="ingredient_list_view mb-3">
 						<div class="row" id="list_page">
 							<!-- Gallery item -->
-							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+							<!-- <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
 								<div class="bg-white rounded shadow-sm item recipe_info"
 									draggable="true">
 									<img
@@ -39,86 +38,9 @@
 										</h5>
 									</div>
 								</div>
-							</div>
-							<!-- End -->
-							<!-- Gallery item -->
-							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://t1.daumcdn.net/cfile/tistory/2342CD34556020C510"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id2">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">재료 2</a>
-										</h5>
-									</div>
-								</div>
-							</div>
+							</div> -->
 							<!-- End -->
 
-							<!-- Gallery item -->
-							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="data:image/jpeg;base64,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"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id3">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">재료 3</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End -->
-						<div class="row">
-							<!-- Gallery item -->
-							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUYRW8nEfqZdinPCx00FAuwMdW70t2LtRfiQ&usqp=CAU"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id4">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">재료 4</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-							<!-- End -->
-							<!-- Gallery item -->
-							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAjs6ygM0TIwCRus0mI-1oBeMWDkidr6aHcg&usqp=CAU"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id5">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">재료 5</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-							<!-- End -->
-							<!-- Gallery item -->
-							<div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT97vNWaetqlR92_4BC9z84czcHGWel1G1AA&usqp=CAU"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id6">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">재료 6</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-							<!-- End -->
 						</div>
 					</div>
 
@@ -129,10 +51,10 @@
 						class="btn-group align-items-center justify-content-center about_tray_btn mb-2"
 						role="group">
 
-						<button class="btn btn-success m-sm-1" type="button" id="clearRefriBtn" >냉장고
-							초기화</button>
-						<button class="btn btn-success m-sm-1" type="button" id="registerRefriBtn">냉장고
-							등록</button>
+						<button class="btn btn-success m-sm-1" type="button"
+							id="clearRefriBtn">냉장고 초기화</button>
+						<button class="btn btn-success m-sm-1" type="button"
+							id="registerRefriBtn">냉장고 등록</button>
 					</div>
 				</div>
 
@@ -220,48 +142,44 @@
 			let url = "/yorijori/ingredient/list";
 			// 검색 데이터
 			let searchData = "";
-
+			if( [[${searchData}]] != null ){
+				searchData = [[${searchData}]];
+			}
+			let flag = true;
 			$(document).ready(function() {
+					make_list(0);
 					// 서치 데이터가 있는 경우 input box에 표시
 					if (searchData != null ) {
 						$("#inputSearchData").val(searchData);
 					}
-					
-					//카테고리 체크 상태 유지
-					$('.custom-control-label').each(function(index, item){
-						var inputbox = $(this).siblings('.custom-control-input')
-						if ( replaceSpace(item.textContent) == category ) {
-							inputbox.prop('checked', true);
-						};
-						
-					});
-					
 				  	// pagination 들어갈 div
 					const pageId = $('#pagination_div');
 					//페이지 클릭시 실행 될 함 수 
 					const move_list = function(page) {
-						window.location.href = url + "/" + page + "/" + category; 
+						make_list(page);
 					}
+						
+					const move_search_list = function(page){
+						make_search_list(page);
+					} 
 					// pagination init
 					makePageAjax(pageId, totalPages, pagePerCount,move_list);
 					
 					// 검색 입력 후 엔터 클릭이벤트
 					$("#inputSearchData").on("keyup",function(key){
 						if(key.keyCode==13) {
-							fnSearch();
+							fnSearch(0);
 				        }
 					})
 					
 					// 검색 버튼 클릭 시 
 					$('#searchIngredient').click(function(){
-						fnSearch();
+						fnSearch(0);	
 					})
 					
 					// 검색 함수
-					const fnSearch = function(){
-						let searchData = $("#inputSearchData").val();
-						let url = "/yorijori/ingredient/list";
-						window.location.href = url + "/" + currentPage + "/" + searchData; 
+					const fnSearch = function(page){
+						move_search_list(page);
 					}
 					
 					$('#clearRefriBtn').click(function(){

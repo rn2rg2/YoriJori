@@ -20,8 +20,10 @@ public interface IngredientDAO {
 
 	List<Ingredients> selectByCategory(int pageNo, String category);
 
-	List<Ingredients> selectBySearch(int pageNo, String category, String searchData);
-
 	List<Ingredients> selectByPagePerCount(int pageNo, int pagePerCount);
+
+	long countByMatlNameContaining(String matlName);
+
+	List<Ingredients> selectBySearch(int pageNo, String category, String searchData, int pagePerCount);
 
 }
