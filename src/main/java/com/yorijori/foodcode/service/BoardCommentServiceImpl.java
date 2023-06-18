@@ -21,14 +21,13 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 
 	@Override
 	public BoardComment insert(BoardComment boardComment) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.insert(boardComment);
 	}
 
 	@Override
 	public List<BoardComment> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAll();
 	}
 
 	@Override
@@ -42,5 +41,18 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public long countAll() {
+		return dao.countAll();
+	}
+
+	@Override
+	public List<BoardComment> selectComment(int commNo) {
+		
+		return dao.selectComment(commNo);
+	}
+
+
 
 }

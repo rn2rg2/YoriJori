@@ -67,5 +67,15 @@ public class BoardServiceImpl implements BoardService {
 		//System.out.println(board.toString());
 		return dao.insert(board);
 	}
+	@Override
+	public long countAll() {
+		return dao.countAll();
+	}
+	@Override
+	public List<Board> selectByPage(int pageNo) {
+		// TODO Auto-generated method stub
+		return dao.selectByPage(pageNo);
+	}
+
 	
 }

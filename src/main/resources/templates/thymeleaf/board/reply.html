@@ -1,5 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:th="https://www.thymeleaf.org">
+
+
+
 <th:block th:fragment="content2">
 	<div class="main-section mb-5">
 		<div class="container bootstrap snippets bootdey">
@@ -8,24 +11,39 @@
 				<div class="col-md-12">
 					<div class="blog-comment">
 						<h2 class="text-success-comments">Comments</h2>
-						<textarea class="form-control" placeholder="댓글을 입력해주세요" rows="3"></textarea>
-						<br>
-						<button type="button" class="btn btn-info pull-right"
-							style="float: right;">Post</button>
+						<form id="myForm" action="/yorijori/board/boardCommentInsert" method="post">
+							<input type="hidden" name="commNo" th:value="${board.commNo}" />
+							<input type="hidden" name="userId" th:value="${session.userInfo.userId}" />
+							<input type="hidden" name="state" th:value="${board.state}" />
+							<textarea class="form-control" placeholder="댓글을 입력해주세요" rows="3" name="contents"></textarea>
+							<br>
+							<button type="submit" class="btn btn-info pull-right" style="float: right;">Post</button>
+						</form>
 						<div class="clearfix"></div>
 						<hr />
 						<ul class="comments">
-
-							<li class="clearfix"><img
-								src="https://bootdey.com/img/Content/user_2.jpg" class="avatar"
-								alt="">
+							<li class="clearfix" th:each="comment:${boardCommentList}">
+								<img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
 								<div class="post-comments">
-									<p class="meta">
-										2023/06/07 <a class="commentsName" href="#">김우딩</a> says : 
+									<p class="meta">	
+										<a class="commentsName" href="#"  th:text="|${comment.userId} ${comment.date}|"></a> says : 
 										<i class="pull-right" style="float: right;"><a href="#"><i class="fa-solid fa-trash"></i></a></i>
 									</p>
-									<p class="meta">우디가최고얌</p>
-								</div></li>
+									<p class="meta" th:text="${comment.contents}"></p>
+								</div>
+								<ul class="comments" th:if="${comment.displayOrderNo > 0}">
+									<li class="clearfix">
+										<img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+										<div class="post-comments">
+											<p class="meta">
+												<a class="commentsName" href="#" th:text="|${comment.userId} ${comment.date}|"></a> says : <i class="pull-right" style="float: right;"><a href="#"><small>Reply</small><i class="fa-solid fa-trash"></i></a></i>
+											</p>
+											<p class="meta" th:text="${comment.contents}" />
+										</div>
+									</li>
+								</ul>
+								
+							</li>
 						</ul>
 					</div>
 				</div>
