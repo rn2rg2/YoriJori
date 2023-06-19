@@ -25,6 +25,11 @@ public class ApiRecipeServiceImpl implements ApiRecipeService {
 	}
 	
 	@Override
+	public ApiRecipe selectByRcpSeq(int rcpSeq) {
+		return apiRecipeDAO.selectByRcpSeq(rcpSeq);
+	}
+	
+	@Override
 	public List<ApiRecipe> getServerRecipe(int page, int pagePerCount){
 		return apiRecipeDAO.selectListByPage(page, pagePerCount);
 	}

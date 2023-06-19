@@ -10,4 +10,6 @@ public interface ApiRecipeService {
 
 	long countAll();
 
+	ApiRecipe selectByRcpSeq(int rcpSeq);
+
 }

@@ -10,4 +10,6 @@ public interface ApiRecipeDAO {
 
 	long countAll();
 
+	ApiRecipe selectByRcpSeq(int rcpSeq);
+
 }

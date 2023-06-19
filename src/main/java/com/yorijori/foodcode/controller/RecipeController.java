@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeImg;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.RecipeService;
@@ -57,6 +58,19 @@ public class RecipeController {
 		return "thymeleaf/recipe/recipelist";
 	}
 
+
+	@RequestMapping("/insert")
+	public String insertRecipe(Model model) {
+		return "thymeleaf/recipe/recipeInsert";
+	}
+	
+	@RequestMapping("/view/server/{rcpSeq}")
+	public String serverView(Model model, @PathVariable int rcpSeq) {
+		ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
+		model.addAttribute("data", data);
+		return "thymeleaf/recipe/serverRecipeView";
+	}
+	
 	@RequestMapping("/list/servercount")
 	@ResponseBody
 	public Long listCount(Model model) {
@@ -65,10 +79,6 @@ public class RecipeController {
 		return result;
 	}
 
-	@RequestMapping("/insert")
-	public String insertRecipe(Model model) {
-		return "thymeleaf/recipe/recipeInsert";
-	}
 
 	@RequestMapping("/list/server/{pageNo}")
 	@ResponseBody
@@ -77,20 +87,7 @@ public class RecipeController {
 		System.out.println("list : " + list);
 		return list;
 	}
-	/*
-	 * //사용 안함
-	 * 
-	 * @RequestMapping(value = "/list/{type}/{pageNo}/{pagePerResult}", produces =
-	 * "application/text;charset=utf-8")
-	 * 
-	 * @ResponseBody public String getlistRecipe(@PathVariable String
-	 * type, @PathVariable String pageNo,
-	 * 
-	 * @PathVariable String pagePerResult, Model model) throws IOException { String
-	 * result = ""; if (type.equals("server")) { // server recipe result =
-	 * recipeAPI.getServerRecipe(pageNo, pagePerResult); result =
-	 * result.replaceAll(", ,", ", "); // 데이터에 ,, 두개가있는 부분이있음.... } return result; }
-	 */
+
 
 	// DB저장용 평상시 사용 x
 	@RequestMapping("/setting/{firstIdx}/{lastIdx}")

@@ -29,7 +29,7 @@ const makeList = function(data, index) {
 	// Create candidate-list-title div
 	var candidateListTitleDiv = $('<div>').addClass('candidate-list-title');
 	var title = $('<h5>').append(
-			$('<a>').attr('href', '/yorijori/recipe/view/'+data.rcpSeq).text(data.rcpNm));
+			$('<a>').attr('href', '/yorijori/recipe/view/server/'+data.rcpSeq).text(data.rcpNm));
 	candidateListTitleDiv.append(title);
 
 	// Create candidate-list-option div

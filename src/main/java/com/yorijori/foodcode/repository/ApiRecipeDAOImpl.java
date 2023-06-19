@@ -14,19 +14,25 @@ import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 @Repository
 public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	ApiRecipeRepository apiRecipeRepository;
-	
+
 	@Autowired
 	public ApiRecipeDAOImpl(ApiRecipeRepository apiRecipeRepository) {
 		super();
 		this.apiRecipeRepository = apiRecipeRepository;
 	}
+
 	@Override
 	public long countAll() {
 		return apiRecipeRepository.count();
 	}
 
 	@Override
-	public List<ApiRecipe> selectListByPage(int page, int pagePerCount){
+	public ApiRecipe selectByRcpSeq(int rcpSeq) {
+		return apiRecipeRepository.findByRcpSeq(rcpSeq);
+	}
+
+	@Override
+	public List<ApiRecipe> selectListByPage(int page, int pagePerCount) {
 		PageRequest pageRequest = PageRequest.of(page, pagePerCount, Sort.by(Sort.Direction.DESC, "rcpSeq"));
 		Page<ApiRecipe> pagedata = apiRecipeRepository.findAll(pageRequest);
 		List<ApiRecipe> list = pagedata.getContent();
