@@ -463,7 +463,29 @@ function postAjax(url, param, callback) {
 		error : error_run
 	});
 }
-
+function getAjaxNoParam(url, callback) {
+	$.ajax({
+		type : "GET",
+		url : url,
+		success : function(data, status, xr) {
+			return callback(data);
+		},
+		error : error_run
+	});
+}
+/*
+ * ajax 함수 Post
+ */
+function postAjaxNoParam(url, param, callback) {
+	$.ajax({
+		type : "POST",
+		url : url,
+		success : function(data, status, xr) {
+			return callback(data);
+		},
+		error : error_run
+	});
+}
 function error_run(obj, msg, statusMsg) {
 	alert("오류발생 === > " + obj + "," + msg + "," + statusMsg);
 }
