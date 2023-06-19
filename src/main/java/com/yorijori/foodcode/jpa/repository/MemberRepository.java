@@ -12,8 +12,9 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     UserInfo findByUserIdAndPass(String user_id, String pass);
     UserInfo findByKakaoID(String kakaoID);
-    
-    
+    UserInfo findByUserId(String userId);    
+    boolean existsByUserId(String userId);
+    boolean existsByNickname(String nickname);
     
 
 }

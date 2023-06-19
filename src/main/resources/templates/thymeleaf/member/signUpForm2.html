@@ -43,10 +43,12 @@ function fnSubmit (){
             window.confirmationMessage = areYouSure();
         });
     </script>
+	<script src="/yorijori/common/js/member/SingUpForm2.js"></script>
+	
 </th:block>
 <th:block layout:fragment="content">
 
-<form id="signup-form" method="post" action="/yorijori/member/signUp">
+<form id="signup-form" method="post" action="/yorijori/member/signUp" >
 
 <div class="join-container join-container2"
 		style="display: block;">
@@ -54,7 +56,6 @@ function fnSubmit (){
       <div class="row">
          <div class="col-md-12">
             <h3 class="menu-h3-common">회원가입</h3>
-		
 		<div class="join-area">
 			<fieldset class="form-group-area">
 				<legend style="font-size: 22px;">회원가입을 위해 항목을 작성해주세요</legend>
@@ -67,8 +68,8 @@ function fnSubmit (){
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
 						<input type="text" 
-							style="width: 88%" name="user_id"
-							id = "id"
+							style="width: 88%" name="userId"
+							id = "userId"
 							class="input-text w571 required-select" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
 							value=""> 
 							<span class="input-group-btn">
@@ -79,6 +80,10 @@ function fnSubmit (){
 							</span>
 					</div>
 				</div>
+			    <span class="failure-message hide">아이디는 네글자 이상이여야 합니다.</span>
+			    <span class="success-message hide">사용할 수 있는 아이디 입니다.</span>
+				
+				<br />
 				<br />
 				<div class="form-group">
 					<div class="form-head">
@@ -102,7 +107,7 @@ function fnSubmit (){
 						id="nickName" name="nickname"
 							class="input-text w571" placeholder="" value=""> 
 							<span class="input-group-btn">
-							<button type="button" id="btn-id-check"
+							<button type="button" id="btn-nickname-check"
 								class="btn-form btn-default-ex">
 								<span>중복확인</span>
 							</button>
@@ -271,7 +276,7 @@ function fnSubmit (){
 						</select>
 						<script>
 							new MultiSelectTag('preferredFood', {
-								rounded : true, // default true
+								rounded : true, // default true	
 								shadow : true
 							// default false
 							})
@@ -300,4 +305,6 @@ function fnSubmit (){
 	
 	</form>
 </th:block>
+	<script src="/yorijori/common/js/member/SingUpForm2_validator.js"></script>
+
 </html>
