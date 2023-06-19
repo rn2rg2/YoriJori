@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
+import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 import com.yorijori.foodcode.repository.CookingClassDAO;
 
 @Service
@@ -41,6 +42,7 @@ public class CookingClassServiceImpl implements CookingClassService {
 		String[] temp1=content.getContent().split(",");
 		String[] temp2=content.getConCategory().split(",");
 		for(int i=0;i<temp1.length;i++) {
+			content.setContentNo(content.getContentNo()+1);
 			content.setCookNo(cookingclass.getCookNo());
 			content.setContent(temp1[i]);
 			content.setConCategory(temp2[i]);
@@ -52,14 +54,13 @@ public class CookingClassServiceImpl implements CookingClassService {
 		temp2=curriculum.getCurTime().split(",");
 		for(int i=0;i<temp1.length;i++)
 		{
+			curriculum.setId(curriculum.getId()+1);
 			curriculum.setCookNo(cookingclass.getCookNo());
 			curriculum.setCurName(temp1[i]);
 			curriculum.setCurTime(temp2[i]);
 			curriculum.setCurNo(i+1);
 			dao.insertCurriculum(curriculum);
 		}
-		curriculum.setCookNo(cookingclass.getCookNo());
-		dao.insertCurriculum(curriculum);
 	}
 
 
@@ -78,14 +79,21 @@ public class CookingClassServiceImpl implements CookingClassService {
 
 
 	@Override
-	public CookingClassContent readContent(int cookNo) {
+	public List<CookingClassContent> readContent(int cookNo) {
 		return dao.readContent(cookNo);
 	}
 
 
 	@Override
-	public CookingClassCurriculum readCurriculum(int cookNo) {
+	public List<CookingClassCurriculum> readCurriculum(int cookNo) {
 		return dao.readCurriculum(cookNo);
+	}
+
+
+	@Override
+	public void insertImage(CookingClassImage image) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

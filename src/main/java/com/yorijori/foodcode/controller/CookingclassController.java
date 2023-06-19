@@ -50,11 +50,11 @@ public class CookingclassController {
 	@RequestMapping("/read")
 	public String showCookingclass(Model model, int cookNo) {
 		CookingClass cookingclass = service.readClass(cookNo);
-		CookingClassContent content = service.readContent(cookNo);
-		CookingClassCurriculum curriculum= service.readCurriculum(cookNo);
+		List<CookingClassContent> content = service.readContent(cookNo);
+		List<CookingClassCurriculum> curriculum= service.readCurriculum(cookNo);
 		model.addAttribute("cookingclass", cookingclass);
-		model.addAttribute("content", content);
-		model.addAttribute("curriculum", curriculum);
+		model.addAttribute("contentList", content);
+		model.addAttribute("curriculumList", curriculum);
 		return "thymeleaf/cookingclass/classRead";
 	}
 	@RequestMapping("/delete")
@@ -70,7 +70,6 @@ public class CookingclassController {
 	@PostMapping("/in")
 	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum) {
 		service.insert(cookingclass, content, curriculum);
-		
 		System.out.println(cookingclass);
 		System.out.println(content);
 		System.out.println(curriculum);
@@ -96,7 +95,7 @@ public class CookingclassController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
 			jsonObject.addProperty("url", "/yorijori/data/summernoteimage/"+savedFileName);
 			jsonObject.addProperty("responseCode", "success");
-			// 여기에서 DB처리
+			
 			
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
