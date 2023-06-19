@@ -30,7 +30,7 @@ public class MyPageController {
 		System.out.println(user);
 		System.out.println("Email ->> "+Email);
 		System.out.println("Nickname=>>>" + Nickname);
-		profileservice.updateprofile2(user, Email, Nickname);
+		profileservice.updateprofile2(user, Email, Nickname, session);
 		return "redirect:/mypage/profile";
 	}
 
