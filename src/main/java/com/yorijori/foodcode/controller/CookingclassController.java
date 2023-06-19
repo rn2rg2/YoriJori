@@ -23,12 +23,13 @@ import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.service.CookingClassService;
+import com.yorijori.foodcode.service.MemberService;
 @RequestMapping("/cookingclass")
 @Controller
 public class CookingclassController {
 	
 	CookingClassService service;
-	
+	MemberService memservice;
 	@Autowired
 	public CookingclassController(CookingClassService service) {
 		super();

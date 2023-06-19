@@ -10,8 +10,7 @@
 	<div class="container mb-5">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="menu-h3-common title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스
-					[딸기생크림케이크]</h3>
+				<h3 class="menu-h3-common title"><span th:text="${cookingclass.title}"></span></h3>
 				<div class="view2_pic">
 					<div class="centeredcrop">
 						<img id="main_thumbs"
@@ -21,17 +20,17 @@
 				</div>
 				<div class="view2_summary st2">
 					<div class="price_box">
-						<p class="dc">
+						<!-- <p class="dc">
 							63<small>%</small>
-						</p>
+						</p> -->
 
-						<p class="price">
-							30,000<small>원</small>
-						</p>
-						<p class="del">80,000원</p>
+						<p class="price" th:text="${cookingclass.price}">
+							
+						</p><span class="price">원</span>
+						<!-- <p class="del">80,000원</p> -->
 						<a class="app_block_link_remove user_info2_pic"><img
 							src="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/29/900013400086b533aef0411aeb3ee7d71.png"></a>
-						<div class="nickname">유저닉네임</div>
+						<div class="nickname" th:text="${}"></div>
 					</div>
 				</div>
 
