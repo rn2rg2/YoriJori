@@ -29,17 +29,45 @@
 	integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
 	crossorigin="anonymous" />
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$('input[name="comment-type"]').change(
-						function() {
-							if ($(this).is(':checked')) {
-								// 선택된 체크박스 외의 다른 체크박스들의 체크를 해제
-								$('input[name="comment-type"]').not(this).prop(
-										'checked', false);
-							}
-						});
-			});
+	/* 	$(document).ready(function() {
+	 $('input[name="commenttype"]').change(
+	 function() {
+	 if ($(this).is(':checked')) {
+	 // 선택된 체크박스 외의 다른 체크박스들의 체크를 해제
+	 $('input[name="comment-type"]').not(this).prop(
+	 'checked', false);
+	 }
+	 }); 
+	 //현재 내가 체크 한 값을 읽어오기
+	 });
+	 */
+	 $(document).ready(function() {
+		  // 초기값 설정
+		  $("#commenttype1").prop("checked", true);
+
+		  $(".custom-control-input").click(function() {
+		    var currentId = $(this).attr("id");
+
+		    // 댓글을 선택한 경우
+		    if (currentId === "commenttype1") {
+		      // 리뷰 체크 해제
+		      $("#commenttype2").prop("checked", false);
+		    }
+		    // 리뷰를 선택한 경우
+		    else if (currentId === "commenttype2") {
+		      // 댓글 체크 해제
+		      $("#commenttype1").prop("checked", false);
+		    }
+		  });
+
+		  // 댓글이나 리뷰가 선택되지 않은 경우 경고창 표시
+		  $(".custom-control-input").click(function() {
+		    if (!$("#commenttype1").prop("checked") && !$("#commenttype2").prop("checked")) {
+		 
+		      return false; // 폼 제출 중지
+		    }
+		  });
+		});
 </script>
 </head>
 <body>
@@ -62,9 +90,9 @@
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input"
-										id="commenttype1"> <label class="custom-control-label"
-										for="commenttype1">댓글</label>
-										<!-- id랑 for 도 동일해야 함 -->
+										id="commenttype1" checked="checked"> <label
+										class="custom-control-label" for="commenttype1">댓글</label>
+									<!-- id랑 for 도 동일해야 함 -->
 								</div>
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input"
