@@ -47,12 +47,6 @@ public class BoardDAOImpl implements BoardDAO {
 		return 0;
 	}
 
-	@Override
-	public int delete(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	@Override
 	public long countAll() {
@@ -65,6 +59,13 @@ public class BoardDAOImpl implements BoardDAO {
 		Page<Board> page = repository.findAll(pageRequest);
 		List<Board> list = page.getContent();
 		return list;
+	}
+
+	@Override
+	public void delete(int commNo) {
+		Board board=repository.findById(commNo).get();
+		board.setCommNo(commNo);
+		board.setState(1);
 	}
 
 

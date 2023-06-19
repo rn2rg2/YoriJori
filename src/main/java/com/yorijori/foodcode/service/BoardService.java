@@ -7,9 +7,8 @@ import com.yorijori.foodcode.jpa.entity.Board;
 public interface BoardService {
 	public Board insert(Board board);
 	List<Board> selectAll();
-
-	int update(Board board);
-	int delete(Board board);
+	void update(Board board);
+	void delete(int commNo);
 	long countAll();
 	List<Board> search();
 	List<Board> search(String tag,String data);

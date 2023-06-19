@@ -5,21 +5,23 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-
-
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
 import com.yorijori.foodcode.jpa.repository.BoardCommentRepository;
 @Repository
 public class BoardCommentDAOImpl implements BoardCommentDAO {
 	BoardCommentRepository repository;
+	SqlSession sqlSessionTemplate;
 	
 	@Autowired
-	public BoardCommentDAOImpl(BoardCommentRepository repository) {
+	public BoardCommentDAOImpl(BoardCommentRepository repository, SqlSession sqlSessionTemplate) {
 		super();
 		this.repository = repository;
+		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
 	@Override
@@ -38,7 +40,6 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 
 	@Override
 	public int update(BoardComment boardComment) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -55,9 +56,23 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 	}
 
 	@Override
-	public List<BoardComment> selectComment(int commNo) {
-		List<BoardComment> list = repository.findByCommNo(commNo);
-		return list;
+	public List<BoardDTO> selectComment(int commNo) {
+		/*
+		 * Sort sort1 = Sort.by("groupNo").ascending(); Sort sort2 =
+		 * Sort.by("displayOrderNo").ascending(); Sort sortAll = sort1.and(sort2);
+		 * //and를 이용한 연결 List<BoardComment> list = repository.findByCommNo(commNo);
+		 */
+		return sqlSessionTemplate.selectList("com.yorijori.board.selectComment", commNo);
+	}
+
+	@Override
+	public int updateGroupNo(BoardDTO boardDTO) {
+		return sqlSessionTemplate.update("com.yorijori.board.updateGroupNo", boardDTO);
+	}
+
+	@Override
+	public int insertCommnet(BoardDTO boardDTO) {
+		return sqlSessionTemplate.insert("com.yorijori.board.insertCommnet", boardDTO);
 	}
 
 

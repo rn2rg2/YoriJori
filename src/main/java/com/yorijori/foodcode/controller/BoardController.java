@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
 import com.yorijori.foodcode.service.BoardCommentService;
@@ -29,41 +30,50 @@ public class BoardController {
 		this.service = service;
 		this.commentService = commentService;
 	}
+	
+	//게시물 전체보기
 	@RequestMapping ("/list/{pageNo}")
 	public String boardList(Model model,@PathVariable String pageNo) {
-		List<Board> list =service.selectByPage(Integer.parseInt(pageNo));
+		List<Board> list = service.selectByPage(Integer.parseInt(pageNo));
 		model.addAttribute("boardlist",list);
 		System.out.println("aaaaaaaaaaaaaa"+list); 
 		return "thymeleaf/board/list";
 	}
+	
+	//게시물 상세보기
 	@RequestMapping("/read/{commNo}/{state}")
 	public String boardRead(@PathVariable int commNo, @PathVariable int state, HttpSession session, Model model) {
 		Board board = service.select(commNo);
-		List<BoardComment> boardCommentList = commentService.selectComment(commNo);
-		System.out.println("bbbbbbbbbbbbbbbbbbb"+boardCommentList);
+		List<BoardDTO> boardCommentList = commentService.selectComment(commNo);
 		model.addAttribute("boardCommentList", boardCommentList);
 		model.addAttribute("board", board);
 		return "thymeleaf/layout/boardLayout";
 	}
 	
+	//댓글 입력
 	@RequestMapping("/boardCommentInsert")
-	public String boardCommentInsert(BoardComment boardComment, Model model) {
-		commentService.insert(boardComment);
-		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();
+	public String boardCommentInsert(BoardDTO boardDTO, Model model) {
+		commentService.insertCommnet(boardDTO);
+		boardDTO.setGroup_no(boardDTO.getComm_no());
+		commentService.updateGroupNo(boardDTO);
+		return "redirect:/board/read/" + boardDTO.getComm_no() + "/" + boardDTO.getState();
 	}
 	
+	//댓글 전체 조회
 	@RequestMapping("/boardCommentList")
 	public String boardCommentList(BoardComment boardComment,Model model) {
-		List<BoardComment> boardCommentList = commentService.selectAll();
+		List<BoardDTO> boardCommentList = commentService.selectComment(boardComment.getCommNo());
 		model.addAttribute("boardCommentList", boardCommentList);
 		System.out.println("commmmmmment"+boardCommentList);
 		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();
 	}
+	
 	//게시판 글쓰기 view
 	@GetMapping("/write")
 	public String boardWrite(HttpSession session) {
 		return "thymeleaf/board/write";
 	}
+
 	//게시판 글쓰기 기능
 	@PostMapping("/write")
 	public String boardwrite(Board board) {
@@ -72,7 +82,13 @@ public class BoardController {
 		service.insert(board);
 		return "redirect:/board/list/0";
 	}
-	
+
+	//게시글 삭제
+	@GetMapping("/delete")
+	public String delete(int commNo) {
+		service.delete(commNo);
+		return "redirect:/board/list/0";
+	}
 	
 	
 }
