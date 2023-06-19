@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.yorijori.foodcode.dto.UserInfoDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -66,6 +68,8 @@ public class UserInfo {
 //	    return userinfo;
 //	}
 	
+	
+
 	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Recipe> recipeList = new ArrayList<Recipe>();
 	

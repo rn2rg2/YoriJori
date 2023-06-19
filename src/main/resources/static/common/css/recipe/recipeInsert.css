@@ -79,13 +79,18 @@ body{
 	box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5) !important;
 	border-color:  var(--main-theme-color-red);
 }
-.insert-drop::after{
+.insert-drop:after{
 	position: absolute;
-	right: 10px;
-	top:50%;
+	right: 20%;
+	bottom: 20%;
+	content: '\f0d7';
+	font-family: "Font Awesome 5 Free";
+	font-weight: bold;
+	color: white;
 }
 .category{
 	display: inline-block;
+	position: relative;
 }
 .last-button {
 	margin-right: 0;
