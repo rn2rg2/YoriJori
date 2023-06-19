@@ -29,6 +29,7 @@ public class UserWishListApi {
 	//private int rcpSeq;		//레시피번호
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable=false)
+	@JsonBackReference
 	private UserInfo userId;
 	
 	@ManyToOne
