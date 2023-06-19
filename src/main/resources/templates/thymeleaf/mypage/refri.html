@@ -45,8 +45,10 @@
 					</div>
 
 					<!-- 페이지네이션  -->
-					<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-					</nav>
+					<div id="pag">
+						<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
+						</nav>
+					</div>
 					<div
 						class="btn-group align-items-center justify-content-center about_tray_btn mb-2"
 						role="group">
@@ -145,25 +147,21 @@
 			if( [[${searchData}]] != null ){
 				searchData = [[${searchData}]];
 			}
-			let flag = true;
+			const getListCount = function(){
+				totalCount = dataCount;
+				loadPage(totalCount, pagePerCount, make_list);
+			}
 			$(document).ready(function() {
-					make_list(0);
+					
 					// 서치 데이터가 있는 경우 input box에 표시
 					if (searchData != null ) {
 						$("#inputSearchData").val(searchData);
 					}
 				  	// pagination 들어갈 div
 					const pageId = $('#pagination_div');
-					//페이지 클릭시 실행 될 함 수 
-					const move_list = function(page) {
-						make_list(page);
-					}
-						
-					const move_search_list = function(page){
-						make_search_list(page);
-					} 
 					// pagination init
-					makePageAjax(pageId, totalPages, pagePerCount,move_list);
+					make_list(0);
+					getListCount();
 					
 					// 검색 입력 후 엔터 클릭이벤트
 					$("#inputSearchData").on("keyup",function(key){
@@ -178,10 +176,26 @@
 					})
 					
 					// 검색 함수
-					const fnSearch = function(page){
-						move_search_list(page);
+					const fnSearch = function(){
+						let url = "/yorijori/ingredient/getListCount"
+						let totalCount = 0;
+						let pageSize = 6;
+						let searchData = $("#inputSearchData").val();
+							$.ajax({
+								url : url,
+								type : "post",
+								data : { "searchData" :searchData},
+								success : function(data){
+									console.log(data);
+
+									totalCount = data;
+									loadPage(totalCount, pageSize, make_search_list);
+								}
+								
+							})
 					}
 					
+					// 냉장고 초기화
 					$('#clearRefriBtn').click(function(){
 						clean_refri();
 					})

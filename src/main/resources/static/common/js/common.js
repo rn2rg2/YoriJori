@@ -497,6 +497,10 @@ function makePagination(div_id, totalPages, visiblePages, currentPage, fn) {
 
 function makePageAjax(div_id, totalPages, visiblePages, fn) {
 	// Destroy existing pagination if it exists
+	$('#pagination_div').twbsPagination('destroy');
+	$('#pagination_div').remove();
+	$('#pag').html('<div id="pagination_div" class="mb-3"></div>');
+
 	div_id.twbsPagination({
 		totalPages : totalPages,
 		// 페이지당 보이는 글의수는
