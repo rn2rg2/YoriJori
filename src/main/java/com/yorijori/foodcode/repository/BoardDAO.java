@@ -2,7 +2,6 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
-import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 
 public interface BoardDAO {
@@ -10,13 +9,17 @@ public interface BoardDAO {
 	public Board insert(Board board);
 	//게시물전체목록보기
 	List<Board> selectAll();
-	//게시물수정
-	int update(BoardDTO board);
+	
+	long countAll();
+	
+	List<Board> selectByPage(int pageNo);
+	//게시물수정	
+	int update(Board board);
 	//게시물삭제
-	int delete(BoardDTO board);
+	int delete(Board board);
 	//검색
-	List<Board> search(String tag,String data);
-	//카테고리검색
-	List<Board> findByCategory(String category);
+
 	Board select(int commNo);		
+	
+	
 }

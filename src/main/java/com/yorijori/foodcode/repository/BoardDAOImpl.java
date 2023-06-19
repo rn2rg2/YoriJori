@@ -3,10 +3,13 @@ package com.yorijori.foodcode.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.yorijori.foodcode.dto.BoardDTO;
+
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.repository.BoardRepository;
 @Repository
@@ -25,8 +28,6 @@ public class BoardDAOImpl implements BoardDAO {
 		//System.out.println(board.toString());
 
 		return repository.save(board);
-		
-
 	}
 
 	@Override
@@ -41,27 +42,31 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int update(BoardDTO board) {
+	public int update(Board board) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(BoardDTO board) {
+	public int delete(Board board) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+
 	@Override
-	public List<Board> search(String tag, String data) {
-		// TODO Auto-generated method stub
-		return null;
+	public long countAll() {
+		return repository.count(); 
 	}
 
 	@Override
-	public List<Board> findByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Board> selectByPage(int pageNo) {
+		PageRequest pageRequest = PageRequest.of(pageNo, 10, Sort.by(Sort.Direction.DESC,"commNo"));								
+		Page<Board> page = repository.findAll(pageRequest);
+		List<Board> list = page.getContent();
+		return list;
 	}
+
+
 
 }

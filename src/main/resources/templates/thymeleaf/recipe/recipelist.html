@@ -20,9 +20,9 @@
 				<div class="col-lg-3">
 					<div class="sidebar">
 						<div class="widget border-0">
-							<div class="search">
-								<input class="form-control" type="text" placeholder="검색">
-							</div>
+							<!-- 검색 창 init -->
+							<div id="searbar_ingredient"
+								th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
 						<div class="widget">
 							<div class="widget-title widget-collapse">
@@ -35,13 +35,15 @@
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input"
-											id="gender1"> <label class="custom-control-label"
-											for="gender1">공식 레시피</label>
+											id="user_recipe_check" checked="checked"> <label
+											class="custom-control-label" for="user_recipe_check">유저
+											레시피</label>
 									</div>
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input"
-											id="gender2"> <label class="custom-control-label"
-											for="gender2">유저 레시피</label>
+											id="server_recipe_check"> <label
+											class="custom-control-label" for="server_recipe_check">공식
+											레시피</label>
 									</div>
 								</div>
 							</div>
@@ -58,23 +60,23 @@
 							<div class="collapse show" id="dateposted">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted1"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input dateposted"
+											id="dateposted1" onclick="handleCheckboxChange(this)"> <label class="custom-control-label"
 											for="dateposted1">조회 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted2"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input dateposted"
+											id="dateposted2" onclick="handleCheckboxChange(this)"> <label class="custom-control-label"
 											for="dateposted2">좋아요 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted3"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input dateposted"
+											id="dateposted3" onclick="handleCheckboxChange(this)"> <label class="custom-control-label"
 											for="dateposted3">댓글 많은 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted4"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input dateposted"
+											id="dateposted4" onclick="handleCheckboxChange(this)"> <label class="custom-control-label"
 											for="dateposted4">등록 순</label>
 									</div>
 								</div>
@@ -91,18 +93,18 @@
 							<div class="collapse show" id="specialism">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="specialism1"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input specialism"
+											id="specialism1" onclick="handlespecialism(this)"> <label class="custom-control-label"
 											for="specialism1">메인메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="specialism2"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input specialism"
+											id="specialism2" onclick="handlespecialism(this)"> <label class="custom-control-label"
 											for="specialism2">반찬</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="specialism3"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input specialism"
+											id="specialism3" onclick="handlespecialism(this)"> <label class="custom-control-label"
 											for="specialism3">디저트</label>
 									</div>
 								</div>
@@ -119,19 +121,19 @@
 							<div class="collapse show" id="jobtype">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox fulltime-job">
-										<input type="checkbox" class="custom-control-input"
-											id="jobtype1"> <label class="custom-control-label"
-											for="jobtype1">아침 메뉴</label>
+										<input type="checkbox" class="custom-control-input menutype"
+											id="menutype1" onclick="handleMenutype(this)"> <label class="custom-control-label"
+											for="menutype1">아침 메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox parttime-job">
-										<input type="checkbox" class="custom-control-input"
-											id="jobtype2"> <label class="custom-control-label"
-											for="jobtype2">점심 메뉴</label>
+										<input type="checkbox" class="custom-control-input menutype"
+											id="menutype2" onclick="handleMenutype(this)"> <label class="custom-control-label"
+											for="menutype2">점심 메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox freelance-job">
-										<input type="checkbox" class="custom-control-input"
-											id="jobtype3"> <label class="custom-control-label"
-											for="jobtype3">저녁 메뉴</label>
+										<input type="checkbox" class="custom-control-input menutype"
+											id="menutype3" onclick="handleMenutype(this)"> <label class="custom-control-label"
+											for="menutype3">저녁 메뉴</label>
 									</div>
 								</div>
 							</div>
@@ -147,23 +149,23 @@
 							<div class="collapse show" id="experience">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="experience2"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input experience"
+											id="experience2" onclick="handleExperience(this)"> <label class="custom-control-label"
 											for="experience2">1년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="experience3"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input experience"
+											id="experience3" onclick="handleExperience(this)"> <label class="custom-control-label"
 											for="experience3">2년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="experience4"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input experience"
+											id="experience4" onclick="handleExperience(this)"> <label class="custom-control-label"
 											for="experience4">3년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="experience5"> <label class="custom-control-label"
+										<input type="checkbox" class="custom-control-input experience"
+											id="experience5" onclick="handleExperience(this)"> <label class="custom-control-label"
 											for="experience5">4년전 게시물</label>
 									</div>
 								</div>
@@ -181,33 +183,33 @@
 							<div class="collapse show" id="Offeredsalary">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="Offeredsalary1"> <label
-											class="custom-control-label" for="Offeredsalary1">10k
+										<input type="checkbox" class="custom-control-input likeCount"
+											id="likeCount1" onclick="handleLikeCount(this)"> <label
+											class="custom-control-label" for="likeCount1">10k
 											- 20k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="Offeredsalary2"> <label
-											class="custom-control-label" for="Offeredsalary2">20k
+										<input type="checkbox" class="custom-control-input likeCount"
+											id="likeCount2" onclick="handleCheckboxChange(this)"> <label
+											class="custom-control-label" for="likeCount2">20k
 											- 30k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="Offeredsalary3"> <label
-											class="custom-control-label" for="Offeredsalary3">30k
+										<input type="checkbox" class="custom-control-input likeCount"
+											id="likeCount3" onclick="handleCheckboxChange(this)"> <label
+											class="custom-control-label" for="likeCount3">30k
 											- 40k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="Offeredsalary4"> <label
-											class="custom-control-label" for="Offeredsalary4">40k
+										<input type="checkbox" class="custom-control-input likeCount"
+											id="likeCount4" onclick="handleCheckboxChange(this)"> <label
+											class="custom-control-label" for="likeCount4">40k
 											- 50k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="Offeredsalary5"> <label
-											class="custom-control-label" for="Offeredsalary5">50k
+										<input type="checkbox" class="custom-control-input likeCount"
+											id="likeCount5" onclick="handleCheckboxChange(this)"> <label
+											class="custom-control-label" for="likeCount5">50k
 											- 60k</label>
 									</div>
 								</div>
@@ -223,15 +225,66 @@
 				</div>
 				<div class="col-lg-9">
 					<div class="job-filter mb-4 d-sm-flex align-items-center">
-						<div class="job-alert-bt">
+						<div class="job-alert-bt mr-3">
 							<a class="btn btn-md btn-dark" href="/yorijori/recipe/insert"><i
 								class="fa-solid fa-utensils"></i>ㅤ레시피 등록</a>
+						</div>
+						<div class="job-alert-bt mr-3">
+							<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0"><i
+								class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화</a>
+						</div>
+						<div class="job-alert-bt mr-3">
+							<a class="btn btn-md btn-dark"  href="#" onclick="filterOn()"><i
+								class="fa-regular fa-circle-check"></i>필터 적용</a>
 						</div>
 						<div class="job-shortby ml-sm-auto d-flex align-items-center">
 						</div>
 					</div>
 					<div class="row recipe_content">
-						<div class="col-sm-6 col-lg-4 mb-4">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
+								<div class="candidate-list candidate-grid">
+									<div class="candidate-list-image">
+										<img class="img-fluid"
+											src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
+											alt="">
+									</div>
+									<div class="candidate-list-details">
+										<div class="candidate-list-info">
+											<div class="candidate-list-title">
+												<h5>
+													<a href="/yorijori/recipe/view" th:text="${data.name}"></a>
+												</h5>
+											</div>
+											<div class="candidate-list-option">
+												<div
+													class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="${data.userId.nickname}"></div>
+												<br>
+												<div
+													class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+												<div
+													class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
+												<hr>
+												<div class="meta meta-style2">
+													<ul class="list-unstyled">
+														<li ><i class="fa-solid fa-eye"></i> <span th:text="${data.count}"></span></li>
+														<li><i class="fa-solid fa-thumbs-up"></i> 353</li>
+														<li><a href="#!"><i class="fas fa-comments"></i>
+																<span th:text="${#lists.size(data.reviewList)}"></span></a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="candidate-list-favourite-time">
+											<a class="candidate-list-favourite order-2"
+												onclick="clickHeart()"><i class="far fa-heart"></i></a> <span
+												class="candidate-list-time order-1"><i
+												class="far fa-clock pr-1"></i><span th:text="${data.date}"></span></span>
+	
+										</div>
+									</div>
+								</div>
+							</div>
+						<!-- <div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
 							<div class="candidate-list candidate-grid">
 								<div class="candidate-list-image">
 									<img class="img-fluid"
@@ -247,28 +300,34 @@
 										</div>
 										<div class="candidate-list-option">
 											<div
-												class="badge badge-danger px-3 rounded-pill font-weight-normal">백종원</div>
+												class="badge badge-dark px-3 rounded-pill font-weight-normal">백종원</div>
+											<br>
 											<div
-												class="badge badge-danger px-3 rounded-pill font-weight-normal">15분</div>
-											</br>
+												class="badge badge-success px-3 rounded-pill font-weight-normal">15분</div>
 											<div
-												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22
-												별점 정보</div>
-											<ul class="list-unstyled">
-												<li><i class="fa-solid fa-eye"></i>2323조회</li>
-												<li><i class="fa-solid fa-thumbs-up"></i>353 좋아요</li>
-											</ul>
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
+											<hr>
+											<div class="meta meta-style2">
+												<ul class="list-unstyled">
+													<li><i class="fa-solid fa-eye"></i> 2323</li>
+													<li><i class="fa-solid fa-thumbs-up"></i> 353</li>
+													<li><a href="#!"><i class="fas fa-comments"></i>
+															58</a></li>
+												</ul>
+											</div>
 										</div>
 									</div>
 									<div class="candidate-list-favourite-time">
-										<a class="candidate-list-favourite order-2" onclick="clickHeart(alerttest())"><i
-											class="far fa-heart"></i></a> <span
+										<a class="candidate-list-favourite order-2"
+											onclick="clickHeart()"><i class="far fa-heart"></i></a> <span
 											class="candidate-list-time order-1"><i
 											class="far fa-clock pr-1"></i>6월 8일</span>
+
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
+
 					</div>
 					<div class="row">
 						<div class="col-12 text-center mt-4 mt-sm-5">
@@ -292,27 +351,45 @@
 	</div>
 	<script th:inline="javascript">
 		let pageNo = 0;
-		let pagePerResult = 9;
-		let currentPage = 0;
-		
+		let pagePerCount = 9;
+		let currentPage = [[${pageNo}]];
+	
+		let userRecipeCount = [[${count}]];
 		// pagination 들어갈 div
 		const pageId = $('#pagination_div');
+		
+		// 총 페이지지 네이션 수 
+		let totalPages = 1;
+		if ( userRecipeCount > pagePerCount ){
+			totalPages = Math.ceil( userRecipeCount/pagePerCount )
+		}
+		
+		$(document).ready(function() {
+			/* makePagination(pageId, totalPages, pagePerResult,
+					currentPage + 1, getServerAPI); */
+			//공식 레시피 클릭
+			$('#server_recipe_check').click(function() {
+				console.log(this.checked);
+				if (this.checked) {
+					$("#user_recipe_check").prop('checked', false);
+					getServerAPI(0);
+				}
+			})
 
-		$(document).ready(
-				function() {
-					/* makePagination(pageId, totalPages, pagePerResult,
-							currentPage + 1, getServerAPI); */
-					$('#gender1').change(function() {
-						getServerAPI(0);
-					})
+			// 유저레시피 필터 클릭
+			$("#user_recipe_check").click(function() {
+				window.location.href = "/yorijori/recipe/list/user/0";
+			})
 
-				});
+			makePagination(pageId, totalPages, pagePerCount, currentPage + 1, move_list);
+	
+		});
 
 		const getServerAPI = function(page) {
 			pageNo = page + 1;
 			$.ajax({
 				url : "/yorijori/recipe/list/server/" + pageNo + "/"
-						+ pagePerResult,
+						+ pagePerCount,
 				type : "post",
 				success : function(resultdata) { //result data는 ajax요청 성공 후 서버에서 전달하는 데이터
 					// row 초기화
@@ -325,92 +402,19 @@
 
 						makeList(data, index);
 						let totalPages = 1;
-						if (dataCount > pagePerResult) {
-							totalPages = dataCount / pagePerResult
+						if (dataCount > pagePerCount) {
+							totalPages = Math.ceil( dataCount / pagePerCount )
 						}
-						makePagination(pageId, totalPages,
-								pagePerResult, currentPage + 1,
-								getServerAPI);
+						makePagination(pageId, totalPages, pagePerCount,
+								currentPage + 1, getServerAPI);
 					})
 
 					// 총 페이지지 네이션 수 
-
 				}
 			})
 		}
-		const makeList = function(data, index) {
-
-			// Create a container div
-			var containerDiv = $('<div>').addClass('col-sm-6 col-lg-4 mb-4');
-
-			// Create candidate-list div
-			var candidateListDiv = $('<div>').addClass(
-					'candidate-list candidate-grid');
-
-			// Create candidate-list-image div
-			var candidateListImageDiv = $('<div>').addClass(
-					'candidate-list-image');
-			var image = $('<img>').addClass('img-fluid').attr('src',
-					'/yorijori/images/common/default.png').attr('alt', '');
-			candidateListImageDiv.append(image);
-
-			// Create candidate-list-details div
-			var candidateListDetailsDiv = $('<div>').addClass(
-					'candidate-list-details');
-
-			// Create candidate-list-info div
-			var candidateListInfoDiv = $('<div>').addClass(
-					'candidate-list-info');
-
-			// Create candidate-list-title div
-			var candidateListTitleDiv = $('<div>').addClass(
-					'candidate-list-title');
-			var title = $('<h5>').append(
-					$('<a>').attr('href', '/yorijori/recipe/view').text(
-							data.fd_Nm));
-			candidateListTitleDiv.append(title);
-
-			// Create candidate-list-option div
-			var candidateListOptionDiv = $('<div>').addClass(
-					'candidate-list-option');
-			var badge1 = $('<div>').addClass(
-					'badge badge-danger px-3 rounded-pill font-weight-normal')
-					.text(data.fd_Grupp_Nm);
-			var ul = $('<ul>').addClass('list-unstyled');
-			candidateListOptionDiv.append(badge1);
-			candidateListOptionDiv.append($('<br>'));
-			candidateListOptionDiv.append(ul);
-
-			candidateListInfoDiv.append(candidateListTitleDiv);
-			candidateListInfoDiv.append(candidateListOptionDiv);
-
-			// Create candidate-list-favourite-time div
-			var candidateListFavouriteTimeDiv = $('<div>').addClass(
-					'candidate-list-favourite-time');
-			var favouriteLink = $('<a>').addClass(
-					'candidate-list-favourite order-2').attr('href', '#').html(
-					'<i class="far fa-heart"></i>');
-			var timeSpan = $('<span>').addClass('candidate-list-time order-1')
-					.html(
-							'<i class="far fa-solid fa-utensils pr-1"></i>'
-									+ "필요 재료 수 : " + data.food_Cnt);
-			candidateListFavouriteTimeDiv.append(favouriteLink);
-			candidateListFavouriteTimeDiv.append(timeSpan);
-
-			candidateListDetailsDiv.append(candidateListInfoDiv);
-			candidateListDetailsDiv.append(candidateListFavouriteTimeDiv);
-
-			candidateListDiv.append(candidateListImageDiv);
-			candidateListDiv.append(candidateListDetailsDiv);
-
-			containerDiv.append(candidateListDiv);
-			$('.recipe_content').append(containerDiv);
-		}
-		function alerttest(){
-			console.log("test");
-		}
 	</script>
 
-
+	<script src="/yorijori/common/js/recipe/list.js"></script>
 </th:block>
 </html>

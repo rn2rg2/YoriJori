@@ -31,5 +31,8 @@ public class BoardComment {
 	private Date date ;
 	@UpdateTimestamp
 	private Date upDate;
-	private int state ;
+	private int state;
+	private int groupNo;
+	private int displayOrderNo;
+	
 }
