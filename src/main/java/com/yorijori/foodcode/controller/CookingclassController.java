@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
+import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
@@ -29,11 +30,13 @@ import com.yorijori.foodcode.service.MemberService;
 public class CookingclassController {
 	
 	CookingClassService service;
-	MemberService memservice;
+	FileUploadLogic fileUploadLogic;
+
 	@Autowired
-	public CookingclassController(CookingClassService service) {
+	public CookingclassController(CookingClassService service,FileUploadLogic fileUploadLogic) {
 		super();
 		this.service = service;
+		this.fileUploadLogic = fileUploadLogic;
 	}
 	
 	@RequestMapping("/Instructor")
@@ -77,33 +80,33 @@ public class CookingclassController {
 		return "redirect:/cookingclass/list";
 	}
 	
-	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
+	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
-		
-		JsonObject jsonObject = new JsonObject();
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
+		JsonObject json = new JsonObject();
 		
 		String fileRoot = "C:\\project\\upload\\summernoteimage\\";	//저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 				
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		
 		File targetFile = new File(fileRoot + savedFileName);	
 		
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/yorijori/data/summernoteimage/"+savedFileName);
-			jsonObject.addProperty("responseCode", "success");
-			
+			json.addProperty("url", "/yorijori/data/summernoteimage/"+savedFileName);
+			json.addProperty("responseCode", "success");
 			
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
+			json.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
-		
-		return jsonObject;
+		String jsonvalue = json.toString();
+		System.out.println("======================");
+		System.out.println(jsonvalue);
+		System.out.println("======================");
+		return jsonvalue;
 	}
 }
