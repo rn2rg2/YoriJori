@@ -17,9 +17,10 @@
 	<link
 		href="https://hangeul.pstatic.net/hangeul_static/css/NanumSeongSirCe.css"
 		rel="stylesheet">
-	<script src="https://kit.fontawesome.com/8b61787525.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/8b61787525.js"
+		crossorigin="anonymous"></script>
 	<script>
-	
+		
 	</script>
 </th:block>
 <th:block layout:fragment="content">
@@ -31,24 +32,17 @@
 			<swiper-container class="mySwiper" pagination="true"
 				pagination-clickable="true" navigation="true" space-between="30"
 				centered-slides="true" autoplay-delay="3000"
-				autoplay-disable-on-interaction="false"> <swiper-slide>
-			<img
-				src="https://recipe1.ezmember.co.kr/cache/cls/2021/01/20/73fcaaae705ce89a5efe3a0825cec43c.jpg" />
-			<span class="class-title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스
-				[딸기생크림케이크]</span> <span class="class-price">30,000 &#8361;</span></swiper-slide> <swiper-slide>
-			<img
-				src="https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg" />
-			<span class="class-title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스
-				[딸기생크림케이크]</span> <span class="class-price">80,000 &#8361;</span></swiper-slide> <swiper-slide>
-			<img
-				src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/039/267/original/pixta_32269376_M.jpg?2019&d=750x400" />
-			<span class="class-title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스
-				[딸기생크림케이크]</span> <span class="class-price">80,000 &#8361;</span></swiper-slide> <swiper-slide>
-			<img
-				src="https://media.istockphoto.com/id/183752521/ko/%EC%82%AC%EC%A7%84/%EB%B9%84%EB%B9%84%EB%B0%A5.jpg?s=612x612&w=0&k=20&c=KYJvlowh1O2NXOQyeqXAFVwHkiETondgUBRMZGmxPxo=" />
-			<span class="class-title">감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스
-				[딸기생크림케이크]</span> <span class="class-price">80,000 &#8361;</span></swiper-container>
+				autoplay-disable-on-interaction="false">
+			<div th:each="class:${classList}">
+				<swiper-slide> <img th:src="${class.thumbnail}" /> <span
+					class="class-title" th:text="${class.title}"></span>
+				<div class="class-price">
+					<span th:text="${class.price}"></span><span> &#8361;</span>
+				</div>
+			
 		</div>
+	</div>
+	
 	</div>
 	<div class="container">
 		<h3 class="menu-h3-common">클래스 목록</h3>
@@ -57,7 +51,8 @@
 				<div class="sidebar">
 					<div class="widget border-0">
 						<div class="search">
-							<th:block th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,inputId,btnId)}">
+							<th:block
+								th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,inputId,btnId)}">
 						</div>
 					</div>
 					<div class="widget">
@@ -218,46 +213,55 @@
 					</div>
 				</div>
 				<div class="row" id="list">
-				
-				
+
+
 					<div class="col-sm-6 col-lg-4 mb-4" th:each="class:${classList}">
 						<div class="candidate-list candidate-grid">
 							<div class="candidate-list-image">
-								<img class="img-fluid" th:src="${class.thumbnail}"
-									alt="">
+								<img class="img-fluid" th:src="${class.thumbnail}" alt="">
 							</div>
 							<div class="candidate-list-details">
 								<div class="candidate-list-info">
 									<div class="candidate-list-title">
 										<h5>
-											<a href="/yorijori/cookingclass/read"><span th:text="${class.title}"></span></a>
+											<a href="/yorijori/cookingclass/read"><span
+												th:text="${class.title}"></span></a>
 										</h5>
 									</div>
-									<div class="candidate-list-option" >
+									<div class="candidate-list-option">
 										<a th:href="@{/cookingclass/delete(cookNo=${class.cookNo})}">삭제</a>
 										<div
-											class="badge badge-danger px-3 rounded-pill font-weight-normal"><span th:text="${class.userId}"></span></div>
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											<span th:text="${class.userId}"></span>
+										</div>
 										<div
-											class="badge badge-danger px-3 rounded-pill font-weight-normal"><span th:text="${class.category}"></span></div>
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											<span th:text="${class.category}"></span>
+										</div>
 										</br>
 										<div
-											class="badge badge-danger px-3 rounded-pill font-weight-normal"><span th:text="${class.price}">원</span></div>
+											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											<span th:text="${class.price}">원</span>
+										</div>
 										<ul class="list-unstyled">
-											<li><i class="fa-solid fa-person"></i> <span th:text="${class.count}"></span><span>명</span></li>
-											<li><i class="fa-solid fa-clock"></i> <span th:text="${class.time}"></span><span>분</span></li>
+											<li><i class="fa-solid fa-person"></i> <span
+												th:text="${class.count}"></span><span>명</span></li>
+											<li><i class="fa-solid fa-clock"></i> <span
+												th:text="${class.time}"></span><span>분</span></li>
 										</ul>
 									</div>
 								</div>
 								<div class="candidate-list-favourite-time">
-									<a class="candidate-list-favourite order-2" href="#프로필조회?"><!-- <img th:src="${class.userId}"> --></a> <span
-										class="candidate-list-time order-1"><i
+									<a class="candidate-list-favourite order-2" href="#프로필조회?">
+										<!-- <img th:src="${class.userId}"> -->
+									</a> <span class="candidate-list-time order-1"><i
 										class="far fa-clock pr-1"></i><span th:text="${class.date}"></span></span>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 				</div>
 				<div class="row">
 					<div class="col-12 text-center mt-4 mt-sm-5">

@@ -2,6 +2,7 @@ package com.yorijori.foodcode.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,9 +36,29 @@ public class CookingClassServiceImpl implements CookingClassService {
 	@Override
 	public void insert(CookingClass cookingclass, CookingClassContent content, CookingClassCurriculum curriculum) {
 		dao.insertClass(cookingclass);
-		content.setCookNo(cookingclass.getCookNo());
+		
+		//컨텐츠 insert
+		String[] temp1=content.getContent().split(",");
+		String[] temp2=content.getConCategory().split(",");
+		for(int i=0;i<temp1.length;i++) {
+			content.setCookNo(cookingclass.getCookNo());
+			content.setContent(temp1[i]);
+			content.setConCategory(temp2[i]);
+			dao.insertContent(content);
+		}
+		
+		//커리큘럼 insert
+		temp1=curriculum.getCurName().split(",");
+		temp2=curriculum.getCurTime().split(",");
+		for(int i=0;i<temp1.length;i++)
+		{
+			curriculum.setCookNo(cookingclass.getCookNo());
+			curriculum.setCurName(temp1[i]);
+			curriculum.setCurTime(temp2[i]);
+			curriculum.setCurNo(i+1);
+			dao.insertCurriculum(curriculum);
+		}
 		curriculum.setCookNo(cookingclass.getCookNo());
-		dao.insertContent(content);
 		dao.insertCurriculum(curriculum);
 	}
 
