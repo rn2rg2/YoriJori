@@ -9,21 +9,30 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.UserWishListApi;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
+import com.yorijori.foodcode.jpa.repository.UserWishlistApiRepository;
 
 @Repository
 public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	ApiRecipeRepository apiRecipeRepository;
-
+	UserWishlistApiRepository userWishListApiRepo;
+	
 	@Autowired
-	public ApiRecipeDAOImpl(ApiRecipeRepository apiRecipeRepository) {
+	public ApiRecipeDAOImpl(ApiRecipeRepository apiRecipeRepository,UserWishlistApiRepository userWishListApiRepo) {
 		super();
 		this.apiRecipeRepository = apiRecipeRepository;
+		this.userWishListApiRepo = userWishListApiRepo;
 	}
 
 	@Override
 	public long countAll() {
 		return apiRecipeRepository.count();
+	}
+	
+	@Override
+	public long countByRcpSeqByWishList(ApiRecipe apirecipe) {
+		return userWishListApiRepo.countByRcpSeq(apirecipe);
 	}
 
 	@Override
@@ -37,5 +46,14 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 		Page<ApiRecipe> pagedata = apiRecipeRepository.findAll(pageRequest);
 		List<ApiRecipe> list = pagedata.getContent();
 		return list;
+	}
+	
+	@Override
+	public void addWishList(UserWishListApi userWishListApi) {
+		userWishListApiRepo.save(userWishListApi);
+	}
+	@Override
+	public void deleteWishList(ApiRecipe apirecipe) {
+		userWishListApiRepo.deleteByRcpSeq(apirecipe);
 	}
 }

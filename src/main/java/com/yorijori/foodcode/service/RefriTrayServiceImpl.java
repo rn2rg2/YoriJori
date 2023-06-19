@@ -2,6 +2,8 @@ package com.yorijori.foodcode.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.repository.RefriTrayDAO;
 
 @Service
+@Transactional
 public class RefriTrayServiceImpl implements RefriTrayService{
 	RefriTrayDAO rtdao;
 	
