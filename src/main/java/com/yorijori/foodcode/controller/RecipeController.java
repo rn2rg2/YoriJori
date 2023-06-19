@@ -3,17 +3,20 @@ package com.yorijori.foodcode.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
-import com.yorijori.foodcode.jpa.entity.ApiRecipeImg;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.RecipeService;
 
@@ -95,5 +98,23 @@ public class RecipeController {
 		recipeDataFetcher.fetchRecipeData(firstIdx, lastIdx);
 		return "thymeleaf/recipe/recipelist";
 	}
+	
+	@RequestMapping("/recipe/like/{type}")
+	@ResponseBody
+	public String addWishList(@PathVariable String type, HttpSession session, int rcp_no) {
+		String msg = "";
+		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
+		if (type.equals("user")) {
+			Recipe recipe = new Recipe();
+			recipe.setRecipeNo(rcp_no);
+			recipeService.wishList(userinfo, recipe);
+		} else {
+			ApiRecipe apirecipe= new ApiRecipe();
+			apirecipe.setRcpSeq(rcp_no);
+			apiRecipeService.wishList(userinfo,apirecipe);
+		}
+		return msg;
+	}
+	
 
 }

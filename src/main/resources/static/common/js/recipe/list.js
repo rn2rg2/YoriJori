@@ -16,8 +16,7 @@ const makeList = function(data, index) {
 
 	// Create candidate-list-image div
 	var candidateListImageDiv = $('<div>').addClass('candidate-list-image');
-	var image = $('<img>').addClass('img-fluid').attr('src',
-			data.attFileNoMain).attr('alt', '');
+	var image = $('<img>').addClass('img-fluid').attr('src', data.attFileNoMain).attr('alt', '');
 	candidateListImageDiv.append(image);
 
 	// Create candidate-list-details div
@@ -28,15 +27,12 @@ const makeList = function(data, index) {
 
 	// Create candidate-list-title div
 	var candidateListTitleDiv = $('<div>').addClass('candidate-list-title');
-	var title = $('<h5>').append(
-			$('<a>').attr('href', '/yorijori/recipe/view/server/'+data.rcpSeq).text(data.rcpNm));
+	var title = $('<h5>').append($('<a>').attr('href', '/yorijori/recipe/view/server/' + data.rcpSeq).text(data.rcpNm));
 	candidateListTitleDiv.append(title);
 
 	// Create candidate-list-option div
 	var candidateListOptionDiv = $('<div>').addClass('candidate-list-option');
-	var badge1 = $('<div>').addClass(
-			'badge badge-danger px-3 rounded-pill font-weight-normal').text(
-			data.rcpPat2);
+	var badge1 = $('<div>').addClass('badge badge-danger px-3 rounded-pill font-weight-normal').text(data.rcpPat2);
 	var ul = $('<ul>').addClass('list-unstyled');
 	candidateListOptionDiv.append(badge1);
 	candidateListOptionDiv.append($('<br>'));
@@ -46,14 +42,13 @@ const makeList = function(data, index) {
 	candidateListInfoDiv.append(candidateListOptionDiv);
 
 	// Create candidate-list-favourite-time div
-	var candidateListFavouriteTimeDiv = $('<div>').addClass(
-			'candidate-list-favourite-time');
-	var favouriteLink = $('<a>').addClass('candidate-list-favourite order-2')
-			.attr('onclick', 'clickHeart()').html(
-					'<i class="far fa-heart"></i>');
-	var timeSpan = $('<span>').addClass('candidate-list-time order-1').html(
-			'<i class="far fa-solid fa-utensils pr-1"></i>' + "조리방법 : "
-					+ data.recipeDes);
+	var candidateListFavouriteTimeDiv = $('<div>').addClass('candidate-list-favourite-time');
+	if (data.reviewList.length > 0) {
+		var favouriteLink = $('<a>').addClass('candidate-list-favourite order-2 red_heart').attr('onclick', 'clickHeart(addHeart)').html('<i class="far fa-heart"></i>');
+	} else {
+		var favouriteLink = $('<a>').addClass('candidate-list-favourite order-2').attr('onclick', 'clickHeart(addHeart)').html('<i class="far fa-heart"></i>');
+	}
+	var timeSpan = $('<span>').addClass('candidate-list-time order-1').html('<i class="far fa-solid fa-utensils pr-1"></i>' + "조리방법 : " + data.recipeDes);
 	candidateListFavouriteTimeDiv.append(favouriteLink);
 	candidateListFavouriteTimeDiv.append(timeSpan);
 
@@ -108,28 +103,24 @@ const makeList = function(data, index) {
 
 const move_list = function(page) {
 	let url = "/yorijori/recipe/list"
-	window.location.href = url + "/user/" + page; 
+	window.location.href = url + "/user/" + page;
 }
-
-
 
 /*
 	전체 클릭한 필터 종류
 */
-function filterOn(){
+function filterOn() {
 	checkedValue();
 }
 
-
-
-function checkedValue(){
+function checkedValue() {
 	var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 	var checkedValues = [];
 
 	for (var i = 0; i < checkboxes.length; i++) {
-	  if (checkboxes[i].checked) {
-	    checkedValues.push(checkboxes[i].id);
-	  }
+		if (checkboxes[i].checked) {
+			checkedValues.push(checkboxes[i].id);
+		}
 	}
 
 	console.log(checkedValues);

@@ -20,4 +20,5 @@ public interface ApiRecipeRepository extends JpaRepository<ApiRecipe, Integer>{
 	 * , nativeQuery = true) ApiRecipe getApirecipeByRcpSeq(@Param("rcpSeq") int
 	 * rcpSeq);
 	 */
+
 }

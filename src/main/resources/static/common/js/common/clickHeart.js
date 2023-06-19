@@ -129,10 +129,10 @@ const finalHeart = new mojs.Shape({
   easing: "cubic.in"
 });
 
-	  const timeline = new mojs.Timeline({ delay: 0 });
-	  function clickHeart(fn) {
-		    timeline
-		      .add(purpleHeart, redHeart, yellowHeart, blueCircle, finalHeart)
-		      .play();
-		    fn;
-		  }
+  const timeline = new mojs.Timeline({ delay: 0 });
+  function clickHeart(callback) {
+	    timeline
+	      .add(purpleHeart, redHeart, yellowHeart, blueCircle, finalHeart)
+	      .play();
+	    return callback();
+	  }

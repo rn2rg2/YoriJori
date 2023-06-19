@@ -290,7 +290,7 @@
 									</div>
 									<div class="candidate-list-favourite-time">
 										<a class="candidate-list-favourite order-2"
-											onclick="clickHeart()"><i class="far fa-heart"></i></a> <span
+											onclick="clickHeart(addHeart)"><i class="far fa-heart"></i></a> <span
 											class="candidate-list-time order-1"><i
 											class="far fa-clock pr-1"></i><span th:text="${data.date}"></span></span>
 
@@ -436,6 +436,10 @@
 				}
 				
 			})
+			
+		}
+		
+		const addHeart = function(){
 			
 		}
 		

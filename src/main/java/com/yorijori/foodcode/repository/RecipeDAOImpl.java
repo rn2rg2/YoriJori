@@ -8,13 +8,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeImageRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeQaRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeReviewRepository;
+import com.yorijori.foodcode.jpa.repository.UserWishlistRepository;
 
 @Repository
 public class RecipeDAOImpl implements RecipeDAO {
@@ -24,11 +27,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 	RecipeReviewRepository recipereviewrepository;
 	RecipeCategoryRepository recipecategoryrepository;
 	ApiRecipeRepository apiRecipeRepository;
+	UserWishlistRepository userwishlistrepo;
 	
 	@Autowired
 	public RecipeDAOImpl(RecipeRepository reciperepository, RecipeImageRepository recipeimagerepository,
 			RecipeQaRepository recipeqarepository, RecipeReviewRepository recipereviewrepository,
-			RecipeCategoryRepository recipecategoryrepository, ApiRecipeRepository apiRecipeRepository) {
+			RecipeCategoryRepository recipecategoryrepository, ApiRecipeRepository apiRecipeRepository, UserWishlistRepository userwishlistrepo) {
 		super();
 		this.reciperepository = reciperepository;
 		this.recipeimagerepository = recipeimagerepository;
@@ -36,6 +40,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 		this.recipereviewrepository = recipereviewrepository;
 		this.recipecategoryrepository = recipecategoryrepository;
 		this.apiRecipeRepository = apiRecipeRepository;
+		this.userwishlistrepo = userwishlistrepo;
 	}
 
 	
@@ -43,6 +48,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public long countAll() {
 		return reciperepository.count();
 	}
+	
+	@Override
+	public long countByRcpSeqByWishList(Recipe recipe) {
+		return userwishlistrepo.countByRecipeNo(recipe);
+	}
+
 	@Override
 	public List<Recipe> selectListByPage(int pageNo,int pagePerCount){
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "recipeNo"));
@@ -50,6 +61,15 @@ public class RecipeDAOImpl implements RecipeDAO {
 		List<Recipe> list = page.getContent();
 		
 		return list;
+	}
+	
+	@Override
+	public void addWishList(UserWishlist userWishList) {
+		userwishlistrepo.save(userWishList);
+	}
+	@Override
+	public void deleteWishList(Recipe recipeNo) {
+		userwishlistrepo.deleteByRecipeNo(recipeNo);
 	}
 
 
