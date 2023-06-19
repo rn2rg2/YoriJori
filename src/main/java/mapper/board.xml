@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yorijori.board">
+	<select id="selectComment" resultType="com.yorijori.foodcode.dto.BoardDTO">
+		select
+			comment_no
+			, comm_no
+			, user_id
+			, contents
+			, date
+			, up_date
+			, state
+			, group_no
+			, display_order_no
+		from community_comment
+		where comm_no = #{commNo}
+		order by group_no asc, display_order_no asc 
+	</select>
+	
+	<update id="updateGroupNo">
+		update community_comment
+		set group_no = #{group_no}
+		where comment_no = #{comment_no}
+	</update>
+	
+	<insert id="insertCommnet" useGeneratedKeys="true" keyProperty="comment_no" keyColumn="comment_no">
+		insert into community_comment
+		(
+			comm_no
+			, user_id
+			, contents
+			, date
+			, state
+			, group_no
+			, display_order_no
+		) values
+		(
+			#{comm_no}
+			, #{user_id}
+			, #{contents}
+			, now()
+			, 0
+			, 0
+			, 0
+		)
+		
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

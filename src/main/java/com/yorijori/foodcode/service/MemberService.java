@@ -30,8 +30,8 @@ public class MemberService {
     
 	public void save(UserInfoDTO userinfodto) {
 		// TODO Auto-generated method stub
-		UserInfo userinfo = UserInfo.toUserInfo(userinfodto);
-		userRepository.save(userinfo);
+		//UserInfo userinfo = UserInfo.toUserInfo(userinfodto);
+		//userRepository.save(userinfo);
 	}
 
     

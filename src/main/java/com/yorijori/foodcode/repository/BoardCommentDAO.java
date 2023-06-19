@@ -2,6 +2,7 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
+import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
 
 public interface BoardCommentDAO {
@@ -11,10 +12,14 @@ public interface BoardCommentDAO {
 	
 	long countAll();
 
-	List<BoardComment> selectComment(int commNo);
+	List<BoardDTO> selectComment(int commNo);
 
 	int update(BoardComment boardComment);
 	
 	int delete(BoardComment boardComment);
+
+	int updateGroupNo(BoardDTO boardDTO);
+
+	int insertCommnet(BoardDTO boardDTO);
 
 }

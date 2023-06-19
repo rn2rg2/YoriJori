@@ -30,17 +30,7 @@ public class BoardServiceImpl implements BoardService {
 		return dao.selectAll();
 	}
 
-	@Override
-	public int update(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int delete(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public List<Board> search() {
@@ -75,6 +65,15 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> selectByPage(int pageNo) {
 		// TODO Auto-generated method stub
 		return dao.selectByPage(pageNo);
+	}
+	@Override
+	public void update(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void delete(int commNo) {
+		dao.delete(commNo);
 	}
 
 	
