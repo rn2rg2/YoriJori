@@ -16,7 +16,7 @@ public interface BoardDAO {
 	//게시물수정	
 	int update(Board board);
 	//게시물삭제
-	int delete(Board board);
+	public void delete(int commNo);
 	//검색
 
 	Board select(int commNo);		

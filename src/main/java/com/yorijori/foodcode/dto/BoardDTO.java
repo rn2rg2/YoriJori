@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardDTO {
+	private int comment_no;
 	private int comm_no;
 	private String user_id;
 	private String title;
@@ -18,4 +19,6 @@ public class BoardDTO {
 	private Date date ;
 	private Date up_date;
 	private int state;
+	private int group_no;
+	private int display_order_no;
 }

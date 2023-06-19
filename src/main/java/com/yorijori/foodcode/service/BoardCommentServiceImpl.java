@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
 import com.yorijori.foodcode.repository.BoardCommentDAO;
 @Transactional
@@ -48,9 +49,18 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 	}
 
 	@Override
-	public List<BoardComment> selectComment(int commNo) {
-		
+	public List<BoardDTO> selectComment(int commNo) {
 		return dao.selectComment(commNo);
+	}
+
+	@Override
+	public int updateGroupNo(BoardDTO boardDTO) {
+		return dao.updateGroupNo(boardDTO);
+	}
+
+	@Override
+	public int insertCommnet(BoardDTO boardDTO) {
+		return dao.insertCommnet(boardDTO);
 	}
 
 
