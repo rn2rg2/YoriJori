@@ -59,9 +59,10 @@ public class IngredientController {
 		List<Ingredients> list = ingredientService.selectByPagePerCount(page, pagePerCount);
 		return list;
 	}
+	
     @PostMapping("/getListBySearchData")
 	@ResponseBody
-	public List<Ingredients> getListByPage(int page, int pagePerCount, 	String searchData) {
+	public List<Ingredients> getListByPageAndSearchData(int page, int pagePerCount,String searchData) {
 		List<Ingredients> list = ingredientService.selectBySearch(page, "all", searchData, pagePerCount);
 		return list;
 	}

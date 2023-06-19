@@ -63,32 +63,28 @@ const make_list = function(page){
 	postAjax(url, param, function (datas){
 		$('#list_page').empty();
 		// Create a jQuery element for the outer div
+		console.log(datas);
 		$.each(datas, function(index, data) {
-		make_div(data);
-		dragSetting();
+			make_div(data);
+			dragSetting();
 		})
 	});
 }
 
 
 
-const make_search_list = function(page,flag){	
+const make_search_list = function(page){	
 		let searchData = $("#inputSearchData").val();
-		let url = "/yorijori/ingredient/getListCount";
-		let param = {"searchData" :searchData};
 		let pagePerCount = 6;
-		postAjax(url, param , function (data){
-			pagePerCount = data;
-			let url2 = "/yorijori/ingredient/getListBySearchData";
-			let param2 = {"page":page, "pagePerCount" : pagePerCount, "searchData" :searchData};
-			postAjax(url2, param2, function (datas){
-				$('#list_page').empty();
-				$.each(datas, function(index, data) {
-					make_div(data);
-					dragSetting();
-				});
-			})
-		});
+		let url = "/yorijori/ingredient/getListBySearchData";
+		let param = {"page":page, "pagePerCount" : pagePerCount, "searchData" :searchData};
+		postAjax(url, param, function (datas){
+			$('#list_page').empty();
+			$.each(datas, function(index, data) {
+				make_div(data);
+				dragSetting();
+			});
+		})
 }
 
 const make_div = function(data){

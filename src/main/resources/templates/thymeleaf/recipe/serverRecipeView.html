@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<th:block layout:fragment="header">
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/view.css">
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</th:block>
+
+<th:block layout:fragment="content">
+	<div id="container">
+
+
+		<div id="content" style="min-height: 568px;">
+			<div id="skip_con">본문</div>
+
+			<!-- boardGroup -->
+			<div class="boardGroup">
+				<!--=============================================================================-->
+				<!--############################# Contents START#############################-->
+				<!--=============================================================================-->
+
+				<form class="form-horizontal" id="frm" name="frm"
+					onsubmit="return false;">
+					<input type="hidden" id="pageIndex" name="pageIndex" value="">
+					<input type="hidden" id="userRxSnn" name="userRxSnn" value="120">
+					<input type="hidden" id="prodSnn" name="prodSnn" value="">
+					<input type="hidden" id="pageGb" name="pageGb" value="MONTH">
+					<!-- 검색 파라미터 유지 -->
+					<input type="hidden" id="rxDodCdSel" name="rxDodCdSel" value="">
+					<input type="hidden" id="rxKorNmSel" name="rxKorNmSel" value="">
+				</form>
+
+				<!-- food_recipe_view -->
+				<div class="recipe_view food_recipe_view">
+					<!-- details_top -->
+					<div class="details_top">
+						<h3 class="details_h3tit">
+							<span>food recipe</span>[[${data.rcpNm}]]
+						</h3>
+						<ul>
+							<li><i class="food_level"></i>[[${data.recipeDes}]]</li>
+							<li><i class="food_level"></i>[[${data.rcpPat2}]]</li>
+							
+							<li th:if="${data.wishlist != null}"><a onclick="clickHeart()"><i class="far fa-heart i_heart_dark"></i>좋아요</a></li>
+							<li th:unless="${data.wishlist != null}"><a onclick="clickHeart()"><i class="far fa-heart i_heart_red"></i>좋아요</a></li>
+							
+						</ul>
+					</div>
+					<!-- //details_top -->
+
+					<!-- details_body -->
+					<div class="details_body">
+						<!-- details_photo -->
+						<div class="details_photo">
+							<div class="swiper mySwiper">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide"><img th:src="${data.attFileNoMain}" alt=""></div>
+									<div class="swiper-slide"><img th:src="${data.attFileNoMk}" alt=""></div>
+								</div>
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-pagination"></div>
+								<div class="autoplay-progress">
+									<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"></circle></svg>
+									<span></span>
+								</div>
+							</div>
+							
+						</div>
+						<!-- //details_photo -->
+						<!-- details_con -->
+						<div class="details_con">
+							<h4 class="details_h4tit food_hat">주재료 및 소스 재료</h4>
+							<hr class="recipe_hr">
+							<p class="txt"
+								th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[0]}"></p>
+							<p class="txt"
+								th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[1]}"></p>
+						</div>
+						<!-- //details_con -->
+					</div>
+					<!-- //details_body -->
+				</div>
+				<!-- //food_recipe_view -->
+
+
+				<!-- card_recipe_view -->
+				<div class="card_recipe_view">
+					<!-- 					<h3 class="h3_tit">레시피</h3> -->
+					<ul>
+
+						<li th:each="item, idx : ${data.imgList}">
+							<!-- 									</div> -->
+							<div class="card_img">
+								<img class="card_img" th:src="${item.manualImg}" alt="">
+							</div>
+							<div class="card_txt">
+
+								<em class="num">[[${item.count}]]</em>
+								<p>[[${item.manual}]]</p>
+
+							</div>
+						</li>
+
+
+					</ul>
+				</div>
+				<!-- //card_recipe_view -->
+
+				<!-- conTableGroup -->
+				<div class="conTableGroup">
+					<table class="conTable thLeft">
+						<caption>유의사항, 출처의 정보를 제공</caption>
+						<colgroup>
+							<col style="width: 14%">
+							<col style="width: 86%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row" class="PAL30">저감 조리법 팁</th>
+								<td th:text="${#strings.arraySplit(data.rcpNaTip, '•')[0]}"></td>
+							</tr>
+							<tr>
+								<th scope="row" class="PAL30">출처</th>
+								<td>식품안전나라</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div class="board_button">
+					<button type="button" id="btn_list" onclick="location.href='/yorijori/recipe/list/user/0'"
+						class="cancel">목록으로</button>
+				</div>
+				<!--=============================================================================-->
+				<!--############################# Contents END#############################-->
+				<!--=============================================================================-->
+			</div>
+			<!-- // boardGroup -->
+			<!-- Swiper JS -->
+			<script
+				src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+			<script>
+			    const progressCircle = document.querySelector(".autoplay-progress svg");
+			    const progressContent = document.querySelector(".autoplay-progress span");
+			    var swiper = new Swiper(".mySwiper", {
+			      spaceBetween: 30,
+			      centeredSlides: true,
+			      autoplay: {
+			        delay: 2500,
+			        disableOnInteraction: false
+			      },
+			      pagination: {
+			        el: ".swiper-pagination",
+			        clickable: true
+			      },
+			      navigation: {
+			        nextEl: ".swiper-button-next",
+			        prevEl: ".swiper-button-prev"
+			      },
+			      on: {
+			        autoplayTimeLeft(s, time, progress) {
+			          progressCircle.style.setProperty("--progress", 1 - progress);
+			          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+			        }
+			      }
+			    });
+  </script>
+
+		</div>
+	</div>
+</th:block>
+</html>

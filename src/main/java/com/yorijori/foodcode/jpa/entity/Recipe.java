@@ -29,7 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "recipe")
-@ToString(exclude = {"userId","imgList","categoryList","reviewList","qaList"})
+@ToString(exclude = {"userId","imgList","categoryList","reviewList","qaList","wishlist"})
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,5 +66,8 @@ public class Recipe {
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
+	
+	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
 
 }

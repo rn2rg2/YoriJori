@@ -1,0 +1,530 @@
+@charset "UTF-8";
+#container {
+    position: relative;
+    width: 100%;
+}
+#content {
+	position: relative;
+	width: 1200px;
+	/* min-height: 536px; */
+	margin: 0 auto;
+	padding: 52px 0 74px;
+	z-index: 1;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+#skip_con {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+}
+
+.boardGroup {
+	padding: 0 0 40px;
+}
+
+.boardGroup input {
+	padding: 0 10px;
+	background-color: #fff;
+	border: 1px solid #b2b7c4;
+	color: #4c4c4c;
+}
+
+.food_recipe_view {
+	padding: 56px 80px 38px;
+	margin-bottom: 18px;
+	background-color: #f3f3f3;
+	border-bottom: 0 none;
+}
+
+.food_recipe_view .details_top {
+	position: relative;
+	text-align: center;
+}
+
+.food_recipe_view .details_top h3 {
+	display: block;
+	padding: 0 158px 11px;
+	font-size: 35px;
+	color: #494949;
+	font-weight: 700;
+	background: url("/yorijori/images/common/details_h3tit_bg.gif") center
+		bottom no-repeat;
+}
+
+.food_recipe_view .details_top h3 span {
+	display: block;
+	padding-bottom: 9px;
+	font-size: 11px;
+	color: #737373;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+.food_recipe_view .details_top ul {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.food_recipe_view .details_top ul li {
+	float: left;
+	width: 72px;
+	height: 72px;
+	color: #8a8989;
+	background-color: #fff;
+}
+
+.food_level {
+	background: url("/yorijori/images/common/icon_food_level.png") left
+		center no-repeat;
+}
+
+.food_recipe_view .details_top ul li i {
+	display: block;
+	width: 100%;
+	height: 16px;
+	margin: 16px 0 8px;
+	background-position: center bottom;
+}
+
+.food_Time {
+	background: url("/yorijori/images/common/icon_food_Time.png") left
+		center no-repeat;
+}
+
+.food_recipe_view .details_body {
+	position: relative;
+	margin-top: 44px;
+	float: none;
+	width: 100%;
+}
+
+.details_photo {
+	position: relative;
+	float: left;
+	width: 444px;
+	overflow: hidden;
+}
+
+.swiper-container {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+	z-index: 1;
+}
+
+element.style {
+	transform: translate3d(-888px, 0px, 0px);
+	transition-duration: 0ms;
+}
+
+.swiper-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	display: flex;
+	transition-property: transform;
+	box-sizing: content-box;
+}
+
+.details_photo .swiper-slide {
+	background: #f3f3f3;
+}
+
+.swiper-slide {
+	flex-shrink: 0;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transition-property: transform;
+}
+
+.details_photo .swiper-slide img {
+	border: none;
+	max-width: 100%;
+	border-style: none;
+	vertical-align: top;
+}
+
+.swiper-container .swiper-notification {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: -1000;
+}
+
+.details_photo .pagination {
+    position: absolute;
+    left: 16px;
+    bottom: 19px;
+    color: #fff;
+    width: 62px;
+    height: 25px;
+    line-height: 25px;
+    margin: 0 !important;
+    background: #4e4e4e;
+    border-radius: 32px;
+    text-align: center;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.details_photo .pagination .swiper-pagination-current {
+    font-weight: 700;
+}
+
+.details_photo .swiper-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.details_photo .swiper-btn .swiper-prev {
+    left: 0;
+    background-image: url("/yorijori/images/common/img_details_prev.png");
+}
+.details_photo .swiper-btn .swiper-next {
+    right: 0;
+    background-image: url("/yorijori/images/common/img_details_next.png");
+}
+
+
+.details_photo .swiper-btn button {
+    position: absolute;
+    top: 50%;
+    width: 82px;
+    height: 82px;
+    margin-top: -41px;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+
+input, button, select, textarea {
+    font-size: inherit;
+    box-sizing: border-box;
+}
+
+input, button, select {
+    vertical-align: top;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+.food_recipe_view .details_con {
+    float: right;
+    /* width: calc(100% - 550px); */
+    width: calc(100% - 517px);
+}
+
+.details_con .details_h4tit {
+    margin-bottom: 14px;
+    padding-left: 30px;
+    font-size: 17px;
+    color: #494949;
+    font-weight: 700;
+}
+
+.food_hat {
+    background: url("/yorijori/images/common/icon_food_hat.png") left center no-repeat;
+}
+
+.recipe_hr {
+    width: 100%;
+    height: 2px;
+    background: url("/yorijori/images/common/recipe_hr.gif") left center repeat-x;
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.details_con .txt {
+    margin-top: 14px;
+    color: #7a7a7a;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+.details_con .video_link {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 26px;
+    padding: 0 26px 0 54px;
+    font-weight: 700;
+    color: #fff;
+    /* background: #4e4e4e url(/images/new/board/icon_video_link.png) 26px center no-repeat; */
+    border-radius: 25px;
+}
+
+
+.food_recipe_view .details_body:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.recipe_view:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+*::before, *::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+.card_recipe_view {
+    width: 100%;
+}
+.card_recipe_view li:nth-child(4n+1) {
+    clear: both;
+    margin-left: 0;
+}
+
+.card_recipe_view li {
+    float: left;
+    width: calc(25% - 18px);
+    margin-left: 24px;
+    border: 1px solid #ddd;
+    margin-top: 24px;
+}
+
+.card_recipe_view li .card_img {
+    position: relative;
+    width: 100%;
+    height: 158px;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.card_recipe_view li .card_img img {
+   
+}
+
+.card_recipe_view li .card_img {
+    position: relative;
+    width: 100%;
+    height: 158px;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.card_recipe_view li .card_txt {
+    position: relative;
+    margin: 10px 17px 14px;
+    max-height: 126px;
+}
+
+.card_recipe_view li .card_txt em {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    color: #0098ce;
+    font-weight: 900;
+}
+
+.card_recipe_view li .card_txt p {
+    max-height: 126px;
+    min-height: 126px;
+    overflow-y: auto;
+    padding-left: 24px;
+    color: #7a7a7a;
+    line-height: 1.6;
+}
+
+.card_recipe_view ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#content .conTableGroup {
+    clear: both;
+    margin: 0px 0 0 2px;
+}
+
+.card_recipe_view + .conTableGroup {
+    margin-top: 28px !important;
+}
+
+#content .conTableGroup table {
+    clear: both;
+    width: 100%;
+    border-spacing: 0;
+    empty-cells: show;
+    border-collapse: separate;
+}
+
+table.conTable {
+    width: 100%;
+    border-top: 2px solid #343434;
+}
+
+caption, legend {
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+
+table.thLeft tr th {
+    text-align: left;
+}
+
+table.conTable th {
+    background: #f7f7f7;
+    color: #4f4f4f;
+    font-weight: 500;
+}
+
+table.conTable th, table.conTable td {
+    padding: 8px 10px;
+    line-height: 1.5;
+    border-left: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    vertical-align: middle;
+}
+
+table.conTable td {
+    color: #6d6d6d;
+}
+
+
+table.conTable th, table.conTable td {
+    padding: 8px 10px;
+    line-height: 1.5;
+    border-left: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    vertical-align: middle;
+}
+
+.food_recipe_view + .board_button, .card_recipe_view + .board_button, .boardGroup .conTableGroup + .board_button {
+    margin-top: 50px;
+}
+
+
+.board_button {
+    text-align: center;
+}
+
+.board_button .cancel {
+    background-color: #3f3f3f;
+}
+
+.board_button input, .board_button button, .board_button a {
+    display: inline-block;
+    width: auto;
+    height: 42px;
+    line-height: 42px;
+    margin: 0 5px;
+    padding: 0 30px;
+    border: 0 none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0;
+    letter-spacing: -1px;
+}
+swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 292px;
+  object-fit: cover;
+}
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+.i_heart_dark{
+	color : #001c40;
+}
+.i_heart_red{
+	color : #ff0000;
+}
+
+

@@ -17,7 +17,7 @@ const makeList = function(data, index) {
 	// Create candidate-list-image div
 	var candidateListImageDiv = $('<div>').addClass('candidate-list-image');
 	var image = $('<img>').addClass('img-fluid').attr('src',
-			'/yorijori/images/common/default.png').attr('alt', '');
+			data.attFileNoMain).attr('alt', '');
 	candidateListImageDiv.append(image);
 
 	// Create candidate-list-details div
@@ -29,14 +29,14 @@ const makeList = function(data, index) {
 	// Create candidate-list-title div
 	var candidateListTitleDiv = $('<div>').addClass('candidate-list-title');
 	var title = $('<h5>').append(
-			$('<a>').attr('href', '/yorijori/recipe/view').text(data.fd_Nm));
+			$('<a>').attr('href', '/yorijori/recipe/view/server/'+data.rcpSeq).text(data.rcpNm));
 	candidateListTitleDiv.append(title);
 
 	// Create candidate-list-option div
 	var candidateListOptionDiv = $('<div>').addClass('candidate-list-option');
 	var badge1 = $('<div>').addClass(
 			'badge badge-danger px-3 rounded-pill font-weight-normal').text(
-			data.fd_Grupp_Nm);
+			data.rcpPat2);
 	var ul = $('<ul>').addClass('list-unstyled');
 	candidateListOptionDiv.append(badge1);
 	candidateListOptionDiv.append($('<br>'));
@@ -52,8 +52,8 @@ const makeList = function(data, index) {
 			.attr('onclick', 'clickHeart()').html(
 					'<i class="far fa-heart"></i>');
 	var timeSpan = $('<span>').addClass('candidate-list-time order-1').html(
-			'<i class="far fa-solid fa-utensils pr-1"></i>' + "필요 재료 수 : "
-					+ data.food_Cnt);
+			'<i class="far fa-solid fa-utensils pr-1"></i>' + "조리방법 : "
+					+ data.recipeDes);
 	candidateListFavouriteTimeDiv.append(favouriteLink);
 	candidateListFavouriteTimeDiv.append(timeSpan);
 

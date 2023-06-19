@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeImageRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeQaRepository;
@@ -22,18 +23,21 @@ public class RecipeDAOImpl implements RecipeDAO {
 	RecipeQaRepository recipeqarepository;
 	RecipeReviewRepository recipereviewrepository;
 	RecipeCategoryRepository recipecategoryrepository;
+	ApiRecipeRepository apiRecipeRepository;
 	
 	@Autowired
 	public RecipeDAOImpl(RecipeRepository reciperepository, RecipeImageRepository recipeimagerepository,
 			RecipeQaRepository recipeqarepository, RecipeReviewRepository recipereviewrepository,
-			RecipeCategoryRepository recipecategoryrepository) {
+			RecipeCategoryRepository recipecategoryrepository, ApiRecipeRepository apiRecipeRepository) {
 		super();
 		this.reciperepository = reciperepository;
 		this.recipeimagerepository = recipeimagerepository;
 		this.recipeqarepository = recipeqarepository;
 		this.recipereviewrepository = recipereviewrepository;
 		this.recipecategoryrepository = recipecategoryrepository;
+		this.apiRecipeRepository = apiRecipeRepository;
 	}
+
 	
 	@Override
 	public long countAll() {
@@ -47,6 +51,6 @@ public class RecipeDAOImpl implements RecipeDAO {
 		
 		return list;
 	}
-	
-	
+
+
 }
