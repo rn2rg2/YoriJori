@@ -16,12 +16,14 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		// 로그인사용자인 경우 세션에 user라는 이름의 어트리뷰트가 저장되어 있으므로
 		// user가 없으면 로그인이 처리되지 않음을 의미
 		HttpSession session = request.getSession(false);
-		if(session!=null) {
-			UserInfo user = (UserInfo)session.getAttribute("userInfo");
-			if(user==null) {//로그인하지 않은 상태
-//				//response.sendRedirect("/erp/emp/login.do");
-				//로그인하지 않은 사용자는 다음(뷰에서 선택한 path로 이동되지 않도록)으로 넘어가지 않도록 false를리턴
+		if (session != null) {
+			UserInfo user = (UserInfo) session.getAttribute("userInfo");
+			if (user == null) {// 로그인하지 않은 상태
+				response.sendRedirect("/yorijori/main");
+				// 로그인하지 않은 사용자는 다음(뷰에서 선택한 path로 이동되지 않도록)으로 넘어가지 않도록 false를리턴
 				return false;
+			} else {
+				return true;
 			}
 		}
 		// 로그인된 사용자는 다음으로 넘어갈 수 있도록 true리턴
@@ -38,7 +40,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		 * 
 		 * return true; // 관리자 계정 로그인 경우(lvo != null && lvo.getAdminCk() == 1)
 		 */
-		return true;
+		return false;
 
 	}
 
