@@ -216,15 +216,16 @@
 
 
 					<div class="col-sm-6 col-lg-4 mb-4" th:each="class:${classList}">
-						<div class="candidate-list candidate-grid">
+					
+						<div class="candidate-list candidate-grid" >
 							<div class="candidate-list-image">
-								<img class="img-fluid" th:src="${class.thumbnail}" alt="">
+								<img class="img-fluid" th:src="${class.thumbnail}" >
 							</div>
 							<div class="candidate-list-details">
 								<div class="candidate-list-info">
 									<div class="candidate-list-title">
 										<h5>
-											<a href="/yorijori/cookingclass/read"><span
+											<a th:href="@{/cookingclass/read(cookNo=${class.cookNo})}"><span
 												th:text="${class.title}"></span></a>
 										</h5>
 									</div>

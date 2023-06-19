@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
+import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 import com.yorijori.foodcode.jpa.repository.CookingClassContentRepository;
 import com.yorijori.foodcode.jpa.repository.CookingClassCurriculumRepository;
 import com.yorijori.foodcode.jpa.repository.CookingClassRepository;
@@ -66,13 +67,15 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	}
 
 	@Override
-	public CookingClassContent readContent(int cookNo) {
-		return contentRepo.findById(cookNo).get();
+	public List<CookingClassContent> readContent(int cookNo) {
+		List<CookingClassContent> result=contentRepo.findByCookNo(cookNo);
+		return result;
 	}
 
 	@Override
-	public CookingClassCurriculum readCurriculum(int cookNo) {
-		return curriculumRepo.findById(cookNo).get();
+	public List<CookingClassCurriculum> readCurriculum(int cookNo) {
+		List<CookingClassCurriculum> result=curriculumRepo.findByCookNo(cookNo);
+		return result;
 	}
 
 
@@ -91,6 +94,12 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	@Override
 	public void insertCurriculum(CookingClassCurriculum curriculum) {
 		curriculumRepo.save(curriculum);
+	}
+
+	@Override
+	public void insertImage(CookingClassImage image) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
