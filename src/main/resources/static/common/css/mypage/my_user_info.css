@@ -1,54 +1,110 @@
-@charset "UTF-8";
-body{
-    margin-top:20px;
-    color: #1a202c;
-    text-align: left;
-    background-color: #e2e8f0;    
-}
-.main-body {
-    padding: 15px;
-}
-.card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+.form-control:focus {
+  box-shadow: none;
+  border-color: #fd5d5d;
 }
 
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
-    border-radius: .25rem;
+.profile-button {
+  background: #fd5d5d;
+  box-shadow: none;
+  border: none;
 }
 
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
+.profile-button:hover {
+  background: #fd5d5d;
 }
 
-.gutters-sm {
-    margin-right: -8px;
-    margin-left: -8px;
+.profile-button:focus {
+  background: #fd5d5d;
+  box-shadow: none;
 }
 
-.gutters-sm>.col, .gutters-sm>[class*=col-] {
-    padding-right: 8px;
-    padding-left: 8px;
-}
-.mb-3, .my-3 {
-    margin-bottom: 1rem!important;
+.profile-button:active {
+  background: #fd5d5d;
+  box-shadow: none;
 }
 
-.bg-gray-300 {
-    background-color: #e2e8f0;
+.back:hover {
+  color: #fd5d5d;
+  cursor: pointer;
 }
-.h-100 {
-    height: 100%!important;
+#temp{
+	color: orange;
 }
-.shadow-none {
-    box-shadow: none!important;
+
+.rounded-circle {
+    border-radius: 50%!important;
+    margin-bottom: 20px;
+    margin-top : 0px!important;
 }
+.rounded-circle:hover{
+    border-radius: 50%!important;
+    margin-bottom: 20px;
+    background-image: url(https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png);
+}
+/* .row{
+	margin-bottom: 20px;
+} */
+.font-weight-bold{ /* 프사와 이름 간격 조정 이름에다가 margin top 을 줬음 */
+	margin-top:20px;
+}
+
+.pt-5, .py-5 { /* 이걸로 헤드 간격 줄이기 padding 을 없앰으로서 */	
+     padding-top: 0px !important; 
+}
+.mult-select-tag .input-container{
+	height: 60px;
+}
+.mult-select-tag .item-container{ /* 선택된 아이템들 디자인 */
+    border: 1px solid #fd5d5d !important;
+    background: white !important;
+    color: #fd5d5d !important;	/* x 표시 색깔 */
+    max-height: 2em;
+}
+.mult-select-tag .item-label{ /* 선택된 아이템의 글자 디자인 */
+	color: #fd5d5d !important;	
+}
+.mult-select-tag .input-container{
+	overflow-y: scroll;
+	height:4.7em;
+}
+.mult-select-tag .input-container::-webkit-scrollbar {
+	width: 10px;
+}
+
+.mult-select-tag .input-container::-webkit-scrollbar-thumb {
+	background-color: #fd5d5d;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.mult-select-tag .input-container::-webkit-scrollbar-track {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+
+.image-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.image-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-image: url("https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px 100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.image-container:hover::before {
+  opacity: 1;
+}	

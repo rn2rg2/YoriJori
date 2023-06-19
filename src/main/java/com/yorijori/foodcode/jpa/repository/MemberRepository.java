@@ -13,7 +13,4 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     UserInfo findByUserIdAndPass(String user_id, String pass);
     UserInfo findByKakaoID(String kakaoID);
     
-    
-    
-
 }
