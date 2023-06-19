@@ -514,3 +514,30 @@ function makePageAjax(div_id, totalPages, visiblePages, fn) {
 		}
 	});
 }
+
+function loadPage(totalCount, pageSize, fn) {
+	let nowPage = 1;
+	let totalPages = totalCount / pageSize;
+
+	if (totalCount % pageSize > 0) {
+		totalPages++;
+	}
+
+	$('#pagination_div').twbsPagination('destroy');
+	$('#pagination_div').remove();
+	$('#pag').html('<div id="pagination_div" class="mb-3"></div>');
+
+	$('#pagination_div').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : pageSize,
+		first : '<span sris-hidden="true">«</span>',
+		prev : "이전",
+		next : "다음",
+		last : '<span sris-hidden="true">»</span>',
+		initiateStartPageClick : false, // onPageClick 자동호출 방지
+		onPageClick : function(event, page) {
+			nowPage = page;
+			fn(page - 1);
+		}
+	});
+}

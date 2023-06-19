@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,18 +19,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user_wishlist")
-@ToString(exclude = {"userId","recipeNo"})
-public class UserWishlist {
+@Table(name="api_recipe_img")
+@ToString(exclude = {"rcpSeq"})
+public class ApiRecipeImg {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id; //컬럼명 id / autoincrement
+	private int	id;
+	//private int recipeNo;		//레시피번호
+	private int count;		//순서
+	private String manual;	//컨텐츠1
+	private String manualImg;	//이미지1
 	
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable=false)
-	private UserInfo userId;
-	
-	@ManyToOne
-	@JoinColumn(name = "recipeNo", nullable=false)
-	private Recipe recipeNo;
+	@JoinColumn(name = "rcpSeq", nullable=false)
+	@JsonBackReference
+	private ApiRecipe rcpSeq;
 }

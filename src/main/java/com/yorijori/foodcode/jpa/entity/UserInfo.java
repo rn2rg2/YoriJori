@@ -66,7 +66,7 @@ public class UserInfo {
 //	    return userinfo;
 //	}
 	
-	@OneToMany(mappedBy="userId", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Recipe> recipeList = new ArrayList<Recipe>();
 	
 	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)

@@ -1,4 +1,4 @@
-package com.yorijori.foodcode.common;
+package com.yorijori.foodcode.apidata;
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
