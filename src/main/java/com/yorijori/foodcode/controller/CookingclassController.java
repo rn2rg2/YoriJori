@@ -30,8 +30,9 @@ import com.yorijori.foodcode.service.MemberService;
 public class CookingclassController {
 	
 	CookingClassService service;
+	MemberService memservice;
 	FileUploadLogic fileUploadLogic;
-
+	
 	@Autowired
 	public CookingclassController(CookingClassService service,FileUploadLogic fileUploadLogic) {
 		super();
