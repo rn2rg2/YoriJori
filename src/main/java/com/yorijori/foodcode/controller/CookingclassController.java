@@ -23,6 +23,7 @@ import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.CookingClassService;
 import com.yorijori.foodcode.service.MemberService;
 @RequestMapping("/cookingclass")
@@ -67,9 +68,21 @@ public class CookingclassController {
 		service.delete(cookNo);
 		return "redirect:/cookingclass/list";
 	}
+	@RequestMapping("/application")
+	public String applicateClass(int cookNo, HttpSession session) {
+		UserInfo user=(UserInfo)session.getAttribute("userInfo");
+		if(user==null) {
+			return "redirect:/main";
+		}
+		return "thymeleaf/cookingclass/classApplicationForm";
+	}
 	
 	@RequestMapping("/in")
 	public String showInsertCookingclass(HttpSession session) {
+		UserInfo user=(UserInfo)session.getAttribute("userInfo");
+		if(user.getRole().equals("회원")) {
+			return "redirect:/main";
+		}
 		return "thymeleaf/cookingclass/classInsert";
 	}
 	@PostMapping("/in")
