@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.Category;
@@ -13,7 +14,8 @@ import com.yorijori.foodcode.repository.CategoryDAO;
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
     private CategoryDAO categoryDAO;
-
+    
+    @Autowired
     public CategoryServiceImpl(CategoryDAO categoryDAO) {
         this.categoryDAO = categoryDAO;
     }
