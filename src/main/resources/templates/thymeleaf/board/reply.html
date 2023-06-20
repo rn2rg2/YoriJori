@@ -15,6 +15,7 @@
 							<input type="hidden" name="comm_no" th:value="${board.commNo}" />
 							<input type="hidden" name="user_id" th:value="${session.userInfo.userId}" />
 							<input type="hidden" name="state" th:value="${board.state}" />
+							<input type="hidden" name="is_first_comment" th:value="Y" />
 							<textarea class="form-control" placeholder="댓글을 입력해주세요" rows="3" name="contents"></textarea>
 							<br>
 							<button type="submit" class="btn btn-info pull-right" style="float: right;">Post</button>
@@ -32,9 +33,15 @@
 										</p>
 										<p class="meta" th:text="${comment.contents}"></p>
 										<form action="/yorijori/board/boardCommentInsert" method="post">
-											<div style="display: flex; ">							
+											<input type="hidden" name="comm_no" th:value="${board.commNo}" />
+											<input type="hidden" name="user_id" th:value="${session.userInfo.userId}" />
+											<input type="hidden" name="state" th:value="${board.state}" />
+											<input type="hidden" name="is_first_comment" th:value="N" />
+											<input type="hidden" name="parents_comment_no" th:value="${comment.comment_no}" />
+											<input type="hidden" name="display_order_no" th:value="${comment.new_display_order_no}" />
+											<div style="display: flex; ">
 												<textarea style="flex: 1; margin-right: 2%;" class="form-control" placeholder="댓글을 입력해주세요" rows="3" name="contents"></textarea>
-												<span><button type="submit" class="btn btn-info pull-right" style="float: right;">Post</button></span>
+												<span><button type="submit" class="btn btn-info pull-right" style="float: right;">Post </button></span>
 											</div>
 										</form>
 									</div>

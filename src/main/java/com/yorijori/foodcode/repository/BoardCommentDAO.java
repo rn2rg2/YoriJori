@@ -20,6 +20,6 @@ public interface BoardCommentDAO {
 
 	int updateGroupNo(BoardDTO boardDTO);
 
-	int insertCommnet(BoardDTO boardDTO);
+	int insertComment(BoardDTO boardDTO);
 
 }

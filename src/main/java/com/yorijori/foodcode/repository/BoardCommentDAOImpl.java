@@ -71,8 +71,8 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 	}
 
 	@Override
-	public int insertCommnet(BoardDTO boardDTO) {
-		return sqlSessionTemplate.insert("com.yorijori.board.insertCommnet", boardDTO);
+	public int insertComment(BoardDTO boardDTO) {
+		return sqlSessionTemplate.insert("com.yorijori.board.insertComment", boardDTO);
 	}
 
 

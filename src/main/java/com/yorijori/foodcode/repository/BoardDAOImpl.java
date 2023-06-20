@@ -42,9 +42,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int update(Board board) {
+	public void update(Board board) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 
@@ -66,6 +66,11 @@ public class BoardDAOImpl implements BoardDAO {
 		Board board=repository.findById(commNo).get();
 		board.setCommNo(commNo);
 		board.setState(1);
+	}
+
+	@Override
+	public void bulletinBoardViews(int commNo) {
+		repository.bulletinBoardViews(commNo);
 	}
 
 
