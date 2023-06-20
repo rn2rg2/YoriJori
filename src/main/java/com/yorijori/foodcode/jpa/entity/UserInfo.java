@@ -13,13 +13,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.yorijori.foodcode.dto.UserInfoDTO;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.val;
 
 @Data
 @AllArgsConstructor

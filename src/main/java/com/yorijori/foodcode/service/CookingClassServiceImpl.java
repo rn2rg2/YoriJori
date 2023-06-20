@@ -37,22 +37,23 @@ public class CookingClassServiceImpl implements CookingClassService {
 
 	@Override
 	public void insert(CookingClass cookingclass, CookingClassContent content, CookingClassCurriculum curriculum) {
-		
-		List<CookingClassContent> contentlist = new ArrayList<CookingClassContent>();
-		List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
+		dao.insertClass(cookingclass);
+		//List<CookingClassContent> contentlist = new ArrayList<CookingClassContent>();
+		//List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
 		//컨텐츠 insert
 		String[] temp1=content.getContent().split(",");
 		String[] temp2=content.getConCategory().split(",");
 		for(int i=0;i<temp1.length;i++) {
 			CookingClassContent dto = new CookingClassContent();
+			dto.setCookNo(cookingclass);
 			dto.setContent(temp1[i]);
 			dto.setConCategory(temp2[i]);
-			contentlist.add(dto);
+			//contentlist.add(dto);
 //			content.setContentNo(content.getContentNo()+1);
 //			content.setCookNo(cookingclass.getCookNo());
 //			content.setContent(temp1[i]);
 //			content.setConCategory(temp2[i]);
-//			dao.insertContent(content);
+			dao.insertContent(content);
 		}
 		
 		//커리큘럼 insert
@@ -61,19 +62,20 @@ public class CookingClassServiceImpl implements CookingClassService {
 		for(int i=0;i<temp1.length;i++)
 		{
 			CookingClassCurriculum dto = new CookingClassCurriculum();
+			dto.setCookNo(cookingclass);
 			dto.setCurName(temp1[i]);
 			dto.setCurTime(temp2[i]);
-			curriList.add(dto);
+			//curriList.add(dto);
 //			curriculum.setId(curriculum.getId()+1);
 //			curriculum.setCookNo(cookingclass.getCookNo());
 //			curriculum.setCurName(temp1[i]);
 //			curriculum.setCurTime(temp2[i]);
 //			curriculum.setCurNo(i+1);
-//			dao.insertCurriculum(curriculum);
+			dao.insertCurriculum(curriculum);
 		}
-		cookingclass.setContentList(contentlist);
-		cookingclass.setCurriList(curriList);
-		dao.insertClass(cookingclass);
+		//cookingclass.setContentList(contentlist);
+		//cookingclass.setCurriList(curriList);
+		
 	}
 
 
