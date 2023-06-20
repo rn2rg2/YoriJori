@@ -1,11 +1,15 @@
 package com.yorijori.foodcode.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mapping.AccessOptions.GetOptions.GetNulls;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.dto.UserInfoDTO;
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.KakaoService;
 import com.yorijori.foodcode.service.MemberService;
 
@@ -35,17 +41,18 @@ public class MemberController {
 	private KakaoService ms;
     @Autowired
     private MemberService userService;
-    
+    @Autowired
+    private CategoryService categoryservice;
 	
     @GetMapping("/loginpage")
     public String login() {
         return "thymeleaf/member/loginpage";
     }
-	
+
     @PostMapping("/login")
     public String login(@RequestParam("userName") String userName, @RequestParam("userPassword") String userPassword, HttpSession session,Model model) {
         UserInfo loginUser = userService.login(userName, userPassword);
-
+        
         if (loginUser != null && loginUser.getPass().equals(userPassword)) {
         	session.setAttribute("userInfo", loginUser);
         	if (loginUser.getRole().equals("관리자")) {
@@ -71,28 +78,50 @@ public class MemberController {
 		return "thymeleaf/member/signUpForm1";
 	}
 	@RequestMapping("/signup2")
-	public String signUp2() {
+	public String signUp2(Model model) {
+	    List<Category> categories = categoryservice.findByLevel(2);
+	    List<String> categoryNames = new ArrayList<>();
+	    
+	    
+	    for (Category category : categories) {
+	        categoryNames.add(category.getName());
+	    }
+	    model.addAttribute("categories", categoryNames);
+
 		return "thymeleaf/member/signUpForm2";
 	}
+
+	
 	@PostMapping("/signUp")
 	public String signUp(@ModelAttribute UserInfo userinfodto,
+			@RequestParam String num1,
+			@RequestParam String num2,
+			@RequestParam String num3,
 	        Model model) {
-	    Date today = new Date();
+	    String number = num1 + num2 + num3;
 	    
+	    Date today = new Date();
+	    String kakaoID = userinfodto.getKakaoID();
+	    String email = userinfodto.getEmail().replace(",", "");
+	    System.out.println(userinfodto.getPhoneNumber());
+	    System.out.println(num2);
+	    System.out.println(Integer.parseInt(number));
+	    userinfodto.setPhoneNumber(Integer.parseInt(number));
+	    userinfodto.setEmail(email);
 	    userinfodto.setRole("회원");
-	    userinfodto.setPhoneNumber(52252);
 	    userinfodto.setPoint(36); 
 	    userinfodto.setState(0);
 	    userinfodto.setKakaoID(userinfodto.getKakaoID());
-	    System.out.println("test:::"+userinfodto.getKakaoID());
-	    String kakaoID = userinfodto.getKakaoID();
-	    
-
 	    userinfodto.setDate(new java.sql.Date(today.getTime()));
+
+	    System.out.println("test:::"+userinfodto.getKakaoID());
+
+
 	    System.out.println(userinfodto);
 	    memberService.save(userinfodto);
 	    return "thymeleaf/member/signUpForm2";
 	}
+
 	
 	
 	// 코드 설명 - 중복체크 컨트롤러

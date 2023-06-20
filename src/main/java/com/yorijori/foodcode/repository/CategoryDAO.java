@@ -6,6 +6,7 @@ import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 
 public interface CategoryDAO {
-	List<Category> selectAll();
-	
+    List<Category> findAll();
+    List<Category> findByLevel(Integer upperLevel);
+
 }
