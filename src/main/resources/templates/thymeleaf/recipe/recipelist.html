@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <!-- include summernote css/js-->
 <!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
 	integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
 	crossorigin="anonymous" /> -->
 <th:block layout:fragment="header">
-	<link rel="stylesheet"
-		href="/yorijori/common/css/recipe/recipelist.css">
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
 </th:block>
 
 <th:block layout:fragment="content">
@@ -21,29 +18,24 @@
 					<div class="sidebar">
 						<div class="widget border-0">
 							<!-- 검색 창 init -->
-							<div id="searbar_ingredient"
-								th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+							<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>레시피</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#gender"
-									role="button" aria-expanded="false" aria-controls="gender"><i
-									class="fas fa-chevron-down"></i></a>
+								<a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender">
+									<i class="fas fa-chevron-down"></i>
+								</a>
 							</div>
 							<div class="collapse show" id="gender">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="user_recipe_check" checked="checked"> <label
-											class="custom-control-label" for="user_recipe_check">유저
-											레시피</label>
+										<input type="checkbox" class="custom-control-input" id="user_recipe_check" checked="checked">
+										<label class="custom-control-label" for="user_recipe_check">유저 레시피</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="server_recipe_check"> <label
-											class="custom-control-label" for="server_recipe_check">공식
-											레시피</label>
+										<input type="checkbox" class="custom-control-input" id="server_recipe_check">
+										<label class="custom-control-label" for="server_recipe_check">공식 레시피</label>
 									</div>
 								</div>
 							</div>
@@ -51,8 +43,7 @@
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>필터</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#dateposted"
-									role="button" aria-expanded="false" aria-controls="dateposted">
+								<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
 									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
@@ -60,28 +51,20 @@
 							<div class="collapse show" id="dateposted">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted"
-											id="dateposted1" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="dateposted1">조회
-											순</label>
+										<input type="checkbox" class="custom-control-input dateposted" id="dateposted1" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="dateposted1">조회 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted"
-											id="dateposted2" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="dateposted2">좋아요
-											순</label>
+										<input type="checkbox" class="custom-control-input dateposted" id="dateposted2" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="dateposted2">좋아요 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted"
-											id="dateposted3" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="dateposted3">댓글
-											많은 순</label>
+										<input type="checkbox" class="custom-control-input dateposted" id="dateposted3" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="dateposted3">댓글 많은 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted"
-											id="dateposted4" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="dateposted4">등록
-											순</label>
+										<input type="checkbox" class="custom-control-input dateposted" id="dateposted4" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="dateposted4">등록 순</label>
 									</div>
 								</div>
 							</div>
@@ -89,27 +72,23 @@
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>메뉴 타입</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#specialism"
-									role="button" aria-expanded="false" aria-controls="specialism">
+								<a class="ml-auto" data-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism">
 									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
 							<div class="collapse show" id="specialism">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input specialism"
-											id="specialism1" onclick="handlespecialism(this)"> <label
-											class="custom-control-label" for="specialism1">메인메뉴</label>
+										<input type="checkbox" class="custom-control-input specialism" id="specialism1" onclick="handlespecialism(this)">
+										<label class="custom-control-label" for="specialism1">메인메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input specialism"
-											id="specialism2" onclick="handlespecialism(this)"> <label
-											class="custom-control-label" for="specialism2">반찬</label>
+										<input type="checkbox" class="custom-control-input specialism" id="specialism2" onclick="handlespecialism(this)">
+										<label class="custom-control-label" for="specialism2">반찬</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input specialism"
-											id="specialism3" onclick="handlespecialism(this)"> <label
-											class="custom-control-label" for="specialism3">디저트</label>
+										<input type="checkbox" class="custom-control-input specialism" id="specialism3" onclick="handlespecialism(this)">
+										<label class="custom-control-label" for="specialism3">디저트</label>
 									</div>
 								</div>
 							</div>
@@ -117,27 +96,23 @@
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>식사별</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#jobtype"
-									role="button" aria-expanded="false" aria-controls="jobtype">
+								<a class="ml-auto" data-toggle="collapse" href="#jobtype" role="button" aria-expanded="false" aria-controls="jobtype">
 									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
 							<div class="collapse show" id="jobtype">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox fulltime-job">
-										<input type="checkbox" class="custom-control-input menutype"
-											id="menutype1" onclick="handleMenutype(this)"> <label
-											class="custom-control-label" for="menutype1">아침 메뉴</label>
+										<input type="checkbox" class="custom-control-input menutype" id="menutype1" onclick="handleMenutype(this)">
+										<label class="custom-control-label" for="menutype1">아침 메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox parttime-job">
-										<input type="checkbox" class="custom-control-input menutype"
-											id="menutype2" onclick="handleMenutype(this)"> <label
-											class="custom-control-label" for="menutype2">점심 메뉴</label>
+										<input type="checkbox" class="custom-control-input menutype" id="menutype2" onclick="handleMenutype(this)">
+										<label class="custom-control-label" for="menutype2">점심 메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox freelance-job">
-										<input type="checkbox" class="custom-control-input menutype"
-											id="menutype3" onclick="handleMenutype(this)"> <label
-											class="custom-control-label" for="menutype3">저녁 메뉴</label>
+										<input type="checkbox" class="custom-control-input menutype" id="menutype3" onclick="handleMenutype(this)">
+										<label class="custom-control-label" for="menutype3">저녁 메뉴</label>
 									</div>
 								</div>
 							</div>
@@ -145,36 +120,27 @@
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>Experience</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#experience"
-									role="button" aria-expanded="false" aria-controls="experience">
+								<a class="ml-auto" data-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience">
 									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
 							<div class="collapse show" id="experience">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience"
-											id="experience2" onclick="handleExperience(this)"> <label
-											class="custom-control-label" for="experience2">1년전
-											게시물</label>
+										<input type="checkbox" class="custom-control-input experience" id="experience2" onclick="handleExperience(this)">
+										<label class="custom-control-label" for="experience2">1년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience"
-											id="experience3" onclick="handleExperience(this)"> <label
-											class="custom-control-label" for="experience3">2년전
-											게시물</label>
+										<input type="checkbox" class="custom-control-input experience" id="experience3" onclick="handleExperience(this)">
+										<label class="custom-control-label" for="experience3">2년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience"
-											id="experience4" onclick="handleExperience(this)"> <label
-											class="custom-control-label" for="experience4">3년전
-											게시물</label>
+										<input type="checkbox" class="custom-control-input experience" id="experience4" onclick="handleExperience(this)">
+										<label class="custom-control-label" for="experience4">3년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience"
-											id="experience5" onclick="handleExperience(this)"> <label
-											class="custom-control-label" for="experience5">4년전
-											게시물</label>
+										<input type="checkbox" class="custom-control-input experience" id="experience5" onclick="handleExperience(this)">
+										<label class="custom-control-label" for="experience5">4년전 게시물</label>
 									</div>
 								</div>
 							</div>
@@ -182,43 +148,31 @@
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>좋아요</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary"
-									role="button" aria-expanded="false"
-									aria-controls="Offeredsalary"> <i
-									class="fas fa-chevron-down"></i>
+								<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary">
+									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
 							<div class="collapse show" id="Offeredsalary">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount"
-											id="likeCount1" onclick="handleLikeCount(this)"> <label
-											class="custom-control-label" for="likeCount1">10k -
-											20k</label>
+										<input type="checkbox" class="custom-control-input likeCount" id="likeCount1" onclick="handleLikeCount(this)">
+										<label class="custom-control-label" for="likeCount1">10k - 20k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount"
-											id="likeCount2" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount2">20k
-											- 30k</label>
+										<input type="checkbox" class="custom-control-input likeCount" id="likeCount2" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="likeCount2">20k - 30k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount"
-											id="likeCount3" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount3">30k
-											- 40k</label>
+										<input type="checkbox" class="custom-control-input likeCount" id="likeCount3" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="likeCount3">30k - 40k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount"
-											id="likeCount4" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount4">40k
-											- 50k</label>
+										<input type="checkbox" class="custom-control-input likeCount" id="likeCount4" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="likeCount4">40k - 50k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount"
-											id="likeCount5" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount5">50k
-											- 60k</label>
+										<input type="checkbox" class="custom-control-input likeCount" id="likeCount5" onclick="handleCheckboxChange(this)">
+										<label class="custom-control-label" for="likeCount5">50k - 60k</label>
 									</div>
 								</div>
 							</div>
@@ -234,70 +188,93 @@
 				<div class="col-lg-9">
 					<div class="job-filter mb-4 d-sm-flex align-items-center">
 						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark" href="/yorijori/recipe/insert"><i
-								class="fa-solid fa-utensils"></i>ㅤ레시피 등록</a>
+							<a class="btn btn-md btn-dark" href="/yorijori/recipe/insert">
+								<i class="fa-solid fa-utensils"></i>ㅤ레시피 등록
+							</a>
 						</div>
 						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark"
-								href="/yorijori/recipe/list/user/0"><i
-								class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화</a>
+							<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0">
+								<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
+							</a>
 						</div>
 						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark" href="#" onclick="filterOn()"><i
-								class="fa-regular fa-circle-check"></i> 필터 적용</a>
+							<a class="btn btn-md btn-dark" href="#" onclick="filterOn()">
+								<i class="fa-regular fa-circle-check"></i> 필터 적용
+							</a>
 						</div>
-						<div class="job-shortby ml-sm-auto d-flex align-items-center">
-						</div>
+						<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
 					</div>
 					<div class="row recipe_content">
-						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
-							<div class="candidate-list candidate-grid">
-								<div class="candidate-list-image">
-									<img class="img-fluid"
-										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
-										alt="">
-								</div>
-								<div class="candidate-list-details">
-									<div class="candidate-list-info">
-										<div class="candidate-list-title">
-											<h5>
-												<a href="/yorijori/recipe/view" th:text="${data.name}"></a>
-											</h5>
-										</div>
-										<div class="candidate-list-option">
-											<div
-												class="badge badge-dark px-3 rounded-pill font-weight-normal"
-												th:text="${data.userId.nickname}"></div>
-											<br>
-											<div
-												class="badge badge-success px-3 rounded-pill font-weight-normal"
-												th:text="${data.time}"></div>
-											<div
-												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
-											<hr>
-											<div class="meta meta-style2">
-												<ul class="list-unstyled">
-													<li><i class="fa-solid fa-eye"></i> <span
-														class="ml-1 mr-1" th:text="${data.count}"></span></li>
-													<li><i class="fa-solid fa-thumbs-up"></i><span
-														class="ml-1 mr-1" th:text="${#lists.size(data.wishlist)}"></span></li>
-													<li><a href="#!"><i class="fas fa-comments"></i> <span
-															class="ml-1 mr-1"
-															th:text="${#lists.size(data.reviewList)}"></span></a></li>
-												</ul>
+						<th:block th:if="${type} == 'user'">
+							<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
+								<div class="candidate-list candidate-grid">
+									<div class="candidate-list-image">
+										<img class="img-fluid" src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg" alt="">
+									</div>
+									<div class="candidate-list-details">
+										<div class="candidate-list-info">
+											<div class="candidate-list-title">
+												<h5>
+													<a href="/yorijori/recipe/view" th:text="${data.name}"></a>
+												</h5>
+											</div>
+											<div class="candidate-list-option">
+												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="${data.userId.nickname}"></div>
+												<br>
+												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
+												<hr>
+												<div class="meta meta-style2">
+													<ul class="list-unstyled">
+														<li><i class="fa-solid fa-eye"></i> <span class="ml-1 mr-1" th:text="${data.count}"></span></li>
+														<li><i class="fa-solid fa-thumbs-up"></i><span class="ml-1 mr-1" th:text="${#lists.size(data.wishlist)}"></span></li>
+														<li><a href="#!">
+																<i class="fas fa-comments"></i> <span class="ml-1 mr-1" th:text="${#lists.size(data.reviewList)}"></span>
+															</a></li>
+													</ul>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="candidate-list-favourite-time">
-										<a class="candidate-list-favourite order-2"
-											onclick="clickHeart(addHeart)"><i class="far fa-heart"></i></a> <span
-											class="candidate-list-time order-1"><i
-											class="far fa-clock pr-1"></i><span th:text="${data.date}"></span></span>
+										<div class="candidate-list-favourite-time">
+											<a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
+												<i class="far fa-heart"></i>
+											</a>
+											<span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i><span th:text="${data.date}"></span></span>
 
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</th:block>
+						<th:block th:unless="${type} == 'user'">
+							<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
+								<div class="candidate-list candidate-grid">
+									<div class="candidate-list-image">
+										<img class="img-fluid" th:src="${data.attFileNoMain}" alt="">
+									</div>
+									<div class="candidate-list-details">
+										<div class="candidate-list-info">
+											<div class="candidate-list-title">
+												<h5>
+													<a th:href="@{/yorijori/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
+												</h5>
+											</div>
+											<div class="candidate-list-option">
+												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">[[${data.rcpPat2}]]</div>
+												<br>
+												<ul class="list-unstyled"></ul>
+											</div>
+										</div>
+										<div class="candidate-list-favourite-time">
+											<a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
+												<i class="far fa-heart" aria-hidden="true"></i>
+											</a>
+											<span class="candidate-list-time order-1"><i class="far fa-solid fa-utensils pr-1" aria-hidden="true"></i>조리방법 : 튀기기</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</th:block>
 						<!-- <div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
 							<div class="candidate-list candidate-grid">
 								<div class="candidate-list-image">
@@ -346,8 +323,7 @@
 					<div class="row">
 						<div class="col-12 text-center mt-4 mt-sm-5">
 							<div id="pag">
-								<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-								</nav>
+								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
 							</div>
 							<!-- <ul class="pagination justify-content-center mb-0">
 								<li class="page-item active" aria-current="page"><span
@@ -369,6 +345,7 @@
 		let pageNo = 0;
 		let pagePerCount = 9;
 		let currentPage = [[${pageNo}]];
+		let type = [[${type}]];
 	
 		let userRecipeCount = [[${count}]];
 		// pagination 들어갈 div
@@ -392,8 +369,9 @@
 				if (this.checked) {
 					$("#user_recipe_check").prop('checked', false);
 					//getServerAPI(0);
-					getServiceRecipeByDB(0);
-					getListCount();
+					//getServiceRecipeByDB(0);
+					//getListCount();
+					window.location.href = "/yorijori/recipe/list/server/0";
 				}
 			})
 
@@ -401,8 +379,12 @@
 			$("#user_recipe_check").click(function() {
 				window.location.href = "/yorijori/recipe/list/user/0";
 			})
-
-			makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list);
+			
+			if (type == 'user'){
+				makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list);
+			} else {
+				makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list_api);
+			}
 	
 		});
 	

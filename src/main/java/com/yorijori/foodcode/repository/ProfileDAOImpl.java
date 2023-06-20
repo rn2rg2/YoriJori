@@ -12,7 +12,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 	
 	private EntityManager entitymanager;
 	
-	
 	@Autowired
 	public ProfileDAOImpl(EntityManager entitymanager) {
 		this.entitymanager = entitymanager;

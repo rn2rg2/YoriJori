@@ -105,6 +105,10 @@ const move_list = function(page) {
 	let url = "/yorijori/recipe/list"
 	window.location.href = url + "/user/" + page;
 }
+const move_list_api = function(page) {
+	let url = "/yorijori/recipe/list"
+	window.location.href = url + "/server/" + page;
+}
 
 /*
 	전체 클릭한 필터 종류
