@@ -11,7 +11,5 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 @Repository
 public interface CategoryReposityory extends JpaRepository<Category, Integer>{ 
-	List<Category> findByList();
-		
-
+	//List<Category> findByList();
 }

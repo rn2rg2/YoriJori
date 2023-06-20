@@ -52,6 +52,13 @@ public class IngredientController {
 		
 		return "thymeleaf/recipe/ingredient";
 	}
+	
+	@RequestMapping("/view/{matlNo}")
+	public String getViewByMaltNo(@PathVariable int matlNo, Model model) {
+		Ingredients data = ingredientService.selectByMatlNo(matlNo);
+		model.addAttribute("data", data);
+		return "thymeleaf/recipe/ingredientView";
+	}
 
 	@PostMapping("/getListByPage")
 	@ResponseBody

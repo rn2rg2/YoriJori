@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
-<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
-</head>
-<body>
-	<div class="container" layout:fragment="content">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
+<th:block layout:fragment="header">
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
+</th:block>
+<th:block layout:fragment="content">
+	<div class="container">
 		<h3 class="menu-h3-common">재료 목록</h3>
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="sidebar">
 					<div class="widget border-0">
 						<!-- 검색 창 init -->
-						<div id="searbar_ingredient"
-							th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+						<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						<!-- 						<div class="search">
 							<input class="form-control" type="text" placeholder="검색">
 						</div> -->
@@ -24,77 +21,63 @@
 					<div class="widget">
 						<div class="widget-title widget-collapse">
 							<h6>카테고리 별</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#dateposted"
-								role="button" aria-expanded="false" aria-controls="dateposted">
+							<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
 								<i class="fas fa-chevron-down"></i>
 							</a>
 						</div>
 						<div class="collapse show" id="dateposted">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted1"> <label class="custom-control-label"
-										for="dateposted1">곡류 및 그 제품</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted1">
+									<label class="custom-control-label" for="dateposted1">곡류 및 그 제품</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted2"> <label class="custom-control-label"
-										for="dateposted2">감자 및 전분류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted2">
+									<label class="custom-control-label" for="dateposted2">감자 및 전분류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted3"> <label class="custom-control-label"
-										for="dateposted3">당류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted3">
+									<label class="custom-control-label" for="dateposted3">당류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted4"> <label class="custom-control-label"
-										for="dateposted4">견과류 및 종실류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted4">
+									<label class="custom-control-label" for="dateposted4">견과류 및 종실류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted5"> <label class="custom-control-label"
-										for="dateposted5">채소류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted5">
+									<label class="custom-control-label" for="dateposted5">채소류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted6"> <label class="custom-control-label"
-										for="dateposted6">버섯류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted6">
+									<label class="custom-control-label" for="dateposted6">버섯류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted7"> <label class="custom-control-label"
-										for="dateposted7">육류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted7">
+									<label class="custom-control-label" for="dateposted7">육류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted8"> <label class="custom-control-label"
-										for="dateposted8">난류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted8">
+									<label class="custom-control-label" for="dateposted8">난류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted9"> <label class="custom-control-label"
-										for="dateposted9">어패류 및 기타 수산물</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted9">
+									<label class="custom-control-label" for="dateposted9">어패류 및 기타 수산물</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted10"> <label class="custom-control-label"
-										for="dateposted10">해조류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted10">
+									<label class="custom-control-label" for="dateposted10">해조류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted11"> <label class="custom-control-label"
-										for="dateposted11">우유 및 유제품류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted11">
+									<label class="custom-control-label" for="dateposted11">우유 및 유제품류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted12"> <label class="custom-control-label"
-										for="dateposted12">유지류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted12">
+									<label class="custom-control-label" for="dateposted12">유지류</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted13"> <label class="custom-control-label"
-										for="dateposted13">조미료류</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted13">
+									<label class="custom-control-label" for="dateposted13">조미료류</label>
 								</div>
 							</div>
 						</div>
@@ -116,14 +99,14 @@
  -->
 					<div class="job-filter mb-4 d-sm-flex align-items-center">
 						<div class="job-alert-bt">
-							<a class="btn btn-md btn-dark"
-								href="/yorijori/ingredient/list/0/all"><i
-								class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화</a> <a
-								class="btn btn-md btn-dark" href="#"><i
-								class="fa-solid fa-utensils"></i>ㅤ재료 등록</a>
+							<a class="btn btn-md btn-dark" href="/yorijori/ingredient/list/0/all">
+								<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
+							</a>
+							<a class="btn btn-md btn-dark" href="#">
+								<i class="fa-solid fa-utensils"></i>ㅤ재료 등록
+							</a>
 						</div>
-						<div class="job-shortby ml-sm-auto d-flex align-items-center">
-						</div>
+						<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
 					</div>
 					<div>
 						<hr />
@@ -132,32 +115,30 @@
 
 					<div class="row">
 						<!-- Gallery item -->
+						<div class="col-xl-4 col-lg-4 col-md-6 mb-4" th:each="data, idx : ${list}">
+							<a th:href="@{/ingredient/view/{matlNo}(matlNo=${data.matlNo})}">
+								<div class="bg-white rounded shadow-sm card_border">
+									<img th:src="| /yorijori/data/ingredient/${data.imgPath}| " alt="" class="img-fluid card-img-top ingre_card " th:name="${data.matlName}">
+									<div class="p-4 card_border text-center">
+										<h5 class="text-center">
+											<a class="text-dark" th:text="${data.matlName}">재료명</a>
+										</h5>
+										<div class="badge badge-danger px-3 rounded-pill font-weight-normal m-auto">[[${data.category}]]</div>
+										
+										<!-- <p class="small text-muted mb-0">총 칼로리</p>
 
-						<div class="col-xl-4 col-lg-4 col-md-6 mb-4"
-							th:each="data, idx : ${list}">
-							<div class="bg-white rounded shadow-sm">
-								<img th:src="| /yorijori/data/ingredient/${data.imgPath}| "
-									alt="" class="img-fluid card-img-top ingre_card"
-									th:name="${data.matlName}">
-								<div class="p-4">
-									<h5>
-										<a href="#" class="text-dark" th:text="${data.matlName}">재료명</a>
-									</h5>
-									<p class="small text-muted mb-0">총 칼로리</p>
-
-									<p class="small mb-0">
-										<span class="font-weight-bold" th:text="${data.energy}">1000kcal
-										</span>
-									</p>
+										<p class="small mb-0">
+											<span class="font-weight-bold" th:text="${data.energy}">1000kcal </span>
+										</p> -->
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 
 					</div>
 					<div class="py-5">
-						<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-						</nav>
+						<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
 
 					</div>
 				</div>
@@ -250,5 +231,5 @@
 			</script>
 		<!-- <script src="/yorijori/common/js/ingredient/list.js" th:inline="javascript"></script> -->
 	</div>
-</body>
+</th:block>
 </html>

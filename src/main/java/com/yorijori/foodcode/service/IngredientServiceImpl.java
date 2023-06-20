@@ -38,6 +38,11 @@ public class IngredientServiceImpl implements IngredientService {
 		// TODO Auto-generated method stub
 		return ingredientDAO.selectAll();
 	}
+	
+	@Override
+	public Ingredients selectByMatlNo(int matlNo) {
+		return ingredientDAO.selectByMatlNo(matlNo);
+	}
 
 	@Override
 	public void delete(int matlNo) {

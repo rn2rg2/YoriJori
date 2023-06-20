@@ -20,4 +20,6 @@ public interface IngredientsRepository extends JpaRepository<Ingredients, Intege
 
 	@Query("SELECT COUNT(e) FROM Ingredients e WHERE e.matlName LIKE %:matlName%")
     Long countByMatlNameContaining(String matlName);
+	
+	Ingredients findByMatlNo(int matlNo);
 }

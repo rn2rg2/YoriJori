@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
+<th:block layout:fragment="header">
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/ingreView.css">
+</th:block>
+<th:block layout:fragment="content">
+	<div id="content" style="min-height: 321px;">
+		<div class="boardGroup">
+			<!--=============================================================================-->
+			<!--############################# Contents START#############################-->
+			<!--=============================================================================-->
+			<form class="form-horizontal" id="frmSch" name="frmSch" onsubmit="return false;">
+				<input type="hidden" id="pageIndex" name="pageIndex" value="">
+				<input type="hidden" id="prodSnn" name="prodSnn" value="559">
+				<input type="hidden" id="prodNmSel" name="prodNmSel" value="">
+				<input type="hidden" id="userRxSnn" name="userRxSnn" value="">
+				<input type="hidden" id="eventPartakerSnn" name="eventPartakerSnn" value="">
+				<input type="hidden" id="rxEventSnn" name="rxEventSnn" value="">
+			</form>
+
+			<!-- food_product_view -->
+			<div class="recipe_view food_recipe_view food_product_view">
+				<!-- details_top -->
+				<div class="details_top">
+					<h3 class="details_h3tit">
+						<span>sauce product</span>[[${data.matlName}]]
+					</h3>
+				</div>
+				<!-- //details_top -->
+
+				<!-- details_body -->
+				<div class="details_body">
+					<!-- details_photo -->
+					<div class="details_photo">
+						<div class="card_img">
+							<img alt="" th:src="| /yorijori/data/ingredient/${data.imgPath}| ">
+						</div>
+					</div>
+					<!-- details_con -->
+					<div class="details_con">
+						<h4 class="details_h4tit icon_book">제품정보</h4>
+						<hr class="recipe_hr">
+						<ul class="list list2">
+							<li><strong>제품 이름</strong><span> [[${data.matlName}]]</span></li>
+							<li><strong>식품 분류</strong><span>[[${data.category}]] </span></li>
+							<li><strong>에너지</strong><span> [[${data.energy}]]</span></li>
+							<li><strong>수분</strong><span>[[${data.moisture}]]</span></li>
+							<li><strong>단백질</strong><span>[[${data.protein}]]</span></li>
+							<li><strong>지방</strong> <span>[[${data.fat}]]</span></li>
+							<li><strong>화분</strong> <span>[[${data.ash}]]</span></li>
+							<li><strong>탄수화물</strong> <span>[[${data.carbs}]]</span></li>
+							<li><strong>총당류</strong> <span>[[${data.totalSugar}]]</span></li>
+
+						</ul>
+
+						<!-- 								<h4 class="details_h4tit icon_summarize">원료</h4> -->
+
+					</div>
+				</div>
+				<!-- //details_con -->
+			</div>
+			<!-- //details_body -->
+		</div>
+		<!-- //food_product_view -->
+
+		<!-- conTableGroup -->
+		<div class="conTableGroup">
+			<table class="conTable thLeft">
+				<caption>[[${data.matlName}]]의 유의사항, 기타의 정보를 제공</caption>
+				<colgroup>
+					<col style="width: 14%">
+					<col style="width: 86%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row" class="PAL30">알레르기 표시</th>
+						<td>-</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- //conTableGroup -->
+
+		<div class="board_button">
+			<button class="cancel" id="btn_list" onclick="location.href='/yorijori/ingredient/list/0/all'" type="button">목록으로</button>
+		</div>
+
+		<!--=============================================================================-->
+		<!--############################# Contents END#############################-->
+		<!--=============================================================================-->
+	</div>
+	<!-- //boardGroup -->
+
+	</div>
+</th:block>
+</html>

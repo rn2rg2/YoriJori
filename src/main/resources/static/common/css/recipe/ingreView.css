@@ -1,0 +1,284 @@
+@charset "UTF-8";
+
+#content {
+	position: relative;
+	width: 1200px;
+	/* min-height: 536px; */
+	margin: 0 auto;
+	padding: 52px 0 74px;
+	z-index: 1;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+#skip_con {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+}
+
+.boardGroup {
+	padding: 0 0 40px;
+}
+
+.boardGroup input {
+	padding: 0 10px;
+	background-color: #fff;
+	border: 1px solid #b2b7c4;
+	color: #4c4c4c;
+}
+
+.food_recipe_view {
+	padding: 56px 80px 38px;
+	margin-bottom: 18px;
+	background-color: #f3f3f3;
+	border-bottom: 0 none;
+}
+
+.food_recipe_view .details_top {
+	position: relative;
+	text-align: center;
+}
+
+.food_recipe_view .details_top h3 {
+	display: block;
+	padding: 0 158px 11px;
+	font-size: 35px;
+	color: #494949;
+	font-weight: 700;
+	background: url("/yorijori/images/common/details_h3tit_bg.gif") center
+		bottom no-repeat;
+}
+
+.food_recipe_view .details_top h3 span {
+	display: block;
+	padding-bottom: 9px;
+	font-size: 11px;
+	color: #737373;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+.food_recipe_view .details_top ul {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.food_recipe_view .details_top ul li {
+	float: left;
+	width: 72px;
+	height: 72px;
+	color: #8a8989;
+	background-color: #fff;
+}
+
+.food_recipe_view .details_top ul li i.statist_info {
+    height: 20px;
+    margin-bottom: 6px;
+}
+
+.food_recipe_view .details_top ul li i {
+    display: block;
+    width: 100%;
+    height: 16px;
+    margin: 16px 0 8px;
+    background-position: center bottom;
+}
+
+.food_recipe_view .details_body {
+    position: relative;
+    margin-top: 44px;
+    float: none;
+    width: 100%;
+}
+
+.details_photo {
+    position: relative;
+    float: left;
+    /* width: 477px; */
+    width: 444px;
+    overflow: hidden;
+}
+
+.food_recipe_view .details_con {
+    float: right;
+    /* width: calc(100% - 550px); */
+    width: calc(100% - 517px);
+}
+
+.food_report_view .details_con .details_h4tit, .food_product_view .details_con .details_h4tit {
+    padding-left: 24px;
+}
+
+.details_con .details_h4tit {
+    margin-bottom: 14px;
+    padding-left: 30px;
+    font-size: 17px;
+    color: #494949;
+    font-weight: 700;
+}
+
+.icon_book {
+    background: url("/yorijori/images/common/icon_book.png") left center no-repeat;
+}
+
+.recipe_hr {
+    width: 100%;
+    height: 2px;
+    background: url("/yorijori/images/common/recipe_hr.gif") left center repeat-x;
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.details_con .list {
+    margin-top: 21px;
+}
+
+.details_con .list2 li {
+    padding-left: 136px;
+}
+
+.details_con .list li {
+    position: relative;
+    min-height: 30px;
+    border-bottom: 0 none;
+    margin: 0;
+    padding: 0 0 9px 95px;
+    color: #7a7a7a;
+}
+
+.details_con .list li:before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 2px;
+    height: 2px;
+    background-color: #474747;
+}
+.details_con .list li strong {
+    position: absolute;
+    left: 17px;
+    top: 0;
+    color: #474747;
+    font-weight: 400;
+}
+
+.food_recipe_view .details_body:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.recipe_view:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#content .conTableGroup {
+    clear: both;
+    margin: 0px 0 0 2px;
+}
+
+.food_recipe_view + .conTableGroup {
+    margin-top: 28px !important;
+}
+
+#content .conTableGroup table {
+    clear: both;
+    width: 100%;
+    border-spacing: 0;
+    empty-cells: show;
+    border-collapse: separate;
+}
+
+table.conTable {
+    width: 100%;
+    border-top: 2px solid #343434;
+}
+
+caption, legend {
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+
+table.conTable thead tr th:first-child, table.conTable tbody tr th:first-child, table.conTable tbody tr td:first-child, table.conTable tfoot tr th:first-child, table.conTable tfoot tr td:first-child {
+    border-left: 0 none;
+}
+
+table.thLeft tr th {
+    text-align: left;
+}
+
+table.conTable th {
+    background: #f7f7f7;
+    color: #4f4f4f;
+    font-weight: 500;
+}
+
+table.conTable th, table.conTable td {
+    padding: 8px 10px;
+    line-height: 1.5;
+    border-left: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    vertical-align: middle;
+}
+
+table.conTable td {
+    color: #6d6d6d;
+}
+
+table.conTable th, table.conTable td {
+    padding: 8px 10px;
+    line-height: 1.5;
+    border-left: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    vertical-align: middle;
+}
+
+.food_recipe_view + .board_button, .card_recipe_view + .board_button, .boardGroup .conTableGroup + .board_button {
+    margin-top: 50px;
+}
+
+.board_button {
+    text-align: center;
+}
+
+
+.board_button .cancel {
+    background-color: #3f3f3f;
+}
+
+.board_button input, .board_button button, .board_button a {
+    display: inline-block;
+    width: auto;
+    height: 42px;
+    line-height: 42px;
+    margin: 0 5px;
+    padding: 0 30px;
+    border: 0 none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0;
+    letter-spacing: -1px;
+}
+
+
+

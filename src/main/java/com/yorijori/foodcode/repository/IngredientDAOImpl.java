@@ -44,6 +44,11 @@ public class IngredientDAOImpl implements IngredientDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Ingredients selectByMatlNo(int matlNo) {
+		return repository.findByMatlNo(matlNo);
+	}
 
 	
 	@Override

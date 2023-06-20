@@ -26,4 +26,6 @@ public interface IngredientDAO {
 
 	List<Ingredients> selectBySearch(int pageNo, String category, String searchData, int pagePerCount);
 
+	Ingredients selectByMatlNo(int matlNo);
+
 }

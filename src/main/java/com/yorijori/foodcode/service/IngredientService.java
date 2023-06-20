@@ -18,12 +18,13 @@ public interface IngredientService {
 
 	List<Ingredients> selectByPage(int pageNo, String category);
 
-
 	List<Ingredients> selectByPagePerCount(int pageNo, int pagePerCount);
 
 	long countAllBySearchData(String matlName);
 
 	List<Ingredients> selectBySearch(int pageNo, String category, String searchData, int pagePerCount);
+
+	Ingredients selectByMatlNo(int matlNo);
 
 
 }
