@@ -75,7 +75,7 @@
 					<div id="tab-section-1" class="tab-section">
 						<h3 class="tab-title">" 클래스 소개 "</h3>
 						<div class="line-content">
-							<div th:utext="${contentList[0].content}"></div>
+							<div th:utext="${cookingclass.contentList[0].content}"></div>
 						</div>
 
 
@@ -85,7 +85,7 @@
 						<!-- 강사소개: 클래스 소개와 형식 동일 -->
 						<h3 class="tab-title">" 강사소개 "</h3>
 						<div class="line-content">
-							<div th:utext="${contentList[1].content}"></div>
+							<div th:utext="${cookingclass.contentList[1].content}"></div>
 						</div>
 
 					</div>
@@ -94,7 +94,7 @@
 						<!--  -->
 						<h3 class="tab-title">" 커리큘럼 "</h3>
 						<ul>
-							<li th:each="curri:${curriculumList}"><b
+							<li th:each="curri:${cookingclass.curriList}"><b
 								th:text="${curri.curName}"></b><a class="time">[[${curri.curTime}]]분</a></li>
 
 						</ul>

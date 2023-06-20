@@ -56,11 +56,11 @@ public class CookingclassController {
 	@RequestMapping("/read")
 	public String showCookingclass(Model model, int cookNo) {
 		CookingClass cookingclass = service.readClass(cookNo);
-		List<CookingClassContent> content = service.readContent(cookNo);
-		List<CookingClassCurriculum> curriculum= service.readCurriculum(cookNo);
+		//List<CookingClassContent> content = service.readContent(cookNo);
+		//List<CookingClassCurriculum> curriculum= service.readCurriculum(cookNo);
 		model.addAttribute("cookingclass", cookingclass);
-		model.addAttribute("contentList", content);
-		model.addAttribute("curriculumList", curriculum);
+		//model.addAttribute("contentList", content);
+		//model.addAttribute("curriculumList", curriculum);
 		return "thymeleaf/cookingclass/classRead";
 	}
 	@RequestMapping("/delete")

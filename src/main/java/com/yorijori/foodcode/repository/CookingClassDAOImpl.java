@@ -84,6 +84,12 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 		//classRepo.save(cookingclass);
 		return classRepo.saveAndFlush(cookingclass);
 	}
+	
+	@Override
+	public void insertClassTest(CookingClass cookingclass) {
+		classRepo.save(cookingclass);
+	}
+
 
 
 	@Override

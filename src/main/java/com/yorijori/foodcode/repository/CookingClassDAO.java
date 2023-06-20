@@ -20,4 +20,5 @@ public interface CookingClassDAO {
 	public CookingClass readClass(int cookNo);
 	public List<CookingClassContent> readContent(int cookNo);
 	public List<CookingClassCurriculum> readCurriculum(int cookNo);
+	void insertClassTest(CookingClass cookingclass);
 }
