@@ -88,7 +88,7 @@ public class CookingclassController {
 	@PostMapping("/in")
 	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum, HttpSession session) {
 		UserInfo user = (UserInfo) session.getAttribute("userinfo");
-		cookingclass.setUserInfo(user);
+		cookingclass.setUserId(user);
 		service.insert(cookingclass, content, curriculum);
 		
 		System.out.println(cookingclass);
