@@ -12,12 +12,19 @@ import com.yorijori.foodcode.repository.CategoryDAO;
 @Service
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
-	CategoryDAO categorydao;
+    private CategoryDAO categoryDAO;
+
+    public CategoryServiceImpl(CategoryDAO categoryDAO) {
+        this.categoryDAO = categoryDAO;
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return categoryDAO.findAll();
+    }
 
 	@Override
-	public List<Category> selectAll() {
-		// TODO Auto-generated method stub
-		return categorydao.selectAll();
+	public List<Category> findByLevel(Integer upperLevel) {
+		return categoryDAO.findByLevel(upperLevel);
 	}
-	
 }

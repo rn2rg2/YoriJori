@@ -6,18 +6,25 @@ import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
-import com.yorijori.foodcode.jpa.repository.CategoryReposityory;
+import com.yorijori.foodcode.jpa.repository.CategoryRepository;
 
 @Repository
-public class CategoryDAOImpl implements CategoryDAO{
-	CategoryReposityory categoryreposityory;
+public class CategoryDAOImpl implements CategoryDAO {
+    private CategoryRepository categoryRepository;
+
+    public CategoryDAOImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
+    }
 
 	@Override
-	public List<Category> selectAll() {
-		// TODO Auto-generated method stub
-		return categoryreposityory.findAll();
+	public List<Category> findByLevel(Integer upperLevel) {
+		return categoryRepository.findByLevel(upperLevel);
 	}
-		
-
 
 }
+

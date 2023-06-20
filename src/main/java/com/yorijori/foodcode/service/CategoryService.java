@@ -6,6 +6,7 @@ import com.yorijori.foodcode.jpa.entity.Category;
 
 
 public interface CategoryService {
-	List<Category> selectAll();
+    List<Category> findAll();
+    List<Category> findByLevel(Integer upperLevel);
 
 }
