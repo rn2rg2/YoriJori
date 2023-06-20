@@ -97,9 +97,10 @@ body{
 }
 .insert-control{
 	border: 1px solid var(--main-theme-color-red);
-	width: 80%;
+	width:30%;
 	padding-left: 10px;
 	margin-bottom: 5px;
+	height:2.5em;
 }
 .insert-control:focus{
 	border: 1px solid #000;
@@ -141,6 +142,7 @@ font-weight: bold;
 .tr{
 border: 1px solid var(--main-theme-color-red);
 font-weight: bold;	
+margin-bottom: 10px;
 }
 td:nth-child(2){
 	border-right: 2px solid var(--main-theme-color-red);
@@ -251,4 +253,58 @@ label a{
 .submit-btn{
 	font-size: 30px;
 	padding:0.7rem 5rem 0.7rem 5rem;
+}
+.mult-select-tag .input-container{
+	height: 5em;
+	overflow-y:scroll;
+	
+}
+.mult-select-tag .input-container::-webkit-scrollbar {
+	width: 10px;
+}
+
+.mult-select-tag .input-container::-webkit-scrollbar-thumb {
+	background-color: #fd5d5d;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.mult-select-tag .input-container::-webkit-scrollbar-track {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+.mult-select-tag .rounded {
+	 border-color: var(--main-theme-color-red)!important;
+}
+.mult-select-tag .item-container{
+	height:2em;
+}
+.mult-select-tag .btn-container{
+	border-color: var(--main-theme-color-red)!important;
+}
+.addingredient{
+	color: gray;
+	font-style: italic;
+	font-size: 0.8em;
+}
+
+.mult-select-tag .item-container{ /* 선택된 아이템들 디자인 */
+    border: 1px solid #fd5d5d !important;
+    background: white !important;
+    color: #fd5d5d !important;	/* x 표시 색깔 */
+    max-height: 2em;
+}
+.mult-select-tag .item-label{ /* 선택된 아이템의 글자 디자인 */
+	color: #fd5d5d !important;	
+}
+.form-control{
+	text-align: center;
+	max-height: 3em;
+    border-radius: 2em;
+    border-color: var(--main-theme-color-red);
+}
+.glyphicon-plus-sign:before{
+	content:"\e081"
 }

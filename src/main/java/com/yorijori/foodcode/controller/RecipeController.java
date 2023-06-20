@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
+import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RecipeService;
 
 @RequestMapping("/recipe")
@@ -26,20 +28,24 @@ public class RecipeController {
 	RecipeService recipeService;
 	RecipeDataFetcher recipeDataFetcher;
 	ApiRecipeService apiRecipeService;
+	IngredientService ingredientservice;
 
 	@Autowired
 	public RecipeController(RecipeService recipeService, RecipeDataFetcher recipeDataFetcher,
-			ApiRecipeService apiRecipeService) {
+			ApiRecipeService apiRecipeService, IngredientService ingredientservice) {
 		super();
 		this.recipeService = recipeService;
 		this.recipeDataFetcher = recipeDataFetcher;
 		this.apiRecipeService = apiRecipeService;
+		this.ingredientservice = ingredientservice;
 	}
 
 	@RequestMapping("/QA")
 	public String qaRecipe(Model model) {
 		return "thymeleaf/recipe/recipeQA";
 	}
+
+
 
 	@RequestMapping("/view")
 	public String viewRecipe(Model model) {
@@ -68,6 +74,8 @@ public class RecipeController {
 
 	@RequestMapping("/insert")
 	public String insertRecipe(Model model) {
+		List<Ingredients> list =  ingredientservice.selectAll();
+		model.addAttribute("list", list);
 		return "thymeleaf/recipe/recipeInsert";
 	}
 
