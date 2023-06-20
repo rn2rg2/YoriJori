@@ -26,8 +26,8 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	
 	@Override
-	public void updateprofile2(UserInfo user_id, String email, String nickname, HttpSession session) {
-		profiledao.updateprofile2(user_id, email, nickname, session);
+	public UserInfo updateprofile2(UserInfo user_id, String email, String nickname) {
+		return profiledao.updateprofile2(user_id, email, nickname);
 	}
 
 	@Override
