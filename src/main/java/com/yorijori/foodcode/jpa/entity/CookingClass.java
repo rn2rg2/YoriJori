@@ -49,7 +49,7 @@ public class CookingClass {
 	
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable=false)
-	private UserInfo userId;
+	private UserInfo userInfo;
 	
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassContent> contentList = new ArrayList<CookingClassContent>();
