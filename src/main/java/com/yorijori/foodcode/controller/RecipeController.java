@@ -51,29 +51,35 @@ public class RecipeController {
 		if (type.equals("user")) {
 			long count = recipeService.countAll();
 			List<Recipe> list = recipeService.selectListByPage(pageNo, 9);
-			for (Recipe data : list) {
-				System.out.println(data.getReviewList());
-			}
 			model.addAttribute("count", count);
+			model.addAttribute("type", type);
 			model.addAttribute("list", list);
 			model.addAttribute("pageNo", pageNo);
-		} 
+		} else {
+			long count = apiRecipeService.countAll();
+			List<ApiRecipe> list = apiRecipeService.getServerRecipe(pageNo, 9);
+			model.addAttribute("count", count);
+			model.addAttribute("type", type);
+			model.addAttribute("list", list);
+			model.addAttribute("pageNo", pageNo);
+		}
 		return "thymeleaf/recipe/recipelist";
 	}
-
 
 	@RequestMapping("/insert")
 	public String insertRecipe(Model model) {
 		return "thymeleaf/recipe/recipeInsert";
 	}
-	
+
+	// server recipe detail view
 	@RequestMapping("/view/server/{rcpSeq}")
 	public String serverView(Model model, @PathVariable int rcpSeq) {
 		ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
 		model.addAttribute("data", data);
 		return "thymeleaf/recipe/serverRecipeView";
 	}
-	
+
+	// server recipe count
 	@RequestMapping("/list/servercount")
 	@ResponseBody
 	public Long listCount(Model model) {
@@ -82,15 +88,14 @@ public class RecipeController {
 		return result;
 	}
 
-
-	@RequestMapping("/list/server/{pageNo}")
-	@ResponseBody
-	public List<ApiRecipe> listApiRecipe(@PathVariable int pageNo) throws IOException {
-		List<ApiRecipe> list = apiRecipeService.getServerRecipe(pageNo, 9);
-		System.out.println("list : " + list);
-		return list;
-	}
-
+	/*
+	 * @RequestMapping("/list/server/{pageNo}")
+	 * 
+	 * @ResponseBody public List<ApiRecipe> listApiRecipe(@PathVariable int pageNo)
+	 * throws IOException { List<ApiRecipe> list =
+	 * apiRecipeService.getServerRecipe(pageNo, 9); System.out.println("list : " +
+	 * list); return list; }
+	 */
 
 	// DB저장용 평상시 사용 x
 	@RequestMapping("/setting/{firstIdx}/{lastIdx}")
@@ -98,8 +103,8 @@ public class RecipeController {
 		recipeDataFetcher.fetchRecipeData(firstIdx, lastIdx);
 		return "thymeleaf/recipe/recipelist";
 	}
-	
-	@RequestMapping("/recipe/like/{type}")
+
+	@RequestMapping("/like/{type}")
 	@ResponseBody
 	public String addWishList(@PathVariable String type, HttpSession session, int rcp_no) {
 		String msg = "";
@@ -109,12 +114,11 @@ public class RecipeController {
 			recipe.setRecipeNo(rcp_no);
 			recipeService.wishList(userinfo, recipe);
 		} else {
-			ApiRecipe apirecipe= new ApiRecipe();
+			ApiRecipe apirecipe = new ApiRecipe();
 			apirecipe.setRcpSeq(rcp_no);
-			apiRecipeService.wishList(userinfo,apirecipe);
+			apiRecipeService.wishList(userinfo, apirecipe);
 		}
 		return msg;
 	}
-	
 
 }
