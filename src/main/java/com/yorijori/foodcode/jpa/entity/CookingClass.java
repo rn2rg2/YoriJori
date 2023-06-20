@@ -28,12 +28,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name="cooking_class")
-@ToString(exclude = {"userId","contentList","curriList"})
+@ToString(exclude = {"contentList","curriList"})
 public class CookingClass {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cookNo;
-	//private String userId;
+	private String userId;
 	private String title;
 	private String thumbnail;
 	private int price;
@@ -47,16 +47,10 @@ public class CookingClass {
 	private Date upDate;
 	private int state;
 	
-	@ManyToOne
-	@JoinColumn(name = "userId", nullable=false)
-	private UserInfo userId;
-	
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassContent> contentList = new ArrayList<CookingClassContent>();
 	
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
-	
-	
 	
 }

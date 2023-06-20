@@ -86,9 +86,7 @@ public class CookingclassController {
 		return "thymeleaf/cookingclass/classInsert";
 	}
 	@PostMapping("/in")
-	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum, HttpSession session) {
-		UserInfo user = (UserInfo) session.getAttribute("userinfo");
-		cookingclass.setUserId(user);
+	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum) {
 		service.insert(cookingclass, content, curriculum);
 		
 		System.out.println(cookingclass);

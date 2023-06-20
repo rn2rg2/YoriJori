@@ -12,7 +12,7 @@
 			<div class="col-md-12">
 				<h3 class="menu-h3-common title">
 					<th:block th:if="${#strings.isEmpty(session.userInfo)}"><span th:text="${cookingclass.title}"></span><a
-						th:if="${cookingclass.userId.userId==session.userInfo.userId}"
+						th:if="${cookingclass.userId==session.userInfo.userId}"
 						th:href="@{/cookingclass/delete(cookNo=${cookingclass.cookNo})}"
 						style="font-size: 0.9rem; position: absolute; right: 1rem; bottom: 5px; color: #c1c1c6; font-weight: normal;">게시글삭제</a>
 						</th:block>
@@ -35,7 +35,7 @@
 						<!-- <p class="del">80,000원</p> -->
 						<a class="app_block_link_remove user_info2_pic"><img
 							th:src="${cookingclass.thumbnail}"></a>
-						<div class="nickname" th:text="${cookingclass.userId.userId}"></div>
+						<div class="nickname" th:text="${cookingclass.userId}"></div>
 					</div>
 				</div>
 
