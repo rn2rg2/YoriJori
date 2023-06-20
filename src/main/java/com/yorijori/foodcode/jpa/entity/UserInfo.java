@@ -47,33 +47,10 @@ public class UserInfo {
 	private Date date;
 	private String kakaoID;
 	
-	
-//	public static UserInfo toUserInfo(UserInfoDTO userinfoDTO) {
-//	    UserInfo userinfo = new UserInfo();
-//	    userinfo.setUserId(userinfoDTO.getUser_id());
-//	    userinfo.setRole(userinfoDTO.getRole());
-//	    userinfo.setNickname(userinfoDTO.getNickname());
-//	    userinfo.setPass(userinfoDTO.getPass());
-//	    userinfo.setEmail(userinfoDTO.getEmail());
-//	    userinfo.setName(userinfoDTO.getName());
-//	    userinfo.setPhoneNumber(userinfoDTO.getPhone_number());
-//	    userinfo.setSsn(userinfoDTO.getSsn());
-//	    userinfo.setImgPath(userinfoDTO.getImg_path());
-//	    userinfo.setPoint(userinfoDTO.getPoint());
-//	    userinfo.setPrefer(userinfoDTO.getPrefer());
-//	    userinfo.setPurpose(userinfoDTO.getPurpose());
-//	    userinfo.setAllergy(userinfoDTO.getAllergy());
-//	    userinfo.setState(userinfoDTO.getState());
-//	    userinfo.setDate(userinfoDTO.getDATE());
-//	    userinfo.setKakaoID(userinfoDTO.getKakaoID());
-//	    return userinfo;
-//	}
-	
-	
-
 	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Recipe> recipeList = new ArrayList<Recipe>();
 	
 	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeReview> reviewList = new ArrayList<RecipeReview>();
+	
 }

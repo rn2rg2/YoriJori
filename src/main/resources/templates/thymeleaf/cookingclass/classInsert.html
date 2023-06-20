@@ -1,73 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
 	<!-- include summernote css/js-->
-	<link
-		href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-		rel="stylesheet">
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+
 
 	<link rel="stylesheet"
 		href="/yorijori/common/css/recipe/recipeInsert.css">
 	<script src="https://kit.fontawesome.com/8b61787525.js"
 		crossorigin="anonymous"></script>
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('.summernote')
-									.summernote(
-											{
-												placeholder : 'content',
-												minHeight : 370,
-												maxHeight : null,
-												focus : false,
-												lang : 'ko-KR',
-												callbacks : { //여기 부분이 이미지를 첨부하는 부분
-													onImageUpload : function(
-															files) {
-														uploadSummernoteImageFile(
-																files[0], this);
-													},
-													onPaste : function(e) {
-														var clipboardData = e.originalEvent.clipboardData;
-														if (clipboardData
-																&& clipboardData.items
-																&& clipboardData.items.length) {
-															var item = clipboardData.items[0];
-															if (item.kind === 'file'
-																	&& item.type
-																			.indexOf('image/') !== -1) {
-																e
-																		.preventDefault();
-															}
-														}
-													}
-												}
-											});
 
-							function uploadSummernoteImageFile(file, editor) {
-								data = new FormData();
-								data.append("file", file);
-								$
-										.ajax({
-											data : data,
-											type : "POST",
-											url : "/yorijori/cookingclass/uploadSummernoteImageFile",
-											contentType : false,
-											processData : false,
-											success : function(data) {
-												//항상 업로드된 파일의 url이 있어야 한다.
-												$(editor)
-														.summernote(
-																'insertImage',
-																data.url);
-											}
-										});
+	<script>
+		$(document).ready(function() {
+			$('.summernote').summernote({
+				placeholder : 'content',
+				minHeight : 370,
+				maxHeight : null,
+				focus : false,
+				lang : 'ko-KR',
+				callbacks : { //여기 부분이 이미지를 첨부하는 부분
+					onImageUpload : function(files) {
+						uploadSummernoteImageFile(files[0], this);
+					},
+					onPaste : function(e) {
+						var clipboardData = e.originalEvent.clipboardData;
+						if (clipboardData && clipboardData.items && clipboardData.items.length) {
+							var item = clipboardData.items[0];
+							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+								e.preventDefault();
 							}
+						}
+					}
+				}
+			});
+
+			function uploadSummernoteImageFile(file, editor) {
+				data = new FormData();
+				data.append("file", file);
+				$.ajax({
+					data : data,
+					type : "POST",
+					url : "/yorijori/cookingclass/uploadSummernoteImageFile",
+					contentType : false,
+					processData : false,
+					success : function(data) {
+						//항상 업로드된 파일의 url이 있어야 한다.
+						$(editor).summernote('insertImage', data.url);
+					}
+				});
+			}
+
 
 							$(".insert").on("click", function() {
 								$(this).toggleClass(".imp selected");
@@ -109,6 +92,7 @@
 							}
 							
 						})
+
 	</script>
 </th:block>
 <th:block layout:fragment="content">
@@ -118,10 +102,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="menu-h3-common">쿠킹 클래스 등록</h3>
-					<input hidden="" name="userId"
-						th:value="${session.userInfo.userId}">
+					<input hidden="" name="userId" th:value="${session.userInfo.userId}">
 
 					<div class="form-group form-insert">
+
 						<label>클래스 제목</label> <input type="text"
 							class="insert-control title" name="title" id="title"
 							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]">
@@ -135,11 +119,13 @@
 					<div class="form-group form-insert inline">
 						<label>강의시간</label> <input type="text"
 							class="insert-control price" id="time" placeholder="" name="time">
+
 						분
 					</div>
 					<div class="form-group form-insert inline">
 						<label>카테고리</label>
 						<div class="category">
+
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="category" name="category">카테고리선택</button>
@@ -153,11 +139,13 @@
 									data-parent="category">일식</a> <a
 									class="dropdown-item insert-item" href="javascript:0"
 									data-parent="category">양식</a>
+
 							</div>
 						</div>
 					</div>
 					<div class="form-group form-insert">
 						<label>클래스 썸네일</label>
+
 						<button type="button" style="width: 5rem; border: 1px solid var(--main-theme-color-red); border-radius: 8%; color: var(--main-theme-color-red);"
 							onclick="winPopup();">사진추가</button>
 						<input class="btn-file d-none" type="file" name="thumbnail">
@@ -207,15 +195,16 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group form-insert cookclass">
-						<label id="cur">커리큘럼<a class="cur-plus" id="cur-plus"><i
-								class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가</a></label>
+						<label id="cur">
+							커리큘럼
+							<a class="cur-plus" id="cur-plus">
+								<i class="fa-sharp fa-solid fa-circle-plus"></i> 양식추가
+							</a>
+						</label>
 
 						<ul id="all-cur">
-							<li id="copy-cur"><input type="text"
-								class="insert-control cur" id="name" placeholder="재료 준비 및 손질"
-								name="curName" value=""><input type="text"
-								class="insert-control time" id="time" placeholder="10"
-								name="curTime" value=""> 분</li>
+							<li id="copy-cur"><input type="text" class="insert-control cur" id="name" placeholder="재료 준비 및 손질" name="curName" value="">
+								<input type="text" class="insert-control time" id="time" placeholder="10" name="curTime" value=""> 분</li>
 						</ul>
 
 					</div>
