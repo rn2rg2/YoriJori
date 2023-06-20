@@ -15,7 +15,10 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		// 로그인사용자인 경우 세션에 user라는 이름의 어트리뷰트가 저장되어 있으므로
 		// user가 없으면 로그인이 처리되지 않음을 의미
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
+		 // Store the previous page URL in the session
+        String referer = request.getHeader("referer");
+        session.setAttribute("previousPage", referer);
 		if (session != null) {
 			UserInfo user = (UserInfo) session.getAttribute("userInfo");
 			if (user == null) {// 로그인하지 않은 상태
