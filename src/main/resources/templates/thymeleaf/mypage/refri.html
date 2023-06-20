@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mypageLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <th:block layout:fragment="content">
 	<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
 	<div class="container-fluid refri-div">
@@ -18,8 +16,7 @@
 						th:insert="~{thymeleaf/common/selectBox :: select_red('ingredient_id','test','카테고리')}">
 					</div> -->
 				</div>
-				<div id="searbar_ingredient"
-					th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+				<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 				<div>
 
 					<!-- 레시피 목록 보기  -->
@@ -46,17 +43,12 @@
 
 					<!-- 페이지네이션  -->
 					<div id="pag">
-						<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-						</nav>
+						<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
 					</div>
-					<div
-						class="btn-group align-items-center justify-content-center about_tray_btn mb-2"
-						role="group">
+					<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
 
-						<button class="btn btn-success m-sm-1" type="button"
-							id="clearRefriBtn">냉장고 초기화</button>
-						<button class="btn btn-success m-sm-1" type="button"
-							id="registerRefriBtn">냉장고 등록</button>
+						<button class="btn btn-success m-sm-1" type="button" id="clearRefriBtn">냉장고 초기화</button>
+						<button class="btn btn-success m-sm-1" type="button" id="registerRefriBtn">냉장고 등록</button>
 					</div>
 				</div>
 
@@ -70,52 +62,25 @@
 
 		<hr />
 		<div class="container-fluid mt-2 mb-5">
-			<h3 class="mb-2">냉장고에 있는 재료</h3>
-			<div class="row">
-				<div class="col-md-12">
-					<table class="table table-hover table-sm">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>재료명</th>
-								<th>등록날짜</th>
-								<th>냉장/냉동</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>오이</td>
-								<td>2023/06/07</td>
-								<td>냉장</td>
-							</tr>
-							<tr class="table-active">
-								<td>2</td>
-								<td>오이</td>
-								<td>2023/06/07</td>
-								<td>냉장</td>
-							</tr>
-							<tr class="table-success">
-								<td>3</td>
-								<td>오이</td>
-								<td>2023/06/07</td>
-								<td>냉장</td>
-							</tr>
-							<tr class="table-warning">
-								<td>4</td>
-								<td>오이</td>
-								<td>2023/06/07</td>
-								<td>냉장</td>
-							</tr>
-							<tr class="table-danger">
-								<td>5</td>
-								<td>오이</td>
-								<td>2023/06/07</td>
-								<td>냉장</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+			<h3 class="menu-h3-common">냉장고에 있는 재료</h3>
+			<div class="MAB10">
+				총 <strong>96</strong>건의 제품이 있습니다.
+			</div>
+			<div class="board_photo">
+				<ul>
+
+					<li><a href="javascript:void(0);">
+							<div class="img">
+								<img src="/file/prod/9-1.jpg" alt="">
+							</div>
+							<div class="txt">
+								<span class="tit">Anchor 바비큐소스(중간 매운맛)</span>
+								<div class="cooking_info">
+									<span class="company_name"><em>제조원</em> Anchor </span>
+								</div>
+							</div>
+						</a></li>
+				</ul>
 			</div>
 		</div>
 
