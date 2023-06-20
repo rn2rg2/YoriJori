@@ -22,7 +22,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void save(UserInfo userinfodto) {
-		memberRepository.save(userinfodto);		
+		memberRepository.save(userinfodto);	
+		
 	}
     // - 회원가입 로직
 

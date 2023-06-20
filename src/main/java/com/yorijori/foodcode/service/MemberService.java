@@ -3,9 +3,9 @@ package com.yorijori.foodcode.service;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 public interface MemberService {
-	UserInfo login(String user_id, String userPassword);
-	UserInfo loginKakao(String kakaoID);
-	boolean nicknamecheck(String nickName);   
-	boolean idcheck(String userId);   
-	void save(UserInfo userinfodto);
+	public UserInfo login(String user_id, String userPassword);
+	public UserInfo loginKakao(String kakaoID);
+	public boolean nicknamecheck(String nickName);   
+	public boolean idcheck(String userId);   
+	public void save(UserInfo userinfodto);
 }
