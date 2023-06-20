@@ -76,4 +76,7 @@ public class UserInfo {
 	
 	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeReview> reviewList = new ArrayList<RecipeReview>();
+	
+	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CookingClass> cookingClassList = new ArrayList<CookingClass>();
 }
