@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
 	<link rel="stylesheet" href="/yorijori/common/css/recipe/view.css">
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 </th:block>
 
 <th:block layout:fragment="content">
@@ -21,8 +18,7 @@
 				<!--############################# Contents START#############################-->
 				<!--=============================================================================-->
 
-				<form class="form-horizontal" id="frm" name="frm"
-					onsubmit="return false;">
+				<form class="form-horizontal" id="frm" name="frm" onsubmit="return false;">
 					<input type="hidden" id="pageIndex" name="pageIndex" value="">
 					<input type="hidden" id="userRxSnn" name="userRxSnn" value="120">
 					<input type="hidden" id="prodSnn" name="prodSnn" value="">
@@ -42,10 +38,14 @@
 						<ul>
 							<li><i class="food_level"></i>[[${data.recipeDes}]]</li>
 							<li><i class="food_level"></i>[[${data.rcpPat2}]]</li>
-							
-							<li th:if="${data.wishlist != null}"><a onclick="clickHeart()"><i class="far fa-heart i_heart_dark"></i>좋아요</a></li>
-							<li th:unless="${data.wishlist != null}"><a onclick="clickHeart()"><i class="far fa-heart i_heart_red"></i>좋아요</a></li>
-							
+
+							<li th:if="${data.wishlist != null}"><a onclick="clickHeart()">
+									<i class="far fa-heart i_heart_dark"></i>좋아요
+								</a></li>
+							<li th:unless="${data.wishlist != null}"><a onclick="clickHeart()">
+									<i class="far fa-heart i_heart_red"></i>좋아요
+								</a></li>
+
 						</ul>
 					</div>
 					<!-- //details_top -->
@@ -56,28 +56,42 @@
 						<div class="details_photo">
 							<div class="swiper mySwiper">
 								<div class="swiper-wrapper">
-									<div class="swiper-slide"><img th:src="${data.attFileNoMain}" alt=""></div>
-									<div class="swiper-slide"><img th:src="${data.attFileNoMk}" alt=""></div>
+									<div class="swiper-slide">
+										<img th:src="${data.attFileNoMain}" alt="">
+									</div>
+									<div class="swiper-slide">
+										<img th:src="${data.attFileNoMk}" alt="">
+									</div>
 								</div>
 								<div class="swiper-button-next"></div>
 								<div class="swiper-button-prev"></div>
 								<div class="swiper-pagination"></div>
 								<div class="autoplay-progress">
-									<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"></circle></svg>
+									<svg viewBox="0 0 48 48">
+										<circle cx="24" cy="24" r="20"></circle></svg>
 									<span></span>
 								</div>
 							</div>
-							
+
 						</div>
 						<!-- //details_photo -->
 						<!-- details_con -->
 						<div class="details_con">
 							<h4 class="details_h4tit food_hat">주재료 및 소스 재료</h4>
 							<hr class="recipe_hr">
-							<p class="txt"
-								th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[0]}"></p>
-							<p class="txt"
-								th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[1]}"></p>
+
+							<th:block th:if="${#strings.contains(data.rcpPartsDtls, '●')}" th:each="value : ${#strings.arraySplit(data.rcpPartsDtls, '●')}">
+								<p class="txt" th:text="${value}"></p>
+							</th:block>
+							<th:block th:if="${#strings.contains(data.rcpPartsDtls, '•')}" th:each="value : ${#strings.arraySplit(data.rcpPartsDtls, '•')}">
+								<p class="txt" th:text="${value}"></p>
+								<!-- <p class="txt" th:if="${#strings.arraySplit(data.rcpPartsDtls,'•')[0] != null}" th:text="${#strings.arraySplit(data.rcpPartsDtls,'•')[0]}"></p>
+							<p class="txt" th:if="${#strings.arraySplit(data.rcpPartsDtls, '•')[1] != null}" th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[1]}"></p> -->
+							</th:block>
+							
+							<th:block th:unless="${#strings.contains(data.rcpPartsDtls, '●')} or ${#strings.contains(data.rcpPartsDtls, '•')}">
+								<p class="txt" th:text="${data.rcpPartsDtls}"></p>
+							</th:block>
 						</div>
 						<!-- //details_con -->
 					</div>
@@ -132,8 +146,7 @@
 
 
 				<div class="board_button">
-					<button type="button" id="btn_list" onclick="location.href='/yorijori/recipe/list/user/0'"
-						class="cancel">목록으로</button>
+					<button type="button" id="btn_list" onclick="location.href='/yorijori/recipe/list/user/0'" class="cancel">목록으로</button>
 				</div>
 				<!--=============================================================================-->
 				<!--############################# Contents END#############################-->
@@ -141,8 +154,7 @@
 			</div>
 			<!-- // boardGroup -->
 			<!-- Swiper JS -->
-			<script
-				src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 			<script>
 			    const progressCircle = document.querySelector(".autoplay-progress svg");
 			    const progressContent = document.querySelector(".autoplay-progress span");

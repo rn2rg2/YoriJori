@@ -19,7 +19,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		if (session != null) {
 			UserInfo user = (UserInfo) session.getAttribute("userInfo");
 			if (user == null) {// 로그인하지 않은 상태
-				response.sendRedirect("/yorijori/main");
+				response.sendRedirect("/yorijori/member/loginpage");
 				// 로그인하지 않은 사용자는 다음(뷰에서 선택한 path로 이동되지 않도록)으로 넘어가지 않도록 false를리턴
 				return false;
 			} else {
