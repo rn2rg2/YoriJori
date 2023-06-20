@@ -37,10 +37,15 @@ public class CookingClassServiceImpl implements CookingClassService {
 
 	@Override
 	public void insert(CookingClass cookingclass, CookingClassContent content, CookingClassCurriculum curriculum) {
-		dao.insertClass(cookingclass);
+		cookingclass = dao.insertClass(cookingclass);
 		//List<CookingClassContent> contentlist = new ArrayList<CookingClassContent>();
 		//List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
 		//컨텐츠 insert
+		
+		System.out.println("--------------------------------");
+		System.out.println(cookingclass);
+		System.out.println("--------------------------------");
+		//int cookNo = cookingclass.getCookNo();
 		String[] temp1=content.getContent().split(",");
 		String[] temp2=content.getConCategory().split(",");
 		for(int i=0;i<temp1.length;i++) {
@@ -53,7 +58,7 @@ public class CookingClassServiceImpl implements CookingClassService {
 //			content.setCookNo(cookingclass.getCookNo());
 //			content.setContent(temp1[i]);
 //			content.setConCategory(temp2[i]);
-			dao.insertContent(content);
+			dao.insertContent(dto);
 		}
 		
 		//커리큘럼 insert
@@ -71,7 +76,7 @@ public class CookingClassServiceImpl implements CookingClassService {
 //			curriculum.setCurName(temp1[i]);
 //			curriculum.setCurTime(temp2[i]);
 //			curriculum.setCurNo(i+1);
-			dao.insertCurriculum(curriculum);
+			dao.insertCurriculum(dto);
 		}
 		//cookingclass.setContentList(contentlist);
 		//cookingclass.setCurriList(curriList);

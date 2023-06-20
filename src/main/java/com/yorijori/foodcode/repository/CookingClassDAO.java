@@ -8,7 +8,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 
 public interface CookingClassDAO {
-	public void insertClass(CookingClass cookingclass);
+	public CookingClass insertClass(CookingClass cookingclass);
 	public void insertContent(CookingClassContent content);
 	public void insertCurriculum(CookingClassCurriculum curriculum);
 	public void insertImage(CookingClassImage image);

@@ -1,6 +1,8 @@
 package com.yorijori.foodcode.jpa.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ import lombok.ToString;
 @ToString(exclude = {"cookNo"})
 public class CookingClassContent {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int contentNo;
 	//private int cookNo;
 	private String conCategory;

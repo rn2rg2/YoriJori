@@ -80,8 +80,9 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 
 	@Override
-	public void insertClass(CookingClass cookingclass) {
-		classRepo.save(cookingclass);
+	public CookingClass insertClass(CookingClass cookingclass) {
+		//classRepo.save(cookingclass);
+		return classRepo.saveAndFlush(cookingclass);
 	}
 
 
@@ -101,6 +102,6 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 
 }
