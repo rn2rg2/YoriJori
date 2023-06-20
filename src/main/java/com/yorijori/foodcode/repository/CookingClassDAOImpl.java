@@ -51,7 +51,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public void updateContent(CookingClassContent content) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
