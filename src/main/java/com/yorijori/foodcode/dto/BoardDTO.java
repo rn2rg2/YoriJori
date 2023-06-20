@@ -21,4 +21,7 @@ public class BoardDTO {
 	private int state;
 	private int group_no;
 	private int display_order_no;
+	private int new_display_order_no;
+	private String is_first_comment;
+	private int parents_comment_no;
 }

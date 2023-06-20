@@ -13,6 +13,6 @@ public interface BoardCommentService {
 	int delete(BoardComment boardComment);
 	long countAll();
 	int updateGroupNo(BoardDTO boardDTO);
-	int insertCommnet(BoardDTO boardDTO);
+	int insertComment(BoardDTO boardDTO);
 
 }

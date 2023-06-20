@@ -59,8 +59,8 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 	}
 
 	@Override
-	public int insertCommnet(BoardDTO boardDTO) {
-		return dao.insertCommnet(boardDTO);
+	public int insertComment(BoardDTO boardDTO) {
+		return dao.insertComment(boardDTO);
 	}
 
 
