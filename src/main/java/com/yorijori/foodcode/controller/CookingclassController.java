@@ -85,6 +85,14 @@ public class CookingclassController {
 		}
 		return "thymeleaf/cookingclass/classInsert";
 	}
+	@RequestMapping("/upload")
+	public String showPopup() {
+		return "thymeleaf/cookingclass/uploadForm";
+	}
+	@PostMapping("/upload")
+	public String submitPopup() {
+		return "thymeleaf/cookingclass/uploadForm";
+	}
 	@PostMapping("/in")
 	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum) {
 		service.insert(cookingclass, content, curriculum);

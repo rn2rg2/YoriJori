@@ -12,7 +12,8 @@
 
 	<link rel="stylesheet"
 		href="/yorijori/common/css/recipe/recipeInsert.css">
-<script src="https://kit.fontawesome.com/8b61787525.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/8b61787525.js"
+		crossorigin="anonymous"></script>
 	<script>
 		$(document)
 				.ready(
@@ -79,17 +80,40 @@
 							})
 							$(".dropdown-item").on("click", function() {
 								const $this = $(this)
-								var parent_id = "#" + $this.attr("data-parent")
+								var parent_id = $this.attr("data-parent")
 								var text = $this.html()
-								var va = $this.attr("data-value")
-								$(parent_id).html(text)
-								$(parent_id).val(va)
+								$("#"+parent_id).html(text)
+								$("input[name="+parent_id+"]").val(text)
 							})
+							function boardSubmit(event) {
+								var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
+								var contentCheck = isEmpty($('#summernote'));
+								if (isEmpty($('#title'))) {
+									error_alert('제목 미 입력', '제목');
+									return false;
+								} else if (isEmpty($('#price'))) {
+									error_alert('가격 미 입력', '가격');
+									return false;
+								} else if (isEmpty($('#time'))) {
+									error_alert('강의시간 미 입력', '강의시간');
+									return false;
+								} else if (isEmpty($('#category'))) {
+									error_alert('카테고리 미 입력', '카테고리');
+									return false;
+								} else if (isEmpty($('#cate'))) {
+									error_alert('카테고리 미 입력', '카테고리');
+									return false;
+								} else if (!titleCheck && !contentCheck) {
+									return true;
+								}
+							}
+							
 						})
 	</script>
 </th:block>
 <th:block layout:fragment="content">
-	<form action="/yorijori/cookingclass/in" method="post">
+	<form action="/yorijori/cookingclass/in" method="post"
+		onsubmit="return classSubmit(event);">
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
@@ -99,18 +123,18 @@
 
 					<div class="form-group form-insert">
 						<label>클래스 제목</label> <input type="text"
-							class="insert-control title" name="title"
+							class="insert-control title" name="title" id="title"
 							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]">
 					</div>
 
 					<div class="form-group form-insert inline">
 						<label>클래스 가격</label> <input type="text"
-							class="insert-control price" id="" placeholder="" name="price">
-						원
+							class="insert-control price" id="price" placeholder=""
+							name="price"> 원
 					</div>
 					<div class="form-group form-insert inline">
 						<label>강의시간</label> <input type="text"
-							class="insert-control price" id="" placeholder="" name="time">
+							class="insert-control price" id="time" placeholder="" name="time">
 						분
 					</div>
 					<div class="form-group form-insert inline">
@@ -118,23 +142,32 @@
 						<div class="category">
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
-								data-toggle="dropdown" id="cate" value="" name="category">카테고리선택</button>
+								data-toggle="dropdown" id="category" name="category">카테고리선택</button>
+								<input type="hidden" id="category" name="category" value="">
 							<div class="dropdown-menu">
 								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cate" data-value="ko">한식</a> <a
+									data-parent="category">한식</a> <a
 									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cate" data-value="cn">중식</a> <a
+									data-parent="category">중식</a> <a
 									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cate" data-value="jp">일식</a> <a
+									data-parent="category">일식</a> <a
 									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cate" data-value="en">양식</a>
+									data-parent="category">양식</a>
 							</div>
 						</div>
 					</div>
 					<div class="form-group form-insert">
-						<label>클래스 썸네일</label> <input type="button" value="사진추가"
-							name="thumbnail">
-
+						<label>클래스 썸네일</label>
+						<button type="button" style="width: 5rem; border: 1px solid var(--main-theme-color-red); border-radius: 8%; color: var(--main-theme-color-red);"
+							onclick="winPopup();">사진추가</button>
+						<input class="btn-file d-none" type="file" name="thumbnail">
+						<script type="text/javascript">
+						function winPopup() {
+							var popUrl = "/yorijori/cookingclass/upload";
+							var popOption = "top=10px, left=10px, width=600px, height=500px, status=no, menubar=no, toolbar=no, resizable=no";
+							window.open(popUrl,"사진추가",popOption);
+						}
+						</script>
 					</div>
 				</div>
 			</div>
