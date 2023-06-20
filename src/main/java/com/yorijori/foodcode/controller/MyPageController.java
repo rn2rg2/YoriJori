@@ -2,12 +2,10 @@ package com.yorijori.foodcode.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.yorijori.foodcode.dto.UserInfoDTO;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ProfileService;
 
@@ -27,9 +25,6 @@ public class MyPageController {
 	@PostMapping("/update2")
 	public String updateProfile(HttpSession session, String Email, String Nickname) {
 		UserInfo user = (UserInfo)session.getAttribute("userInfo");
-		System.out.println(user);
-		System.out.println("Email ->> "+Email);
-		System.out.println("Nickname=>>>" + Nickname);
 		user = profileservice.updateprofile2(user, Email, Nickname);
 		session.setAttribute("userInfo", user);
 		return "redirect:/mypage/profile";

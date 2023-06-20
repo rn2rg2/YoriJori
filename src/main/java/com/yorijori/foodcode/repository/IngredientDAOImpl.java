@@ -42,7 +42,7 @@ public class IngredientDAOImpl implements IngredientDAO {
 	@Override
 	public List<Ingredients> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 
 	
