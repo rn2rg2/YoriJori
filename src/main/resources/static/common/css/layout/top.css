@@ -12723,6 +12723,9 @@ body.popup-opened::before {
    z-index: 9999; /* Adjust the value as needed */
 }
 
+.black_heart{
+	color : black !important;;
+}
 .red_heart{
 	color : red !important;;
 }

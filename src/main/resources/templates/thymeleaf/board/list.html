@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
-	<link rel="stylesheet"
-		href="/yorijori/common/css/recipe/recipelist.css">
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
 	<link rel="stylesheet" href="/yorijori/common/css/board/list.css" />
 </th:block>
 <th:block layout:fragment="content">
@@ -16,40 +13,35 @@
 					<div class="sidebar">
 						<div class="widget border-0">
 							<!-- 검색 창 init -->
-							<div id="searbar_ingredient"
-								th:insert="~{thymeleaf/common/search :: searchbar('검색어를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+							<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('검색어를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
 						<!-- 사이드 탭  -->
 						<div class="widget">
 							<div class="widget-title widget-collapse">
 								<h6>카테고리 별</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#dateposted"
-									role="button" aria-expanded="false" aria-controls="dateposted">
+								<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
 									<i class="fas fa-chevron-down"></i>
 								</a>
 							</div>
 							<div class="collapse show" id="dateposted">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted1"> <label class="custom-control-label"
-											for="dateposted1">작성자</label>
+										<input type="checkbox" class="custom-control-input" id="dateposted1">
+										<label class="custom-control-label" for="dateposted1">작성자</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted2"> <label class="custom-control-label"
-											for="dateposted2">제목</label>
+										<input type="checkbox" class="custom-control-input" id="dateposted2">
+										<label class="custom-control-label" for="dateposted2">제목</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input"
-											id="dateposted3"> <label class="custom-control-label"
-											for="dateposted3">내용</label>
+										<input type="checkbox" class="custom-control-input" id="dateposted3">
+										<label class="custom-control-label" for="dateposted3">내용</label>
 									</div>
 								</div>
 							</div>
-							 
+
 						</div>
-						
+
 					</div>
 				</div>
 				<div class="col-lg-9">
@@ -75,28 +67,35 @@
 									</tbody>
 									<tr th:each="board:${boardlist}">
 										<td><span th:text="${board.commNo }"></span></td>
-										<td><a
-											th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}"><span
-												th:text="${board.title }"></span></a></td>
+										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
+												<span th:text="${board.title }"></span>
+											</a></td>
 										<td><span th:text="${board.userId}"></span></td>
-										<td><span th:text="${board.view }"></span></td>
+										<td><span th:text="${board.view}"></span></td>
 									</tr>
 								</table>
 							</div>
-							
-							<div class="col-lg-12 text-center" >
+
+							<div class="col-lg-12 text-center">
 								<label for="viewablePages"></label>
-								    <select id="viewablePages" style="float: left;">
-								        <option value="5">5줄 보기</option>
-								        <option value="10" selected="selected">10줄 보기</option>
-								        <option value="20">20줄 보기</option>
-								    </select>
-								<button type="reset" class="btn btn-default" style="float: right;"
-									onclick="location.href='/yorijori/board/write'">등록</button>
+								<select id="viewablePages" style="float: left;">
+									<option value="5">5줄 보기</option>
+									<option value="10" selected="selected">10줄 보기</option>
+									<option value="20">20줄 보기</option>
+								</select>
+								<button type="reset" class="btn btn-default" style="float: right;" onclick="location.href='/yorijori/board/write'">등록</button>
 							</div>
 						</div>
 					</div>
-						<div class="py-5">
+					<!-- 페이징 자리 -->
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag">
+								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="py-5">
 							<nav class="d-flex justify-content-center" >
 								<form class="rowg-3">
 									<ul class="pagination"> 
@@ -105,9 +104,37 @@
 									</ul>
 								</form>
 							</nav>
-						</div>
-					</div>
+						</div> -->
 				</div>
 			</div>
+		</div>
+		<script th:inline="javascript">
+			// 현재 페이지
+			let currentPage = [[${pageNo}]];
+			// 한번에 보여줄 페이지
+			let pagePerCount = 10;
+			
+			// 게시물  카운트
+			let boardcount = [[${count}]];
+			
+			//불러왔을때 총 게시물 / pagePerCount
+			let totalPages = 1;
+			if ( boardcount > pagePerCount ){
+				totalPages = Math.ceil( boardcount /pagePerCount )
+			}
+			// pagination 들어갈 div
+			const pagination = $('#pagination_div');
+			$(document).ready(function(){
+				//pagePerCount 페이지별 눌렀을 때 click()
+				//pagePerCount 변수로 지정
+				//pagePerCount = 바뀌는 값
+				//window.location.href = "/yorijori/board/list/0/5";
+				makePagination(pagination, totalPages, pagePerCount, currentPage + 1, move_list);
+			});
+			const move_list = function(page) {
+				let url = "/yorijori/board/list/"+ page + "/" + pagePerCount;
+				window.location.href = url;
+			}
+			</script>
 </th:block>
 </html>

@@ -97,9 +97,10 @@ body{
 }
 .insert-control{
 	border: 1px solid var(--main-theme-color-red);
-	width: 80%;
+	width:30%;
 	padding-left: 10px;
 	margin-bottom: 5px;
+	height:2.5em;
 }
 .insert-control:focus{
 	border: 1px solid #000;
@@ -141,6 +142,7 @@ font-weight: bold;
 .tr{
 border: 1px solid var(--main-theme-color-red);
 font-weight: bold;	
+margin-bottom: 10px;
 }
 td:nth-child(2){
 	border-right: 2px solid var(--main-theme-color-red);
@@ -252,3 +254,169 @@ label a{
 	font-size: 30px;
 	padding:0.7rem 5rem 0.7rem 5rem;
 }
+.mult-select-tag .input-container{
+	height: 5em;
+	overflow-y:scroll;
+	
+}
+.mult-select-tag .input-container::-webkit-scrollbar {
+	width: 10px;
+}
+
+.mult-select-tag .input-container::-webkit-scrollbar-thumb {
+	background-color: #fd5d5d;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.mult-select-tag .input-container::-webkit-scrollbar-track {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+.mult-select-tag .rounded {
+	 border-color: var(--main-theme-color-red)!important;
+}
+.mult-select-tag .item-container{
+	height:2em;
+}
+.mult-select-tag .btn-container{
+	border-color: var(--main-theme-color-red)!important;
+}
+.addingredient{
+	color: gray;
+	font-style: italic;
+	font-size: 0.8em;
+}
+
+.mult-select-tag .item-container{ /* 선택된 아이템들 디자인 */
+    border: 1px solid #fd5d5d !important;
+    background: white !important;
+    color: #fd5d5d !important;	/* x 표시 색깔 */
+    max-height: 2em;
+}
+.mult-select-tag .item-label{ /* 선택된 아이템의 글자 디자인 */
+	color: #fd5d5d !important;	
+}
+.form-control{
+	/* text-align: center;
+	max-height: 3em; */
+    border-radius: 2em;
+    border-color: var(--main-theme-color-red);
+}
+.glyphicon-plus-sign:before{
+	content:"\e081"
+}
+
+/* Upload Demo */
+.uploader {
+  display: block;
+  clear: both;
+/*   margin: 0 auto; */
+  width: 50%;
+  max-width: 300px;
+}
+
+.uploader label {
+  float: left;
+  clear: both;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 7px;
+  border: 3px solid #eee;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.uploader label:hover {
+  border-color: #454cad;
+}
+
+.uploader label.hover {
+  border: 3px solid #454cad;
+  box-shadow: inset 0 0 0 6px #eee;
+}
+
+.uploader label.hover #start i.fa {
+  transform: scale(0.8);
+  opacity: 0.3;
+}
+
+.uploader #start {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
+.uploader #start.hidden {
+  display: none;
+}
+
+.uploader #start i.fa {
+  font-size: 50px;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.uploader #response {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
+.uploader #response.hidden {
+  display: none;
+}
+
+.uploader #response #messages {
+  margin-bottom: 0.5rem;
+}
+
+.uploader #file-image {
+  display: inline;
+  margin: 0 auto 0.5rem auto;
+  width: auto;
+  height: auto;
+  max-width: 180px;
+}
+
+.uploader #file-image.hidden {
+  display: none;
+}
+
+.uploader #notimage {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
+.uploader #notimage.hidden {
+  display: none;
+}
+
+.uploader progress,
+.uploader .progress {
+  display: inline;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 180px;
+  height: 8px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+.uploader .progress[value]::-webkit-progress-bar {
+  border-radius: 4px;
+  background-color: #eee;
+}
+
+.uploader .progress[value]::-webkit-progress-value {
+  background: linear-gradient(to right, darken(#454cad, 8%) 0%, #454cad 50%);
+} 

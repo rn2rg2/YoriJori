@@ -2,11 +2,11 @@ package com.yorijori.foodcode.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.repository.BoardDAO;
 @Transactional
@@ -29,8 +29,6 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
 	}
-
-
 
 	@Override
 	public List<Board> search() {
@@ -66,14 +64,24 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.selectByPage(pageNo);
 	}
+	
+	@Override
+	public List<Board> selectByPageAndpagePerCount(int pageNo,  int pagePerCount) {
+		// TODO Auto-generated method stub
+		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
+	}
 	@Override
 	public void update(Board board) {
-		// TODO Auto-generated method stub
-		
+		dao.update(board);
 	}
 	@Override
 	public void delete(int commNo) {
 		dao.delete(commNo);
+	}
+	
+	@Override
+	public void bulletinBoardViews(int commNo) {
+		dao.bulletinBoardViews(commNo);
 	}
 
 	

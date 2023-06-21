@@ -17,6 +17,8 @@
 						<tr>
 							<th>날짜</th>
 							<td th:text="${board.date}"></td>
+							<th>조회수</th>
+							<td th:text="${board.view}"></td>
 						</tr>
 						<tr>
 							<th>제목</th>
@@ -36,7 +38,7 @@
 							th:onclick="|location.href='@{/board/delete(commNo=${board.commNo})}'|">삭제</button>
 
 						<button type="button" class="buttons btn-primary" 
-							th:onclick="|location.href='@{/board/list/0'}|">목록</button>
+							th:onclick="|location.href='@{/board/list/0/10'}|">목록</button>
 					</div>
 				</div>
 			</div>

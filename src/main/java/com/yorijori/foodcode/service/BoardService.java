@@ -15,5 +15,7 @@ public interface BoardService {
 	List<Board> findByCategory(String category);
 	Board select(int commNo);		
 	List<Board> selectByPage(int pageNo);
+	void bulletinBoardViews(int commNo);
+	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount);
 
 }

@@ -42,11 +42,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int update(Board board) {
+	public void update(Board board) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
-
 
 	@Override
 	public long countAll() {
@@ -60,12 +59,25 @@ public class BoardDAOImpl implements BoardDAO {
 		List<Board> list = page.getContent();
 		return list;
 	}
+	
+	@Override
+	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		Page<Board> page = repository.findAll(pageRequest);
+		List<Board> list = page.getContent();
+		return list;
+	}
 
 	@Override
 	public void delete(int commNo) {
 		Board board=repository.findById(commNo).get();
 		board.setCommNo(commNo);
 		board.setState(1);
+	}
+
+	@Override
+	public void bulletinBoardViews(int commNo) {
+		repository.bulletinBoardViews(commNo);
 	}
 
 

@@ -2,7 +2,7 @@ package com.yorijori.foodcode.jpa.entity;
 
 import java.sql.Date;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +30,8 @@ public class Board {
 	private String contents;
 	private String category;
 	//@ColumnDefault("0")
-	private Integer view=0 ;
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private Integer view;
 	@CreationTimestamp
 	private Date date ;
 	@UpdateTimestamp

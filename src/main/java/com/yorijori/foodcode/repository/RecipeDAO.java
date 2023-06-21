@@ -16,4 +16,6 @@ public interface RecipeDAO {
 	long countByRcpSeqByWishList(Recipe recipe);
 
 	void deleteWishList(Recipe recipeNo);
+
+	Recipe findById(int recipeNo);
 }

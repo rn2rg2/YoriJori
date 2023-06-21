@@ -6,10 +6,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
 
-	<link rel="stylesheet"
-		href="/yorijori/common/css/recipe/recipeInsert.css">
-	<script src="https://kit.fontawesome.com/8b61787525.js"
-		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipeInsert.css">
+	<script src="https://kit.fontawesome.com/8b61787525.js" crossorigin="anonymous"></script>
 
 	<script>
 		$(document).ready(function() {
@@ -51,53 +49,28 @@
 				});
 			}
 
+			$(".insert").on("click", function() {
+				$(this).toggleClass(".imp selected");
+			})
+			$("#cur-plus").on("click", function() {
+				var copy = $("#copy-cur").clone();
+				copy.children("#name").val('')
+				copy.children("#time").val('')
+				$("#all-cur").append(copy);
+			})
+			$(".dropdown-item").on("click", function() {
+				const $this = $(this)
+				var parent_id = $this.attr("data-parent")
+				var text = $this.html()
+				$("#" + parent_id).html(text)
+				$("input[name=" + parent_id + "]").val(text)
+			})
 
-							$(".insert").on("click", function() {
-								$(this).toggleClass(".imp selected");
-							})
-							$("#cur-plus").on("click", function() {
-								var copy = $("#copy-cur").clone();
-								copy.children("#name").val('')
-								copy.children("#time").val('')
-								$("#all-cur").append(copy);
-							})
-							$(".dropdown-item").on("click", function() {
-								const $this = $(this)
-								var parent_id = $this.attr("data-parent")
-								var text = $this.html()
-								$("#"+parent_id).html(text)
-								$("input[name="+parent_id+"]").val(text)
-							})
-							function boardSubmit(event) {
-								var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
-								var contentCheck = isEmpty($('#summernote'));
-								if (isEmpty($('#title'))) {
-									error_alert('제목 미 입력', '제목');
-									return false;
-								} else if (isEmpty($('#price'))) {
-									error_alert('가격 미 입력', '가격');
-									return false;
-								} else if (isEmpty($('#time'))) {
-									error_alert('강의시간 미 입력', '강의시간');
-									return false;
-								} else if (isEmpty($('#category'))) {
-									error_alert('카테고리 미 입력', '카테고리');
-									return false;
-								} else if (isEmpty($('#cate'))) {
-									error_alert('카테고리 미 입력', '카테고리');
-									return false;
-								} else if (!titleCheck && !contentCheck) {
-									return true;
-								}
-							}
-							
-						})
-
+		})
 	</script>
 </th:block>
 <th:block layout:fragment="content">
-	<form action="/yorijori/cookingclass/in" method="post"
-		onsubmit="return classSubmit(event);">
+	<form action="/yorijori/cookingclass/in" method="post" enctype="multipart/form-data" onsubmit="return classSubmit(event);">
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
@@ -106,19 +79,18 @@
 
 					<div class="form-group form-insert">
 
-						<label>클래스 제목</label> <input type="text"
-							class="insert-control title" name="title" id="title"
-							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]">
+						<label>클래스 제목</label>
+						<input type="text" class="insert-control title" name="title" id="title" placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" style="width: 50%;">
 					</div>
 
 					<div class="form-group form-insert inline">
-						<label>클래스 가격</label> <input type="text"
-							class="insert-control price" id="price" placeholder=""
-							name="price"> 원
+						<label>클래스 가격</label>
+						<input type="text" class="insert-control price" id="price" placeholder="" name="price">
+						원
 					</div>
 					<div class="form-group form-insert inline">
-						<label>강의시간</label> <input type="text"
-							class="insert-control price" id="time" placeholder="" name="time">
+						<label>강의시간</label>
+						<input type="text" class="insert-control price" id="time" placeholder="" name="time">
 
 						분
 					</div>
@@ -126,27 +98,38 @@
 						<label>카테고리</label>
 						<div class="category">
 
-							<button type="button"
-								class="btn btn-primary dropdown-toggle insert-drop"
-								data-toggle="dropdown" id="category" name="category">카테고리선택</button>
-								<input type="hidden" id="category" name="category" value="">
+							<button type="button" class="btn btn-primary dropdown-toggle insert-drop" data-toggle="dropdown" id="category" name="category">카테고리선택</button>
+							<input type="hidden" id="cate" name="category" value="">
 							<div class="dropdown-menu">
-								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="category">한식</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="category">중식</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="category">일식</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="category">양식</a>
+								<a class="dropdown-item insert-item" href="javascript:0" data-parent="category">한식</a>
+								<a class="dropdown-item insert-item" href="javascript:0" data-parent="category">중식</a>
+								<a class="dropdown-item insert-item" href="javascript:0" data-parent="category">일식</a>
+								<a class="dropdown-item insert-item" href="javascript:0" data-parent="category">양식</a>
 
 							</div>
 						</div>
 					</div>
 					<div class="form-group form-insert">
 						<label>클래스 썸네일</label>
+					</div>
+					<div id="file-upload-form" class="form-group form-insert uploader">
+						<input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none;"/>
 
-						<button type="button" style="width: 5rem; border: 1px solid var(--main-theme-color-red); border-radius: 8%; color: var(--main-theme-color-red);"
+						<label for="file-upload" id="file-drag">
+							<img id="file-image" src="#" alt="Preview" class="hidden">
+							<div id="start">
+								<i class="fa fa-download" aria-hidden="true"></i>
+								<div id="notimage" class="hidden">
+							</div>
+							<div id="response" class="hidden">
+								<div id="messages"></div>
+								<progress class="progress" id="file-progress" value="0">
+									<span>0</span>%
+								</progress>
+							</div>
+						</label>
+
+						<!-- <button type="button" style="width: 5rem; border: 1px solid var(--main-theme-color-red); border-radius: 8%; color: var(--main-theme-color-red);"
 							onclick="winPopup();">사진추가</button>
 						<input class="btn-file d-none" type="file" name="thumbnail">
 						<script type="text/javascript">
@@ -155,7 +138,7 @@
 							var popOption = "top=10px, left=10px, width=600px, height=500px, status=no, menubar=no, toolbar=no, resizable=no";
 							window.open(popUrl,"사진추가",popOption);
 						}
-						</script>
+						</script> -->
 					</div>
 				</div>
 			</div>
@@ -169,7 +152,7 @@
 						<label>클래스 소개</label>
 						<div id="class-content">
 							<input hidden="" name="conCategory" value="클래스 소개">
-							<textarea class="summernote" name="content"></textarea>
+							<textarea class="summernote" name="content" id="classcontent"></textarea>
 						</div>
 					</div>
 				</div>
@@ -184,7 +167,7 @@
 						<label>강사 소개</label>
 						<div id="teacher-content">
 							<input hidden="" name="conCategory" value="강사 소개">
-							<textarea class="summernote" name="content"></textarea>
+							<textarea class="summernote" name="content" id="teachercontent"></textarea>
 						</div>
 					</div>
 
@@ -203,8 +186,7 @@
 						</label>
 
 						<ul id="all-cur">
-							<li id="copy-cur"><input type="text" class="insert-control cur" id="name" placeholder="재료 준비 및 손질" name="curName" value="">
-								<input type="text" class="insert-control time" id="time" placeholder="10" name="curTime" value=""> 분</li>
+							<li id="copy-cur"><input type="text" class="insert-control cur" id="name" placeholder="재료 준비 및 손질" name="curName" value=""> <input type="text" class="insert-control time" id="time" placeholder="10" name="curTime" value=""> 분</li>
 						</ul>
 
 					</div>
@@ -219,5 +201,182 @@
 			</div>
 		</div>
 	</form>
+	<script type="text/javascript">
+		function classSubmit(event) {
+			var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
+			var contentCheck = isEmpty($('#summernote'));
+			if (isEmpty($('#title'))) {
+				error_alert('제목 미 입력', '제목');
+				return false;
+			} else if (isEmpty($('#price'))) {
+				error_alert('가격 미 입력', '가격');
+				return false;
+			} else if (isEmpty($('#time'))) {
+				error_alert('강의시간 미 입력', '강의시간');
+				return false;
+			} else if (isEmpty($('#cate'))) {
+				error_alert('카테고리 미 입력', '카테고리');
+				return false;
+			} else if (isEmpty($('#classcontent'))) {
+				error_alert('클래스소개 미 입력', '클래스소개');
+				return false;
+			} else if (isEmpty($('#teachercontent'))) {
+				error_alert('강사소개 미 입력', '강사소개');
+				return false;
+			} else if (isEmpty($('#name'))) {
+				error_alert('커리큘럼명 미 입력', '커리큘럼명');
+				return false;
+			} else if (isEmpty($('#time'))) {
+				error_alert('커리큘럼시간 미 입력', '커리큘럼시간');
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		// File Upload 추가부분
+		// 
+		function ekUpload(){
+		  function Init() {
+
+		    console.log("Upload Initialised");
+
+		    var fileSelect    = document.getElementById('file-upload'),
+		        fileDrag      = document.getElementById('file-drag'),
+		        submitButton  = document.getElementById('submit-button');
+
+		    fileSelect.addEventListener('change', fileSelectHandler, false);
+
+		    // Is XHR2 available?
+		    var xhr = new XMLHttpRequest();
+		    if (xhr.upload) {
+		      // File Drop
+		      fileDrag.addEventListener('dragover', fileDragHover, false);
+		      fileDrag.addEventListener('dragleave', fileDragHover, false);
+		      fileDrag.addEventListener('drop', fileSelectHandler, false);
+		    }
+		  }
+
+		  function fileDragHover(e) {
+		    var fileDrag = document.getElementById('file-drag');
+
+		    e.stopPropagation();
+		    e.preventDefault();
+
+		    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+		  }
+
+		  function fileSelectHandler(e) {
+		    // Fetch FileList object
+		    var files = e.target.files || e.dataTransfer.files;
+
+		    // Cancel event and hover styling
+		    fileDragHover(e);
+
+		    // Process all File objects
+		    for (var i = 0, f; f = files[i]; i++) {
+		      parseFile(f);
+		      uploadFile(f);
+		    }
+		  }
+
+		  // Output
+		  function output(msg) {
+		    // Response
+		    var m = document.getElementById('messages');
+		    m.innerHTML = msg;
+		  }
+
+		  function parseFile(file) {
+
+		    console.log(file.name);
+		    output(
+		      '<strong>' + encodeURI(file.name) + '</strong>'
+		    );
+		    
+		    // var fileType = file.type;
+		    // console.log(fileType);
+		    var imageName = file.name;
+
+		    var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+		    if (isGood) {
+		      document.getElementById('start').classList.add("hidden");
+		      document.getElementById('response').classList.remove("hidden");
+		      document.getElementById('notimage').classList.add("hidden");
+		      // Thumbnail Preview
+		      document.getElementById('file-image').classList.remove("hidden");
+		      document.getElementById('file-image').src = URL.createObjectURL(file);
+		    }
+		    else {
+		      document.getElementById('file-image').classList.add("hidden");
+		      document.getElementById('notimage').classList.remove("hidden");
+		      document.getElementById('start').classList.remove("hidden");
+		      document.getElementById('response').classList.add("hidden");
+		      document.getElementById("file-upload-form").reset();
+		    }
+		  }
+
+		  function setProgressMaxValue(e) {
+		    var pBar = document.getElementById('file-progress');
+
+		    if (e.lengthComputable) {
+		      pBar.max = e.total;
+		    }
+		  }
+
+		  function updateFileProgress(e) {
+		    var pBar = document.getElementById('file-progress');
+
+		    if (e.lengthComputable) {
+		      pBar.value = e.loaded;
+		    }
+		  }
+
+		  function uploadFile(file) {
+
+		    var xhr = new XMLHttpRequest(),
+		      fileInput = document.getElementById('class-roster-file'),
+		      pBar = document.getElementById('file-progress'),
+		      fileSizeLimit = 1024; // In MB
+		    if (xhr.upload) {
+		      // Check if file is less than x MB
+		      if (file.size <= fileSizeLimit * 1024 * 1024) {
+		        // Progress bar
+		        pBar.style.display = 'inline';
+		        xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+		        xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+		        // File received / failed
+		        xhr.onreadystatechange = function(e) {
+		          if (xhr.readyState == 4) {
+		            // Everything is good!
+
+		            // progress.className = (xhr.status == 200 ? "success" : "failure");
+		            // document.location.reload(true);
+		          }
+		        };
+
+		        // Start upload
+		        xhr.open('POST', document.getElementById('file-upload-form').action, true);
+		        xhr.setRequestHeader('X-File-Name', file.name);
+		        xhr.setRequestHeader('X-File-Size', file.size);
+		        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+		        xhr.send(file);
+		      } else {
+		        output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+		      }
+		    }
+		  }
+
+		  // Check for the various File API support.
+		  if (window.File && window.FileList && window.FileReader) {
+		    Init();
+		  } else {
+		    document.getElementById('file-drag').style.display = 'none';
+		  }
+		}
+		ekUpload();
+	</script>
+
 </th:block>
 </html>

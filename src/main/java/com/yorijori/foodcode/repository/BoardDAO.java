@@ -14,12 +14,14 @@ public interface BoardDAO {
 	
 	List<Board> selectByPage(int pageNo);
 	//게시물수정	
-	int update(Board board);
+	public void update(Board board);
 	//게시물삭제
 	public void delete(int commNo);
 	//검색
-
-	Board select(int commNo);		
+	Board select(int commNo);
 	
+	// 조회수 증가
+	void bulletinBoardViews(int commNo);
+	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount);		
 	
 }

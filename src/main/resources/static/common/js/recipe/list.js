@@ -100,6 +100,39 @@ const makeList = function(data, index) {
 
 	  $('.recipe_content').append(candidateList);
 }*/
+const getServiceRecipeByDB = function(pNumber){
+	let url = "/yorijori/recipe/list/server/" + pNumber;
+	$.ajax({
+		url : url,
+		type : "get",
+		success : function(data){
+			console.log(data);
+			$('.recipe_content').empty();
+			$.each(data, function(index, item) {
+				makeList(item, index);
+			}) 
+		}
+		
+	})
+}
+const getListCount = function(){
+	let url = "/yorijori/recipe/list/servercount"
+	let totalCount = 0;
+	let pageSize = 9;
+	$.ajax({
+		url : url,
+		type : "get",
+		success : function(data){
+			console.log(data);
+
+			totalCount = data;
+			loadPage(totalCount, pageSize, getServiceRecipeByDB);
+		}
+		
+	})
+	
+}
+
 
 const move_list = function(page) {
 	let url = "/yorijori/recipe/list"
