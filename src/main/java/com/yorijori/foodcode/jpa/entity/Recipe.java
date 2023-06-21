@@ -29,7 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "recipe")
-@ToString(exclude = {"userId","imgList","categoryList","reviewList","qaList","wishlist"})
+@ToString(exclude = { "userId", "imgList", "categoryList", "reviewList", "qaList", "wishlist" })
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,7 +52,7 @@ public class Recipe {
 	private int state;
 
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable=false)
+	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -66,8 +66,12 @@ public class Recipe {
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
-	
+
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
+
+	public void viewCountUp(Recipe recipe) {
+		recipe.count++;
+	}
 
 }

@@ -24,6 +24,10 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userWishListApiRepo = userWishListApiRepo;
 	}
+	@Override
+	public ApiRecipe findById(int rcpSeq) {
+		return apiRecipeRepository.findById(rcpSeq).orElseThrow(()-> new RuntimeException());
+	}
 
 	@Override
 	public long countAll() {

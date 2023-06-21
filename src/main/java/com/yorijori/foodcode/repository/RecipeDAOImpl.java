@@ -41,6 +41,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userwishlistrepo = userwishlistrepo;
 	}
+	@Override
+	public Recipe findById(int recipeNo) {
+		return reciperepository.findById(recipeNo).orElseThrow(()-> new RuntimeException());
+	}
 
 	
 	@Override
