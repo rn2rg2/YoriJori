@@ -43,14 +43,29 @@ public class BoardController {
 		this.fileUploadLogic = fileUploadLogic;
 	}
 	
+//	//게시물 전체보기
+//	@RequestMapping ("/list/{pageNo}")
+//	public String boardList(Model model,@PathVariable String pageNo) {
+//		List<Board> list = service.selectByPage(Integer.parseInt(pageNo));
+//		long count = service.countAll();
+//		model.addAttribute("boardlist",list);
+//		model.addAttribute("count",count);
+//		System.out.println("aaaaaaaaaaaaaa"+list); 
+//		return "thymeleaf/board/list";
+//	}
 	//게시물 전체보기
-	@RequestMapping ("/list/{pageNo}")
-	public String boardList(Model model,@PathVariable String pageNo) {
-		List<Board> list = service.selectByPage(Integer.parseInt(pageNo));
+	@RequestMapping ("/list/{pageNo}/{pagePerCount}")
+	public String boardList(Model model,@PathVariable int pageNo, @PathVariable int pagePerCount) {
+		//List<Board> list = service.selectByPage(pageNo);
+		List<Board> list = service.selectByPageAndpagePerCount(pageNo, pagePerCount);
+		long count = service.countAll();
 		model.addAttribute("boardlist",list);
-		System.out.println("aaaaaaaaaaaaaa"+list); 
+		model.addAttribute("count",count);
+		model.addAttribute("pageNo",pageNo);
+		
 		return "thymeleaf/board/list";
 	}
+	
 	
 	//게시물 상세보기
 	@RequestMapping("/read/{commNo}/{state}")

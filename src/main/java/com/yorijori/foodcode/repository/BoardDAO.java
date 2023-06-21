@@ -21,6 +21,7 @@ public interface BoardDAO {
 	Board select(int commNo);
 	
 	// 조회수 증가
-	void bulletinBoardViews(int commNo);		
+	void bulletinBoardViews(int commNo);
+	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount);		
 	
 }

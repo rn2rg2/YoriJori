@@ -12,7 +12,6 @@
 					<!-- <th:block th:if="${#strings.isEmpty(session.userInfo)}">
 					</th:block> -->
 					<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-						<!-- <span th:text="${cookingclass.title}"></span> -->
 						<a th:if="${cookingclass.userId == session.userInfo.userId}" th:href="@{/cookingclass/delete(cookNo=${cookingclass.cookNo})}" style="font-size: 0.9rem; position: absolute; right: 1rem; bottom: 5px; color: #c1c1c6; font-weight: normal;">게시글 삭제 </a>
 					</th:block>
 					<!-- <span th:text="${cookingclass.title}"></span>
