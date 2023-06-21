@@ -16,5 +16,6 @@ public interface BoardService {
 	Board select(int commNo);		
 	List<Board> selectByPage(int pageNo);
 	void bulletinBoardViews(int commNo);
+	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount);
 
 }
