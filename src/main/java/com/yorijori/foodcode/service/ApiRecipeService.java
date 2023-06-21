@@ -15,4 +15,6 @@ public interface ApiRecipeService {
 
 	void wishList(UserInfo userinfo, ApiRecipe rcpSeq);
 
+	void viewCountUp(int rcpSeq);
+
 }

@@ -50,4 +50,10 @@ public class ApiRecipeServiceImpl implements ApiRecipeService {
 			apiRecipeDAO.addWishList(userwishlistapi);
 		}
 	}
+	@Override
+	public void viewCountUp(int rcpSeq) {
+		ApiRecipe apirecipe = apiRecipeDAO.findById(rcpSeq);
+		apirecipe.viewCountUp(apirecipe);
+	}
+
 }

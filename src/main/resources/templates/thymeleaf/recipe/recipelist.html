@@ -236,10 +236,18 @@
 											</div>
 										</div>
 										<div class="candidate-list-favourite-time">
-											<a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
-												<i class="far fa-heart"></i>
-											</a>
-											<span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i><span th:text="${data.date}"></span></span>
+											<ul class="list-unstyled list-inline">
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewList)}]]</i>
+														
+													</a></li>
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+													</a></li>
+												<li class="pr-2"><a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
+														<i class="far fa-heart" aria-hidden="true"></i>
+													</a></li>
+											</ul>
 
 										</div>
 									</div>
@@ -256,7 +264,7 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a th:href="@{/yorijori/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
+													<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
@@ -265,11 +273,21 @@
 												<ul class="list-unstyled"></ul>
 											</div>
 										</div>
-										<div class="candidate-list-favourite-time">
-											<a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
-												<i class="far fa-heart" aria-hidden="true"></i>
-											</a>
-											<span class="candidate-list-time order-1"><i class="far fa-solid fa-utensils pr-1" aria-hidden="true"></i>조리방법 : 튀기기</span>
+										<div class="candidate-list-favourite-time text-center pt-3 align-middle">
+											<ul class="list-unstyled list-inline">
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewList)}]]</i>
+														
+													</a></li>
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+													</a></li>
+												<li class="pr-2"><a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
+														<i class="far fa-heart" aria-hidden="true"></i>
+													</a></li>
+											</ul>
+											<!-- <span class="candidate-list-time order-1"><i class="far fa-solid fa-utensils pr-1" aria-hidden="true"></i>[[${data.recipeDes}]]</span> 
+											<span class="candidate-list-time order-1"><i class="far fa-regular fa-eye pr-1" aria-hidden="true">[[${data.count}]]</i></span> -->
 										</div>
 									</div>
 								</div>

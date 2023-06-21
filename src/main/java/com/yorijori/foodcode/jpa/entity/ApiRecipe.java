@@ -41,6 +41,7 @@ public class ApiRecipe {
 	private String rcpPartsDtls; // 재료정보
 	private String rcpNaTip; // 저감 조리법 팁
 	private int state; // Field
+	private int count; //조회수
 
 	@OneToMany(mappedBy = "rcpSeq", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -58,4 +59,7 @@ public class ApiRecipe {
 	@JsonManagedReference
 	private List<UserWishListApi> wishlist = new ArrayList<UserWishListApi>();
 
+	public void viewCountUp(ApiRecipe apiRecipe) {
+		apiRecipe.count++;
+	}
 }

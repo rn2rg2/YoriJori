@@ -16,7 +16,7 @@ import com.yorijori.foodcode.repository.RecipeDAO;
 @Transactional
 public class RecipeServiceImpl implements RecipeService {
 	RecipeDAO recipeDAO;
-	
+
 	@Autowired
 	public RecipeServiceImpl(RecipeDAO recipeDAO) {
 		super();
@@ -27,23 +27,29 @@ public class RecipeServiceImpl implements RecipeService {
 	public long countAll() {
 		return recipeDAO.countAll();
 	}
-	
+
 	@Override
-	public List<Recipe> selectListByPage(int pageNo,int pagePerCount){
+	public List<Recipe> selectListByPage(int pageNo, int pagePerCount) {
 		return recipeDAO.selectListByPage(pageNo, pagePerCount);
 	}
-	
+
 	@Override
 	public void wishList(UserInfo userId, Recipe recipeNo) {
 		long count = recipeDAO.countByRcpSeqByWishList(recipeNo);
 		UserWishlist userwishlist = new UserWishlist();
 		userwishlist.setRecipeNo(recipeNo);
 		userwishlist.setUserId(userId);
-		if (count > 0 ) {
+		if (count > 0) {
 			recipeDAO.deleteWishList(recipeNo);
 		} else {
 			recipeDAO.addWishList(userwishlist);
 		}
 	}
-	
+
+	@Override
+	public void viewCountUp(int recipeNo) {
+		Recipe recipe = recipeDAO.findById(recipeNo);
+		recipe.viewCountUp(recipe);
+	}
+
 }

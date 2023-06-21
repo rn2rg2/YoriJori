@@ -13,4 +13,6 @@ public interface RecipeService {
 
 	void wishList(UserInfo userId, Recipe recipeNo);
 
+	void viewCountUp(int recipeNo);
+
 }
