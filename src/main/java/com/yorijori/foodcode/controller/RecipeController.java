@@ -55,7 +55,9 @@ public class RecipeController {
 
 	// recipe insert
 	@RequestMapping("/insert")
-	public String insertRecipe(Model model) {
+	public String insertRecipe(Model model, String ingredient, String num) {
+		System.out.println("재료정보 뽑기 19028391283-901823901823");
+		System.out.println(ingredient+" "+num);
 		List<Ingredients> list = ingredientservice.selectAll();
 		model.addAttribute("list", list);
 		return "thymeleaf/recipe/recipeInsert";

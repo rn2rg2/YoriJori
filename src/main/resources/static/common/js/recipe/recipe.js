@@ -233,4 +233,40 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
             }
         })
     }
+    //리스트 클릭시 재료량 추가
+    var count = 1;
+    $(document).on('click', 'li', function() {
+    	  var ingredient = $(this).text();
+    	  var ingredientval = $(this).data('value');
+    	  var inputId = 'ingredent' + count; // 고유한 id 생성
+    	  var topinputId = 'inputId' +count;
+    	  var newRow = '<div class="row mt-3" >' +
+    	    '<div class="col-md-6">' +
+    	    '<input class="form-control ingrecount" id="' + inputId + '" readonly="readonly" value="' + ingredient + '">' +
+    	    '<input class="ingredient" name="ingredient" type="hidden" value="'+ ingredientval +'">' + '</div>' +
+    	    '<div class="col-md-3">' +
+    	    '<input type="text" class="form-control" placeholder="ex) 1/2개" name="num">' +
+    	    '</div>' +
+    	    '</div>';;
+
+    	  $('#ingredientContainer').append(newRow);
+    	  
+    	  count++; // count 값을 증가시켜 다음 요소에 대한 고유한 id 생성을 위해 준비
+    	});
+    //x클릭시 재료량에서 동일한 재료 삭제
+    $(document).on('click', '.item-container svg', function() {
+    	  var itemContainer = $(this).closest('.item-container'); // 클릭한 svg 요소의 가장 가까운 상위 item-container 요소를 찾음
+    	  var itemLabel = itemContainer.find('.item-label'); // item-container 내에서 item-label 클래스를 가진 요소를 찾음
+    	  var labelText = itemLabel.text(); // item-label의 텍스트 값을 가져옴
+
+    	  $('.row.mt-3').each(function() {
+    	    var ingredientInput = $(this).find('input[id^="ingredent"]'); // id 속성이 "ingredent"로 시작하는 input 요소를 찾음
+    	    var ingredientValue = ingredientInput.val(); // input 요소의 value 값을 가져옴
+    	    
+    	    if (ingredientValue === labelText) {
+    	      $(this).remove(); // 값이 일치하는 row.mt-3 요소를 삭제
+    	    }
+    	  });
+    	});
+   
 }
