@@ -3,6 +3,7 @@ package com.yorijori.foodcode.repository;
 import java.util.List;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 
 public interface RecipeDAO {
@@ -18,4 +19,8 @@ public interface RecipeDAO {
 	void deleteWishList(Recipe recipeNo);
 
 	Recipe findById(int recipeNo);
+
+	Recipe select(int recipeNo);
+
+    List<RecipeImage> imgselect(int recipeNo);
 }

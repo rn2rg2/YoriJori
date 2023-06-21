@@ -129,7 +129,7 @@ public class MemberController {
 
 		System.out.println(userinfodto);
 		memberService.save(userinfodto);
-		return "thymeleaf/member/signUpForm2";
+		return "thymeleaf/member/signUpForm3";
 	}
 
 	// 코드 설명 - 중복체크 컨트롤러
@@ -166,9 +166,15 @@ public class MemberController {
 			session.setAttribute("userInfo", loginUser);
 			view = "thymeleaf/index";
 		} else {
+			List<Category> categories = categoryservice.findByLevel(2);
+			List<String> categoryNames = new ArrayList<>();
+			for (Category category : categories) {
+				categoryNames.add(category.getName());
+			}
 			model.addAttribute("nickname", userInfo.get("nickname"));
 			model.addAttribute("email", userInfo.get("email"));
 			model.addAttribute("id", userInfo.get("id"));
+			model.addAttribute("categories", categoryNames);
 			view = "thymeleaf/member/signUpForm2";
 		}
 		return view;

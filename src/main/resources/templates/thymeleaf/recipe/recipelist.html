@@ -215,7 +215,7 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a href="/yorijori/recipe/view" th:text="${data.name}"></a>
+                          						  <a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
