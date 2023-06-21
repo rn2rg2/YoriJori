@@ -300,8 +300,8 @@ label a{
 	color: #fd5d5d !important;	
 }
 .form-control{
-	text-align: center;
-	max-height: 3em;
+	/* text-align: center;
+	max-height: 3em; */
     border-radius: 2em;
     border-color: var(--main-theme-color-red);
 }
@@ -419,3 +419,4 @@ label a{
 
 .uploader .progress[value]::-webkit-progress-value {
   background: linear-gradient(to right, darken(#454cad, 8%) 0%, #454cad 50%);
+} 
