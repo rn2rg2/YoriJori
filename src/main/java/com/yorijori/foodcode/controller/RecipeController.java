@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,15 +51,14 @@ public class RecipeController {
 	public String viewRecipe(Model model) {
 		return "thymeleaf/recipe/recipeview";
 	}
-	
-	// recipe insert 
+
+	// recipe insert
 	@RequestMapping("/insert")
 	public String insertRecipe(Model model) {
 		List<Ingredients> list = ingredientservice.selectAll();
 		model.addAttribute("list", list);
 		return "thymeleaf/recipe/recipeInsert";
 	}
-
 
 	@RequestMapping("/list/{type}/{pageNo}")
 	public String listRecipe(Model model, @PathVariable String type, @PathVariable int pageNo) throws IOException {
@@ -82,16 +80,16 @@ public class RecipeController {
 		return "thymeleaf/recipe/recipelist";
 	}
 
-
 	// recipe detail view
 	@RequestMapping("/view/{type}/{rcpSeq}")
-	public String getViewPage(Model model, @PathVariable String type, @PathVariable int rcpSeq, HttpServletRequest req, HttpServletResponse res) {
-		if (type.equals("server")) { //서버 레시피 detail view
+	public String getViewPage(Model model, @PathVariable String type, @PathVariable int rcpSeq, HttpServletRequest req,
+			HttpServletResponse res) {
+		if (type.equals("server")) { // 서버 레시피 detail view
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
 			model.addAttribute("data", data);
-			viewCountUp(rcpSeq, type,req, res);
-		} else { //user recipe detail view
-			
+			viewCountUp(rcpSeq, type, req, res);
+		} else { // user recipe detail view
+
 		}
 		return "thymeleaf/recipe/serverRecipeView";
 	}
@@ -105,21 +103,21 @@ public class RecipeController {
 		return result;
 	}
 
-	@RequestMapping("/like/{type}")
-	@ResponseBody
-	public String addWishList(@PathVariable String type, HttpSession session, int rcp_no) {
-		String msg = "";
+	@RequestMapping("/like/{type}/{rcpNo}")
+	public String addWishList(@PathVariable String type, @PathVariable int rcpNo, HttpSession session,
+			HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
 		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
 		if (type.equals("user")) {
 			Recipe recipe = new Recipe();
-			recipe.setRecipeNo(rcp_no);
+			recipe.setRecipeNo(rcpNo);
 			recipeService.wishList(userinfo, recipe);
 		} else {
 			ApiRecipe apirecipe = new ApiRecipe();
-			apirecipe.setRcpSeq(rcp_no);
+			apirecipe.setRcpSeq(rcpNo);
 			apiRecipeService.wishList(userinfo, apirecipe);
 		}
-		return msg;
+		return "redirect:" + referer;
 	}
 
 	// 조회수 올리는 메소드 (쿠키 기반)
@@ -137,7 +135,7 @@ public class RecipeController {
 		}
 		if (oldCookie != null) {
 			if (!oldCookie.getValue().contains("[" + Integer.toString(id) + "]")) {
-				if ( type.equals("server")) {
+				if (type.equals("server")) {
 					apiRecipeService.viewCountUp(id);
 				} else {
 					recipeService.viewCountUp(id);
@@ -150,7 +148,7 @@ public class RecipeController {
 			}
 		} else {
 			// boardService.viewCountUp(id);
-			if ( type.equals("server")) {
+			if (type.equals("server")) {
 				apiRecipeService.viewCountUp(id);
 			} else {
 				recipeService.viewCountUp(id);
