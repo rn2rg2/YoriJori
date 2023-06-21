@@ -68,28 +68,7 @@
 								$("#"+parent_id).html(text)
 								$("input[name="+parent_id+"]").val(text)
 							})
-							function boardSubmit(event) {
-								var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
-								var contentCheck = isEmpty($('#summernote'));
-								if (isEmpty($('#title'))) {
-									error_alert('제목 미 입력', '제목');
-									return false;
-								} else if (isEmpty($('#price'))) {
-									error_alert('가격 미 입력', '가격');
-									return false;
-								} else if (isEmpty($('#time'))) {
-									error_alert('강의시간 미 입력', '강의시간');
-									return false;
-								} else if (isEmpty($('#category'))) {
-									error_alert('카테고리 미 입력', '카테고리');
-									return false;
-								} else if (isEmpty($('#cate'))) {
-									error_alert('카테고리 미 입력', '카테고리');
-									return false;
-								} else if (!titleCheck && !contentCheck) {
-									return true;
-								}
-							}
+							
 							
 						})
 
@@ -108,7 +87,7 @@
 
 						<label>클래스 제목</label> <input type="text"
 							class="insert-control title" name="title" id="title"
-							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]">
+							placeholder="감각적인 나만의 디저트! 빵선생의 홈베이킹 클래스 [딸기생크림케이크]" style="width: 50%;">
 					</div>
 
 					<div class="form-group form-insert inline">
@@ -129,7 +108,7 @@
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="category" name="category">카테고리선택</button>
-								<input type="hidden" id="category" name="category" value="">
+								<input type="hidden" id="cate" name="category" value="">
 							<div class="dropdown-menu">
 								<a class="dropdown-item insert-item" href="javascript:0"
 									data-parent="category">한식</a> <a
@@ -169,7 +148,7 @@
 						<label>클래스 소개</label>
 						<div id="class-content">
 							<input hidden="" name="conCategory" value="클래스 소개">
-							<textarea class="summernote" name="content"></textarea>
+							<textarea class="summernote" name="content" id="classcontent"></textarea>
 						</div>
 					</div>
 				</div>
@@ -184,7 +163,7 @@
 						<label>강사 소개</label>
 						<div id="teacher-content">
 							<input hidden="" name="conCategory" value="강사 소개">
-							<textarea class="summernote" name="content"></textarea>
+							<textarea class="summernote" name="content" id="teachercontent"></textarea>
 						</div>
 					</div>
 
@@ -218,6 +197,40 @@
 				</div>
 			</div>
 		</div>
-	</form>
+		</form>
+		<script type="text/javascript">
+		function classSubmit(event) {
+			var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
+			var contentCheck = isEmpty($('#summernote'));
+			if (isEmpty($('#title'))) {
+				error_alert('제목 미 입력', '제목');
+				return false;
+			} else if (isEmpty($('#price'))) {
+				error_alert('가격 미 입력', '가격');
+				return false;
+			} else if (isEmpty($('#time'))) {
+				error_alert('강의시간 미 입력', '강의시간');
+				return false;
+			} else if (isEmpty($('#cate'))) {
+				error_alert('카테고리 미 입력', '카테고리');
+				return false;
+			} else if (isEmpty($('#classcontent'))) {
+				error_alert('클래스소개 미 입력', '클래스소개');
+				return false;
+			} else if (isEmpty($('#teachercontent'))) {
+				error_alert('강사소개 미 입력', '강사소개');
+				return false;
+			} else if (isEmpty($('#name'))) {
+				error_alert('커리큘럼명 미 입력', '커리큘럼명');
+				return false;
+			} else if (isEmpty($('#time'))) {
+				error_alert('커리큘럼시간 미 입력', '커리큘럼시간');
+				return false;
+			} else {
+				return true;
+			}
+		}
+		</script>
+	
 </th:block>
 </html>

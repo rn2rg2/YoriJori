@@ -90,8 +90,33 @@ public class CookingclassController {
 		return "thymeleaf/cookingclass/uploadForm";
 	}
 	@PostMapping("/upload")
-	public String submitPopup() {
-		return "thymeleaf/cookingclass/uploadForm";
+	@ResponseBody
+	public String submitPopup(@RequestParam("file") MultipartFile multipartFile) {
+		JsonObject json = new JsonObject();
+		System.out.println(multipartFile);
+		String fileRoot = "C:\\project\\upload\\thumbnail\\";
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+				
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		File targetFile = new File(fileRoot + savedFileName);	
+		
+		try {
+			InputStream fileStream = multipartFile.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+			json.addProperty("url", "/yorijori/data/thumbnail/"+savedFileName);
+			json.addProperty("responseCode", "success");
+			
+		} catch (IOException e) {
+			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+			json.addProperty("responseCode", "error");
+			e.printStackTrace();
+		}
+		String jsonvalue = json.toString();
+		System.out.println("======================");
+		System.out.println(jsonvalue);
+		System.out.println("======================");
+		return jsonvalue;
 	}
 	@PostMapping("/in")
 	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum) {
