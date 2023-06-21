@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.repository.RecipeDAO;
@@ -51,5 +52,16 @@ public class RecipeServiceImpl implements RecipeService {
 		Recipe recipe = recipeDAO.findById(recipeNo);
 		recipe.viewCountUp(recipe);
 	}
+
+	@Override
+	public Recipe select(int recipeNo) {
+		// TODO Auto-generated method stub
+		return recipeDAO.select(recipeNo);
+	}
+
+    @Override
+    public List<RecipeImage> imgselect(int recipeNo) {
+        return recipeDAO.imgselect(recipeNo);
+    }
 
 }
