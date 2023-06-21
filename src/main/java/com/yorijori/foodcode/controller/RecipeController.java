@@ -87,6 +87,8 @@ public class RecipeController {
 		if (type.equals("server")) { // 서버 레시피 detail view
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
 			model.addAttribute("data", data);
+			model.addAttribute("type", type);
+			model.addAttribute("rcpSeq", rcpSeq);
 			viewCountUp(rcpSeq, type, req, res);
 		} else { // user recipe detail view
 
