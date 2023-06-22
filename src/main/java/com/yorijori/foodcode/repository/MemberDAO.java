@@ -10,7 +10,11 @@ public interface MemberDAO {
     public boolean nicknameCheck(String nickname);
     public boolean idCheck(String userId);
     public void save(UserInfo userInfo);
+
+	void update(UserInfo userInfo);
+
 	long userCount(String role);
 	UserInfo findByUserId(String userId);
 	List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
+
 }

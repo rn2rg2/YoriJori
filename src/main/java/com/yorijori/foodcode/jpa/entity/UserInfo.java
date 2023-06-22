@@ -16,18 +16,17 @@ import org.hibernate.annotations.CreationTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user_info")
-@ToString(exclude = {"recipeList","reviewList"})
+@Table(name = "user_info")
 public class UserInfo {
 	@Id
 	private String userId;
-	private String role;	
+	private String role;
 	private String nickname;
 	private String pass;
 	private String email;
@@ -43,11 +42,61 @@ public class UserInfo {
 	@CreationTimestamp
 	private Date date;
 	private String kakaoID;
-	
-	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Recipe> recipeList = new ArrayList<Recipe>();
-	
-	@OneToMany(mappedBy="userId", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeReview> reviewList = new ArrayList<RecipeReview>();
 	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ApiRecipeReview> apireviewList = new ArrayList<ApiRecipeReview>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Inquiry> inquiryList = new ArrayList<Inquiry>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ApiRecipeQa> apiqaList = new ArrayList<ApiRecipeQa>();
+
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<UserTray> trayList = new ArrayList<UserTray>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<UserFrige> frigeList = new ArrayList<UserFrige>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<UserLog> logList = new ArrayList<UserLog>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Board> boardList = new ArrayList<Board>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<BoardComment> boardcommentList = new ArrayList<BoardComment>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CookingClass> cookingClassList = new ArrayList<CookingClass>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<UserWishlist> userWishList = new ArrayList<UserWishlist>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<UserWishListApi> userWishApiList = new ArrayList<UserWishListApi>();
+
 }

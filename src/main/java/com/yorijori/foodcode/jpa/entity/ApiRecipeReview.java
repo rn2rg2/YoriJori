@@ -19,19 +19,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="api_recipe_review")
-@ToString(exclude = {"rcpSeq"})
 public class ApiRecipeReview {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int commentNo;
-	private String userId;
+	//private String userId;
 	//private int rcpSeq;
 	private BigDecimal star;
 	private String comment;
@@ -41,8 +40,14 @@ public class ApiRecipeReview {
 	private Date upDate;	//수정일
 	private Date state;		//field
 	
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "rcpSeq", nullable=false)
 	@JsonBackReference
 	private ApiRecipe rcpSeq;
+	
+	@Exclude
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable=false)
+	private UserInfo userId;
 }
