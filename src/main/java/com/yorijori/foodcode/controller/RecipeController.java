@@ -11,14 +11,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.IngredientService;
@@ -54,7 +59,9 @@ public class RecipeController {
 
 	// recipe insert
 	@RequestMapping("/insert")
-	public String insertRecipe(Model model) {
+	public String insertRecipe(Model model, String ingredient, String num) {
+		System.out.println("재료정보 뽑기 19028391283-901823901823");
+		System.out.println(ingredient+" "+num);
 		List<Ingredients> list = ingredientservice.selectAll();
 		model.addAttribute("list", list);
 		return "thymeleaf/recipe/recipeInsert";
@@ -80,20 +87,41 @@ public class RecipeController {
 		return "thymeleaf/recipe/recipelist";
 	}
 
-	// recipe detail view
 	@RequestMapping("/view/{type}/{rcpSeq}")
 	public String getViewPage(Model model, @PathVariable String type, @PathVariable int rcpSeq, HttpServletRequest req,
 			HttpServletResponse res) {
+		String view = "";
+		Recipe recipe = new Recipe();
 		if (type.equals("server")) { // 서버 레시피 detail view
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
-			model.addAttribute("data", data);
+			model.addAttribute("data", data);	
 			model.addAttribute("type", type);
 			model.addAttribute("rcpSeq", rcpSeq);
 			viewCountUp(rcpSeq, type, req, res);
+			view = "thymeleaf/recipe/serverRecipeView";
 		} else { // user recipe detail view
-
+			Recipe data = recipeService.select(rcpSeq);
+			UserInfo userId = data.getUserId();
+			List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
+			List<RecipeReview> datareview = recipeService.reviewselect(rcpSeq);
+			model.addAttribute("data", data);
+			model.addAttribute("dataimg",dataimg);
+			model.addAttribute("user", data.getUserId());
+			model.addAttribute("review", datareview);
+			
+			//테스트용
+			
+			//게시물 내용
+			System.out.println(data);
+			//사용저 이름
+			System.out.println(data.getUserId());
+			//게시물 이미지
+			System.out.println(dataimg);
+			//게시물 리뷰
+			System.out.println(datareview);
+			view = "thymeleaf/recipe/recipeview";
 		}
-		return "thymeleaf/recipe/serverRecipeView";
+		return view;
 	}
 
 	// server recipe count
@@ -121,7 +149,25 @@ public class RecipeController {
 		}
 		return "redirect:" + referer;
 	}
+		
+	@PostMapping("/reviewinsert/{rcpNo}")
+	public String insertReview(@ModelAttribute RecipeReview recipereview, @PathVariable int rcpNo, HttpSession session,
+	        HttpServletRequest request) {
+	    String referer = request.getHeader("Referer");
 
+	    // 세션에서 userInfo 가져오기
+	    UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+	    Recipe recipe = recipeService.select(rcpNo); 
+	    recipereview.setRecipeNo(recipe);
+	    recipereview.setUserId(userInfo);
+	    recipereview.setRecipeNo(recipe);
+		recipeService.reviewsave(recipereview);
+	    
+	    System.out.println(recipereview);
+
+	    return "redirect:" + referer;
+	}
+	
 	// 조회수 올리는 메소드 (쿠키 기반)
 	private void viewCountUp(int id, String type, HttpServletRequest req, HttpServletResponse res) {
 

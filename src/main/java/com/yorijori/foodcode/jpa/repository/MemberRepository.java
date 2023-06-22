@@ -13,7 +13,7 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     UserInfo findByUserId(String userId);    
     boolean existsByUserId(String userId);
     boolean existsByNickname(String nickname);
-    
+    long countByRole(String role);
 
 
 }

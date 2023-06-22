@@ -382,5 +382,59 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
-
+/* 리본 */
+.ribbon {
+  height: 188px;
+  position: relative;
+  margin-bottom: 30px;
+  background: url(https://html5book.ru/wp-content/uploads/2015/10/snow-road.jpg);
+  background-size: cover;
+  text-transform: uppercase;
+  color: white;
+}
+.wrap:before, .wrap:after {
+  content: ""; 
+  position: absolute;
+}
+.wrap:before {
+  width: 40px;
+  height: 8px;
+  right: 100px;
+  background: #4D6530;
+  border-radius: 8px 8px 0px 0px;
+}
+.wrap:after {
+  width: 8px;
+  height: 40px;
+  right: 0px;
+  top: 100px;
+  background: #4D6530;
+  border-radius: 0px 8px 8px 0px;
+}
+.ribbon6 {
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  top: 30px;
+  right: -50px;
+  z-index: 2;
+  overflow: hidden;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border: 1px dashed;
+  box-shadow:0 0 0 3px #57DD43,  0px 21px 5px -18px rgba(0,0,0,0.6);
+  background: #57DD43;
+  text-align: center;
+}
+@media (min-width: 500px) {
+  .ribbons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .ribbon {
+    width: 48%;
+  }
+}
 

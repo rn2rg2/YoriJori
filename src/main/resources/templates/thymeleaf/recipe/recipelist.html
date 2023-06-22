@@ -215,13 +215,13 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a href="/yorijori/recipe/view" th:text="${data.name}"></a>
+                          						  <a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="${data.userId.nickname}"></div>
+											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
 												<br>
-												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}+분"></div>
 												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
 												<hr>
 												<div class="meta meta-style2">
@@ -246,7 +246,7 @@
 													</a></li>
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
-														<i class="far fa-heart" aria-hidden="true"></i>
+														<i class="fa fa-heart me-2" aria-hidden="true"></i>
 													</a></li>
 												</th:block>
 											</ul>
@@ -287,7 +287,7 @@
 												
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.rcpSeq}" onclick="clickHeart(this,addHeart)">
-														<i class="far fa-heart" aria-hidden="true"></i>
+														<i class="fa fa-heart me-2" aria-hidden="true"></i>
 													</a></li>
 												</th:block>
 											</ul>
