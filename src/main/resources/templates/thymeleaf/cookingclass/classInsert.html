@@ -65,7 +65,7 @@
 				$("#" + parent_id).html(text)
 				$("input[name=" + parent_id + "]").val(text)
 			})
-
+			
 		})
 	</script>
 </th:block>
@@ -113,19 +113,20 @@
 						<label>클래스 썸네일</label>
 					</div>
 					<div id="file-upload-form" class="form-group form-insert uploader">
-						<input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none;"/>
+						<input id="file-upload" type="file" name="file" accept="image/*" style="display:none;"/>
 
 						<label for="file-upload" id="file-drag">
 							<img id="file-image" src="#" alt="Preview" class="hidden">
 							<div id="start">
 								<i class="fa fa-download" aria-hidden="true"></i>
 								<div id="notimage" class="hidden">
-							</div>
+								</div>
 							<div id="response" class="hidden">
 								<div id="messages"></div>
 								<progress class="progress" id="file-progress" value="0">
 									<span>0</span>%
 								</progress>
+							</div>
 							</div>
 						</label>
 
@@ -200,7 +201,7 @@
 				</div>
 			</div>
 		</div>
-	</form>
+		</div>
 	<script type="text/javascript">
 		function classSubmit(event) {
 			var titleCheck = isEmpty($('#title')); // 값이 없을 경우 true
@@ -215,7 +216,10 @@
 				error_alert('강의시간 미 입력', '강의시간');
 				return false;
 			} else if (isEmpty($('#cate'))) {
-				error_alert('카테고리 미 입력', '카테고리');
+				error_alert('카테고리 미 등록', '카테고리');
+				return false;
+			} else if (isEmpty($('#file-upload'))) {
+				error_alert('썸네일 미 등록', '썸네일');
 				return false;
 			} else if (isEmpty($('#classcontent'))) {
 				error_alert('클래스소개 미 입력', '클래스소개');
@@ -377,6 +381,6 @@
 		}
 		ekUpload();
 	</script>
-
+</form>
 </th:block>
 </html>

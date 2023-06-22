@@ -11,8 +11,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 	<script src="https://kit.fontawesome.com/8b61787525.js"
 		crossorigin="anonymous"></script>
-	<script src="/yorijori/common/js/recipe/recipe.js"
-		></script>
+	<script src="/yorijori/common/js/recipe/recipe.js"></script>
 	<link rel="stylesheet"
 		href="/yorijori/common/css/recipe/recipeInsert.css">
 	<link rel="stylesheet"
@@ -20,53 +19,108 @@
 	<!-- <script
 		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 	<script>
-		$(document).ready(function() {
-			/* 			$('#summernote').summernote({
-			 placeholder : 'content',
-			 minHeight : 500,
-			 maxHeight : 500,
-			 focus : false,
-			 lang : 'ko-KR'
-			 }); */
-			/* 엔터금지 */
-			/* 			document.addEventListener('keydown', function(event) {
-			 if (event.keyCode === 13) {
-			 event.preventDefault();
-			 }
-			 ;	
-			 }, true); */
+		$(document)
+				.ready(
+						function() {
+							/* 			$('#summernote').summernote({
+							 placeholder : 'content',
+							 minHeight : 500,
+							 maxHeight : 500,
+							 focus : false,
+							 lang : 'ko-KR'
+							 }); */
+							/* 엔터금지 */
+							/* 			document.addEventListener('keydown', function(event) {
+							 if (event.keyCode === 13) {
+							 event.preventDefault();
+							 }
+							 ;	
+							 }, true); */
 
-			let multiselecttag = new MultiSelectTag('imp', {
-				rounded : true,
-				shadow : false
-			})
-			 multiselecttag.createTag("Test");
+							let multiselecttag = new MultiSelectTag('imp', {
+								rounded : true,
+								shadow : false
+							})
 
-			$(".dropdown-item").on("click", function() {
-				const $this = $(this)
-				var parent_id = $this.attr("data-parent")
-				var text = $this.html()
-				$("button[id=" + parent_id + "]").html(text)
-				$("input[id=" + parent_id + "]").val(text)
-			})
+							$(".dropdown-item").on("click", function() {
+								const $this = $(this)
+								var parent_id = $this.attr("data-parent")
+								var text = $this.html()
+								$("button[id=" + parent_id + "]").html(text)
+								$("input[id=" + parent_id + "]").val(text)
+							})
 
-			//재료 탭 눌렀을때 추가하기
-			$("li").on("click", function() {
-				alert("test");
-			});
-			;
-		});
+							//
+							var stepCount = 1;
+							$(document)
+									.on(
+											"click",
+											"#addStepBtn",
+											function() {
+												stepCount++; // 요리과정 개수 증가
+												// 요리과정 HTML 생성
+												var stepHtml = '<div id="divStepItem_' + stepCount + '" class="step">'
+														+ '<p id="divStepNum_' + stepCount + '" class="cont_tit2_1 ui-sortable-handle" style="cursor: pointer">Step'
+														+ stepCount
+														+ '<i class="fas fa-times" style="margin-left:5px" id="delstep"></i></p>'
+														+ '<div id="divStepText_' + stepCount + '" style="display: inline-block">'
+														+ '<textarea name="step_text[]" id="step_text_'
+														+ stepCount
+														+ '" class="form-control step_cont" placeholder="예) 후라이팬에 기름을 두르고 예열합니다." style="min-height: 11.5em; width: 40em; resize: none; border-radius: 0px; border: 2px solid #fd5d5d"></textarea>'
+														+ '</div>'
+														+ '<div id="divStepUpload_' + stepCount + '" style="display: inline-block">'
+														+ '<input type="hidden" name="step_no[]" id="step_no_' + stepCount + '" value="">'
+														+ '<input type="hidden" name="step_photo[]" id="step_photo_' + stepCount + '" value="">'
+														+ '<input type="hidden" name="new_step_photo[]" id="new_step_photo_' + stepCount + '" value="">'
+														+ '<input type="hidden" name="del_step_photo[]" id="del_step_photo_' + stepCount + '" value="">'
+														+ '<div style="position: absolute; left: -3000px">'
+														+ '<input type="file" name="q_step_file_' + stepCount + '" id="q_step_file_' + stepCount + '" file_gubun="step" accept="jpeg,png,gif" style="display:; width: 0px; height: 0px; font-size: 0px;" text="">'
+														+ '</div>'
+														+ '<div id="divStepPhotoBox_' + stepCount + '" is_over="0" class="addphoto">'
+														+ '<img id="stepPhotoHolder_'+ stepCount + '" src="https://recipe1.ezmember.co.kr/img/pic_none2.gif" width="160" height="160" style="cursor: pointer">'
+														+ '</div>'
+														+ '</div><br>';
+
+												// 요리과정 추가
+												$('#divStepArea').append(
+														stepHtml);
+											});
+							$(document).on("click", "#delstep", function() {
+								$(this).closest(".step").remove();
+							});
+
+							//사진 추가하기
+							$(document).on('click', '.addphoto', function() {
+								var stepId = $(this).attr('id').split('_')[1];
+								console.log(stepId);
+								$('#q_step_file_' + stepId).trigger('click');
+							});
+
+							$(document).on('change','input[type="file"]',
+									function() {
+										var elementId = $(this).attr('id');
+										var stepId = elementId.split('_')[2];
+										var file = this.files[0];
+										var reader = new FileReader();
+
+										reader.onload = function(e) {
+											$('#stepPhotoHolder_' + stepId)
+													.attr('src',
+															e.target.result);
+										}
+
+										reader.readAsDataURL(file);
+									});
+						});
 	</script>
 </th:block>
 
 <th:block layout:fragment="content">
-	<form action="">
+	<form action="/yorijori/recipe/insert" method="post">
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="menu-h3-common">레시피 등록</h3>
-
-
 					<div class="form-group form-insert">
 						<label>레시피 제목</label> <input type="text"
 							class="insert-control title" id="" placeholder="맛좋은 게살 버거"
@@ -181,7 +235,7 @@
 							style="text-decoration: underline;">여기</a> 를 클릭하여 재료 추가하기
 						</span> <br /> <br /> <label>재료량</label>
 						<div id="ingredientContainer">
-							<div class="row mt-3">
+							<!-- 	<div class="row mt-3">
 								<div class="col-md-6">
 									<input type="text" class="form-control" placeholder="ex)사과"
 										id="ingredent" disabled="disabled" value="">
@@ -191,9 +245,7 @@
 									<input type="text" class="form-control" placeholder="ex) 1/2개"
 										value="">
 								</div>
-								<a id="btnMaterialDel_1_1" href="javascript:delMaterial(1,1)"
-									class="btn-del" style="display: inline-block;"></a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 
@@ -206,7 +258,10 @@
 						<div id="divStepArea" class="ui-sortable">
 							<div id="divStepItem_1" class="step">
 								<p id="divStepNum_1" class="cont_tit2_1 ui-sortable-handle"
-									style="cursor: pointer" data-original-title="" title="">Step1</p>
+									style="cursor: pointer">
+									Step1<i class="fas fa-times" style="margin-left: 5px"
+										id="delstep"></i>
+								</p>
 								<div id="divStepText_1" style="display: inline-block">
 									<textarea name="step_text[]" id="step_text_1"
 										class="form-control step_cont"
@@ -225,8 +280,8 @@
 											style="display:; width: 0px; height: 0px; font-size: 0px;"
 											text="">
 									</div>
-									<div id="divStepPhotoBox_1" is_over="0">
-										<img id="stepPhotoHolder_1" onclick="browseStepFile(1)"
+									<div id="divStepPhotoBox_1" is_over="0" class="addphoto">
+										<img id="stepPhotoHolder_1"
 											src="https://recipe1.ezmember.co.kr/img/pic_none2.gif"
 											width="160" height="160" style="cursor: pointer">
 									</div>
@@ -234,63 +289,29 @@
 								<br />
 							</div>
 						</div>
-						
-						<div id="divStepArea" class="ui-sortable">
-							<div id="divStepItem_1" class="step">
-								<p id="divStepNum_1" class="cont_tit2_1 ui-sortable-handle"
-									style="cursor: pointer" data-original-title="" title="">Step2</p>
-								<div id="divStepText_1" style="display: inline-block">
-									<textarea name="step_text[]" id="step_text_1"
-										class="form-control step_cont"
-										placeholder="예) 후라이팬에 기름을 두르고 예열합니다."
-										style="min-height: 11.5em; width: 40em; resize: none; border-radius: 0px; border: 2px solid #fd5d5d"></textarea>
-								</div>
-								<div id="divStepUpload_1" style="display: inline-block">
-									<input type="hidden" name="step_no[]" id="step_no_1" value="">
-									<input type="hidden" name="step_photo[]" id="step_photo_1"
-										value=""> <input type="hidden" name="new_step_photo[]"
-										id="new_step_photo_1" value=""> <input type="hidden"
-										name="del_step_photo[]" id="del_step_photo_1" value="">
-									<div style="position: absolute; left: -3000px">
-										<input type="file" name="q_step_file_1" id="q_step_file_1"
-											file_gubun="step" accept="jpeg,png,gif"
-											style="display:; width: 0px; height: 0px; font-size: 0px;"
-											text="">
-									</div>
-									<div id="divStepPhotoBox_1" is_over="0">
-										<img id="stepPhotoHolder_1" onclick="browseStepFile(1)"
-											src="https://recipe1.ezmember.co.kr/img/pic_none2.gif"
-											width="160" height="160" style="cursor: pointer">
-									</div>
-								</div>
-								<br />
-								<div class="btn_add mag_b_25"
-									style="padding: 0 10em 0 20em; width: 820px;">
-									<button type="button" onclick="addStep()"
-										class="btn btn-default">
-										<span class="glyphicon glyphicon-plus-sign"></span>순서추가
-									</button>
-								</div>
-							</div>
+						<div class="btn_add mag_b_25"
+							style="padding: 0 10em 0 20em; width: 820px;">
+							<button type="button" id="addStepBtn" class="btn btn-default">
+								순서추가</button>
 						</div>
-					</div>
-					<div
-						style="width: 100%; border: 2px solid #fd5d5d; margin-top: 1em;">
-					</div>
+						<div
+							style="width: 100%; border: 2px solid #fd5d5d; margin-top: 1em;">
+						</div>
 
 
-					<div class="form-group form-insert">
-						<label>요리팁</label>
-						<textarea class="insert-control des" id="des"
-							placeholder="게살 잘 바르는 팁!!!" name="pswd"></textarea>
-					</div>
+						<div class="form-group form-insert">
+							<label>요리팁</label>
+							<textarea class="insert-control des" id="des"
+								placeholder="게살 잘 바르는 팁!!!" name="pswd"></textarea>
+						</div>
 
-					<div class="form-group form-insert">
-						<label>태그</label> <input type="text" class="insert-control" id=""
-							placeholder="딸기, 키위, 다이어트, 비만" name="l">
-					</div>
-					<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
+						<div class="form-group form-insert">
+							<label>태그</label> <input type="text" class="insert-control" id=""
+								placeholder="딸기, 키위, 다이어트, 비만" name="l">
+						</div>
+						<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
 
+					</div>
 				</div>
 			</div>
 		</div>

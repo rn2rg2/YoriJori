@@ -17,4 +17,6 @@ public interface ApiRecipeService {
 
 	void viewCountUp(int rcpSeq);
 
+	List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType);
+
 }

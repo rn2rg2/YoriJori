@@ -53,6 +53,14 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	}
 	
 	@Override
+	public List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType) {
+		PageRequest pageRequest = PageRequest.of(page, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
+		Page<ApiRecipe> pagedata = apiRecipeRepository.findAll(pageRequest);
+		List<ApiRecipe> list = pagedata.getContent();
+		return list;
+	}
+	
+	@Override
 	public void addWishList(UserWishListApi userWishListApi) {
 		userWishListApiRepo.save(userWishListApi);
 	}

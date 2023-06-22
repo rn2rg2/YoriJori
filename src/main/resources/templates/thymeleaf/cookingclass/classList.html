@@ -20,29 +20,86 @@
 	<script src="https://kit.fontawesome.com/8b61787525.js"
 		crossorigin="anonymous"></script>
 	<script>
-		
+		$(document).ready(function() {
+			$(".option").click(function() {
+				$(".option").removeClass("active");
+				$(this).addClass("active");
+
+			});
+		})
 	</script>
 </th:block>
 <th:block layout:fragment="content">
-	<div class="container">
+	<div class="container mb-4">
 
-		<h3 class="menu-h3-common borderx">추천 클래스 목록</h3>
-
-		<div class="swiper-container">
-			<swiper-container class="mySwiper" pagination="true"
-				pagination-clickable="true" navigation="true" space-between="30"
-				centered-slides="true" autoplay-delay="3000"
-				autoplay-disable-on-interaction="false">
-			<div th:each="class:${classList}">
-				<swiper-slide> <img th:src="${class.thumbnail}" /> <span
-					class="class-title" th:text="${class.title}"></span>
-				<div class="class-price">
-					<span th:text="${class.price}"></span><span> &#8361;</span>
+		<h3 class="menu-h3-common">추천 클래스 목록</h3>
+		<div class="options">
+			<div class="option active"
+				style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-walking"></i>
+					</div>
+					<div class="info">
+						<div class="main">Blonkisoaz</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
 				</div>
-			
+			</div>
+			<div class="option"
+				style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-snowflake"></i>
+					</div>
+					<div class="info">
+						<div class="main">Oretemauw</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
+			<div class="option"
+				style="-optionBackground: url(https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-tree"></i>
+					</div>
+					<div class="info">
+						<div class="main">Iteresuselle</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
+			<div class="option"
+				style="-optionBackground: url(https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-tint"></i>
+					</div>
+					<div class="info">
+						<div class="main">Idiefe</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
+			<div class="option"
+				style="-optionBackground: url(https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-sun"></i>
+					</div>
+					<div class="info">
+						<div class="main">Inatethi</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	
 	</div>
 	<div class="container">
 		<h3 class="menu-h3-common">클래스 목록</h3>
@@ -216,16 +273,20 @@
 
 
 					<div class="col-sm-6 col-lg-4 mb-4" th:each="class:${classList}">
-					
-						<div class="candidate-list candidate-grid" style="cursor: pointer;" th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|" >
+
+						<div class="candidate-list candidate-grid"
+							style="cursor: pointer;"
+							th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|">
 							<div class="candidate-list-image">
-								<img class="img-fluid" th:src="${class.thumbnail}" >
+								<img class="img-fluid" th:src="${class.thumbnail}"
+									style="object-fit: cover;">
 							</div>
 							<div class="candidate-list-details">
 								<div class="candidate-list-info">
 									<div class="candidate-list-title">
 										<h5>
-											<a th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|"><span
+											<a
+												th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|"><span
 												th:text="${class.title}"></span></a>
 										</h5>
 									</div>
@@ -260,7 +321,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 
 
 				</div>
