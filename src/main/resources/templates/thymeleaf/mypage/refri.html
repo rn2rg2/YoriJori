@@ -2,28 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <th:block layout:fragment="content">
 	<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
-	<div class="container-fluid refri-div">
-		<h3 class="menu-h3-common">나만의 냉장고</h3>
-		<div class="row">
-			<div class="col-md-8 refri-image drop-targets">
-				<div class="refri-top box"></div>
-				<div class="refri-bottom box"></div>
-			</div>
-			<div class="col-md-4 ingredients-layout">
-				<div class="ingredients-info">
-					<!-- search bar -->
-					<!-- <div
+	<form>
+		<div class="container-fluid refri-div">
+			<h3 class="menu-h3-common">나만의 냉장고</h3>
+			<div class="row">
+				<div class="col-md-8 refri-image drop-targets">
+					<div class="refri-top box"></div>
+					<div class="refri-bottom box"></div>
+				</div>
+				<div class="col-md-4 ingredients-layout">
+					<div class="ingredients-info">
+						<!-- search bar -->
+						<!-- <div
 						th:insert="~{thymeleaf/common/selectBox :: select_red('ingredient_id','test','카테고리')}">
 					</div> -->
-				</div>
-				<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
-				<div>
+					</div>
+					<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+					<div>
 
-					<!-- 레시피 목록 보기  -->
-					<div class="ingredient_list_view mb-3">
-						<div class="row" id="list_page">
-							<!-- Gallery item -->
-							<!-- <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+						<!-- 레시피 목록 보기  -->
+						<div class="ingredient_list_view mb-3">
+							<div class="row" id="list_page">
+								<!-- Gallery item -->
+								<!-- <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
 								<div class="bg-white rounded shadow-sm item recipe_info"
 									draggable="true">
 									<img
@@ -36,56 +37,122 @@
 									</div>
 								</div>
 							</div> -->
-							<!-- End -->
+								<!-- End -->
 
+							</div>
+						</div>
+
+						<!-- 페이지네이션  -->
+						<div id="pag">
+							<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+						</div>
+						<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
+
+							<button class="btn btn-success m-sm-1" type="button" id="clearRefriBtn">냉장고 초기화</button>
+							<button class="btn btn-success m-sm-1" type="button" id="registerRefriBtn">냉장고 등록</button>
 						</div>
 					</div>
 
-					<!-- 페이지네이션  -->
-					<div id="pag">
-						<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
-					</div>
-					<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
-
-						<button class="btn btn-success m-sm-1" type="button" id="clearRefriBtn">냉장고 초기화</button>
-						<button class="btn btn-success m-sm-1" type="button" id="registerRefriBtn">냉장고 등록</button>
-					</div>
 				</div>
 
+
 			</div>
+			<!-- row end -->
 
+			<!-- 현재 냉장고  정보 -->
 
-		</div>
-		<!-- row end -->
+			<hr />
+			<div class="container-fluid mt-2 mb-5">
+				<h3 class="menu-h3-common">냉장고에 있는 재료</h3>
+				<div class="MAB10">
+					총 <strong><span id="refri_count">[[${refriCount}]]</span></strong>건의 제품이 있습니다.
+				</div>
+				<div class="board_photo">
+					<ul id=refri_list>
 
-		<!-- 현재 냉장고  정보 -->
-
-		<hr />
-		<div class="container-fluid mt-2 mb-5">
-			<h3 class="menu-h3-common">냉장고에 있는 재료</h3>
-			<div class="MAB10">
-				총 <strong>96</strong>건의 제품이 있습니다.
-			</div>
-			<div class="board_photo">
-				<ul>
-
-					<li><a href="javascript:void(0);">
-							<div class="img">
-								<img src="/file/prod/9-1.jpg" alt="">
-							</div>
-							<div class="txt">
-								<span class="tit">Anchor 바비큐소스(중간 매운맛)</span>
-								<div class="cooking_info">
-									<span class="company_name"><em>제조원</em> Anchor </span>
+						<li><a href="javascript:void(0);">
+								<div class="img">
+									<img src="/file/prod/9-1.jpg" alt="">
 								</div>
-							</div>
-						</a></li>
-				</ul>
+								<div class="txt">
+									<span class="tit">Anchor 바비큐소스(중간 매운맛)</span>
+									<div class="cooking_info">
+										<span class="company_name"><em>제조원</em> Anchor </span>
+									</div>
+								</div>
+							</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
+
+			<div class="container-fluid mt-2 mb-5">
+				<h3 class="menu-h3-common">레시피 추천</h3>
+				<div class="options">
+					<div class="option active" style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
+						<div class="shadow"></div>
+						<div class="label">
+							<div class="icon">
+								<i class="fas fa-walking"></i>
+							</div>
+							<div class="info">
+								<div class="main">Blonkisoaz</div>
+								<div class="sub">Omuke trughte a otufta</div>
+							</div>
+						</div>
+					</div>
+					<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
+						<div class="shadow"></div>
+						<div class="label">
+							<div class="icon">
+								<i class="fas fa-snowflake"></i>
+							</div>
+							<div class="info">
+								<div class="main">Oretemauw</div>
+								<div class="sub">Omuke trughte a otufta</div>
+							</div>
+						</div>
+					</div>
+					<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg);">
+						<div class="shadow"></div>
+						<div class="label">
+							<div class="icon">
+								<i class="fas fa-tree"></i>
+							</div>
+							<div class="info">
+								<div class="main">Iteresuselle</div>
+								<div class="sub">Omuke trughte a otufta</div>
+							</div>
+						</div>
+					</div>
+					<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg);">
+						<div class="shadow"></div>
+						<div class="label">
+							<div class="icon">
+								<i class="fas fa-tint"></i>
+							</div>
+							<div class="info">
+								<div class="main">Idiefe</div>
+								<div class="sub">Omuke trughte a otufta</div>
+							</div>
+						</div>
+					</div>
+					<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg);">
+						<div class="shadow"></div>
+						<div class="label">
+							<div class="icon">
+								<i class="fas fa-sun"></i>
+							</div>
+							<div class="info">
+								<div class="main">Inatethi</div>
+								<div class="sub">Omuke trughte a otufta</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-		<!-- <h1>JavaScript - Drag and Drop</h1>
+			<!-- <h1>JavaScript - Drag and Drop</h1>
 		<div class="drop-targets">
 			<div class="box">
 				<div class="item" id="item" draggable="true"></div>
@@ -93,9 +160,9 @@
 			<div class="box"></div>
 			<div class="box"></div>
 		</div> -->
-		<script src="/yorijori/common/js/mypage/refri.js"></script>
-		<!-- 자바스크립트 인라인 사용 전 -->
-		<script th:inline="javascript">
+			<script src="/yorijori/common/js/mypage/refri.js"></script>
+			<!-- 자바스크립트 인라인 사용 전 -->
+			<script th:inline="javascript">
 			// 재료 전체 수
 			let dataCount = [[${count}]];
 			// 페이지별 개수
@@ -167,6 +234,14 @@
 				});
 
 			</script>
-	</div>
+			<script>
+				$(".option").click(function() {
+					$(".option").removeClass("active");
+					$(this).addClass("active");
+		
+				});
+			</script>
+		</div>
+	</form>
 </th:block>
 </html>
