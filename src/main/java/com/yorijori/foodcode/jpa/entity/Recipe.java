@@ -34,7 +34,6 @@ public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int recipeNo;
-	// private String userId;
 	private String name;
 	private String des;
 	private int count;

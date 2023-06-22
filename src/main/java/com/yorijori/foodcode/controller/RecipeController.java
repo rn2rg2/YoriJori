@@ -19,6 +19,7 @@ import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.IngredientService;
@@ -54,7 +55,9 @@ public class RecipeController {
 
 	// recipe insert
 	@RequestMapping("/insert")
-	public String insertRecipe(Model model) {
+	public String insertRecipe(Model model, String ingredient, String num) {
+		System.out.println("재료정보 뽑기 19028391283-901823901823");
+		System.out.println(ingredient+" "+num);
 		List<Ingredients> list = ingredientservice.selectAll();
 		model.addAttribute("list", list);
 		return "thymeleaf/recipe/recipeInsert";
@@ -84,16 +87,36 @@ public class RecipeController {
 	@RequestMapping("/view/{type}/{rcpSeq}")
 	public String getViewPage(Model model, @PathVariable String type, @PathVariable int rcpSeq, HttpServletRequest req,
 			HttpServletResponse res) {
+		String view = "";
+		Recipe recipe = new Recipe();
 		if (type.equals("server")) { // 서버 레시피 detail view
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
-			model.addAttribute("data", data);
+			model.addAttribute("data", data);	
 			model.addAttribute("type", type);
 			model.addAttribute("rcpSeq", rcpSeq);
 			viewCountUp(rcpSeq, type, req, res);
+			view = "thymeleaf/recipe/serverRecipeView";
 		} else { // user recipe detail view
-
+			Recipe data = recipeService.select(rcpSeq);
+			UserInfo userId = data.getUserId();
+			List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
+			model.addAttribute("data", data);
+			
+			model.addAttribute("user", data.getUserId());
+			
+			//테스트용
+			//게시물 내용
+			//출력
+			System.out.println(data);
+			//사용저 이름
+			//출력
+			System.out.println(data.getUserId());
+			//게시물 이미지
+			//출력
+			System.out.println(dataimg);
+			view = "thymeleaf/recipe/recipeview";
 		}
-		return "thymeleaf/recipe/serverRecipeView";
+		return view;
 	}
 
 	// server recipe count

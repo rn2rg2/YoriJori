@@ -34,8 +34,8 @@
 
 											</div>
 											<div class="card-block social-follower">
-												<h4>황금 소불고기 레시피</h4>
-												<h5>백종원</h5>
+												<h4>[[${data.name}]]</h4>
+												<h5>[[${user.nickname}]]<h5>
 												<div class="row follower-counter">
 													<div class="col-4">
 														<button class="btn btn-primary btn-icon" data-toggle="tooltip" data-placement="top" title="" data-original-title="485">
@@ -145,8 +145,8 @@
 																	</div>
 
 																	<div class="card-block b-b-theme b-t-theme social-msg">
-																		<a href="#">
-																			<i class="fa-solid fa-thumbs-up"></i><span class="b-r-muted">좋아요 20</span>
+																		<a th:href="@{/recipe/like/user/{recipeNo}(recipeNo=${data.recipeNo})}">
+																			<i class="fa-solid fa-thumbs-up"></i><span class="b-r-muted">0</span>
 																		</a>
 
 																	</div>

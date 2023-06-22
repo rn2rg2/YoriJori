@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
@@ -73,6 +74,16 @@ public class RecipeDAOImpl implements RecipeDAO {
 	@Override
 	public void deleteWishList(Recipe recipeNo) {
 		userwishlistrepo.deleteByRecipeNo(recipeNo);
+	}
+	@Override
+	public Recipe select(int recipeNo) {
+		
+		return reciperepository.findByRecipeNo(recipeNo);
+	}
+	@Override
+	public List<RecipeImage> imgselect(int recipeNo) {
+	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
+        return recipeimagerepository.findByRecipeNo(recipe);
 	}
 
 
