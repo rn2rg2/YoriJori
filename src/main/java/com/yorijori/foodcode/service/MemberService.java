@@ -8,4 +8,5 @@ public interface MemberService {
 	public boolean nicknamecheck(String nickName);   
 	public boolean idcheck(String userId);   
 	public void save(UserInfo userinfodto);
+	long userCount(String role);
 }
