@@ -1,9 +1,5 @@
 @charset "UTF-8";
 /* 레이아웃 */
-body{
-	/* background-color: #f1f1f2; */
-	font-family: "NanumGothic";
-}
 .all-margin{
 	margin: 5px auto 5px auto;
 	padding:50px 10px 50px 10px;
@@ -197,7 +193,7 @@ label a{
 .cookclass label{
 	margin-bottom: 30px;
 }
-#cur1 #cur-plus{
+#cur #cur-plus{
 	position: absolute;
 	right:0;
 	top:0.2rem;
@@ -222,11 +218,11 @@ label a{
 	font-size:20px;
 	margin-bottom: 0.5%;
 }
-.cookclass li:before {
+#copy-cur:before {
 	content: '\f00c';
 	font-weight: bold;
 	font-family: "Font Awesome 5 Free";
-	font-size:20px;
+	font-size:25px;
 	color: var(--main-theme-color-red);
 	position: absolute;
 	left: -1%;
@@ -243,12 +239,12 @@ label a{
 }
 .cur{
 	width: 80%;
-	font-size: 20px;
+	font-size: 15px;
 }
 .time{
 	margin-left: 20px;
 	width: 10%;
-	font-size: 20px;
+	font-size: 15px;
 }
 .submit-btn{
 	font-size: 30px;
@@ -420,3 +416,4 @@ label a{
 .uploader .progress[value]::-webkit-progress-value {
   background: linear-gradient(to right, darken(#454cad, 8%) 0%, #454cad 50%);
 } 
+

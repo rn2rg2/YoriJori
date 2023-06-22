@@ -29,9 +29,9 @@
 						<!-- <p class="dc">
 							63<small>%</small>
 						</p> -->
-
-						<p class="price" th:text="${cookingclass.price}"></p>
-						<span class="price">원</span>
+						
+						<p class="price" th:text="|${#numbers.formatInteger(cookingclass.price, 0, 'COMMA')}원|"></p>
+						
 						<!-- <p class="del">80,000원</p> -->
 						<a class="app_block_link_remove user_info2_pic">
 							<img th:src="${cookingclass.thumbnail}">
