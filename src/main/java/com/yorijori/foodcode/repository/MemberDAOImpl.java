@@ -1,10 +1,13 @@
 package com.yorijori.foodcode.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.MemberRepository;
 
+@Repository
 public class MemberDAOImpl implements MemberDAO {
     MemberRepository memberRepository;
 
@@ -36,5 +39,11 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
     public UserInfo loginKakao(String kakaoID) {
         return memberRepository.findByKakaoID(kakaoID);
+        
     }
+	@Override
+	public void update(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+
+	}
 }

@@ -8,4 +8,5 @@ public interface MemberDAO {
     public boolean nicknameCheck(String nickname);
     public boolean idCheck(String userId);
     public void save(UserInfo userInfo);
+	void update(UserInfo userInfo);
 }
