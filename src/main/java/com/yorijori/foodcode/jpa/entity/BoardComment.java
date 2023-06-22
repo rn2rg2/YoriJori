@@ -46,6 +46,6 @@ public class BoardComment {
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "commNo", nullable = false)
-	private UserInfo commNo;
+	private Board commNo;
 	
 }

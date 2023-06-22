@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.Ingredients;
@@ -52,7 +52,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void update(UserInfo userInfo) {
 		// TODO Auto-generated method stub
 
-
+	}
     
     @Override
     public long userCount(String role) {
