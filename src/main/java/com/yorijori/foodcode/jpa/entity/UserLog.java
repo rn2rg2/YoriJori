@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,31 +14,20 @@ import org.hibernate.annotations.UpdateTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user_frige")
-public class UserFrige{
+@Table(name="user_log")
+public class UserLog{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	//private String userId;
-	//private int matlNo;
+	private int logId;
+	private String userId;
 	@CreationTimestamp
-	private Date date;
-	@UpdateTimestamp
-	private Date upDate;
-	
-	@Exclude
-	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false)
-	private UserInfo userId;
-	
-	@Exclude
-	@ManyToOne
-	@JoinColumn(name = "matlNo", nullable = false)
-	private Ingredients matlNo;
+	private Date dated;
+	private String logger;
+	private String level;
+	private String message;
 }

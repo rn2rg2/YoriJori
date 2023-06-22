@@ -14,13 +14,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="api_recipe_img")
-@ToString(exclude = {"rcpSeq"})
 public class ApiRecipeImg {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,7 @@ public class ApiRecipeImg {
 	private String manual;	//컨텐츠1
 	private String manualImg;	//이미지1
 	
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "rcpSeq", nullable=false)
 	@JsonBackReference

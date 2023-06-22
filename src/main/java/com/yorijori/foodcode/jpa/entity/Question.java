@@ -17,30 +17,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString.Exclude;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user_frige")
-public class UserFrige{
+@Table(name = "question")
+public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	//private String userId;
-	//private int matlNo;
+	private int questionNo;
+	//private String  user_id;
+	private String title;
+	private String contents; 
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp
 	private Date upDate;
+	private int state ;
 	
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
-	
-	@Exclude
-	@ManyToOne
-	@JoinColumn(name = "matlNo", nullable = false)
-	private Ingredients matlNo;
 }
