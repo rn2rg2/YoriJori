@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
@@ -94,6 +95,16 @@ public class RecipeDAOImpl implements RecipeDAO {
 		
 		return list;
 	}
-
+	@Override
+	public List<RecipeReview> reviewselect(int recipeNo) {
+		
+		// TODO Auto-generated method stub
+	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
+		return recipereviewrepository.findByRecipeNo(recipe);
+	}
+	@Override
+	public void reviewsave(RecipeReview recipereview) {
+	    recipereviewrepository.save(recipereview);
+	}
 
 }
