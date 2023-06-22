@@ -1,10 +1,12 @@
 package com.yorijori.foodcode.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.MemberRepository;
 
+@Repository
 public class MemberDAOImpl implements MemberDAO {
     MemberRepository memberRepository;
 
