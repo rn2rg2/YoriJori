@@ -55,6 +55,9 @@ public class IndexController {
 		// 유저 정보 나중에 
 		List<UserInfo> userList = memberService.selectListByPageAndSort(0, 3, "point");
 		
+		// 게시물 목록
+		
+		
 		// count 관련
 		model.addAttribute("userCount", userCount);
 		model.addAttribute("serverRcpCount", serverRcpCount);
