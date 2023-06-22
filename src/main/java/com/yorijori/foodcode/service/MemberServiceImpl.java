@@ -2,6 +2,8 @@ package com.yorijori.foodcode.service;
 
 
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public long userCount(String role) {
 		return memberDAO.userCount(role);
+	}
+	@Override
+	public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+		return memberDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
 	}
 
 

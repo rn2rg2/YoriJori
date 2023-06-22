@@ -23,4 +23,6 @@ public interface RecipeDAO {
 	Recipe select(int recipeNo);
 
     List<RecipeImage> imgselect(int recipeNo);
+
+	List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
 }

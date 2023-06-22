@@ -20,4 +20,6 @@ public interface RecipeService {
 
 	List<RecipeImage> imgselect(int recipeNo);
 
+	List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
+
 }

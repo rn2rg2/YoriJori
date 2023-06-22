@@ -1,6 +1,11 @@
 package com.yorijori.foodcode.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -50,4 +55,13 @@ public class MemberDAOImpl implements MemberDAO {
     public UserInfo findByUserId(String userId) {
        return memberRepository.findByUserId(userId);
     }
+    
+    @Override
+    public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
+		Page<UserInfo> page = memberRepository.findAll(pageRequest);
+		List<UserInfo> list = page.getContent();
+		
+		return list;
+	}
 }

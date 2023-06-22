@@ -55,5 +55,10 @@ public class ApiRecipeServiceImpl implements ApiRecipeService {
 		ApiRecipe apirecipe = apiRecipeDAO.findById(rcpSeq);
 		apirecipe.viewCountUp(apirecipe);
 	}
+	
+	@Override
+	public List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType){
+		return apiRecipeDAO.selectListByPageAndSort(page, pagePerCount, sortType);
+	}
 
 }

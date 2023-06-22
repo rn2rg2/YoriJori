@@ -63,5 +63,9 @@ public class RecipeServiceImpl implements RecipeService {
     public List<RecipeImage> imgselect(int recipeNo) {
         return recipeDAO.imgselect(recipeNo);
     }
+    @Override
+    public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+    	return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+    }
 
 }
