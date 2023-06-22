@@ -246,7 +246,7 @@
 													</a></li>
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
-														<i class="far fa-heart" aria-hidden="true"></i>
+														<i class="fa fa-heart me-2" aria-hidden="true"></i>
 													</a></li>
 												</th:block>
 											</ul>
@@ -287,7 +287,7 @@
 												
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.rcpSeq}" onclick="clickHeart(this,addHeart)">
-														<i class="far fa-heart" aria-hidden="true"></i>
+														<i class="fa fa-heart me-2" aria-hidden="true"></i>
 													</a></li>
 												</th:block>
 											</ul>

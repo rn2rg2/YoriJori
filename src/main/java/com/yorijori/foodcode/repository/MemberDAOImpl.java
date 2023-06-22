@@ -37,4 +37,15 @@ public class MemberDAOImpl implements MemberDAO {
     public UserInfo loginKakao(String kakaoID) {
         return memberRepository.findByKakaoID(kakaoID);
     }
+    
+    @Override
+    public long userCount(String role) {
+    	return memberRepository.countByRole(role);
+    }
+    
+  //userId로 UserInfo찾기
+    @Override
+    public UserInfo findByUserId(String userId) {
+       return memberRepository.findByUserId(userId);
+    }
 }

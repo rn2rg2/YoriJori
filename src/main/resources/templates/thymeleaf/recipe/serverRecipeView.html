@@ -29,7 +29,7 @@
 							<li><i class="food_level"></i>[[${data.rcpPat2}]]</li>
 							<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 								<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${rcpSeq}" onclick="clickHeart(this,addHeart)">
-										<i class="far fa-heart" aria-hidden="true"></i>좋아요
+										<i class="fa fa-heart me-2" aria-hidden="true"></i>좋아요
 									</a></li>
 							</th:block>
 
