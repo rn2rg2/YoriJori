@@ -19,10 +19,11 @@
 				</ul>
 			</div>
 			<div class="util" th:unless="${session.userInfo == null}">
+				<div style="display: none;" th:text="${session.userInfo.userId}"></div>
 				<ul>
 					<li><a th:text="${session.userInfo.name}"></a></li>
 					<li><a href="/yorijori/member/logout">로그아웃</a></li>
-
+					
 					<!-- <li><a href="/yorijori/member/signup1">회원가입</a></li> -->
 
 					<li><a href="/yorijori/cs/help">고객센터</a></li>
