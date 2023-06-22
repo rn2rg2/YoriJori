@@ -122,6 +122,7 @@ public class MemberController {
 		userinfodto.setRole("회원");
 		userinfodto.setPoint(36);
 		userinfodto.setState(0);
+		userinfodto.setImgPath("userimg.png");
 		userinfodto.setKakaoID(userinfodto.getKakaoID());
 		userinfodto.setDate(new java.sql.Date(today.getTime()));
 

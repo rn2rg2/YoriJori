@@ -1,6 +1,5 @@
 package com.yorijori.foodcode.jpa.entity;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,23 +23,23 @@ import lombok.ToString.Exclude;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="usertray")
-public class UserTray{
+@Table(name="recipe_ingredients")
+public class RecipeIngredients {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int trayNo;
-	//private String userId;
-	@CreationTimestamp
-	private Date date;
-	@UpdateTimestamp
-	private Date upDate;
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	private int id;
+	//private int recipeNo;
+	//private int matlNo;
+	private String num;
 	
 	@Exclude
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false)
-	private UserInfo userId;
+	@JoinColumn(name = "recipeNo", nullable=false)
+	private Recipe recipeNo;
 	
 	@Exclude
-	@OneToMany(mappedBy = "trayNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<UserTrayList> trayList = new ArrayList<UserTrayList>();
+	@OneToMany(mappedBy = "matlNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Ingredients> matlNo = new ArrayList<Ingredients>();
+
+
 }

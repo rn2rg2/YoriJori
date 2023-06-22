@@ -35,9 +35,11 @@ public class CookingclassController {
 	FileUploadLogic fileUploadLogic;
 	
 	@Autowired
-	public CookingclassController(CookingClassService service,FileUploadLogic fileUploadLogic) {
+	public CookingclassController(CookingClassService service, MemberService memservice,
+			FileUploadLogic fileUploadLogic) {
 		super();
 		this.service = service;
+		this.memservice = memservice;
 		this.fileUploadLogic = fileUploadLogic;
 	}
 	
@@ -46,6 +48,8 @@ public class CookingclassController {
 		return "thymeleaf/cookingclass/classListInstructor";
 	}
 	
+	
+
 	@RequestMapping("/list") 
 	public String showCookingclassList(Model model) {
 		List<CookingClass> classList = service.selectAllClass();
@@ -94,7 +98,7 @@ public class CookingclassController {
 	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum,@RequestParam("file") MultipartFile multipartFile) {
 		
 		JsonObject json = new JsonObject();
-		
+		System.out.println(cookingclass.getContentList().get(0).getContent());
 		String fileRoot = "C:\\project\\upload\\thumbnail\\";	//저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
@@ -109,9 +113,9 @@ public class CookingclassController {
 			cookingclass.setThumbnail(url);
 			System.out.println("url이름: "+url);
 			System.out.println(cookingclass);
-			System.out.println(content);
-			System.out.println(curriculum);
-			service.insert(cookingclass, content, curriculum);
+			System.out.println(cookingclass.getContentList().get(1));
+			System.out.println(cookingclass.getCurriList().get(0));
+			service.insert(cookingclass);
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			e.printStackTrace();

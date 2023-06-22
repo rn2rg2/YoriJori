@@ -94,7 +94,7 @@ public class BoardController {
 	//댓글 전체 조회
 	@RequestMapping("/boardCommentList")
 	public String boardCommentList(BoardComment boardComment,Model model) {
-		List<BoardDTO> boardCommentList = commentService.selectComment(boardComment.getCommNo());
+		List<BoardDTO> boardCommentList = commentService.selectComment(boardComment.getCommNo().getCommNo());
 		model.addAttribute("boardCommentList", boardCommentList);
 		System.out.println("commmmmmment"+boardCommentList);
 		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();

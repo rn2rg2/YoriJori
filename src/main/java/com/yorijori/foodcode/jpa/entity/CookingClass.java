@@ -22,13 +22,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="cooking_class")
-@ToString(exclude = {"contentList","curriList"})
 public class CookingClass {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,10 +47,17 @@ public class CookingClass {
 	private Date upDate;
 	private int state;
 	
+	@Exclude
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassContent> contentList = new ArrayList<CookingClassContent>();
 	
+	@Exclude
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
+	
+	@Exclude
+	@ManyToOne
+	@JoinColumn(name = "commNo", nullable = false)
+	private UserInfo commNo;
 	
 }
