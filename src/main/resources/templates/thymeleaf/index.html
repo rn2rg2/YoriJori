@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 
 <th:block layout:fragment="header">
-	<link rel="stylesheet" type="text/css"
-		href="/yorijori/common/css/layout/main.css" />
-	<link
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-		rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/yorijori/common/css/layout/main.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<script src="/yorijori/common/js/mainpage/main.js"></script>
 	<script src="/yorijori/common/js/mainpage/main2.js"></script>
@@ -16,8 +11,7 @@
 <th:block layout:fragment="content">
 
 	<!-- 헤더 -->
-	<section id="hero" class="hero d-flex align-items-center section-bg"
-		th:fragment="backup">
+	<section id="hero" class="hero d-flex align-items-center section-bg" th:fragment="backup">
 
 		<div class="bg-video">
 			<video class="bg-video__content" autoplay muted loop>
@@ -27,424 +21,207 @@
 
 
 	</section>
-	<div class="container-xxl py-5">
-		<div class="container">
-			<div class="row g-0 gx-5 align-items-end">
-				<div class="col-lg-6">
-					<div class="section-header text-start mb-5 wow fadeInUp"
-						data-wow-delay="0.1s" style="max-width: 500px;">
-						<h1 class="display-5 mb-3">레시피 랭킹</h1>
+	<div class="container p-0 mt-3">
+
+		<h3 class="menu-h3-common">유저 레시피 랭킹</h3>
+		<!-- <h1 class="h3 mb-3" style="text-align: center;">이주의 레시피(유저)</h1> -->
+		<div class="options">
+			<div class="option active" style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-walking"></i>
+					</div>
+					<div class="info">
+						<div class="main">Blonkisoaz</div>
+						<div class="sub">Omuke trughte a otufta</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="tab-content">
-				<div id="tab-1" class="tab-pane fade show p-0 active">
-					<div class="row g-4">
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.1s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-1.jpg"
-										alt="" width="512px" height="512px">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										1위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">된장찌개</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>15분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.3s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-2.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										2위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">가지볶음</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>30분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.5s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-3.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										3위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">장조림</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>25분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.7s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-4.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										4위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">오이 소박이</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>10분</a>
-
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.5s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-3.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										3위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">장조림</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>25분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.5s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-5.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										3위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">된장찌개</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>25분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.5s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-8.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										3위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">가지볶음</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>25분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-							data-wow-delay="0.5s">
-							<div class="product-item">
-								<div class="position-relative bg-light overflow-hidden">
-									<img class="img-fluid w-100" src="/yorijori/images/main/product-4.jpg"
-										alt="">
-									<div
-										class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-										3위</div>
-								</div>
-								<div class="text-center p-4">
-									<a class="d-block h5 mb-2" href="">오이 소박이</a>
-									<div style="font-size: 18px;">
-										<i class="fa fa-heart me-2" style="color: red;"></i>3952
-									</div>
-								</div>
-								<div class="d-flex border-top">
-									<small class="w-50 text-center border-end py-2"> <a
-										class="text-body"><i
-											class="fa fa-clock-o text-primary me-2"></i>25분</a>
-									</small> <small class="w-50 text-center py-2"> <a
-										class="text-body" href=""><i
-											class="fa fa-heart text-primary me-2"></i>찜하기</a>
-									</small>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s"></div>
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-snowflake"></i>
+					</div>
+					<div class="info">
+						<div class="main">Oretemauw</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-tree"></i>
+					</div>
+					<div class="info">
+						<div class="main">Iteresuselle</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-tint"></i>
+					</div>
+					<div class="info">
+						<div class="main">Idiefe</div>
+						<div class="sub">Omuke trughte a otufta</div>
+					</div>
+				</div>
+			</div>
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg);">
+				<div class="shadow"></div>
+				<div class="label">
+					<div class="icon">
+						<i class="fas fa-sun"></i>
+					</div>
+					<div class="info">
+						<div class="main">Inatethi</div>
+						<div class="sub">Omuke trughte a otufta</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12 col-md-6 col-lg-3" th:each="data, idx : ${rcpList}">
+				<div class="card">
+
+					<img class="card-img-top" src="/yorijori/images/common/default.png" alt="Unsplash">
+
+					<div class="card-header px-4 pt-4">
+						<!-- 	<div class="card-actions float-right">
+							<div class="dropdown show">
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</div>
+							</div>
+						</div> -->
+						<h5 class="card-title mb-0">
+							<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}" style="color: black;">[[${data.name}]]</a>
+						</h5>
+						<div class="badge bg-light my-2">
+							<i class="fa-solid fa-chess-queen mr-2"></i>[[${idx.count}]] 등
+						</div>
+						<div class="badge bg-warning my-2">
+							<i class="fa-regular fa-clock mr-2"></i></i>[[${data.time}]]
+						</div>
+						<div class="badge bg-danger my-2">
+							<i class="fa-solid fa-utensils mr-2"></i>[[${data.level}]]
+						</div>
+						<div class="badge bg-info my-2">
+							<i class="fa-solid fa-eye mr-2"></i> [[${data.count}]]
+						</div>
+					</div>
+					<!-- <div class="card-body px-4 pt-2">
+						<p class="fixed-size">맛이는</p>
+						<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+							class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
+					</div> -->
+					<!-- <ul class="list-group list-group-flush">
+						<li class="list-group-item px-4 pb-4"></li>
+					</ul> -->
+				</div>
+			</div>
+
+
+
+		</div>
 	</div>
-	<div class="container p-0">
+	<div class="container p-0 mt-3">
 
-
-		<h1 class="h3 mb-3" style="text-align: center;">이주의 레시피</h1>
+		<h3 class="menu-h3-common">제공 레시피 랭킹</h3>
+		<!-- <h1 class="h3 mb-3" style="text-align: center;">이주의 레시피(유저)</h1> -->
 
 		<div class="row">
-			<div class="col-12 col-md-6 col-lg-3">
+			<div class="col-12 col-md-6 col-lg-3" th:each="data, idx : ${apircpList}">
 				<div class="card">
 
-					<img class="card-img-top"
-						src="https://www.bootdey.com/image/350x280/87CEFA/000000"
-						alt="Unsplash">
+					<img class="card-img-top" th:src="${data.attFileNoMain}" alt="Unsplash" style="min-height: 20em; max-height: 20em;">
 
 					<div class="card-header px-4 pt-4">
-						<div class="card-actions float-right">
+						<!-- 	<div class="card-actions float-right">
 							<div class="dropdown show">
 								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a> <a
-										class="dropdown-item" href="#">Something else here</a>
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<h5 class="card-title mb-0">
-							<a href="#" style="color: black;">요리 1</a>
+							<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}" style="color: black;">[[${data.rcpNm}]]</a>
 						</h5>
-						<div class="badge bg-warning my-2">5분</div>
+						<div class="badge bg-light my-2">
+							<i class="fa-solid fa-chess-queen mr-2"></i>[[${idx.count}]] 등
+						</div>
+						<div class="badge bg-warning my-2">
+							<i class="fa-solid fa-utensils mr-2"></i>[[${data.recipeDes}]]
+						</div>
+						<div class="badge bg-danger my-2">
+							<i class="fa-solid fa-bowl-food mr-2"></i>[[${data.rcpPat2}]]
+						</div>
+						<div class="badge bg-info my-2">
+							<i class="fa-solid fa-eye mr-2"></i> [[${data.count}]]
+						</div>
 					</div>
-					<div class="card-body px-4 pt-2">
+					<!-- <div class="card-body px-4 pt-2">
 						<p class="fixed-size">맛이는</p>
 						<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
 							class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
-					</div>
-					<ul class="list-group list-group-flush">
+					</div> -->
+					<!-- <ul class="list-group list-group-flush">
 						<li class="list-group-item px-4 pb-4"></li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
-			<div class="col-12 col-md-6 col-lg-3">
-				<div class="card">
 
-					<img class="card-img-top"
-						src="https://www.bootdey.com/image/350x280/FFB6C1/000000"
-						alt="Unsplash">
 
-					<div class="card-header px-4 pt-4">
-						<div class="card-actions float-right">
-							<div class="dropdown show">
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a> <a
-										class="dropdown-item" href="#">Something else here</a>
-								</div>
-							</div>
-						</div>
-						<h5 class="card-title mb-0">
-							<a href="#" style="color: black;">요리 2</a>
-						</h5>
-						<div class="badge bg-danger my-2">10분</div>
-					</div>
-					<div class="card-body px-4 pt-2">
-						<p class="fixed-size">맛이는</p>
-						<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-							class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item px-4 pb-4"></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3">
-				<div class="card">
 
-					<img class="card-img-top"
-						src="https://www.bootdey.com/image/350x280/20B2AA/000000"
-						alt="Unsplash">
-
-					<div class="card-header px-4 pt-4">
-						<div class="card-actions float-right">
-							<div class="dropdown show">
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a> <a
-										class="dropdown-item" href="#">Something else here</a>
-								</div>
-							</div>
-						</div>
-						<h5 class="card-title mb-0">
-							<a href="#" style="color: black;">요리 3</a>
-						</h5>
-						<div class="badge bg-success my-2">20분</div>
-					</div>
-					<div class="card-body px-4 pt-2">
-						<p class="fixed-size">맛이는</p>
-
-						<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-							class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
-
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item px-4 pb-4"></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3">
-				<div class="card">
-
-					<img class="card-img-top"
-						src="https://www.bootdey.com/image/350x280/87CEFA/000000"
-						alt="Unsplash">
-
-					<div class="card-header px-4 pt-4">
-						<div class="card-actions float-right">
-							<div class="dropdown show">
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a> <a
-										class="dropdown-item" href="#">Something else here</a>
-								</div>
-							</div>
-						</div>
-						<h5 class="card-title mb-0">
-							<a href="#" style="color: black;">요리 4</a>
-						</h5>
-						<div class="badge bg-danger my-2">30분</div>
-					</div>
-					<div class="card-body px-4 pt-2">
-						<p class="fixed-size">맛이는</p>
-
-						<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-							class="rounded-circle mr-1" alt="Avatar" width="28" height="28">
-
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item px-4 pb-4"></li>
-					</ul>
-				</div>
-			</div>
 		</div>
 	</div>
 
-	</br>
 
-	<div class="content" style="background-color: #f3f3f3">
-		<br>
-		<h1 class="h3 mb-3" style="text-align: center;">인기 유저</h1>
-		<div class="container">
-
+	<div class="content p-3" style="background-color: #f3f3f3">
+		<!-- <h1 class="h3 mb-3" style="text-align: center;">인기 유저</h1> -->
+		<div class="container p-0 mb-3">
+			<h3 class="menu-h3-common mt-5">유저 랭킹</h3>
 			<!-- end row -->
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-4" th:each="data, idx : ${userList}">
 					<div class="text-center card-box">
 						<div class="member-card pt-2 pb-2">
 							<div class="thumb-lg member-thumb mx-auto">
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MzFfMjEw/MDAxNTk4ODM1NjA5Mzc5.ktKzzXbOZApxjiyWxTnwvo1rAUCSmCSUa6d6--1bNaog.73_vs06GZLiQgPAI29Z_eduNns4e06nyNKYjjBdzDhkg.JPEG.addlk1234/16.jpg?type=w800"
-									class="rounded-circle img-thumbnail" alt="profile-image">
+								<img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MzFfMjEw/MDAxNTk4ODM1NjA5Mzc5.ktKzzXbOZApxjiyWxTnwvo1rAUCSmCSUa6d6--1bNaog.73_vs06GZLiQgPAI29Z_eduNns4e06nyNKYjjBdzDhkg.JPEG.addlk1234/16.jpg?type=w800" class="rounded-circle img-thumbnail" alt="profile-image">
 							</div>
 							<div class="">
-								<h4>백종원</h4>
+								<h4>[[${data.nickname}]]</h4>
 							</div>
-							<button type="button"
-								class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">레시피</button>
+							<button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">레시피</button>
 							<div class="mt-4">
 								<div class="row">
 									<div class="col-4">
 										<div class="mt-3">
-											<h4 class="count-num">2563</h4>
-											<p class="mb-0 text-muted">좋아요</p>
+											<h4 class="count-num">[[${data.point}]]</h4>
+											<p class="mb-0 text-muted">온도</p>
 										</div>
 									</div>
 									<div class="col-4">
 										<div class="mt-3">
 											<h4 class="count-num">6952</h4>
-											<p class="mb-0 text-muted">레시피</p>
+											<p class="mb-0 text-muted">작성 레시피</p>
 										</div>
 									</div>
 									<div class="col-4">
 										<div class="mt-3">
 											<h4 class="count-num">1125</h4>
-											<p class="mb-0 text-muted">댓글</p>
+											<p class="mb-0 text-muted">작성 게시물</p>
 										</div>
 									</div>
 								</div>
@@ -453,91 +230,14 @@
 					</div>
 				</div>
 				<!-- end col -->
-				<div class="col-lg-4">
-					<div class="text-center card-box">
-						<div class="member-card pt-2 pb-2">
-							<div class="thumb-lg member-thumb mx-auto">
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MzFfMjEw/MDAxNTk4ODM1NjA5Mzc5.ktKzzXbOZApxjiyWxTnwvo1rAUCSmCSUa6d6--1bNaog.73_vs06GZLiQgPAI29Z_eduNns4e06nyNKYjjBdzDhkg.JPEG.addlk1234/16.jpg?type=w800"
-									class="rounded-circle img-thumbnail" alt="profile-image">
-							</div>
-							<div class="">
-								<h4>백종원</h4>
-							</div>
-							<button type="button"
-								class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">레시피</button>
-							<div class="mt-4">
-								<div class="row">
-									<div class="col-4">
-										<div class="mt-3">
-											<h4 class="count-num">8471</h4>
-											<p class="mb-0 text-muted">좋아요</p>
-										</div>
-									</div>
-									<div class="col-4">
-										<div class="mt-3">
-											<h4 class="count-num">8512</h4>
-											<p class="mb-0 text-muted">레시피</p>
-										</div>
-									</div>
-									<div class="col-4">
-										<div class="mt-3">
-											<h4 class="count-num">4751</h4>
-											<p class="mb-0 text-muted">댓글</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end col -->
-				<div class="col-lg-4">
-					<div class="text-center card-box">
-						<div class="member-card pt-2 pb-2">
-							<div class="thumb-lg member-thumb mx-auto">
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MzFfMjEw/MDAxNTk4ODM1NjA5Mzc5.ktKzzXbOZApxjiyWxTnwvo1rAUCSmCSUa6d6--1bNaog.73_vs06GZLiQgPAI29Z_eduNns4e06nyNKYjjBdzDhkg.JPEG.addlk1234/16.jpg?type=w800"
-									class="rounded-circle img-thumbnail" alt="profile-image">
-							</div>
-							<div class="">
-								<h4>백종원</h4>
-							</div>
-							<button type="button"
-								class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">레시피</button>
-							<div class="mt-4">
-								<div class="row">
-									<div class="col-4">
-										<div class="mt-3">
-											<h4 class="count-num">1021</h4>
-											<p class="mb-0 text-muted">좋아요</p>
-										</div>
-									</div>
-									<div class="col-4">
-										<div class="mt-3">
-											<h4 class="count-num">4562</h4>
-											<p class="mb-0 text-muted">레시피</p>
-										</div>
-									</div>
-									<div class="col-4">
-										<div class="mt-3">
-											<h4 class="count-num">3621</h4>
-											<p class="mb-0 text-muted">댓글</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end col -->
+
+
 			</div>
 		</div>
 		<!-- container -->
 	</div>
 	<!-- End Hero Section -->
-	<section id="stats-counter" class="stats-counter"
-		style="background-image: url(/yorijori/images/main/product-1.jpg);">
+	<section id="stats-counter" class="stats-counter" style="background-image: url(/yorijori/images/main/product-1.jpg);">
 		<div class="container" data-aos="zoom-out">
 
 			<div class="row gy-4">
@@ -553,7 +253,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="stats-item text-center w-100 h-100">
 						<span class="count-num">[[${serverRcpCount}]]</span>
-						<p>서버 레시피</p>
+						<p>공식 레시피</p>
 					</div>
 				</div>
 				<!-- End Stats Item -->
@@ -577,65 +277,48 @@
 		</div>
 	</section>
 	<div class="page-content container note-has-grid">
-		<ul
-			class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
-			<li class="nav-item"><a href="javascript:void(0)"
-				class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active"
-				id="all-category"> <i class="icon-layers mr-1"></i><span
-					class="d-none d-md-block">모든 게시물</span>
-			</a></li>
-			<li class="nav-item"><a href="javascript:void(0)"
-				class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-				id="note-business"> <i class="icon-briefcase mr-1"></i><span
-					class="d-none d-md-block">질문 게시판</span></a></li>
-			<li class="nav-item"><a href="javascript:void(0)"
-				class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-				id="note-social"> <i class="icon-share-alt mr-1"></i><span
-					class="d-none d-md-block">TIP 게시판</span></a></li>
-			<li class="nav-item"><a href="javascript:void(0)"
-				class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-				id="note-important"> <i class="icon-tag mr-1"></i><span
-					class="d-none d-md-block">후기</span></a></li>
-			<li class="nav-item ml-auto"><a href="javascript:void(0)"
-				class="nav-link btn-primary rounded-pill d-flex align-items-center px-3"
-				id="add-notes"> <i class="icon-note m-1"></i><span
-					class="d-none d-md-block font-14">Add Notes</span></a></li>
+		<ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
+			<li class="nav-item"><a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
+					<i class="icon-layers mr-1"></i><span class="d-none d-md-block">모든 게시물</span>
+				</a></li>
+			<li class="nav-item"><a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-business">
+					<i class="icon-briefcase mr-1"></i><span class="d-none d-md-block">질문 게시판</span>
+				</a></li>
+			<li class="nav-item"><a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-social">
+					<i class="icon-share-alt mr-1"></i><span class="d-none d-md-block">TIP 게시판</span>
+				</a></li>
+			<li class="nav-item"><a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-important">
+					<i class="icon-tag mr-1"></i><span class="d-none d-md-block">후기</span>
+				</a></li>
+			<li class="nav-item ml-auto"><a href="javascript:void(0)" class="nav-link btn-primary rounded-pill d-flex align-items-center px-3" id="add-notes">
+					<i class="icon-note m-1"></i><span class="d-none d-md-block font-14">Add Notes</span>
+				</a></li>
 		</ul>
 		<div class="tab-content bg-transparent">
 			<div id="note-full-container" class="note-has-grid row">
 				<div class="col-md-4 single-note-item all-category" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0"
-							data-noteheading="Book a Ticket for Movie">
-							Book a Ticket for Movie <i
-								class="point fa fa-circle ml-1 font-10"></i>
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie">
+							Book a Ticket for Movie <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
 						<p class="note-date font-12 text-muted">11 March 2009</p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted"
-								data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit
-								tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
 									<div class="dropdown-menu dropdown-menu-right category-menu">
-										<a
-											class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-										</a> <a
-											class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Social
-										</a> <a
-											class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Important
+										<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
+										</a>
+										<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
+										</a>
+										<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
 										</a>
 									</div>
 								</div>
@@ -643,39 +326,29 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 single-note-item all-category note-important"
-					style="">
+				<div class="col-md-4 single-note-item all-category note-important" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0"
-							data-noteheading="Go for lunch">
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Go for lunch">
 							Go for lunch <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
 						<p class="note-date font-12 text-muted">01 April 2002</p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted"
-								data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit
-								tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
 									<div class="dropdown-menu dropdown-menu-right category-menu">
-										<a
-											class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-										</a> <a
-											class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Social
-										</a> <a
-											class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Important
+										<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
+										</a>
+										<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
+										</a>
+										<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
 										</a>
 									</div>
 								</div>
@@ -683,43 +356,30 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 single-note-item all-category note-social"
-					style="">
+				<div class="col-md-4 single-note-item all-category note-social" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0"
-							data-noteheading="Meeting with Mr.Jojo">
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Meeting with Mr.Jojo">
 							Meeting with Mr.Jojo <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
 						<p class="note-date font-12 text-muted">19 October 2020</p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted"
-								data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit
-								tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
-									<a
-										class="nav-link dropdown-toggle category-dropdown label-group p-0"
-										data-toggle="dropdown" href="#" role="button"
-										aria-haspopup="true" aria-expanded="true"> </a>
+									<a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"> </a>
 									<div class="dropdown-menu dropdown-menu-right category-menu">
-										<a
-											class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-										</a> <a
-											class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Social
-										</a> <a
-											class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Important
+										<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
+										</a>
+										<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
+										</a>
+										<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
 										</a>
 									</div>
 								</div>
@@ -727,39 +387,29 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 single-note-item all-category note-business"
-					style="">
+				<div class="col-md-4 single-note-item all-category note-business" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0"
-							data-noteheading="Give Review for design">
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Give Review for design">
 							Give Review for design <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
 						<p class="note-date font-12 text-muted">02 January 2000</p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted"
-								data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit
-								tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
 									<div class="dropdown-menu dropdown-menu-right category-menu">
-										<a
-											class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-										</a> <a
-											class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Social
-										</a> <a
-											class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Important
+										<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
+										</a>
+										<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
+										</a>
+										<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
 										</a>
 									</div>
 								</div>
@@ -767,39 +417,29 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 single-note-item all-category note-social"
-					style="">
+				<div class="col-md-4 single-note-item all-category note-social" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0"
-							data-noteheading="Nightout with friends">
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Nightout with friends">
 							Nightout with friends <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
 						<p class="note-date font-12 text-muted">01 August 1999</p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted"
-								data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit
-								tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
 									<div class="dropdown-menu dropdown-menu-right category-menu">
-										<a
-											class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-										</a> <a
-											class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Social
-										</a> <a
-											class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Important
+										<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
+										</a>
+										<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
+										</a>
+										<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
 										</a>
 									</div>
 								</div>
@@ -807,19 +447,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 single-note-item all-category note-important"
-					style="">
+				<div class="col-md-4 single-note-item all-category note-important" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0"
-							data-noteheading="Launch new template">
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Launch new template">
 							Launch new template <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
 						<p class="note-date font-12 text-muted">21 January 2015</p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted"
-								data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit
-								tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
 						</div>
 						<div class="d-flex align-items-center">
 							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
@@ -827,20 +463,14 @@
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
 									<div class="dropdown-menu dropdown-menu-right category-menu">
-										<a
-											class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-										</a> <a
-											class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Social
-										</a> <a
-											class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger"
-											href="javascript:void(0);"> <i
-											class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-											Important
+										<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
+										</a>
+										<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
+										</a>
+										<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
+											<i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
 										</a>
 									</div>
 								</div>
@@ -851,5 +481,12 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(".option").click(function() {
+			$(".option").removeClass("active");
+			$(this).addClass("active");
+
+		});
+	</script>
 </th:block>
 </html>
