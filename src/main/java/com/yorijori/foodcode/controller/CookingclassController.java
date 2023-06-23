@@ -53,18 +53,18 @@ public class CookingclassController {
 	@RequestMapping("/list") 
 	public String showCookingclassList(Model model) {
 		List<CookingClass> classList = service.selectAllClass();
+		List<CookingClass> top5class=service.findTop5ByOrderByCount();
 		model.addAttribute("classList",classList);
+		model.addAttribute("topclasslist",top5class);
 		return "thymeleaf/cookingclass/classList";
 	}
 	
 	@RequestMapping("/read")
 	public String showCookingclass(Model model, int cookNo) {
 		CookingClass cookingclass = service.readClass(cookNo);
-		//List<CookingClassContent> content = service.readContent(cookNo);
-		//List<CookingClassCurriculum> curriculum= service.readCurriculum(cookNo);
+		
 		model.addAttribute("cookingclass", cookingclass);
-		//model.addAttribute("contentList", content);
-		//model.addAttribute("curriculumList", curriculum);
+		
 		return "thymeleaf/cookingclass/classRead";
 	}
 	@RequestMapping("/delete")
@@ -73,10 +73,12 @@ public class CookingclassController {
 		return "redirect:/cookingclass/list";
 	}
 	@RequestMapping("/application")
-	public String applicateClass(int cookNo, HttpSession session) {
-		UserInfo user=(UserInfo)session.getAttribute("userInfo");
-		if(user==null) {
+	public String applicateClass(int cookNo, HttpSession session, Model model) {
+		if(session.getAttribute("userInfo")==null) {
 			return "redirect:/main";
+		} else{
+			UserInfo user=(UserInfo)session.getAttribute("userInfo");
+			CookingClass cookingClass = service.readClass(cookNo);
 		}
 		return "thymeleaf/cookingclass/classApplicationForm";
 	}
@@ -95,7 +97,7 @@ public class CookingclassController {
 	}
 	
 	@PostMapping("/in")
-	public String insertCookingclass(CookingClass cookingclass,CookingClassContent content,CookingClassCurriculum curriculum,@RequestParam("file") MultipartFile multipartFile) {
+	public String insertCookingclass(CookingClass cookingclass,@RequestParam("file") MultipartFile multipartFile) {
 		
 		JsonObject json = new JsonObject();
 		System.out.println(cookingclass.getContentList().get(0).getContent());
@@ -111,18 +113,15 @@ public class CookingclassController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
 			String url ="/yorijori/data/thumbnail/"+savedFileName;
 			cookingclass.setThumbnail(url);
-			System.out.println("url이름: "+url);
-			System.out.println(cookingclass);
-			System.out.println(cookingclass.getContentList().get(1));
-			System.out.println(cookingclass.getCurriList().get(0));
+//			System.out.println("url이름: "+url);
+//			System.out.println(cookingclass);
+//			System.out.println(cookingclass.getContentList().get(1));
+//			System.out.println(cookingclass.getCurriList().get(0));
 			service.insert(cookingclass);
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			e.printStackTrace();
-		}
-		
-		
-		
+		}	
 		return "redirect:/cookingclass/list";
 	}
 	

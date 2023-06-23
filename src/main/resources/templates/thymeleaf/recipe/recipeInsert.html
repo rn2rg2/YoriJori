@@ -22,6 +22,7 @@
 		$(document)
 				.ready(
 						function() {
+
 							/* 			$('#summernote').summernote({
 							 placeholder : 'content',
 							 minHeight : 500,
@@ -42,16 +43,24 @@
 								shadow : false
 							})
 
-							$(".dropdown-item").on("click", function() {
-								const $this = $(this)
-								var parent_id = $this.attr("data-parent")
-								var text = $this.html()
-								$("button[id=" + parent_id + "]").html(text)
-								$("input[id=" + parent_id + "]").val(text)
-							})
+							$(".dropdown-item").on(
+									"click",
+									function() {
+										const $this = $(this)
+										var parent_id = $this
+												.attr("data-parent")
+										var categoryNo = $(this).data(
+												"category_no");
+										var text = $this.html()
+										$("button[id=" + parent_id + "]").html(
+												text)
+										$("input[id=" + parent_id + "]").val(
+												categoryNo)
+									})
 
-							//
-							var stepCount = 1;
+							// 요리과정 추가하기
+							var stepCount = 0; //요리과정 각 아이디 값 다르게 하기 위해서
+							var Countname = 0;
 							$(document)
 									.on(
 											"click",
@@ -62,9 +71,9 @@
 												var stepHtml = '<div id="divStepItem_' + stepCount + '" class="step">'
 														+ '<p id="divStepNum_' + stepCount + '" class="cont_tit2_1 ui-sortable-handle" style="cursor: pointer">Step'
 														+ stepCount
-														+ '<i class="fas fa-times" style="margin-left:5px" id="delstep"></i></p>'
+														+ '</p>'
 														+ '<div id="divStepText_' + stepCount + '" style="display: inline-block">'
-														+ '<textarea name="step_text[]" id="step_text_'
+														+ '<textarea name="imglist['+ Countname +'].content" id="step_text_'
 														+ stepCount
 														+ '" class="form-control step_cont" placeholder="예) 후라이팬에 기름을 두르고 예열합니다." style="min-height: 11.5em; width: 40em; resize: none; border-radius: 0px; border: 2px solid #fd5d5d"></textarea>'
 														+ '</div>'
@@ -74,7 +83,7 @@
 														+ '<input type="hidden" name="new_step_photo[]" id="new_step_photo_' + stepCount + '" value="">'
 														+ '<input type="hidden" name="del_step_photo[]" id="del_step_photo_' + stepCount + '" value="">'
 														+ '<div style="position: absolute; left: -3000px">'
-														+ '<input type="file" name="q_step_file_' + stepCount + '" id="q_step_file_' + stepCount + '" file_gubun="step" accept="jpeg,png,gif" style="display:; width: 0px; height: 0px; font-size: 0px;" text="">'
+														+ '<input type="file" name="cookingList" id="q_step_file_' + stepCount + '" file_gubun="step" accept="jpeg,png,gif" style="display:; width: 0px; height: 0px; font-size: 0px;" text="">'
 														+ '</div>'
 														+ '<div id="divStepPhotoBox_' + stepCount + '" is_over="0" class="addphoto">'
 														+ '<img id="stepPhotoHolder_'+ stepCount + '" src="https://recipe1.ezmember.co.kr/img/pic_none2.gif" width="160" height="160" style="cursor: pointer">'
@@ -84,97 +93,185 @@
 												// 요리과정 추가
 												$('#divStepArea').append(
 														stepHtml);
+												Countname++;
 											});
-							$(document).on("click", "#delstep", function() {
+							//요리 과정 삭제
+							/* $(document).on("click", "#delstep", function() {
 								$(this).closest(".step").remove();
-							});
+							}); */
 
 							//사진 추가하기
 							$(document).on('click', '.addphoto', function() {
 								var stepId = $(this).attr('id').split('_')[1];
-								console.log(stepId);
 								$('#q_step_file_' + stepId).trigger('click');
+								$('#q_step_file_' + stepId).change(function() {
+									readURL(this, stepId); // stepId를 readURL 함수에 전달
+								});
 							});
 
-							$(document).on('change','input[type="file"]',
-									function() {
-										var elementId = $(this).attr('id');
-										var stepId = elementId.split('_')[2];
-										var file = this.files[0];
-										var reader = new FileReader();
+							function readURL(input, stepId) {
+								if (input.files && input.files[0]) {
+									var reader = new FileReader();
 
-										reader.onload = function(e) {
-											$('#stepPhotoHolder_' + stepId)
-													.attr('src',
-															e.target.result);
-										}
+									reader.onload = function(e) {
+										$('#stepPhotoHolder_' + stepId).attr(
+												'src', e.target.result);
+										$('#stepPhotoHolder_' + stepId).hide();
+										$('#stepPhotoHolder_' + stepId).fadeIn(
+												500);
+									};
 
-										reader.readAsDataURL(file);
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+							//썸네일 추가하기 
+							$(document).on('click','.addthumbnail',function() {
+								$('.updloadthumbnail').trigger('click');
+								$('.updloadthumbnail').change(
+									function() {readThumbnail(this);
 									});
+							});
+							function readThumbnail(input) {
+								if (input.files && input.files[0]) {
+									var reader = new FileReader();
+
+									reader.onload = function(e) {
+										$('.addthumbnail').attr('src',
+												e.target.result);
+										$('.addthumbnail').hide();
+										$('.addthumbnail').fadeIn(500);
+									};
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+							//끝
+							
 						});
+						
+						//onsubmit 값 확인 및 name 배열 값 할당하기
+						function validateForm() {
+							var titlecheck = isEmpty($('#title')); // 값이 없을 경우 true
+							var descheck = isEmpty($('#des'));
+							
+							
+							if (titlecheck) {
+								error_alert('제목 미입력', '제목');
+								return false;
+							} else if (descheck) {
+								error_alert('내용 미입력', '내용');
+								return false;
+							}
+							  var rowCount = $('.row.mt-3').length;
+							  $('.row.mt-3').each(function(index) {
+							    var row = $(this);
+							    row.find('input[name^="ingrelist"]').each(function() {
+							      var input = $(this);
+							      var name = input.attr('name');
+							      if (name.includes('.num')) {
+							        input.attr('name', 'ingrelist[' + index + '].num');
+							      } else if (name.includes('.matlNo')) {
+							        input.attr('name', 'ingrelist[' + index + '].matlNo');
+							      }
+							    });
+							  });
+							    $('.category').each(function() {
+							        var category = $(this);
+							        var categoryValue = category.find('.categorysubmittest').val();
+							        
+							        if (categoryValue === '') {
+							        	alert("카테고리 미입력");
+							          isValid = false;
+							          return false; // 순회 중지
+							        }
+							        return isValid;
+							      });
+							  return true;
+							}
+						
 	</script>
 </th:block>
 
 <th:block layout:fragment="content">
-	<form action="/yorijori/recipe/insert" method="post">
+	<form action="/yorijori/recipe/insert" method="post"
+		enctype="multipart/form-data" onsubmit="return validateForm();">
 		<div class="container mb-5">
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="menu-h3-common">레시피 등록</h3>
 					<div class="form-group form-insert">
 						<label>레시피 제목</label> <input type="text"
-							class="insert-control title" id="" placeholder="맛좋은 게살 버거"
-							name="l">
+							class="insert-control title" id="title" placeholder="맛좋은 게살 버거"
+							name="name">
+					</div>
+					<div class="form-group form-insert">
+						<label>요리 내용</label>
+						<textarea class="insert-control des" id="des"
+							placeholder="무슨 요리인지 간단하게 설명해 보아요~" name="des"></textarea>
 					</div>
 
 					<div class="form-group form-insert">
+
 						<label>카테고리</label>
 						<div class="category">
-							<input type="hidden" id="cookusage" name="category" value="" />
+							<input type="hidden" id="cookusage" class="categorysubmittest"
+								name="categorylist[0].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="cookusage">음식용도</button>
+
 							<div class="dropdown-menu">
-								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cookusage">용도1</a>
+								<th:block th:each="category1:${categorylist1}">
+									<a class="dropdown-item insert-item" href="javascript:0"
+										data-parent="cookusage"
+										th:data-category_no="${category1.categoryNo}">
+										[[${category1.name}]] </a>
+								</th:block>
 							</div>
 						</div>
+
 						<div class="category">
-							<input type="hidden" id="cookmethod" name="category" value="" />
-							<button type="button"
-								class="btn btn-primary dropdown-toggle insert-drop"
-								data-toggle="dropdown" id="cookmethod">조리방법</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cookmethod">방법1</a>
-							</div>
-						</div>
-						<div class="category">
-							<input type="hidden" id="cookcountry" name="category" value="" />
+							<input type="hidden" id="cookcountry" class="categorysubmittest"
+								name="categorylist[1].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="cookcountry">국가별</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cookcountry">한식</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cookcountry">중식</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cookcountry">일식</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="cookcountry">양식</a>
+								<th:block th:each="category2:${categorylist2}">
+									<a class="dropdown-item insert-item" href="javascript:0"
+										data-parent="cookcountry"
+										th:data-category_no="${category2.categoryNo}">
+										[[${category2.name}]] </a>
+								</th:block>
 							</div>
 						</div>
 						<div class="category">
-							<input type="hidden" id="foodtype" name="category" value="" />
+							<input type="hidden" id="cookmethod" class="categorysubmittest"
+								name="categorylist[2].categoryNo" value="" />
+							<button type="button"
+								class="btn btn-primary dropdown-toggle insert-drop"
+								data-toggle="dropdown" id="cookmethod">조리방법</button>
+							<div class="dropdown-menu">
+								<th:block th:each="category3:${categorylist3}">
+									<a class="dropdown-item insert-item" href="javascript:0"
+										data-parent="cookmethod"
+										th:data-category_no="${category3.categoryNo}">
+										[[${category3.name}]] </a>
+								</th:block>
+							</div>
+						</div>
+						<div class="category">
+							<input type="hidden" id="foodtype" class="categorysubmittest"
+								name="categorylist[3].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop last-button"
 								data-toggle="dropdown" id="foodtype">식재품</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="foodtype" data-value="meat">고기류</a> <a
-									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="foodtype" data-value="fish">생선류</a>
+								<th:block th:each="category4:${categorylist4}">
+									<a class="dropdown-item insert-item" href="javascript:0"
+										data-parent="foodtype"
+										th:data-category_no="${category4.categoryNo}">
+										[[${category4.name}]] </a>
+								</th:block>
 							</div>
 						</div>
 					</div>
@@ -182,34 +279,51 @@
 					<div class="form-group form-insert">
 						<label>기타</label>
 						<div class="category">
+							<input type="hidden" id="serving" name="serving" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="serving">인분</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="serving" data-value="1serving">1인분</a>
+									data-parent="serving" data-category_no="1인분">1인분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="serving" data-category_no="2인분">2인분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="serving" data-category_no="3인분">3인분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="serving" data-category_no="4인분+">4인분+</a>
 							</div>
 						</div>
 						<div class="category">
+							<input type="hidden" id="time" name="time" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="time">시간</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="time" data-value="10min">10분</a>
+									data-parent="time" data-category_no="15분">15분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="time" data-category_no="30분">30분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="time" data-category_no="45분">45분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="time" data-category_no="60분">60분</a> <a
+									class="dropdown-item insert-item" href="javascript:0"
+									data-parent="time" data-category_no="90+분">90분+</a>
 							</div>
 						</div>
 						<div class="category">
+							<input type="hidden" id="difficulty" name="level" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="difficulty">난이도</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item insert-item" href="javascript:0"
-									data-parent="difficulty" data-value="easy">하</a> <a
+									data-parent="difficulty" data-category_no="하">하</a> <a
 									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="difficulty" data-value="normal">중</a> <a
+									data-parent="difficulty" data-category_no="중">중</a> <a
 									class="dropdown-item insert-item" href="javascript:0"
-									data-parent="difficulty" data-value="normal">상</a>
+									data-parent="difficulty" data-category_no="상">상</a>
 							</div>
 						</div>
 					</div>
@@ -256,7 +370,7 @@
 					<div class="form-group form-insert">
 						<label>요리과정</label>
 						<div id="divStepArea" class="ui-sortable">
-							<div id="divStepItem_1" class="step">
+							<!-- <div id="divStepItem_1" class="step">
 								<p id="divStepNum_1" class="cont_tit2_1 ui-sortable-handle"
 									style="cursor: pointer">
 									Step1<i class="fas fa-times" style="margin-left: 5px"
@@ -287,7 +401,7 @@
 									</div>
 								</div>
 								<br />
-							</div>
+							</div> -->
 						</div>
 						<div class="btn_add mag_b_25"
 							style="padding: 0 10em 0 20em; width: 820px;">
@@ -301,16 +415,21 @@
 
 						<div class="form-group form-insert">
 							<label>요리팁</label>
-							<textarea class="insert-control des" id="des"
-								placeholder="게살 잘 바르는 팁!!!" name="pswd"></textarea>
+							<textarea class="insert-control des" id="rcpNaTip"
+								placeholder="나만의 추가적인 팁을 추가해보아요!" name="rcpNaTip"></textarea>
 						</div>
 
 						<div class="form-group form-insert">
-							<label>태그</label> <input type="text" class="insert-control" id=""
-								placeholder="딸기, 키위, 다이어트, 비만" name="l">
+							<label>요리 완성사진(썸네일) 추가하기</label> <input id="file-upload"
+								type="file" accept="jpeg, png, gif" class="updloadthumbnail"
+								name="recipethumbnail" style="display: none;"> <img
+								id="file-image"
+								src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg"
+								class="addthumbnail" width="200" height="200">
 						</div>
 						<button type="submit" class="btn btn-primary insert submit-btn">작성하기</button>
 
+						<!-- https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg  추후 썸네일 이미지 추가할때 사용할 거 -->
 					</div>
 				</div>
 			</div>

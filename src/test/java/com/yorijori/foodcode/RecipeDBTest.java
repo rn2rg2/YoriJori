@@ -21,7 +21,7 @@ class RecipeDBTest {
 	void test() {
 		List<Recipe> recipe = repository.findAll();
 		for ( Recipe data : recipe) {
-			System.out.println(data.getCategoryList());
+			System.out.println(data.getCategorylist());
 		}
 			
 	}

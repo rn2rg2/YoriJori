@@ -90,6 +90,11 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<CookingClass> findTop5ByOrderByCount() {
+		return classRepo.findTop5ByOrderByCountAsc();
+	}
 	
 
 }

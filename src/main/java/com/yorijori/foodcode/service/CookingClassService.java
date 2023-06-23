@@ -16,4 +16,5 @@ public interface CookingClassService {
 	public List<CookingClassContent> readContent(int cookNo);
 	public List<CookingClassCurriculum> readCurriculum(int cookNo);
 	public void insertImage(CookingClassImage image);
+	public List<CookingClass> findTop5ByOrderByCount();
 }

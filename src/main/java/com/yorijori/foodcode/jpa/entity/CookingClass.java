@@ -47,6 +47,7 @@ public class CookingClass {
 	private Date upDate;
 	private int state;
 	
+	
 	@Exclude
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassContent> contentList = new ArrayList<CookingClassContent>();

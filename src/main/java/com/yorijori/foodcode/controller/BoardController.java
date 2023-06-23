@@ -128,6 +128,7 @@ public class BoardController {
 
 	//게시판 글쓰기 기능
 	@PostMapping("/write")
+tem.out.println(board.toString());
 	public String boardwrite(Board board, HttpSession session) {
 //		System.out.println("Controller");
 //		System.out.println("================================");

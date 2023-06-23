@@ -13,7 +13,8 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 public interface CategoryRepository extends JpaRepository<Category, Integer> { 
     List<Category> findAll();
     List<Category> findByLevel(Integer upperLevel);
-
+    List<Category> findByLevelAndUpperLevel(int level,String upperLevel);
+    List<Category> findByUpperLevel(String upperlevel);
 }
 
 	
