@@ -87,6 +87,27 @@ const make_search_list = function(page){
 		})
 }
 
+const make_refri_list = function(data){
+	var listItem = $('<li></li>');
+	  var anchor = $('<a href="javascript:void(0);"></a>');
+	  var imgDiv = $('<div class="img"></div>');
+	  var image = $('<img src="/file/prod/9-1.jpg" alt="">');
+	  var txtDiv = $('<div class="txt"></div>');
+	  var titleSpan = $('<span class="tit">Anchor BBQ Sauce (Medium Spicy)</span>');
+	  var cookingInfoDiv = $('<div class="cooking_info"></div>');
+	  var companySpan = $('<span class="company_name"><em>Manufacturer</em> Anchor</span>');
+
+	  cookingInfoDiv.append(companySpan);
+	  txtDiv.append(titleSpan);
+	  txtDiv.append(cookingInfoDiv);
+	  imgDiv.append(image);
+	  anchor.append(imgDiv);
+	  anchor.append(txtDiv);
+	  listItem.append(anchor);
+
+	  $('#refri_list').append(listItem); 
+}
+
 const make_div = function(data){
 	var $div = $('<div>', {
 		  class: 'col-xl-4 col-lg-4 col-md-4 mb-1'

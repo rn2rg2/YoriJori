@@ -2,27 +2,32 @@ package com.yorijori.foodcode.service;
 
 
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
-import com.yorijori.foodcode.jpa.repository.MemberRepository;
+import com.yorijori.foodcode.repository.MemberDAO;
 
 
 @Service
+@Transactional
 public class MemberServiceImpl implements MemberService {
-	
-	
-    private MemberRepository memberRepository;
+	MemberDAO memberDAO;
     
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    @Autowired
+    public MemberServiceImpl(MemberDAO memberDAO) {
+        this.memberDAO = memberDAO;
     }
    
     //회원가입
 
 	@Override
 	public void save(UserInfo userinfodto) {
-		memberRepository.save(userinfodto);	
+		memberDAO.save(userinfodto);	
 		
 	}
     // - 회원가입 로직
@@ -31,14 +36,13 @@ public class MemberServiceImpl implements MemberService {
 	// - 회원가입 중복처리
 	//		- 아이디 중복체크
     public boolean idcheck(String userId) {
-        return memberRepository.existsByUserId(userId);
+        return memberDAO.idCheck(userId);
     }
 	// - 회원가입 중복처리
 	//		- 닉네임 중복체크
     public boolean nicknamecheck(String nickName) {
-        return memberRepository.existsByNickname(nickName);
+        return memberDAO.nicknameCheck(nickName);
     }
-    
     
     // 로그인 로직
     // - 일반로그인 
@@ -48,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public UserInfo login(String user_id, String userPassword) {
 		// TODO Auto-generated method stub
-        return memberRepository.findByUserIdAndPass(user_id, userPassword);
+        return memberDAO.login(user_id, userPassword);
 	}
     // - 카카오로그인 
     // 		- 방식 
@@ -56,8 +60,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public UserInfo loginKakao(String kakaoID) {
 		// TODO Auto-generated method stub
-        return memberRepository.findByKakaoID(kakaoID);
+        return memberDAO.loginKakao(kakaoID);
+	}
+	
+	//유저 역할별 인원 수 조회
+	@Override
+	public long userCount(String role) {
+		return memberDAO.userCount(role);
 	}
 
+	@Override
+	public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+		return memberDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+	}
 
 }

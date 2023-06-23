@@ -8,7 +8,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
@@ -41,6 +44,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userwishlistrepo = userwishlistrepo;
 	}
+	@Override
+	public Recipe findById(int recipeNo) {
+		return reciperepository.findById(recipeNo).orElseThrow(()-> new RuntimeException());
+	}
 
 	
 	@Override
@@ -70,6 +77,34 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public void deleteWishList(Recipe recipeNo) {
 		userwishlistrepo.deleteByRecipeNo(recipeNo);
 	}
-
+	@Override
+	public Recipe select(int recipeNo) {
+		
+		return reciperepository.findByRecipeNo(recipeNo);
+	}
+	@Override
+	public List<RecipeImage> imgselect(int recipeNo) {
+	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
+        return recipeimagerepository.findByRecipeNo(recipe);
+	}
+	@Override
+	public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
+		Page<Recipe> page = reciperepository.findAll(pageRequest);
+		List<Recipe> list = page.getContent();
+		
+		return list;
+	}
+	@Override
+	public List<RecipeReview> reviewselect(int recipeNo) {
+		
+		// TODO Auto-generated method stub
+	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
+		return recipereviewrepository.findByRecipeNo(recipe);
+	}
+	@Override
+	public void reviewsave(RecipeReview recipereview) {
+	    recipereviewrepository.save(recipereview);
+	}
 
 }

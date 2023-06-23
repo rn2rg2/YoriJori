@@ -19,4 +19,8 @@ public interface ApiRecipeDAO {
 
 	void deleteWishList(ApiRecipe apirecipe);
 
+	ApiRecipe findById(int rcpSeq);
+
+	List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType);
+
 }

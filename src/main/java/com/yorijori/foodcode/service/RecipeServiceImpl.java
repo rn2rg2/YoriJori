@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.repository.RecipeDAO;
@@ -16,7 +18,7 @@ import com.yorijori.foodcode.repository.RecipeDAO;
 @Transactional
 public class RecipeServiceImpl implements RecipeService {
 	RecipeDAO recipeDAO;
-	
+
 	@Autowired
 	public RecipeServiceImpl(RecipeDAO recipeDAO) {
 		super();
@@ -27,23 +29,53 @@ public class RecipeServiceImpl implements RecipeService {
 	public long countAll() {
 		return recipeDAO.countAll();
 	}
-	
+
 	@Override
-	public List<Recipe> selectListByPage(int pageNo,int pagePerCount){
+	public List<Recipe> selectListByPage(int pageNo, int pagePerCount) {
 		return recipeDAO.selectListByPage(pageNo, pagePerCount);
 	}
-	
+
 	@Override
 	public void wishList(UserInfo userId, Recipe recipeNo) {
 		long count = recipeDAO.countByRcpSeqByWishList(recipeNo);
 		UserWishlist userwishlist = new UserWishlist();
 		userwishlist.setRecipeNo(recipeNo);
 		userwishlist.setUserId(userId);
-		if (count > 0 ) {
+		if (count > 0) {
 			recipeDAO.deleteWishList(recipeNo);
 		} else {
 			recipeDAO.addWishList(userwishlist);
 		}
 	}
-	
+
+	@Override
+	public void viewCountUp(int recipeNo) {
+		Recipe recipe = recipeDAO.findById(recipeNo);
+		recipe.viewCountUp(recipe);
+	}
+
+	@Override
+	public Recipe select(int recipeNo) {
+		// TODO Auto-generated method stub
+		return recipeDAO.select(recipeNo);
+	}
+
+    @Override
+    public List<RecipeImage> imgselect(int recipeNo) {
+        return recipeDAO.imgselect(recipeNo);
+    }
+    @Override
+    public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+    	return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+    }
+	@Override
+	public List<RecipeReview> reviewselect(int recipeNo) {
+		return recipeDAO.reviewselect(recipeNo);
+	}
+
+	@Override
+	public void reviewsave(RecipeReview recipereview) {
+	    recipeDAO.reviewsave(recipereview);
+	}
+
 }

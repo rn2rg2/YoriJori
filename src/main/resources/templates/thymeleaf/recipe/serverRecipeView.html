@@ -17,17 +17,6 @@
 				<!--=============================================================================-->
 				<!--############################# Contents START#############################-->
 				<!--=============================================================================-->
-
-				<form class="form-horizontal" id="frm" name="frm" onsubmit="return false;">
-					<input type="hidden" id="pageIndex" name="pageIndex" value="">
-					<input type="hidden" id="userRxSnn" name="userRxSnn" value="120">
-					<input type="hidden" id="prodSnn" name="prodSnn" value="">
-					<input type="hidden" id="pageGb" name="pageGb" value="MONTH">
-					<!-- 검색 파라미터 유지 -->
-					<input type="hidden" id="rxDodCdSel" name="rxDodCdSel" value="">
-					<input type="hidden" id="rxKorNmSel" name="rxKorNmSel" value="">
-				</form>
-
 				<!-- food_recipe_view -->
 				<div class="recipe_view food_recipe_view">
 					<!-- details_top -->
@@ -38,13 +27,18 @@
 						<ul>
 							<li><i class="food_level"></i>[[${data.recipeDes}]]</li>
 							<li><i class="food_level"></i>[[${data.rcpPat2}]]</li>
+							<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
+								<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${rcpSeq}" onclick="clickHeart(this,addHeart)">
+										<i class="fa fa-heart me-2" aria-hidden="true"></i>좋아요
+									</a></li>
+							</th:block>
 
-							<li th:if="${data.wishlist != null}"><a onclick="clickHeart()">
+							<!-- <li th:if="${data.wishlist != null}"><a onclick="clickHeart()">
 									<i class="far fa-heart i_heart_dark"></i>좋아요
 								</a></li>
 							<li th:unless="${data.wishlist != null}"><a onclick="clickHeart()">
 									<i class="far fa-heart i_heart_red"></i>좋아요
-								</a></li>
+								</a></li> -->
 
 						</ul>
 					</div>
@@ -88,7 +82,7 @@
 								<!-- <p class="txt" th:if="${#strings.arraySplit(data.rcpPartsDtls,'•')[0] != null}" th:text="${#strings.arraySplit(data.rcpPartsDtls,'•')[0]}"></p>
 							<p class="txt" th:if="${#strings.arraySplit(data.rcpPartsDtls, '•')[1] != null}" th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[1]}"></p> -->
 							</th:block>
-							
+
 							<th:block th:unless="${#strings.contains(data.rcpPartsDtls, '●')} or ${#strings.contains(data.rcpPartsDtls, '•')}">
 								<p class="txt" th:text="${data.rcpPartsDtls}"></p>
 							</th:block>
@@ -155,7 +149,9 @@
 			<!-- // boardGroup -->
 			<!-- Swiper JS -->
 			<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-			<script>
+			<script th:inline="javascript">
+				let type = [[${type}]];
+				let value = [[${rcpSeq}]];
 			    const progressCircle = document.querySelector(".autoplay-progress svg");
 			    const progressContent = document.querySelector(".autoplay-progress span");
 			    var swiper = new Swiper(".mySwiper", {
@@ -180,7 +176,13 @@
 			        }
 			      }
 			    });
-  </script>
+			    
+				const addHeart = function(data){
+					
+					let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
+					setTimeout(() => window.location.href=heartUrl, 2000);
+				}
+  			</script>
 
 		</div>
 	</div>

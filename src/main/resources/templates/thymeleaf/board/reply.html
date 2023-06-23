@@ -23,13 +23,18 @@
 						<div class="clearfix"></div>
 						<hr />
 						<ul class="comments">
-							<li class="clearfix" th:each="comment:${boardCommentList}">
-								<th:block th:if="${comment.display_order_no < 1}">
+							<li class="clearfix" th:each="comment:${boardCommentList}"><th:block th:if="${comment.display_order_no < 1}">
 									<img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
 									<div class="post-comments">
-										<p class="meta">	
-											<a class="commentsName" href="#"  th:text="|${comment.user_id} ${comment.date}|"></a> says : 
-											<i class="pull-right" style="float: right;"><a href="#"><i class="fa-solid fa-trash"></i></a></i>
+										<p class="meta">
+											<a class="commentsName" href="#" th:text="|${comment.user_id} ${comment.date}|"></a>
+											says :
+											<th:block th:if="${!#strings.isEmpty(session.userInfo) and comment.user_id == session.userInfo.userId}">
+												<!-- 유저정보가 있는 경우 -->
+												<i class="pull-right" style="float: right;"><a href="#">
+														<i class="fa-solid fa-trash"></i>
+													</a></i>
+											</th:block>
 										</p>
 										<p class="meta" th:text="${comment.contents}"></p>
 										<form action="/yorijori/board/boardCommentInsert" method="post">
@@ -39,28 +44,30 @@
 											<input type="hidden" name="is_first_comment" th:value="N" />
 											<input type="hidden" name="parents_comment_no" th:value="${comment.comment_no}" />
 											<input type="hidden" name="display_order_no" th:value="${comment.new_display_order_no}" />
-											<div style="display: flex; ">
+											<div style="display: flex;">
 												<textarea style="flex: 1; margin-right: 2%;" class="form-control" placeholder="댓글을 입력해주세요" rows="3" name="contents"></textarea>
-												<span><button type="submit" class="btn btn-info pull-right" style="float: right;">Post </button></span>
+												<span><button type="submit" class="btn btn-info pull-right" style="float: right;">Post</button></span>
 											</div>
 										</form>
 									</div>
-								</th:block>
-								
-								<th:block th:if="${comment.display_order_no > 0}">
+								</th:block> <th:block th:if="${comment.display_order_no > 0}">
 									<ul class="comments">
-										<li class="clearfix">
-											<img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+										<li class="clearfix"><img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
 											<div class="post-comments">
 												<p class="meta">
-													<a class="commentsName" href="#" th:text="|${comment.user_id} ${comment.date}|"></a> says : <i class="pull-right" style="float: right;"><a href="#"><i class="fa-solid fa-trash"></i></a></i>
+													<a class="commentsName" href="#" th:text="|${comment.user_id} ${comment.date}|"></a>
+													says :
+													<th:block th:if="${!#strings.isEmpty(session.userInfo) and comment.user_id == session.userInfo.userId}">
+														<!-- 유저정보가 있는 경우 -->
+														<i class="pull-right" style="float: right;"><a href="#">
+																<i class="fa-solid fa-trash"></i>
+															</a></i>
+													</th:block>
 												</p>
 												<p class="meta" th:text="${comment.contents}" />
-											</div>
-										</li>
+											</div></li>
 									</ul>
-								</th:block>
-							</li>
+								</th:block></li>
 						</ul>
 					</div>
 				</div>
@@ -103,49 +110,45 @@
 			 */
 			function getCommentList() {
 
-				$
-						.ajax({
-							type : 'GET',
-							url : "<c:url value='/board/commentList.do'/>",
-							dataType : "json",
-							data : $("#commentForm").serialize(),
-							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-							success : function(data) {
+				$.ajax({
+					type : 'GET',
+					url : "<c:url value='/board/commentList.do'/>",
+					dataType : "json",
+					data : $("#commentForm").serialize(),
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data) {
 
-								var html = "";
-								var cCnt = data.length;
+						var html = "";
+						var cCnt = data.length;
 
-								if (data.length > 0) {
+						if (data.length > 0) {
 
-									for (i = 0; i < data.length; i++) {
-										html += "<div>";
-										html += "<div><table class='table'><h6><strong>"
-												+ data[i].writer
-												+ "</strong></h6>";
-										html += data[i].comment
-												+ "<tr><td></td></tr>";
-										html += "</table></div>";
-										html += "</div>";
-									}
-
-								} else {
-
-									html += "<div>";
-									html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-									html += "</table></div>";
-									html += "</div>";
-
-								}
-
-								$("#cCnt").html(cCnt);
-								$("#commentList").html(html);
-
-							},
-							error : function(request, status, error) {
-
+							for (i = 0; i < data.length; i++) {
+								html += "<div>";
+								html += "<div><table class='table'><h6><strong>" + data[i].writer + "</strong></h6>";
+								html += data[i].comment + "<tr><td></td></tr>";
+								html += "</table></div>";
+								html += "</div>";
 							}
 
-						});
+						} else {
+
+							html += "<div>";
+							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+							html += "</table></div>";
+							html += "</div>";
+
+						}
+
+						$("#cCnt").html(cCnt);
+						$("#commentList").html(html);
+
+					},
+					error : function(request, status, error) {
+
+					}
+
+				});
 			}
 		</script>
 	</div>

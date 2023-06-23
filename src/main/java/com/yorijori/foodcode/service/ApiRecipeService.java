@@ -15,4 +15,8 @@ public interface ApiRecipeService {
 
 	void wishList(UserInfo userinfo, ApiRecipe rcpSeq);
 
+	void viewCountUp(int rcpSeq);
+
+	List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType);
+
 }

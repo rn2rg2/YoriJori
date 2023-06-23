@@ -50,4 +50,15 @@ public class ApiRecipeServiceImpl implements ApiRecipeService {
 			apiRecipeDAO.addWishList(userwishlistapi);
 		}
 	}
+	@Override
+	public void viewCountUp(int rcpSeq) {
+		ApiRecipe apirecipe = apiRecipeDAO.findById(rcpSeq);
+		apirecipe.viewCountUp(apirecipe);
+	}
+	
+	@Override
+	public List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType){
+		return apiRecipeDAO.selectListByPageAndSort(page, pagePerCount, sortType);
+	}
+
 }

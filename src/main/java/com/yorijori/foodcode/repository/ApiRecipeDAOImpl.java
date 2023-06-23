@@ -24,6 +24,10 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userWishListApiRepo = userWishListApiRepo;
 	}
+	@Override
+	public ApiRecipe findById(int rcpSeq) {
+		return apiRecipeRepository.findById(rcpSeq).orElseThrow(()-> new RuntimeException());
+	}
 
 	@Override
 	public long countAll() {
@@ -43,6 +47,14 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	@Override
 	public List<ApiRecipe> selectListByPage(int page, int pagePerCount) {
 		PageRequest pageRequest = PageRequest.of(page, pagePerCount, Sort.by(Sort.Direction.DESC, "rcpSeq"));
+		Page<ApiRecipe> pagedata = apiRecipeRepository.findAll(pageRequest);
+		List<ApiRecipe> list = pagedata.getContent();
+		return list;
+	}
+	
+	@Override
+	public List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType) {
+		PageRequest pageRequest = PageRequest.of(page, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
 		Page<ApiRecipe> pagedata = apiRecipeRepository.findAll(pageRequest);
 		List<ApiRecipe> list = pagedata.getContent();
 		return list;

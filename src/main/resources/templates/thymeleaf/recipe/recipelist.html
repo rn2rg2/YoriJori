@@ -215,13 +215,13 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a href="/yorijori/recipe/view" th:text="${data.name}"></a>
+                          						  <a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="${data.userId.nickname}"></div>
+											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
 												<br>
-												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}+분"></div>
 												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
 												<hr>
 												<div class="meta meta-style2">
@@ -235,11 +235,21 @@
 												</div>
 											</div>
 										</div>
-										<div class="candidate-list-favourite-time">
-											<a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
-												<i class="far fa-heart"></i>
-											</a>
-											<span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i><span th:text="${data.date}"></span></span>
+										<div class="candidate-list-favourite-time justify-content-around">
+											<ul class="list-unstyled list-inline">
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewList)}]]</i>
+
+													</a></li>
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+													</a></li>
+												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
+												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
+														<i class="fa fa-heart me-2" aria-hidden="true"></i>
+													</a></li>
+												</th:block>
+											</ul>
 
 										</div>
 									</div>
@@ -256,7 +266,7 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a th:href="@{/yorijori/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
+													<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
@@ -265,59 +275,29 @@
 												<ul class="list-unstyled"></ul>
 											</div>
 										</div>
-										<div class="candidate-list-favourite-time">
-											<a class="candidate-list-favourite order-2" onclick="clickHeart(addHeart)">
-												<i class="far fa-heart" aria-hidden="true"></i>
-											</a>
-											<span class="candidate-list-time order-1"><i class="far fa-solid fa-utensils pr-1" aria-hidden="true"></i>조리방법 : 튀기기</span>
+										<div class="candidate-list-favourite-time text-center pt-3 justify-content-around">
+											<ul class="list-unstyled list-inline">
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewList)}]]</i>
+
+													</a></li>
+												<li class="pr-2"><a class="recipe_info_data order-2">
+														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+													</a></li>
+												
+												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
+												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.rcpSeq}" onclick="clickHeart(this,addHeart)">
+														<i class="fa fa-heart me-2" aria-hidden="true"></i>
+													</a></li>
+												</th:block>
+											</ul>
+											<!-- <span class="candidate-list-time order-1"><i class="far fa-solid fa-utensils pr-1" aria-hidden="true"></i>[[${data.recipeDes}]]</span> 
+											<span class="candidate-list-time order-1"><i class="far fa-regular fa-eye pr-1" aria-hidden="true">[[${data.count}]]</i></span> -->
 										</div>
 									</div>
 								</div>
 							</div>
 						</th:block>
-						<!-- <div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
-							<div class="candidate-list candidate-grid">
-								<div class="candidate-list-image">
-									<img class="img-fluid"
-										src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg"
-										alt="">
-								</div>
-								<div class="candidate-list-details">
-									<div class="candidate-list-info">
-										<div class="candidate-list-title">
-											<h5>
-												<a href="/yorijori/recipe/view">황금레시피 불고기</a>
-											</h5>
-										</div>
-										<div class="candidate-list-option">
-											<div
-												class="badge badge-dark px-3 rounded-pill font-weight-normal">백종원</div>
-											<br>
-											<div
-												class="badge badge-success px-3 rounded-pill font-weight-normal">15분</div>
-											<div
-												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
-											<hr>
-											<div class="meta meta-style2">
-												<ul class="list-unstyled">
-													<li><i class="fa-solid fa-eye"></i> 2323</li>
-													<li><i class="fa-solid fa-thumbs-up"></i> 353</li>
-													<li><a href="#!"><i class="fas fa-comments"></i>
-															58</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="candidate-list-favourite-time">
-										<a class="candidate-list-favourite order-2"
-											onclick="clickHeart()"><i class="far fa-heart"></i></a> <span
-											class="candidate-list-time order-1"><i
-											class="far fa-clock pr-1"></i>6월 8일</span>
-
-									</div>
-								</div>
-							</div>
-						</div> -->
 
 					</div>
 					<div class="row">
@@ -325,16 +305,6 @@
 							<div id="pag">
 								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
 							</div>
-							<!-- <ul class="pagination justify-content-center mb-0">
-								<li class="page-item active" aria-current="page"><span
-									class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">4</a></li>
-								<li class="page-item"><a class="page-link" href="#">5</a></li>
-								<li class="page-item"><a class="page-link" href="#">다음</a>
-								</li>
-							</ul> -->
 						</div>
 					</div>
 				</div>
@@ -343,10 +313,14 @@
 	</div>
 	<script th:inline="javascript">
 		let pageNo = 0;
+		// 한번에 보여줄 페이지
 		let pagePerCount = 9;
+		// 현재 페이지 
 		let currentPage = [[${pageNo}]];
-		let type = [[${type}]];
-	
+		// 타입 ( 서버 or 유저 )
+		const type = [[${type}]];
+		
+		// recipe 카운트
 		let userRecipeCount = [[${count}]];
 		// pagination 들어갈 div
 		const $pagination = $('#pagination_div');
@@ -358,19 +332,14 @@
 		}
 		var defaultOpts = {
 		        totalPages: totalPages
-		    };
+	    };
 		
 		$(document).ready(function() {
-			/* makePagination(pageId, totalPages, pagePerResult,
-					currentPage + 1, getServerAPI); */
 			//공식 레시피 클릭
 			$('#server_recipe_check').click(function() {
 				console.log(this.checked);
 				if (this.checked) {
 					$("#user_recipe_check").prop('checked', false);
-					//getServerAPI(0);
-					//getServiceRecipeByDB(0);
-					//getListCount();
 					window.location.href = "/yorijori/recipe/list/server/0";
 				}
 			})
@@ -380,75 +349,24 @@
 				window.location.href = "/yorijori/recipe/list/user/0";
 			})
 			
-			if (type == 'user'){
+			if (type == 'user'){ // 유저 레시피 페이징 
 				makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list);
-			} else {
+			} else { // 서버 레시피 페이징
 				makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list_api);
 			}
 	
 		});
 	
-		const getServiceRecipeByDB = function(pNumber){
-			let url = "/yorijori/recipe/list/server/" + pNumber;
-			$.ajax({
-				url : url,
-				type : "get",
-				success : function(data){
-					console.log(data);
-					$('.recipe_content').empty();
-					$.each(data, function(index, item) {
-						makeList(item, index);
-					}) 
-				}
-				
-			})
-		}
-		const getListCount = function(){
-			let url = "/yorijori/recipe/list/servercount"
-			let totalCount = 0;
-			let pageSize = 9;
-			$.ajax({
-				url : url,
-				type : "get",
-				success : function(data){
-					console.log(data);
 
-					totalCount = data;
-					loadPage(totalCount, pageSize, getServiceRecipeByDB);
-				}
-				
-			})
-			
-		}
 		
-		const addHeart = function(){
-			
+		const addHeart = function(data){
+			let value = $(data).attr('value');
+			let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
+			setTimeout(() => window.location.href=heartUrl, 2000);
 		}
 		
 
-	/* 	const getServerAPI = function(page) {
-			pageNo = page + 1;
-			$.ajax({
-				url : "/yorijori/recipe/list/server/" + pageNo + "/"
-						+ pagePerCount,
-				type : "post",
-				success : function(resultdata) { //result data는 ajax요청 성공 후 서버에서 전달하는 데이터
-					// row 초기화
-					$('.recipe_content').empty();
-					//json문자열을 파싱
-					var jsonObj = JSON.parse(resultdata);
-					console.log(jsonObj);
-					let dataCount = jsonObj.response.total_Count;
-					jsonObj = jsonObj.response.list;
-					loadPage(dataCount, 9, getServerAPI)
-					$.each(jsonObj, function(index, data) {
-						makeList(data, index);
-					})
 
-					// 총 페이지지 네이션 수 
-				}
-			})
-		} */
 	</script>
 
 	<script src="/yorijori/common/js/recipe/list.js"></script>

@@ -1,7 +1,5 @@
 package com.yorijori.foodcode.jpa.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,34 +8,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="inquiry")
-public class Inquiry{
+@Table(name = "notice_file")
+public class NoticeFile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int inquiryNo;
-	//private String userId;
-	private String title;
-	private String contents;
-	@CreationTimestamp
-	private Date date;
-	@UpdateTimestamp
-	private Date upDate;
-	private int state;
+	private int id;
+	//private int  noticeNo ;
+	private String  orgFileName  ;
+	private String  storeFileName  ;
+	private int  fileNo  ;
 	
+	@Exclude
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false)
-	private UserInfo userId;
-	
-	
+	@JoinColumn(name = "noticeNo", nullable = false)
+	private Notice noticeNo;
+		
 }

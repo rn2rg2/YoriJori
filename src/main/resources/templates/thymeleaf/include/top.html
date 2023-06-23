@@ -19,10 +19,11 @@
 				</ul>
 			</div>
 			<div class="util" th:unless="${session.userInfo == null}">
+				<div style="display: none;" th:text="${session.userInfo.userId}"></div>
 				<ul>
 					<li><a th:text="${session.userInfo.name}"></a></li>
 					<li><a href="/yorijori/member/logout">로그아웃</a></li>
-
+					
 					<!-- <li><a href="/yorijori/member/signup1">회원가입</a></li> -->
 
 					<li><a href="/yorijori/cs/help">고객센터</a></li>
@@ -89,8 +90,8 @@
 							<form action="#" class="searchform order-lg-last">
 								<div class="form-group d-flex">
 									<input type="text" class="form-control pl-3"
-										placeholder="레시피 검색">
-									<button type="submit" class="form-control search">
+										placeholder="레시피 검색" style="border-radius: 0px;">
+									<button type="submit" class="form-control search" style="border-radius: 0px;">
 										<span class="fa fa-search"></span>
 									</button>
 								</div>
@@ -146,7 +147,7 @@
 							class="nav-link dropdown-toggle" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">커뮤니티</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="/yorijori/board/list/0">자유게시판</a>
+								<a class="dropdown-item" href="/yorijori/board/list/0/10">자유게시판</a>
 								<!-- <a
 									class="dropdown-item" href="#">맛집정보</a> -->
 								<a class="dropdown-item" href="/yorijori/cs/inquiry">기타문의</a>

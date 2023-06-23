@@ -130,9 +130,9 @@ const finalHeart = new mojs.Shape({
 });
 
   const timeline = new mojs.Timeline({ delay: 0 });
-  function clickHeart(callback) {
+  function clickHeart(data, callback) {
 	    timeline
 	      .add(purpleHeart, redHeart, yellowHeart, blueCircle, finalHeart)
 	      .play();
-	    return callback();
+	    return callback(data);
 	  }
