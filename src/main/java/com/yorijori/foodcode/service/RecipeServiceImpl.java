@@ -12,7 +12,11 @@ import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 
+
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
+
+
+import com.yorijori.foodcode.jpa.entity.RecipeQa;
 
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 
@@ -102,6 +106,19 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public void reviewsave(RecipeReview recipereview) {
 	    recipeDAO.reviewsave(recipereview);
+	}
+
+
+	@Override
+	public void recipeqasave(RecipeQa recipeqa) {
+		recipeDAO.recipeqasave(recipeqa);
+		
+	}
+
+	@Override
+	public List<RecipeQa> QAselect(int recipeNo) {
+		// TODO Auto-generated method stub
+		return recipeDAO.QAselect(recipeNo);
 	}
 
 

@@ -50,6 +50,9 @@ public class Recipe {
 	private int state;
 	private String thumbnail;
 
+	private String thumbnail;
+
+
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
