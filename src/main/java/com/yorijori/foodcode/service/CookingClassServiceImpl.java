@@ -36,52 +36,26 @@ public class CookingClassServiceImpl implements CookingClassService {
 	}
 
 	@Override
-	public void insert(CookingClass cookingclass, CookingClassContent content, CookingClassCurriculum curriculum) {
+	public void insert(CookingClass cookingclass) {
 //		cookingclass = dao.insertClass(cookingclass);
-		List<CookingClassContent> contentlist = new ArrayList<CookingClassContent>();
-		List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
+		List<CookingClassContent> contentlist = cookingclass.getContentList();
+		List<CookingClassCurriculum> curriList = cookingclass.getCurriList();
 		//컨텐츠 insert
 		
 //		System.out.println("--------------------------------");
 //		System.out.println(cookingclass);
 //		System.out.println("--------------------------------");
-		//int cookNo = cookingclass.getCookNo();
-		String[] temp1=content.getContent().split(",");
-		String[] temp2=content.getConCategory().split(",");
-		for(int i=0;i<temp1.length;i++) {
-			CookingClassContent dto = new CookingClassContent();
-			dto.setCookNo(cookingclass);
-			dto.setContent(temp1[i]);
-			dto.setConCategory(temp2[i]);
-//			content.setContentNo(content.getContentNo()+1);
-//			content.setCookNo(cookingclass.getCookNo());
-//			content.setContent(temp1[i]);
-//			content.setConCategory(temp2[i]);
-			contentlist.add(dto);
-//			dao.insertContent(dto);
+
+		for(int i=0;i<contentlist.size();i++) {
+			contentlist.get(i).setCookNo(cookingclass);
 		}
 		
 		//커리큘럼 insert
-		temp1=curriculum.getCurName().split(",");
-		temp2=curriculum.getCurTime().split(",");
-		for(int i=0;i<temp1.length;i++)
+		for(int i=0;i<curriList.size();i++)
 		{
-			CookingClassCurriculum dto = new CookingClassCurriculum();
-			dto.setCookNo(cookingclass);
-			dto.setCurName(temp1[i]);
-			dto.setCurTime(temp2[i]);
-			curriList.add(dto);
-//			curriculum.setId(curriculum.getId()+1);
-//			curriculum.setCookNo(cookingclass.getCookNo());
-//			curriculum.setCurName(temp1[i]);
-//			curriculum.setCurTime(temp2[i]);
-//			curriculum.setCurNo(i+1);
-//			dao.insertCurriculum(dto);
+			curriList.get(i).setCookNo(cookingclass);
 		}
-		cookingclass.setContentList(contentlist);
-		cookingclass.setCurriList(curriList);
 		dao.insertClassTest(cookingclass);
-		
 	}
 
 

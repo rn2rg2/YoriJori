@@ -25,6 +25,7 @@ import lombok.ToString.Exclude;
 @Entity
 @Table(name="recipe_ingredients")
 public class RecipeIngredients {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int id;
@@ -41,4 +42,5 @@ public class RecipeIngredients {
     @Exclude
     @OneToMany(mappedBy = "matlNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ingredients> matlnoinfo = new ArrayList<Ingredients>();
+
 }

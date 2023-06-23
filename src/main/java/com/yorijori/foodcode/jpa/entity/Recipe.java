@@ -23,14 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "recipe")
-@ToString(exclude = { "userId", "imglist", "categorylist", "reviewlist", "qalist", "wishlist" })
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,25 +50,33 @@ public class Recipe {
 	private int state;
 	private String thumbnail;
 
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeCategory> categorylist = new ArrayList<RecipeCategory>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeReview> reviewlist = new ArrayList<RecipeReview>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeQa> qalist = new ArrayList<RecipeQa>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
 	
+
+  @Exclude
 	@OneToMany(mappedBy="recipeNo", fetch= FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<RecipeIngredients> ingrelist = new ArrayList<RecipeIngredients>();
 

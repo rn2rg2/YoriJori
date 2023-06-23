@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
+
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
+
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.repository.RecipeDAO;
@@ -66,6 +70,7 @@ public class RecipeServiceImpl implements RecipeService {
     public List<RecipeImage> imgselect(int recipeNo) {
         return recipeDAO.imgselect(recipeNo);
     }
+
     
     @Override
     public void insertAll(Recipe recipedata) {
@@ -84,5 +89,20 @@ public class RecipeServiceImpl implements RecipeService {
     	}
     	recipeDAO.insertAll(recipedata);
     }
+
+    @Override
+    public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
+    	return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+    }
+	@Override
+	public List<RecipeReview> reviewselect(int recipeNo) {
+		return recipeDAO.reviewselect(recipeNo);
+	}
+
+	@Override
+	public void reviewsave(RecipeReview recipereview) {
+	    recipeDAO.reviewsave(recipereview);
+	}
+
 
 }

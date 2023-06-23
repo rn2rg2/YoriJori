@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,7 +26,7 @@ public class Inquiry{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int inquiryNo;
-	private String userId;
+	//private String userId;
 	private String title;
 	private String contents;
 	@CreationTimestamp
@@ -32,4 +34,10 @@ public class Inquiry{
 	@UpdateTimestamp
 	private Date upDate;
 	private int state;
+	
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable = false)
+	private UserInfo userId;
+	
+	
 }

@@ -30,4 +30,5 @@ public class Ingredients{
 	private String carbs;
 	private String totalSugar;
 	private String imgPath;
+
 }

@@ -22,4 +22,5 @@ public interface IngredientsRepository extends JpaRepository<Ingredients, Intege
     Long countByMatlNameContaining(String matlName);
 	
 	Ingredients findByMatlNo(int matlNo);
+	
 }

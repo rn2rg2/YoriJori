@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 
 public interface RecipeDAO {
@@ -24,8 +25,16 @@ public interface RecipeDAO {
 
     List<RecipeImage> imgselect(int recipeNo);
 
+
 	void insertAll(Recipe recipedata);
 
 	void insertImageAll(List<RecipeImage> recipeimg);
 	
+
+	List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
+    List<RecipeReview> reviewselect(int recipeNo);
+
+    void reviewsave(RecipeReview recipereview);
+
+
 }

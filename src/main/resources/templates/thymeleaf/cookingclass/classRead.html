@@ -12,7 +12,7 @@
 					<!-- <th:block th:if="${#strings.isEmpty(session.userInfo)}">
 					</th:block> -->
 					<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-						<a th:if="${cookingclass.userId == session.userInfo.userId}" th:href="@{/cookingclass/delete(cookNo=${cookingclass.cookNo})}" style="font-size: 0.9rem; position: absolute; right: 1rem; bottom: 5px; color: #c1c1c6; font-weight: normal;">게시글 삭제 </a>
+						<a th:if="${cookingclass.userId.userId == session.userInfo.userId}" th:href="@{/cookingclass/delete(cookNo=${cookingclass.cookNo})}" style="font-size: 0.9rem; position: absolute; right: 1rem; bottom: 5px; color: #c1c1c6; font-weight: normal;">게시글 삭제 </a>
 					</th:block>
 					<!-- <span th:text="${cookingclass.title}"></span>
 					<a th:if="${cookingclass.userId==session.userInfo.userId}" 
@@ -29,9 +29,9 @@
 						<!-- <p class="dc">
 							63<small>%</small>
 						</p> -->
-
-						<p class="price" th:text="${cookingclass.price}"></p>
-						<span class="price">원</span>
+						
+						<p class="price" th:text="|${#numbers.formatInteger(cookingclass.price, 0, 'COMMA')}원|"></p>
+						
 						<!-- <p class="del">80,000원</p> -->
 						<a class="app_block_link_remove user_info2_pic">
 							<img th:src="${cookingclass.thumbnail}">
