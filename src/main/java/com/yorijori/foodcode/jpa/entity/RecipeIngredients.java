@@ -31,6 +31,7 @@ public class RecipeIngredients {
     //private int recipeNo;
     //private int matlNo;
     private String num;
+    private int matlNo;
 
     @Exclude
     @ManyToOne
@@ -39,7 +40,5 @@ public class RecipeIngredients {
 
     @Exclude
     @OneToMany(mappedBy = "matlNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Ingredients> matlNo = new ArrayList<Ingredients>();
-
-
+    private List<Ingredients> matlnoinfo = new ArrayList<Ingredients>();
 }

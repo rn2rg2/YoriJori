@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.repository.RecipeDAO;
@@ -62,6 +65,24 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public List<RecipeImage> imgselect(int recipeNo) {
         return recipeDAO.imgselect(recipeNo);
+    }
+    
+    @Override
+    public void insertAll(Recipe recipedata) {
+    	List<RecipeIngredients> ingredients = recipedata.getIngrelist();
+    	List<RecipeCategory> categorylist = recipedata.getCategorylist();
+    	List<RecipeImage> imglist = recipedata.getImglist();
+
+    	for(int i=0;i<ingredients.size(); i++) {
+    		ingredients.get(i).setRecipeNo(recipedata);
+    	}
+    	for(int i=0;i<categorylist.size(); i++) {
+    		categorylist.get(i).setRecipeNo(recipedata);
+    	}
+    	for(int i=0;i<imglist.size(); i++) {
+    		imglist.get(i).setRecipeNo(recipedata);
+    	}
+    	recipeDAO.insertAll(recipedata);
     }
 
 }

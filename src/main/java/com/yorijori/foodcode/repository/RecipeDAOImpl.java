@@ -42,6 +42,16 @@ public class RecipeDAOImpl implements RecipeDAO {
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userwishlistrepo = userwishlistrepo;
 	}
+	
+	@Override
+	public void insertAll(Recipe recipedata) {
+		 reciperepository.save(recipedata);
+	}
+	
+	@Override
+	public void insertImageAll(List<RecipeImage> recipeimg) {
+		recipeimagerepository.saveAll(recipeimg);
+	}
 	@Override
 	public Recipe findById(int recipeNo) {
 		return reciperepository.findById(recipeNo).orElseThrow(()-> new RuntimeException());

@@ -2,13 +2,18 @@ package com.yorijori.foodcode.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeImage;
 
 
 @Service
@@ -47,6 +52,34 @@ public class FileUploadLogic {
 		String ext = originalFilename.substring(pos+1);
 		String uuid = UUID.randomUUID().toString();
 		return uuid+"."+ext;
+	}
+	
+	public void createRecipeImageroot(List<RecipeImage> imglist,  List<MultipartFile> cookingimg) {
+		String fileRoot = "C:\\project\\upload\\recipeimage\\";
+		int get = 0;
+		for(MultipartFile image : cookingimg) {
+			
+			String originalFileName = image.getOriginalFilename();
+			imglist.get(get).setImgNo(get+1);
+			imglist.get(get).setOreImg(originalFileName);
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+			
+			File savefile = new File(fileRoot + savedFileName);
+			
+			try {
+				InputStream fileStream = image.getInputStream();
+				FileUtils.copyInputStreamToFile(fileStream, savefile);
+				String url = "/yorijori/data/recipeimage"+savedFileName;
+				imglist.get(get).setStoreImg(url);
+				get++;
+			} catch (IOException e) {
+				FileUtils.deleteQuietly(savefile);
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 }
 

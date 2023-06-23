@@ -19,5 +19,7 @@ public interface RecipeService {
 	void viewCountUp(int recipeNo);
 
 	List<RecipeImage> imgselect(int recipeNo);
+	
+	void insertAll(Recipe recipedata);
 
 }

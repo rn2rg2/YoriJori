@@ -18,16 +18,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeListDTO {
-	private String name;
-	private String des; // 요리 간단 설명(내용)
-	List<RecipeCategoryDTO> categorylist;	
-	private String serving;
-	private String time;
-	private String level;
-	List<RecipeIngredientsDTO> recipeingredientslist;
-	List<RecipeImageDTO> recipeimagelist;
-	List<MultipartFile> multipartfilelist;
-	private String rcpnatip;
-	MultipartFile  thumbnail;
+//	private String name;
+//	private String des; // 요리 간단 설명(내용)
+//	List<RecipeCategoryDTO> categorylist;	
+//	private String serving;
+//	private String time;
+//	private String level;
+//	List<RecipeIngredientsDTO> recipeingredientslist;
+//	List<RecipeImageDTO> recipeimagecontentlist;
+	List<MultipartFile> cookingList;
+//	private String rcpnatip;
+//	MultipartFile  thumbnail;
 	
 }

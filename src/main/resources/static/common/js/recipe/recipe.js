@@ -244,9 +244,9 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
     	  var newRow = '<div class="row mt-3" >' +
     	    '<div class="col-md-6">' +
     	    '<input class="form-control ingrecount" id="' + inputId + '" readonly="readonly" value="' + ingredient + '">' +
-    	    '<input class="ingredient" name="recipeingredientslist['+ numcount +'].matl_no" type="hidden" value="'+ ingredientval +'">' + '</div>' +
+    	    '<input class="ingredient" name="ingrelist[].matlNo" type="hidden" value="'+ ingredientval +'">' + '</div>' +
     	    '<div class="col-md-3">' +
-    	    '<input type="text" class="form-control" placeholder="ex) 1/2개" name="recipeingredientslist['+ numcount +'].num">' +
+    	    '<input type="text" class="form-control" placeholder="ex) 1/2개" name="ingrelist[].num">' +
     	    '</div>' +
     	    '</div>';
 

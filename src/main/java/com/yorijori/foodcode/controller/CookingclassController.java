@@ -115,10 +115,7 @@ public class CookingclassController {
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			e.printStackTrace();
-		}
-		
-		
-		
+		}	
 		return "redirect:/cookingclass/list";
 	}
 	

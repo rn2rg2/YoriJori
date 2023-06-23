@@ -23,7 +23,4 @@ public class Category {
     private Integer level;
     @Column(name = "upper_level", length = 10)
     private String upperLevel;
-
-    
-
 }

@@ -12,13 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="recipe_image")
-@ToString(exclude = {"recipeNo"})
 public class RecipeImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,7 @@ public class RecipeImage {
 	private String storeImg;// 저장할 이미지 이름
 	private String content;
 	
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "recipeNo", nullable=false)
 	private Recipe recipeNo;

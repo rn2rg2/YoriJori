@@ -23,4 +23,9 @@ public interface RecipeDAO {
 	Recipe select(int recipeNo);
 
     List<RecipeImage> imgselect(int recipeNo);
+
+	void insertAll(Recipe recipedata);
+
+	void insertImageAll(List<RecipeImage> recipeimg);
+	
 }
