@@ -12,16 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
+import com.yorijori.foodcode.dto.RecipeCategoryDTO;
+import com.yorijori.foodcode.dto.RecipeIngredientsDTO;
+import com.yorijori.foodcode.dto.RecipeListDTO;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
+import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RecipeService;
 
@@ -32,15 +38,17 @@ public class RecipeController {
 	RecipeDataFetcher recipeDataFetcher;
 	ApiRecipeService apiRecipeService;
 	IngredientService ingredientservice;
+	CategoryService categoryservice;
 
 	@Autowired
 	public RecipeController(RecipeService recipeService, RecipeDataFetcher recipeDataFetcher,
-			ApiRecipeService apiRecipeService, IngredientService ingredientservice) {
+			ApiRecipeService apiRecipeService, IngredientService ingredientservice, CategoryService categoryservice) {
 		super();
 		this.recipeService = recipeService;
 		this.recipeDataFetcher = recipeDataFetcher;
 		this.apiRecipeService = apiRecipeService;
 		this.ingredientservice = ingredientservice;
+		this.categoryservice = categoryservice;
 	}
 
 	@RequestMapping("/QA")
@@ -55,12 +63,33 @@ public class RecipeController {
 
 	// recipe insert
 	@RequestMapping("/insert")
-	public String insertRecipe(Model model, String ingredient, String num) {
-		System.out.println("재료정보 뽑기 19028391283-901823901823");
-		System.out.println(ingredient+" "+num);
+	public String insertRecipe(Model model) {
 		List<Ingredients> list = ingredientservice.selectAll();
+		List<Category> categorylist1 = categoryservice.findByUpperLevel("음식용도");
+		List<Category> categorylist2 = categoryservice.findByUpperLevel("국가별");
+		List<Category> categorylist3 = categoryservice.findByUpperLevel("조리법");
+		List<Category> categorylist4 = categoryservice.findByUpperLevel("식품별");
 		model.addAttribute("list", list);
+		model.addAttribute("categorylist1", categorylist1);
+		model.addAttribute("categorylist2", categorylist2);
+		model.addAttribute("categorylist3", categorylist3);
+		model.addAttribute("categorylist4", categorylist4);
+		
 		return "thymeleaf/recipe/recipeInsert";
+	}
+	
+	@PostMapping("/insert")
+	public String recipeInsert(RecipeListDTO recipedata) {
+		System.out.println("recipe 데이터 넘어오는지 확인 !! : "+recipedata);
+		List<RecipeCategoryDTO> categorylist = recipedata.getCategorylist();
+		for(RecipeCategoryDTO category : categorylist) {
+			System.out.println("카테고리 뽀ㅃ기 : " + category);
+		}
+		List<RecipeIngredientsDTO> recipeingredientslist = recipedata.getRecipeingredientslist();
+		for(RecipeIngredientsDTO recipeingrediends : recipeingredientslist) {
+			System.out.println("재료 뽑기  : " + recipeingrediends);
+		}
+		return "thymeleaf/recipe/recipelist";
 	}
 
 	@RequestMapping("/list/{type}/{pageNo}")
