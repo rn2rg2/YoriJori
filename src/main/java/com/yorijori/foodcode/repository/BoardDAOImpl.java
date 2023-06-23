@@ -36,7 +36,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	@Override
 	public List<Board> selectAll() {
-
+		//return repository.findByState(0);
 		return repository.findAll(Sort.by(Sort.Direction.DESC, "commNo"));
 		
 	}
@@ -63,8 +63,9 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
-		Page<Board> page = repository.findAll(pageRequest);
-		List<Board> list = page.getContent();
+		//Page<Board> page = repository.findAll(pageRequest);
+		 Page<Board> page = repository.findByState(0, pageRequest);
+		 List<Board> list = page.getContent();
 		return list;
 	}
 
@@ -77,7 +78,9 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void bulletinBoardViews(int commNo) {
+		System.out.println("service count");
 		repository.bulletinBoardViews(commNo);
+	
 	}
 
 

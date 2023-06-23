@@ -6,6 +6,12 @@ import com.yorijori.foodcode.jpa.entity.UserFrige;
 
 public interface RefriTrayDAO {
 
-	List<UserFrige> selectAll();
+	List<UserFrige> selectAll(String userId);
+
+	long countByUserId(String userId);
+
+	void insertAll(List<UserFrige> userfrigelist);
+
+	void deleteByUserId(String userId);
 
 }

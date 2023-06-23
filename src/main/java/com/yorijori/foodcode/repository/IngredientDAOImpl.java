@@ -26,6 +26,7 @@ public class IngredientDAOImpl implements IngredientDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 	@Override
 	public void delete(int matlNo) {
@@ -50,6 +51,10 @@ public class IngredientDAOImpl implements IngredientDAO {
 		return repository.findByMatlNo(matlNo);
 	}
 
+	@Override
+	public Ingredients findById(int matlNo) {
+		return repository.findById(matlNo).orElseThrow(()-> new RuntimeException());
+	}
 	
 	@Override
 	public long countAll() {

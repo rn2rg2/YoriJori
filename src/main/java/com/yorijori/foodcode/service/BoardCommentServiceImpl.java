@@ -37,11 +37,7 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		return 0;
 	}
 
-	@Override
-	public int delete(BoardComment boardComment) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public long countAll() {
@@ -53,14 +49,29 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		return dao.selectComment(commNo);
 	}
 
-	@Override
-	public int updateGroupNo(BoardDTO boardDTO) {
-		return dao.updateGroupNo(boardDTO);
-	}
+
 
 	@Override
 	public int insertComment(BoardDTO boardDTO) {
 		return dao.insertComment(boardDTO);
+	}
+
+	@Override
+	public List<BoardComment> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {	
+		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
+	}
+
+
+
+	@Override
+	public void delete(int commentNo) {
+		// TODO Auto-generated method stub
+		dao.delete(commentNo);
+	}
+
+	@Override
+	public int updateGroupNo(BoardDTO boardDTO) {
+		return dao.updateGroupNo(boardDTO);
 	}
 
 

@@ -12,7 +12,7 @@
 							<th>번호</th>
 							<td th:text="${board.commNo}"></td>
 							<th>작성자</th>
-							<td th:text="${board.userId}"></td>
+							<td th:text="${board.userId.nickname}"></td>
 						</tr>
 						<tr>
 							<th>날짜</th>
@@ -30,14 +30,13 @@
 					</div>
 
 					<div class="btns" style="float: right;">
-
-						<button type="button" class="buttons btn-primary"
-							onclick="location.href='/yorijori/board/write'">수정</button>
-
-						<button type="button" class="buttons btn-primary"
-							th:onclick="|location.href='@{/board/delete(commNo=${board.commNo})}'|">삭제</button>
-
-						<button type="button" class="buttons btn-primary" 
+						<th:block th:if="${!#strings.isEmpty(session.userInfo) and board.userId.userId == session.userInfo.userId}">		
+							<button type="button" class="buttons btn-primary"
+								onclick="location.href='/yorijori/board/write'">수정</button>
+							<button type="button" class="buttons btn-primary"
+								th:onclick="|location.href='@{/board/delete(commNo=${board.commNo})}'|">삭제</button>
+						</th:block>
+							<button type="button" class="buttons btn-primary" 
 							th:onclick="|location.href='@{/board/list/0/10'}|">목록</button>
 					</div>
 				</div>

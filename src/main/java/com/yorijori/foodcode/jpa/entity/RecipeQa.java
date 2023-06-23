@@ -16,20 +16,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="recipe_qa")
-@ToString(exclude = {"recipeNo"})
 public class RecipeQa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int qaNo;
 	//private int recipeNo;
-	//	private String userId;
+
 	private String title;
 	private String contents;
 	private int depthLevel;
@@ -39,10 +38,13 @@ public class RecipeQa {
 	private Date upDate;
 	private int state; //default 0
 	
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "recipeNo", nullable=false)
 	private Recipe recipeNo;
 	
+
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable=false)
 	private UserInfo userId;

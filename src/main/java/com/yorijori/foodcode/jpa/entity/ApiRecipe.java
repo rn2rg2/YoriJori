@@ -15,14 +15,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "api_recipe")
-@ToString(exclude = { "imgList", "reviewList", "qaList", "wishlist" })
 public class ApiRecipe {
 	@Id
 	private int rcpSeq; // 레시피번호
@@ -43,18 +42,22 @@ public class ApiRecipe {
 	private int state; // Field
 	private int count; //조회수
 
+	@Exclude
 	@OneToMany(mappedBy = "rcpSeq", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<ApiRecipeImg> imgList = new ArrayList<ApiRecipeImg>();
 
+	@Exclude
 	@OneToMany(mappedBy = "rcpSeq",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<ApiRecipeReview> reviewList = new ArrayList<ApiRecipeReview>();
 
+	@Exclude
 	@OneToMany(mappedBy = "rcpSeq", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<ApiRecipeQa> qaList = new ArrayList<ApiRecipeQa>();
 
+	@Exclude
 	@OneToMany(mappedBy = "rcpSeq", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<UserWishListApi> wishlist = new ArrayList<UserWishListApi>();

@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,22 +8,55 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
+import com.yorijori.foodcode.repository.IngredientDAO;
 import com.yorijori.foodcode.repository.RefriTrayDAO;
 
 @Service
 @Transactional
-public class RefriTrayServiceImpl implements RefriTrayService{
+public class RefriTrayServiceImpl implements RefriTrayService {
 	RefriTrayDAO rtdao;
-	
+	IngredientDAO ingredao;
+
 	@Autowired
-	public RefriTrayServiceImpl(RefriTrayDAO rtdao) {
+	public RefriTrayServiceImpl(RefriTrayDAO rtdao,IngredientDAO ingredao) {
 		super();
 		this.rtdao = rtdao;
+		this.ingredao = ingredao;
 	}
 
 	@Override
-	public List<UserFrige> selectAll(){
-		return rtdao.selectAll();
-	};
+	public List<UserFrige> selectAll(String userId) {
+		List<UserFrige> list = new ArrayList<UserFrige>(); 
+		list = rtdao.selectAll(userId);
+		System.out.println("===============================");
+		System.out.println(list);
+		System.out.println(list.size());
+		System.out.println("===============================");
+		for (UserFrige dto : list) {
+			Ingredients ingredto = ingredao.selectByMatlNo(dto.getMatlNo());
+			dto.setIngredients(ingredto);
+		}
+		return list;
+	}
+
+	@Override
+	public long countByUserId(String userId) {
+		return rtdao.countByUserId(userId);
+	}
+
+	@Override
+	public void insert(UserFrige userfrige, String userId) {
+		rtdao.deleteByUserId(userId);
+		List<UserFrige> refrilist = new ArrayList<UserFrige>();
+		for ( Ingredients ingre : userfrige.getMatlList()) {
+			UserFrige frige = new UserFrige();
+			frige.setUserId(userfrige.getUserId());
+			frige.setMatlNo(ingre.getMatlNo());
+			refrilist.add(frige);
+		}
+		rtdao.insertAll(refrilist);
+	}
+	
 }

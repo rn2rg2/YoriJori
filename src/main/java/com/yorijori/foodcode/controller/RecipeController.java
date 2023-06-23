@@ -24,8 +24,11 @@ import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
+
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
+
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.IngredientService;
@@ -253,6 +256,7 @@ public class RecipeController {
 	    String referer = request.getHeader("Referer");
 	    // 세션에서 userInfo 가져오기
 	    UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+
 	    // If userInfo is null, redirect to login page
 	    if (userInfo == null) {
 	        return "yorijori/member/loginpage";
@@ -267,6 +271,7 @@ public class RecipeController {
 		    recipeService.reviewsave(recipereview);
 		    return "redirect:" + referer;
 	    }
+
 	}
 	
 	// 조회수 올리는 메소드 (쿠키 기반)

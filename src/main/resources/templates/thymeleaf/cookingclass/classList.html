@@ -1,24 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
 
-	<link rel="stylesheet"
-		href="/yorijori/common/css/cookingclass/classListSlider.css" />
-	<link rel="stylesheet"
-		href="/yorijori/common/css/recipe/recipelist.css" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="/yorijori/common/css/cookingclass/classListSlider.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 	<!-- 폰트 -->
-	<link
-		href="https://hangeul.pstatic.net/hangeul_static/css/NanumBuJangNimNunCiCe.css"
-		rel="stylesheet">
-	<link
-		href="https://hangeul.pstatic.net/hangeul_static/css/NanumSeongSirCe.css"
-		rel="stylesheet">
-	<script src="https://kit.fontawesome.com/8b61787525.js"
-		crossorigin="anonymous"></script>
+	<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBuJangNimNunCiCe.css" rel="stylesheet">
+	<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumSeongSirCe.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/8b61787525.js" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function() {
 			$(".option").click(function() {
@@ -34,8 +24,7 @@
 
 		<h3 class="menu-h3-common">추천 클래스 목록</h3>
 		<div class="options">
-			<div class="option active"
-				style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
+			<div class="option active" style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -47,8 +36,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="option"
-				style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -60,8 +48,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="option"
-				style="-optionBackground: url(https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg);">
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -73,8 +60,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="option"
-				style="-optionBackground: url(https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg);">
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -86,8 +72,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="option"
-				style="-optionBackground: url(https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg);">
+			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -108,34 +93,29 @@
 				<div class="sidebar">
 					<div class="widget border-0">
 						<div class="search">
-							<th:block
-								th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,inputId,btnId)}">
+							<th:block th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,inputId,btnId)}">
 						</div>
 					</div>
 					<div class="widget">
 						<div class="widget-title widget-collapse">
 							<h6>필터</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#dateposted"
-								role="button" aria-expanded="false" aria-controls="dateposted">
+							<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
 								<i class="fas fa-chevron-down"></i>
 							</a>
 						</div>
 						<div class="collapse show" id="dateposted">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted1"> <label class="custom-control-label"
-										for="dateposted1">이름 순</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted1">
+									<label class="custom-control-label" for="dateposted1">이름 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted2"> <label class="custom-control-label"
-										for="dateposted2">등록 순</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted2">
+									<label class="custom-control-label" for="dateposted2">등록 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="dateposted3"> <label class="custom-control-label"
-										for="dateposted3">신청자 많은 순</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted3">
+									<label class="custom-control-label" for="dateposted3">신청자 많은 순</label>
 								</div>
 							</div>
 						</div>
@@ -143,32 +123,27 @@
 					<div class="widget">
 						<div class="widget-title widget-collapse">
 							<h6>메뉴 타입</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#specialism"
-								role="button" aria-expanded="false" aria-controls="specialism">
+							<a class="ml-auto" data-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism">
 								<i class="fas fa-chevron-down"></i>
 							</a>
 						</div>
 						<div class="collapse show" id="specialism">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="specialism1"> <label class="custom-control-label"
-										for="specialism1">한식</label>
+									<input type="checkbox" class="custom-control-input" id="specialism1">
+									<label class="custom-control-label" for="specialism1">한식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="specialism2"> <label class="custom-control-label"
-										for="specialism2">중식</label>
+									<input type="checkbox" class="custom-control-input" id="specialism2">
+									<label class="custom-control-label" for="specialism2">중식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="specialism3"> <label class="custom-control-label"
-										for="specialism3">일식</label>
+									<input type="checkbox" class="custom-control-input" id="specialism3">
+									<label class="custom-control-label" for="specialism3">일식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="specialism4"> <label class="custom-control-label"
-										for="specialism4">양식</label>
+									<input type="checkbox" class="custom-control-input" id="specialism4">
+									<label class="custom-control-label" for="specialism4">양식</label>
 								</div>
 							</div>
 						</div>
@@ -178,32 +153,27 @@
 					<div class="widget">
 						<div class="widget-title widget-collapse">
 							<h6>Experience</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#experience"
-								role="button" aria-expanded="false" aria-controls="experience">
+							<a class="ml-auto" data-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience">
 								<i class="fas fa-chevron-down"></i>
 							</a>
 						</div>
 						<div class="collapse show" id="experience">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="experience2"> <label class="custom-control-label"
-										for="experience2">1년전 게시물</label>
+									<input type="checkbox" class="custom-control-input" id="experience2">
+									<label class="custom-control-label" for="experience2">1년전 게시물</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="experience3"> <label class="custom-control-label"
-										for="experience3">2년전 게시물</label>
+									<input type="checkbox" class="custom-control-input" id="experience3">
+									<label class="custom-control-label" for="experience3">2년전 게시물</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="experience4"> <label class="custom-control-label"
-										for="experience4">3년전 게시물</label>
+									<input type="checkbox" class="custom-control-input" id="experience4">
+									<label class="custom-control-label" for="experience4">3년전 게시물</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="experience5"> <label class="custom-control-label"
-										for="experience5">4년전 게시물</label>
+									<input type="checkbox" class="custom-control-input" id="experience5">
+									<label class="custom-control-label" for="experience5">4년전 게시물</label>
 								</div>
 							</div>
 						</div>
@@ -211,43 +181,31 @@
 					<div class="widget">
 						<div class="widget-title widget-collapse">
 							<h6>좋아요</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary"
-								role="button" aria-expanded="false"
-								aria-controls="Offeredsalary"> <i
-								class="fas fa-chevron-down"></i>
+							<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary">
+								<i class="fas fa-chevron-down"></i>
 							</a>
 						</div>
 						<div class="collapse show" id="Offeredsalary">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="Offeredsalary1"> <label
-										class="custom-control-label" for="Offeredsalary1">10k
-										- 20k</label>
+									<input type="checkbox" class="custom-control-input" id="Offeredsalary1">
+									<label class="custom-control-label" for="Offeredsalary1">10k - 20k</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="Offeredsalary2"> <label
-										class="custom-control-label" for="Offeredsalary2">20k
-										- 30k</label>
+									<input type="checkbox" class="custom-control-input" id="Offeredsalary2">
+									<label class="custom-control-label" for="Offeredsalary2">20k - 30k</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="Offeredsalary3"> <label
-										class="custom-control-label" for="Offeredsalary3">30k
-										- 40k</label>
+									<input type="checkbox" class="custom-control-input" id="Offeredsalary3">
+									<label class="custom-control-label" for="Offeredsalary3">30k - 40k</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="Offeredsalary4"> <label
-										class="custom-control-label" for="Offeredsalary4">40k
-										- 50k</label>
+									<input type="checkbox" class="custom-control-input" id="Offeredsalary4">
+									<label class="custom-control-label" for="Offeredsalary4">40k - 50k</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="Offeredsalary5"> <label
-										class="custom-control-label" for="Offeredsalary5">50k
-										- 60k</label>
+									<input type="checkbox" class="custom-control-input" id="Offeredsalary5">
+									<label class="custom-control-label" for="Offeredsalary5">50k - 60k</label>
 								</div>
 							</div>
 						</div>
@@ -263,60 +221,52 @@
 			<div class="col-lg-9">
 				<div class="job-filter mb-4 d-sm-flex align-items-center">
 					<div class="job-alert-bt">
-						<a class="btn btn-md btn-dark" href="/yorijori/cookingclass/in"><i
-							class="fa-solid fa-utensils"></i>ㅤ클래스 등록</a>
+						<a class="btn btn-md btn-dark" href="/yorijori/cookingclass/in">
+							<i class="fa-solid fa-utensils"></i>ㅤ클래스 등록
+						</a>
 					</div>
-					<div class="job-shortby ml-sm-auto d-flex align-items-center">
-					</div>
+					<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
 				</div>
 				<div class="row" id="list">
 
 
 					<div class="col-sm-6 col-lg-4 mb-4" th:each="class:${classList}">
 
-						<div class="candidate-list candidate-grid"
-							style="cursor: pointer;"
-							th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|">
+						<div class="candidate-list candidate-grid" style="cursor: pointer;" th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|">
 							<div class="candidate-list-image">
-								<img class="img-fluid" th:src="${class.thumbnail}"
-									style="object-fit: cover;">
+								<img class="img-fluid" th:src="${class.thumbnail}" style="object-fit: cover;">
 							</div>
 							<div class="candidate-list-details">
 								<div class="candidate-list-info">
 									<div class="candidate-list-title">
 										<h5>
-											<a
-												th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|"><span
-												th:text="${class.title}"></span></a>
+											<a th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|">
+												<span th:text="${class.title}"></span>
+											</a>
 										</h5>
 									</div>
 									<div class="candidate-list-option">
-										<div
-											class="badge badge-danger px-3 rounded-pill font-weight-normal">
-											<span th:text="${class.userId}"></span>
+										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											<span th:text="${class.userId.userId}"></span>
 										</div>
-										<div
-											class="badge badge-danger px-3 rounded-pill font-weight-normal">
+										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
 											<span th:text="${class.category}"></span>
 										</div>
 										</br>
-										<div
-											class="badge badge-danger px-3 rounded-pill font-weight-normal">
-											<span th:text="${class.price}">원</span>
-										</div>
+
 										<ul class="list-unstyled">
-											<li><i class="fa-solid fa-person"></i> <span
-												th:text="${class.count}"></span><span>명</span></li>
-											<li><i class="fa-solid fa-clock"></i> <span
-												th:text="${class.time}"></span><span>분</span></li>
+											<li><i class="fa-solid fa-person"></i> <span th:text="${class.count}"></span><span>명</span></li>
+											<li><i class="fa-solid fa-clock"></i> <span th:text="${class.time}"></span><span>분</span></li>
 										</ul>
 									</div>
 								</div>
 								<div class="candidate-list-favourite-time">
 									<a class="candidate-list-favourite order-2" href="#프로필조회?">
-										<!-- <img th:src="${class.userId}"> -->
-									</a> <span class="candidate-list-time order-1"><i
-										class="far fa-clock pr-1"></i><span th:text="${class.date}"></span></span>
+										<img th:src="${class.userId.imgPath}">
+									</a>
+									<span class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}원|"></span></span>
+
+
 								</div>
 							</div>
 						</div>
@@ -328,8 +278,7 @@
 				<div class="row">
 					<div class="col-12 text-center mt-4 mt-sm-5">
 						<ul class="pagination justify-content-center mb-0">
-							<li class="page-item active" aria-current="page"><span
-								class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+							<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
 							<li class="page-item"><a class="page-link" href="#">2</a></li>
 							<li class="page-item"><a class="page-link" href="#">3</a></li>
 							<li class="page-item"><a class="page-link" href="#">4</a></li>
@@ -342,8 +291,7 @@
 
 		</div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 
 </th:block>
 </html>

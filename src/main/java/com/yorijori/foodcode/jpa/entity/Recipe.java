@@ -22,14 +22,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "recipe")
-@ToString(exclude = { "userId", "imgList", "categoryList", "reviewList", "qaList", "wishlist" })
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,25 +48,39 @@ public class Recipe {
 	@UpdateTimestamp
 	private Date upDate;
 	private int state;
+
 	private String thumbnail;
+
+
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<RecipeImage> imgList = new ArrayList<RecipeImage>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeCategory> categoryList = new ArrayList<RecipeCategory>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeReview> reviewList = new ArrayList<RecipeReview>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
 
+	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<RecipeIngredients> rcpIngrelist = new ArrayList<RecipeIngredients>();
+	
 
 	public void viewCountUp(Recipe recipe) {
 		recipe.count++;
