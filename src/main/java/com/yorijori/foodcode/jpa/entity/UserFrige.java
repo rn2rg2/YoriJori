@@ -44,9 +44,9 @@ public class UserFrige{
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
 	
-	
 	@Exclude
-	@OneToMany(mappedBy = "matlNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Ingredients> matlNo = new ArrayList<Ingredients>();
+
 
 }
