@@ -21,5 +21,6 @@ public interface BoardCommentDAO {
 	int updateGroupNo(BoardDTO boardDTO);
 
 	int insertComment(BoardDTO boardDTO);
-
+	
+	List<BoardComment> selectByPageAndpagePerCount (int pageNo, int pagePerCount);
 }

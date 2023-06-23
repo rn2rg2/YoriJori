@@ -63,6 +63,11 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		return dao.insertComment(boardDTO);
 	}
 
+	@Override
+	public List<BoardComment> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {	
+		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
+	}
+
 
 
 }

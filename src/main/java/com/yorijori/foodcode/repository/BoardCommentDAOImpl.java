@@ -75,6 +75,14 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 		return sqlSessionTemplate.insert("com.yorijori.board.insertComment", boardDTO);
 	}
 
+	@Override
+	public List<BoardComment> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		Page<BoardComment> page = repository.findAll(pageRequest);
+		List<BoardComment> list = page.getContent();
+		return list;
+	}
+
 
 
 }

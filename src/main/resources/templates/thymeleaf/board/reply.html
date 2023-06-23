@@ -13,7 +13,7 @@
 						<h2 class="text-success-comments">Comments</h2>
 						<form id="myForm" action="/yorijori/board/boardCommentInsert" method="post">
 							<input type="hidden" name="comm_no" th:value="${board.commNo}" />
-							<input type="hidden" name="user_id" th:value="${session.userInfo.userId}" />
+							<input type="hidden" name="user_id" th:value="${!#strings.isEmpty(session.userInfo) ? session.userInfo.userId : nodata}" />
 							<input type="hidden" name="state" th:value="${board.state}" />
 							<input type="hidden" name="is_first_comment" th:value="Y" />
 							<textarea class="form-control" placeholder="댓글을 입력해주세요" rows="3" name="contents"></textarea>
@@ -39,7 +39,7 @@
 										<p class="meta" th:text="${comment.contents}"></p>
 										<form action="/yorijori/board/boardCommentInsert" method="post">
 											<input type="hidden" name="comm_no" th:value="${board.commNo}" />
-											<input type="hidden" name="user_id" th:value="${session.userInfo.userId}" />
+											<input type="hidden" name="user_id" th:value="${!#strings.isEmpty(session.userInfo) ? session.userInfo.userId : nodata}" />
 											<input type="hidden" name="state" th:value="${board.state}" />
 											<input type="hidden" name="is_first_comment" th:value="N" />
 											<input type="hidden" name="parents_comment_no" th:value="${comment.comment_no}" />
@@ -70,87 +70,17 @@
 								</th:block></li>
 						</ul>
 					</div>
+					<!-- 페이징 자리 -->
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag">
+								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<script>
-			/*
-			 * 댓글 등록하기(Ajax)
-			 */
-			function fn_comment(code) {
-
-				$.ajax({
-					type : 'POST',
-					url : "<c:url value='/board/addComment.do'/>",
-					data : $("#commentForm").serialize(),
-					success : function(data) {
-						if (data == "success") {
-							getCommentList();
-							$("#comment").val("");
-						}
-					},
-					error : function(request, status, error) {
-						//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					}
-
-				});
-			}
-
-			/**
-			 * 초기 페이지 로딩시 댓글 불러오기
-			 */
-			$(function() {
-
-				getCommentList();
-
-			});
-
-			/**
-			 * 댓글 불러오기(Ajax)
-			 */
-			function getCommentList() {
-
-				$.ajax({
-					type : 'GET',
-					url : "<c:url value='/board/commentList.do'/>",
-					dataType : "json",
-					data : $("#commentForm").serialize(),
-					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-					success : function(data) {
-
-						var html = "";
-						var cCnt = data.length;
-
-						if (data.length > 0) {
-
-							for (i = 0; i < data.length; i++) {
-								html += "<div>";
-								html += "<div><table class='table'><h6><strong>" + data[i].writer + "</strong></h6>";
-								html += data[i].comment + "<tr><td></td></tr>";
-								html += "</table></div>";
-								html += "</div>";
-							}
-
-						} else {
-
-							html += "<div>";
-							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-							html += "</table></div>";
-							html += "</div>";
-
-						}
-
-						$("#cCnt").html(cCnt);
-						$("#commentList").html(html);
-
-					},
-					error : function(request, status, error) {
-
-					}
-
-				});
-			}
-		</script>
+		</div>	
 	</div>
 
 </th:block>

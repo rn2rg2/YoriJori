@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonObject;
 import com.yorijori.foodcode.common.FileUploadLogic;
+import com.yorijori.foodcode.dto.BoardCommentDTO;
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
@@ -62,19 +66,25 @@ public class BoardController {
 		model.addAttribute("boardlist",list);
 		model.addAttribute("count",count);
 		model.addAttribute("pageNo",pageNo);
-		
+		model.addAttribute("pagePerCount",pagePerCount);
 		return "thymeleaf/board/list";
 	}
 	
 	
 	//게시물 상세보기
 	@RequestMapping("/read/{commNo}/{state}")
-	public String boardRead(@PathVariable int commNo, @PathVariable int state, HttpSession session, Model model) {
+	public String boardRead(@PathVariable int commNo, @PathVariable int state, HttpSession session, Model model,
+							HttpServletRequest request, HttpServletResponse response) {
 		service.bulletinBoardViews(commNo);
 		Board board = service.select(commNo);
+		//List<BoardComment> boardCommentList = commentService.selectByPageAndpagePerCount(pageNo, pagePerCount);
+		//long count = commentService.countAll();
 		List<BoardDTO> boardCommentList = commentService.selectComment(commNo);
 		model.addAttribute("boardCommentList", boardCommentList);
 		model.addAttribute("board", board);
+		//model.addAttribute("count",count);
+		//model.addAttribute("pageNo",pageNo);
+		//viewCountValidation(commNo, board, request, response);
 		return "thymeleaf/layout/boardLayout";
 	}
 	
@@ -93,8 +103,8 @@ public class BoardController {
 	
 	//댓글 전체 조회
 	@RequestMapping("/boardCommentList")
-	public String boardCommentList(BoardComment boardComment,Model model) {
-		List<BoardDTO> boardCommentList = commentService.selectComment(boardComment.getCommNo().getCommNo());
+	public String boardCommentList(BoardDTO boardDTO ,BoardComment boardComment,Model model) {
+		List<BoardDTO> boardCommentList = commentService.selectComment(boardDTO.getComm_no());
 		model.addAttribute("boardCommentList", boardCommentList);
 		System.out.println("commmmmmment"+boardCommentList);
 		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();
@@ -111,16 +121,18 @@ public class BoardController {
 	public String boardwrite(Board board) {
 		//System.out.println("Controller");
 		//System.out.println(board.toString());
+		board.setView(0);
 		service.insert(board);
-		return "redirect:/board/list/0";
+		return "redirect:/board/list/0/10";
 	}
 
 	//게시글 삭제
 	@GetMapping("/delete")
 	public String delete(int commNo) {
 		service.delete(commNo);
-		return "redirect:/board/list/0";
+		return "redirect:/board/list/0/10";
 	}
+	
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
@@ -150,5 +162,27 @@ public class BoardController {
 		System.out.println(jsonObject.toString());
 		return jsonObject;
 	}
-	
+	// 조회수 올리는 메소드 (쿠키 기반)
+
+	/*private void viewCountValidation(int commNo, Board board, HttpServletRequest request, HttpServletResponse response) {
+	    boolean isVisited = false;
+	    Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("visit_cookie") && cookie.getValue().contains("[" + board.getUserId() + "]")) {
+	                isVisited = true;
+	                break;
+	            }
+	        }
+	    }
+
+	    if (!isVisited) {
+	        service.bulletinBoardViews(commNo);
+	        Cookie newCookie = new Cookie("visit_cookie", "[" + board.getUserId() + "]");
+	        newCookie.setMaxAge(60 * 60 * 2);
+	        newCookie.setPath("/");
+	        response.addCookie(newCookie);
+	    }*/
+	//}
+
 }
