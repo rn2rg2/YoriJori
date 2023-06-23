@@ -73,6 +73,11 @@ public class Recipe {
 	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<RecipeIngredients> rcpIngrelist = new ArrayList<RecipeIngredients>();
+	
 
 	public void viewCountUp(Recipe recipe) {
 		recipe.count++;
