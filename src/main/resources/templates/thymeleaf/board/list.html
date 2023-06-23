@@ -70,7 +70,7 @@
 										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
 												<span th:text="${board.title }"></span>
 											</a></td>
-										<td><span th:text="${board.userId.userId}"></span></td>
+										<td><span th:text="${board.userId.nickname}"></span></td>
 										<td><span th:text="${board.view}"></span></td>
 									</tr>
 								</table>
@@ -136,5 +136,6 @@
 				window.location.href = url;
 			}
 			</script>
+	</div>
 </th:block>
 </html>
