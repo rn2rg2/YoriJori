@@ -33,7 +33,7 @@ public class CookingClass {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cookNo;
-	private String userId;
+	//private String userId;
 	private String title;
 	private String thumbnail;
 	private int price;
@@ -57,7 +57,8 @@ public class CookingClass {
 	
 	@Exclude
 	@ManyToOne
-	@JoinColumn(name = "commNo", nullable = false)
-	private UserInfo commNo;
+	@JoinColumn(name = "userId", nullable = false)
+	private UserInfo userId;
+	// 실제 read페이지에서
 	
 }
