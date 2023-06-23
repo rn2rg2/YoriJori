@@ -43,11 +43,6 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 		return 0;
 	}
 
-	@Override
-	public int delete(BoardComment boardComment) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	@Override
@@ -81,6 +76,16 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 		Page<BoardComment> page = repository.findAll(pageRequest);
 		List<BoardComment> list = page.getContent();
 		return list;
+	}
+
+	@Override
+	public void delete(int commentNo) {
+		BoardComment boardComment = repository.findById(commentNo).get();
+		boardComment.setCommentNo(commentNo);
+		boardComment.setState(1);
+		System.out.println("댓글삭제servvvvvv");
+
+	
 	}
 
 

@@ -28,6 +28,7 @@ import com.yorijori.foodcode.dto.BoardCommentDTO;
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardCommentService;
 import com.yorijori.foodcode.service.BoardService;
 
@@ -101,6 +102,15 @@ public class BoardController {
 		return "redirect:/board/read/" + boardDTO.getComm_no() + "/" + boardDTO.getState();
 	}
 	
+	//댓글 삭제
+	@GetMapping("/boardCommentDelete")
+	public String boardCommentDelete(BoardDTO boardDTO , int commentNo, HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
+		commentService.delete(commentNo);
+		System.out.println("댓글삭제cccrrrrrrrrrrrr");
+		return "redirect:"+ referer;
+	}
+	
 	//댓글 전체 조회
 	@RequestMapping("/boardCommentList")
 	public String boardCommentList(BoardDTO boardDTO ,BoardComment boardComment,Model model) {
@@ -118,9 +128,14 @@ public class BoardController {
 
 	//게시판 글쓰기 기능
 	@PostMapping("/write")
-	public String boardwrite(Board board) {
-		//System.out.println("Controller");
-		//System.out.println(board.toString());
+	public String boardwrite(Board board, HttpSession session) {
+//		System.out.println("Controller");
+//		System.out.println("================================");
+//		System.out.println(board);
+//		System.out.println(board.getUserId());
+//		System.out.println("================================");
+		UserInfo user = (UserInfo) session.getAttribute("userInfo");
+		board.setUserId(user);
 		board.setView(0);
 		service.insert(board);
 		return "redirect:/board/list/0/10";
@@ -135,7 +150,7 @@ public class BoardController {
 	
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
 		
 		JsonObject jsonObject = new JsonObject();
 		
@@ -160,7 +175,8 @@ public class BoardController {
 		}
 		System.out.println("ccccccccccccccontroller");
 		System.out.println(jsonObject.toString());
-		return jsonObject;
+		String jsonvalue = jsonObject.toString();
+		return jsonvalue;
 	}
 	// 조회수 올리는 메소드 (쿠키 기반)
 

@@ -31,12 +31,18 @@
 											says :
 											<th:block th:if="${!#strings.isEmpty(session.userInfo) and comment.user_id == session.userInfo.userId}">
 												<!-- 유저정보가 있는 경우 -->
-												<i class="pull-right" style="float: right;"><a href="#">
+												<i class="pull-right" style="float: right;"><a th:href="@{/board/boardCommentDelete(commentNo=${comment.comment_no})}">
 														<i class="fa-solid fa-trash"></i>
 													</a></i>
 											</th:block>
 										</p>
-										<p class="meta" th:text="${comment.contents}"></p>
+										<th:block th:if="${comment.state == 0}">
+	 												<p th:text="${comment.contents}" class="meta"></p>
+												</th:block>
+										<th:block th:unless="${comment.state == 0}">
+												    <p th:text="|삭제된 댓글입니다.|" class="meta"></p>
+										</th:block>
+										<!-- <p class="meta" th:text="${comment.contents}"></p> -->
 										<form action="/yorijori/board/boardCommentInsert" method="post">
 											<input type="hidden" name="comm_no" th:value="${board.commNo}" />
 											<input type="hidden" name="user_id" th:value="${!#strings.isEmpty(session.userInfo) ? session.userInfo.userId : nodata}" />
@@ -55,17 +61,22 @@
 										<li class="clearfix"><img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
 											<div class="post-comments">
 												<p class="meta">
-													<a class="commentsName" href="#" th:text="|${comment.user_id} ${comment.date}|"></a>
+													<a class="commentsName" th:text="|${comment.user_id} ${comment.date}|"></a>
 													says :
 													<th:block th:if="${!#strings.isEmpty(session.userInfo) and comment.user_id == session.userInfo.userId}">
 														<!-- 유저정보가 있는 경우 -->
-														<i class="pull-right" style="float: right;"><a href="#">
+														<i class="pull-right" style="float: right;">
+															<a th:href="@{/board/boardCommentDelete(commentNo=${comment.comment_no})}">
 																<i class="fa-solid fa-trash"></i>
 															</a></i>
 													</th:block>
 												</p>
-												<p class="meta" th:text="${comment.contents}" />
-											</div></li>
+												<th:block th:if="${comment.state == 0}">
+	 												<p th:text="${comment.contents}" class="meta"></p>
+												</th:block>
+												<th:block th:unless="${comment.state == 0}">
+												    <p th:text="|삭제된 댓글입니다.|" class="meta"></p>
+												</th:block>
 									</ul>
 								</th:block></li>
 						</ul>
