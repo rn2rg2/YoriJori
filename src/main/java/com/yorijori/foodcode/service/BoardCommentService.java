@@ -10,9 +10,9 @@ public interface BoardCommentService {
 	List<BoardComment> selectAll();
 	List<BoardDTO> selectComment(int commNo);
 	int update(BoardComment boardComment);
-	int delete(BoardComment boardComment);
 	long countAll();
+	void delete(int commentNo);
+	List<BoardComment> selectByPageAndpagePerCount(int pageNo, int pagePerCount);
 	int updateGroupNo(BoardDTO boardDTO);
 	int insertComment(BoardDTO boardDTO);
-
 }
