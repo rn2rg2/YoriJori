@@ -49,6 +49,9 @@ public class Recipe {
 	private Date upDate;
 	private int state;
 
+	private String thumbnail;
+
+
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)

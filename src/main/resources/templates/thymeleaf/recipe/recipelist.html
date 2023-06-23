@@ -208,9 +208,9 @@
 						<th:block th:if="${type} == 'user'">
 							<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
 								<div class="candidate-list candidate-grid">
-									<div class="candidate-list-image">
-										<img class="img-fluid" src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/13/9ac22b498a2442f29302df533a8731711.jpg" alt="">
-									</div>
+								<div th:each="recipe : ${list}">
+								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt="">
+								</div>
 									<div class="candidate-list-details">
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">

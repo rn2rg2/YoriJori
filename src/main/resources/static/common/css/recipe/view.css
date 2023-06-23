@@ -528,3 +528,340 @@ swiper {
 }
 
 
+
+.review-list ul li .left span {
+     width: 32px;
+     height: 32px;
+     display: inline-block;
+}
+ .review-list ul li .left {
+     flex: none;
+     max-width: none;
+     margin: 0 10px 0 0;
+}
+ .review-list ul li .left span img {
+     border-radius: 50%;
+}
+ .review-list ul li .right h4 {
+     font-size: 16px;
+     margin: 0;
+     display: flex;
+}
+ .review-list ul li .right h4 .gig-rating {
+     display: flex;
+     align-items: center;
+     margin-left: 10px;
+     color: #ffbf00;
+}
+ .review-list ul li .right h4 .gig-rating svg {
+     margin: 0 4px 0 0px;
+}
+ .country .country-flag {
+     width: 16px;
+     height: 16px;
+     vertical-align: text-bottom;
+     margin: 0 7px 0 0px;
+     border: 1px solid #fff;
+     border-radius: 50px;
+     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+ .country .country-name {
+     color: #95979d;
+     font-size: 13px;
+     font-weight: 600;
+}
+ .review-list ul li {
+     border-bottom: 1px solid #dadbdd;
+     padding: 0 0 30px;
+     margin: 0 0 30px;
+}
+ .review-list ul li .right {
+     flex: auto;
+}
+ .review-list ul li .review-description {
+     margin: 20px 0 0;
+}
+ .review-list ul li .review-description p {
+     font-size: 14px;
+     margin: 0;
+}
+ .review-list ul li .publish {
+     font-size: 13px;
+     color: #95979d;
+}
+
+.review-section h4 {
+     font-size: 20px;
+     color: #222325;
+     font-weight: 700;
+}
+ .review-section .stars-counters tr .stars-filter.fit-button {
+     padding: 6px;
+     border: none;
+     color: #4a73e8;
+     text-align: left;
+}
+ .review-section .fit-progressbar-bar .fit-progressbar-background {
+     position: relative;
+     height: 8px;
+     background: #efeff0;
+     -webkit-box-flex: 1;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+     background-color: #ffffff;
+    ;
+     border-radius: 999px;
+}
+ .review-section .stars-counters tr .star-progress-bar .progress-fill {
+     background-color: #ffb33e;
+}
+ .review-section .fit-progressbar-bar .progress-fill {
+     background: #2cdd9b;
+     background-color: rgb(29, 191, 115);
+     height: 100%;
+     position: absolute;
+     left: 0;
+     z-index: 1;
+     border-radius: 999px;
+}
+ .review-section .fit-progressbar-bar {
+     display: flex;
+     align-items: center;
+}
+ .review-section .stars-counters td {
+     white-space: nowrap;
+}
+ .review-section .stars-counters tr .progress-bar-container {
+     width: 100%;
+     padding: 0 10px 0 6px;
+     margin: auto;
+}
+ .ranking h6 {
+     font-weight: 600;
+     padding-bottom: 16px;
+}
+ .ranking li {
+     display: flex;
+     justify-content: space-between;
+     color: #95979d;
+     padding-bottom: 8px;
+}
+ .review-section .stars-counters td.star-num {
+     color: #4a73e8;
+}
+ .ranking li>span {
+     color: #62646a;
+     white-space: nowrap;
+     margin-left: 12px;
+}
+ .review-section {
+     border-bottom: 1px solid #dadbdd;
+     padding-bottom: 24px;
+     margin-bottom: 34px;
+     padding-top: 64px;
+}
+ .review-section select, .review-section .select2-container {
+     width: 188px !important;
+     border-radius: 3px;
+}
+ul, ul li {
+    list-style: none;
+    margin: 0px;
+}
+.helpful-thumbs, .helpful-thumb {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+.be-comment-block {
+    margin-bottom: 50px !important;
+    border: 1px solid #edeff2;
+    border-radius: 2px;
+    padding: 50px 70px;
+    border:1px solid #ffffff;
+}
+
+.comments-title {
+    font-size: 16px;
+    color: #262626;
+    margin-bottom: 15px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-img-comment {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.be-ava-comment {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.be-comment-content {
+    margin-left: 80px;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-name {
+    font-size: 13px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-comment-content a {
+    color: #383b43;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-time {
+    text-align: right;
+}
+
+.be-comment-time {
+    font-size: 11px;
+    color: #b4b7c1;
+}
+
+.be-comment-text {
+    font-size: 13px;
+    line-height: 18px;
+    color: #7a8192;
+    display: block;
+    background: #f6f6f7;
+    border: 1px solid #edeff2;
+    padding: 15px 20px 20px 20px;
+}
+
+.form-group.fl_icon .icon {
+    position: absolute;
+    top: 1px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+    background: #f6f6f7;
+    color: #b5b8c2;
+    text-align: center;
+    line-height: 50px;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomleft: 2px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.form-group .form-input {
+    font-size: 13px;
+    line-height: 50px;
+    font-weight: 400;
+    color: #b4b7c1;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #edeff2;
+    border-radius: 3px;
+}
+
+.form-group.fl_icon .form-input {
+    padding-left: 70px;
+}
+
+.form-group textarea.form-input {
+    height: 150px;
+}
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+       .rate { display: inline-block;border: 0;margin-right: 15px;}
+.rate > input {display: none;}
+.rate > label {float: right;color: #ddd}
+.rate > label:before {display: inline-block;font-size: 1rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
+.rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
+.rate input:checked ~ label, 
+.rate label:hover,.rate label:hover ~ label { color: #f73c32 !important;  } 
+.rate input:checked + .rate label:hover,
+.rate input input:checked ~ label:hover,
+.rate input:checked ~ .rate label:hover ~ label,  
+.rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
+
+.bl_faq {
+  /* css-wipeではスタイリングなし */
+}
+
+.bl_faq > *:last-child {
+  margin-bottom: 0;
+}
+
+.bl_faq_q,
+.bl_faq_a {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: content-box;
+  min-height: 45px;
+  padding-left: 60px;
+}
+
+.bl_faq_q {
+  margin-bottom: 15px;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.bl_faq_q_txt {
+  padding-top: 12px;
+}
+
+.bl_faq_a {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.bl_faq_icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-weight: normal;
+  line-height: 45px;
+  text-align: center;
+}
+
+.bl_faq_q .bl_faq_icon {
+  background-color: #e25c00;
+  color: #fff;
+  
+}
+
+.bl_faq_a .bl_faq_icon {
+  background: #efefef;
+  color: #e25c00;
+}
+
+.bl_faq_a_body {
+  padding-top: 12px;
+}
+
+.bl_faq_a_body > *:last-child {
+  margin-bottom: 0;
+}
+
+.bl_faq_a_txt {
+  margin-bottom: 20px;
+}

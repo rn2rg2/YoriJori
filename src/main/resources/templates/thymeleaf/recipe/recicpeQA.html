@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+ html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  color: #666;
+  font: 75% 'Open Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
+  line-height: 1.5;
+}
+
+h2 {
+  color: #111;
+  font: 900 1.75em 'Roboto', 'Open Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 2em;
+  height: 0.25em;
+  background: #111;
+  margin-top: 0.5em;
+}
+
+.comments {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin: auto;
+  padding: 27px;
+  box-sizing: border-box;
+  top: 5em;
+}
+
+.comments::after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.comments__form-info,
+.comments__form-text {
+  width: 100%;
+  margin: 0;
+}
+
+.comments__form-info { float: left; }
+.comments__form-text { float: right; }
+
+.comments__form-field {
+  position: relative;
+}
+.comments__form-label {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  font: 700 1.125em 'Open Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
+  cursor: text;
+  pointer-events: none;
+}
+
+.comments__form-label-text {
+  display: block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-property: transform, opacity;
+}
+.comments__form-input:focus::-webkit-input-placeholder {
+   color: transparent;
+}
+.comments__form-input:focus + .comments__form-label .comments__form-label-text {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.comments__form-label::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #111;
+  bottom: 1em;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+.comments__form-input:focus + .comments__form-label::after {
+  transform: scaleX(1);
+}
+
+.comments__form-input {
+  position: relative;
+  width: 100%;
+  padding: 1em 0;
+  border: 0;
+  outline: 0;
+  margin: 1em 0;
+  border-bottom: 3px solid #ddd;
+  vertical-align: bottom;
+  font: 400 1.125em 'Open Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
+}
+
+.comments__form-textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 168px;
+}
+
+.comments__form-submit {
+  padding: 0.5em;
+  margin: 1em 0;
+  background: none;
+  border: 3px solid #111;
+  font: 700 1em 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  opacity: 0.25;
+}
+
+.comments__form-submit:hover {
+  opacity: 1;
+}
+
+
+@media only screen and (min-width: 1020px) {
+
+  .comments { width: 970px; padding: 52px; }
+
+  .comments__form-info,
+  .comments__form-text { width: 407px; }
+
+}
+
+
+</style>
+<script type="text/javascript">
+
+/* function submitAndClose() {
+	  document.getElementById("submit").click();
+	  window.close();
+	} */
+</script>
+</head>
+<body>
+
+	<h1 th:text="${type}"></h1>
+	<th:block th:if="${type == 'user'}">
+	    <h2>Q/A 등록하기</h2>
+	</th:block>
+	<th:block th:unless="${type == 'user'}">
+	    <h2>Q/A 답변</h2>
+	</th:block>
+	
+	<form class="comments__form" method="POST" th:action="@{/recipe/QAinsert/{type}/{rcpNo}(type=${type}, rcpNo=${rcpNo})}">
+		  <div class="comments__form-info">
+	
+			<div class="comments__form-field">
+			
+			<th:block th:if="${type == 'user'}">
+			  <input id="comments__form-label-name" name="title" placeholder="작성" type="text" class="comments__form-input" >
+			</th:block>
+			<th:block th:unless="${type == 'user'}">
+			  <input name="title" th:value="${title}" type="text" readonly>
+			</th:block>
+			  
+			  <label class="comments__form-label" for="comments__form-label-name">
+				<span class="comments__form-label-text">제목</span>
+			  </label>
+			</div>
+				<span class="comments__form-label-text">Website</span>
+
+	
+		  </div> 
+	
+		  <div class="comments__form-text">
+			
+			<div class="comments__form-field">
+			  <textarea id="comments__form-label-text" name="contents" placeholder="내용" type="text" class="comments__form-input comments__form-textarea"></textarea>
+			  <label class="comments__form-label" for="comments__form-label-text">
+				<span class="comments__form-label-text">질문할 내용을 적어주세요.</span>
+			  </label>
+			</div>
+		  </div>
+<input name="submit" type="submit" id="submit" class="comments__form-submit" value="작성완료" onclick="submitAndClose();">
+		</form>
+		
+		<div class="comments__list">
+		  <!-- Comments --> 
+		</div>
+	  </div>
+	 
+
+</body>
+</html>
