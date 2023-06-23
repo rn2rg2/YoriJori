@@ -111,9 +111,8 @@
 		<script th:inline="javascript">
 			// 현재 페이지
 			let currentPage = [[${pageNo}]];
-			// 한번에 보여줄 페이지
-			let pagePerCount = 10;
-			
+			// 한번에 보여줄 페
+			let pagePerCount = [[${pagePerCount}]];
 			// 게시물  카운트
 			let boardcount = [[${count}]];
 			
@@ -124,7 +123,13 @@
 			}
 			// pagination 들어갈 div
 			const pagination = $('#pagination_div');
+			
 			$(document).ready(function(){
+				$('#viewablePages').on('change', function(){
+					pagePerCount = parseInt($(this).val());
+					window.location.href = "/yorijori/board/list/0/"+pagePerCount;
+					console.log(pagePerCount);
+				});
 				//pagePerCount 페이지별 눌렀을 때 click()
 				//pagePerCount 변수로 지정
 				//pagePerCount = 바뀌는 값

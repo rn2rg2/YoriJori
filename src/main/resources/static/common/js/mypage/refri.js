@@ -1,12 +1,20 @@
 /**
- * 
+ * 냉장고 페이지 함수 모음
  */
 
-
+// 전역 변수 
+let i = 0 ;
 
 function dragStart(e) {
-	e.dataTransfer.setData('text',"");
-	e.dataTransfer.setData('text', e.target.id);
+	e.dataTransfer.setData('id', "");
+	e.dataTransfer.setData('value',"");
+	e.dataTransfer.setData('alt', "");
+	e.dataTransfer.setData('id', "");
+	console.log(e);
+	e.dataTransfer.setData('id', e.target.id);
+	e.dataTransfer.setData('value', e.target.attributes[4].nodeValue);
+	e.dataTransfer.setData('alt', e.target.alt);
+	e.dataTransfer.setData('src', e.target.src);
 // setTimeout(() => {
 // e.target.classList.add('hide');
 // }, 0);
@@ -31,8 +39,16 @@ function drop(e) {
     let div = document.createElement('div')
     div.classList.add("tray_info_box");
     div.addEventListener('dragstart', dragStart);
-    const id = e.dataTransfer.getData('text');
+    const id = e.dataTransfer.getData('id');
+    const value = e.dataTransfer.getData('value');
+    const alt = e.dataTransfer.getData('alt');
+    const src = e.dataTransfer.getData('src');
+    console.log(id);
     const draggable = document.getElementById(id).cloneNode(true);
+    
+    const target = { "matlNo" : id , "matlName" : value, "category": alt, "imgPath": src};
+    
+    make_refri_list(target,"drag");
     
     div.append(draggable);
     if ( e.target.classList[1] == "box" ) {
@@ -87,25 +103,54 @@ const make_search_list = function(page){
 		})
 }
 
-const make_refri_list = function(data){
-	var listItem = $('<li></li>');
-	  var anchor = $('<a href="javascript:void(0);"></a>');
-	  var imgDiv = $('<div class="img"></div>');
-	  var image = $('<img src="/file/prod/9-1.jpg" alt="">');
-	  var txtDiv = $('<div class="txt"></div>');
-	  var titleSpan = $('<span class="tit">Anchor BBQ Sauce (Medium Spicy)</span>');
-	  var cookingInfoDiv = $('<div class="cooking_info"></div>');
-	  var companySpan = $('<span class="company_name"><em>Manufacturer</em> Anchor</span>');
+const make_refri_list = function(data,type){
+	// Create a new list item element
+	console.log(data);
+	var input_id = $("<input>");
+	input_id.attr("type", "hidden");
+	input_id.attr("name", "matlList["+[i]+"].matlNo");
+	input_id.val(data.matlNo);
+	
+	var listItem = $("<li>").addClass("mb-5");
 
-	  cookingInfoDiv.append(companySpan);
-	  txtDiv.append(titleSpan);
-	  txtDiv.append(cookingInfoDiv);
-	  imgDiv.append(image);
-	  anchor.append(imgDiv);
-	  anchor.append(txtDiv);
-	  listItem.append(anchor);
+	// Create a div element with class "img"
+	var imgDiv = $("<div>").addClass("img");
 
+	// Create an img element with empty source and alt attributes
+	if (type == "server"){
+		data.imgPath = "/yorijori/data/ingredient/" + data.imgPath;
+	}
+	var img = $("<img>").attr("src",data.imgPath).attr("alt", "").attr("id",data.matlNo);
+
+	// Append the img element to the img div
+	imgDiv.append(img);
+
+	// Create a div element with class "txt"
+	var txtDiv = $("<div>").addClass("txt text-center");
+
+	// Create a span element with class "tit" and text content
+	var titleSpan = $("<span>").addClass("tit").text(data.matlName);
+
+	// Create a div element with class "cooking_info"
+	var infoDiv = $("<div>").addClass("cooking_info");
+
+	// Create a span element with class "company_name" and content
+	var companySpan = $("<span>").addClass("company_name").html("<em>카테고리 : </em>"+data.category);
+
+	// Append the company span to the info div
+	infoDiv.append(companySpan);
+
+	// Append the title span and info div to the txt div
+	txtDiv.append(titleSpan, infoDiv);
+
+	// Append the anchor to the list item
+	listItem.append(imgDiv, txtDiv, input_id);
+
+	// Append the list item to a parent element (e.g., a ul with id "myList")
 	  $('#refri_list').append(listItem); 
+	  //개수 추가
+	  i++;
+	  $('#refri_count').text(i);
 }
 
 const make_div = function(data){
@@ -122,14 +167,15 @@ const make_div = function(data){
 		// Create a jQuery element for the image
 		var $image = $('<img>', {
 		  src: "/yorijori/data/ingredient/"+data.imgPath,
-		  alt: '',
+		  alt: data.category,
 		  class: 'img-thumbnail card-img-top',
-		  id: data.matlNo
+		  id: data.matlNo,
+		  value : data.matlName
 		});
 
 		// Create a jQuery element for the inner div's content
 		var $contentDiv = $('<div>', {
-		  class: 'p-2'
+		  class: 'p-2 text-center'
 		});
 
 		// Create a jQuery element for the heading
@@ -157,10 +203,35 @@ const make_div = function(data){
 		// Append the outer div to the desired container (e.g., body)
 		$div.appendTo('#list_page');
 }
+
 const clean_refri = function(){
 	$('.refri-top').empty();
 	$('.refri-bottom').empty();
+	$('#refri_list').empty();
+	$('#refri_count').text(0);
+	i = 0;
 }
+function refriImgView(data){
+	let i = 0; 
+	var newDiv = $("<div>").addClass("tray_info_box");
+
+	var newImg = $("<img>").attr({
+	  src: data.imgPath,
+	  alt: "Condiments",
+	  class: "img-thumbnail card-img-top",
+	  id: data.matlNo,
+	  value: data.matlName
+	});
+
+	newDiv.append(newImg);
+	if ( i % 2 == 0){
+		$('.refri-top').append(newDiv);
+	} else {
+		$('.refri-bottom').append(newDiv);
+	}
+	i++;
+}
+
 function dragSetting(){
 	const items = document.querySelectorAll('.item');
 	const boxes = document.querySelectorAll('.box');

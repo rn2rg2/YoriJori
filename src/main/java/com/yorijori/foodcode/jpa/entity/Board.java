@@ -45,7 +45,6 @@ public class Board {
 	@UpdateTimestamp
 	private Date upDate;
 	//default =0 삭제가 =1  1일때 따로 표시하게!! 삭제된 게시물이라는것을 보여주기
-	//타임리프 조건문 으로 일때 style 따로 주기
 	private int state;
 	
 	@Exclude

@@ -64,10 +64,9 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.selectByPage(pageNo);
 	}
-	
 	@Override
 	public List<Board> selectByPageAndpagePerCount(int pageNo,  int pagePerCount) {
-		// TODO Auto-generated method stub
+	
 		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
 	}
 	@Override
@@ -82,6 +81,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void bulletinBoardViews(int commNo) {
 		dao.bulletinBoardViews(commNo);
+		System.out.println("service count");
+		//board.viewCountUp();
 	}
 
 	

@@ -34,12 +34,14 @@ public class RecipeIngredients {
 	
 	@Exclude
 	@ManyToOne
-	@JoinColumn(name = "recipeNo", nullable=false)
+	@JoinColumn(name = "recipeNo", nullable=true)
 	private Recipe recipeNo;
 	
 	@Exclude
-	@OneToMany(mappedBy = "matlNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Ingredients> matlNo = new ArrayList<Ingredients>();
+	
+
 
 
 }

@@ -159,7 +159,9 @@ public class RecipeController {
 
 	    // 세션에서 userInfo 가져오기
 	    UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-	    Recipe recipe = recipeService.select(rcpNo); 
+	    Recipe recipe = new Recipe();
+	    recipe.setRecipeNo(rcpNo);
+	    //Recipe recipe = recipeService.select(rcpNo); 
 	    recipereview.setRecipeNo(recipe);
 	    recipereview.setUserId(userInfo);
 	    recipereview.setRecipeNo(recipe);

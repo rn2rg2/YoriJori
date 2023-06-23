@@ -68,10 +68,10 @@ public class MemberServiceImpl implements MemberService {
 	public long userCount(String role) {
 		return memberDAO.userCount(role);
 	}
+
 	@Override
 	public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
 		return memberDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
 	}
-
 
 }
