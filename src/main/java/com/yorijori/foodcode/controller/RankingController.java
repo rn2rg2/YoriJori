@@ -7,10 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/ranking")
 public class RankingController {
 	
-	@RequestMapping("/list")
-	public String profile() {
-		return "thymeleaf/ranking/rankinglist";
+	@RequestMapping("/rlist")
+	public String reciperank() {
+		return "thymeleaf/ranking/rrankinglist";
 	}
-
+	
+	@RequestMapping("/klist")
+	public String keywordrank() {
+		return "thymeleaf/ranking/krankinglist";
+	}
+	
+	@RequestMapping("/clist")
+	public String chefrank() {
+		return "thymeleaf/ranking/crankinglist";
+	}
 
 }
