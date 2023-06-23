@@ -91,6 +91,12 @@ public class CookingClassServiceImpl implements CookingClassService {
 		
 	}
 
+
+	@Override
+	public List<CookingClass> findTop5ByOrderByCount() {
+		return dao.findTop5ByOrderByCount();
+	}
+
 	
 
 }

@@ -18,4 +18,5 @@ public interface CookingClassDAO {
 	public List<CookingClassContent> readContent(int cookNo);
 	public List<CookingClassCurriculum> readCurriculum(int cookNo);
 	void insertClassTest(CookingClass cookingclass);
+	public List<CookingClass> findTop5ByOrderByCount();
 }

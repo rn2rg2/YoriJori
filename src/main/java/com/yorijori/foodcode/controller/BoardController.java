@@ -111,6 +111,7 @@ public class BoardController {
 	public String boardwrite(Board board) {
 		//System.out.println("Controller");
 		//System.out.println(board.toString());
+		board.setView(0);
 		service.insert(board);
 		return "redirect:/board/list/0";
 	}
@@ -122,7 +123,6 @@ public class BoardController {
 		return "redirect:/board/list/0";
 	}
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
-	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
 		
 		JsonObject jsonObject = new JsonObject();
