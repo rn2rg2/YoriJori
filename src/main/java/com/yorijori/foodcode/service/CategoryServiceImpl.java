@@ -29,4 +29,15 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<Category> findByLevel(Integer upperLevel) {
 		return categoryDAO.findByLevel(upperLevel);
 	}
+
+	@Override
+	public List<Category> findByLevelAndUpperLevel(int level, String upperlevel) {
+		return categoryDAO.findByLevelAndUpperLevel(level, upperlevel);
+	}
+
+	@Override
+	public List<Category> findByUpperLevel(String upperlevel) {
+		
+		return categoryDAO.findByUpperLevel(upperlevel);
+	}
 }

@@ -27,5 +27,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return categoryRepository.findByLevel(upperLevel);
 	}
 
+	@Override
+	public List<Category> findByLevelAndUpperLevel(int level, String upperlevel) {
+		return categoryRepository.findByLevelAndUpperLevel(level, upperlevel);
+	}
+
+	@Override
+	public List<Category> findByUpperLevel(String upperlevel) {
+		
+		return categoryRepository.findByUpperLevel(upperlevel);
+	}
+
 }
 

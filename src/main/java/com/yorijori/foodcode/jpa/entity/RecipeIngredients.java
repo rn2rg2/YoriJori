@@ -25,23 +25,22 @@ import lombok.ToString.Exclude;
 @Entity
 @Table(name="recipe_ingredients")
 public class RecipeIngredients {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	private int id;
-	//private int recipeNo;
-	//private int matlNo;
-	private String num;
-	
-	@Exclude
-	@ManyToOne
-	@JoinColumn(name = "recipeNo", nullable=true)
-	private Recipe recipeNo;
-	
-	@Exclude
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<Ingredients> matlNo = new ArrayList<Ingredients>();
-	
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    private int id;
+    //private int recipeNo;
+    //private int matlNo;
+    private String num;
+    private int matlNo;
 
+    @Exclude
+    @ManyToOne
+    @JoinColumn(name = "recipeNo", nullable=false)
+    private Recipe recipeNo;
+
+    @Exclude
+    @OneToMany(mappedBy = "matlNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Ingredients> matlnoinfo = new ArrayList<Ingredients>();
 
 }

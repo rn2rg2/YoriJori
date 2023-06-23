@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,15 +40,15 @@ public class Recipe {
 	private int totalKcal;
 	@Column(name = "RCP_NA_TIP")
 	private String rcpNaTip;
-	@Column(name = "MANUAL01")
-	private String manual01;
-	private int time;
-	private int level;
+	private String serving;
+	private String time;
+	private String level;
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp
 	private Date upDate;
 	private int state;
+	private String thumbnail;
 
 	private String thumbnail;
 
@@ -59,28 +60,28 @@ public class Recipe {
 
 	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<RecipeImage> imgList = new ArrayList<RecipeImage>();
+	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
 	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<RecipeCategory> categoryList = new ArrayList<RecipeCategory>();
+	private List<RecipeCategory> categorylist = new ArrayList<RecipeCategory>();
 
 	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<RecipeReview> reviewList = new ArrayList<RecipeReview>();
+	private List<RecipeReview> reviewlist = new ArrayList<RecipeReview>();
 
 	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
+	private List<RecipeQa> qalist = new ArrayList<RecipeQa>();
 
 	@Exclude
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
 	
-	@Exclude
-	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<RecipeIngredients> rcpIngrelist = new ArrayList<RecipeIngredients>();
-	
+
+  @Exclude
+	@OneToMany(mappedBy="recipeNo", fetch= FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<RecipeIngredients> ingrelist = new ArrayList<RecipeIngredients>();
 
 	public void viewCountUp(Recipe recipe) {
 		recipe.count++;

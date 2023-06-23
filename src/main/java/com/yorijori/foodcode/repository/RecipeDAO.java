@@ -28,6 +28,12 @@ public interface RecipeDAO {
 	// 레시피에 대한 이미지테이블조회
     List<RecipeImage> imgselect(int recipeNo);
 
+
+	void insertAll(Recipe recipedata);
+
+	void insertImageAll(List<RecipeImage> recipeimg);
+	
+
 	List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
 	
 	///레시피에 대한 리뷰 조회 
@@ -37,7 +43,12 @@ public interface RecipeDAO {
     
 	//레시피에 대한 리뷰 작성 (insert)
     void reviewsave(RecipeReview recipereview);
-	//레시피에 대한 QA 작성 (insert)
+
+
+
+
+
     void recipeqasave(RecipeQa recipeqa);
     
+
 }

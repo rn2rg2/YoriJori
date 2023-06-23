@@ -235,6 +235,7 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
     }
     //리스트 클릭시 재료량 추가
     var count = 1;
+    var numcount = 0;
     $(document).on('click', 'li', function() {
     	  var ingredient = $(this).text();
     	  var ingredientval = $(this).data('value');
@@ -243,15 +244,16 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
     	  var newRow = '<div class="row mt-3" >' +
     	    '<div class="col-md-6">' +
     	    '<input class="form-control ingrecount" id="' + inputId + '" readonly="readonly" value="' + ingredient + '">' +
-    	    '<input class="ingredient" name="ingredient" type="hidden" value="'+ ingredientval +'">' + '</div>' +
+    	    '<input class="ingredient" name="ingrelist[].matlNo" type="hidden" value="'+ ingredientval +'">' + '</div>' +
     	    '<div class="col-md-3">' +
-    	    '<input type="text" class="form-control" placeholder="ex) 1/2개" name="num">' +
+    	    '<input type="text" class="form-control" placeholder="ex) 1/2개" name="ingrelist[].num">' +
     	    '</div>' +
-    	    '</div>';;
+    	    '</div>';
 
     	  $('#ingredientContainer').append(newRow);
     	  
     	  count++; // count 값을 증가시켜 다음 요소에 대한 고유한 id 생성을 위해 준비
+    	  numcount++;
     	});
     //x클릭시 재료량에서 동일한 재료 삭제
     $(document).on('click', '.item-container svg', function() {
@@ -268,5 +270,4 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
     	    }
     	  });
     	});
-   
 }

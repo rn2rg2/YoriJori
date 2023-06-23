@@ -26,7 +26,10 @@ public interface RecipeService {
 	// 레시피에 대한 이미지테이블조회
 	List<RecipeImage> imgselect(int recipeNo);
 	
-	//
+
+	void insertAll(Recipe recipedata);
+
+
 	List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
 	
 	///레시피에 대한 리뷰 조회 
