@@ -179,6 +179,7 @@ body .options .option .label .info {
   margin-left: 10px;
   color: white;
   white-space: pre;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 body .options .option .label .info > div {
   position: relative;

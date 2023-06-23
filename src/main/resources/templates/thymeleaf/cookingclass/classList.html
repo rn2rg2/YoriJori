@@ -23,20 +23,20 @@
 	<div class="container mb-4">
 
 		<h3 class="menu-h3-common">추천 클래스 목록</h3>
-		<div class="options">
-			<div class="option active" style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
+		<div class="options" >
+			<div th:each="top5:${topclasslist}" class="option" th:style="'Background-image:url(' + ${top5. thumbnail} + ');'" >
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
-						<i class="fas fa-walking"></i>
+						<img th:src="${top5.userId.imgPath}">
 					</div>
-					<div class="info">
-						<div class="main">Blonkisoaz</div>
-						<div class="sub">Omuke trughte a otufta</div>
+					<div class="info" th:onclick="|location.href='@{/cookingclass/read(cookNo=${top5.cookNo})}'|">
+						<div class="main" th:text="${top5.userId.nickname}"></div>
+						<div class="sub" th:text="${top5.title}"></div>
 					</div>
 				</div>
 			</div>
-			<div class="option" style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
+			<!-- <div class="option" style="-optionBackground: url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -83,7 +83,7 @@
 						<div class="sub">Omuke trughte a otufta</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="container">
