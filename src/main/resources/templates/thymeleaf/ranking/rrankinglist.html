@@ -5,11 +5,11 @@
 	layout:decorate="~{thymeleaf/layout/mainLayout}">
 <head layout:fragment="header">
 <link rel="stylesheet" type="text/css"
-	href="/yorijori/common/css/ranking/ranking.css" />
+	href="/yorijori/common/css/ranking/rranking.css" />
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">
-
+<title>요리조리 레시피랭킹</title>
 <!-- <script src="/yorijori/common/js/mainpage/main.js"></script> -->
 <!-- <script src="/yorijori/common/js/mainpage/main2.js"></script> -->
 
@@ -25,7 +25,25 @@ document.querySelector('button').addEventListener('click', () => {
 </head>
 <body>
 	<div layout:fragment="content" class="mb-5 container">
-		<h3 class="menu-h3-common">레시피 랭킹</h3>
+
+		<ul class="nav nav-tabs3" style="position: relative;">
+			<li role="presentation" class="active"><a
+				href="http://localhost:8088/yorijori/ranking/rlist">레시피</a></li>
+			<li role="presentation"><a
+				href="http://localhost:8088/yorijori/ranking/klist">검색어</a></li>
+			<li role="presentation"><a
+				href="http://localhost:8088/yorijori/ranking/clist">셰프</a></li>
+			<ul class="nav nav-tabs2 pull-right" style="position: relative;">
+				<li role="presentation" class="active"><a
+					href="/ranking/home_new.html?dtype=d&amp;rtype=r">일간</a></li>
+				<li role="presentation"><a
+					href="/ranking/home_new.html?dtype=w&amp;rtype=r">주간</a></li>
+				<li role="presentation"><a
+					href="/ranking/home_new.html?dtype=m&amp;rtype=r">월간</a></li>
+			</ul>
+		</ul>
+
+		<h3 class="menu-h3-common">레시피랭킹</h3>
 		<section class="hero-section mb-5">
 			<div class="card-grid" style="border: none;">
 				<a class="card" href="#" style="border: none;">
@@ -33,28 +51,21 @@ document.querySelector('button').addEventListener('click', () => {
 						style="background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjFfNDIg%2FMDAxNjc5Mzc2MDExOTE1.uoIBbE3W05Jr-9_Q6DA723eu99VzCQuFM0Psh_xXxzQg.dvo3Xl9tj62HpAHFvoLGWZolLqNtFL7G524Mg2ZX7Zwg.JPEG.dongin326%2FKakaoTalk_20230321_131450661.jpg&type=sc960_832)"></div>
 					<div class="card__content">
 						<p class="card__category">1위</p>
-						<h3 class="card__heading">백종원 불고기</h3>
+						<h3 class="card__heading">소불고기</h3>
 					</div>
 				</a> <a class="card" href="#" style="border: none;">
 					<div class="card__background"
 						style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
 					<div class="card__content">
 						<p class="card__category">2위</p>
-						<h3 class="card__heading">김혜자 불고기</h3>
+						<h3 class="card__heading">닭볶음탕</h3>
 					</div>
 				</a> <a class="card" href="#" style="border: none;">
 					<div class="card__background"
 						style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
 					<div class="card__content">
 						<p class="card__category">3위</p>
-						<h3 class="card__heading">없음</h3>
-					</div>
-				</a> <a class="card" href="#" style="border: none;">
-					<div class="card__background"
-						style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-					<div class="card__content">
-						<p class="card__category">4위</p>
-						<h3 class="card__heading">없음</h3>
+						<h3 class="card__heading">갈비찜</h3>
 					</div>
 				</a>
 
@@ -125,7 +136,7 @@ document.querySelector('button').addEventListener('click', () => {
 
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Morning Dew">
-					<div class="name">8위 장조림</div>
+						<div class="name">8위 장조림</div>
 						<div class="project-item">
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/1E90FF/000000"
@@ -145,7 +156,7 @@ document.querySelector('button').addEventListener('click', () => {
 
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Console Activity">
-					<div class="name">9위 장조림</div>
+						<div class="name">9위 장조림</div>
 						<div class="project-item">
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/FF69B4/000000"
@@ -165,7 +176,7 @@ document.querySelector('button').addEventListener('click', () => {
 
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Shake It!">
-					<div class="name">10위 장조림</div>
+						<div class="name">10위 장조림</div>
 						<div class="project-item">
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
@@ -186,7 +197,7 @@ document.querySelector('button').addEventListener('click', () => {
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Backpack Content">
 						<div class="project-item">
-						<div class="name">11위 장조림</div>
+							<div class="name">11위 장조림</div>
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/D3D3D3/000000"
 									alt="img" class="gallery-thumb-img">
@@ -206,7 +217,7 @@ document.querySelector('button').addEventListener('click', () => {
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Sunset Bulb Glow">
 						<div class="project-item">
-						<div class="name">12위 장조림</div>
+							<div class="name">12위 장조림</div>
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/90EE90/000000"
 									alt="img" class="gallery-thumb-img">
@@ -226,7 +237,7 @@ document.querySelector('button').addEventListener('click', () => {
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Open Imagination">
 						<div class="project-item">
-						<div class="name">13위 장조림</div>
+							<div class="name">13위 장조림</div>
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
 									alt="img" class="gallery-thumb-img">
@@ -246,7 +257,7 @@ document.querySelector('button').addEventListener('click', () => {
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Console Activity">
 						<div class="project-item">
-						<div class="name">14위 장조림</div>
+							<div class="name">14위 장조림</div>
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/20B2AA/000000"
 									alt="img" class="gallery-thumb-img">
@@ -266,7 +277,7 @@ document.querySelector('button').addEventListener('click', () => {
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Open Imagination">
 						<div class="project-item">
-						<div class="name">15위 장조림</div>
+							<div class="name">15위 장조림</div>
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
 									alt="img" class="gallery-thumb-img">
@@ -286,7 +297,7 @@ document.querySelector('button').addEventListener('click', () => {
 				<div class="col-md-3 col-sm-6">
 					<a href="#" class="gallery-popup" title="Shake It!">
 						<div class="project-item">
-						<div class="name">16위 장조림</div>
+							<div class="name">16위 장조림</div>
 							<div class="overlay-container">
 								<img src="https://www.bootdey.com/image/350x180/B0C4DE/000000"
 									alt="img" class="gallery-thumb-img">
