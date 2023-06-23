@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <th:block layout:fragment="content">
 	<link rel="stylesheet" href="/yorijori/common/css/mypage/refri.css" />
-	<form>
+	<form action="/yorijori/mypage/refri/insert" method="post">
 		<div class="container-fluid refri-div">
 			<h3 class="menu-h3-common">나만의 냉장고</h3>
 			<div class="row">
@@ -19,6 +19,7 @@
 					</div>
 					<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('재료를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 					<div>
+					
 
 						<!-- 레시피 목록 보기  -->
 						<div class="ingredient_list_view mb-3">
@@ -49,7 +50,7 @@
 						<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
 
 							<button class="btn btn-success m-sm-1" type="button" id="clearRefriBtn">냉장고 초기화</button>
-							<button class="btn btn-success m-sm-1" type="button" id="registerRefriBtn">냉장고 등록</button>
+							<button class="btn btn-success m-sm-1" type="submit" id="registerRefriBtn">냉장고 등록</button>
 						</div>
 					</div>
 
@@ -68,19 +69,7 @@
 					총 <strong><span id="refri_count">[[${refriCount}]]</span></strong>건의 제품이 있습니다.
 				</div>
 				<div class="board_photo">
-					<ul id=refri_list>
-
-						<li><a href="javascript:void(0);">
-								<div class="img">
-									<img src="/file/prod/9-1.jpg" alt="">
-								</div>
-								<div class="txt">
-									<span class="tit">Anchor 바비큐소스(중간 매운맛)</span>
-									<div class="cooking_info">
-										<span class="company_name"><em>제조원</em> Anchor </span>
-									</div>
-								</div>
-							</a></li>
+					<ul id=refri_list> <!-- 담는 재료가 들어갈 공간 -->
 					</ul>
 				</div>
 			</div>
@@ -183,6 +172,12 @@
 				totalCount = dataCount;
 				loadPage(totalCount, pagePerCount, make_list);
 			}
+			// 냉장고 조회 list
+			let refrilist = [[${refrilist}]];
+			console.log(refrilist);
+			
+			
+			
 			$(document).ready(function() {
 					
 					// 서치 데이터가 있는 경우 input box에 표시
@@ -231,10 +226,14 @@
 					$('#clearRefriBtn').click(function(){
 						clean_refri();
 					})
+					
+					for ( let i = 0 ; i < refrilist.length; i++){
+						const type = "server"
+						make_refri_list(refrilist[i].ingredients,type)
+						refriImgView(refrilist[i].ingredients)
+					}
 				});
 
-			</script>
-			<script>
 				$(".option").click(function() {
 					$(".option").removeClass("active");
 					$(this).addClass("active");

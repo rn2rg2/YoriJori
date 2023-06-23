@@ -16,10 +16,11 @@ public interface BoardCommentDAO {
 
 	int update(BoardComment boardComment);
 	
-	int delete(BoardComment boardComment);
+	public void delete(int commentNo);
 
 	int updateGroupNo(BoardDTO boardDTO);
 
 	int insertComment(BoardDTO boardDTO);
-
+	
+	List<BoardComment> selectByPageAndpagePerCount (int pageNo, int pagePerCount);
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.UserFrige;
-import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.UserFrigeRepository;
 import com.yorijori.foodcode.jpa.repository.UserTrayListRepository;
 import com.yorijori.foodcode.jpa.repository.UserTrayRepository;
@@ -27,13 +26,30 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 		this.traylistrepository = traylistrepository;
 	}
 	@Override
-	public List<UserFrige> selectAll(UserInfo userId){
+	public List<UserFrige> selectAll(String userId){
 		return frigerepository.findAllByUserId(userId);
 	}
 	@Override
-	public long countByUserId(UserInfo userId) {
+	public long countByUserId(String userId) {
 		return frigerepository.countByUserId(userId);
 	}
+	@Override
+	public void insertAll(List<UserFrige> userfrigelist) {
+		//System.out.println("DAO");
+		//System.out.println(board.toString());
+
+		frigerepository.saveAll(userfrigelist);
+	}
+	
+	@Override
+	public void deleteByUserId(String userId) {
+		//frigerepository.findAllByUserId(userFrige.getUserId());
+		//frigerepository.delete(userFrige);
+		System.out.println("delet by user id");
+		frigerepository.deleteByUserId(userId);
+	}
+	
+
 	
 	
 }

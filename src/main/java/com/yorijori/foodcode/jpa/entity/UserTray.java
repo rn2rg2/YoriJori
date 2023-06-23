@@ -27,7 +27,7 @@ import lombok.ToString.Exclude;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="usertray")
+@Table(name="user_tray")
 public class UserTray{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
