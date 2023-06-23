@@ -7,8 +7,10 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 public interface RefriTrayService {
 
-	List<UserFrige> selectAll(UserInfo userId);
+	List<UserFrige> selectAll(String userId);
 
-	long countByUserId(UserInfo userId);
+	long countByUserId(String userId);
+
+	void insert(UserFrige userfrige, String userId);
 
 }

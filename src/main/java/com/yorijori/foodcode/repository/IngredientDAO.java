@@ -28,4 +28,7 @@ public interface IngredientDAO {
 
 	Ingredients selectByMatlNo(int matlNo);
 
+	Ingredients findById(int matlNo);
+
+
 }
