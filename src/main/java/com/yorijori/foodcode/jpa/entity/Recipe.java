@@ -49,7 +49,7 @@ public class Recipe {
 	@UpdateTimestamp
 	private Date upDate;
 	private int state;
-
+	private String thumbnail;
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;

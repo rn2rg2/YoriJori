@@ -29,9 +29,10 @@ public class RecipeQa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int qaNo;
 	//private int recipeNo;
-	private String userId;
+	//	private String userId;
+	private String title;
 	private String contents;
-	private boolean depthLevel;
+	private int depthLevel;
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp
@@ -41,4 +42,8 @@ public class RecipeQa {
 	@ManyToOne
 	@JoinColumn(name = "recipeNo", nullable=false)
 	private Recipe recipeNo;
+	
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable=false)
+	private UserInfo userId;
 }
