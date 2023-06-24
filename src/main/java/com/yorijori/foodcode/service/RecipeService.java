@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -40,4 +41,5 @@ public interface RecipeService {
 	void reviewsave(RecipeReview recipereview);
 	//레시피에 대한 QA 작성 (insert)
     void recipeqasave(RecipeQa recipeqa);
+	List<RecipeIngredients> selectingr(int rcpSeq);
 }
