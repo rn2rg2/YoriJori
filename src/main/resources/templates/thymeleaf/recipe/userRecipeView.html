@@ -53,7 +53,7 @@
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
 										<img class="img-fluid"
-											th:src="@{'/images/'+${data.thumbnail}}" alt="">
+											th:src="${data.thumbnail}" alt="">
 									</div>
 								</div>
 								<div class="swiper-button-next"></div>
@@ -98,7 +98,7 @@
 					<!-- 					<h3 class="h3_tit">레시피</h3> -->
 					<ul>
 
-						<li th:each="item, idx : ${data.imgList}">
+						<li th:each="item, idx : ${data.imglist}">
 				</div>
 				<div class="card_img">
 					<!-- 								<img class="card_img" th:src="${item.manualImg}" alt="">

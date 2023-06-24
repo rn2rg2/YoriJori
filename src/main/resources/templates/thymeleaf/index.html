@@ -25,7 +25,7 @@
 
 		<h3 class="menu-h3-common">유저 레시피 랭킹</h3>
 		<!-- <h1 class="h3 mb-3" style="text-align: center;">이주의 레시피(유저)</h1> -->
-		<div class="options">
+		<!-- <div class="options">
 			<div class="option active" style="-optionBackground: url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
 				<div class="shadow"></div>
 				<div class="label">
@@ -85,8 +85,8 @@
 						<div class="sub">Omuke trughte a otufta</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div> 
+		</div>-->
 		<div class="row">
 			<div class="col-12 col-md-6 col-lg-3" th:each="data, idx : ${rcpList}">
 				<div class="card">
@@ -104,7 +104,7 @@
 							</div>
 						</div> -->
 						<h5 class="card-title mb-0">
-							<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}" style="color: black;">[[${data.name}]]</a>
+							<a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" style="color: black;">[[${data.name}]]</a>
 						</h5>
 						<div class="badge bg-light my-2">
 							<i class="fa-solid fa-chess-queen mr-2"></i>[[${idx.count}]] 등

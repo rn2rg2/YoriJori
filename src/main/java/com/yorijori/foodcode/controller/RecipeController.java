@@ -2,11 +2,8 @@ package com.yorijori.foodcode.controller;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.io.InputStream;
-
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -29,22 +26,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.common.FileUploadLogic;
-import com.yorijori.foodcode.dto.RecipeListDTO;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
-
-
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
-
-
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
-
-
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
-
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.CategoryService;
@@ -170,7 +159,7 @@ public class RecipeController {
 			e.printStackTrace();
 		}
 			
-		return "thymeleaf/recipe/recipelist";
+		return "redirect:/recipe/list/user/0";
 	}
 
 
