@@ -91,7 +91,7 @@
 			<div class="col-12 col-md-6 col-lg-3" th:each="data, idx : ${rcpList}">
 				<div class="card">
 
-					<img class="card-img-top" src="/yorijori/images/common/default.png" alt="Unsplash">
+					<img class="card-img-top" th:src="${data.thumbnail}" alt="Unsplash" style="min-height: 15em; max-height: 15em;">
 
 					<div class="card-header px-4 pt-4">
 						<!-- 	<div class="card-actions float-right">
