@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RefriTrayService;
 
@@ -42,7 +43,10 @@ public class RefriTrayController {
 	}
 
 	@RequestMapping("/tray")
-	public String tray() {
+	public String tray(Model model, HttpSession session) {
+		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
+		String user = userinfo.getUserId();
+		List<UserWishlist> recipeWishList = refriTrayService.selectWishListAll(userId);
 		return "thymeleaf/mypage/tray";
 	}
 	
