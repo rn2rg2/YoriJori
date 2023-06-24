@@ -23,4 +23,7 @@ public interface IngredientsRepository extends JpaRepository<Ingredients, Intege
 	
 	Ingredients findByMatlNo(int matlNo);
 	
+	
+	
+	
 }

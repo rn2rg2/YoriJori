@@ -11,12 +11,14 @@ import org.springframework.stereotype.Repository;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
+import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeImageRepository;
+import com.yorijori.foodcode.jpa.repository.RecipeIngredientsRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeQaRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeReviewRepository;
@@ -31,11 +33,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 	RecipeCategoryRepository recipecategoryrepository;
 	ApiRecipeRepository apiRecipeRepository;
 	UserWishlistRepository userwishlistrepo;
-	
+	RecipeIngredientsRepository recipeinger;
 	@Autowired
 	public RecipeDAOImpl(RecipeRepository reciperepository, RecipeImageRepository recipeimagerepository,
 			RecipeQaRepository recipeqarepository, RecipeReviewRepository recipereviewrepository,
-			RecipeCategoryRepository recipecategoryrepository, ApiRecipeRepository apiRecipeRepository, UserWishlistRepository userwishlistrepo) {
+			RecipeCategoryRepository recipecategoryrepository, ApiRecipeRepository apiRecipeRepository, UserWishlistRepository userwishlistrepo,
+			RecipeIngredientsRepository recipeinger) {
 		super();
 		this.reciperepository = reciperepository;
 		this.recipeimagerepository = recipeimagerepository;
@@ -44,6 +47,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 		this.recipecategoryrepository = recipecategoryrepository;
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userwishlistrepo = userwishlistrepo;
+		this.recipeinger = recipeinger;
 	}
 	
 	@Override
@@ -127,6 +131,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 		// TODO Auto-generated method stub
 	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
 		return recipeqarepository.findByRecipeNo(recipe);
+	}
+
+	@Override
+	public List<RecipeIngredients> selectingr(int recipeNo) {
+	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
+		return recipeinger.findByRecipeNo(recipe);
 	}
 
 }
