@@ -77,8 +77,8 @@ public class CookingclassController {
 		if(session.getAttribute("userInfo")==null) {
 			return "redirect:/main";
 		} else{
-			UserInfo user=(UserInfo)session.getAttribute("userInfo");
 			CookingClass cookingClass = service.readClass(cookNo);
+			model.addAttribute("cookingClass",cookingClass);
 		}
 		return "thymeleaf/cookingclass/classApplicationForm";
 	}
