@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -47,13 +48,10 @@ public class RefriTrayController {
 
 	@RequestMapping("/tray")
 	public String tray(Model model, HttpSession session) {
-		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
+		//UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
 		//String user = userinfo.getUserId();
-		List<UserWishlist> recipeWishList = userWishService.selectAll(userinfo,0,4);
-		for (UserWishlist list : recipeWishList) {
-			System.out.println(list.getRecipeNo());
-		}
-		model.addAttribute("recipeWishList", recipeWishList);
+		//List<UserWishlist> recipeWishList = userWishService.selectAll(userinfo,0,4);
+		//model.addAttribute("recipeWishList", recipeWishList);
 		return "thymeleaf/mypage/tray";
 	}
 	
@@ -64,5 +62,20 @@ public class RefriTrayController {
 		userfrige.setUserId(user);
 		refriTrayService.insert(userfrige, user);
 		return "redirect:/mypage/refri";
+	}
+	
+	@PostMapping("/wish/list")
+	@ResponseBody
+	public List<UserWishlist> getWishListByPage(int pageNo, HttpSession session) {
+		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
+		List<UserWishlist> list = userWishService.selectAll(userinfo,pageNo, 4);
+		return list;
+	}
+	
+	@PostMapping("/wish/count")
+	@ResponseBody
+	public long getListCount() {
+		long count = userWishService.countAll();
+		return count;
 	}
 }

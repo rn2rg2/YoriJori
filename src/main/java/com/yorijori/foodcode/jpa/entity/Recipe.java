@@ -22,14 +22,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "recipe")
-@ToString(exclude = { "userId", "imglist", "categorylist", "reviewlist", "qalist", "wishlist" })
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,24 +51,31 @@ public class Recipe {
 
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
+	@Exclude
 	private UserInfo userId;
 
-	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Exclude
 	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
-	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Exclude
 	private List<RecipeCategory> categorylist = new ArrayList<RecipeCategory>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Exclude
 	private List<RecipeReview> reviewlist = new ArrayList<RecipeReview>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Exclude
 	private List<RecipeQa> qalist = new ArrayList<RecipeQa>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Exclude
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
 	
 	@OneToMany(mappedBy="recipeNo", fetch= FetchType.LAZY, cascade=CascadeType.ALL)
+	@Exclude
 	private List<RecipeIngredients> ingrelist = new ArrayList<RecipeIngredients>();
 
 	public void viewCountUp(Recipe recipe) {

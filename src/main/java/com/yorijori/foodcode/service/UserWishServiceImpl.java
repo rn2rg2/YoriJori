@@ -24,5 +24,10 @@ public class UserWishServiceImpl implements UserWishService {
 	public List<UserWishlist> selectAll (UserInfo userId, int pageNo, int pagePerCount){
 		return userWishDAO.selectAll(userId, pageNo,pagePerCount);
 	}
+	
+	@Override
+	public long countAll() {
+		return userWishDAO.countAll();
+	}
 
 }
