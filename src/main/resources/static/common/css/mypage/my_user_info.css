@@ -1,72 +1,78 @@
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+
 .form-control:focus {
-  box-shadow: none;
-  border-color: #fd5d5d;
+	box-shadow: none;
+	border-color: #fd5d5d;
 }
 
 .profile-button {
-  background: #fd5d5d;
-  box-shadow: none;
-  border: none;
+	background: #fd5d5d;
+	box-shadow: none;
+	border: none;
 }
 
 .profile-button:hover {
-  background: #fd5d5d;
+	background: #fd5d5d;
 }
 
 .profile-button:focus {
-  background: #fd5d5d;
-  box-shadow: none;
+	background: #fd5d5d;
+	box-shadow: none;
 }
 
 .profile-button:active {
-  background: #fd5d5d;
-  box-shadow: none;
+	background: #fd5d5d;
+	box-shadow: none;
 }
 
 .back:hover {
-  color: #fd5d5d;
-  cursor: pointer;
+	color: #fd5d5d;
+	cursor: pointer;
 }
-#temp{
+
+#temp {
 	color: orange;
 }
 
 .rounded-circle {
-    border-radius: 50%!important;
-    margin-bottom: 20px;
-    margin-top : 0px!important;
+	border-radius: 50% !important;
+	margin-bottom: 20px;
+	margin-top: 0px !important;
+	width: 100%;
+	height: 100%;
 }
-.rounded-circle:hover{
-    border-radius: 50%!important;
-    margin-bottom: 20px;
-    background-image: url(https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png);
-}
+
 /* .row{
 	margin-bottom: 20px;
 } */
-.font-weight-bold{ /* 프사와 이름 간격 조정 이름에다가 margin top 을 줬음 */
-	margin-top:20px;
+.font-weight-bold { /* 프사와 이름 간격 조정 이름에다가 margin top 을 줬음 */
+	margin-top: 20px;
 }
 
-.pt-5, .py-5 { /* 이걸로 헤드 간격 줄이기 padding 을 없앰으로서 */	
-     padding-top: 0px !important; 
+.pt-5, .py-5 { /* 이걸로 헤드 간격 줄이기 padding 을 없앰으로서 */
+	padding-top: 0px !important;
 }
-.mult-select-tag .input-container{
+
+.mult-select-tag .input-container {
 	height: 60px;
 }
-.mult-select-tag .item-container{ /* 선택된 아이템들 디자인 */
-    border: 1px solid #fd5d5d !important;
-    background: white !important;
-    color: #fd5d5d !important;	/* x 표시 색깔 */
-    max-height: 2em;
+
+.mult-select-tag .item-container { /* 선택된 아이템들 디자인 */
+	border: 1px solid #fd5d5d !important;
+	background: white !important;
+	color: #fd5d5d !important; /* x 표시 색깔 */
+	max-height: 2em;
 }
-.mult-select-tag .item-label{ /* 선택된 아이템의 글자 디자인 */
-	color: #fd5d5d !important;	
+
+.mult-select-tag .item-label { /* 선택된 아이템의 글자 디자인 */
+	color: #fd5d5d !important;
 }
-.mult-select-tag .input-container{
+
+.mult-select-tag .input-container {
 	overflow-y: scroll;
-	height:4.7em;
+	height: 4.7em;
 }
+
 .mult-select-tag .input-container::-webkit-scrollbar {
 	width: 10px;
 }
@@ -85,26 +91,151 @@
 }
 
 .image-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
+	position: relative;
+	width: 200px;
+	height: 200px;
 }
 
 .image-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  background-image: url("https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100px 100px;
-  opacity: 0;
-  transition: opacity 0.3s;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 200px;
+	background-image:
+		url("https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100px 100px;
+	opacity: 0;
+	transition: opacity 0.3s;
 }
 
 .image-container:hover::before {
-  opacity: 1;
-}	
+	opacity: 1;
+}
+
+/* 툴팁 정보 */
+/*== start of code for tooltips ==*/
+.tool {
+	cursor: help;
+	position: relative;
+}
+
+/*== common styles for both parts of tool tip ==*/
+.tool::before, .tool::after {
+	left: 50%;
+	opacity: 0;
+	position: absolute;
+	z-index: -100;
+}
+
+.tool:hover::before, .tool:focus::before, .tool:hover::after, .tool:focus::after
+	{
+	opacity: 1;
+	transform: scale(1) translateY(0);
+	z-index: 100;
+}
+
+/*== pointer tip (말풍선) ==*/
+.tool::before {
+	border-style: solid;
+	border-width: 1em 0.75em 0 0.75em;
+	border-color: #fd5d5d transparent transparent transparent;
+	bottom: 100%;
+	content: "";
+	margin-left: -0.5em;
+	transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26), opacity .65s
+		.5s;
+	transform: scale(.6) translateY(-90%);
+}
+
+.tool:hover::before, .tool:focus::before {
+	transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26) .2s;
+}
+
+/*== speech bubble(말풍선) ==*/
+.tool::after {
+	background: #fd5d5d;
+	border-radius: .25em;
+	bottom: 180%;
+	color: #EDEFF0;
+	content: attr(data-tip);
+	margin-left: -8.75em;
+	padding: 1em;
+	transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26) .2s;
+	transform: scale(.6) translateY(50%);
+	width: 17.5em;
+	white-space: pre-line; /* 줄 바꿈 유지 */
+	font-size: 1em;
+	text-align: left; /* 왼쪽 정렬 추가 */
+}
+
+.tool:hover::after, .tool:focus::after {
+	transition: all .65s cubic-bezier(.84, -0.18, .31, 1.26);
+}
+
+@media ( max-width : 760px) {
+	.tool::after {
+		font-size: .75em;
+		margin-left: -5em;
+		width: 10em;
+	}
+}
+
+/* nav 탭 css 설정 */
+.nav {
+	text-align: center;
+	font-size: 1rem;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: 20px;
+}
+
+.navli {
+	text-decoration: none;
+	display: inline-block;
+	padding: 13px 13px;
+	color: #212529;
+}
+
+.selected {
+	text-decoration: none;
+	background-color: #f6c88b;
+	border-bottom: 2px solid var(- -main-theme-color-red);
+	color: var(- -main-theme-color-red)
+}
+
+.navli:hover {
+	color: var(- -main-theme-color-red)
+}
+
+.navli.current {
+	border-bottom: 2px solid #1971c2;
+}
+
+@media ( min-width : 768px) {
+	.nav {
+		font-size: 1.1rem;
+	}
+	.navli {
+		padding: 20px 20px;
+		border-top: 2px solid var(- -main-theme-color-red);
+	}
+}
+
+.navli {
+	width: calc(100%/ 4);
+}
+
+/* 티어리스트 */
+.tier_list {
+	display: flex;
+}
+
+.tier_list img {
+	display: inline-block;
+	width: 3em;
+	height: 3em;
+}

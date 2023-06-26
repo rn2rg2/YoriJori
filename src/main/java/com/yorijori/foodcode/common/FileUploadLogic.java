@@ -70,8 +70,7 @@ public class FileUploadLogic {
 			try {
 				InputStream fileStream = image.getInputStream();
 				FileUtils.copyInputStreamToFile(fileStream, savefile);
-				String url = "/yorijori/data/recipeimage"+savedFileName;
-				imglist.get(get).setStoreImg(url);
+				imglist.get(get).setStoreImg(savedFileName);
 				get++;
 			} catch (IOException e) {
 				FileUtils.deleteQuietly(savefile);

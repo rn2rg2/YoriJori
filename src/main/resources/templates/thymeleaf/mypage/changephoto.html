@@ -12,26 +12,28 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body" style="align-self: center;">
-				<img id="vProfileImageModalSrc"
-					src="https://recipe1.ezmember.co.kr/cache/rpf/2023/05/17/8ac90c162178ac25908d2027bc561af0.jpg"
-					style="max-width: 300px; max-height: 300px;">
-			</div>
-			<div class="cook_purpose">
-				<textarea class="cook_purpose_input"
-					placeholder="요리 목적(100자 이내로 작성해주시길 바랍니다.)" rows="5" cols="50" th:text="${session.userInfo.purpose}">
+			<form action="/yorijori/mypage/updateprofileimage" method="post" 
+			style="display: contents;" enctype="multipart/form-data" onsubmit="return imageSubmit()">
+				<div class="modal-body" style="align-self: center;">
+					<input id="profileimage" type="file" accept="jpeg, png, gif"
+						class="profileimagechange" name="profilephoto"
+						style="display: none;"> <img id="file-image"
+						th:src="@{'/data/user/' + ${session.userInfo.imgPath}}"
+						class="uploadprofile" width="200" height="200"
+						style="border-radius: 10em;">
+				</div>
+				<div class="cook_purpose">
+					<textarea class="cook_purpose_input" name="cookingpurpose"
+						placeholder="요리 목적(75자 이내로 작성해주시길 바랍니다.)" rows="5" cols="50"
+						th:text="${session.userInfo.purpose}" maxlength="75">
 				</textarea>
-			</div>
-			<div id="modal_result">
-				<div></div>
-			</div>
+				</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success"
-					onclick="document.getElementById('fileInput').click()">사진
-					변경하기</button>
-				<input type="file" id="fileInput" style="display: none;" />
-				<button type="button" class="btn btn-primary">저장하기</button>
+					id="updateprofileimage">사진 변경하기</button>
+				<button type="submit" class="btn btn-primary" id="changephotosubmit">저장하기</button>
 			</div>
+			</form>
 		</div>
 	</div>
 

@@ -144,8 +144,7 @@ public class RecipeController {
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			String url ="/yorijori/data/recipethumbnail/"+savedFileName;
-			recipedata.setThumbnail(url);
+			recipedata.setThumbnail(savedFileName);
 			System.out.println(recipedata);
 			System.out.println(recipedata.getCategorylist());
 			System.out.println(recipedata.getImglist());
