@@ -82,11 +82,17 @@
 .ingredients-result {
 	
 }
-
+.recipe_info{
+	min-height : 18em;
+	max-height : 18em;
+}
 .recipe_info > img{
 	width : 100%;
 	min-height : 10em;
 	height : 100%;
+}
+.recipe_name{
+	font-size : 0.7em;
 }
 
 .tray_info_box {

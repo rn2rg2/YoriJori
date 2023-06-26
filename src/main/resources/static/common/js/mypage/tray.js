@@ -55,3 +55,7 @@ function drop(e) {
 
     // draggable.classList.remove('hide');
 }
+
+const clearTray = function (){
+	$('.box').empty();
+}

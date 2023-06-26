@@ -13,8 +13,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -57,22 +55,22 @@ public class UserInfo {
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ApiRecipeReview> apireviewList = new ArrayList<ApiRecipeReview>();
 	
-	@Exclude
-	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
+//	@Exclude
+//	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<RecipeQa> qaList = new ArrayList<RecipeQa>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Inquiry> inquiryList = new ArrayList<Inquiry>();
 	
-	@Exclude
-	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ApiRecipeQa> apiqaList = new ArrayList<ApiRecipeQa>();
+//	@Exclude
+//	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<ApiRecipeQa> apiqaList = new ArrayList<ApiRecipeQa>();
 
-	@Exclude
-	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<UserTray> trayList = new ArrayList<UserTray>();
+//	@Exclude
+//	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	private List<UserTray> trayList = new ArrayList<UserTray>();
 	
 //	@Exclude
 //	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

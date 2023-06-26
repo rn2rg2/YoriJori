@@ -15,18 +15,21 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RefriTrayService;
+import com.yorijori.foodcode.service.UserWishService;
 
 @Controller
 @RequestMapping("/mypage")
 public class RefriTrayController {
 	IngredientService ingreService;
 	RefriTrayService refriTrayService;
+	UserWishService userWishService;
 
 	@Autowired
-	public RefriTrayController(IngredientService ingreService, RefriTrayService refriTrayService) {
+	public RefriTrayController(IngredientService ingreService, RefriTrayService refriTrayService, UserWishService userWishService) {
 		super();
 		this.ingreService = ingreService;
 		this.refriTrayService = refriTrayService;
+		this.userWishService = userWishService;
 	}
 
 	@RequestMapping("/refri")
@@ -45,8 +48,12 @@ public class RefriTrayController {
 	@RequestMapping("/tray")
 	public String tray(Model model, HttpSession session) {
 		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
-		String user = userinfo.getUserId();
-		List<UserWishlist> recipeWishList = refriTrayService.selectWishListAll(userId);
+		//String user = userinfo.getUserId();
+		List<UserWishlist> recipeWishList = userWishService.selectAll(userinfo,0,4);
+		for (UserWishlist list : recipeWishList) {
+			System.out.println(list.getRecipeNo());
+		}
+		model.addAttribute("recipeWishList", recipeWishList);
 		return "thymeleaf/mypage/tray";
 	}
 	
