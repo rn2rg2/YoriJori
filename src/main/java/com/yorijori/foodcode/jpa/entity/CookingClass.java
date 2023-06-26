@@ -57,6 +57,10 @@ public class CookingClass {
 	private List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
 	
 	@Exclude
+	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CookingClassForm> formList = new ArrayList<CookingClassForm>();
+	
+	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;

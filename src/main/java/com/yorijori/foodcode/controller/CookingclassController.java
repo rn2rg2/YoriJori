@@ -23,6 +23,7 @@ import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
+import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.CookingClassService;
 import com.yorijori.foodcode.service.MemberService;
@@ -81,6 +82,11 @@ public class CookingclassController {
 			model.addAttribute("cookingClass",cookingClass);
 		}
 		return "thymeleaf/cookingclass/classApplicationForm";
+	}
+	@PostMapping("/application")
+	public String applicationClass(CookingClassForm form, Model model) {
+		System.out.println(form);
+		return "redirect:/cookingclass/list";
 	}
 	
 	@RequestMapping("/in")

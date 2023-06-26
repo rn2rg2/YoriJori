@@ -93,6 +93,10 @@ public class UserInfo {
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CookingClassForm> cookingClassForm = new ArrayList<CookingClassForm>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserWishlist> userWishList = new ArrayList<UserWishlist>();
 	
 	@Exclude
