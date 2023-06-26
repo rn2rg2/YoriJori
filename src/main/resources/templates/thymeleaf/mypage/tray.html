@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
-<head>
+<th:block layout:fragment="header">
 <link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
-</head>
-</head>
-<body>
-	<div class="container-fluid tray-div mb-5" layout:fragment="content">
+</th:block>
+<th:block layout:fragment="content">
+	<div class="container-fluid tray-div mb-5">
 		<h3 class="menu-h3-common">나만의 식판</h3>
 		<div class="row">
 			<div class="col-md-9 tray_frame">
@@ -28,33 +27,10 @@
 
 					<!-- 레시피 목록 보기  -->
 					<div class="ingredient_list_view mb-3">
-						<div class="row">
-							<!-- Gallery item -->
-							<div class="col-xl-6 col-lg-6 col-md-6 mb-1" th:each="data, idx : ${recipeWishList}">
-								<div class="bg-white rounded shadow-sm item recipe_info" draggable="true">
-									<img th:src="${data.recipeNo.thumbnail}" alt="" class="img-thumbnail card-img-top" th:id="${data.recipeNo.recipeNo}">
-									<div class="p-2">
-										<h5>
-												<a href="#" class="text-dark recipe_name">[[${data.recipeNo.name}]]</a>
-										</h5>
-										<div class="badge badge-danger px-3 rounded-pill">
-											<p class="small text-light mb-0">[[${data.recipeNo.categorylist[0].categoryNo.name}]]</p>
-										</div>
-										<div class="badge badge-danger px-3 rounded-pill">
-											<p class="small text-light mb-0">[[${data.recipeNo.categorylist[1].categoryNo.name}]]</p>
-										</div>
-										
-										<div class="badge badge-danger px-3 rounded-pill">
-											<p class="small text-light mb-0">[[${data.recipeNo.categorylist[2].categoryNo.name}]]</p>
-										</div>
-										<div class="badge badge-danger px-3 rounded-pill">
-											<p class="small text-light mb-0">[[${data.recipeNo.categorylist[3].categoryNo.name}]]</p>
-										</div>
-
-									</div>
-								</div>
-							</div>
-							<!-- End -->
+						<div class="row wishlist_view">
+							
+						
+							
 
 						</div>
 					</div>
@@ -62,7 +38,9 @@
 				</div>
 
 				<!-- 페이지네이션  -->
-				<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+				<div id="pag">
+					<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+				</div>
 
 				<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
 
@@ -281,5 +259,34 @@
 			<div class="box"></div>
 			<div class="box"></div>
 		</div> -->
-</body>
+	<script th:inline="javascript">
+		$(document).ready(function(){
+			// pagination 들어갈 div
+			const pageId = $('#pagination_div');
+			// pagination init
+			listCount();
+			get_wish_data(0);
+			
+		}); // document ready
+		// 검색 함수
+		const listCount = function(){
+			let url = "/yorijori/mypage/wish/count"
+			let totalCount = 0;
+			let pageSize = 4;
+				$.ajax({
+					url : url,
+					type : "post",
+					success : function(data){
+						console.log(data);
+
+						totalCount = data;
+						loadPage(totalCount, pageSize, get_wish_data);
+					}
+					
+				})
+		}
+	
+	</script>
+</th:block>
 </html>
+

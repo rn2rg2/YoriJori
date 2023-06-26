@@ -9,4 +9,6 @@ public interface UserWishDAO {
 
 	List<UserWishlist> selectAll(UserInfo userId, int pageNo, int pagePerCount);
 
+	long countAll();
+
 }

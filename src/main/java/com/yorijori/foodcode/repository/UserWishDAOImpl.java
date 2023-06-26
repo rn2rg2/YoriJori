@@ -29,7 +29,11 @@ public class UserWishDAOImpl implements UserWishDAO {
 		Page<UserWishlist> page = userWishListRepo.findAllByUserId(userId,pageRequest);
 		List<UserWishlist> list = page.getContent();
 		return list;
-		
+	}
+	
+	@Override
+	public long countAll() {
+		return userWishListRepo.count();
 	}
 	
 	
