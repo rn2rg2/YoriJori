@@ -7,8 +7,14 @@
 	crossorigin="anonymous" /> -->
 <th:block layout:fragment="header">
 	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
-</th:block>
+	<script type="text/javascript">
 
+
+
+
+</script>
+	
+</th:block>
 <th:block layout:fragment="content">
 	<div>
 		<div class="container">
@@ -16,11 +22,20 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="sidebar">
+					
 						<div class="widget border-0">
 							<!-- 검색 창 init -->
 							<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
+						<form action="" method="post">
+						
+						<div class="apply job-alert-bt mr-3" style="">
+							<a class="btn btn-md btn-dark" href="#">
+								<i class="fa-regular fa-circle-check"></i> 필터 적용
+							</a>
+						</div>
 						<div class="widget">
+						
 							<div class="widget-title widget-collapse">
 								<h6>레시피</h6>
 								<a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender">
@@ -51,19 +66,19 @@
 							<div class="collapse show" id="dateposted">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" id="dateposted1" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="viewed" id="dateposted1">
 										<label class="custom-control-label" for="dateposted1">조회 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" id="dateposted2" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="great" id="dateposted2">
 										<label class="custom-control-label" for="dateposted2">좋아요 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" id="dateposted3" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value ="comments" id="dateposted3">
 										<label class="custom-control-label" for="dateposted3">댓글 많은 순</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" id="dateposted4" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="registration" id="dateposted4">
 										<label class="custom-control-label" for="dateposted4">등록 순</label>
 									</div>
 								</div>
@@ -79,15 +94,15 @@
 							<div class="collapse show" id="specialism">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input specialism" id="specialism1" onclick="handlespecialism(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="mainmenu" id="specialism1" onclick="handlespecialism(this)">
 										<label class="custom-control-label" for="specialism1">메인메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input specialism" id="specialism2" onclick="handlespecialism(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="sidemenu" id="specialism2" onclick="handlespecialism(this)">
 										<label class="custom-control-label" for="specialism2">반찬</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input specialism" id="specialism3" onclick="handlespecialism(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="dessert" id="specialism3" onclick="handlespecialism(this)">
 										<label class="custom-control-label" for="specialism3">디저트</label>
 									</div>
 								</div>
@@ -103,15 +118,15 @@
 							<div class="collapse show" id="jobtype">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox fulltime-job">
-										<input type="checkbox" class="custom-control-input menutype" id="menutype1" onclick="handleMenutype(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="breakfast" id="menutype1" onclick="handleMenutype(this)">
 										<label class="custom-control-label" for="menutype1">아침 메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox parttime-job">
-										<input type="checkbox" class="custom-control-input menutype" id="menutype2" onclick="handleMenutype(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="lunch" id="menutype2" onclick="handleMenutype(this)">
 										<label class="custom-control-label" for="menutype2">점심 메뉴</label>
 									</div>
 									<div class="custom-control custom-checkbox freelance-job">
-										<input type="checkbox" class="custom-control-input menutype" id="menutype3" onclick="handleMenutype(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="dinner" id="menutype3" onclick="handleMenutype(this)">
 										<label class="custom-control-label" for="menutype3">저녁 메뉴</label>
 									</div>
 								</div>
@@ -127,19 +142,19 @@
 							<div class="collapse show" id="experience">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience" id="experience2" onclick="handleExperience(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="1year" id="experience2" onclick="handleExperience(this)">
 										<label class="custom-control-label" for="experience2">1년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience" id="experience3" onclick="handleExperience(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="2year" "experience3" onclick="handleExperience(this)">
 										<label class="custom-control-label" for="experience3">2년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience" id="experience4" onclick="handleExperience(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="3year" id="experience4" onclick="handleExperience(this)">
 										<label class="custom-control-label" for="experience4">3년전 게시물</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input experience" id="experience5" onclick="handleExperience(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="4year" id="experience5" onclick="handleExperience(this)">
 										<label class="custom-control-label" for="experience5">4년전 게시물</label>
 									</div>
 								</div>
@@ -155,23 +170,23 @@
 							<div class="collapse show" id="Offeredsalary">
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount" id="likeCount1" onclick="handleLikeCount(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="10k_20k" id="likeCount1" onclick="handleLikeCount(this)">
 										<label class="custom-control-label" for="likeCount1">10k - 20k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount" id="likeCount2" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="20k_30k" id="likeCount2" onclick="handleCheckboxChange(this)">
 										<label class="custom-control-label" for="likeCount2">20k - 30k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount" id="likeCount3" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="30k_40k" id="likeCount3" onclick="handleCheckboxChange(this)">
 										<label class="custom-control-label" for="likeCount3">30k - 40k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount" id="likeCount4" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="40k_50k" id="likeCount4" onclick="handleCheckboxChange(this)">
 										<label class="custom-control-label" for="likeCount4">40k - 50k</label>
 									</div>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input likeCount" id="likeCount5" onclick="handleCheckboxChange(this)">
+										<input type="checkbox" class="custom-control-input dateposted" value="50k_60k" id="likeCount5" onclick="handleCheckboxChange(this)">
 										<label class="custom-control-label" for="likeCount5">50k - 60k</label>
 									</div>
 								</div>
@@ -183,6 +198,7 @@
 								<!-- <img class="img-fluid" src="images/add-banner.png" alt=""> -->
 							</div>
 						</div>
+						</form>
 					</div>
 				</div>
 				<div class="col-lg-9">
@@ -195,11 +211,6 @@
 						<div class="job-alert-bt mr-3">
 							<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0">
 								<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
-							</a>
-						</div>
-						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark" href="#" onclick="filterOn()">
-								<i class="fa-regular fa-circle-check"></i> 필터 적용
 							</a>
 						</div>
 						<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
@@ -367,7 +378,30 @@
 
 
 	</script>
+	<script>
+	$(document).ready(function () {
+	    $('.apply a.btn').on('click', function (e) {
+	        e.preventDefault();
+	        var selectedCheckboxes = [];
 
+	        $('.custom-control-input.dateposted:checked').each(function () {
+	            selectedCheckboxes.push($(this).attr('value'));
+	        });
+
+	        // 필터된 값으로 검색을 수행합니다.
+	        $.ajax({
+	            url: '/yorijori/recipe/search',
+	            type: 'post',
+	            contentType: 'application/json; charset=utf-8',
+	            dataType: 'json',
+	            data: JSON.stringify(selectedCheckboxes),
+	            error: function () {
+	                alert('검색에 실패했습니다.');
+	            }
+	        });
+	    });
+	});
+	</script>
 	<script src="/yorijori/common/js/recipe/list.js"></script>
 </th:block>
 </html>

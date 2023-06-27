@@ -2,6 +2,8 @@ package com.yorijori.foodcode.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.domain.Specification;
+
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -14,7 +16,8 @@ public interface RecipeService {
 	long countAll();
 	// 레시피 목록
 	List<Recipe> selectListByPage(int pageNo, int pagePerCount);
-	
+	List<Recipe> findAll(Specification<Recipe> spec);	
+
 	// 레시피의 대한 정보 조회
 	Recipe select(int recipeNo);
 	
