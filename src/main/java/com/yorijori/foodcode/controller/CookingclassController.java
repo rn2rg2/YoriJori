@@ -84,7 +84,7 @@ public class CookingclassController {
 		return "thymeleaf/cookingclass/classApplicationForm";
 	}
 	@PostMapping("/application")
-	public String applicationClass(CookingClassForm form, Model model) {
+	public String applicationClass(CookingClassForm form) {
 		System.out.println(form);
 		return "redirect:/cookingclass/list";
 	}
