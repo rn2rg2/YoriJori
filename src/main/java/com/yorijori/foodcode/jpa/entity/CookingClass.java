@@ -21,7 +21,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.ToString.Exclude;
 
 @Data
@@ -55,6 +54,10 @@ public class CookingClass {
 	@Exclude
 	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CookingClassCurriculum> curriList = new ArrayList<CookingClassCurriculum>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "cookNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CookingClassForm> formList = new ArrayList<CookingClassForm>();
 	
 	@Exclude
 	@ManyToOne

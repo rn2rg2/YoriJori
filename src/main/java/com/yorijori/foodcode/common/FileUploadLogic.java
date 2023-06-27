@@ -73,7 +73,9 @@ public class FileUploadLogic {
 			try {
 				InputStream fileStream = image.getInputStream();
 				FileUtils.copyInputStreamToFile(fileStream, savefile);
+
 				imglist.get(get).setStoreImg(savedFileName);
+
 				get++;
 			} catch (IOException e) {
 				FileUtils.deleteQuietly(savefile);

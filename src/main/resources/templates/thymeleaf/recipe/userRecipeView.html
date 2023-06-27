@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
 	<link rel="stylesheet" href="/yorijori/common/css/recipe/view.css">
@@ -23,7 +23,7 @@
 							<span>food recipe</span>[[${data.name}]]
 						</h3>
 						<ul>
-							<li><i class="food_level"></i>[[${data.des}]]</li>
+							<!-- <li><i class="food_level"></i>[[${data.des}]]</li> -->
 							<li th:if="${data.level == 1 or data.level == 2}"><i
 								class="food_level"></i>초급</li>
 							<li th:if="${data.level == 3}"><i class="food_level"></i>중급</li>
@@ -72,19 +72,10 @@
 						<div class="details_con">
 							<h4 class="details_h4tit food_hat">주재료 및 소스 재료</h4>
 							<hr class="recipe_hr">
-
-							<!-- <th:block th:if="${#strings.contains(data.rcpPartsDtls, '●')}" th:each="value : ${#strings.arraySplit(data.rcpPartsDtls, '●')}">
-								<p class="txt" th:text="${value}"></p>
-							</th:block>
-							<th:block th:if="${#strings.contains(data.rcpPartsDtls, '•')}" th:each="value : ${#strings.arraySplit(data.rcpPartsDtls, '•')}">
-								<p class="txt" th:text="${value}"></p>
-								<p class="txt" th:if="${#strings.arraySplit(data.rcpPartsDtls,'•')[0] != null}" th:text="${#strings.arraySplit(data.rcpPartsDtls,'•')[0]}"></p>
-							<p class="txt" th:if="${#strings.arraySplit(data.rcpPartsDtls, '•')[1] != null}" th:text="${#strings.arraySplit(data.rcpPartsDtls, '•')[1]}"></p>
+							<th:block th:each="ingredient : ${ingrList}">
+							   <p class="txt" th:text="${ingredient.matlName}"></p>
 							</th:block>
 
-							<th:block th:unless="${#strings.contains(data.rcpPartsDtls, '●')} or ${#strings.contains(data.rcpPartsDtls, '•')}">
-								<p class="txt" th:text="${data.rcpPartsDtls}"></p>
-							</th:block> -->
 						</div>
 						<!-- //details_con -->
 					</div>
@@ -97,22 +88,21 @@
 				<div class="card_recipe_view">
 					<!-- 					<h3 class="h3_tit">레시피</h3> -->
 					<ul>
+						<li th:each="dataimg : ${dataimg}">
+							<!-- 									</div> -->
+							<div class="card_img">
+<!-- 								<img class="card_img" th:src="${item.manualImg}" alt="">
+ -->								<img class="card_img" th:src="${dataimg.storeImg}" alt="">
 
-						<li th:each="item, idx : ${data.imglist}">
-				</div>
-				<div class="card_img">
-					<!-- 								<img class="card_img" th:src="${item.manualImg}" alt="">
- -->
-				</div>
-				<div class="card_txt">
 
-					<em class="num"></em>
-					<p></p>
-
+							</div>
+							<div class="card_txt">
+								<em class="num">[[${dataimg.imgNo}]]</em>
+								<p>[[${dataimg.content}]]</p>
+							</div>
+						</li>
+					</ul>
 				</div>
-				</li>
-				</ul>
-			</div>
 			<!-- //card_recipe_view -->
 
 			<!-- conTableGroup -->
@@ -136,8 +126,7 @@
 				</table>
 			</div>
 
-			<th:block
-				th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
+			<th:block th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
 				<form class="form-block" name="myform" id="myform" method="post"
 					th:action="@{/recipe/reviewinsert/{recipeNo}(recipeNo=${data.recipeNo})}">
 					<div class="col-xs-12 col-sm-6 fl_icon">
@@ -350,8 +339,8 @@
 						</div>						
 						<!-- /.bl_faq_a_body -->
 					</dd>
- 					<th:block>					
-					<th:block>					
+				</th:block>
+				</th:block>				
 					
 <!-- 					<dd class="bl_faq_a" style="display: none; margin-left: 30px;">
 						<img class="bl_faq_icon" src="https://audition.hanbiton.com/Boarddata1/Files/1001/2022/10/19/10190947152022580396869.jpg">
@@ -365,12 +354,14 @@
 						/.bl_faq_a_body
 					</dd> -->
 				</dl>
+
 				</p>
 				</th:block>
 				</div>
+
 			</div>
 		</div>
-
+</div>	
 
 		<!-- // boardGroup -->
 			<!-- Swiper JS -->

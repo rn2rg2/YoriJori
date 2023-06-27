@@ -121,5 +121,11 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.QAselect(recipeNo);
 	}
 
+	@Override
+	public List<RecipeIngredients> selectingr(int rcpSeq) {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectingr(rcpSeq);
+	}
+
 
 }

@@ -91,8 +91,7 @@ public class RecipeController {
 			HttpServletRequest request) {
 		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
 		Recipe recipe = new Recipe();
-//		String view = "thymeleaf/recipe/recipeqaexlt";
-		String view = "thymeleaf/recipe/recicpeQA";
+		String view = "thymeleaf/recipe/recipeqaexlt";
 		if(type.equals("user")) {
 			recipe.setRecipeNo(rcpNo);
 			recipeqa.setUserId(userinfo);
@@ -183,7 +182,6 @@ public class RecipeController {
 			long count = apiRecipeService.countAll();
 			// 페이지에 해당하는 서버 레시피 목록 조회
 			List<ApiRecipe> list = apiRecipeService.getServerRecipe(pageNo, 9);
-			
 			// 모델에 데이터 추가
 			model.addAttribute("count", count);
 			model.addAttribute("type", type);
@@ -224,6 +222,13 @@ public class RecipeController {
 			List<RecipeQa> dataq = recipeService.QAselect(rcpSeq);
 	        List<RecipeQa> depthLevelZeroList = new ArrayList<>();
 	        List<RecipeQa> depthLevelOneList = new ArrayList<>();
+	        List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);	
+	        List<Ingredients> idList = new ArrayList<>();
+	        
+	        for (RecipeIngredients recipeIngredients : ingr) {
+	            Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
+	            idList.add(ingr2);
+	        }
 	        // 필터링 질문자 0과 1
 	        // 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
 	        for (RecipeQa item : dataq) {
@@ -236,7 +241,6 @@ public class RecipeController {
 
 	            }
 	        }
-
 			// 모델에 데이터 추가
 			//게시물 상세내용
 			model.addAttribute("data", data);
@@ -249,10 +253,11 @@ public class RecipeController {
 			model.addAttribute("dataq", depthLevelZeroList);
 			model.addAttribute("dataa", depthLevelOneList);
 			model.addAttribute("rcpSeq", rcpSeq);
-			System.out.println(dataq);
+			model.addAttribute("ingrList", idList);
+			System.out.println("TESTTEST"+dataimg);
+			
 			viewCountUp(rcpSeq, type, req, res);
 
-			
 			view = "thymeleaf/recipe/userRecipeView";
 		}
 		return view;

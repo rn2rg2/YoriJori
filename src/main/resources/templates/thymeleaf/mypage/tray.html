@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mypageLayout}">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
+<th:block layout:fragment="header">
 <link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
-</head>
-</head>
-<body>
-	<div class="container-fluid tray-div mb-5" layout:fragment="content">
-	<h3 class="menu-h3-common">나만의 식판</h3>
+</th:block>
+<th:block layout:fragment="content">
+	<div class="container-fluid tray-div mb-5">
+		<h3 class="menu-h3-common">나만의 식판</h3>
 		<div class="row">
 			<div class="col-md-9 tray_frame">
 				<div class="row drop-targets">
@@ -24,97 +21,30 @@
 			<div class="col-md-3 ingredients-layout">
 				<div class="ingredients-info">
 					<!-- search bar -->
-					<div id="searbar_ingredient"
-						th:insert="~{thymeleaf/common/search :: searchbar('재료','재료','재료','재료')}">
-					</div>
+				</div>
+				<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchRecipe')}"></div>
+				<div>
 
 					<!-- 레시피 목록 보기  -->
 					<div class="ingredient_list_view mb-3">
-						<div class="row">
-							<!-- Gallery item -->
-							<div class="col-xl-6 col-lg-6 col-md-6 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgkkiU4kgqjC7yUoe3-4ZzwDEjlXT8ehVE-oFa61KDWGXTe2s7WyqkLUn7obpUP0WsDs0&usqp=CAU"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">레시피 제목</a>
-										</h5>
-										<p class="small text-muted mb-0">유저 닉네임</p>
+						<div class="row wishlist_view">
+							
+						
+							
 
-									</div>
-								</div>
-							</div>
-							<!-- End -->
-							<!-- Gallery item -->
-							<div class="col-xl-6 col-lg-6 col-md-6 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://www.shutterstock.com/image-photo/oyakodon-bowl-rice-topped-chicken-260nw-1090816925.jpg"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id2">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">레시피 제목</a>
-										</h5>
-										<p class="small text-muted mb-0">유저 닉네임</p>
-
-									</div>
-								</div>
-							</div>
-							<!-- End -->
-
-							<!-- Gallery item -->
-							<div class="col-xl-6 col-lg-6 col-md-6 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://ottogi.okitchen.co.kr/pds/upfile/2020-08-23_214060951[8].jpg"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id3">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">레시피 제목</a>
-										</h5>
-										<p class="small text-muted mb-0">유저 닉네임</p>
-
-									</div>
-								</div>
-							</div>
-							<!-- End -->
-							<!-- Gallery item -->
-							<div class="col-xl-6 col-lg-6 col-md-6 mb-1">
-								<div class="bg-white rounded shadow-sm item recipe_info"
-									draggable="true">
-									<img
-										src="https://blog.kakaocdn.net/dn/bqG6de/btsa44kTQqM/vnk6EKrYKK1g9YNKERhFG0/img.jpg"
-										alt="" class="img-thumbnail card-img-top" id="recipe_id4">
-									<div class="p-2">
-										<h5>
-											<a href="#" class="text-dark">레시피 제목</a>
-										</h5>
-										<p class="small text-muted mb-0">유저 닉네임</p>
-
-									</div>
-								</div>
-							</div>
-							<!-- End -->
 						</div>
 					</div>
 
 				</div>
 
 				<!-- 페이지네이션  -->
-				<nav th:insert="~{thymeleaf/common/pagination :: pagination}">
-				</nav>
+				<div id="pag">
+					<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+				</div>
 
-				<div
-					class="btn-group align-items-center justify-content-center about_tray_btn mb-2"
-					role="group">
+				<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
 
-					<button class="btn btn-success m-sm-1" type="button">식판
-						초기화</button>
+					<button class="btn btn-success m-sm-1" type="button" onclick="clearTray();">식판 초기화</button>
 					<button class="btn btn-success m-sm-1" type="button">식판 등록</button>
 				</div>
 
@@ -125,8 +55,7 @@
 				<div class="row ingredients-result">
 					<div class="col-md-2">
 						<div class="py-0 card-body mb-1">
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
@@ -137,53 +66,49 @@
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 칼로리</a><span
-													class="ms-2 text-primary badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">총 칼로리</a>
+												<span class="ms-2 text-primary badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 탄수화물</a><span
-													class="ms-2 text-success badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">총 탄수화물</a>
+												<span class="ms-2 text-success badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 단백질</a><span
-													class="ms-2 text-danger badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">총 단백질</a>
+												<span class="ms-2 text-danger badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 지방</a><span
-													class="ms-2 text-warning badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">총 지방</a>
+												<span class="ms-2 text-warning badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
@@ -196,66 +121,60 @@
 
 					<div class="col-md-2" th:each="num : ${#numbers.sequence(1,5)}">
 						<div class="py-0 card-body mb-1">
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h4 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!"
-													th:text="레시피명 + ${num}"></a>
+												<a class="text-800 stretched-link" href="#!" th:text="레시피명 + ${num}"></a>
 											</h4>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">칼로리</a><span
-													class="ms-2 text-primary badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">칼로리</a>
+												<span class="ms-2 text-primary badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">탄수화물</a><span
-													class="ms-2 text-success badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">탄수화물</a>
+												<span class="ms-2 text-success badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">단백질</a><span
-													class="ms-2 text-danger badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">단백질</a>
+												<span class="ms-2 text-danger badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div
-								class="position-relative align-items-center py-2 border-bottom border-200  row">
+							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
 									<div class="d-flex align-items-center">
 										<div class="d-flex">
 											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">지방</a><span
-													class="ms-2 text-warning badge rounded-pill bg-200">90kcal</span>
+												<a class="text-800 stretched-link" href="#!">지방</a>
+												<span class="ms-2 text-warning badge rounded-pill bg-200">90kcal</span>
 											</h6>
 										</div>
 									</div>
@@ -278,8 +197,7 @@
 					<!-- Gallery item -->
 					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
 						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_1.png" alt=""
-								class="img-fluid card-img-top">
+							<img src="/yorijori/images/common/dosirak_1.png" alt="" class="img-fluid card-img-top">
 							<div class="p-4">
 								<h5>
 									<a href="#" class="text-dark">식판 이름 1</a>
@@ -292,8 +210,7 @@
 					<!-- Gallery item -->
 					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
 						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_2.png" alt=""
-								class="img-fluid card-img-top">
+							<img src="/yorijori/images/common/dosirak_2.png" alt="" class="img-fluid card-img-top">
 							<div class="p-4">
 								<h5>
 									<a href="#" class="text-dark">식판 이름 2</a>
@@ -306,8 +223,7 @@
 					<!-- Gallery item -->
 					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
 						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_3.png" alt=""
-								class="img-fluid card-img-top">
+							<img src="/yorijori/images/common/dosirak_3.png" alt="" class="img-fluid card-img-top">
 							<div class="p-4">
 								<h5>
 									<a href="#" class="text-dark">식판 이름 3</a>
@@ -320,8 +236,7 @@
 					<!-- Gallery item -->
 					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
 						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_4.png" alt=""
-								class="img-fluid card-img-top">
+							<img src="/yorijori/images/common/dosirak_4.png" alt="" class="img-fluid card-img-top">
 							<div class="p-4">
 								<h5>
 									<a href="#" class="text-dark">식판 이름 4</a>
@@ -344,5 +259,34 @@
 			<div class="box"></div>
 			<div class="box"></div>
 		</div> -->
-</body>
+	<script th:inline="javascript">
+		$(document).ready(function(){
+			// pagination 들어갈 div
+			const pageId = $('#pagination_div');
+			// pagination init
+			listCount();
+			get_wish_data(0);
+			
+		}); // document ready
+		// 검색 함수
+		const listCount = function(){
+			let url = "/yorijori/mypage/wish/count"
+			let totalCount = 0;
+			let pageSize = 4;
+				$.ajax({
+					url : url,
+					type : "post",
+					success : function(data){
+						console.log(data);
+
+						totalCount = data;
+						loadPage(totalCount, pageSize, get_wish_data);
+					}
+					
+				})
+		}
+	
+	</script>
+</th:block>
 </html>
+
