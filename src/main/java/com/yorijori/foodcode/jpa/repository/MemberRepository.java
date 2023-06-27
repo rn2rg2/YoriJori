@@ -14,6 +14,4 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     boolean existsByUserId(String userId);
     boolean existsByNickname(String nickname);
     long countByRole(String role);
-
-
 }

@@ -25,6 +25,8 @@
 	<link
 		href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
 		rel="stylesheet">
+	<!-- 	<script -->
+	<!-- 		src="/yorijori/common/css/mypage/changepassmodal.js"></script> -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
@@ -35,6 +37,12 @@
 <th:block layout:fragment="content">
 	<div class="container rounded bg-white mb-5">
 		<h3 class="menu-h3-common">유저 정보</h3>
+		<nav class="nav" id="tab-button-nav">
+			<a href="javascript:" class="nav-link navli"
+				data-tab-section="tab-section-2">강사소개</a> <a href="javascript:"
+				class="nav-link navli" data-tab-section="tab-section-1">클래스</a>
+		</nav>
+
 		<div class="modal fade" id="changepassmodal" tabindex="-1"
 			role="dialog" aria-labelledby="changepassmodalLabel"
 			aria-hidden="true">
@@ -52,17 +60,73 @@
 
 					<div class="image-container">
 						<img class="rounded-circle mt-5"
-							src="https://bootdey.com/img/Content/avatar/avatar1.png"
-							width="200">
+							th:src="@{'/data/user/' + ${session.userInfo.imgPath}}">
 					</div>
 
 					<span class="font-weight-bold" th:text="${session.userInfo.userId}"></span>
 					<span th:text="${session.userInfo.nickname}"></span> <span
-						id="temp" th:text="${session.userInfo.point}"></span> <br /> <span
-						id="purpose" th:text="${session.userInfo.purpose}"> </span>
+						class="tool"
+						data-tip="사용자 평점이란?
+						
+						사용자가 작성한 레시피를 토대로 평균 평점을 산출하여 계산됩니다.
+						좋은 레시피를 공유하여 평점을 높여보세요!
+						"
+						tabindex="1" style="font-weight: bold; color: red;"
+						th:data-userPoint="${session.userInfo.point}">사용자의 현재 랭킹</span>
+					<!-- 유저 평점에 따라 이미지를 바꿔줄 것 -->
+
+					<div th:if="${session.userInfo.point}==0">
+						<img src="/yorijori/images/userpoint/0tier.png"
+							style="width: 4em; height: 4em;">
+					</div>
+					<div th:if="${session.userInfo.point}==1">
+						<img src="/yorijori/images/userpoint/1tier.png"
+							style="width: 4em; height: 4em;">
+					</div>
+					<div th:if="${session.userInfo.point}==2">
+						<img src="/yorijori/images/userpoint/2tier.png"
+							style="width: 4em; height: 4em;">
+					</div>
+					<div th:if="${session.userInfo.point}==3">
+						<img src="/yorijori/images/userpoint/3tier.png"
+							style="width: 4em; height: 4em;">
+					</div>
+					<div th:if="${session.userInfo.point}==4">
+						<img src="/yorijori/images/userpoint/4tier.png"
+							style="width: 4em; height: 4em;">
+					</div>
+					<div th:if="${session.userInfo.point}==5">
+						<img src="/yorijori/images/userpoint/5tier.png"
+							style="width: 4em; height: 4em;">
+					</div>
+					<br /> <span style="font-weight: bold; color: #fd5d5d;">랭킹
+						정보</span>
+					<div class="tier_list">
+						<div class="tier" data-tierno="0">
+							<img src="/yorijori/images/userpoint/0tier.png">
+						</div>
+						<div class="tier" data-tierno="1">
+							<img src="/yorijori/images/userpoint/1tier.png">
+						</div>
+						<div class="tier" data-tierno="2">
+							<img src="/yorijori/images/userpoint/2tier.png">
+						</div>
+						<div class="tier" data-tierno="3">
+							<img src="/yorijori/images/userpoint/3tier.png">
+						</div>
+						<div class="tier" data-tierno="4">
+							<img src="/yorijori/images/userpoint/4tier.png">
+						</div>
+						<div class="tier" data-tierno="5">
+							<img src="/yorijori/images/userpoint/5tier.png">
+						</div>
+					</div>
+
+					<br /> <span id="purpose" th:text="${session.userInfo.purpose}">
+					</span>
 				</div>
 			</div>
-			<form action="/yorijori/mypage/update2" method="post"
+			<form action="/yorijori/mypage/updateprofile" method="post"
 				style="display: contents;" onsubmit="return boardSubmit(event);">
 				<div class="col-md-8">
 					<div class="p-3 py-5">
@@ -70,16 +134,17 @@
 							class="d-flex justify-content-between align-items-center mb-3">
 
 							<h6 class="text-right">프로필 수정하기</h6>
+							<br />
 						</div>
 
 						<div class="row mt-2">
 							<div class="col-md-6">
-
+								<h6>이름</h6>
 								<input type="text" class="form-control"
 									th:value="${session.userInfo.name}" disabled="disabled">
-
 							</div>
 							<div class="col-md-6">
+								<h6>전화번호</h6>
 								<input type="text" class="form-control"
 									th:value="${session.userInfo.phoneNumber}" disabled="disabled">
 							</div>
@@ -88,14 +153,14 @@
 						<div class="row mt-3">
 
 							<div class="col-md-6">
-
+								<h6>이메일</h6>
 								<input type="text" class="form-control" placeholder="Email"
 									id="Email" name="Email" th:value="${session.userInfo.email}">
 
 							</div>
 
 							<div class="col-md-6">
-
+								<h6>닉네임</h6>
 								<input type="text" class="form-control" name="Nickname"
 									id="Nickname" th:value="${session.userInfo.nickname}"
 									placeholder="닉네임">
@@ -147,7 +212,8 @@
 					</div>
 
 					<div class="mt-5 text-right">
-						<button class="btn btn-primary profile-button" type="button">회원 탈퇴</button>
+						<button class="btn btn-primary profile-button" type="button">회원
+							탈퇴</button>
 						<button class="btn btn-primary profile-button" type="submit">수정사항
 							저장</button>
 						<a href="#changepassmodal" class="btn btn-primary profile-button"
@@ -163,8 +229,48 @@
 				$('.image-container').on('click', function() {
 					$('#changephotomodal').modal('show');
 				});
-			});
 
+				var userPoint = $('[data-userPoint]').data('userpoint');
+				$('.tier').each(function() {
+					var tierno = $(this).data('tierno');
+					if (tierno == userPoint) {
+						$(this).css('border', '0.2em solid red');
+					}
+				});
+			});
+			
+			$(document).on('click', '#updateprofileimage', function() {
+				  
+				$('.profileimagechange').trigger('click');
+				$('.profileimagechange').change(function() {
+					readURL(this);
+				});
+			});
+			
+			
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$('.uploadprofile').attr('src', e.target.result);
+						$('.uploadprofile').hide();
+						$('.uploadprofile').fadeIn(500);
+					};
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+			
+			function imageSubmit(){
+				var fileInput = $('#profileimage')[0];
+			    var fileSelected = fileInput.files && fileInput.files[0];
+
+			    // 파일이 선택되지 않은 경우 파일 필드의 name 속성을 제거
+			    if (!fileSelected) {
+			      $('#profileimage').removeAttr('name');
+			    }
+			    return true;
+			}
+			
 			function boardSubmit(event) {
 				var EmailCheck = isEmpty($('#Email')); // 값이 없을 경우 true
 				var NicknameCheck = isEmpty($('#Nickname'));

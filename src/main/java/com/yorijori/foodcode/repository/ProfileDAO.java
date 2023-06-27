@@ -6,4 +6,5 @@ public interface ProfileDAO {
 	public void updateprofile();
 	public void updatepassword();
 	UserInfo updateprofile2(UserInfo user_id, String email, String nickname);
+	public UserInfo updateprofileimage(UserInfo user);
 }

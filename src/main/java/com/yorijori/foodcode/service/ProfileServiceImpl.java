@@ -35,6 +35,11 @@ public class ProfileServiceImpl implements ProfileService {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+	public UserInfo updateprofileimage(UserInfo user) {
+		// TODO Auto-generated method stub
+		return profiledao.updateprofileimage(user);
+	}
 
 
 
