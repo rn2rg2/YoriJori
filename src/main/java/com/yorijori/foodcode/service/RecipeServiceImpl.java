@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
@@ -125,6 +126,11 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<RecipeIngredients> selectingr(int rcpSeq) {
 		// TODO Auto-generated method stub
 		return recipeDAO.selectingr(rcpSeq);
+	}
+	@Override
+	public List<Recipe> findAll(Specification<Recipe> spec) {
+		// TODO Auto-generated method stub
+		return recipeDAO.findAll(spec);
 	}
 
 

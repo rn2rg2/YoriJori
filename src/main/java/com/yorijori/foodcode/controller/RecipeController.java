@@ -15,11 +15,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.common.FileUploadLogic;
+import com.yorijori.foodcode.common.RecipeSpecification;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
@@ -114,7 +117,24 @@ public class RecipeController {
 	public String viewRecipe(Model model) {
 		return "thymeleaf/recipe/recipeview";
 	}
+	
+	@PostMapping("/search")
+	@ResponseBody
+	public List<String> search(@RequestBody List<String> selectedValues) {
+	    Specification<Recipe> spec = RecipeSpecification.equalServing("3인분");
 
+	    List<Recipe> recipes = recipeService.findAll(spec);
+	    System.out.println(recipes);
+	    // 검색된 레시피에서 원하는 데이터 추출
+	    List<String> result = new ArrayList<>();
+	    for (Recipe recipe : recipes) {
+	        result.add(recipe.getName());
+	    }
+
+	    System.out.println(result);
+	    return result;
+	}
+	
 	// recipe insert
 	@RequestMapping("/insert")
 	public String insertRecipe(Model model) {
