@@ -15,12 +15,13 @@ public class RecipeDTO {
 	private String des ;
 	private int count ;
 	private int  total_kcal ;
-	private String RCP_NA_TIP ;
-	private String MANUAL01 ;
-	private int time ;
-	private int level;
+	private String rcp_na_tip ;
+	private String time ;
+	private String level;
+	private String serving;
 	private Date date ;
 	private Date up_date;
 	private int state;
+	private String thumbnail;
 	
 }
