@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,5 +35,6 @@ public class Category {
     
     @OneToMany(mappedBy = "categoryNo",fetch = FetchType.LAZY)
     @Exclude
+    @JsonBackReference 
     private List<RecipeCategory> categorys;
 }

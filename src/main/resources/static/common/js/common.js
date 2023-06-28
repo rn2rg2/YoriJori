@@ -476,7 +476,7 @@ function getAjaxNoParam(url, callback) {
 /*
  * ajax 함수 Post
  */
-function postAjaxNoParam(url, param, callback) {
+function postAjaxNoParam(url, callback) {
 	$.ajax({
 		type : "POST",
 		url : url,

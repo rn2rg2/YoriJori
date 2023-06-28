@@ -11,4 +11,5 @@ public interface UserWishService {
 
 	long countAll();
 
+
 }
