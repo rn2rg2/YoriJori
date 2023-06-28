@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,10 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.Sort;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.common.RecipeSpecification;
+import com.yorijori.foodcode.dto.FilterDTO;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
@@ -43,6 +46,7 @@ import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RecipeService;
+
 
 @RequestMapping("/recipe")
 @Controller
@@ -118,13 +122,58 @@ public class RecipeController {
 		return "thymeleaf/recipe/recipeview";
 	}
 	
-	@PostMapping("/search")
+	@PostMapping("/filtersearch")
 	@ResponseBody
-	public List<String> search(@RequestBody List<String> selectedValues) {
-	    Specification<Recipe> spec = RecipeSpecification.equalServing("3인분");
-
+	public List<String> search(@RequestBody FilterDTO filterDTO) {
+		System.out.println(filterDTO);
+		
+	    Specification<Recipe> spec = RecipeSpecification.any();
 	    List<Recipe> recipes = recipeService.findAll(spec);
-	    System.out.println(recipes);
+
+	    if (filterDTO.getServing() != null && !filterDTO.getServing().isEmpty()) {
+	        spec = spec.and(RecipeSpecification.equalServing(filterDTO.getServing()));
+	    }
+	    if (filterDTO.getMin() != null && !filterDTO.getMin().isEmpty()) {
+	        spec = spec.and(RecipeSpecification.equalmin(filterDTO.getMin()));
+	    }
+	    if (filterDTO.getOrder() != null && !filterDTO.getOrder().isEmpty()) {
+	        List<String> order = filterDTO.getOrder();
+	        if (order.contains("viewed")) {
+	            spec = spec.and(RecipeSpecification.orderByViewCount());
+	        }
+	        if (order.contains("great")) {
+	            spec = spec.and(RecipeSpecification.orderByViewCount());
+	        }
+	        if (order.contains("comments")) {
+	        	spec = spec.and(RecipeSpecification.orderByWishlist());
+	        }
+	        if (order.contains("registration")) {
+	            spec = spec.and(RecipeSpecification.orderByCreatedDatetime());
+	        }
+	    }
+	    if (filterDTO.getCountry()!= null && !filterDTO.getCountry().isEmpty()) {
+	        List<String> country = filterDTO.getCountry();
+	        if (country.contains("한식")) {
+	        	spec = spec.and(RecipeSpecification.findByCountry("한식"));
+	        }
+	        if (country.contains("중식")) {
+	        	spec = spec.and(RecipeSpecification.findByCountry("중식"));
+	        }
+	        if (country.contains("일식")) {
+	        	spec = spec.and(RecipeSpecification.findByCountry("일식"));
+	        }
+	        if (country.contains("양식")) {
+	        	spec = spec.and(RecipeSpecification.findByCountry("양식"));
+	        }
+	    }
+	    	
+	    	
+	        System.out.println("===================TEST=====================");
+	        System.out.println(recipeService.findAll(spec));
+	        System.out.println("===================TEST=====================");
+
+		
+
 	    // 검색된 레시피에서 원하는 데이터 추출
 	    List<String> result = new ArrayList<>();
 	    for (Recipe recipe : recipes) {

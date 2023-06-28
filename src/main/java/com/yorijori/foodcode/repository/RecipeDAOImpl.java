@@ -144,4 +144,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return reciperepository.findAll(spec);
 	}
 
+	@Override
+	public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
+        return reciperepository.findAll(spec, sort);
+	}
+
 }
