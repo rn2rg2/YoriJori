@@ -1,14 +1,19 @@
 package com.yorijori.foodcode.controller;
 
-import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonObject;
 import com.yorijori.foodcode.common.FileUploadLogic;
-import com.yorijori.foodcode.dto.BoardCommentDTO;
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
@@ -59,19 +60,103 @@ public class BoardController {
 //		return "thymeleaf/board/list";
 //	}
 	//게시물 전체보기
-	@RequestMapping ("/list/{pageNo}/{pagePerCount}")
-	public String boardList(Model model,@PathVariable int pageNo, @PathVariable int pagePerCount) {
-		//List<Board> list = service.selectByPage(pageNo);
-		List<Board> list = service.selectByPageAndpagePerCount(pageNo, pagePerCount);
-		long count = service.countAll();
-		model.addAttribute("boardlist",list);
-		model.addAttribute("count",count);
-		model.addAttribute("pageNo",pageNo);
-		model.addAttribute("pagePerCount",pagePerCount);
+	/*
+	 * @RequestMapping ("/list/{pageNo}/{pagePerCount}") public String
+	 * boardList(Model model,@PathVariable int pageNo, @PathVariable int
+	 * pagePerCount,
+	 * 
+	 * @RequestParam(value = "category", required = false) String category) {
+	 * //List<Board> list = service.selectByPage(pageNo); List<Board> list =
+	 * service.selectByPageAndpagePerCount(pageNo, pagePerCount); long count =
+	 * service.countAll(); model.addAttribute("boardlist",list);
+	 * model.addAttribute("count",count); model.addAttribute("pageNo",pageNo);
+	 * model.addAttribute("pagePerCount",pagePerCount);
+	 * 
+	 * return "thymeleaf/board/list"; }
+	 */
+	
+	@RequestMapping("/list/{pageNo}/{pagePerCount}")
+	public String boardList(Model model, @PathVariable int pageNo, @PathVariable int pagePerCount,
+							@RequestParam(value = "category", required = false) String category,
+	                        @RequestParam(value = "searchData", required = false) String searchData) {
+	    // List<Board> list = service.selectByPage(pageNo);
+		List<Board> list = null;
+	    long count = 0;
+		
+		if (category != null && !category.isEmpty()) {
+			list = service.selectByCategoryAndState(category, pageNo, pagePerCount);
+			count = service.getCountByCategorysAndState(category);
+			
+			model.addAttribute("boardlist", list);
+		    model.addAttribute("count", count);
+		    model.addAttribute("pageNo", pageNo);
+		    model.addAttribute("pagePerCount", pagePerCount);
+		    model.addAttribute("category", category);
+			
+			return "thymeleaf/board/list";
+		}
+	    
+	    
+	    if (searchData != null && !searchData.isEmpty()) {
+	    	count = service.getCountByContentsAndState(searchData);
+	    	list = service.selectByPageAndpagePerCountSearch(pageNo, pagePerCount, searchData);
+	    	
+	    	model.addAttribute("boardlist", list);
+		    model.addAttribute("count", count);
+		    model.addAttribute("pageNo", pageNo);
+		    model.addAttribute("pagePerCount", pagePerCount);
+		    model.addAttribute("searchData", searchData);
+			
+			return "thymeleaf/board/list";
+	    } 
+	    
+	    list = service.selectByPageAndpagePerCount(pageNo, pagePerCount);
+		count = service.countAll();
+
+		model.addAttribute("boardlist", list);
+	    model.addAttribute("count", count);
+	    model.addAttribute("pageNo", pageNo);
+	    model.addAttribute("pagePerCount", pagePerCount);
+		
 		return "thymeleaf/board/list";
 	}
-	
-	
+
+	/*
+	 * @RequestMapping("/list/{pageNo}/{pagePerCount}/{contentKeyword}") public
+	 * String boardSearchList(Model model, @PathVariable int pageNo, @PathVariable
+	 * int pagePerCount,
+	 * 
+	 * @RequestParam(value = "category", required = false) String category,
+	 * 
+	 * @PathVariable String contentKeyword) { System.out.println(contentKeyword);
+	 * List<Board> list = service.selectByPageAndpagePerCountSearch(pageNo,
+	 * pagePerCount, contentKeyword); long count =
+	 * service.getCountByContentsAndState(contentKeyword);
+	 * 
+	 * System.out.println("zzzzzzzzzz컨트롤러search"); model.addAttribute("boardlist",
+	 * list); model.addAttribute("count", count); model.addAttribute("pageNo",
+	 * pageNo); model.addAttribute("pagePerCount", pagePerCount);
+	 * model.addAttribute("searchData", contentKeyword);
+	 * model.addAttribute("category", category);
+	 * 
+	 * 
+	 * return "thymeleaf/board/list"; }
+	 * 
+	 * @RequestMapping("/list/{pageNo}/{pagePerCount}/{category}") public String
+	 * boardListCheckBox(Model model, @PathVariable int pageNo, @PathVariable int
+	 * pagePerCount,
+	 * 
+	 * @RequestParam(value = "category", required = false) String category) {
+	 * System.out.println(category); List<Board> list =
+	 * service.selectByCategoryAndState(category, pageNo, pagePerCount); long count
+	 * = service.getCountByCategorysAndState(category);
+	 * model.addAttribute("boardlist", list); model.addAttribute("count", count);
+	 * model.addAttribute("pageNo", pageNo); model.addAttribute("pagePerCount",
+	 * pagePerCount); model.addAttribute("category", category);
+	 * 
+	 * 
+	 * return "thymeleaf/board/list"; }
+	 */
 	//게시물 상세보기
 	@RequestMapping("/read/{commNo}/{state}")
 	public String boardRead(@PathVariable int commNo, @PathVariable int state, HttpSession session, Model model,
