@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yorijori.foodcode.dto.RecipeDTO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
@@ -39,9 +41,16 @@ public class RefriTrayController {
 	public String refri(Model model, HttpSession session) {
 		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
 		String user = userinfo.getUserId();
-		List<UserFrige> refrilist = refriTrayService.selectAll(user);
+		List<UserFrige> refrilist = new ArrayList<UserFrige>();
+		refrilist = refriTrayService.selectAll(user);
 		long count = ingreService.countAll();
 		long refriCount = refriTrayService.countByUserId(user);
+		if (refrilist.size() > 0  ) {
+			System.out.println("=======================================");
+			System.out.println("실행");
+			System.out.println("=======================================");
+			List<RecipeDTO> rcplist = refriTrayService.getRecommendList(userinfo, refrilist.get(0));
+		}
 		model.addAttribute("refrilist", refrilist);
 		model.addAttribute("count", count);
 		model.addAttribute("refriCount", refriCount);

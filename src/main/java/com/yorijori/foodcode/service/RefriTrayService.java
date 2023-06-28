@@ -2,6 +2,7 @@ package com.yorijori.foodcode.service;
 
 import java.util.List;
 
+import com.yorijori.foodcode.dto.RecipeDTO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 
@@ -12,5 +13,7 @@ public interface RefriTrayService {
 	long countByUserId(String userId);
 
 	void insert(UserFrige userfrige, String userId);
+
+	List<RecipeDTO> getRecommendList(UserInfo user, UserFrige userfrige);
 
 }
