@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,14 +48,17 @@ public class UserInfo {
 
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference 
 	private List<Recipe> recipeList = new ArrayList<Recipe>();
 
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<RecipeReview> reviewList = new ArrayList<RecipeReview>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<ApiRecipeReview> apireviewList = new ArrayList<ApiRecipeReview>();
 	
 //	@Exclude
@@ -61,6 +67,7 @@ public class UserInfo {
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Inquiry> inquiryList = new ArrayList<Inquiry>();
 	
 //	@Exclude
@@ -77,32 +84,37 @@ public class UserInfo {
 //	@JsonManagedReference
 //	private List<UserFrige> frigeList = new ArrayList<UserFrige>();
 	
-	@Exclude
-	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<UserLog> logList = new ArrayList<UserLog>();
+//	@Exclude
+//	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<UserLog> logList = new ArrayList<UserLog>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Board> boardList = new ArrayList<Board>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<BoardComment> boardcommentList = new ArrayList<BoardComment>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<CookingClass> cookingClassList = new ArrayList<CookingClass>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<CookingClassForm> cookingClassForm = new ArrayList<CookingClassForm>();
 	
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<UserWishlist> userWishList = new ArrayList<UserWishlist>();
-	
-	@Exclude
-	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<UserWishListApi> userWishApiList = new ArrayList<UserWishListApi>();
+//	
+//	@Exclude
+//	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<UserWishListApi> userWishApiList = new ArrayList<UserWishListApi>();
 
 }

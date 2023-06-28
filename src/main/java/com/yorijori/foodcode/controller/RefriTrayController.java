@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,11 +66,13 @@ public class RefriTrayController {
 		return "redirect:/mypage/refri";
 	}
 	
-	@PostMapping("/wish/list")
+	@GetMapping("/wish/list/{pageNo}/{pagePerCount}")
 	@ResponseBody
-	public List<UserWishlist> getWishListByPage(int pageNo, HttpSession session) {
+	public List<UserWishlist> getWishListByPage(@PathVariable int pageNo, @PathVariable int pagePerCount, HttpSession session) {
 		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
-		List<UserWishlist> list = userWishService.selectAll(userinfo,pageNo, 4);
+		//List<RcpCategoryDTO> list = userWishService.selectRcpAndCategory(userinfo);
+		//System.out.println(list);
+		List<UserWishlist> list = userWishService.selectAll(userinfo,pageNo, pagePerCount);
 		return list;
 	}
 	
