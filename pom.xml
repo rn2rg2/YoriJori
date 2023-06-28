@@ -113,6 +113,13 @@
 		    <artifactId>javax.persistence-api</artifactId>
 		    <version>2.2</version>
 		</dependency>	
+		
+		<!-- 채팅용 웹소켓 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		
 
 	</dependencies>
 
