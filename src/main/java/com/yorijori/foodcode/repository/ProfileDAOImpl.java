@@ -28,10 +28,11 @@ public class ProfileDAOImpl implements ProfileDAO {
 	}
 	
 	@Override
-	public UserInfo updateprofile2(UserInfo user_id, String email, String nickname) {
-		UserInfo user = entitymanager.find(UserInfo.class, user_id.getUserId());
-		user.setEmail(email);
-		user.setNickname(nickname);
+	public UserInfo updateprofile(UserInfo user_id) {
+		UserInfo user = userrepo.findByUserId(user_id.getUserId());
+		user.setPrefer(user_id.getPrefer());
+		user.setEmail(user_id.getEmail());
+		user.setNickname(user_id.getNickname());
 		return user;
 	}
 	
@@ -45,10 +46,15 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public UserInfo updateprofileimage(UserInfo user) {
 		UserInfo updateuser =  userrepo.findByUserId(user.getUserId());
 		updateuser.setImgPath(user.getImgPath());
-		if(user.getImgPath()!=null) {
 		updateuser.setPurpose(user.getPurpose());
-		}
 		return updateuser;
+	}
+
+	@Override
+	public void updatestate(UserInfo user) {
+		UserInfo deleteuser = userrepo.findByUserId(user.getUserId());
+		
+		deleteuser.setState(user.getState());
 	}
 
 
