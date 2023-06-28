@@ -18,7 +18,7 @@
 						<!-- 사이드 탭  -->
 						<div class="widget">
 							<div class="widget-title widget-collapse">
-								<h6>카테고리 별</h6>
+								<h6>검색</h6>
 								<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
 									<i class="fas fa-chevron-down"></i>
 								</a>
@@ -27,21 +27,19 @@
 								<div class="widget-content">
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="dateposted1">
-										<label class="custom-control-label" for="dateposted1">작성자</label>
+										<label class="custom-control-label" for="dateposted1">레시피질문</label>
 									</div>
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="dateposted2">
-										<label class="custom-control-label" for="dateposted2">제목</label>
+										<label class="custom-control-label" for="dateposted2">맛집추천</label>
 									</div>
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="dateposted3">
-										<label class="custom-control-label" for="dateposted3">내용</label>
+										<label class="custom-control-label" for="dateposted3">오늘뭐먹지</label>
 									</div>
 								</div>
 							</div>
-
 						</div>
-
 					</div>
 				</div>
 				<div class="col-lg-9">
@@ -52,14 +50,16 @@
 									<thead>
 										<tr>
 											<th style="width: 10%">글번호</th>
-											<th style="width: 60%">제목</th>
+											<th style="width: 15%">카테고리</th>																			
+											<th style="width: 50%">제목</th>
 											<th style="width: 15%">작성자</th>
-											<th style="width: 20%">조회수</th>
+											<th style="width: 10%">조회수</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr class="notice">
 											<td>공지</td>
+											<td>공지사항</td>
 											<td><a href="/yorijori/board/read">게시판 사용 시 주의사항</a></td>
 											<td>관리자</td>
 											<td>5</td>
@@ -67,6 +67,7 @@
 									</tbody>
 									<tr th:each="board:${boardlist}">
 										<td><span th:text="${board.commNo }"></span></td>
+										<td><span th:text="${board.category}"></span></td>									
 										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
 												<span th:text="${board.title }"></span>
 											</a></td>
@@ -115,9 +116,26 @@
 			let pagePerCount = [[${pagePerCount}]];
 			// 게시물  카운트
 			let boardcount = [[${count}]];
-			
+			//검색 데이터
+			let searchData = [[${searchData}]]
+			// 카테고리
+			let category = [[${category}]];
 			//불러왔을때 총 게시물 / pagePerCount
 			let totalPages = 1;
+			
+			// 검색 후 유지
+			$("#inputSearchData").val(searchData);
+			
+			//카테고리 체크 상태 유지
+			$('.custom-control-label').each(function(index, item){
+				var inputbox = $(this).siblings('.custom-control-input')
+				if ( replaceSpace(item.textContent) == category ) {
+					inputbox.prop('checked', true);
+				};
+			});
+			
+			//공통url
+			let url = "/yorijori/board/list";
 			if ( boardcount > pagePerCount ){
 				totalPages = Math.ceil( boardcount /pagePerCount )
 			}
@@ -128,13 +146,41 @@
 				$('#viewablePages').on('change', function(){
 					pagePerCount = parseInt($(this).val());
 					window.location.href = "/yorijori/board/list/0/"+pagePerCount;
-					console.log(pagePerCount);
 				});
 				//pagePerCount 페이지별 눌렀을 때 click()
 				//pagePerCount 변수로 지정
 				//pagePerCount = 바뀌는 값
 				//window.location.href = "/yorijori/board/list/0/5";
 				makePagination(pagination, totalPages, pagePerCount, currentPage + 1, move_list);
+				$("#inputSearchData").on("keyup",function(key){
+					if(key.keyCode==13) {
+						fnSearch();
+			        }
+				})
+				
+				// 검색 버튼 클릭 시 
+				$('#searchIngredient').click(function(){
+					fnSearch();
+				})
+				
+				
+				// 검색 함수
+				const fnSearch = function(){
+					let searchData = $("#inputSearchData").val();
+					let url = "/yorijori/board/list";
+					currentPage = 0 ;
+					window.location.href = url + "/" + currentPage+"/"  + pagePerCount+"/?searchData=" + searchData; 
+				}
+				$('.custom-control-input').change(function() {
+					if (this.checked) {
+			    	 	category = $(this).siblings('.custom-control-label').text();
+			    	 	category = replaceSpace(category);
+			    	 	currentPage = 0;
+			    	 	url = url + "/" + currentPage + "/" + pagePerCount+"/?category=" + category;
+			    	 	window.location.href = url;
+				      }
+				});
+			
 			});
 			const move_list = function(page) {
 				let url = "/yorijori/board/list/"+ page + "/" + pagePerCount;
