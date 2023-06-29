@@ -3,7 +3,6 @@ package com.yorijori.foodcode.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -145,9 +144,6 @@ public class MyPageController {
 		return "thymeleaf/mypage/commentlist";
 	}
 
-	@RequestMapping("/chat")
-	public String chat() {
-		return "thymeleaf/mypage/chat";
-	}
+	
 
 }
