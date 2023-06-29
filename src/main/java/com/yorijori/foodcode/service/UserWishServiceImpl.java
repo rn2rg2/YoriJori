@@ -29,5 +29,7 @@ public class UserWishServiceImpl implements UserWishService {
 	public long countAll() {
 		return userWishDAO.countAll();
 	}
+	
+	
 
 }

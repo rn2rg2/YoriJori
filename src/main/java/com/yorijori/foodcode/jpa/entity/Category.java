@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.jpa.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +36,6 @@ public class Category {
     
     @OneToMany(mappedBy = "categoryNo",fetch = FetchType.LAZY)
     @Exclude
+    @JsonBackReference 
     private List<RecipeCategory> categorys;
 }

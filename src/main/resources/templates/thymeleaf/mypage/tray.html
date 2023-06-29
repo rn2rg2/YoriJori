@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <th:block layout:fragment="header">
-<link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
 </th:block>
 <th:block layout:fragment="content">
 	<div class="container-fluid tray-div mb-5">
@@ -27,12 +27,7 @@
 
 					<!-- 레시피 목록 보기  -->
 					<div class="ingredient_list_view mb-3">
-						<div class="row wishlist_view">
-							
-						
-							
-
-						</div>
+						<div class="row wishlist_view"></div>
 					</div>
 
 				</div>
@@ -52,8 +47,9 @@
 
 			<!-- 현재 식판 정보 -->
 			<div class="container-fluid">
+				<h3 class="menu-h3-common">식판에 있는 레시피</h3>
 				<div class="row ingredients-result">
-					<div class="col-md-2">
+					<!-- <div class="col-md-2">
 						<div class="py-0 card-body mb-1">
 							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
@@ -117,9 +113,9 @@
 
 						</div>
 
-					</div>
+					</div> -->
 
-					<div class="col-md-2" th:each="num : ${#numbers.sequence(1,5)}">
+					<!-- <div class="col-md-2" th:each="num : ${#numbers.sequence(1,5)}">
 						<div class="py-0 card-body mb-1">
 							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
 								<div class="py-1 col">
@@ -182,75 +178,74 @@
 							</div>
 
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 			</div>
-		</div>
-		<div class="container-fluid mt-5">
-			<div class="px-lg-5">
-				<div>
-					<h5>내 식판 리스트</h5>
-					<hr />
+			<div class="container-fluid">
+				<h3 class="menu-h3-common">내 식판 목록</h3>
+				<div class="px-lg-5">
+					<div></div>
+					<div class="row">
+						<!-- Gallery item -->
+						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+							<div class="bg-white rounded shadow-sm">
+								<img src="/yorijori/images/common/dosirak_1.png" alt="" class="img-fluid card-img-top">
+								<div class="p-4">
+									<h5>
+										<a href="#" class="text-dark">식판 이름 1</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<!-- End -->
+
+						<!-- Gallery item -->
+						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+							<div class="bg-white rounded shadow-sm">
+								<img src="/yorijori/images/common/dosirak_2.png" alt="" class="img-fluid card-img-top">
+								<div class="p-4">
+									<h5>
+										<a href="#" class="text-dark">식판 이름 2</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<!-- End -->
+
+						<!-- Gallery item -->
+						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+							<div class="bg-white rounded shadow-sm">
+								<img src="/yorijori/images/common/dosirak_3.png" alt="" class="img-fluid card-img-top">
+								<div class="p-4">
+									<h5>
+										<a href="#" class="text-dark">식판 이름 3</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<!-- End -->
+
+						<!-- Gallery item -->
+						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+							<div class="bg-white rounded shadow-sm">
+								<img src="/yorijori/images/common/dosirak_4.png" alt="" class="img-fluid card-img-top">
+								<div class="p-4">
+									<h5>
+										<a href="#" class="text-dark">식판 이름 4</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<!-- End -->
+					</div>
 				</div>
-				<div class="row">
-					<!-- Gallery item -->
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_1.png" alt="" class="img-fluid card-img-top">
-							<div class="p-4">
-								<h5>
-									<a href="#" class="text-dark">식판 이름 1</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<!-- End -->
 
-					<!-- Gallery item -->
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_2.png" alt="" class="img-fluid card-img-top">
-							<div class="p-4">
-								<h5>
-									<a href="#" class="text-dark">식판 이름 2</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<!-- End -->
-
-					<!-- Gallery item -->
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_3.png" alt="" class="img-fluid card-img-top">
-							<div class="p-4">
-								<h5>
-									<a href="#" class="text-dark">식판 이름 3</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<!-- End -->
-
-					<!-- Gallery item -->
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-						<div class="bg-white rounded shadow-sm">
-							<img src="/yorijori/images/common/dosirak_4.png" alt="" class="img-fluid card-img-top">
-							<div class="p-4">
-								<h5>
-									<a href="#" class="text-dark">식판 이름 4</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<!-- End -->
-				</div>
 			</div>
-
-			<script src="/yorijori/common/js/mypage/tray.js"></script>
 		</div>
+
 	</div>
+	<script src="/yorijori/common/js/mypage/tray.js"></script>
 	<!-- <h1>JavaScript - Drag and Drop</h1>
 		<div class="drop-targets">
 			<div class="box">
@@ -260,32 +255,31 @@
 			<div class="box"></div>
 		</div> -->
 	<script th:inline="javascript">
-		$(document).ready(function(){
+		$(document).ready(function() {
 			// pagination 들어갈 div
 			const pageId = $('#pagination_div');
 			// pagination init
 			listCount();
 			get_wish_data(0);
-			
+
 		}); // document ready
 		// 검색 함수
-		const listCount = function(){
+		const listCount = function() {
 			let url = "/yorijori/mypage/wish/count"
 			let totalCount = 0;
 			let pageSize = 4;
-				$.ajax({
-					url : url,
-					type : "post",
-					success : function(data){
-						console.log(data);
+			$.ajax({
+				url : url,
+				type : "post",
+				success : function(data) {
+					console.log(data);
 
-						totalCount = data;
-						loadPage(totalCount, pageSize, get_wish_data);
-					}
-					
-				})
+					totalCount = data;
+					loadPage(totalCount, pageSize, get_wish_data);
+				}
+
+			})
 		}
-	
 	</script>
 </th:block>
 </html>

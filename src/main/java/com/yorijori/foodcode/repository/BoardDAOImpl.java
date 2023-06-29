@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -60,15 +61,34 @@ public class BoardDAOImpl implements BoardDAO {
 		return list;
 	}
 	
+	
+
 	@Override
-	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
-		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
-		//Page<Board> page = repository.findAll(pageRequest);
-		 Page<Board> page = repository.findByState(0, pageRequest);
-		 List<Board> list = page.getContent();
+	public List<Board> selectByPageAndpagePerCountandSearch(int pageNo, int pagePerCount,String contentKeyword) {
+		System.out.println(pageNo);
+		System.out.println(pagePerCount);
+		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "commNo"));
+		//Page<Board> page =repository.findAll(pageRequest); 
+		Page<Board> page = repository.findByContentsContainingAndState(contentKeyword, 0,pageable);
+		List<Board> list = page.getContent(); 
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!serarhdao"+list);
+		return list; 
+	}
+	
+	@Override
+	public List<Board> selectByCategoryAndState(String category, int pageNo, int pagePerCount) {
+		System.out.println("daaaaaaao"+category);
+		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "commNo"));		
+		Page<Board> page = repository.findByCategoryAndState(category, 0, pageable);
+		List<Board> list = page.getContent(); 
 		return list;
 	}
 
+	@Override
+	public long getCountByCategorysAndState(String category) {
+		int state = 0; // state 값이 0인 경우
+	    return repository.countByContentsContainingAndState(category, state);
+	}
 	@Override
 	public void delete(int commNo) {
 		Board board=repository.findById(commNo).get();
@@ -78,9 +98,24 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void bulletinBoardViews(int commNo) {
-		System.out.println("service count");
+		//System.out.println("service count");
 		repository.bulletinBoardViews(commNo);
 	
+	}
+
+	@Override
+	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		//Page<Board> page = repository.findAll(pageRequest);
+		Page<Board> page = repository.findByState(0, pageRequest);
+		List<Board> list = page.getContent();
+		return list;
+	}
+
+	@Override
+	public long getCountByContentsAndState(String contents) {
+		int state = 0; // state 값이 0인 경우
+	    return repository.countByContentsContainingAndState(contents, state);
 	}
 
 

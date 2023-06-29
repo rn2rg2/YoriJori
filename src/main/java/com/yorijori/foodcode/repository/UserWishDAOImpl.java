@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.UserWishlistRepository;
@@ -35,6 +36,16 @@ public class UserWishDAOImpl implements UserWishDAO {
 	public long countAll() {
 		return userWishListRepo.count();
 	}
+	
+	@Override
+	public List<Recipe> findRecipeNoByUserId(String userId){
+		return userWishListRepo.findRecipeNoByUserId(userId);
+	}
+	@Override
+	public List<String> findRcpAndCategory(String userId, int recipeNo){
+		return userWishListRepo.findRcpAndCategory(userId, recipeNo);
+	}
+	
 	
 	
 	

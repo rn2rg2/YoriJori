@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
@@ -136,6 +137,16 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public List<RecipeIngredients> selectingr(int recipeNo) {
 	    Recipe recipe = reciperepository.findById(recipeNo).orElse(null);
 		return recipeinger.findByRecipeNo(recipe);
+	}
+	@Override
+	public List<Recipe> findAll(Specification<Recipe> spec) {
+		// TODO Auto-generated method stub
+		return reciperepository.findAll(spec);
+	}
+
+	@Override
+	public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
+        return reciperepository.findAll(spec, sort);
 	}
 
 }

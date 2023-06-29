@@ -2,13 +2,18 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.dto.RecipeDTO;
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.UserFrigeRepository;
 import com.yorijori.foodcode.jpa.repository.UserTrayListRepository;
@@ -22,15 +27,17 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	UserTrayRepository trayrepository;
 	UserTrayListRepository traylistrepository;
 	UserWishlistRepository userwishlistrepo;
+	EntityManager em;
 
 	@Autowired
 	public RefriTrayDAOImpl(UserFrigeRepository frigerepository, UserTrayRepository trayrepository,
-			UserTrayListRepository traylistrepository,UserWishlistRepository userwishlistrepo) {
+			UserTrayListRepository traylistrepository,UserWishlistRepository userwishlistrepo, EntityManager em) {
 		super();
 		this.frigerepository = frigerepository;
 		this.trayrepository = trayrepository;
 		this.traylistrepository = traylistrepository;
 		this.userwishlistrepo = userwishlistrepo;
+		this.em = em;
 	}
 
 	@Override
@@ -63,8 +70,13 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	public void deleteByUserId(String userId) {
 		// frigerepository.findAllByUserId(userFrige.getUserId());
 		// frigerepository.delete(userFrige);
-		System.out.println("delet by user id");
+		//System.out.println("delet by user id");
 		frigerepository.deleteByUserId(userId);
+	}
+	
+	@Override
+	public List<RecipeVO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
+		return frigerepository.searchPreferMatlNo(user.getPrefer(), userfrige.getMatlNo());
 	}
 
 }

@@ -20,14 +20,10 @@ public class ProfileServiceImpl implements ProfileService {
 		super();
 		this.profiledao = profiledao;
 	}
-	@Override
-	public void updateprofile() {
-		// TODO Auto-generated method stub
-	}
 	
 	@Override
-	public UserInfo updateprofile2(UserInfo user_id, String email, String nickname) {
-		return profiledao.updateprofile2(user_id, email, nickname);
+	public UserInfo updateprofile(UserInfo user_id) {
+		return profiledao.updateprofile(user_id);
 	}
 
 	@Override
@@ -39,6 +35,11 @@ public class ProfileServiceImpl implements ProfileService {
 	public UserInfo updateprofileimage(UserInfo user) {
 		// TODO Auto-generated method stub
 		return profiledao.updateprofileimage(user);
+	}
+	@Override
+	public void updatestate(UserInfo user) {
+		profiledao.updatestate(user);
+		
 	}
 
 

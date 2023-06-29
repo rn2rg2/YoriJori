@@ -2,6 +2,9 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -49,6 +52,8 @@ public interface RecipeDAO {
 
     void recipeqasave(RecipeQa recipeqa);
 	List<RecipeIngredients> selectingr(int recipeNo);
+	List<Recipe> findAll(Specification<Recipe> spec);
+	List<Recipe> findAll(Specification<Recipe> spec, Sort sort);
     
 
 }

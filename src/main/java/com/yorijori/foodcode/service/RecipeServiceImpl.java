@@ -1,25 +1,21 @@
 package com.yorijori.foodcode.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
+
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
-
-
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
-
-
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
-
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
-
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.repository.RecipeDAO;
@@ -126,6 +122,13 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return recipeDAO.selectingr(rcpSeq);
 	}
-
+	@Override
+	public List<Recipe> findAll(Specification<Recipe> spec) {
+		// TODO Auto-generated method stub
+		return recipeDAO.findAll(spec);
+	}
+    public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
+        return recipeDAO.findAll(spec, sort);
+    }
 
 }

@@ -40,6 +40,7 @@
 	margin-top: 0px !important;
 	width: 100%;
 	height: 100%;
+	border: 0.2em solid #ffc1c1;
 }
 
 /* .row{
@@ -184,49 +185,112 @@
 	}
 }
 
-/* nav 탭 css 설정 */
+.divnav{
+	margin-top: 2em;
+}
+
+/* Nav Bar */
 .nav {
-	text-align: center;
-	font-size: 1rem;
-	padding-left: 5px;
-	padding-right: 5px;
-	margin-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .navli {
-	text-decoration: none;
-	display: inline-block;
-	padding: 13px 13px;
-	color: #212529;
+  text-decoration: none;
+  display: inline-block;
+  padding: 13px 13px;
+  border-top: 2px solid var(--main-theme-color-red);
+  color: #212529;
 }
 
 .selected {
-	text-decoration: none;
-	background-color: #f6c88b;
-	border-bottom: 2px solid var(- -main-theme-color-red);
-	color: var(- -main-theme-color-red)
+  text-decoration:none;
+  background-color: #f6c88b;
+  border-bottom: 2px solid var(--main-theme-color-red);
+  color: var(--main-theme-color-red)
 }
-
-.navli:hover {
-	color: var(- -main-theme-color-red)
+.navli:hover{
+	color: var(--main-theme-color-red)
 }
-
 .navli.current {
-	border-bottom: 2px solid #1971c2;
+  border-bottom: 2px solid #1971c2;
 }
 
-@media ( min-width : 768px) {
-	.nav {
-		font-size: 1.1rem;
-	}
-	.navli {
-		padding: 20px 20px;
-		border-top: 2px solid var(- -main-theme-color-red);
-	}
+@media (min-width: 768px) {
+  .nav {
+    font-size: 1.1rem;
+  }
+  .navli {
+    padding: 20px 20px;
+  }
+
+}
+.navli{
+	width: calc(100%/4);
 }
 
-.navli {
-	width: calc(100%/ 4);
+.navstyler{
+	
+}
+
+/* 탭 설정 */
+.all-tab{
+	margin-left: 50px;
+}
+.tab-title{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-family: "NanumHimNaeRaNeunMarBoDan";
+	font-size: 50px;
+}
+.tab-section b, .tab-section a{
+	color: #000 !important;
+}
+.tab-section b{
+	font-weight: bold;
+}
+.line-left{
+	margin-bottom: 30px;
+}
+.tab-section img {
+    vertical-align: middle;
+    margin-bottom: 30px;
+}
+.tab-section:after {
+	content: "";
+	display: block;
+	margin-bottom: 100px;
+}
+.line-title{
+	margin-top: 50px;
+}
+.tab-section ul{
+	margin-left: 50px;
+}
+.tab-section li{
+	border: 2px solid var(--main-theme-color-red);
+	border-radius: 10px;
+	list-style: decimal;
+	padding: 10px;
+	margin-bottom:20px;
+	display: block;
+	position: relative;
+	width: 600px;
+}
+li .time{
+	position:absolute;
+	color: var(--main-theme-color-red);
+	right: 10px;
+	font-family: "NanumHimNaeRaNeunMarBoDan";
+	font-size: 20px;
+	border: 2px solid #568acf;
+	border-radius: 50%;
+	padding-left: 10px;
+	padding-right: 10px;
+	bottom: 5px;
 }
 
 /* 티어리스트 */

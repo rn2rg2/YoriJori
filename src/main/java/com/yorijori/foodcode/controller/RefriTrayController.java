@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -7,10 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
@@ -37,9 +41,17 @@ public class RefriTrayController {
 	public String refri(Model model, HttpSession session) {
 		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
 		String user = userinfo.getUserId();
-		List<UserFrige> refrilist = refriTrayService.selectAll(user);
+		List<UserFrige> refrilist = new ArrayList<UserFrige>();
+		refrilist = refriTrayService.selectAll(user);
 		long count = ingreService.countAll();
 		long refriCount = refriTrayService.countByUserId(user);
+		if (refrilist.size() > 0  ) {
+			System.out.println("=======================================");
+			System.out.println("실행");
+			System.out.println("=======================================");
+			List<RecipeVO> rcplist = refriTrayService.getRecommendList(userinfo, refrilist.get(0));
+			model.addAttribute("rcplist", rcplist);
+		}
 		model.addAttribute("refrilist", refrilist);
 		model.addAttribute("count", count);
 		model.addAttribute("refriCount", refriCount);
@@ -64,11 +76,13 @@ public class RefriTrayController {
 		return "redirect:/mypage/refri";
 	}
 	
-	@PostMapping("/wish/list")
+	@GetMapping("/wish/list/{pageNo}/{pagePerCount}")
 	@ResponseBody
-	public List<UserWishlist> getWishListByPage(int pageNo, HttpSession session) {
+	public List<UserWishlist> getWishListByPage(@PathVariable int pageNo, @PathVariable int pagePerCount, HttpSession session) {
 		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
-		List<UserWishlist> list = userWishService.selectAll(userinfo,pageNo, 4);
+		//List<RcpCategoryDTO> list = userWishService.selectRcpAndCategory(userinfo);
+		//System.out.println(list);
+		List<UserWishlist> list = userWishService.selectAll(userinfo,pageNo, pagePerCount);
 		return list;
 	}
 	

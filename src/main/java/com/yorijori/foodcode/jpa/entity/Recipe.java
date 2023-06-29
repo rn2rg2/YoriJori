@@ -19,6 +19,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,30 +55,37 @@ public class Recipe {
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	@Exclude
+	@JsonBackReference
 	private UserInfo userId;
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
+	@JsonManagedReference
 	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
-	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
+	@JsonManagedReference
 	private List<RecipeCategory> categorylist = new ArrayList<RecipeCategory>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
+	@JsonManagedReference
 	private List<RecipeReview> reviewlist = new ArrayList<RecipeReview>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
+	@JsonManagedReference
 	private List<RecipeQa> qalist = new ArrayList<RecipeQa>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
+	@JsonBackReference  
 	private List<UserWishlist> wishlist = new ArrayList<UserWishlist>();
 	
 	@OneToMany(mappedBy="recipeNo", fetch= FetchType.LAZY, cascade=CascadeType.ALL)
 	@Exclude
+	@JsonManagedReference
 	private List<RecipeIngredients> ingrelist = new ArrayList<RecipeIngredients>();
 
 	public void viewCountUp(Recipe recipe) {

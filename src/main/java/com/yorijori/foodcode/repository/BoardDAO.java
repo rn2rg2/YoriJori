@@ -22,7 +22,16 @@ public interface BoardDAO {
 	
 	// 조회수 증가
 	void bulletinBoardViews(int commNo);
+	
 	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount);		
 
+	List<Board> selectByPageAndpagePerCountandSearch(int pageNo, int pagePerCount, String contentKeyword);		
 
+	public long getCountByContentsAndState(String content);
+	
+	List<Board> selectByCategoryAndState(String category,int pageNo, int pagePerCount);
+
+	public long getCountByCategorysAndState(String category);
 }
+
+
