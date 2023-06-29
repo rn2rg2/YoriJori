@@ -91,7 +91,7 @@
 			<div class="col-12 col-md-6 col-lg-3" th:each="data, idx : ${rcpList}">
 				<div class="card">
 
-					<img class="card-img-top" th:src="${data.thumbnail}" alt="Unsplash" style="min-height: 15em; max-height: 15em;">
+					<img class="card-img-top" th:src="|/yorijori/data/recipethumbnail/${data.thumbnail}|" alt="Unsplash" style="min-height: 15em; max-height: 15em;">
 
 					<div class="card-header px-4 pt-4">
 						<!-- 	<div class="card-actions float-right">
@@ -110,7 +110,7 @@
 							<i class="fa-solid fa-chess-queen mr-2"></i>[[${idx.count}]] 등
 						</div>
 						<div class="badge bg-warning my-2">
-							<i class="fa-regular fa-clock mr-2"></i></i>[[${data.time}]]
+							<i class="fa-regular fa-clock mr-2"></i>[[${data.time}]]
 						</div>
 						<div class="badge bg-danger my-2">
 							<i class="fa-solid fa-utensils mr-2"></i>[[${data.level}]]
@@ -198,9 +198,9 @@
 					<div class="text-center card-box">
 						<div class="member-card pt-2 pb-2">
 							<div class="thumb-lg member-thumb mx-auto">
-								<img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MzFfMjEw/MDAxNTk4ODM1NjA5Mzc5.ktKzzXbOZApxjiyWxTnwvo1rAUCSmCSUa6d6--1bNaog.73_vs06GZLiQgPAI29Z_eduNns4e06nyNKYjjBdzDhkg.JPEG.addlk1234/16.jpg?type=w800" class="rounded-circle img-thumbnail" alt="profile-image">
+								<img th:src="|/yorijori/data/user/${data.imgPath}|" style="border-radius: 50%; border: 1px solid black;">
 							</div>
-							<div class="">
+							<div class="mt-3">
 								<h4>[[${data.nickname}]]</h4>
 							</div>
 							<button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">레시피</button>
@@ -208,19 +208,37 @@
 								<div class="row">
 									<div class="col-4">
 										<div class="mt-3">
-											<h4 class="count-num">[[${data.point}]]</h4>
-											<p class="mb-0 text-muted">온도</p>
+											<div th:if="${data.point}==0">
+												<img src="/yorijori/images/userpoint/0tier.png" style="width: 4em; height: 4em; margin:auto;">
+											</div>
+											<div th:if="${data.point}==1">
+												<img src="/yorijori/images/userpoint/1tier.png" style="width: 4em; height: 4em; margin:auto;">
+											</div>
+											<div th:if="${data.point}==2">
+												<img src="/yorijori/images/userpoint/2tier.png" style="width: 4em; height: 4em; margin:auto;">
+											</div>
+											<div th:if="${data.point}==3">
+												<img src="/yorijori/images/userpoint/3tier.png" style="width: 4em; height: 4em; margin:auto;">
+											</div>
+											<div th:if="${data.point}==4">
+												<img src="/yorijori/images/userpoint/4tier.png" style="width: 4em; height: 4em; margin:auto;">
+											</div>
+											<div th:if="${data.point}==5">
+												<img src="/yorijori/images/userpoint/5tier.png" style="width: 4em; height: 4em; margin:auto;">
+											</div>
+											<!-- <h4 class="count-num">[[${data.point}]]</h4>
+											<p class="mb-0 text-muted">온도</p> -->
 										</div>
 									</div>
 									<div class="col-4">
 										<div class="mt-3">
-											<h4 class="count-num">6952</h4>
+											<h4 class="count-num">[[${#lists.size(data.recipeList)}]]</h4>
 											<p class="mb-0 text-muted">작성 레시피</p>
 										</div>
 									</div>
 									<div class="col-4">
 										<div class="mt-3">
-											<h4 class="count-num">1125</h4>
+											<h4 class="count-num">[[${#lists.size(data.boardList)}]]</h4>
 											<p class="mb-0 text-muted">작성 게시물</p>
 										</div>
 									</div>

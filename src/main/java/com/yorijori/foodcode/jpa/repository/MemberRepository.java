@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.jpa.repository;
  
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +16,5 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     boolean existsByUserId(String userId);
     boolean existsByNickname(String nickname);
     long countByRole(String role);
+    Page<UserInfo> findAllByRole( Pageable pageable, String role);
 }
