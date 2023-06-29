@@ -9,7 +9,6 @@
 	<div id="container">
 		<div id="content" style="min-height: 568px;">
 			<div id="skip_con">본문</div>
-
 			<!-- boardGroup -->
 			<div class="boardGroup">
 				<!--=============================================================================-->
@@ -71,6 +70,7 @@
 						<!-- details_con -->
 						<div class="details_con">
 							<h4 class="details_h4tit food_hat">주재료 및 소스 재료</h4>
+							<a href="">채팅하기</a>
 							<hr class="recipe_hr">
 							<th:block th:each="ingredient : ${ingrList}">
 							   <p class="txt" th:text="${ingredient.matlName}"></p>
@@ -93,8 +93,6 @@
 							<div class="card_img">
 <!-- 								<img class="card_img" th:src="${item.manualImg}" alt="">
  -->								<img class="card_img" th:src="${dataimg.storeImg}" alt="">
-
-
 							</div>
 							<div class="card_txt">
 								<em class="num">[[${dataimg.imgNo}]]</em>
@@ -341,7 +339,6 @@
 					</dd>
 				</th:block>
 				</th:block>				
-					
 <!-- 					<dd class="bl_faq_a" style="display: none; margin-left: 30px;">
 						<img class="bl_faq_icon" src="https://audition.hanbiton.com/Boarddata1/Files/1001/2022/10/19/10190947152022580396869.jpg">
 						<div class="bl_faq_a_body">

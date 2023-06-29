@@ -15,7 +15,7 @@ public class FilterDTO {
     private List<String> min; // 조리시간
     private List<String> serving; // 1인분 2인분3인분 4인분
     private List<String> country; //한식,중식,양식,일식
-
+    private List<String> recipe;
 }
 
 ////시간별 메뉴 
