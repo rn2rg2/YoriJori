@@ -20,6 +20,6 @@ public interface RefriTrayDAO {
 
 	List<UserWishlist> selectWishListALl(int pageNo, String userId, int pagePerCount);
 
-	List<RecipeVO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige);
+	RecipeVO findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige);
 
 }

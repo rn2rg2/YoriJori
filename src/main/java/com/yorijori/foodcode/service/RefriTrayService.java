@@ -15,6 +15,6 @@ public interface RefriTrayService {
 
 	void insert(UserFrige userfrige, String userId);
 
-	List<RecipeVO> getRecommendList(UserInfo user, UserFrige userfrige);
+	RecipeVO getRecommendList(UserInfo user, UserFrige userfrige);
 
 }
