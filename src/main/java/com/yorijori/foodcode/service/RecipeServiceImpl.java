@@ -131,4 +131,10 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeDAO.findAll(spec, sort);
     }
 
+	@Override
+	public void findByRecipeNo(int recipeNo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
