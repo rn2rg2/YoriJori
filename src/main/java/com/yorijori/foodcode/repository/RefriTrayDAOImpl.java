@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.dto.RecipeDTO;
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
@@ -74,7 +75,7 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	}
 	
 	@Override
-	public List<RecipeDTO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
+	public List<RecipeVO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
 		return frigerepository.searchPreferMatlNo(user.getPrefer(), userfrige.getMatlNo());
 	}
 

@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yorijori.foodcode.dto.RecipeDTO;
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -62,7 +62,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	}
 	
 	@Override 
-	public List<RecipeDTO> getRecommendList(UserInfo user, UserFrige userfrige) {
+	public List<RecipeVO> getRecommendList(UserInfo user, UserFrige userfrige) {
 		return rtdao.findByPreferAndByMatlNo(user, userfrige);
 		
 	}

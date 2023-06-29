@@ -3,6 +3,7 @@ package com.yorijori.foodcode.repository;
 import java.util.List;
 
 import com.yorijori.foodcode.dto.RecipeDTO;
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
@@ -19,6 +20,6 @@ public interface RefriTrayDAO {
 
 	List<UserWishlist> selectWishListALl(int pageNo, String userId, int pagePerCount);
 
-	List<RecipeDTO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige);
+	List<RecipeVO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige);
 
 }

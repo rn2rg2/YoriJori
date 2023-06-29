@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yorijori.foodcode.dto.RecipeDTO;
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
@@ -49,7 +49,8 @@ public class RefriTrayController {
 			System.out.println("=======================================");
 			System.out.println("실행");
 			System.out.println("=======================================");
-			List<RecipeDTO> rcplist = refriTrayService.getRecommendList(userinfo, refrilist.get(0));
+			List<RecipeVO> rcplist = refriTrayService.getRecommendList(userinfo, refrilist.get(0));
+			model.addAttribute("rcplist", rcplist);
 		}
 		model.addAttribute("refrilist", refrilist);
 		model.addAttribute("count", count);

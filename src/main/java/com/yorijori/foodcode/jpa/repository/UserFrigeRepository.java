@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.yorijori.foodcode.dto.RecipeDTO;
+import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 
 public interface UserFrigeRepository extends JpaRepository<UserFrige, Integer>{
@@ -29,5 +29,5 @@ public interface UserFrigeRepository extends JpaRepository<UserFrige, Integer>{
 			"WHERE c.name = :name " + 
 			"AND i.matl_no = :matlNo "+
 			"ORDER BY r.count Limit 1", nativeQuery = true)
-	List<RecipeDTO> searchPreferMatlNo(@Param("name") String name, @Param("matlNo") int matlNo);
+	List<RecipeVO> searchPreferMatlNo(@Param("name") String name, @Param("matlNo") int matlNo);
 }
