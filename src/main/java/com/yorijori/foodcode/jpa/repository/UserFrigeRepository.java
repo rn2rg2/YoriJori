@@ -29,5 +29,6 @@ public interface UserFrigeRepository extends JpaRepository<UserFrige, Integer>{
 			"WHERE c.name = :name " + 
 			"AND i.matl_no = :matlNo "+
 			"ORDER BY r.count Limit 1", nativeQuery = true)
-	List<RecipeVO> searchPreferMatlNo(@Param("name") String name, @Param("matlNo") int matlNo);
+	RecipeVO searchPreferMatlNo(@Param("name") String name, @Param("matlNo") int matlNo);
 }
+

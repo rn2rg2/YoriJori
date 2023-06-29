@@ -46,11 +46,23 @@ public class RefriTrayController {
 		long count = ingreService.countAll();
 		long refriCount = refriTrayService.countByUserId(user);
 		if (refrilist.size() > 0  ) {
-			System.out.println("=======================================");
-			System.out.println("실행");
-			System.out.println("=======================================");
-			List<RecipeVO> rcplist = refriTrayService.getRecommendList(userinfo, refrilist.get(0));
-			model.addAttribute("rcplist", rcplist);
+			List<RecipeVO> rcplist = new ArrayList<RecipeVO>();
+			int maxSize = 4;
+			if ( refrilist.size() < 4) {
+				maxSize = refrilist.size();
+			}
+			for ( int i = 0 ; i < maxSize; i ++ ) {
+				RecipeVO rcp = refriTrayService.getRecommendList(userinfo, refrilist.get(i));
+				if (rcp != null ) {
+					rcplist.add(rcp);
+				}
+				System.out.println("=================================");
+				System.out.println(rcp);
+				System.out.println("=================================");
+			}
+			if ( rcplist.size() > 0 ) {
+				model.addAttribute("rcplist", rcplist);
+			}
 		}
 		model.addAttribute("refrilist", refrilist);
 		model.addAttribute("count", count);

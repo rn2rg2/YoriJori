@@ -62,7 +62,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	}
 	
 	@Override 
-	public List<RecipeVO> getRecommendList(UserInfo user, UserFrige userfrige) {
+	public RecipeVO getRecommendList(UserInfo user, UserFrige userfrige) {
 		return rtdao.findByPreferAndByMatlNo(user, userfrige);
 		
 	}
