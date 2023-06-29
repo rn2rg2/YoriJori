@@ -58,7 +58,7 @@ public class FileUploadLogic {
 	}
 
 	public void createRecipeImageroot(List<RecipeImage> imglist, List<MultipartFile> cookingimg) {
-		String fileRoot = "C:\\project\\upload\\recipeimage\\";
+		String fileRoot = uploadpath+"recipeimage/";
 		int get = 0;
 		for (MultipartFile image : cookingimg) {
 

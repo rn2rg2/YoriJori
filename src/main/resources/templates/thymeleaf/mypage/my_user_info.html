@@ -34,7 +34,12 @@
 <th:block layout:fragment="content">
 	<div class="container rounded bg-white mb-5">
 		<h3 class="menu-h3-common">유저 정보</h3>
-
+		
+		<div class="modal fade" id="profilecardmodal" tabindex="-1"
+			role="dialog" aria-labelledby="profilecardmodalLabel"
+			aria-hidden="true">
+			<th:block th:replace="~{thymeleaf/mypage/profilecard :: profilecard}"></th:block>
+		</div>
 
 		<div class="modal fade" id="changepassmodal" tabindex="-1"
 			role="dialog" aria-labelledby="changepassmodalLabel"
@@ -57,7 +62,7 @@
 					</div>
 
 					<span class="font-weight-bold" th:text="${session.userInfo.userId}"></span>
-					<span th:text="${session.userInfo.nickname}"></span> <span
+					<span id="readuserInfo" th:text="${session.userInfo.nickname}"></span> <span
 						class="tool"
 						data-tip="사용자 평점이란?
 						
@@ -258,6 +263,10 @@
 				$('.image-container').on('click', function() {
 					$('#changephotomodal').modal('show');
 				});
+				
+				$('#readuserInfo').on('click', function(){
+					$("#profilecardmodal").modal('show');
+				})
 
 				var userPoint = $('[data-userPoint]').data('userpoint');
 				$('.tier').each(function() {
