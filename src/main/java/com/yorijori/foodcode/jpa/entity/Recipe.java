@@ -55,12 +55,12 @@ public class Recipe {
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	@Exclude
-	//@JsonBackReference
+	@JsonBackReference
 	private UserInfo userId;
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
-	@JsonManagedReference
+	@JsonManagedReference 
 	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

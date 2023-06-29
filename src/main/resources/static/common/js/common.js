@@ -610,3 +610,18 @@ function leadingZeros(n, digits) {
     }
     return zero + n;
 }
+
+function makeChatRoom(userId){
+	let url = "/yorijori/chat/room"
+	let param = {"userId2": userId }
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : param,
+		success : function(data, status, xr) {
+			console.log(data);
+		},
+		error : error_run
+	});
+}
+

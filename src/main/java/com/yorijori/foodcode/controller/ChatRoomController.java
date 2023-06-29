@@ -23,7 +23,7 @@ import com.yorijori.foodcode.service.ChatService;
 @Controller
 @RequestMapping("/chat")
 public class ChatRoomController {
-	private ChatService chatService;
+	ChatService chatService;
 
 	@Autowired
 	public ChatRoomController(ChatService chatService) {
@@ -39,7 +39,7 @@ public class ChatRoomController {
 		list = chatService.findAllRoomByUserId(user);
 		if (list.size() > 0) {
 			model.addAttribute("list", list);
-			model.addAttribute("chatId", list.get(list.size()-1).getChatId());
+			model.addAttribute("chatId", list.get(0).getChatId());
 		}
 		return "thymeleaf/mypage/chat";
 	}
@@ -60,7 +60,7 @@ public class ChatRoomController {
 	@PostMapping("/room")
 	@ResponseBody
 	public ChatInfo createRoom(@RequestParam String userId2, HttpSession session) {
-		UserInfo user = (UserInfo) session.getAttribute("userinfo");
+		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		return chatService.createRoom(user.getUserId(), userId2);
 	}
 

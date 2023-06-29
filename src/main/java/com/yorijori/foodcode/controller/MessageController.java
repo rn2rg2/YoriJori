@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -31,10 +33,8 @@ public class MessageController {
 
     @MessageMapping(value="/chat/message")
     public void message(ChatMsg message) {
-    	int chatId = message.getChatId();
-    	String senderId = message.getSenderId();
-    	String msg = message.getMsg();
-    	chatservice.insertMSG(chatId, senderId, msg);
+    	message.setDate(LocalDateTime.now());
+    	chatservice.insertMSG(message);
     	template.convertAndSend("/sub/chat/room/"+message.getChatId(),message);
     }
 }

@@ -1,6 +1,6 @@
 package com.yorijori.foodcode.jpa.entity;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class ChatInfo {
 	private String user1id;		// 채팅유저1
 	private String user2id;		// 채팅유저2
 	@CreationTimestamp
-	private Date chetDate;				// 채팅방 생성시간
+	private LocalDateTime chetDate;				// 채팅방 생성시간
 	@UpdateTimestamp
-	private Date upDate;	
+	private LocalDateTime upDate;	
 }
