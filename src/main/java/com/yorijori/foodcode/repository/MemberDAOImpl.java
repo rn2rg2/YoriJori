@@ -68,7 +68,7 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
     public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
-		Page<UserInfo> page = memberRepository.findAll(pageRequest);
+		Page<UserInfo> page = memberRepository.findAllByRole(pageRequest, "회원");
 		List<UserInfo> list = page.getContent();
 		
 		return list;
