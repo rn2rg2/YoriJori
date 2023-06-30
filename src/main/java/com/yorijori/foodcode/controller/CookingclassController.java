@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +27,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
+import com.yorijori.foodcode.jpa.entity.Payment;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.CookingClassService;
 import com.yorijori.foodcode.service.MemberService;
@@ -51,12 +55,19 @@ public class CookingclassController {
 	
 	
 
-	@RequestMapping("/list") 
-	public String showCookingclassList(Model model) {
-		List<CookingClass> classList = service.selectAllClass();
+	@RequestMapping("/list/{pageNo}/{pagePerCount}") 
+	public String showCookingclassList(Model model,@PathVariable int pageNo, @PathVariable int pagePerCount) {
+		List<CookingClass> classList = service.selectByPageAndpagePerCount(pageNo, pagePerCount);
 		List<CookingClass> top5class=service.findTop5ByOrderByCount();
 		model.addAttribute("classList",classList);
 		model.addAttribute("topclasslist",top5class);
+		
+		//페이징
+		long count=service.countAll();
+		model.addAttribute("count",count);
+		model.addAttribute("pageNo",pageNo);
+		model.addAttribute("pagePerCount",pagePerCount);
+		
 		return "thymeleaf/cookingclass/classList";
 	}
 	
@@ -71,7 +82,7 @@ public class CookingclassController {
 	@RequestMapping("/delete")
 	public String deleteClass(int cookNo){
 		service.delete(cookNo);
-		return "redirect:/cookingclass/list";
+		return "redirect:/cookingclass/list/0/6";
 	}
 	@RequestMapping("/application")
 	public String applicateClass(int cookNo, HttpSession session, Model model) {
@@ -83,9 +94,19 @@ public class CookingclassController {
 		}
 		return "thymeleaf/cookingclass/classApplicationForm";
 	}
+	
 	@PostMapping("/application")
-	public String applicationClass(CookingClassForm form) {
+	public String applicationClass(CookingClassForm form, Integer classNo,HttpSession session){
+		UserInfo user=(UserInfo)session.getAttribute("userInfo");
+		form.setUserId(user);
+		form.setCookNo(service.findById(classNo));
+		System.out.println("\n\n\n\n\n\n*************c");
 		System.out.println(form);
+		System.out.println(form.getUserId());
+		System.out.println(form.getCookNo());
+		System.out.println(form.getPayment());
+		System.out.println("*************\n\n\n\n\n\n");
+		service.formInsert(form);
 		return "redirect:/cookingclass/list";
 	}
 	
@@ -97,17 +118,17 @@ public class CookingclassController {
 		}
 		return "thymeleaf/cookingclass/classInsert";
 	}
-	@RequestMapping("/upload")
-	public String showPopup() {
-		return "thymeleaf/cookingclass/uploadForm";
-	}
+//	@RequestMapping("/upload")
+//	public String showPopup() {
+//		return "thymeleaf/cookingclass/uploadForm";
+//	}
 	
 	@PostMapping("/in")
 	public String insertCookingclass(CookingClass cookingclass,@RequestParam("file") MultipartFile multipartFile) {
 		
 		JsonObject json = new JsonObject();
 		System.out.println(cookingclass.getContentList().get(0).getContent());
-		String fileRoot = "C:\\project\\upload\\thumbnail\\";	//저장될 외부 파일 경로
+		String fileRoot =fileUploadLogic.getUploadpath("thumbnail/");	//저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 				
@@ -128,7 +149,7 @@ public class CookingclassController {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			e.printStackTrace();
 		}	
-		return "redirect:/cookingclass/list";
+		return "redirect:/cookingclass/list/0/6";
 	}
 	
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
@@ -136,7 +157,7 @@ public class CookingclassController {
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
 		JsonObject json = new JsonObject();
 		
-		String fileRoot = "C:\\project\\upload\\summernoteimage\\";	//저장될 외부 파일 경로
+		String fileRoot = fileUploadLogic.getUploadpath("summernoteimage/");	//저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 				
@@ -159,5 +180,10 @@ public class CookingclassController {
 		System.out.println(jsonvalue);
 		System.out.println("======================");
 		return jsonvalue;
+	}
+	
+	@PostMapping("/deleteFile")
+	public String deleteSummernoteImageFile() {
+		return null;
 	}
 }
