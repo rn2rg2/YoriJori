@@ -6,7 +6,7 @@ public interface RecipeVO {
      String getName() ;
      String getDes() ;
      String getCount() ;
-     String  getTotal_kcal() ;
+     String getTotal_kcal() ;
      String getRcp_na_tip() ;
      String getTime() ;
      String getLevel();

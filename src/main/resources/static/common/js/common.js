@@ -52,6 +52,7 @@ function error_alert(msg, input) {
 	Swal.fire(msg, '<b style="color:red;">' + input + '</b>칸을 확인해주세요', 'error')
 }
 
+
 /**
  * 
  * 입력값에 특정 문자가 있는지 체크하는 로직이며

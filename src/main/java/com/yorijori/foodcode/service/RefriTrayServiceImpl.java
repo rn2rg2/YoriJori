@@ -12,6 +12,8 @@ import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.jpa.entity.UserTray;
+import com.yorijori.foodcode.jpa.entity.UserTrayList;
 import com.yorijori.foodcode.repository.IngredientDAO;
 import com.yorijori.foodcode.repository.RefriTrayDAO;
 
@@ -42,7 +44,15 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 		}
 		return list;
 	}
+	@Override
+	public List<UserTray> selectTrayByUserId(String userId) {
+		return rtdao.selectTrayByUserId(userId);
+	}
 
+	@Override
+	public UserTray selectTrayDetail(int trayNo, String userId) {
+		return rtdao.selectTrayDetailByUserId(trayNo, userId);
+	}
 	@Override
 	public long countByUserId(String userId) {
 		return rtdao.countByUserId(userId);
@@ -60,6 +70,18 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 		}
 		rtdao.insertAll(refrilist);
 	}
+	
+	@Override
+	public void insertTray(UserTray usertray) {
+		System.out.println("===================");
+		System.out.println(usertray);
+		System.out.println("===================");
+		for (UserTrayList list : usertray.getTrayList()) {
+			list.setTrayNo(usertray);
+		}
+		rtdao.insertTray(usertray);
+	}
+	
 	
 	@Override 
 	public RecipeVO getRecommendList(UserInfo user, UserFrige userfrige) {
