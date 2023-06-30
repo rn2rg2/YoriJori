@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -124,12 +126,13 @@ public class RecipeController {
 	
 	@PostMapping("/filtersearch")
 	@ResponseBody
-	public List<String> search(@RequestBody FilterDTO filterDTO) {
-		System.out.println(filterDTO);
-		
+	public Map<String, Object> search(@RequestBody FilterDTO filterDTO) {
+	    System.out.println(filterDTO);
+
 	    Specification<Recipe> spec = RecipeSpecification.any();
 	    List<Recipe> recipes = recipeService.findAll(spec);
 
+	    // 중첩형 필터
 	    if (filterDTO.getServing() != null && !filterDTO.getServing().isEmpty()) {
 	        spec = spec.and(RecipeSpecification.equalServing(filterDTO.getServing()));
 	    }
@@ -145,42 +148,41 @@ public class RecipeController {
 	            spec = spec.and(RecipeSpecification.orderByViewCount());
 	        }
 	        if (order.contains("comments")) {
-	        	spec = spec.and(RecipeSpecification.orderByWishlist());
+	            spec = spec.and(RecipeSpecification.orderByWishlist());
 	        }
 	        if (order.contains("registration")) {
 	            spec = spec.and(RecipeSpecification.orderByCreatedDatetime());
 	        }
 	    }
-	    if (filterDTO.getCountry()!= null && !filterDTO.getCountry().isEmpty()) {
-	        List<String> country = filterDTO.getCountry();
-	        if (country.contains("한식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("한식"));
-	        }
-	        if (country.contains("중식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("중식"));
-	        }
-	        if (country.contains("일식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("일식"));
-	        }
-	        if (country.contains("양식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("양식"));
+	    if (filterDTO.getCountry() != null && !filterDTO.getCountry().isEmpty()) {
+	        List<String> countryList = filterDTO.getCountry();
+	        for (String country : countryList) {
+	            spec = spec.and(RecipeSpecification.findByCountry(country));
 	        }
 	    }
-	    	
-	    	
-	        System.out.println("===================TEST=====================");
-	        System.out.println(recipeService.findAll(spec));
-	        System.out.println("===================TEST=====================");
-
-		
-
-	    // 검색된 레시피에서 원하는 데이터 추출
-	    List<String> result = new ArrayList<>();
-	    for (Recipe recipe : recipes) {
-	        result.add(recipe.getName());
+	    if (filterDTO.getRecipe() != null && !filterDTO.getRecipe().isEmpty()) {
+	        List<String> recipeList = filterDTO.getRecipe();
+	        for (String recipe : recipeList) {
+	            spec = spec.and(RecipeSpecification.findByRecipe(recipe));
+	        }
 	    }
+	    System.out.println("===================TEST=====================");
+	    System.out.println(recipeService.findAll(spec));
+	    System.out.println("===================TEST=====================");
 
+	    Map<String, Object> result = new HashMap<>();
+
+
+	    
+	    long count = recipeService.countAll();
+	    
+	    result.put("recipes", recipeService.findAll(spec));
+	    result.put("recipeCount", count);
+
+	    System.out.println("===================TEST2=====================");
 	    System.out.println(result);
+	    System.out.println("===================TEST2=====================");
+
 	    return result;
 	}
 	

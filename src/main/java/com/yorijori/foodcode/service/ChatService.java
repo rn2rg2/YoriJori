@@ -1,8 +1,11 @@
 package com.yorijori.foodcode.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import com.yorijori.foodcode.jpa.repository.ChatInfoRepository;
 import com.yorijori.foodcode.jpa.repository.ChatMsgRepository;
 
 @Service
+@Transactional
 public class ChatService {
 
 	// private Map<String, ChatInfo> chatRooms;
@@ -63,12 +67,8 @@ public class ChatService {
 	}
 	
 	//메세지 저장
-	public ChatMsg insertMSG(int chatId, String senderId, String msg) {
-		ChatMsg dto = new ChatMsg();
-		dto.setChatId(chatId);
-		dto.setSenderId(senderId);
-		dto.setMsg(msg);
-		return chatmsgrepo.save(dto);
+	public ChatMsg insertMSG(ChatMsg chatmsg) {
+		return chatmsgrepo.save(chatmsg);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.yorijori.foodcode.jpa.entity;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,5 +26,5 @@ public class ChatMsg {
 	private String senderId;		// 메세지를 보낸 사용자
 	private String msg;				// 메세지 내용
 	@CreationTimestamp
-	private Date date ;
+	private LocalDateTime date ;
 }

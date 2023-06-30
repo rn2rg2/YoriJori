@@ -152,6 +152,19 @@ public class RecipeSpecification {
 	        }
 	    };
 	}
+	public static Specification<Recipe> findByRecipe(String recipetype) {
+	    return new Specification<Recipe>() {
+	        @Override
+	        public Predicate toPredicate(Root<Recipe> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+	            Join<Recipe, RecipeCategory> recipeCategoryJoin = root.join("categorylist");
+	            Join<RecipeCategory, Category> categoryJoin = recipeCategoryJoin.join("categoryNo");
+
+	            Predicate countryPredicate = criteriaBuilder.equal(categoryJoin.get("name"), recipetype);
+
+	            return countryPredicate;
+	        }
+	    };
+	}
 }
 	
 

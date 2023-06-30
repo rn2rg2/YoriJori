@@ -32,7 +32,7 @@
 						
 						<!-- <p class="del">80,000원</p> -->
 						<a class="app_block_link_remove user_info2_pic">
-							<img th:src="${cookingclass.userId.imgPath}">
+							<img th:src="|/yorijori/data/user/${cookingclass.userId.imgPath}|">
 						</a>
 						<div class="nickname" th:text="${cookingclass.userId.nickname}"></div>
 					</div>

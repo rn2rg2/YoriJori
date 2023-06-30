@@ -48,7 +48,7 @@ public class UserInfo {
 
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonManagedReference 
+	@JsonManagedReference
 	private List<Recipe> recipeList = new ArrayList<Recipe>();
 
 	@Exclude

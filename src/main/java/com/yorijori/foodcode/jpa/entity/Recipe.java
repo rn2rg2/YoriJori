@@ -60,7 +60,7 @@ public class Recipe {
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
-	@JsonManagedReference
+	@JsonManagedReference 
 	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
