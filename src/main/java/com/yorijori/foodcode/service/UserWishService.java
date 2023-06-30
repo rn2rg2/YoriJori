@@ -11,5 +11,7 @@ public interface UserWishService {
 
 	long countAll();
 
+	long countAllByUserId(UserInfo userinfo);
+
 
 }

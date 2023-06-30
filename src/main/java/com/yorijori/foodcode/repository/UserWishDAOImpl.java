@@ -46,6 +46,10 @@ public class UserWishDAOImpl implements UserWishDAO {
 		return userWishListRepo.findRcpAndCategory(userId, recipeNo);
 	}
 	
+	@Override
+	public long countAllByUserId(UserInfo userinfo) {
+		return userWishListRepo.countByUserId(userinfo);
+	}
 	
 	
 	
