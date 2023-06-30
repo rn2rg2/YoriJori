@@ -19,17 +19,17 @@
 						</div>
 						<ul id="online-user" class="list-unstyled chat-list mt-2 mb-0">
 							<th:block th:if="${!#strings.isEmpty(list)}">
-								<li class="clearfix" th:each="room : ${list}"><a th:id="${room.chatId}" onclick="viewChatMsg(this);">
-										<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+								<li class="clearfix" th:each="room : ${chatinfo}" th:id="${room.chatId}" onclick="viewChatMsg(this);">
+										<img th:src="|/yorijori/data/user/${room.imgPath}|" alt="avatar">
 										<div class="about">
-											<div class="name">[[${#strings.equals(session.userInfo.userId, room.user1id)? room.user2id : room.user1id}]]</div>
+											<div class="name">[[${room.userId}]]</div>
 											<div class="status">
-												<!-- <i class="fa fa-circle offline"></i> left 7 mins ago -->
+												<!-- <i class="fa fa-circle offline"></i>  -->[[${room.nickname}]]
 											</div>
 
 										</div>
-									</a></li>
-							</th:block>
+									
+									</li>
 							<!-- <li class="clearfix active"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
 								<div class="about">
 									<div id="master" class="name">Aiden Chavez</div>
@@ -46,7 +46,7 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-										<img id="myImg" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+										<img id="myImg" th:src="|/yorijori/data/user/${session.userInfo.imgPath}|" alt="avatar">
 									</a>
 									<div class="chat-about">
 										<h6 id="myId" class="m-b-0" th:text="${session.userInfo.userId}"></h6>
@@ -137,22 +137,31 @@
             	viewChatMsgById(roomId);
             	connection(roomId);
 
-                 $("#button-send").on("click", function(e){
-                     var msg = document.getElementById("msg");
-                     console.log(username + ":" + msg.value);
-                     if (isEmpty($('#msg'))){
-                    	 error_alert("채팅 내용 입력해주세요", "메시지")                	 
-                     } else {
-	                     stomp.send('/pub/chat/message', {}, JSON.stringify({chatId: roomId, msg: msg.value, senderId: username}));
+            	// 엔터 키 이벤트
+                 $("#msg").keyup(function(event) {
+                     if (event.which === 13) {
+                    	 sendMsg();
                      }
-                     msg.value = '';
                  });
                  
-                 
+                 $("#button-send").on("click", function(e){
+                	 sendMsg();
+                 });
                  
                  
 				
             });
+            const sendMsg = function (){
+                var msg = document.getElementById("msg");
+                console.log(username + ":" + msg.value);
+                if (isEmpty($('#msg'))){
+               	 error_alert("채팅 내용 입력해주세요", "메시지")                	 
+                } else {
+                  stomp.send('/pub/chat/message', {}, JSON.stringify({chatId: roomId, msg: msg.value, senderId: username}));
+                }
+                msg.value = '';
+            }
+            
             
             const connection = function (roomId){
                  //1. SockJS를 내부에 들고있는 stomp를 내어줌
@@ -182,6 +191,8 @@
             
             const viewChatMsgById = function (id){
                 roomId = id;
+                $('li.clearfix').removeClass('chatroom_active');
+                $('#'+id).addClass('chatroom_active');
                 $.ajax({
                 		type : "GET",
                 		url : "/yorijori/chat/room/" + roomId,
@@ -206,6 +217,10 @@
             const viewChatMsg = function (e){
             	$('#chat-content').empty();
                 roomId = e.getAttribute('id');
+                
+                $('li.clearfix').removeClass('chatroom_active');
+                e.classList.add("chatroom_active");
+                
                 viewChatMsgById(roomId);
                 stomp.disconnect(function(){
                 })
@@ -237,7 +252,7 @@
            		var messageContainer = $('<li class="clearfix"></li>');
            		if (type == 1 ) { // 같은 경우 오른쪽
            			var messageData = $('<div class="message-data text-right"></div>');
-           			var message = $('<div class="message other-message float-right"></div>').text(data.msg);
+           			var message = $('<div class="message my-message float-right"></div>').text(data.msg);
            		} else {
 	            	var messageData = $('<div class="message-data"></div>');
 	            	var message = $('<div class="message other-message"></div>').text(data.msg);

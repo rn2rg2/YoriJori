@@ -1,6 +1,5 @@
 package com.yorijori.foodcode.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,11 +9,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yorijori.foodcode.jpa.VO.UserForChatVO;
 import com.yorijori.foodcode.jpa.entity.ChatInfo;
 import com.yorijori.foodcode.jpa.entity.ChatMsg;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.ChatInfoRepository;
 import com.yorijori.foodcode.jpa.repository.ChatMsgRepository;
+import com.yorijori.foodcode.jpa.repository.MemberRepository;
 
 @Service
 @Transactional
@@ -23,6 +24,7 @@ public class ChatService {
 	// private Map<String, ChatInfo> chatRooms;
 	ChatInfoRepository chatinforepo;
 	ChatMsgRepository chatmsgrepo;
+	MemberRepository memberrepo;
 
 //    @PostConstruct
 //    //의존관게 주입완료되면 실행되는 코드
@@ -31,10 +33,11 @@ public class ChatService {
 //    }
 
 	@Autowired
-	public ChatService(ChatInfoRepository chatinforepo, ChatMsgRepository chatmsgrepo) {
+	public ChatService(ChatInfoRepository chatinforepo, ChatMsgRepository chatmsgrepo, MemberRepository memberrepo) {
 		super();
 		this.chatinforepo = chatinforepo;
 		this.chatmsgrepo = chatmsgrepo;
+		this.memberrepo = memberrepo;
 	}
 
 	// 채팅방 불러오기
@@ -69,6 +72,11 @@ public class ChatService {
 	//메세지 저장
 	public ChatMsg insertMSG(ChatMsg chatmsg) {
 		return chatmsgrepo.save(chatmsg);
+	}
+	
+	// 유저 정보 가져오기
+	public UserForChatVO getUserInfoForChat(String userId) {
+		return memberrepo.getUserForChat(userId);
 	}
 
 }
