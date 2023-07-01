@@ -33,13 +33,8 @@ public class ProfileDAOImpl implements ProfileDAO {
 		user.setPrefer(user_id.getPrefer());
 		user.setEmail(user_id.getEmail());
 		user.setNickname(user_id.getNickname());
+		user.setAllergy(user_id.getAllergy());
 		return user;
-	}
-	
-	@Override
-	public void updatepassword() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -57,6 +52,22 @@ public class ProfileDAOImpl implements ProfileDAO {
 		deleteuser.setState(user.getState());
 	}
 
+	@Override
+	public UserInfo readuserinfo(String nickname) {
+		UserInfo user = userrepo.findByUserId(nickname);
+		return user;
+	}
 
+	@Override
+	public UserInfo updatepassword(UserInfo user) {
+		UserInfo updateuser = userrepo.findByUserId(user.getUserId());
+		updateuser.setPass(user.getPass());
+		return updateuser;
+	}
 
+	@Override
+	public UserInfo checknickname(String nickname) {
+		UserInfo user = userrepo.findByNickname(nickname);
+		return user;
+	}
 }

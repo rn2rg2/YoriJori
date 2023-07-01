@@ -71,7 +71,7 @@
 										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
 												<span th:text="${board.title }"></span>
 											</a></td>
-										<td><span th:text="${board.userId.userId}"></span></td>
+										<td><span th:text="${board.userId.userId}" class="readuserinfo" th:data-userid="${board.userId.userId}"></span></td>
 										<td><span th:text="${board.view}"></span></td>
 									</tr>
 								</table>
@@ -182,6 +182,48 @@
 				});
 			
 			});
+			
+			$('.readuserinfo').on('click', function() {
+				 var userId = $(this).data('userid');
+				    
+				    $.ajax({
+				        url: '/yorijori/user/' + userId,
+				        type: 'GET',
+				        contentType: 'application/json',
+				        success: function(response) {
+				        	
+				        	var imagePath = "/yorijori/data/user/" + response.imgPath;
+				            
+				            // 이미지를 표시할 HTML 코드
+				            var imageHtml = '<div class="image-container"><img class="rounded-circle mt-2" style="width: 10em; height: 10em; margin-bottom: 1em;"'
+	              + ' src="' + imagePath + '"></div>';
+				            
+	              var userInfoHtml = `
+	  				<div class="col-md">
+	  					<div class="d-flex flex-column align-items-center text-center p-3 py-2">
+	  						${imageHtml}
+	  						<span class="font-weight-bold">${response.nickname}</span>
+	  						<!-- 유저 평점에 따라 이미지를 바꿔줄 것 -->
+	  						<div>
+	  							<img src="/yorijori/images/userpoint/${response.point}tier.png" style="width: 4em; height: 4em;">
+	  						</div>
+	  						<br/>
+	  						<span id="purpose">${response.purpose}</span>
+	  					</div>
+	  				</div>`;
+
+	  						$('.showuserinfo').empty().append(userInfoHtml);
+				            // .showuserinfo 요소에 이미지 코드 추가
+				           
+				        	    
+				        	    $('#profilecardmodal').modal('show');
+				        },
+				        error: function(xhr, status, error) {
+				            // 오류 처리
+				        }
+				    });
+				});
+			
 			const move_list = function(page) {
 				let url = "/yorijori/board/list/"+ page + "/" + pagePerCount;
 				window.location.href = url;

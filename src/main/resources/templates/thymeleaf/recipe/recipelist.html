@@ -1,203 +1,265 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
 <!-- include summernote css/js-->
 <!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
 	integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
 	crossorigin="anonymous" /> -->
 <th:block layout:fragment="header">
-	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
+	<link rel="stylesheet"
+		href="/yorijori/common/css/recipe/recipelist.css">
 	<script type="text/javascript">
 
 
 
 
 </script>
-	
+
 </th:block>
 <th:block layout:fragment="content">
 	<div>
+		
 		<div class="container">
 			<h3 class="menu-h3-common">레시피 목록</h3>
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="sidebar">
-					
+
 						<div class="widget border-0">
 							<!-- 검색 창 init -->
-							<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+							<div id="searbar_ingredient"
+								th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
 						<form action="" method="post">
-						
-						<div class="apply job-alert-bt mr-3" style="">
-							<a class="btn btn-md btn-dark" href="#">
-								<i class="fa-regular fa-circle-check"></i> 필터 적용
-							</a>
-						</div>
-						<div class="widget">
-						
-							<div class="widget-title widget-collapse">
-								<h6>레시피</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender">
-									<i class="fas fa-chevron-down"></i>
+
+							<div class="apply job-alert-bt mr-3" style="">
+								<a class="btn btn-md btn-dark" href="#"> <i
+									class="fa-regular fa-circle-check"></i> 필터 적용
 								</a>
 							</div>
-							<div class="collapse show" id="gender">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="user_recipe_check" checked="checked">
-										<label class="custom-control-label" for="user_recipe_check">유저 레시피</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="server_recipe_check">
-										<label class="custom-control-label" for="server_recipe_check">공식 레시피</label>
+							<div class="widget">
+
+								<div class="widget-title widget-collapse">
+									<h6>레시피</h6>
+									<a class="ml-auto" data-toggle="collapse" href="#gender"
+										role="button" aria-expanded="false" aria-controls="gender">
+										<i class="fas fa-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse show" id="gender">
+									<div class="widget-content">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input"
+												id="user_recipe_check" checked="checked"> <label
+												class="custom-control-label" for="user_recipe_check">유저
+												레시피</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input"
+												id="server_recipe_check"> <label
+												class="custom-control-label" for="server_recipe_check">공식
+												레시피</label>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="widget">
-							<div class="widget-title widget-collapse">
-								<h6>필터</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
-									<i class="fas fa-chevron-down"></i>
-								</a>
+							<div class="widget">
+								<div class="widget-title widget-collapse">
+									<h6>필터</h6>
+									<a class="ml-auto" data-toggle="collapse" href="#dateposted"
+										role="button" aria-expanded="false" aria-controls="dateposted">
+										<i class="fas fa-chevron-down"></i>
+									</a>
+								</div>
+
+								<div class="collapse show" id="dateposted">
+									<div class="widget-content">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="order"
+												value="viewed" id="dateposted1"> <label
+												class="custom-control-label" for="dateposted1">조회 순</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="order"
+												value="great" id="dateposted2"> <label
+												class="custom-control-label" for="dateposted2">좋아요 순</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="order"
+												value="comments" id="dateposted3"> <label
+												class="custom-control-label" for="dateposted3">댓글 많은
+												순</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="order"
+												value="registration" id="dateposted4"> <label
+												class="custom-control-label" for="dateposted4">등록 순</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="widget">
+								<div class="widget-title widget-collapse">
+									<h6>메뉴 타입(작동안함)</h6>
+									<a class="ml-auto" data-toggle="collapse" href="#specialism"
+										role="button" aria-expanded="false" aria-controls="specialism">
+										<i class="fas fa-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse show" id="specialism">
+									<div class="widget-content">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" value="mainmenu"
+												id="specialism1" onclick="handlespecialism(this)"> <label
+												class="custom-control-label" for="specialism1">메인메뉴</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" value="sidemenu"
+												id="specialism2" onclick="handlespecialism(this)"> <label
+												class="custom-control-label" for="specialism2">반찬</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" value="dessert"
+												id="specialism3" onclick="handlespecialism(this)"> <label
+												class="custom-control-label" for="specialism3">디저트</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="widget">
+								<div class="widget-title widget-collapse">
+									<h6>인분</h6>
+									<a class="ml-auto" data-toggle="collapse" href="#jobtype"
+										role="button" aria-expanded="false" aria-controls="jobtype">
+										<i class="fas fa-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse show" id="jobtype">
+									<div class="widget-content">
+										<div class="custom-control custom-checkbox fulltime-job">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="serving"
+												value="1인분" id="menutype1" onclick="handleMenutype(this)">
+											<label class="custom-control-label" for="menutype1">1인분</label>
+										</div>
+										<div class="custom-control custom-checkbox parttime-job">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="serving"
+												value="2인분" id="menutype2" onclick="handleMenutype(this)">
+											<label class="custom-control-label" for="menutype2">2인분</label>
+										</div>
+										<div class="custom-control custom-checkbox freelance-job">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="serving"
+												value="3인분" id="menutype3" onclick="handleMenutype(this)">
+											<label class="custom-control-label" for="menutype3">3인분</label>
+										</div>
+										<div class="custom-control custom-checkbox freelance-job">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="serving"
+												value="4인분" id="menutype3" onclick="handleMenutype(this)">
+											<label class="custom-control-label" for="menutype3">4인분</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="widget">
+								<div class="widget-title widget-collapse">
+									<h6>조리 시간</h6>
+									<a class="ml-auto" data-toggle="collapse" href="#experience"
+										role="button" aria-expanded="false" aria-controls="experience">
+										<i class="fas fa-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse show" id="experience">
+									<div class="widget-content">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="min"
+												value="15분" id="experience2"
+												onclick="handleExperience(this)"> <label
+												class="custom-control-label" for="experience2">15분</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="min"
+												value="30분" id="experience3"
+												onclick="handleExperience(this)"> <label
+												class="custom-control-label" for="experience3">30분</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="min"
+												value="45분" id="experience4"
+												onclick="handleExperience(this)"> <label
+												class="custom-control-label" for="experience4">45분</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="min"
+												value="60분" id="experience5"
+												onclick="handleExperience(this)"> <label
+												class="custom-control-label" for="experience5">60분</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="widget">
+								<div class="widget-title widget-collapse">
+									<h6>나라별 음식</h6>
+									<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary"
+										role="button" aria-expanded="false"
+										aria-controls="Offeredsalary"> <i
+										class="fas fa-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse show" id="Offeredsalary">
+									<div class="widget-content">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="country"
+												value="한식" id="likeCount1" onclick="handleLikeCount(this)">
+											<label class="custom-control-label" for="likeCount1">한식</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="country"
+												value="중식" id="likeCount2"
+												onclick="handleCheckboxChange(this)"> <label
+												class="custom-control-label" for="likeCount2">중식</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="country"
+												value="일식" id="likeCount3"
+												onclick="handleCheckboxChange(this)"> <label
+												class="custom-control-label" for="likeCount3">일식</label>
+										</div>
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox"
+												class="custom-control-input dateposted" name="country"
+												value="양식" id="likeCount4"
+												onclick="handleCheckboxChange(this)"> <label
+												class="custom-control-label" for="likeCount4">양식</label>
+										</div>
+									</div>
+								</div>
 							</div>
 
-							<div class="collapse show" id="dateposted">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="order" value="viewed" id="dateposted1">
-										<label class="custom-control-label" for="dateposted1">조회 순</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="order" value="great" id="dateposted2">
-										<label class="custom-control-label" for="dateposted2">좋아요 순</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="order" value ="comments" id="dateposted3">
-										<label class="custom-control-label" for="dateposted3">댓글 많은 순</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="order" value="registration" id="dateposted4">
-										<label class="custom-control-label" for="dateposted4">등록 순</label>
-									</div>
+							<div class="widget border-0">
+								<div class="widget-add">
+									<!-- <img class="img-fluid" src="images/add-banner.png" alt=""> -->
 								</div>
 							</div>
-						</div>
-						<div class="widget">
-							<div class="widget-title widget-collapse">
-								<h6>메뉴 타입(작동안함)</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism">
-									<i class="fas fa-chevron-down"></i>
-								</a>
-							</div>
-							<div class="collapse show" id="specialism">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" value="mainmenu" id="specialism1" onclick="handlespecialism(this)">
-										<label class="custom-control-label" for="specialism1">메인메뉴</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" value="sidemenu" id="specialism2" onclick="handlespecialism(this)">
-										<label class="custom-control-label" for="specialism2">반찬</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" value="dessert" id="specialism3" onclick="handlespecialism(this)">
-										<label class="custom-control-label" for="specialism3">디저트</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="widget">
-							<div class="widget-title widget-collapse">
-								<h6>인분</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#jobtype" role="button" aria-expanded="false" aria-controls="jobtype">
-									<i class="fas fa-chevron-down"></i>
-								</a>
-							</div>
-							<div class="collapse show" id="jobtype">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox fulltime-job">
-										<input type="checkbox" class="custom-control-input dateposted" name="serving" value="1인분" id="menutype1" onclick="handleMenutype(this)">
-										<label class="custom-control-label" for="menutype1">1인분</label>
-									</div>
-									<div class="custom-control custom-checkbox parttime-job">
-										<input type="checkbox" class="custom-control-input dateposted" name="serving" value="2인분" id="menutype2" onclick="handleMenutype(this)">
-										<label class="custom-control-label" for="menutype2">2인분</label>
-									</div>
-									<div class="custom-control custom-checkbox freelance-job">
-										<input type="checkbox" class="custom-control-input dateposted" name="serving" value="3인분" id="menutype3" onclick="handleMenutype(this)">
-										<label class="custom-control-label" for="menutype3">3인분</label>
-									</div>
-									<div class="custom-control custom-checkbox freelance-job">
-										<input type="checkbox" class="custom-control-input dateposted" name="serving" value="4인분" id="menutype3" onclick="handleMenutype(this)">
-										<label class="custom-control-label" for="menutype3">4인분</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="widget">
-							<div class="widget-title widget-collapse">
-								<h6>조리 시간</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience">
-									<i class="fas fa-chevron-down"></i>
-								</a>
-							</div>
-							<div class="collapse show" id="experience">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="min" value="15분" id="experience2" onclick="handleExperience(this)">
-										<label class="custom-control-label" for="experience2">15분</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="min" value="30분" id="experience3" onclick="handleExperience(this)">
-										<label class="custom-control-label" for="experience3">30분</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="min" value="45분" id="experience4" onclick="handleExperience(this)">
-										<label class="custom-control-label" for="experience4">45분</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="min" value="60분" id="experience5" onclick="handleExperience(this)">
-										<label class="custom-control-label" for="experience5">60분</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="widget">
-							<div class="widget-title widget-collapse">
-								<h6>나라별 음식</h6>
-								<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary">
-									<i class="fas fa-chevron-down"></i>
-								</a>
-							</div>
-							<div class="collapse show" id="Offeredsalary">
-								<div class="widget-content">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="country" value="한식" id="likeCount1" onclick="handleLikeCount(this)">
-										<label class="custom-control-label" for="likeCount1">한식</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="country" value="중식" id="likeCount2" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount2">중식</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="country" value="일식" id="likeCount3" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount3">일식</label>
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input dateposted" name="country" value="양식" id="likeCount4" onclick="handleCheckboxChange(this)">
-										<label class="custom-control-label" for="likeCount4">양식</label>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="widget border-0">
-							<div class="widget-add">
-								<!-- <img class="img-fluid" src="images/add-banner.png" alt=""> -->
-							</div>
-						</div>
 						</form>
 					</div>
 				</div>
@@ -209,8 +271,9 @@
 							</a>
 						</div>
 						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0">
-								<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
+							<a class="btn btn-md btn-dark"
+								href="/yorijori/recipe/list/user/0"> <i
+								class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
 							</a>
 						</div>
 						<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
@@ -219,44 +282,60 @@
 						<th:block th:if="${type} == 'user'">
 							<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${list}">
 								<div class="candidate-list candidate-grid">
-<!-- 								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
-								    <img class="img-fluid" th:src="${data.thumbnail}" alt="">
+									<!-- 								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid" th:src="${data.thumbnail}" alt="">
 									<div class="candidate-list-details">
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-                          						  <a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
+													<a
+														th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}"
+														th:text="${data.name}"></a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+												<div
+													class="badge badge-dark px-3 rounded-pill font-weight-normal"
+													th:text="'작성자 ' + ${data.userId.nickname}"
+													th:data-userid="${data.userId.userId}"></div>
 												<br>
-												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}+분"></div>
-												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
+												<div
+													class="badge badge-success px-3 rounded-pill font-weight-normal"
+													th:text="${data.time}"></div>
+												<div
+													class="badge badge-danger px-3 rounded-pill font-weight-normal">4</div>
 												<hr>
 												<div class="meta meta-style2">
 													<ul class="list-unstyled">
-														<li><i class="fa-solid fa-eye"></i> <span class="ml-1 mr-1" th:text="${data.count}"></span></li>
-														<li><i class="fa-solid fa-thumbs-up"></i><span class="ml-1 mr-1" th:text="${#lists.size(data.wishlist)}"></span></li>
-														<li><a href="#!">
-																<i class="fas fa-comments"></i> <span class="ml-1 mr-1" th:text="${#lists.size(data.reviewlist)}"></span>
-															</a></li>
+														<li><i class="fa-solid fa-eye"></i> <span
+															class="ml-1 mr-1" th:text="${data.count}"></span></li>
+														<li><i class="fa-solid fa-thumbs-up"></i><span
+															class="ml-1 mr-1" th:text="${#lists.size(data.wishlist)}"></span></li>
+														<li><a href="#!"> <i class="fas fa-comments"></i>
+																<span class="ml-1 mr-1"
+																th:text="${#lists.size(data.reviewlist)}"></span>
+														</a></li>
 													</ul>
 												</div>
 											</div>
 										</div>
-										<div class="candidate-list-favourite-time justify-content-around">
+										<div
+											class="candidate-list-favourite-time justify-content-around">
 											<ul class="list-unstyled list-inline">
 												<li class="pr-2"><a class="recipe_info_data order-2">
-														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewlist)}]]</i>
+														<i class="far fa-comments pr-1">
+															[[${#lists.size(data.reviewlist)}]]</i>
 
-													</a></li>
+												</a></li>
 												<li class="pr-2"><a class="recipe_info_data order-2">
 														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
-													</a></li>
+												</a></li>
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
-														<i class="fa fa-heart me-2" aria-hidden="true"></i>
+													<li class="pr-2"><a
+														th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}"
+														th:value="${data.recipeNo}"
+														onclick="clickHeart(this,addHeart)"> <i
+															class="fa fa-heart me-2" aria-hidden="true"></i>
 													</a></li>
 												</th:block>
 											</ul>
@@ -276,28 +355,35 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
+													<a
+														th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">[[${data.rcpPat2}]]</div>
+												<div
+													class="badge badge-danger px-3 rounded-pill font-weight-normal">[[${data.rcpPat2}]]</div>
 												<br>
 												<ul class="list-unstyled"></ul>
 											</div>
 										</div>
-										<div class="candidate-list-favourite-time text-center pt-3 justify-content-around">
+										<div
+											class="candidate-list-favourite-time text-center pt-3 justify-content-around">
 											<ul class="list-unstyled list-inline">
 												<li class="pr-2"><a class="recipe_info_data order-2">
-														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewList)}]]</i>
+														<i class="far fa-comments pr-1">
+															[[${#lists.size(data.reviewList)}]]</i>
 
-													</a></li>
+												</a></li>
 												<li class="pr-2"><a class="recipe_info_data order-2">
 														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
-													</a></li>
-												
+												</a></li>
+
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-												<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.rcpSeq}" onclick="clickHeart(this,addHeart)">
-														<i class="fa fa-heart me-2" aria-hidden="true"></i>
+													<li class="pr-2"><a
+														th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}"
+														th:value="${data.rcpSeq}"
+														onclick="clickHeart(this,addHeart)"> <i
+															class="fa fa-heart me-2" aria-hidden="true"></i>
 													</a></li>
 												</th:block>
 											</ul>
@@ -365,6 +451,7 @@
 				makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list_api);
 			}
 	
+			
 		});
 	
 
@@ -375,6 +462,46 @@
 			setTimeout(() => window.location.href=heartUrl, 2000);
 		}
 		
+		$('.badge.badge-dark.px-3.rounded-pill.font-weight-normal').on('click', function() {
+			 var userId = $(this).data('userid');
+			    
+			    $.ajax({
+			        url: '/yorijori/user/' + userId,
+			        type: 'GET',
+			        contentType: 'application/json',
+			        success: function(response) {
+			        	
+			        	var imagePath = "/yorijori/data/user/" + response.imgPath;
+			            
+			            // 이미지를 표시할 HTML 코드
+			            var imageHtml = '<div class="image-container"><img class="rounded-circle mt-2" style="width: 10em; height: 10em; margin-bottom: 1em;"'
+              + ' src="' + imagePath + '"></div>';
+			            
+              var userInfoHtml = `
+  				<div class="col-md">
+  					<div class="d-flex flex-column align-items-center text-center p-3 py-2">
+  						${imageHtml}
+  						<span class="font-weight-bold">${response.nickname}</span>
+  						<!-- 유저 평점에 따라 이미지를 바꿔줄 것 -->
+  						<div>
+  							<img src="/yorijori/images/userpoint/${response.point}tier.png" style="width: 4em; height: 4em;">
+  						</div>
+  						<br/>
+  						<span id="purpose">${response.purpose}</span>
+  					</div>
+  				</div>`;
+
+  						$('.showuserinfo').empty().append(userInfoHtml);
+			            // .showuserinfo 요소에 이미지 코드 추가
+			           
+			        	    
+			        	    $('#profilecardmodal').modal('show');
+			        },
+			        error: function(xhr, status, error) {
+			            // 오류 처리
+			        }
+			    });
+			});
 
 
 	</script>
