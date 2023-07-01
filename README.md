@@ -16,6 +16,7 @@ Spring Boot
 - MySQL Driver
 - Mybatis
 - Spring boot JPA
+- Spring WebSocket
 
 관련 라이브러리 및 플러그인 
 - mo.js ( 좋아요 애니메이션 )
@@ -23,3 +24,6 @@ Spring Boot
 - bootstrap-select ( select box )
 - sweetalert2 ( alert 창 custom )
 - swiper ( 이미지 slide )
+
+ERD 
+![image](https://github.com/sgustjd2/YoriJori/assets/49851554/c270b72e-1c13-425e-987c-1c0ae78a7910)
