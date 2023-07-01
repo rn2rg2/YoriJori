@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
@@ -56,6 +57,9 @@ public class IndexController {
 		List<UserInfo> userList = memberService.selectListByPageAndSort(0, 3, "point");
 		
 		// 게시물 목록
+		List<Board> boardrcplist = boardService.selectByCategoryAndState("레시피질문", 0, 3);
+		List<Board> storelist = boardService.selectByCategoryAndState("맛집추천", 0, 3);
+		List<Board> eatlist = boardService.selectByCategoryAndState("오늘뭐먹지", 0, 3);
 		
 		
 		// count 관련
@@ -69,6 +73,9 @@ public class IndexController {
 		model.addAttribute("rcpList", rcpList);
 		model.addAttribute("apircpList", apircpList);
 		model.addAttribute("userList", userList);
+		model.addAttribute("boardrcplist",boardrcplist);
+		model.addAttribute("storelist", storelist);
+		model.addAttribute("eatlist", eatlist);
 		
 		return "thymeleaf/index";
 		
