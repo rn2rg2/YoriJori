@@ -5,10 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Sort;
-
 
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
@@ -130,5 +129,22 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
         return recipeDAO.findAll(spec, sort);
     }
+
+	@Override
+	public void findByRecipeNo(int recipeNo) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public long countByNameContaining(String name) {
+		return recipeDAO.countByNameContaining(name); 
+	}
+
+	@Override
+	public List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount) {
+		// TODO Auto-generated method stub
+		
+		return recipeDAO.selectBySearch(pageNo, searchData, pagePerCount);
+	}
 
 }

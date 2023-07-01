@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yorijori.foodcode.dto.UserInfoDTO;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
@@ -20,6 +21,7 @@ import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.ProfileService;
 import com.yorijori.foodcode.service.RecipeService;
+import com.yorijori.foodcode.service.SearchLogService;
 
 
 @Controller
@@ -30,16 +32,18 @@ public class IndexController {
 	RecipeService recipeService;
 	BoardService boardService;
 	ProfileService profileservice;
+	SearchLogService searchservice;
 
 	@Autowired
 	public IndexController(MemberService memberService, ApiRecipeService apiRecipeService, RecipeService recipeService,
-			BoardService boardService, ProfileService profileservice) {
+			BoardService boardService, SearchLogService searchservice, ProfileService profileservice) {
 		super();
 		this.memberService = memberService;
 		this.apiRecipeService = apiRecipeService;
 		this.recipeService = recipeService;
 		this.boardService = boardService;
 		this.profileservice = profileservice;
+		this.searchservice = searchservice;
 	}
 
 	@RequestMapping("/main")
@@ -64,6 +68,9 @@ public class IndexController {
 		List<UserInfo> userList = memberService.selectListByPageAndSort(0, 3, "point");
 		
 		// 게시물 목록
+		List<Board> boardrcplist = boardService.selectByCategoryAndState("레시피질문", 0, 3);
+		List<Board> storelist = boardService.selectByCategoryAndState("맛집추천", 0, 3);
+		List<Board> eatlist = boardService.selectByCategoryAndState("오늘뭐먹지", 0, 3);
 		
 		
 		// count 관련
@@ -77,6 +84,9 @@ public class IndexController {
 		model.addAttribute("rcpList", rcpList);
 		model.addAttribute("apircpList", apircpList);
 		model.addAttribute("userList", userList);
+		model.addAttribute("boardrcplist",boardrcplist);
+		model.addAttribute("storelist", storelist);
+		model.addAttribute("eatlist", eatlist);
 		
 		return "thymeleaf/index";
 		
@@ -110,6 +120,7 @@ public class IndexController {
 	public String test (Model model) {
 		return "thymeleaf/test";
 	}
+	
 
 }
  

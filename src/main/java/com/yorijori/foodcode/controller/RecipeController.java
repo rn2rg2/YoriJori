@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -27,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.Sort;
 
 import com.yorijori.foodcode.apidata.RecipeDataFetcher;
 import com.yorijori.foodcode.common.FileUploadLogic;
@@ -41,12 +41,13 @@ import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
+import com.yorijori.foodcode.jpa.entity.SearchLog;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RecipeService;
-
+import com.yorijori.foodcode.service.SearchLogService;
 
 @RequestMapping("/recipe")
 @Controller
@@ -57,14 +58,15 @@ public class RecipeController {
 	IngredientService ingredientservice;
 	CategoryService categoryservice;
 	FileUploadLogic fileuploadlogic;
-	
+	SearchLogService searchservice;
+
 	@Value("${file.dir}") // c://project/upload
 	private String uploadpath;
 
 	@Autowired
 	public RecipeController(RecipeService recipeService, RecipeDataFetcher recipeDataFetcher,
-			ApiRecipeService apiRecipeService, IngredientService ingredientservice, CategoryService categoryservice
-			,FileUploadLogic fileuploadlogic) {
+			ApiRecipeService apiRecipeService, IngredientService ingredientservice, CategoryService categoryservice,
+			FileUploadLogic fileuploadlogic, SearchLogService searchservice) {
 		super();
 		this.recipeService = recipeService;
 		this.recipeDataFetcher = recipeDataFetcher;
@@ -72,11 +74,10 @@ public class RecipeController {
 		this.ingredientservice = ingredientservice;
 		this.categoryservice = categoryservice;
 		this.fileuploadlogic = fileuploadlogic;
+		this.searchservice = searchservice;
 	}
-	
-	
-	
-	//질문
+
+	// 질문
 	@RequestMapping("/QA/{type}/{rcpNo}")
 	public String qaRecipeQ(@PathVariable String type, @PathVariable int rcpNo, HttpSession session,
 			HttpServletRequest request) {
@@ -84,29 +85,31 @@ public class RecipeController {
 		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
 		return "thymeleaf/recipe/recicpeQA";
 	}
-	//답변
+
+	// 답변
 	@RequestMapping("/QA/{title}/{type}/{rcpNo}")
-	public String qaRecipeA(@PathVariable String title,@PathVariable String type, @PathVariable int rcpNo, HttpSession session,
-			HttpServletRequest request) {
+	public String qaRecipeA(@PathVariable String title, @PathVariable String type, @PathVariable int rcpNo,
+			HttpSession session, HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
 		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
 		return "thymeleaf/recipe/recicpeQA";
 	}
-	//QAinsert
+
+	// QAinsert
 	@PostMapping("/QAinsert/{type}/{rcpNo}")
-	public String qaRecipeinsertQ(@ModelAttribute RecipeQa recipeqa,@PathVariable String type, @PathVariable int rcpNo, HttpSession session,
-			HttpServletRequest request) {
+	public String qaRecipeinsertQ(@ModelAttribute RecipeQa recipeqa, @PathVariable String type, @PathVariable int rcpNo,
+			HttpSession session, HttpServletRequest request) {
 		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
 		Recipe recipe = new Recipe();
 		String view = "thymeleaf/recipe/recipeqaexlt";
-		if(type.equals("user")) {
+		if (type.equals("user")) {
 			recipe.setRecipeNo(rcpNo);
 			recipeqa.setUserId(userinfo);
 			recipeqa.setRecipeNo(recipe);
 			recipeqa.setDepthLevel(0);
 			recipeqa.setState(1);
 			recipeService.recipeqasave(recipeqa);
-		}else { //예외
+		} else { // 예외
 			recipe.setRecipeNo(rcpNo);
 			recipeqa.setUserId(userinfo);
 			recipeqa.setRecipeNo(recipe);
@@ -121,69 +124,67 @@ public class RecipeController {
 	public String viewRecipe(Model model) {
 		return "thymeleaf/recipe/recipeview";
 	}
-	
+
 	@PostMapping("/filtersearch")
 	@ResponseBody
-	public List<String> search(@RequestBody FilterDTO filterDTO) {
+	public Map<String, Object> search(@RequestBody FilterDTO filterDTO) {
 		System.out.println(filterDTO);
-		
-	    Specification<Recipe> spec = RecipeSpecification.any();
-	    List<Recipe> recipes = recipeService.findAll(spec);
 
-	    if (filterDTO.getServing() != null && !filterDTO.getServing().isEmpty()) {
-	        spec = spec.and(RecipeSpecification.equalServing(filterDTO.getServing()));
-	    }
-	    if (filterDTO.getMin() != null && !filterDTO.getMin().isEmpty()) {
-	        spec = spec.and(RecipeSpecification.equalmin(filterDTO.getMin()));
-	    }
-	    if (filterDTO.getOrder() != null && !filterDTO.getOrder().isEmpty()) {
-	        List<String> order = filterDTO.getOrder();
-	        if (order.contains("viewed")) {
-	            spec = spec.and(RecipeSpecification.orderByViewCount());
-	        }
-	        if (order.contains("great")) {
-	            spec = spec.and(RecipeSpecification.orderByViewCount());
-	        }
-	        if (order.contains("comments")) {
-	        	spec = spec.and(RecipeSpecification.orderByWishlist());
-	        }
-	        if (order.contains("registration")) {
-	            spec = spec.and(RecipeSpecification.orderByCreatedDatetime());
-	        }
-	    }
-	    if (filterDTO.getCountry()!= null && !filterDTO.getCountry().isEmpty()) {
-	        List<String> country = filterDTO.getCountry();
-	        if (country.contains("한식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("한식"));
-	        }
-	        if (country.contains("중식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("중식"));
-	        }
-	        if (country.contains("일식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("일식"));
-	        }
-	        if (country.contains("양식")) {
-	        	spec = spec.and(RecipeSpecification.findByCountry("양식"));
-	        }
-	    }
-	    	
-	    	
-	        System.out.println("===================TEST=====================");
-	        System.out.println(recipeService.findAll(spec));
-	        System.out.println("===================TEST=====================");
+		Specification<Recipe> spec = RecipeSpecification.any();
+		List<Recipe> recipes = recipeService.findAll(spec);
 
-		
+		// 중첩형 필터
+		if (filterDTO.getServing() != null && !filterDTO.getServing().isEmpty()) {
+			spec = spec.and(RecipeSpecification.equalServing(filterDTO.getServing()));
+		}
+		if (filterDTO.getMin() != null && !filterDTO.getMin().isEmpty()) {
+			spec = spec.and(RecipeSpecification.equalmin(filterDTO.getMin()));
+		}
+		if (filterDTO.getOrder() != null && !filterDTO.getOrder().isEmpty()) {
+			List<String> order = filterDTO.getOrder();
+			if (order.contains("viewed")) {
+				spec = spec.and(RecipeSpecification.orderByViewCount());
+			}
+			if (order.contains("great")) {
+				spec = spec.and(RecipeSpecification.orderByViewCount());
+			}
+			if (order.contains("comments")) {
+				spec = spec.and(RecipeSpecification.orderByWishlist());
+			}
+			if (order.contains("registration")) {
+				spec = spec.and(RecipeSpecification.orderByCreatedDatetime());
+			}
+		}
+		if (filterDTO.getCountry() != null && !filterDTO.getCountry().isEmpty()) {
+			List<String> countryList = filterDTO.getCountry();
+			for (String country : countryList) {
+				spec = spec.and(RecipeSpecification.findByCountry(country));
+			}
+		}
+		if (filterDTO.getRecipe() != null && !filterDTO.getRecipe().isEmpty()) {
+			List<String> recipeList = filterDTO.getRecipe();
+			for (String recipe : recipeList) {
+				spec = spec.and(RecipeSpecification.findByRecipe(recipe));
+			}
+		}
+		System.out.println("===================TEST=====================");
+		System.out.println(recipeService.findAll(spec));
+		System.out.println("===================TEST=====================");
 
-	    // 검색된 레시피에서 원하는 데이터 추출
-	    List<String> result = new ArrayList<>();
-	    for (Recipe recipe : recipes) {
-	        result.add(recipe.getName());
-	    }
+		Map<String, Object> result = new HashMap<>();
 
-	    System.out.println(result);
-	    return result;
+		long count = recipeService.countAll();
+
+		result.put("recipes", recipeService.findAll(spec));
+		result.put("recipeCount", count);
+
+		System.out.println("===================TEST2=====================");
+		System.out.println(result);
+		System.out.println("===================TEST2=====================");
+
+		return result;
 	}
-	
+
 	// recipe insert
 	@RequestMapping("/insert")
 	public String insertRecipe(Model model) {
@@ -197,42 +198,43 @@ public class RecipeController {
 		model.addAttribute("categorylist2", categorylist2);
 		model.addAttribute("categorylist3", categorylist3);
 		model.addAttribute("categorylist4", categorylist4);
-		
+
 		return "thymeleaf/recipe/recipeInsert";
 	}
-	
+
 	@PostMapping("/insert")
-	public String recipeInsert(Recipe recipedata, @RequestParam("recipethumbnail") MultipartFile multipartFile, @RequestParam(value="cookingList", required=true) List<MultipartFile> cookingList,
+	public String recipeInsert(Recipe recipedata, @RequestParam("recipethumbnail") MultipartFile multipartFile,
+			@RequestParam(value = "cookingList", required = true) List<MultipartFile> cookingList,
 			HttpSession session) {
-		UserInfo user = (UserInfo)session.getAttribute("userInfo");
+		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		recipedata.setUserId(user);
-		fileuploadlogic.createRecipeImageroot(recipedata.getImglist(), cookingList); // LIST 로 된 파일 처리 recipedata set 시켜주기
-		String fileRoot = fileuploadlogic.getUploadpath("recipethumbnail/");//저장될 외부 파일 경로
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		File targetFile = new File(fileRoot + savedFileName);	
-		
+		fileuploadlogic.createRecipeImageroot(recipedata.getImglist(), cookingList); // LIST 로 된 파일 처리 recipedata set
+																						// 시켜주기
+		String fileRoot = fileuploadlogic.getUploadpath("recipethumbnail/");// 저장될 외부 파일 경로
+		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+		File targetFile = new File(fileRoot + savedFileName);
+
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 			recipedata.setThumbnail(savedFileName);
 			System.out.println(recipedata);
 			System.out.println(recipedata.getCategorylist());
 			System.out.println(recipedata.getImglist());
 			System.out.println(recipedata.getIngrelist());
-			for(RecipeIngredients test : recipedata.getIngrelist()) {
+			for (RecipeIngredients test : recipedata.getIngrelist()) {
 				System.out.println(test.getMatlNo());
 			}
 			recipeService.insertAll(recipedata);
 		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
 			e.printStackTrace();
 		}
-			
+
 		return "redirect:/recipe/list/user/0";
 	}
-
 
 	@RequestMapping("/list/{type}/{pageNo}")
 	public String listRecipe(Model model, @PathVariable String type, @PathVariable int pageNo) throws IOException {
@@ -260,20 +262,19 @@ public class RecipeController {
 		return "thymeleaf/recipe/recipelist";
 	}
 
-	
 	// 레시피 뷰
 	@RequestMapping("/view/{type}/{rcpSeq}")
 	public String getViewPage(Model model, @PathVariable String type, @PathVariable int rcpSeq, HttpServletRequest req,
 			HttpServletResponse res) {
-		//뷰 설정
+		// 뷰 설정
 		String view = "";
-		
+
 		Recipe recipe = new Recipe();
 		if (type.equals("server")) { // 서버 레시피 detail view
 			// 서버 레시피의 데이터 조회
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
 			// 모델에 데이터 추가
-			model.addAttribute("data", data);	
+			model.addAttribute("data", data);
 			model.addAttribute("type", type);
 			model.addAttribute("rcpSeq", rcpSeq);
 			// 조회수 증가
@@ -287,44 +288,44 @@ public class RecipeController {
 			UserInfo userId = data.getUserId();
 			List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
 			List<RecipeReview> datareview = recipeService.reviewselect(rcpSeq);
-			//질문
+			// 질문
 			List<RecipeQa> dataq = recipeService.QAselect(rcpSeq);
-	        List<RecipeQa> depthLevelZeroList = new ArrayList<>();
-	        List<RecipeQa> depthLevelOneList = new ArrayList<>();
-	        List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);	
-	        List<Ingredients> idList = new ArrayList<>();
-	        
-	        for (RecipeIngredients recipeIngredients : ingr) {
-	            Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
-	            idList.add(ingr2);
-	        }
-	        // 필터링 질문자 0과 1
-	        // 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
-	        for (RecipeQa item : dataq) {
-	            if (item.getDepthLevel() == 0) {
-	                depthLevelZeroList.add(item);
-	                System.out.println(item);
-	            } else if (item.getDepthLevel() == 1) {
-	                depthLevelOneList.add(item);
-	                System.out.println(item);
+			List<RecipeQa> depthLevelZeroList = new ArrayList<>();
+			List<RecipeQa> depthLevelOneList = new ArrayList<>();
+			List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);
+			List<Ingredients> idList = new ArrayList<>();
 
-	            }
-	        }
+			for (RecipeIngredients recipeIngredients : ingr) {
+				Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
+				idList.add(ingr2);
+			}
+			// 필터링 질문자 0과 1
+			// 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
+			for (RecipeQa item : dataq) {
+				if (item.getDepthLevel() == 0) {
+					depthLevelZeroList.add(item);
+					System.out.println(item);
+				} else if (item.getDepthLevel() == 1) {
+					depthLevelOneList.add(item);
+					System.out.println(item);
+
+				}
+			}
 			// 모델에 데이터 추가
-			//게시물 상세내용
+			// 게시물 상세내용
 			model.addAttribute("data", data);
-			//게시물 이미지 및 레시피방법 
-			model.addAttribute("dataimg",dataimg);
-			//사용저 이름
+			// 게시물 이미지 및 레시피방법
+			model.addAttribute("dataimg", dataimg);
+			// 사용저 이름
 			model.addAttribute("user", data.getUserId());
-			//게시물 리뷰
+			// 게시물 리뷰
 			model.addAttribute("review", datareview);
 			model.addAttribute("dataq", depthLevelZeroList);
 			model.addAttribute("dataa", depthLevelOneList);
 			model.addAttribute("rcpSeq", rcpSeq);
 			model.addAttribute("ingrList", idList);
-			System.out.println("TESTTEST"+dataimg);
-			
+			System.out.println("TESTTEST" + dataimg);
+
 			viewCountUp(rcpSeq, type, req, res);
 
 			view = "thymeleaf/recipe/userRecipeView";
@@ -359,7 +360,7 @@ public class RecipeController {
 		}
 		return "redirect:" + referer;
 	}
-		
+
 //	@PostMapping("/reviewinsert/{rcpNo}")
 //	public String insertReview(@ModelAttribute RecipeReview recipereview, @PathVariable int rcpNo, HttpSession session,
 //	        HttpServletRequest request) {
@@ -380,29 +381,29 @@ public class RecipeController {
 //	}
 	@PostMapping("/reviewinsert/{rcpNo}")
 	public String insertReview(@ModelAttribute RecipeReview recipereview, @PathVariable int rcpNo, HttpSession session,
-	        HttpServletRequest request) {
-	    //세션처리
-	    String referer = request.getHeader("Referer");
-	    // 세션에서 userInfo 가져오기
-	    UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			HttpServletRequest request) {
+		// 세션처리
+		String referer = request.getHeader("Referer");
+		// 세션에서 userInfo 가져오기
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 
-	    // If userInfo is null, redirect to login page
-	    if (userInfo == null) {
-	        return "yorijori/member/loginpage";
-	    }else {
-		    Recipe recipe = new Recipe();
-		    //@PathVariable로 받아온 레시피번호로 재조회후 정보 가져오기
-		    recipe.setRecipeNo(rcpNo);
-		    //정보 넣어주기
-		    recipereview.setRecipeNo(recipe);
-		    recipereview.setUserId(userInfo);
-		    //저정한 정보 insert
-		    recipeService.reviewsave(recipereview);
-		    return "redirect:" + referer;
-	    }
+		// If userInfo is null, redirect to login page
+		if (userInfo == null) {
+			return "yorijori/member/loginpage";
+		} else {
+			Recipe recipe = new Recipe();
+			// @PathVariable로 받아온 레시피번호로 재조회후 정보 가져오기
+			recipe.setRecipeNo(rcpNo);
+			// 정보 넣어주기
+			recipereview.setRecipeNo(recipe);
+			recipereview.setUserId(userInfo);
+			// 저정한 정보 insert
+			recipeService.reviewsave(recipereview);
+			return "redirect:" + referer;
+		}
 
 	}
-	
+
 	// 조회수 올리는 메소드 (쿠키 기반)
 	private void viewCountUp(int id, String type, HttpServletRequest req, HttpServletResponse res) {
 
@@ -441,6 +442,23 @@ public class RecipeController {
 			newCookie.setMaxAge(60 * 60 * 24);
 			res.addCookie(newCookie);
 		}
+	}
+
+	@RequestMapping("/search/{data}/{pageNo}")
+	public String searchRecipe(@PathVariable String data, @PathVariable int pageNo, Model model) {
+		long count = recipeService.countByNameContaining(data);
+		List<Recipe> list = recipeService.selectBySearch(pageNo, data, 9);
+		System.out.println(list);
+		SearchLog searchlog = new SearchLog();
+		searchlog.setKeyword(data);
+		searchservice.insertLog(searchlog);
+
+		// 모델에 데이터 추가
+		model.addAttribute("count", count);
+		model.addAttribute("type", "user");
+		model.addAttribute("list", list);
+		model.addAttribute("pageNo", pageNo);
+		return "thymeleaf/recipe/recipelist";
 	}
 
 //	@RequestMapping("/list/server/{pageNo}")

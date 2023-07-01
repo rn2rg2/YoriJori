@@ -37,4 +37,6 @@ public interface UserWishlistRepository extends JpaRepository<UserWishlist, Inte
 			"WHERE uw.user_id = :userId " + 
 			"AND j.recipe_no = :recipeNo", nativeQuery = true)
 	List<String> findRcpAndCategory(@Param("userId") String userId, @Param("recipeNo") int recipeNo);
+	
+	long countByUserId(UserInfo userId);
 }

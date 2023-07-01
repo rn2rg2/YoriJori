@@ -50,6 +50,9 @@ public interface RecipeService {
 	//레시피에 대한 QA 작성 (insert)
     void recipeqasave(RecipeQa recipeqa);
 	List<RecipeIngredients> selectingr(int rcpSeq);
+	void findByRecipeNo(int recipeNo);
+	long countByNameContaining(String name);
+	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	
 	
 }

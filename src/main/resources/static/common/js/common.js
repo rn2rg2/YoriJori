@@ -52,6 +52,7 @@ function error_alert(msg, input) {
 	Swal.fire(msg, '<b style="color:red;">' + input + '</b>칸을 확인해주세요', 'error')
 }
 
+
 /**
  * 
  * 입력값에 특정 문자가 있는지 체크하는 로직이며
@@ -567,3 +568,61 @@ function loadPage(totalCount, pageSize, fn) {
 		}
 	});
 }
+
+function date_to_str(format)
+
+{
+
+    var year = format.getFullYear();
+
+    var month = format.getMonth() + 1;
+
+    if(month<10) month = '0' + month;
+
+    var date = format.getDate();
+
+    if(date<10) date = '0' + date;
+
+    var hour = format.getHours();
+
+    if(hour<10) hour = '0' + hour;
+
+    var min = format.getMinutes();
+
+    if(min<10) min = '0' + min;
+
+    var sec = format.getSeconds();
+
+    if(sec< 10) sec = '0' + sec;
+
+    
+
+    return year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
+
+}
+
+function leadingZeros(n, digits) {
+    var zero = '';
+    n = n.toString();
+
+    if (n.length < digits) {
+        for (i = 0; i < digits - n.length; i++)
+            zero += '0';
+    }
+    return zero + n;
+}
+
+function makeChatRoom(userId){
+	let url = "/yorijori/chat/room"
+	let param = {"userId2": userId }
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : param,
+		success : function(data, status, xr) {
+			console.log(data);
+		},
+		error : error_run
+	});
+}
+

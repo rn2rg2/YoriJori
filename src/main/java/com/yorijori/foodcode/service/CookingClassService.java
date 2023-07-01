@@ -5,7 +5,9 @@ import java.util.List;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
+import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
+import com.yorijori.foodcode.jpa.entity.Payment;
 
 public interface CookingClassService {
 	public void insert(CookingClass cookingclass); //파라미터 추가
@@ -17,4 +19,8 @@ public interface CookingClassService {
 	public List<CookingClassCurriculum> readCurriculum(int cookNo);
 	public void insertImage(CookingClassImage image);
 	public List<CookingClass> findTop5ByOrderByCount();
+	public long countAll();
+	List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount);
+	void formInsert(CookingClassForm form);
+	CookingClass findById(Integer cookNo);
 }

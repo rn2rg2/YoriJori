@@ -24,8 +24,8 @@ public class SearchLog{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String userId;
 	private String keyword;
+	private int count;
 	@CreationTimestamp
 	private Date registeredAt;
 	@UpdateTimestamp

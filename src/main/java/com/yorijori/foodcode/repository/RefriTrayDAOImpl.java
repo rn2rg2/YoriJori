@@ -2,18 +2,16 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.yorijori.foodcode.dto.RecipeDTO;
 import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.entity.UserFrige;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.jpa.entity.UserTray;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.UserFrigeRepository;
 import com.yorijori.foodcode.jpa.repository.UserTrayListRepository;
@@ -27,22 +25,28 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	UserTrayRepository trayrepository;
 	UserTrayListRepository traylistrepository;
 	UserWishlistRepository userwishlistrepo;
-	EntityManager em;
 
 	@Autowired
 	public RefriTrayDAOImpl(UserFrigeRepository frigerepository, UserTrayRepository trayrepository,
-			UserTrayListRepository traylistrepository,UserWishlistRepository userwishlistrepo, EntityManager em) {
+			UserTrayListRepository traylistrepository,UserWishlistRepository userwishlistrepo) {
 		super();
 		this.frigerepository = frigerepository;
 		this.trayrepository = trayrepository;
 		this.traylistrepository = traylistrepository;
 		this.userwishlistrepo = userwishlistrepo;
-		this.em = em;
 	}
 
 	@Override
 	public List<UserFrige> selectAll(String userId) {
 		return frigerepository.findAllByUserId(userId);
+	}
+	@Override
+	public List<UserTray> selectTrayByUserId(String userId) {
+		return trayrepository.findAllByUserId(userId);
+	}
+	@Override
+	public UserTray selectTrayDetailByUserId(int trayNo,String userId) {
+		return trayrepository.findByTrayNoAndUserId(trayNo,userId);
 	}
 
 	@Override
@@ -60,10 +64,11 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 
 	@Override
 	public void insertAll(List<UserFrige> userfrigelist) {
-		// System.out.println("DAO");
-		// System.out.println(board.toString());
-
 		frigerepository.saveAll(userfrigelist);
+	}
+	@Override
+	public void insertTray(UserTray usertray) {
+		trayrepository.save(usertray);
 	}
 
 	@Override
@@ -75,7 +80,7 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	}
 	
 	@Override
-	public List<RecipeVO> findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
+	public RecipeVO findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
 		return frigerepository.searchPreferMatlNo(user.getPrefer(), userfrige.getMatlNo());
 	}
 
