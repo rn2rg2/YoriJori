@@ -148,5 +148,18 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
         return reciperepository.findAll(spec, sort);
 	}
+	
+	@Override
+	public long countByNameContaining(String name) {
+		return reciperepository.countByNameContaining(name); 
+	}
 
+	@Override
+	public List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount) {
+		// TODO Auto-generated method stub
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "count"));
+		Page<Recipe> page = reciperepository.findByNameContaining(searchData,pageRequest);
+		List<Recipe> list = page.getContent();
+		return list;
+	}
 }

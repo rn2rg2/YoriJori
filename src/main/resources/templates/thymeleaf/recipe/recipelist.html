@@ -399,6 +399,18 @@
 			setTimeout(() => window.location.href=heartUrl, 2000);
 		}
 		
+		// 검색 버튼 클릭 시 
+		$('#searchIngredient').click(function(){
+			fnSearch();
+		})
+		
+		// 검색 함수
+		const fnSearch = function(){
+			let searchData = $("#inputSearchData").val();
+			let url = "/yorijori/recipe/search";
+			currentPage = 0 ;
+			window.location.href = url + "/" + searchData + "/" + currentPage;
+		}
 
 
 	</script>

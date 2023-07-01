@@ -54,6 +54,8 @@ public interface RecipeDAO {
 	List<RecipeIngredients> selectingr(int recipeNo);
 	List<Recipe> findAll(Specification<Recipe> spec);
 	List<Recipe> findAll(Specification<Recipe> spec, Sort sort);
+	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
+	long countByNameContaining(String name);
     
 
 }

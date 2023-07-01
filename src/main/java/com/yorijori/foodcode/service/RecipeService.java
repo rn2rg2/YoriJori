@@ -51,6 +51,8 @@ public interface RecipeService {
     void recipeqasave(RecipeQa recipeqa);
 	List<RecipeIngredients> selectingr(int rcpSeq);
 	void findByRecipeNo(int recipeNo);
+	long countByNameContaining(String name);
+	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	
 	
 }

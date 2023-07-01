@@ -15,6 +15,7 @@ import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.RecipeService;
+import com.yorijori.foodcode.service.SearchLogService;
 
 
 @Controller
@@ -24,15 +25,17 @@ public class IndexController {
 	ApiRecipeService apiRecipeService;
 	RecipeService recipeService;
 	BoardService boardService;
+	SearchLogService searchservice;
 
 	@Autowired
 	public IndexController(MemberService memberService, ApiRecipeService apiRecipeService, RecipeService recipeService,
-			BoardService boardService) {
+			BoardService boardService, SearchLogService searchservice) {
 		super();
 		this.memberService = memberService;
 		this.apiRecipeService = apiRecipeService;
 		this.recipeService = recipeService;
 		this.boardService = boardService;
+		this.searchservice = searchservice;
 	}
 
 	@RequestMapping("/main")
@@ -85,6 +88,7 @@ public class IndexController {
 	public String test (Model model) {
 		return "thymeleaf/test";
 	}
+	
 
 }
  
