@@ -25,5 +25,10 @@ Spring Boot
 - sweetalert2 ( alert 창 custom )
 - swiper ( 이미지 slide )
 
+사용한 공공 데이터
+- 식품안전나라 식재료 DB 및 레시피 정보
+- https://www.foodsafetykorea.go.kr/fcdb 
+
 ERD 
+
 ![image](https://github.com/sgustjd2/YoriJori/assets/49851554/c270b72e-1c13-425e-987c-1c0ae78a7910)
