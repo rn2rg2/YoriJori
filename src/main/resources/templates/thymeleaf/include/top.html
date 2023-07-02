@@ -74,8 +74,30 @@
 			</div>
 		</div>
 		<!-- 팝업! -->
-
-
+		<!-- 유저 팝업! -->
+		<div class="modal fade" id="profilecardmodal" tabindex="-1"
+			role="dialog" aria-labelledby="profilecardmodalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="profilecard">유저 프로필</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="showuserinfo" style="">
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="addchat" style="background-color: #fd5d5d;">이
+							유저와 채팅하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 유저 팝업! -->
 		<div class="container-fluid px-md-5 mb-4">
 			<div class="row justify-content-between header_top_div">
 				<div class="col-md-5 d-flex logo_div">
@@ -92,6 +114,7 @@
 								<div class="form-group d-flex">
 									<input type="text" class="form-control pl-3" id="searchData"
 										placeholder="레시피 검색" style="border-radius: 0px;">
+
 									<button type="button" id="mainSearch"
 										class="form-control search" style="border-radius: 0px;">
 										<span class="fa fa-search"></span>

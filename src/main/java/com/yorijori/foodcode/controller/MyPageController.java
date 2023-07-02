@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yorijori.foodcode.common.FileUploadLogic;
+import com.yorijori.foodcode.dto.UserInfoNicknameDTO;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -54,23 +55,24 @@ public class MyPageController {
 	public String profile(Model model, HttpSession session) {
 		UserInfo user = (UserInfo)session.getAttribute("userInfo");
 		String[] prefer = user.getPrefer().split(",");
-		//List<String> preferList = Arrays.asList(prefer);
+		String[] allergy = user.getAllergy().split(",");
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();
-		System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
+		//System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
 		model.addAttribute("category", categorylist);
 		model.addAttribute("prefer", prefer);
 		model.addAttribute("ingredient", ingrelist);
+		model.addAttribute("allergy", allergy);
 		return "thymeleaf/mypage/my_user_info";
 	}
-
+	
 	@PostMapping(value="/deleteUser") //produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String deleteuser(HttpSession session) {
 	    UserInfo user = (UserInfo) session.getAttribute("userInfo");
 	    user.setState(0);
 	    profileservice.updatestate(user);
-	    System.out.println("deleteUser 확인 : "+ user);
+	    //System.out.println("deleteUser 확인 : "+ user);
 	    if (session != null) {
 	        session.invalidate();
 	    }
@@ -85,6 +87,28 @@ public class MyPageController {
 //	    return categorylist;
 //	}
 	
+	@PostMapping("/changepass")
+	public String changepass(HttpSession session, String newpass) {
+		UserInfo user =(UserInfo)session.getAttribute("userInfo");
+		user.setPass(newpass);
+		user = profileservice.updatepassword(user);
+		return "redirect:/mypage/profile";
+	}
+	
+	@PostMapping(value= "checknickname", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public UserInfoNicknameDTO checknickname(String nickname) {
+		UserInfo user = new UserInfo();
+		user = profileservice.checknickname(nickname);
+		UserInfoNicknameDTO userDTO = new UserInfoNicknameDTO();
+		System.out.println("닉네임 체크할때 유저 값: " +user);
+		if(user != null) { //유저 중복
+			userDTO.setNickname(user.getNickname());
+		}else {
+			userDTO.setNickname("1");
+		}
+		return userDTO;
+	}
 	
 	@PostMapping("/updateprofileimage")
 	public String updateprofileimage(HttpSession session, MultipartFile profilephoto, String cookingpurpose) {
@@ -121,14 +145,17 @@ public class MyPageController {
 
 	@PostMapping("/updateprofile")
 	public String updateProfile(HttpSession session, String Email, String Nickname
-			, @RequestParam("userprefer") List<String> prefer) {
+			, @RequestParam("userprefer") List<String> prefer, @RequestParam("userallergy") List<String> allergy) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
-		//System.out.println("유저정보 업데이트 하기 ㅋㅋ : "+ prefer); 
+		System.out.println("유저정보 업데이트 하기 ㅋㅋ : "+ allergy); 
 		String setprefer = String.join(",", prefer);
-		//System.out.println("유저 정보 저장할 prefer "+ joinedString);
+		String setallergy = String.join(",", allergy);
+		System.out.println("유저 정보 저장할 allergy "+ setallergy);
 		user.setPrefer(setprefer);
+		user.setAllergy(setallergy);
 		user.setEmail(Email);
 		user.setNickname(Nickname);
+		System.out.println("업데이트할 유저 정보"+user);
 		user = profileservice.updateprofile(user);
 		session.setAttribute("userInfo", user);
 		return "redirect:/mypage/profile";
