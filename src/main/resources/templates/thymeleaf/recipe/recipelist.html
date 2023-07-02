@@ -489,7 +489,7 @@
 
 
 	</script>
-	<script>
+	<script th:inline="javascript">
 	$(document).ready(function () {
 	    $('.apply a.btn').on('click', function (e) {
 	        e.preventDefault();
@@ -501,11 +501,9 @@
 
 	            if (selectedCheckboxes[checkboxName] === undefined) {
 	                selectedCheckboxes[checkboxName] = [];
-	            }
-
+	            }	
 	            selectedCheckboxes[checkboxName].push(checkboxValue);            
 	        });
-
 	        $.ajax({
 	            url: '/yorijori/recipe/filtersearch',
 	            type: 'post',
@@ -516,22 +514,38 @@
 	                alert('검색에 실패했습니다.');
 	            },
 	            success: function (response) {
+
 	                $('#results').empty();
 	                response.recipes.forEach(function (recipe) {
+	                	
+	                	var userinfo = $('#userinfo').val()
+	                	console.log(userinfo);
 						console.log(recipe)
+						if(userinfo){
+							heartElement = `
+			                    <li class="pr-2"><a class="" value="${recipe.recipeNo}" onclick="clickHeart(this, addHeart)">
+		                        <i class="fa fa-heart me-2" aria-hidden="true"></i>
+		                    </a></li>
+		                `;				
+							
+						}else{
+							heartElement =``
+						}
+						
+						
 	                    const content = `
 	                        <div class="col-sm-6 col-lg-4 mb-4">
 	                        <div class="candidate-list candidate-grid">
-	                        <img class="img-fluid" src="${recipe.thumbnail}" alt="">
+	                        <img class="img-fluid" src="/yorijori/data/recipethumbnail/${recipe.thumbnail}" alt="">
 	                        <div class="candidate-list-details">
 	                            <div class="candidate-list-info">
 	                                <div class="candidate-list-title">
 	                                    <h5>
-	                                      <a href="/recipe/view/user/${recipe.recipeNo}">${recipe.name}</a>
+	                                      <a href="/yorijori/recipe/view/user/${recipe.recipeNo}">${recipe.name}</a>
 	                                    </h5>
 	                                </div>
 	                                <div class="candidate-list-option">
-	                                <div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>
+	                                <div class="badge badge-dark px-3 rounded-pill font-weight-normal">${recipe.userNickname}</div>
 	                                    <br>
 	                                    <div class="badge badge-success px-3 rounded-pill font-weight-normal">${recipe.time}</div>
 	                                    <div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
@@ -545,6 +559,7 @@
 	                                    <li class="pr-2"><a class="recipe_info_data order-2">
 	                                            <i class="fa-regular fa-eye"> ${recipe.count}</i>
 	                                        </a></li>
+	                                        ${heartElement}
 	                                </ul>
 	                            </div>
 	                        </div>

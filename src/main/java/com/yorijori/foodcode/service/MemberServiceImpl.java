@@ -2,11 +2,13 @@ package com.yorijori.foodcode.service;
 
 
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -72,6 +74,19 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
 		return memberDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+	}
+
+
+    @Override
+    public void updateUserStateByUserId(String userId, int state) {
+        memberDAO.updateUserStateByUserId(userId, state);
+    }
+
+
+	@Override
+	public List<UserInfo> selectall(int state) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectall(state);
 	}
 
 }
