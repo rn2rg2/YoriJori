@@ -36,11 +36,11 @@
 }
 
 .w3 {
-	color: #ffeda0 !important;
+	color: #E5CA66 !important;
 }
 
 .w2 {
-	color: #ffffcc !important;
+	color: #92725a !important;
 }
 
 .w1 {
@@ -115,7 +115,7 @@
  -->
 				<div class="col-lg-12 mb-5">
 
-					<div id="comments" style="min-height: 30em; border: 3px solid #C0D8C0; border-radius: 5%"></div>
+					<div id="comments" style="min-height: 30em; border: 3px solid #646464; border-radius: 5%"></div>
 				</div>
 			</div>
 
@@ -130,25 +130,28 @@
 							</tr>
 						</thead>
 					</div> -->
-					<ol>
-						<li style="display: flex; align-items: center;" th:each="item, index : ${top10list}">
-							<div class="widget-26-job-title" style="display: inline-block;">
-								<th:block th:if="${index.count == 1}">
-									<img alt="N0_1" src="/yorijori/images/icon/NO.1.png" style="max-width: 50px; height: auto;">
-								</th:block>
-								<th:block th:if="${index.count == 2}">
-									<img alt="N0_2" src="/yorijori/images/icon/NO.2.png" style="max-width: 50px; height: auto;">
-								</th:block>
-								<th:block th:if="${index.count == 3}">
-									<img alt="N0_3" src="/yorijori/images/icon/NO.3.png" style="max-width: 50px; height: auto;">
-								</th:block>
-
-							</div> [[${index.count+" : "+item.keyword}]]
-							<div>
-								<span class="search_num">조회수 : [[${item.count}]]</span>
-							</div>
-
-						</li>
+					<div class="row">
+    <div class="col-lg-6" style="text-align: center;">
+        <b>순위</b>
+    </div>
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6" style="text-align: center;">
+        <b style="margin-left: 140px;">조회수</b>
+    </div>
+</div>
+<hr>
+<ol>
+    <li th:each="item, index : ${top10list}">
+        <div style="display: flex; align-items: center;">
+            <div class="widget-26-job-title" style="display: inline-block; margin-left: 40px;"></div>
+            <span style="font-size: 20px; font-weight: bold; margin-right: 100px;">[[${index.count}]]</span>
+            <span style="flex-grow: 1;">[[${item.keyword}]]</span>
+            <div style="text-align: right;">
+                <span class="search_num">[[${item.count}]]</span>
+            </div>
+        </div>
+    </li>
 
 						<!-- <li>
 							<div class="widget-26-job-title" style="display: inline-block;">
@@ -167,8 +170,18 @@
  -->
 					</ol>
 				</div>
-
-
+				<div class="row">
+					<div class="col-12 text-center mt-4 mt-sm-5">
+						<ul class="pagination justify-content-center mb-0">
+							<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item"><a class="page-link" href="#">다음</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 
 
