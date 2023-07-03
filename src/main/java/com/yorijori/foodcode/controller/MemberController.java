@@ -67,9 +67,12 @@ public class MemberController {
 					return "redirect:/admin/main";
 				}
 				if (previousPage != null && !previousPage.isEmpty()) {
+					System.out.println("=====================");
+					System.out.println(previousPage);
+					System.out.println("=====================");
 		            return "redirect:" + previousPage;
 				} else {
-					return "thymeleaf/index";
+					return "redirect:/main";
 				}
 			}
 		}
