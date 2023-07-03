@@ -57,7 +57,15 @@ public class Recipe {
 	@Exclude
 	@JsonBackReference
 	private UserInfo userId;
+	
+	public String getUserNickname() {
+		
+	    return userId.getNickname();
+	}
 
+	
+	
+	
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
 	@JsonManagedReference 
@@ -91,5 +99,6 @@ public class Recipe {
 	public void viewCountUp(Recipe recipe) {
 		recipe.count++;
 	}
+	
 
 }

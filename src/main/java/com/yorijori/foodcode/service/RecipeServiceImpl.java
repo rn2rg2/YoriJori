@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
@@ -18,17 +19,20 @@ import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
+import com.yorijori.foodcode.repository.CategoryDAO;
 import com.yorijori.foodcode.repository.RecipeDAO;
 
 @Service
 @Transactional
 public class RecipeServiceImpl implements RecipeService {
 	RecipeDAO recipeDAO;
+	CategoryDAO categoryDAO;
 
 	@Autowired
-	public RecipeServiceImpl(RecipeDAO recipeDAO) {
+	public RecipeServiceImpl(RecipeDAO recipeDAO, CategoryDAO categoryDAO) {
 		super();
 		this.recipeDAO = recipeDAO;
+		this.categoryDAO = categoryDAO;
 	}
 
 	@Override
@@ -82,6 +86,13 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 		for (int i = 0; i < categorylist.size(); i++) {
 			categorylist.get(i).setRecipeNo(recipedata);
+
+			//Category dto = categoryDAO.findById(categorylist.get(i).getCategoryNo());
+			//categorylist.get(i).setCategoryNo(dto);
+			System.out.println("============11=============");
+			System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
+			System.out.println("=========================");
+
 		}
 		for (int i = 0; i < imglist.size(); i++) {
 			imglist.get(i).setRecipeNo(recipedata);
@@ -149,6 +160,19 @@ public class RecipeServiceImpl implements RecipeService {
 
 		return recipeDAO.selectBySearch(pageNo, searchData, pagePerCount);
 	}
+	
+	@Override
+	public List<Long> countByCategoryNo(int startnum, int endnum) {
+		List<Long> list = new ArrayList<Long>();
+		for ( int i = startnum ; i <= endnum; i ++  ) {
+			Category categoryNo = new Category();
+			categoryNo.setCategoryNo(i);
+			long count = recipeDAO.countByCategoryNo(categoryNo);
+			list.add(count);
+		}
+		return list;
+	}
+	
 
 	@Override
 	public List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId) {

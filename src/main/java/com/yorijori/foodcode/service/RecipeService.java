@@ -55,6 +55,8 @@ public interface RecipeService {
 	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId);
 	List<Recipe> mylikeListByPage(int pageNo, int pagePerCount, UserInfo user);
+	List<Long> countByCategoryNo(int startnum, int endnum);
+
 	
 	
 }

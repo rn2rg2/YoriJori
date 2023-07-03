@@ -12,4 +12,6 @@ public interface SearchLogService {
 
 	SearchLog findSearchLog(String keyword);
 
+	List<SearchLog> findTop100ByCount();
+
 }

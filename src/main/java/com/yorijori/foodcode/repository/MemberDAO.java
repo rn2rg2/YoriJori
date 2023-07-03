@@ -16,5 +16,7 @@ public interface MemberDAO {
 	long userCount(String role);
 	UserInfo findByUserId(String userId);
 	List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
-
+	void updateUserStateByUserId(String userId, int state);
+	
+	List<UserInfo> selectall(int state);
 }

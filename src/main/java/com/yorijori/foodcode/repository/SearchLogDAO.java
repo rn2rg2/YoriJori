@@ -14,4 +14,6 @@ public interface SearchLogDAO {
 
 	SearchLog findSearchLog(String keyword);
 
+	List<SearchLog> findTop100ByCount();
+
 }

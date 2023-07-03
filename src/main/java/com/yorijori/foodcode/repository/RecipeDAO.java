@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -60,6 +61,8 @@ public interface RecipeDAO {
 	List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId);
 	List<UserWishlist> mylikelist(UserInfo user);
 	List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int recipe);
+	long countByCategoryNo(Category categoryNo);
+
     
 
 }
