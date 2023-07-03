@@ -1,321 +1,325 @@
 
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head layout:fragment="header">
-<link rel="stylesheet" type="text/css"
-	href="/yorijori/common/css/ranking/rranking.css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
+<th:block layout:fragment="header">
+<link rel="stylesheet" type="text/css" href="/yorijori/common/css/ranking/rranking.css" />
+<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <title>요리조리 레시피랭킹</title>
-<!-- <script src="/yorijori/common/js/mainpage/main.js"></script> -->
-<!-- <script src="/yorijori/common/js/mainpage/main2.js"></script> -->
 
-<script type="text/javascript">
-document.querySelector('button').addEventListener('click', () => {
-	document.querySelector('h2').classList.toggle('show');
-	setTimeout(() => document.querySelector('h2').classList.toggle('show'), 200);
-});
+
+<script>
+
 </script>
 
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet">
-</head>
-<body>
-	<div layout:fragment="content" class="mb-5 container">
-
-		<ul class="nav nav-tabs3" style="position: relative;">
-			<li role="presentation" class="active"><a
-				href="http://localhost:8088/yorijori/ranking/rlist">레시피</a></li>
-			<li role="presentation"><a
-				href="http://localhost:8088/yorijori/ranking/klist">검색어</a></li>
-			<li role="presentation"><a
-				href="http://localhost:8088/yorijori/ranking/clist">셰프</a></li>
-			<ul class="nav nav-tabs2 pull-right" style="position: relative;">
-				<li role="presentation" class="active"><a
-					href="/ranking/home_new.html?dtype=d&amp;rtype=r">일간</a></li>
-				<li role="presentation"><a
-					href="/ranking/home_new.html?dtype=w&amp;rtype=r">주간</a></li>
-				<li role="presentation"><a
-					href="/ranking/home_new.html?dtype=m&amp;rtype=r">월간</a></li>
-			</ul>
-		</ul>
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+</th:block>
+<th:block layout:fragment="content">
+	<div class="mb-5 container">
+		
 		<h3 class="menu-h3-common">레시피랭킹</h3>
-		<section class="hero-section mb-5">
-			<div class="card-grid" style="border: none;">
-				<a class="card" href="#" style="border: none;">
-					<div class="card__background"
-						style="background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjFfNDIg%2FMDAxNjc5Mzc2MDExOTE1.uoIBbE3W05Jr-9_Q6DA723eu99VzCQuFM0Psh_xXxzQg.dvo3Xl9tj62HpAHFvoLGWZolLqNtFL7G524Mg2ZX7Zwg.JPEG.dongin326%2FKakaoTalk_20230321_131450661.jpg&type=sc960_832)"></div>
-					<div class="card__content">
-						<p class="card__category">1위</p>
-						<h3 class="card__heading">소불고기</h3>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="sidebar">
+					
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h5>분류</h5>
+							<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="dateposted">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="dateposted1">
+									<label class="custom-control-label" for="dateposted1">레시피</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="dateposted2">
+									<label class="custom-control-label" for="dateposted2">검색어</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="dateposted3">
+									<label class="custom-control-label" for="dateposted3">회원</label>
+								</div>
+							</div>
+						</div>
 					</div>
-				</a> <a class="card" href="#" style="border: none;">
-					<div class="card__background"
-						style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-					<div class="card__content">
-						<p class="card__category">2위</p>
-						<h3 class="card__heading">닭볶음탕</h3>
+					<div class="widget">
+						<div class="widget-title widget-collapse">
+							<h5>기간</h5>
+							<a class="ml-auto" data-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism">
+								<i class="fas fa-chevron-down"></i>
+							</a>
+						</div>
+						<div class="collapse show" id="specialism">
+							<div class="widget-content">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="specialism1">
+									<label class="custom-control-label" for="specialism1">일간</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="specialism2">
+									<label class="custom-control-label" for="specialism2">주간</label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="specialism3">
+									<label class="custom-control-label" for="specialism3">월간</label>
+								</div>
+							</div>
+						</div>
 					</div>
-				</a> <a class="card" href="#" style="border: none;">
-					<div class="card__background"
-						style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-					<div class="card__content">
-						<p class="card__category">3위</p>
-						<h3 class="card__heading">갈비찜</h3>
+				
+					<div class="widget border-0">
+						<div class="widget-add">
+							<img class="img-fluid" src="images/add-banner.png" alt="">
+						</div>
 					</div>
-				</a>
+				</div>
+			</div>
+
+			
+			<div class="col-lg-9">	
+
+			<section class="hero-section mb-5">
+				<div class="card-grid" style="border: none;">
+					<a class="card" href="#" style="border: none;">
+						<div class="card__background" style="background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjFfNDIg%2FMDAxNjc5Mzc2MDExOTE1.uoIBbE3W05Jr-9_Q6DA723eu99VzCQuFM0Psh_xXxzQg.dvo3Xl9tj62HpAHFvoLGWZolLqNtFL7G524Mg2ZX7Zwg.JPEG.dongin326%2FKakaoTalk_20230321_131450661.jpg&type=sc960_832)"></div>
+						<div class="card__content">
+							<p class="card__category">1위</p>
+							<h3 class="card__heading">소불고기</h3>
+						</div>
+					</a>
+					<a class="card" href="#" style="border: none;">
+						<div class="card__background" style="background-image: url(https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202109/01/234cd540-11d0-452e-8656-98f2eb5dfe4b.jpg)"></div>
+						<div class="card__content">
+							<p class="card__category">2위</p>
+							<h3 class="card__heading">닭볶음탕</h3>
+						</div>
+					</a>
+					<a class="card" href="#" style="border: none;">
+						<div class="card__background" style="background-image: url(https://recipe1.ezmember.co.kr/cache/recipe/2019/02/09/9377ac695a85566adfda9817b73438f31.jpg)"></div>
+						<div class="card__content">
+							<p class="card__category">3위</p>
+							<h3 class="card__heading">갈비찜</h3>
+						</div>
+					</a>
+
+				</div>
+			</section>
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="name">4위 차돌된장찌개</div>
+						<a href="#" class="gallery-popup" title="Open Imagination">
+							<div class="project-item">
+								<div class="overlay-container">
+									<img src="https://cdn.shopify.com/s/files/1/0585/8495/7094/files/main_aa3eb255-e48e-49cf-924b-f114e8437059.jpg?v=1632270374" alt="img" class="gallery-thumb-img" >
+									<div class="project-item-overlay">
+										<h4>Open Imagination</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<div class="name">5위 계란말이</div>
+						<a href="#" class="gallery-popup" title="Locked Steel Gate">
+							<div class="project-item">
+								<div class="overlay-container">
+									<img src="https://img-cf.kurly.com/shop/data/goodsview/20221118/gv10000453362_1.jpg" alt="img" class="gallery-thumb-img" >
+									<div class="project-item-overlay">
+										<h4>Locked Steel Gate</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<div class="name">6위 제육볶음</div>
+						<a href="#" class="gallery-popup" title="Mac Sunglasses">
+							<div class="project-item">
+								<div class="overlay-container">
+									<img src="https://www.meathome.net/app/dubu_shop/docs/imgs/product/75200/md_%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_400g_%EB%A9%94%EC%9D%B8%EC%BB%B7.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Mac Sunglasses</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Morning Dew">
+							<div class="name">7위 시금치나물</div>
+							<div class="project-item">
+								<div class="overlay-container">
+									<img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/09/24/61c3fb938805ae855f4e303ad138e0911.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Morning Dew</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Console Activity">
+							<div class="name">8위 열무김치</div>
+							<div class="project-item">
+								<div class="overlay-container">
+									<img src="https://img.choroc.com/newshop/goods/024447/024447_1.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Console Activity</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Shake It!">
+							<div class="name">9위 멸치볶음</div>
+							<div class="project-item">
+								<div class="overlay-container">
+									<img src="https://shop.biumfood.com/upload/1565225496image_product071.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Shake It!</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Backpack Content">
+							<div class="project-item">
+								<div class="name">10위 두부조림</div>
+								<div class="overlay-container">
+									<img src="https://img-cf.kurly.com/shop/data/goodsview/20230522/gv10000698839_1.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Backpack Content</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Sunset Bulb Glow">
+							<div class="project-item">
+								<div class="name">11위 수육</div>
+								<div class="overlay-container">
+									<img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA0MDlfOTkg/MDAxNTg2NDIyMjE4NDMx.BvtROyhsYjuiCQ0BXdsjB99c6Wns6QTz8usOfHBzRDIg.7Ei7A_JMoAn_WqJKZY_7dDOc4_whjMLzeBupRirOYFUg.JPEG.dew36/1.jpg?type=w800" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Sunset Bulb Glow</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Open Imagination">
+							<div class="project-item">
+								<div class="name">12위 소고기 장조림</div>
+								<div class="overlay-container">
+									<img src="https://m.easychan.co.kr/web/product/big/202203/17d83fda72cb776f56fb4f7300ca6e23.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Open Imagination</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Console Activity">
+							<div class="project-item">
+								<div class="name">13위 깻잎무침</div>
+								<div class="overlay-container">
+									<img src="https://beatmarket.speedgabia.com/page/180504_1_5.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Console Activity</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Open Imagination">
+							<div class="project-item">
+								<div class="name">14위 오이소박이</div>
+								<div class="overlay-container">
+									<img src="https://static.coupangcdn.com/image/retail/images/2020/10/12/11/2/aafd042a-3914-4c4e-bed0-aecf32e2ec78.jpg	" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Open Imagination</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-3 col-sm-6">
+						<a href="#" class="gallery-popup" title="Shake It!">
+							<div class="project-item">
+								<div class="name">15위 연근조림</div>
+								<div class="overlay-container">
+									<img src="https://img-cf.kurly.com/shop/data/goodsview/20221126/gv20000456870_1.jpg" alt="img" class="gallery-thumb-img">
+									<div class="project-item-overlay">
+										<h4>Shake It!</h4>
+										<p>
+											<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
 
 			</div>
-		</section>
-		<div class="container">
 
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<div class="name">5위 장조림</div>
-					<a href="#" class="gallery-popup" title="Open Imagination">
-						<div class="project-item">
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Open Imagination</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
 				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<div class="name">6위 장조림</div>
-					<a href="#" class="gallery-popup" title="Locked Steel Gate">
-						<div class="project-item">
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/008B8B/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Locked Steel Gate</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar2.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<div class="name">7위 장조림</div>
-					<a href="#" class="gallery-popup" title="Mac Sunglasses">
-						<div class="project-item">
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/9932CC/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Mac Sunglasses</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Morning Dew">
-						<div class="name">8위 장조림</div>
-						<div class="project-item">
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/1E90FF/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Morning Dew</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar4.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Console Activity">
-						<div class="name">9위 장조림</div>
-						<div class="project-item">
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/FF69B4/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Console Activity</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Shake It!">
-						<div class="name">10위 장조림</div>
-						<div class="project-item">
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Shake It!</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Backpack Content">
-						<div class="project-item">
-							<div class="name">11위 장조림</div>
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/D3D3D3/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Backpack Content</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar2.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Sunset Bulb Glow">
-						<div class="project-item">
-							<div class="name">12위 장조림</div>
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/90EE90/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Sunset Bulb Glow</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Open Imagination">
-						<div class="project-item">
-							<div class="name">13위 장조림</div>
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Open Imagination</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Console Activity">
-						<div class="project-item">
-							<div class="name">14위 장조림</div>
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/20B2AA/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Console Activity</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Open Imagination">
-						<div class="project-item">
-							<div class="name">15위 장조림</div>
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/87CEFA/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Open Imagination</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<a href="#" class="gallery-popup" title="Shake It!">
-						<div class="project-item">
-							<div class="name">16위 장조림</div>
-							<div class="overlay-container">
-								<img src="https://www.bootdey.com/image/350x180/B0C4DE/000000"
-									alt="img" class="gallery-thumb-img">
-								<div class="project-item-overlay">
-									<h4>Shake It!</h4>
-									<p>
-										<img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-											alt="user" class="thumb-sm rounded-circle"> <span
-											class="ml-2">Curtis Marion</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
 			</div>
 		</div>
 	</div>
-</body>
+</th:block>
 </html>
