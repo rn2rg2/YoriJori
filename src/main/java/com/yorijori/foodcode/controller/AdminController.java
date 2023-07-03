@@ -20,6 +20,7 @@ import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.RecipeService;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 	MemberService userService;
 	RecipeService rcpService;
@@ -38,12 +39,12 @@ public class AdminController {
 		this.boardSerivce = boardSerivce;
 	}
 
-	@RequestMapping("/admin")
+	@RequestMapping("")
 	public String getAdminPage() {
 		return "thymeleaf/admin/index";
 	}
 
-	@RequestMapping("/AdminUserPage")
+	@RequestMapping("/User")
 	public String getAdminUserPage(Model model) {
 		List<UserInfo> list = userService.selectall(1);
 		List<UserInfo> list2 = userService.selectall(0);
@@ -59,6 +60,8 @@ public class AdminController {
 		model.addAttribute("secessioncount", list2.size());
 		model.addAttribute("secessionlist", list2);
 		model.addAttribute("usercount", userService.userCount("회원"));
+		model.addAttribute("usercount2", userService.userCount("전문가"));
+
 		model.addAttribute("date", LocalDate.now());
 
 		return "thymeleaf/admin/AdminUserPage";
@@ -80,7 +83,7 @@ public class AdminController {
 		return ResponseEntity.ok().build();
 	}
 
-	@RequestMapping("/admin/recipe")
+	@RequestMapping("/Recipe")
 	public String getAdminRcpPage(Model model) {
 		List<Long> purposelist = rcpService.countByCategoryNo(5, 9);
 		List<Long> countrylist = rcpService.countByCategoryNo(10, 13);

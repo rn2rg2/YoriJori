@@ -3,6 +3,8 @@ package com.yorijori.foodcode.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,7 @@ import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.common.RecipeSpecification;
 import com.yorijori.foodcode.dto.FilterDTO;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
@@ -167,9 +170,6 @@ public class RecipeController {
 				spec = spec.and(RecipeSpecification.findByRecipe(recipe));
 			}
 		}
-		System.out.println("===================TEST=====================");
-		System.out.println(recipeService.findAll(spec));
-		System.out.println("===================TEST=====================");
 
 		Map<String, Object> result = new HashMap<>();
 
@@ -177,10 +177,6 @@ public class RecipeController {
 
 		result.put("recipes", recipeService.findAll(spec));
 		result.put("recipeCount", count);
-
-		System.out.println("===================TEST2=====================");
-		System.out.println(result);
-		System.out.println("===================TEST2=====================");
 
 		return result;
 	}
@@ -273,65 +269,106 @@ public class RecipeController {
 		if (type.equals("server")) { // 서버 레시피 detail view
 			// 서버 레시피의 데이터 조회
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
+			List <ApiRecipeReview> review = apiRecipeService.findByRcpSeq(rcpSeq);
+
+
+			// 평균값 계산
+			BigDecimal sum = BigDecimal.ZERO;
+			for (ApiRecipeReview datareview : review) {
+			    sum = sum.add(datareview.getStar());
+			}
+
+			// 평균값 계산
+			BigDecimal average;
+			if (review.size() > 0) {
+			    BigDecimal size = BigDecimal.valueOf(review.size());
+			    average = sum.divide(size, 2, RoundingMode.HALF_UP);
+			} else {
+			    average = BigDecimal.ZERO;
+			}
+
+			
+			System.out.println(review);
 			// 모델에 데이터 추가
+			model.addAttribute("review_average", average);
 			model.addAttribute("data", data);
 			model.addAttribute("type", type);
 			model.addAttribute("rcpSeq", rcpSeq);
+			model.addAttribute("review",review);
 			// 조회수 증가
 			viewCountUp(rcpSeq, type, req, res);
 			// 뷰 페이지 설정
 			view = "thymeleaf/recipe/serverRecipeView";
-		} else { // user recipe detail view
-			// 사용자 레시피의 데이터 조회
-			Recipe data = recipeService.select(rcpSeq);
-			// 사용자 정보와 관련된 데이터 조회
-			UserInfo userId = data.getUserId();
-			List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
-			List<RecipeReview> datareview = recipeService.reviewselect(rcpSeq);
-			// 질문
-			List<RecipeQa> dataq = recipeService.QAselect(rcpSeq);
-			List<RecipeQa> depthLevelZeroList = new ArrayList<>();
-			List<RecipeQa> depthLevelOneList = new ArrayList<>();
-			List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);
-			List<Ingredients> idList = new ArrayList<>();
-
-			for (RecipeIngredients recipeIngredients : ingr) {
-				Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
-				idList.add(ingr2);
-			}
-			// 필터링 질문자 0과 1
-			// 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
-			for (RecipeQa item : dataq) {
-				if (item.getDepthLevel() == 0) {
-					depthLevelZeroList.add(item);
-					System.out.println(item);
-				} else if (item.getDepthLevel() == 1) {
-					depthLevelOneList.add(item);
-					System.out.println(item);
-
+			} else { // user recipe detail view
+				// 사용자 레시피의 데이터 조회
+				Recipe data = recipeService.select(rcpSeq);
+				// 사용자 정보와 관련된 데이터 조회
+				UserInfo userId = data.getUserId();
+				List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
+				List<RecipeReview> datareview = recipeService.reviewselect(rcpSeq);
+				// 질문
+				List<RecipeQa> dataq = recipeService.QAselect(rcpSeq);
+				List<RecipeQa> depthLevelZeroList = new ArrayList<>();
+				List<RecipeQa> depthLevelOneList = new ArrayList<>();
+				List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);
+				List<Ingredients> idList = new ArrayList<>();
+	
+				for (RecipeIngredients recipeIngredients : ingr) {
+					Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
+					idList.add(ingr2);
 				}
+				// 필터링 질문자 0과 1
+				// 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
+				for (RecipeQa item : dataq) {
+					if (item.getDepthLevel() == 0) {
+						depthLevelZeroList.add(item);
+						System.out.println(item);
+					} else if (item.getDepthLevel() == 1) {
+						depthLevelOneList.add(item);
+						System.out.println(item);
+	
+					}
+				}
+				
+				
+				BigDecimal sum = BigDecimal.ZERO;
+				for (RecipeReview review : datareview) {
+				    sum = sum.add(review.getStar());
+				}
+
+				// 평균값 계산
+				BigDecimal average;
+				if (datareview.size() > 0) {
+				    BigDecimal size = BigDecimal.valueOf(datareview.size());
+				    average = sum.divide(size, 2, RoundingMode.HALF_UP);
+				} else {
+				    average = BigDecimal.ZERO;
+				}
+
+				// 모델에 데이터 추가
+				// 게시물 상세내용
+				model.addAttribute("data", data);
+				// 게시물 이미지 및 레시피방법
+				model.addAttribute("dataimg", dataimg);
+				// 사용저 이름
+				model.addAttribute("user", data.getUserId());
+				// 게시물 리뷰
+				model.addAttribute("review", datareview);
+				model.addAttribute("reviewcount", datareview.size());
+				
+				model.addAttribute("review_average", average);
+				model.addAttribute("dataq", depthLevelZeroList);
+				model.addAttribute("dataa", depthLevelOneList);
+				model.addAttribute("rcpSeq", rcpSeq);
+				model.addAttribute("ingrList", idList);
+				System.out.println("TESTTEST" + dataimg);
+	
+				viewCountUp(rcpSeq, type, req, res);
+	
+				view = "thymeleaf/recipe/userRecipeView";
 			}
-			// 모델에 데이터 추가
-			// 게시물 상세내용
-			model.addAttribute("data", data);
-			// 게시물 이미지 및 레시피방법
-			model.addAttribute("dataimg", dataimg);
-			// 사용저 이름
-			model.addAttribute("user", data.getUserId());
-			// 게시물 리뷰
-			model.addAttribute("review", datareview);
-			model.addAttribute("dataq", depthLevelZeroList);
-			model.addAttribute("dataa", depthLevelOneList);
-			model.addAttribute("rcpSeq", rcpSeq);
-			model.addAttribute("ingrList", idList);
-			System.out.println("TESTTEST" + dataimg);
-
-			viewCountUp(rcpSeq, type, req, res);
-
-			view = "thymeleaf/recipe/userRecipeView";
+			return view;
 		}
-		return view;
-	}
 
 	// server recipe count
 	@RequestMapping("/list/servercount")
@@ -379,28 +416,41 @@ public class RecipeController {
 //		// 리턴
 //	    return "redirect:" + referer;
 //	}
-	@PostMapping("/reviewinsert/{rcpNo}")
-	public String insertReview(@ModelAttribute RecipeReview recipereview, @PathVariable int rcpNo, HttpSession session,
+	@PostMapping("/reviewinsert/{type}/{rcpNo}")
+	public String insertReview(@ModelAttribute RecipeReview recipereview,@ModelAttribute ApiRecipeReview APIrecipereview, @PathVariable String type,@PathVariable int rcpNo, HttpSession session,
 			HttpServletRequest request) {
 		// 세션처리
 		String referer = request.getHeader("Referer");
 		// 세션에서 userInfo 가져오기
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-
+		Recipe recipe = new Recipe();
+		ApiRecipe apirecipe = new ApiRecipe();
+		String view = "redirect:" + referer;
 		// If userInfo is null, redirect to login page
-		if (userInfo == null) {
-			return "yorijori/member/loginpage";
-		} else {
-			Recipe recipe = new Recipe();
-			// @PathVariable로 받아온 레시피번호로 재조회후 정보 가져오기
-			recipe.setRecipeNo(rcpNo);
-			// 정보 넣어주기
-			recipereview.setRecipeNo(recipe);
-			recipereview.setUserId(userInfo);
-			// 저정한 정보 insert
-			recipeService.reviewsave(recipereview);
-			return "redirect:" + referer;
+		if(userInfo == null) {
+			view = "yorijori/member/loginpage";
+		}else {
+			if(type.equals("user")) {
+				recipe.setRecipeNo(rcpNo);
+				// 정보 넣어주기
+				recipereview.setRecipeNo(recipe);
+				recipereview.setUserId(userInfo);
+				// 저정한 정보 insert
+				recipeService.reviewsave(recipereview);
+				
+			}if(type.equals("server")) {
+				apirecipe.setRcpSeq(rcpNo);
+				System.out.println("test");
+				APIrecipereview.setState(1);
+				APIrecipereview.setRcpSeq(apirecipe);
+				APIrecipereview.setUserId(userInfo);
+				apiRecipeService.reviewsave(APIrecipereview);
+				System.out.println("서버");
+			}
 		}
+
+		
+		return view;
 
 	}
 

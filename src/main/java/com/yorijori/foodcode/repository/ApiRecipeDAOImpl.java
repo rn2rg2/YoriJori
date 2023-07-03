@@ -9,20 +9,27 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeQa;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
+import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserWishListApi;
+import com.yorijori.foodcode.jpa.repository.ApiRecipeReviewRepository;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
+import com.yorijori.foodcode.jpa.repository.RecipeQaRepository;
 import com.yorijori.foodcode.jpa.repository.UserWishlistApiRepository;
 
 @Repository
 public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	ApiRecipeRepository apiRecipeRepository;
 	UserWishlistApiRepository userWishListApiRepo;
+	ApiRecipeReviewRepository apirecipeqarepository;
 	
 	@Autowired
-	public ApiRecipeDAOImpl(ApiRecipeRepository apiRecipeRepository,UserWishlistApiRepository userWishListApiRepo) {
+	public ApiRecipeDAOImpl(ApiRecipeRepository apiRecipeRepository,UserWishlistApiRepository userWishListApiRepo,ApiRecipeReviewRepository apirecipeqarepository) {
 		super();
 		this.apiRecipeRepository = apiRecipeRepository;
 		this.userWishListApiRepo = userWishListApiRepo;
+		this.apirecipeqarepository = apirecipeqarepository;
 	}
 	@Override
 	public ApiRecipe findById(int rcpSeq) {
@@ -68,4 +75,15 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	public void deleteWishList(ApiRecipe apirecipe) {
 		userWishListApiRepo.deleteByRcpSeq(apirecipe);
 	}
+
+	@Override
+	public void reviewsave(ApiRecipeReview apirecipereview) {
+		apirecipeqarepository.save(apirecipereview);
+	}
+	@Override
+	public List<ApiRecipeReview> findByRcpSeq(int rcpSeq) {
+	    ApiRecipe apirecipe = apiRecipeRepository.findById(rcpSeq).orElse(null);
+		return apirecipeqarepository.findByRcpSeq(apirecipe);
+	}
+	
 }
