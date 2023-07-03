@@ -16,6 +16,7 @@ public interface UserWishlistRepository extends JpaRepository<UserWishlist, Inte
 	void deleteByRecipeNo(Recipe recipeNo);
 	long countByRecipeNo(Recipe recipeNo);
 	Page<UserWishlist> findAllByUserId(UserInfo userId, Pageable pageable);
+	List<UserWishlist> findByUserId(UserInfo userId);
 	
 	@Query(value="SELECT DISTINCT j.*"
 			+ "FROM user_wishlist uw "

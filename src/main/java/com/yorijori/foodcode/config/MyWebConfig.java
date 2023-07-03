@@ -29,7 +29,8 @@ public class MyWebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		registry.addInterceptor(new LoginCheckInterceptor())//.order(1) //
-		  .addPathPatterns("/board/boardCommentInsert","/board/write","/recipe/insert","/mypage/**","/cookingclass/in","/cs/inquiry", "/recipe/like/**","/chat/**"); //
+		  .addPathPatterns("/board/boardCommentInsert","/board/write","/recipe/insert","/mypage/**","/cookingclass/in","/cs/inquiry", "/recipe/like/**","/chat/**") //
+		  .excludePathPatterns("/mypage/profile/read/**");
 		  //.excludePathPatterns("/yorijori/main","/emp/login.do","/emp/spring/login",
 		  //"/board/list.do","/board/ajax/list.do","/images/**","/common/css/**","/common/js/**","/common/font/**");
 	}

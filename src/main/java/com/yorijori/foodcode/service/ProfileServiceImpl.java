@@ -54,6 +54,12 @@ public class ProfileServiceImpl implements ProfileService {
 		return profiledao.checknickname(nickname);
 	}
 
+	@Override
+	public UserInfo readuser(String userId) {
+		
+		return profiledao.readuser(userId);
+	}
+
 
 
 }

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 public interface BoardRepository extends JpaRepository<Board, Integer> {
 	Board findByCommNo(int commNo);
@@ -31,5 +32,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     
     long countByCategoryAndState(String category, int state);
 
+	List<Board> findByUserId(UserInfo user);
 
 }

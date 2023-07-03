@@ -11,4 +11,5 @@ public interface ProfileDAO {
 	public UserInfo readuserinfo(String nickname);
 	public UserInfo updatepassword(UserInfo user);
 	public UserInfo checknickname(String nickname);
+	public UserInfo readuser(String userId);
 }

@@ -40,6 +40,7 @@ import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
@@ -218,6 +219,10 @@ public class RecipeController {
 			recipedata.setThumbnail(savedFileName);
 			System.out.println(recipedata);
 			System.out.println(recipedata.getCategorylist());
+			
+			for (RecipeCategory test : recipedata.getCategorylist()) {
+				System.out.println(test.getCategoryNo());
+			}
 			System.out.println(recipedata.getImglist());
 			System.out.println(recipedata.getIngrelist());
 			for (RecipeIngredients test : recipedata.getIngrelist()) {

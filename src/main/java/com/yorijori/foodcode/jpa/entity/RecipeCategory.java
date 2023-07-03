@@ -26,7 +26,7 @@ public class RecipeCategory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; //컬럼명은 id
 	//private int recipeNo;
-	//private int categoryNo;
+	private int categoryNo;
 	
 	@ManyToOne
 	@JoinColumn(name = "recipeNo", nullable=false)
@@ -36,10 +36,10 @@ public class RecipeCategory {
 	
 
 	
-	@ManyToOne
-	@JoinColumn(name="categoryNo", nullable = false)
-	@Exclude
-	@JsonManagedReference
-	private Category categoryNo;
+//	@ManyToOne
+//	@JoinColumn(name="categoryNo", nullable = false)
+//	@Exclude
+//	@JsonManagedReference
+//	private Category categoryNo;
 	
 }

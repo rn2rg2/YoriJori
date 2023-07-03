@@ -86,11 +86,13 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 		for (int i = 0; i < categorylist.size(); i++) {
 			categorylist.get(i).setRecipeNo(recipedata);
+
 			//Category dto = categoryDAO.findById(categorylist.get(i).getCategoryNo());
 			//categorylist.get(i).setCategoryNo(dto);
 			System.out.println("============11=============");
 			System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
 			System.out.println("=========================");
+
 		}
 		for (int i = 0; i < imglist.size(); i++) {
 			imglist.get(i).setRecipeNo(recipedata);
@@ -171,5 +173,26 @@ public class RecipeServiceImpl implements RecipeService {
 		return list;
 	}
 	
+
+	@Override
+	public List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId) {
+		// TODO Auto-generated method stub
+		return recipeDAO.profileselectListByPage(pageNo, pagePerCount, userId);
+	}
+
+	@Override
+	public List<Recipe> mylikeListByPage(int pageNo, int pagePerCount, UserInfo user) {
+		 List<UserWishlist> wishlistItems = recipeDAO.mylikelist(user);
+		    System.out.println("mylikelistbyPage: " + wishlistItems + "\n\n\n\n\n");
+		    List<Recipe> recipewishlist = new ArrayList<>();
+		    
+		    for (UserWishlist wishlistItem : wishlistItems) {
+		        List<Recipe> recipes = recipeDAO.userwishListByPage(pageNo, pagePerCount, wishlistItem.getRecipeNo().getRecipeNo());
+		        recipewishlist.addAll(recipes);
+		    }
+		    
+		    System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
+		    return recipewishlist;
+	}
 
 }

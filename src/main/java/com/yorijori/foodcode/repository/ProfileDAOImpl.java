@@ -11,13 +11,12 @@ import com.yorijori.foodcode.jpa.repository.MemberRepository;
 @Repository
 public class ProfileDAOImpl implements ProfileDAO {
 	
-	private EntityManager entitymanager;
+	
 	private MemberRepository userrepo;
 	
 	@Autowired
-	public ProfileDAOImpl(EntityManager entitymanager, MemberRepository userrepo) {
+	public ProfileDAOImpl(MemberRepository userrepo) {
 		super();
-		this.entitymanager = entitymanager;
 		this.userrepo = userrepo;
 	}
 
@@ -69,5 +68,11 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public UserInfo checknickname(String nickname) {
 		UserInfo user = userrepo.findByNickname(nickname);
 		return user;
+	}
+
+	@Override
+	public UserInfo readuser(String userId) {
+		// TODO Auto-generated method stub
+		return userrepo.findByUserId(userId);
 	}
 }

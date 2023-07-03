@@ -11,4 +11,5 @@ public interface ProfileService {
 	public UserInfo readuserinfo(String nickname);
 	public UserInfo updatepassword(UserInfo user);
 	UserInfo checknickname(String nickname);
+	UserInfo readuser(String userId);
 }

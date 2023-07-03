@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 public interface BoardService {
 	public Board insert(Board board);
@@ -25,9 +26,6 @@ public interface BoardService {
 	public long getCountByContentsAndState(String content);
 	List<Board> selectByCategoryAndState(String category,int pageNo, int pagePerCount);
 	public long getCountByCategorysAndState(String category);
+	public List<Board> findmyboardlist(UserInfo user);
 	
-	
-
-
-
 }

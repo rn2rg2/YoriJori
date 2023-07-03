@@ -11,6 +11,7 @@ import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 
 public interface RecipeDAO {
@@ -57,7 +58,11 @@ public interface RecipeDAO {
 	List<Recipe> findAll(Specification<Recipe> spec, Sort sort);
 	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	long countByNameContaining(String name);
+	List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId);
+	List<UserWishlist> mylikelist(UserInfo user);
+	List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int recipe);
 	long countByCategoryNo(Category categoryNo);
+
     
 
 }
