@@ -25,16 +25,20 @@ public class CookingClassServiceImpl implements CookingClassService {
 		super();
 		this.dao = dao;
 	}
-
+	
 
 	@Override
 	public void delete(int cookNo) {
 		dao.delete(cookNo);
 	}
+	@Override
+	public void restore(int cookNo) {
+		dao.restore(cookNo);
+	}
 
 	@Override
-	public List<CookingClass> selectAllClass() {
-		return dao.selectAllClass();
+	public List<CookingClass> selectAllClass(int state) {
+		return dao.selectAllClass(state);
 	}
 
 	@Override

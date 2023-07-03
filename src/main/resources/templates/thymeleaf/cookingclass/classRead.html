@@ -35,6 +35,7 @@
 							<img th:src="|/yorijori/data/user/${cookingclass.userId.imgPath}|">
 						</a>
 						<div class="nickname" th:text="${cookingclass.userId.nickname}"></div>
+						<i class="fa-regular fa-message" style="color: #000;border: 1px solid #aaaaaa;padding: 8px;border-radius: 50%;transform: scaleX(-1);float: right;margin: 45px 10px 0 0;font-size: 20px;cursor: pointer;"></i>
 					</div>
 				</div>
 
@@ -42,7 +43,7 @@
 					<dl class="info_delivery">
 						<dt>
 							<img src="https://recipe1.ezmember.co.kr/img/mobile/icon_clock2.png" alt="시간아이콘" width="29">
-							강의시간
+							
 						</dt>
 						<dd>
 							<span th:text="${cookingclass.time}"></span><span>분</span>
@@ -84,7 +85,7 @@
 						<!--  -->
 						<h3 class="tab-title">" 커리큘럼 "</h3>
 						<ul>
-							<li th:each="curri:${cookingclass.curriList}"><b th:text="${curri.curName}"></b> <a class="time">[[${curri.curTime}]]분</a></li>
+							<li th:each="curri:${cookingclass.curriList}"><i class="fa-solid fa-check" style="margin-right: 20px;color: var(--main-theme-color-red);font-size: 20px;font-weight: bold;"></i><b th:text="${curri.curName}" style="font-size: 20px;"></b> <a class="time">[[${curri.curTime}]]분</a></li>
 
 						</ul>
 					</div>
