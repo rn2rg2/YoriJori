@@ -69,7 +69,7 @@
 						<!-- details_con -->
 						<div class="details_con">
 							<h4 class="details_h4tit food_hat">주재료 및 소스 재료</h4>
-							<a th:onclick="makeChatRoom([[${data.userId.userId}]])">채팅하기</a>
+							<!-- <a th:onclick="makeChatRoom([[${data.userId.userId}]])">채팅하기</a> -->
 							<hr class="recipe_hr">
 							<th:block th:each="ingredient : ${ingrList}">
 								<p class="txt" th:text="${ingredient.matlName}"></p>
@@ -114,7 +114,7 @@
 						<tbody>
 							<tr>
 								<th scope="row" class="PAL30">조리법 팁</th>
-								<td th:text="${#strings.arraySplit(data.rcpNaTip, '•')[0]}"></td>
+								<td th:text="${data.rcpNaTip}"></td>
 							</tr>
 							<tr>
 								<th scope="row" class="PAL30">작성자</th>
@@ -358,10 +358,19 @@
 			      }
 			    });
 			    
-				const addHeart = function(data){
-					
+			    const addHeart = function(data){
+					let value = $(data).attr('value');
 					let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
-					setTimeout(() => window.location.href=heartUrl, 2000);
+					//setTimeout(() => window.location.href=heartUrl, 2000);
+					let clickdata = $(data);
+					console.log(clickdata);
+					if (clickdata.hasClass('red_heart')) {
+					  clickdata.removeClass('red_heart');
+					  clickdata.addClass('black_heart');
+					} else {
+						clickdata.removeClass('black_heart');
+						clickdata.addClass('red_heart');
+					}
 				}
   			</script>
 
