@@ -24,6 +24,7 @@ Spring Boot
 - bootstrap-select ( select box )
 - sweetalert2 ( alert 창 custom )
 - swiper ( 이미지 slide )
+- jqcloud ( 워드 클라우드 )
 
 사용한 공공 데이터
 - 식품안전나라 식재료 DB 및 레시피 정보

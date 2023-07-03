@@ -31,6 +31,7 @@ public class SearchLogServiceImpl implements SearchLogService {
 		SearchLog dto = null;
 		dto = searchdao.findSearchLog(searchlog.getKeyword());
 		if (dto == null) {
+			searchlog.setCount(1);
 			searchdao.insertLog(searchlog);
 		} else {
 			searchdao.updateLog(searchlog);
@@ -40,5 +41,9 @@ public class SearchLogServiceImpl implements SearchLogService {
 	@Override
 	public List<SearchLog> findTop10ByCount(){
 		return searchdao.findTop10ByCount();
+	}
+	@Override
+	public List<SearchLog> findTop100ByCount(){
+		return searchdao.findTop100ByCount();
 	}
 }

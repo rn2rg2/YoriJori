@@ -69,7 +69,7 @@
 						<!-- details_con -->
 						<div class="details_con">
 							<h4 class="details_h4tit food_hat">주재료 및 소스 재료</h4>
-							<a th:onclick="makeChatRoom([[${data.userId.userId}]])">채팅하기</a>
+							<!-- <a th:onclick="makeChatRoom([[${data.userId.userId}]])">채팅하기</a> -->
 							<hr class="recipe_hr">
 							<th:block th:each="ingredient : ${ingrList}">
 								<p class="txt" th:text="${ingredient.matlName}"></p>
@@ -114,7 +114,7 @@
 						<tbody>
 							<tr>
 								<th scope="row" class="PAL30">조리법 팁</th>
-								<td th:text="${#strings.arraySplit(data.rcpNaTip, '•')[0]}"></td>
+								<td th:text="${data.rcpNaTip}"></td>
 							</tr>
 							<tr>
 								<th scope="row" class="PAL30">작성자</th>
@@ -125,7 +125,7 @@
 				</div>
 
 				<th:block th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
-					<form class="form-block" name="myform" id="myform" method="post" th:action="@{/recipe/reviewinsert/{recipeNo}(recipeNo=${data.recipeNo})}">
+					<form class="form-block" name="myform" id="myform" method="post" th:action="@{/recipe/reviewinsert/user/{recipeNo}(recipeNo=${data.recipeNo})}">
 						<div class="col-xs-12 col-sm-6 fl_icon">
 							<fieldset class="rate">
 								<input type="radio" id="rating10" name="star" value="5">
@@ -153,7 +153,20 @@
 				<!--############################# Contents END#############################-->
 				<!--=============================================================================-->
 				<div class="container">
-
+					<div id="reviews" class="review-section">
+						<div class="d-flex align-items-center justify-content-between mb-4">
+							<h4 class="m-0"> </h4>
+							<span></span>
+							<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;"> <span class="selection"> <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container"> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+								</span>
+							</span> <span class="dropdown-wrapper" aria-hidden="true"></span>
+							</span>
+						</div>
+						<div class="row">
+						</div>
+							<h4 class="m-0"> 레시피 평점 </h4>
+						<span style="font-size: 30px; color: rgb(255, 191, 0)">[[${review_average}]]★</span>
+					</div>
 					<th:block th:each="review : ${review}">
 						<div class="review-list">
 							<ul>
@@ -181,96 +194,7 @@
 							</ul>
 						</div>
 					</th:block>
-					<div id="reviews" class="review-section">
-						<div class="d-flex align-items-center justify-content-between mb-4">
-							<h4 class="m-0">리뷰</h4>
-							<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;"> <span class="selection"> <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container"> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
-								</span>
-							</span> <span class="dropdown-wrapper" aria-hidden="true"></span>
-							</span>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<table class="stars-counters">
-									<tbody>
-										<tr class="">
-											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 5개</button>
-											</span></td>
-											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-													<div class="fit-progressbar-background">
-														<span class="progress-fill" style="width: 97.2973%;"></span>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr class="">
-											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 4개</button>
-											</span></td>
-											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-													<div class="fit-progressbar-background">
-														<span class="progress-fill" style="width: 2.2973%;"></span>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr class="">
-											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 3개</button>
-											</span></td>
-											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-													<div class="fit-progressbar-background">
-														<span class="progress-fill" style="width: 0;"></span>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr class="">
-											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 2개</button>
-											</span></td>
-											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-													<div class="fit-progressbar-background">
-														<span class="progress-fill" style="width: 0;"></span>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr class="">
-											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 1개</button>
-											</span></td>
-											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-													<div class="fit-progressbar-background">
-														<span class="progress-fill" style="width: 0;"></span>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="col-md-6">
-								<div class="ranking">
-									<h6 class="text-display-7">리뷰을 작성한 평균 나이</h6>
-									<ul>
-										<li>50대<span>5<span class="review-star rate-10 show-one"></span></span>
-										</li>
-										<li>40대<span>5<span class="review-star rate-10 show-one"></span></span>
-										</li>
-										<li>30대<span>4.9<span class="review-star rate-10 show-one"></span></span>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+
 					<div>
 						<a th:href="@{/recipe/QA/user/{rcpNo}(rcpNo=${data.recipeNo})}" onclick="window.open(this.href, '_blank', 'width=600, height=500'); return false;" id="question-btn" style="float: right; border: solid 1px black; padding: 10px 10px 10px 10px">질문하기</a>
 					</div>
@@ -358,10 +282,19 @@
 			      }
 			    });
 			    
-				const addHeart = function(data){
-					
+			    const addHeart = function(data){
+					let value = $(data).attr('value');
 					let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
-					setTimeout(() => window.location.href=heartUrl, 2000);
+					//setTimeout(() => window.location.href=heartUrl, 2000);
+					let clickdata = $(data);
+					console.log(clickdata);
+					if (clickdata.hasClass('red_heart')) {
+					  clickdata.removeClass('red_heart');
+					  clickdata.addClass('black_heart');
+					} else {
+						clickdata.removeClass('black_heart');
+						clickdata.addClass('red_heart');
+					}
 				}
   			</script>
 

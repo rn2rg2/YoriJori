@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
@@ -17,17 +19,20 @@ import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
+import com.yorijori.foodcode.repository.CategoryDAO;
 import com.yorijori.foodcode.repository.RecipeDAO;
 
 @Service
 @Transactional
 public class RecipeServiceImpl implements RecipeService {
 	RecipeDAO recipeDAO;
+	CategoryDAO categoryDAO;
 
 	@Autowired
-	public RecipeServiceImpl(RecipeDAO recipeDAO) {
+	public RecipeServiceImpl(RecipeDAO recipeDAO, CategoryDAO categoryDAO) {
 		super();
 		this.recipeDAO = recipeDAO;
+		this.categoryDAO = categoryDAO;
 	}
 
 	@Override
@@ -65,34 +70,39 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.select(recipeNo);
 	}
 
-    @Override
-    public List<RecipeImage> imgselect(int recipeNo) {
-        return recipeDAO.imgselect(recipeNo);
-    }
+	@Override
+	public List<RecipeImage> imgselect(int recipeNo) {
+		return recipeDAO.imgselect(recipeNo);
+	}
 
-    
-    @Override
-    public void insertAll(Recipe recipedata) {
-    	List<RecipeIngredients> ingredients = recipedata.getIngrelist();
-    	List<RecipeCategory> categorylist = recipedata.getCategorylist();
-    	List<RecipeImage> imglist = recipedata.getImglist();
+	@Override
+	public void insertAll(Recipe recipedata) {
+		List<RecipeIngredients> ingredients = recipedata.getIngrelist();
+		List<RecipeCategory> categorylist = recipedata.getCategorylist();
+		List<RecipeImage> imglist = recipedata.getImglist();
 
-    	for(int i=0;i<ingredients.size(); i++) {
-    		ingredients.get(i).setRecipeNo(recipedata);
-    	}
-    	for(int i=0;i<categorylist.size(); i++) {
-    		categorylist.get(i).setRecipeNo(recipedata);
-    	}
-    	for(int i=0;i<imglist.size(); i++) {
-    		imglist.get(i).setRecipeNo(recipedata);
-    	}
-    	recipeDAO.insertAll(recipedata);
-    }
+		for (int i = 0; i < ingredients.size(); i++) {
+			ingredients.get(i).setRecipeNo(recipedata);
+		}
+		for (int i = 0; i < categorylist.size(); i++) {
+			categorylist.get(i).setRecipeNo(recipedata);
+			//Category dto = categoryDAO.findById(categorylist.get(i).getCategoryNo());
+			//categorylist.get(i).setCategoryNo(dto);
+			System.out.println("============11=============");
+			System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
+			System.out.println("=========================");
+		}
+		for (int i = 0; i < imglist.size(); i++) {
+			imglist.get(i).setRecipeNo(recipedata);
+		}
+		recipeDAO.insertAll(recipedata);
+	}
 
-    @Override
-    public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
-    	return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
-    }
+	@Override
+	public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType) {
+		return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+	}
+
 	@Override
 	public List<RecipeReview> reviewselect(int recipeNo) {
 		return recipeDAO.reviewselect(recipeNo);
@@ -100,14 +110,13 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public void reviewsave(RecipeReview recipereview) {
-	    recipeDAO.reviewsave(recipereview);
+		recipeDAO.reviewsave(recipereview);
 	}
-
 
 	@Override
 	public void recipeqasave(RecipeQa recipeqa) {
 		recipeDAO.recipeqasave(recipeqa);
-		
+
 	}
 
 	@Override
@@ -121,30 +130,46 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return recipeDAO.selectingr(rcpSeq);
 	}
+
 	@Override
 	public List<Recipe> findAll(Specification<Recipe> spec) {
 		// TODO Auto-generated method stub
 		return recipeDAO.findAll(spec);
 	}
-    public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
-        return recipeDAO.findAll(spec, sort);
-    }
+
+	public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
+		return recipeDAO.findAll(spec, sort);
+	}
 
 	@Override
 	public void findByRecipeNo(int recipeNo) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public long countByNameContaining(String name) {
-		return recipeDAO.countByNameContaining(name); 
+		return recipeDAO.countByNameContaining(name);
 	}
 
 	@Override
 	public List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount) {
 		// TODO Auto-generated method stub
-		
+
 		return recipeDAO.selectBySearch(pageNo, searchData, pagePerCount);
 	}
+	
+	@Override
+	public List<Long> countByCategoryNo(int startnum, int endnum) {
+		List<Long> list = new ArrayList<Long>();
+		for ( int i = startnum ; i <= endnum; i ++  ) {
+			Category categoryNo = new Category();
+			categoryNo.setCategoryNo(i);
+			long count = recipeDAO.countByCategoryNo(categoryNo);
+			list.add(count);
+		}
+		return list;
+	}
+	
 
 }

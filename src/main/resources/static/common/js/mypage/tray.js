@@ -104,7 +104,7 @@ const get_wish_data = function(page){
 		type : "GET",
 		url : url,
 		success : function(datas, status, xr) {
-			//console.log(datas);
+			console.log(datas);
 			$('.wishlist_view').empty();
 			make_wish_list(datas);
 //			$.each(datas, function(index, data) {

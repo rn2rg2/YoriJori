@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <!-- include summernote css/js-->
 <!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
 	integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
 	crossorigin="anonymous" /> -->
 <th:block layout:fragment="header">
-	<link rel="stylesheet"
-		href="/yorijori/common/css/recipe/recipelist.css">
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css">
 	<script type="text/javascript">
 
 
@@ -20,7 +17,7 @@
 </th:block>
 <th:block layout:fragment="content">
 	<div>
-		
+
 		<div class="container">
 			<h3 class="menu-h3-common">레시피 목록</h3>
 			<div class="row">
@@ -29,8 +26,7 @@
 
 						<div class="widget border-0">
 							<!-- 검색 창 init -->
-							<div id="searbar_ingredient"
-								th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
+							<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
 						<form action="" method="post">
 							<div class="widget border-0">
@@ -52,7 +48,7 @@
 								<div class="collapse show" id="gender">
 									<div class="widget-content">
 										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="user_recipe_check" checked="checked">
+											<input type="checkbox" class="custom-control-input" id="user_recipe_check">
 											<label class="custom-control-label" for="user_recipe_check">유저 레시피</label>
 										</div>
 										<div class="custom-control custom-checkbox">
@@ -235,9 +231,8 @@
 							</a>
 						</div>
 						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark"
-								href="/yorijori/recipe/list/user/0"> <i
-								class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
+							<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0">
+								<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
 							</a>
 						</div>
 						<div class="job-alert-bt mr-3">
@@ -286,15 +281,14 @@
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}" th:data-userid="${data.userId.userId}"></div>
 												<br>
-												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}+분"></div>
+												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
 												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
-
+			
 											</div>
 										</div>
-										<div
-											class="candidate-list-favourite-time justify-content-around">
+										<div class="candidate-list-favourite-time justify-content-around">
 											<ul class="list-unstyled list-inline">
 												<li class="pr-2"><a class="recipe_info_data order-2">
 
@@ -302,7 +296,7 @@
 													</a></li>
 												<li class="pr-2"><a class="recipe_info_data order-2">
 														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
-												</a></li>
+													</a></li>
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 
 													<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
@@ -327,25 +321,21 @@
 										<div class="candidate-list-info">
 											<div class="candidate-list-title">
 												<h5>
-													<a
-														th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
+													<a th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}">[[${data.rcpNm}]]</a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-												<div
-													class="badge badge-danger px-3 rounded-pill font-weight-normal">[[${data.rcpPat2}]]</div>
+												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">[[${data.rcpPat2}]]</div>
 												<br>
 												<ul class="list-unstyled"></ul>
 											</div>
 										</div>
-										<div
-											class="candidate-list-favourite-time text-center pt-3 justify-content-around">
+										<div class="candidate-list-favourite-time text-center pt-3 justify-content-around">
 											<ul class="list-unstyled list-inline">
 												<li class="pr-2"><a class="recipe_info_data order-2">
-														<i class="far fa-comments pr-1">
-															[[${#lists.size(data.reviewList)}]]</i>
+														<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewList)}]]</i>
 
-												</a></li>
+													</a></li>
 												<li class="pr-2"><a class="recipe_info_data order-2">
 														<i class="fa-regular fa-eye"> [[${data.count}]]</i>
 
@@ -401,6 +391,12 @@
 		
 		$(document).ready(function() {
 			//공식 레시피 클릭
+			if ( type == "user"){
+				$('#user_recipe_check').prop('checked', true);
+			} else {
+				$('#server_recipe_check').prop('checked', true);
+			}
+			
 			$('#server_recipe_check').click(function() {
 				console.log(this.checked);
 				if (this.checked) {
@@ -428,7 +424,16 @@
 		const addHeart = function(data){
 			let value = $(data).attr('value');
 			let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
-			setTimeout(() => window.location.href=heartUrl, 2000);
+			//setTimeout(() => window.location.href=heartUrl, 2000);
+			let clickdata = $(data);
+			console.log(clickdata);
+			if (clickdata.hasClass('red_heart')) {
+			  clickdata.removeClass('red_heart');
+			  clickdata.addClass('black_heart');
+			} else {
+				clickdata.removeClass('black_heart');
+				clickdata.addClass('red_heart');
+			}
 		}
 		
 

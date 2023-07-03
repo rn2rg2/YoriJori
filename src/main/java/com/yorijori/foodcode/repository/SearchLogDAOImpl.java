@@ -37,7 +37,12 @@ public class SearchLogDAOImpl implements SearchLogDAO {
 	
 	@Override
 	public List<SearchLog> findTop10ByCount(){
-		return searchlogrepo.findAllTop10ByOrderByCountDesc();
+		return searchlogrepo.findTop10ByOrderByCountDesc();
+	}
+	
+	@Override
+	public List<SearchLog> findTop100ByCount(){
+		return searchlogrepo.findTop100ByOrderByCountDesc();
 	}
 	
 	

@@ -33,7 +33,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
-
 	private KakaoService ms;
 	private MemberService userService;
 	private CategoryService categoryservice;
@@ -68,9 +67,12 @@ public class MemberController {
 					return "redirect:/admin/main";
 				}
 				if (previousPage != null && !previousPage.isEmpty()) {
+					System.out.println("=====================");
+					System.out.println(previousPage);
+					System.out.println("=====================");
 		            return "redirect:" + previousPage;
 				} else {
-					return "thymeleaf/index";
+					return "redirect:/main";
 				}
 			}
 		}

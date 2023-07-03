@@ -29,9 +29,11 @@ import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
+import com.yorijori.foodcode.jpa.entity.SearchLog;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardCommentService;
 import com.yorijori.foodcode.service.BoardService;
+import com.yorijori.foodcode.service.SearchLogService;
 
 @Controller
 @RequestMapping("/board")
@@ -40,13 +42,15 @@ public class BoardController {
 	BoardService service;
 	BoardCommentService commentService;
 	FileUploadLogic fileUploadLogic;
+	SearchLogService searchservice;
 	
 	@Autowired
-	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic) {
+	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic, SearchLogService searchservice) {
 		super();
 		this.service = service;
 		this.commentService = commentService;
 		this.fileUploadLogic = fileUploadLogic;
+		this.searchservice = searchservice;
 	}
 	
 //	//게시물 전체보기
@@ -100,6 +104,10 @@ public class BoardController {
 	    if (searchData != null && !searchData.isEmpty()) {
 	    	count = service.getCountByContentsAndState(searchData);
 	    	list = service.selectByPageAndpagePerCountSearch(pageNo, pagePerCount, searchData);
+	    	
+	    	SearchLog searchlog = new SearchLog();
+			searchlog.setKeyword(searchData);
+			searchservice.insertLog(searchlog);
 	    	
 	    	model.addAttribute("boardlist", list);
 		    model.addAttribute("count", count);

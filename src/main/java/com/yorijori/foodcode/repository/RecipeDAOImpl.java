@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -161,5 +162,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 		Page<Recipe> page = reciperepository.findByNameContaining(searchData,pageRequest);
 		List<Recipe> list = page.getContent();
 		return list;
+	}
+	@Override
+	public long countByCategoryNo(Category categoryNo) {
+		return recipecategoryrepository.countByCategoryNo(categoryNo);
 	}
 }

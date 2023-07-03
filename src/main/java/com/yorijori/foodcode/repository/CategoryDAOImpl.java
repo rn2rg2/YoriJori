@@ -16,6 +16,11 @@ public class CategoryDAOImpl implements CategoryDAO {
     public CategoryDAOImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
+    
+    @Override
+    public Category findById(Category category) {
+    	return categoryRepository.findById(category.getCategoryNo()).get();
+    }
 
     @Override
     public List<Category> findAll() {

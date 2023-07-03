@@ -53,6 +53,7 @@ public interface RecipeService {
 	void findByRecipeNo(int recipeNo);
 	long countByNameContaining(String name);
 	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
+	List<Long> countByCategoryNo(int startnum, int endnum);
 	
 	
 }
