@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/admin/adminLayout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+
+/* Bootstrap Icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+
+
+</style>
+</head>
+<!-- Banner -->
+  <main id="layout-main" class="content-wrapper accent-dark" layout:fragment="content">
+
+
+<!-- Dashboard -->
+<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+  <!-- Vertical Navbar -->
+
+  <!-- Main content -->
+  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+      <!-- Header -->
+      <header class="bg-surface-primary border-bottom pt-6">
+          <div class="container-fluid">
+              <div class="mb-npx">
+                  <div class="row align-items-center">
+                      <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                          <!-- Title -->
+                          <h1 class="h2 mb-0 ls-tight">쿠킹클래스 관리자페이지</h1>
+                      </div>
+                      <!-- Actions -->
+                      <div class="col-sm-6 col-12 text-sm-end">
+                          <div class="mx-n1">
+                              <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
+                                  <span class=" pe-2">
+                                      <i class="bi bi-pencil"></i>
+                                  </span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Nav -->
+                  <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                      <li class="nav-item ">
+      					<a href="#user-list" class="nav-link active" data-toggle="tab">클래스 목록</a>
+                      </li>
+                      <li class="nav-item">
+     					<a href="#user-chart" class="nav-link font-regular" data-toggle="tab">삭제 클래스관리</a>
+                      </li>
+                      
+                  </ul>
+              </div>
+              
+          </div>
+      </header>
+      <!-- Main -->
+      <main class="py-6 bg-surface-secondary tab-content">	
+          <div class="container-fluid tab-pane active" id="user-list">
+              <!-- Card stats -->
+              <div class="row g-6 mb-6">
+                  <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card shadow border-0">
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col">
+                                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">총 클래스수</span>
+                                      <span class="h3 font-bold mb-0" th:text="${usercount}"></span>
+                                  </div>
+                                  <div class="col-auto">
+                                      <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                          <i class="bi bi-people"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="mt-2 mb-0 text-sm">
+                                  <span class="badge badge-pill bg-soft-success text-success me-2">
+                                      <i class="bi bi-arrow-up me-1"></i>13% (미완성)
+                                 </span>
+                                  <span class="text-nowrap text-xs text-muted">오늘 기준 [[${date}]] </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card shadow border-0">
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col">
+                                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">총 삭제된 클래스 수</span>
+                                      <span class="h3 font-bold mb-0">[[${secessioncount}]]</span>
+                                  </div>
+                                  <div class="col-auto">
+                                      <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                          <i class="bi bi-people"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="mt-2 mb-0 text-sm">
+                                  <span class="badge badge-pill bg-soft-success text-success me-2">
+                                      <i class="bi bi-arrow-up me-1"></i>30% (미완성)
+                                  </span>
+                                  <span class="text-nowrap text-xs text-muted">오늘 기준 [[${date}]] </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card shadow border-0">
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col">
+                                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">오늘 등록된 클래스 수</span>
+                                      <span class="h3 font-bold mb-0">[[${todayclass}]]</span>
+                                  </div>
+                                  <div class="col-auto">
+                                      <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                                          <i class="bi bi-clock-history"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="mt-2 mb-0 text-sm">
+                                  <span class="badge badge-pill bg-soft-danger text-danger me-2">
+                                      <i class="bi bi-arrow-down me-1"></i>-5% (미완성)
+                                  </span>
+                                  <span class="text-nowrap text-xs text-muted">어제와 비교 </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card shadow border-0 mb-7">
+                  <div class="card-header">
+                      <h5 class="mb-0">클래스목록</h5>
+                         <div class="searchBox">
+      <label>클래스 검색: <input type="text" id="search" onkeyup="filter()" placeholder="검색어 입력" /></label>
+
+    </div>
+                  </div>
+                  <div class="table-responsive">
+                      <table class="table table-hover table-nowrap">
+                          <thead class="thead-light">
+                              <tr>
+                                  <th scope="col">썸네일</th>
+                                  <th scope="col">클래스이름</th>
+                                  <th scope="col">유저닉네임</th>
+                                  <th scope="col">신청자수</th>
+                                  <th scope="col">가격</th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="classlist: ${classlist}">
+								<td>
+                                      <img alt="..." th:src="${classlist.thumbnail}" class="avatar avatar-sm rounded-circle me-2" style="">
+                                      <a class="text-heading font-semibold" href="#">
+                                      </a>
+                                      </br>
+                                      
+                                  </td>
+                                  <td class="nickname">
+                                      [[${classlist.title}]]
+                                  </td>
+                                  <td>
+                                      <a class="text-heading font-semibold" href="#">
+                                          [[${classlist.userId.nickname}]]
+                                          </br>
+                                          
+                                      </a>
+                                  </td>
+                                  <td>
+                                       [[${classlist.count}]]
+                                  </td>
+                                  <td>
+                                      <span class="badge badge-lg badge-dot" th:text="|${#numbers.formatInteger(classlist.price, 0, 'COMMA')}원|">
+                                          
+                                      </span>
+                                  </td>
+                                  <td class="text-end">
+<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
+ -->									<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" id="click">
+									    삭제
+										<input  style="display: none;" th:value="${classlist.cookNo}" id="dateposted10">
+									</button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag">
+								<!-- 후행 코드에 추가하세요 -->
+							</div>
+						</div>
+					</div>
+            	  </div>
+            	  
+
+          </div>
+          	    <div id="user-chart" class="tab-pane">
+	     				               <div class="card shadow border-0 mb-7">
+                  <div class="card-header">
+                      <h5 class="mb-0">클래스목록</h5>
+                         <div class="searchBox">
+	      <label>회원 검색: <input type="text" id="search" onkeyup="filter2()" placeholder="검색어 입력" /></label>
+
+    </div>
+                  </div>
+                  <div class="table-responsive">
+                      <table class="table table-hover table-nowrap">
+                          <thead class="thead-light">
+                              <tr>
+                                  <th scope="col">썸네일</th>
+                                  <th scope="col">클래스이름</th>
+                                  <th scope="col">유저닉네임</th>
+                                  <th scope="col">신청자수</th>
+                                  <th scope="col">가격</th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="classlist2: ${classlist2}">
+								<td class="nickname">
+								<img alt="..." th:src="${classlist2.thumbnail}" class="avatar avatar-sm rounded-circle me-2" style="">
+                                      <a class="text-heading font-semibold" href="#">
+                                         
+                                      </a>
+                                      </br>
+                                      
+                                  </td>
+                                  <td>
+                                      [[${classlist2.title}]]
+                                  </td>
+                                  <td>
+                                      <a class="text-heading font-semibold" href="#">
+                                          [[${classlist2.userId.nickname}]]
+                                          </br>
+                                          
+                                      </a>
+                                  </td>
+                                  <td>
+                                  [[${classlist2.count}]]
+                                  </td>
+                                  <td>
+                                      <span class="badge badge-lg badge-dot" th:text="|${#numbers.formatInteger(classlist2.price, 0, 'COMMA')}원|">
+                                      </span>
+                                  </td>
+                                  <td class="text-end">
+<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
+ -->									<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" id="reload">
+									    복원
+										<input  style="display: none;" th:value="${classlist2.cookNo}" id="dateposted10">
+									</button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag">
+								<!-- 후행 코드에 추가하세요 -->
+							</div>
+						</div>
+					</div>
+            	  </div>
+	    		</div>
+      </main>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script>
+$(document).ready(function() {
+	  $('button#click').on('click', function() {
+	    const cookNo = $(this).find('input').val();
+	    console.log(cookNo);
+
+	    $.ajax({
+	      url: '/yorijori/cookingclass/delete',
+	      type: 'POST',
+	      data: { cookNo: cookNo },
+	      success: function(result) {
+	        Swal.fire({
+	          icon: 'success',
+	          title: '클래스 삭제완료',
+	        }).then(function() {
+	          location.reload(); // 현재 페이지를 리로드하여 변경된 내용을 반영합니다.
+	        });
+	      },
+	      error: function(xhr, status, error) {
+	        console.log(error);
+	      }
+	    });
+	  });
+	});
+
+</script>
+<script>
+$(document).ready(function() {
+	  $('button#reload').on('click', function() {
+	    const cookNo = $(this).find('input').val();
+	    console.log(cookNo);
+
+	    $.ajax({
+	      url: '/yorijori/classRestore',
+	      type: 'POST',
+	      data: { cookNo: cookNo },
+	      success: function(result) {
+	        Swal.fire({
+	          icon: 'success',
+	          title: '클래스 복원완료',
+	        }).then(function() {
+	          location.reload(); // 현재 페이지를 리로드하여 변경된 내용을 반영합니다.
+	        });
+	      },
+	      error: function(xhr, status, error) {
+	        console.log(error);
+	      }
+	    });
+	  });
+	});
+
+</script>
+<script>
+  function filter() {
+    let search = document.getElementById("search").value.toLowerCase();
+    let userList = document.querySelectorAll("#user-list tbody tr");
+
+    userList.forEach(function(user) {
+      let nickname = user.querySelector(".nickname").textContent.toLowerCase();
+      if (nickname.includes(search)) {
+        user.style.display = "table-row";
+      } else {
+        user.style.display = "none";
+      }
+    });
+  }
+</script>
+
+</div>
+</main>	
+</html>

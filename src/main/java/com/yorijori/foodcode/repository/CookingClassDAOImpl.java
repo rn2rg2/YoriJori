@@ -51,10 +51,15 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 		cookingclass.setState(1);
 		
 	}
-
 	@Override
-	public List<CookingClass> selectAllClass() {
-		return classRepo.findByState(0);
+	public void restore(int cookNo) {
+		CookingClass cookingclass= classRepo.findById(cookNo).get();
+		cookingclass.setCookNo(cookNo);
+		cookingclass.setState(0);
+	}
+	@Override
+	public List<CookingClass> selectAllClass(int state) {
+		return classRepo.findByState(state);
 	}
 
 	@Override

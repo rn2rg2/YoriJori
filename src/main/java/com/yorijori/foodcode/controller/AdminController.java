@@ -12,31 +12,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+
+import com.yorijori.foodcode.service.CookingClassService;
+
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.IngredientService;
+
 import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.RecipeService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
 	MemberService userService;
 	RecipeService rcpService;
 	IngredientService ingreService;
 	ApiRecipeService apircpService;
 	BoardService boardSerivce;
+  CookingClassService classService;
 
 	@Autowired
 	public AdminController(MemberService userService, RecipeService rcpService, IngredientService ingreService,
-			ApiRecipeService apircpService, BoardService boardSerivce) {
+			ApiRecipeService apircpService, BoardService boardSerivce, CookingClassService classService) {
 		super();
 		this.userService = userService;
 		this.rcpService = rcpService;
 		this.ingreService = ingreService;
 		this.apircpService = apircpService;
 		this.boardSerivce = boardSerivce;
+    this.classService = classService;
 	}
 
 	@RequestMapping("")
@@ -120,6 +128,31 @@ public class AdminController {
 
 	}
 	
+
+	@RequestMapping("/cooking")
+	public String getAdminCookingclass(Model model) {
+		List<CookingClass> list=classService.selectAllClass(0);
+		List<CookingClass> list2=classService.selectAllClass(1);
+		int count = 0;
+	    for (CookingClass cclass : list) {
+	        LocalDate date = cclass.getDate().toLocalDate();
+	        if (date.equals(LocalDate.now())) {
+	            count++;
+	        }
+	    }
+	    model.addAttribute("classlist", list);
+	    model.addAttribute("classlist2", list2);
+		model.addAttribute("date", LocalDate.now());
+		model.addAttribute("todayclass", count);
+		model.addAttribute("deleteclass", list2.size());
+		return "thymeleaf/admin/adminCookingclass";
+	}
+	@PostMapping("/classRestore")
+	public ResponseEntity classRestore(int cookNo){
+		classService.restore(cookNo);
+		return ResponseEntity.ok().build();
+	}
+
 	@RequestMapping("/admin/help")
 	public String getHelpPage(Model model) {
 		return "thymeleaf/admin/help";
@@ -140,5 +173,6 @@ public class AdminController {
 	
 	
 	
+
 
 }
