@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -65,34 +66,34 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.select(recipeNo);
 	}
 
-    @Override
-    public List<RecipeImage> imgselect(int recipeNo) {
-        return recipeDAO.imgselect(recipeNo);
-    }
+	@Override
+	public List<RecipeImage> imgselect(int recipeNo) {
+		return recipeDAO.imgselect(recipeNo);
+	}
 
-    
-    @Override
-    public void insertAll(Recipe recipedata) {
-    	List<RecipeIngredients> ingredients = recipedata.getIngrelist();
-    	List<RecipeCategory> categorylist = recipedata.getCategorylist();
-    	List<RecipeImage> imglist = recipedata.getImglist();
+	@Override
+	public void insertAll(Recipe recipedata) {
+		List<RecipeIngredients> ingredients = recipedata.getIngrelist();
+		List<RecipeCategory> categorylist = recipedata.getCategorylist();
+		List<RecipeImage> imglist = recipedata.getImglist();
 
-    	for(int i=0;i<ingredients.size(); i++) {
-    		ingredients.get(i).setRecipeNo(recipedata);
-    	}
-    	for(int i=0;i<categorylist.size(); i++) {
-    		categorylist.get(i).setRecipeNo(recipedata);
-    	}
-    	for(int i=0;i<imglist.size(); i++) {
-    		imglist.get(i).setRecipeNo(recipedata);
-    	}
-    	recipeDAO.insertAll(recipedata);
-    }
+		for (int i = 0; i < ingredients.size(); i++) {
+			ingredients.get(i).setRecipeNo(recipedata);
+		}
+		for (int i = 0; i < categorylist.size(); i++) {
+			categorylist.get(i).setRecipeNo(recipedata);
+		}
+		for (int i = 0; i < imglist.size(); i++) {
+			imglist.get(i).setRecipeNo(recipedata);
+		}
+		recipeDAO.insertAll(recipedata);
+	}
 
-    @Override
-    public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
-    	return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
-    }
+	@Override
+	public List<Recipe> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType) {
+		return recipeDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+	}
+
 	@Override
 	public List<RecipeReview> reviewselect(int recipeNo) {
 		return recipeDAO.reviewselect(recipeNo);
@@ -100,14 +101,13 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public void reviewsave(RecipeReview recipereview) {
-	    recipeDAO.reviewsave(recipereview);
+		recipeDAO.reviewsave(recipereview);
 	}
-
 
 	@Override
 	public void recipeqasave(RecipeQa recipeqa) {
 		recipeDAO.recipeqasave(recipeqa);
-		
+
 	}
 
 	@Override
@@ -121,30 +121,54 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return recipeDAO.selectingr(rcpSeq);
 	}
+
 	@Override
 	public List<Recipe> findAll(Specification<Recipe> spec) {
 		// TODO Auto-generated method stub
 		return recipeDAO.findAll(spec);
 	}
-    public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
-        return recipeDAO.findAll(spec, sort);
-    }
+
+	public List<Recipe> findAll(Specification<Recipe> spec, Sort sort) {
+		return recipeDAO.findAll(spec, sort);
+	}
 
 	@Override
 	public void findByRecipeNo(int recipeNo) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public long countByNameContaining(String name) {
-		return recipeDAO.countByNameContaining(name); 
+		return recipeDAO.countByNameContaining(name);
 	}
 
 	@Override
 	public List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount) {
 		// TODO Auto-generated method stub
-		
+
 		return recipeDAO.selectBySearch(pageNo, searchData, pagePerCount);
+	}
+
+	@Override
+	public List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId) {
+		// TODO Auto-generated method stub
+		return recipeDAO.profileselectListByPage(pageNo, pagePerCount, userId);
+	}
+
+	@Override
+	public List<Recipe> mylikeListByPage(int pageNo, int pagePerCount, UserInfo user) {
+		 List<UserWishlist> wishlistItems = recipeDAO.mylikelist(user);
+		    System.out.println("mylikelistbyPage: " + wishlistItems + "\n\n\n\n\n");
+		    List<Recipe> recipewishlist = new ArrayList<>();
+		    
+		    for (UserWishlist wishlistItem : wishlistItems) {
+		        List<Recipe> recipes = recipeDAO.userwishListByPage(pageNo, pagePerCount, wishlistItem.getRecipeNo().getRecipeNo());
+		        recipewishlist.addAll(recipes);
+		    }
+		    
+		    System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
+		    return recipewishlist;
 	}
 
 }

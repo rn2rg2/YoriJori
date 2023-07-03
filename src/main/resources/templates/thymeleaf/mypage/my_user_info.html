@@ -34,12 +34,6 @@
 <th:block layout:fragment="content">
 	<div class="container rounded bg-white mb-5">
 		<h3 class="menu-h3-common">유저 정보</h3>
-		
-		<div class="modal fade" id="profilecardmodal" tabindex="-1"
-			role="dialog" aria-labelledby="profilecardmodalLabel"
-			aria-hidden="true">
-			<th:block th:replace="~{thymeleaf/mypage/profilecard :: profilecard}"></th:block>
-		</div>
 
 		<div class="modal fade" id="changepassmodal" tabindex="-1"
 			role="dialog" aria-labelledby="changepassmodalLabel"
@@ -62,8 +56,8 @@
 					</div>
 
 					<span class="font-weight-bold" th:text="${session.userInfo.userId}"></span>
-					<span id="readuserInfo" th:text="${session.userInfo.nickname}"></span> <span
-						class="tool"
+					<span id="readuserInfo" th:text="${session.userInfo.nickname}"></span>
+					<span class="tool"
 						data-tip="사용자 평점이란?
 						
 						사용자가 작성한 레시피를 토대로 평균 평점을 산출하여 계산됩니다.
@@ -125,7 +119,8 @@
 				</div>
 			</div>
 			<form action="/yorijori/mypage/updateprofile" method="post"
-				style="display: contents;" onsubmit="return boardSubmit(event);" id="mypageform">
+				style="display: contents;" onsubmit="return boardSubmit(event);"
+				id="mypageform">
 				<div class="col-md-8">
 					<div class="p-3 py-5">
 						<div
@@ -136,7 +131,7 @@
 						</div>
 
 						<div class="row mt-2">
-							
+
 							<div class="col-md-6">
 								<h6>이름</h6>
 								<input type="text" class="form-control"
@@ -161,7 +156,7 @@
 							<div class="col-md-6">
 								<h6>닉네임</h6>
 								<input type="text" class="form-control" name="Nickname"
-									id="Nickname" th:value="${session.userInfo.nickname}"
+									id="Nickname" th:value="${session.userInfo.nickname}" th:data-prevnickname = "${session.userInfo.nickname}"
 									placeholder="(2~16글자까지 입력해주세요)" pattern=".{2,16}">
 
 							</div>
@@ -171,15 +166,15 @@
 						<h6>선호조리</h6>
 						<div class="input-group type-lg w-full">
 							<select name="userprefer" id="favoritefood" multiple>
-							<!-- 코드 설명 option 을 2개하면 동일한 value를 가진 애들이 2개가 생성이 됨 예를 들어서 
+								<!-- 코드 설명 option 을 2개하면 동일한 value를 가진 애들이 2개가 생성이 됨 예를 들어서 
 							유저 원래 선호식품이 한식이였는데 불러오는거에서도 한식이 있으니까 한식이 2개가 생겨버림
 							value 는 같애서 선택은 안되는데 뷰단에서 한식이 2개가 생겨버리는 불편한 상황이 생김(선택자체는 하나만 할 수 있어서 상관은 x)
 							이를 해결하기 위해서 옵션을 하나만 두고 th:selected 를 이용해서 prefer값을 받아서 prefer의 값이랑 categorylist의 데이터랑 이름이 같으면 select 되게끔 
 							만들어줬다. -->
 								<option th:each="data : ${category}" th:value="${data.name}"
 									th:text="${data.name}"
-									th:selected="${#lists.contains(prefer, data.name)}"></option>
-	
+									th:selected="${prefer != null and #lists.contains(prefer, data.name)}"></option>
+
 							</select>
 							<script>
 								new MultiSelectTag('favoritefood', {
@@ -193,9 +188,9 @@
 						<h6>알레르기</h6>
 						<div class="input-group type-lg w-full">
 							<select name="userallergy" id="allergy" multiple>
-								<option th:each="data : ${ingredient}" th:value="${data.matlName}"
-									th:text="${data.matlName}"
-									th:selected="${#lists.contains(allergy, data.matlName)}"></option>
+								<option th:each="data : ${ingredient}"
+									th:value="${data.matlName}" th:text="${data.matlName}"
+									th:selected="${allergy != null and #lists.contains(allergy, data.matlName)}"></option>
 							</select>
 							<script>
 								new MultiSelectTag('allergy', {
@@ -206,7 +201,7 @@
 							</script>
 						</div>
 					</div>
-					
+
 					<div class="mt-5 text-right">
 						<button class="btn btn-primary profile-button" type="button"
 							id="deleteUserBtn">회원 탈퇴</button>
@@ -234,18 +229,175 @@
 		<div class="all-tab">
 			<div id="tab-section-1" class="tab-section">
 				<h3 class="tab-title">" 내가 작성한 레시피 "</h3>
+
+				<div class="col-lg-12">
+					<div class="row recipe_content" id="results">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${mylist}">
+
+							<div class="candidate-list candidate-grid ">
+								<div class="candidate-list-image">
+									<!-- 								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid"
+										th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|'
+										alt="">
+								</div>
+
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+
+												<a
+													th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}"
+													th:text="${data.name}"></a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-dark px-3 rounded-pill font-weight-normal"
+												th:text="'작성자 ' + ${data.userId.nickname}"
+												th:data-userid="${data.userId.userId}"></div>
+											<br>
+											<div
+												class="badge badge-success px-3 rounded-pill font-weight-normal"
+												th:text="${data.time}"></div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
+
+										</div>
+									</div>
+									<div
+										class="candidate-list-favourite-time justify-content-around">
+										<ul class="list-unstyled list-inline">
+											<li class="pr-2"><a class="recipe_info_data order-2">
+
+													<i class="far fa-comments pr-1">
+														[[${#lists.size(data.reviewlist)}]]</i>
+											</a></li>
+											<li class="pr-2"><a class="recipe_info_data order-2">
+													<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+											</a></li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag">
+								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="line-content"></div>
 			</div>
 
 			<div id="tab-section-2" class="tab-section" hidden>
 				<!-- 강사소개: 클래스 소개와 형식 동일 -->
 				<h3 class="tab-title">" 내가 찜한 레시피"</h3>
+				<div class="col-lg-12">
+					<div class="row recipe_content" id="results">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${mylikelist}">
+
+							<div class="candidate-list candidate-grid ">
+								<div class="candidate-list-image">
+									<!-- 								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid"
+										th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|'
+										alt="">
+								</div>
+
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+
+												<a
+													th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}"
+													th:text="${data.name}"></a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div
+												class="badge badge-dark px-3 rounded-pill font-weight-normal"
+												th:text="'작성자 ' + ${data.userId.nickname}"
+												th:data-userid="${data.userId.userId}"></div>
+											<br>
+											<div
+												class="badge badge-success px-3 rounded-pill font-weight-normal"
+												th:text="${data.time}"></div>
+											<div
+												class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
+
+										</div>
+									</div>
+									<div
+										class="candidate-list-favourite-time justify-content-around">
+										<ul class="list-unstyled list-inline">
+											<li class="pr-2"><a class="recipe_info_data order-2">
+
+													<i class="far fa-comments pr-1">
+														[[${#lists.size(data.reviewlist)}]]</i>
+											</a></li>
+											<li class="pr-2"><a class="recipe_info_data order-2">
+													<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+											</a></li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag">
+								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="line-content"></div>
 			</div>
 
 			<div id="tab-section-3" class="tab-section" hidden>
 				<!-- 강사소개: 클래스 소개와 형식 동일 -->
 				<h3 class="tab-title">" 내가 작성한 게시판"</h3>
+				<div>
+								<table id="example" class="table table-haver">
+									<thead>
+										<tr>
+											<th style="width: 10%">글번호</th>
+											<th style="width: 15%">카테고리</th>																			
+											<th style="width: 50%">제목</th>
+											<th style="width: 15%">작성자</th>
+											<th style="width: 10%">조회수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="notice">
+											<td>공지</td>
+											<td>공지사항</td>
+											<td><a href="/yorijori/board/read">게시판 사용 시 주의사항</a></td>
+											<td>관리자</td>
+											<td>5</td>
+										</tr>
+									</tbody>
+									<tr th:each="board:${myboardlist}">
+										<td><span th:text="${board.commNo }"></span></td>
+										<td><span th:text="${board.category}"></span></td>									
+										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
+												<span th:text="${board.title }"></span>
+											</a></td>
+										<td><span th:text="${board.userId.userId}" class="readuserinfo" th:data-userid="${board.userId.userId}"></span></td>
+										<td><span th:text="${board.view}"></span></td>
+									</tr>
+								</table>
+							</div>
+				
 				<div class="line-content"></div>
 			</div>
 
@@ -261,9 +413,6 @@
 					$('#changephotomodal').modal('show');
 				});
 				
-				$('#readuserInfo').on('click', function(){
-					$("#profilecardmodal").modal('show');
-				})
 
 				var userPoint = $('[data-userPoint]').data('userpoint');
 				$('.tier').each(function() {
@@ -272,7 +421,28 @@
 						$(this).css('border', '0.2em solid red');
 					}
 				});
-				
+				var selectPrefer = $("#favoritefood");
+				  var selectAllergy = $("#allergy");
+
+				  selectPrefer.change(function() {
+				    var selectedOptions = selectPrefer.find("option:selected");
+
+				    if (selectedOptions.length === 0) {
+				      selectPrefer.removeAttr("name");
+				    } else {
+				      selectPrefer.attr("name", "userprefer");
+				    }
+				  });
+
+				  selectAllergy.change(function() {
+				    var selectedOptions = selectAllergy.find("option:selected");
+
+				    if (selectedOptions.length === 0) {
+				      selectAllergy.removeAttr("name");
+				    } else {
+				      selectAllergy.attr("name", "userallergy");
+				    }
+				  });
 				
 			});
 
@@ -325,7 +495,7 @@
 
 			function boardSubmit(event) {
 			    var EmailCheck = isEmpty($('#Email')); // 값이 없을 경우 true
-			    var NicknameCheck = isEmpty($('#Nickname'));
+			    var NicknameCheck = isEmpty($('#Nickname'));			
 
 			    if (EmailCheck) {
 			        error_alert('이메일 미입력', '이메일');
@@ -334,23 +504,30 @@
 			        error_alert('닉네임 미입력', '닉네임');
 			        return false;
 			    } else if (!EmailCheck && !NicknameCheck) {
-			        var inputNickname = $('#Nickname').val();
-			        
-			        // 서버로 닉네임 중복 확인 요청을 보냅니다.
-			        $.ajax({
-			            url: '/yorijori/mypage/checknickname',
-			            type: 'POST',
-			            data: { nickname: inputNickname },
-			            success: function(response) {
-			                if (response.nickname === inputNickname) {
-			                    error_alert('중복된 닉네임입니다.', '닉네임');
-			                } else {
-			                    // 닉네임이 중복되지 않으면 폼 제출
-			                	 document.getElementById('mypageform').submit();
+			    	var inputNickname = $('#Nickname').val();
+
+			        // 기존 닉네임 값 가져오기
+			        var previousNickname = $('#Nickname').data('prevnickname'); // 기존 닉네임 값을 여기에 할당합니다.
+			        if (inputNickname === previousNickname) {
+			            // 닉네임이 변경되지 않았을 경우에는 폼 제출
+			            document.getElementById('mypageform').submit();
+			        } else {
+			            // 서버로 닉네임 중복 확인 요청을 보냅니다.
+			            $.ajax({
+			                url: '/yorijori/mypage/checknickname',
+			                type: 'POST',
+			                data: { nickname: inputNickname },
+			                success: function(response) {
+			                    if (response.nickname === inputNickname) {
+			                        error_alert('중복된 닉네임입니다.', '닉네임');
+			                    } else {
+			                        // 닉네임이 중복되지 않으면 폼 제출
+			                        document.getElementById('mypageform').submit();
+			                    }
 			                }
-			            }
-			        });
-			        
+			            });
+			        }
+
 			        return false; // 폼 제출 방지
 			    }
 			}

@@ -286,9 +286,9 @@
 												</h5>
 											</div>
 											<div class="candidate-list-option">
-												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}" th:data-userid="${data.userId.userId}"></div>
 												<br>
-												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}+분"></div>
+												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
 												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
 
 											</div>

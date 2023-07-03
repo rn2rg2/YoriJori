@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.BoardRepository;
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -118,6 +119,8 @@ public class BoardDAOImpl implements BoardDAO {
 	    return repository.countByContentsContainingAndState(contents, state);
 	}
 
-
-
+	@Override
+	public List<Board> findmyboardlist(UserInfo user) {
+		return repository.findByUserId(user);
+	}
 }

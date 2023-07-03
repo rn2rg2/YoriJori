@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.jpa.repository.ApiRecipeRepository;
 import com.yorijori.foodcode.jpa.repository.RecipeCategoryRepository;
@@ -34,6 +36,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 	ApiRecipeRepository apiRecipeRepository;
 	UserWishlistRepository userwishlistrepo;
 	RecipeIngredientsRepository recipeinger;
+	
 	@Autowired
 	public RecipeDAOImpl(RecipeRepository reciperepository, RecipeImageRepository recipeimagerepository,
 			RecipeQaRepository recipeqarepository, RecipeReviewRepository recipereviewrepository,
@@ -160,6 +163,29 @@ public class RecipeDAOImpl implements RecipeDAO {
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "count"));
 		Page<Recipe> page = reciperepository.findByNameContaining(searchData,pageRequest);
 		List<Recipe> list = page.getContent();
+		return list;
+	}
+
+	@Override
+	public List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "recipeNo"));
+	    Page<Recipe> page = reciperepository.findByUserId(userId, pageRequest);
+	    List<Recipe> list = page.getContent();
+	    return list;
+	}
+
+	@Override
+	public List<UserWishlist> mylikelist(UserInfo user) {
+		List<UserWishlist> userwishlist = userwishlistrepo.findByUserId(user);
+		return userwishlist;
+	}
+
+	@Override
+	public List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int RecipeNo) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "recipeNo"));
+		Page<Recipe> page = reciperepository.findByRecipeNo(RecipeNo, pageRequest);
+		List<Recipe> list = page.getContent();
+		
 		return list;
 	}
 }

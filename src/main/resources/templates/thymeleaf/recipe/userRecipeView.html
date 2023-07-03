@@ -1,9 +1,12 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
 	<link rel="stylesheet" href="/yorijori/common/css/recipe/view.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 </th:block>
 
 <th:block layout:fragment="content">
@@ -24,7 +27,8 @@
 						</h3>
 						<ul>
 							<!-- <li><i class="food_level"></i>[[${data.des}]]</li> -->
-							<li th:if="${data.level == 1 or data.level == 2}"><i class="food_level"></i>초급</li>
+							<li th:if="${data.level == 1 or data.level == 2}"><i
+								class="food_level"></i>초급</li>
 							<li th:if="${data.level == 3}"><i class="food_level"></i>중급</li>
 							<li th:if="${data.level == 4}"><i class="food_level"></i>고급</li>
 							<!-- <th:block th:if="${!#strings.isEmpty(session.userInfo)}">
@@ -51,7 +55,9 @@
 							<div class="swiper mySwiper">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
-										<img class="img-fluid" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|' alt="">
+										<img class="img-fluid"
+											th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|'
+											alt="">
 									</div>
 								</div>
 								<div class="swiper-button-next"></div>
@@ -92,7 +98,8 @@
 							<div class="card_img">
 								<!-- 								<img class="card_img" th:src="${item.manualImg}" alt="">
  -->
-								<img class="card_img" th:src="|/yorijori/data/recipeimage/${dataimg.storeImg}" alt="">
+								<img class="card_img"
+									th:src="|/yorijori/data/recipeimage/${dataimg.storeImg}" alt="">
 							</div>
 							<div class="card_txt">
 								<em class="num">[[${dataimg.imgNo}]]</em>
@@ -124,25 +131,44 @@
 					</table>
 				</div>
 
-				<th:block th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
-					<form class="form-block" name="myform" id="myform" method="post" th:action="@{/recipe/reviewinsert/{recipeNo}(recipeNo=${data.recipeNo})}">
+				<div class="view_step">
+					<div class="best_tit">
+						<b>레시피 작성자</b> <span> About the writer</span>
+					</div>
+					<div class="view_profile">
+						<div class="profile_pic">
+							<a href="/profile/index.html?uid=dongetable"><img
+								src="https://recipe1.ezmember.co.kr/cache/rpf/2023/06/12/a2ad0a2168b53f885a2c6ea3872fdf2d1.jpg"></a>
+						</div>
+						<div class="profile_cont">
+							<p class="cont_name">동이</p>
+							<p class="cont_intro">손쉽게 할 수 있는 요리를 올리는 동이입니다</p>
+						</div>
+					</div>
+				</div>
+
+				<th:block
+					th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
+					<form class="form-block" name="myform" id="myform" method="post"
+						th:action="@{/recipe/reviewinsert/{recipeNo}(recipeNo=${data.recipeNo})}">
 						<div class="col-xs-12 col-sm-6 fl_icon">
 							<fieldset class="rate">
 								<input type="radio" id="rating10" name="star" value="5">
-								<label for="rating10" title="5점"></label>
-								<input type="radio" id="rating8" name="star" value="4">
-								<label for="rating8" title="4점"></label>
-								<input type="radio" id="rating6" name="star" value="3">
-								<label for="rating6" title="3점"></label>
-								<input type="radio" id="rating4" name="star" value="2">
-								<label for="rating4" title="2점"></label>
-								<input type="radio" id="rating2" name="star" value="1">
-								<label for="rating2" title="1점"></label>
+								<label for="rating10" title="5점"></label> <input type="radio"
+									id="rating8" name="star" value="4"> <label
+									for="rating8" title="4점"></label> <input type="radio"
+									id="rating6" name="star" value="3"> <label
+									for="rating6" title="3점"></label> <input type="radio"
+									id="rating4" name="star" value="2"> <label
+									for="rating4" title="2점"></label> <input type="radio"
+									id="rating2" name="star" value="1"> <label
+									for="rating2" title="1점"></label>
 							</fieldset>
 						</div>
 						<div class="col-xs-12">
 							<div class="form-group">
-								<textarea class="form-input" name="comment" required="" placeholder="리뷰에 대한 내용을 적어주세요."></textarea>
+								<textarea class="form-input" name="comment" required=""
+									placeholder="리뷰에 대한 내용을 적어주세요."></textarea>
 							</div>
 							<button>등록</button>
 						</div>
@@ -160,13 +186,20 @@
 								<li>
 									<div class="d-flex">
 										<div class="left">
-											<span> <img th:src="@{'/data/user/'+${user.imgPath}}" class="profile-pict-img img-fluid" alt="" />
+											<span> <img th:src="@{'/data/user/'+${user.imgPath}}"
+												class="profile-pict-img img-fluid" alt="" />
 											</span>
 										</div>
 										<div class="right">
 											<h4>
-												[[${review.userId.userId}]] <span class="gig-rating text-body-2" th:with="starCount=${review.star}"> <svg th:each="i : ${#numbers.sequence(1, starCount)}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-											        <path fill="currentColor" d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
+												[[${review.userId.userId}]] <span
+													class="gig-rating text-body-2"
+													th:with="starCount=${review.star}"> <svg
+														th:each="i : ${#numbers.sequence(1, starCount)}"
+														xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792"
+														width="15" height="15">
+											        <path fill="currentColor"
+															d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
 											    </svg>
 
 												</span>
@@ -174,7 +207,8 @@
 											<div class="review-description">
 												<p>[[${review.comment}]]</p>
 											</div>
-											<span class="publish py-3 d-inline-block w-100">[[${review.date}]] 등록됨</span>
+											<span class="publish py-3 d-inline-block w-100">[[${review.date}]]
+												등록됨</span>
 										</div>
 									</div>
 								</li>
@@ -182,9 +216,18 @@
 						</div>
 					</th:block>
 					<div id="reviews" class="review-section">
-						<div class="d-flex align-items-center justify-content-between mb-4">
+						<div
+							class="d-flex align-items-center justify-content-between mb-4">
 							<h4 class="m-0">리뷰</h4>
-							<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;"> <span class="selection"> <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container"> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+							<span
+								class="select2 select2-container select2-container--default"
+								dir="ltr" data-select2-id="2" style="width: 188px;"> <span
+								class="selection"> <span
+									class="select2-selection select2-selection--single"
+									role="combobox" aria-haspopup="true" aria-expanded="false"
+									tabindex="0" aria-labelledby="select2-qd66-container"> <span
+										class="select2-selection__arrow" role="presentation"><b
+											role="presentation"></b></span>
 								</span>
 							</span> <span class="dropdown-wrapper" aria-hidden="true"></span>
 							</span>
@@ -195,10 +238,13 @@
 									<tbody>
 										<tr class="">
 											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 5개</button>
+													<button
+														class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별
+														5개</button>
 											</span></td>
 											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+												<div
+													class="fit-progressbar fit-progressbar-bar star-progress-bar">
 													<div class="fit-progressbar-background">
 														<span class="progress-fill" style="width: 97.2973%;"></span>
 													</div>
@@ -207,10 +253,13 @@
 										</tr>
 										<tr class="">
 											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 4개</button>
+													<button
+														class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별
+														4개</button>
 											</span></td>
 											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+												<div
+													class="fit-progressbar fit-progressbar-bar star-progress-bar">
 													<div class="fit-progressbar-background">
 														<span class="progress-fill" style="width: 2.2973%;"></span>
 													</div>
@@ -219,10 +268,13 @@
 										</tr>
 										<tr class="">
 											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 3개</button>
+													<button
+														class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별
+														3개</button>
 											</span></td>
 											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+												<div
+													class="fit-progressbar fit-progressbar-bar star-progress-bar">
 													<div class="fit-progressbar-background">
 														<span class="progress-fill" style="width: 0;"></span>
 													</div>
@@ -231,10 +283,13 @@
 										</tr>
 										<tr class="">
 											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 2개</button>
+													<button
+														class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별
+														2개</button>
 											</span></td>
 											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+												<div
+													class="fit-progressbar fit-progressbar-bar star-progress-bar">
 													<div class="fit-progressbar-background">
 														<span class="progress-fill" style="width: 0;"></span>
 													</div>
@@ -243,10 +298,13 @@
 										</tr>
 										<tr class="">
 											<td><span>
-													<button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별 1개</button>
+													<button
+														class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">별
+														1개</button>
 											</span></td>
 											<td class="progress-bar-container">
-												<div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+												<div
+													class="fit-progressbar fit-progressbar-bar star-progress-bar">
 													<div class="fit-progressbar-background">
 														<span class="progress-fill" style="width: 0;"></span>
 													</div>
@@ -260,11 +318,14 @@
 								<div class="ranking">
 									<h6 class="text-display-7">리뷰을 작성한 평균 나이</h6>
 									<ul>
-										<li>50대<span>5<span class="review-star rate-10 show-one"></span></span>
+										<li>50대<span>5<span
+												class="review-star rate-10 show-one"></span></span>
 										</li>
-										<li>40대<span>5<span class="review-star rate-10 show-one"></span></span>
+										<li>40대<span>5<span
+												class="review-star rate-10 show-one"></span></span>
 										</li>
-										<li>30대<span>4.9<span class="review-star rate-10 show-one"></span></span>
+										<li>30대<span>4.9<span
+												class="review-star rate-10 show-one"></span></span>
 										</li>
 									</ul>
 								</div>
@@ -272,7 +333,10 @@
 						</div>
 					</div>
 					<div>
-						<a th:href="@{/recipe/QA/user/{rcpNo}(rcpNo=${data.recipeNo})}" onclick="window.open(this.href, '_blank', 'width=600, height=500'); return false;" id="question-btn" style="float: right; border: solid 1px black; padding: 10px 10px 10px 10px">질문하기</a>
+						<a th:href="@{/recipe/QA/user/{rcpNo}(rcpNo=${data.recipeNo})}"
+							onclick="window.open(this.href, '_blank', 'width=600, height=500'); return false;"
+							id="question-btn"
+							style="float: right; border: solid 1px black; padding: 10px 10px 10px 10px">질문하기</a>
 					</div>
 				</div>
 
@@ -282,24 +346,30 @@
 						<p>
 						<dl class="bl_faq bl_faq_q_txt">
 
-							<dt class="bl_faq_q" th:if="${session == null or (session.userInfo != null and session.userInfo.userId == data.userId.userId)}">
-								<span class="bl_faq_icon" style="margin-left: 50px">Q</span>
-								<a th:href="@{/recipe/QA/{title}/writter/{rcpNo}(rcpNo=${data.recipeNo},title=${dataq.title})}" onclick="window.open(this.href, '_blank', 'width=600, height=500'); return false;">
+							<dt class="bl_faq_q"
+								th:if="${session == null or (session.userInfo != null and session.userInfo.userId == data.userId.userId)}">
+								<span class="bl_faq_icon" style="margin-left: 50px">Q</span> <a
+									th:href="@{/recipe/QA/{title}/writter/{rcpNo}(rcpNo=${data.recipeNo},title=${dataq.title})}"
+									onclick="window.open(this.href, '_blank', 'width=600, height=500'); return false;">
 									<span class="bl_faq_icon">답변</span>
-								</a>
-								<span class="bl_faq_q_txt" style="padding-left: 50px;" th:text="${dataq.title}"></span>
+								</a> <span class="bl_faq_q_txt" style="padding-left: 50px;"
+									th:text="${dataq.title}"></span>
 							</dt>
-							<dt class="bl_faq_q" th:unless="${session == null or (session.userInfo != null and session.userInfo.userId == data.userId.userId)}">
-								<span class="bl_faq_icon">Q</span> <span class="bl_faq_q_txt" th:text=${dataq.title}></span>
+							<dt class="bl_faq_q"
+								th:unless="${session == null or (session.userInfo != null and session.userInfo.userId == data.userId.userId)}">
+								<span class="bl_faq_icon">Q</span> <span class="bl_faq_q_txt"
+									th:text=${dataq.title}></span>
 							</dt>
 
 							<th:block th:each="dataa : ${dataa}">
 								<th:block th:if="${dataa.title} == ${dataq.title}">
 									<dd class="bl_faq_a" style="display: none;">
-										<img class="bl_faq_icon" src="https://audition.hanbiton.com/Boarddata1/Files/1001/2022/10/19/10190947152022580396869.jpg">
+										<img class="bl_faq_icon"
+											src="https://audition.hanbiton.com/Boarddata1/Files/1001/2022/10/19/10190947152022580396869.jpg">
 										<div class="bl_faq_a_body"></div>
 										<div class="bl_faq_a_body">
-											<span style="font-size: 20px">Q</span> <span style="font-size: 14px" th:text="${dataa.userId.nickname}"></span>
+											<span style="font-size: 20px">Q</span> <span
+												style="font-size: 14px" th:text="${dataa.userId.nickname}"></span>
 											<p class="bl_faq_a_txt" th:text=${dataa.contents}></p>
 										</div>
 										<!-- /.bl_faq_a_body -->
@@ -329,7 +399,8 @@
 
 	<!-- // boardGroup -->
 	<!-- Swiper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 	<script th:inline="javascript">
 				let type = [[${type}]];
 				let value = [[${rcpSeq}]];

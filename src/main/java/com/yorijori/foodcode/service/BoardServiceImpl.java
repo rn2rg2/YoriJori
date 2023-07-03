@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.repository.BoardDAO;
 @Transactional
 @Service
@@ -113,6 +114,11 @@ public class BoardServiceImpl implements BoardService {
 	public long getCountByCategorysAndState(String category) {
 		// TODO Auto-generated method stub
 		return dao.getCountByCategorysAndState(category);
+	}
+	@Override
+	public List<Board> findmyboardlist(UserInfo user) {
+		// TODO Auto-generated method stub
+		return dao.findmyboardlist(user);
 	}
 
 

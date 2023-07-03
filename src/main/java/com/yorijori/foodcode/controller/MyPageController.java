@@ -3,7 +3,6 @@ package com.yorijori.foodcode.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,43 +20,66 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.dto.UserInfoNicknameDTO;
+import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
+import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.ProfileService;
+import com.yorijori.foodcode.service.RecipeService;
 
 
 @Controller
 @RequestMapping("/mypage")
-
 public class MyPageController {
-
-
-
 	ProfileService profileservice;
 	FileUploadLogic fileuploadlogic;
 	CategoryService categoryservice;
 	IngredientService ingreservice;
+	RecipeService recipeservice;
+	BoardService boardservice;
 
 	 @Autowired
 	 public MyPageController(ProfileService profileservice, FileUploadLogic fileuploadlogic, 
-			 CategoryService categoryservice, IngredientService ingreservice) {
+			 CategoryService categoryservice, IngredientService ingreservice, RecipeService recipeservice
+			 , BoardService boardservice) {
 		super();
 		this.profileservice = profileservice;
 		this.fileuploadlogic = fileuploadlogic;
 		this.categoryservice = categoryservice;
 		this.ingreservice = ingreservice;
+		this.recipeservice = recipeservice;
+		this.boardservice = boardservice;
 	}
 
 	@RequestMapping("/profile")
 	public String profile(Model model, HttpSession session) {
 		UserInfo user = (UserInfo)session.getAttribute("userInfo");
-		String[] prefer = user.getPrefer().split(",");
-		String[] allergy = user.getAllergy().split(",");
+		String[] prefer = null;
+		String[] allergy = null;
+		if(user.getPrefer()!=null) {
+			prefer = user.getPrefer().split(",");
+		}
+		if(user.getAllergy()!=null) {
+			allergy = user.getAllergy().split(",");
+		}
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();
+		
+		long count = recipeservice.countAll();
+		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 9, user);
+		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 9, user);
+		List<Board> myboardlist = boardservice.findmyboardlist(user);
+		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
+		// 모델에 데이터 추가
+		model.addAttribute("count", count);
+		model.addAttribute("mylist", mylist);
+		model.addAttribute("mylikelist", mylikelist);
+		model.addAttribute("myboardlist", myboardlist);
+		
 		//System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
 		model.addAttribute("category", categorylist);
 		model.addAttribute("prefer", prefer);
@@ -144,13 +166,18 @@ public class MyPageController {
 	}
 
 	@PostMapping("/updateprofile")
-	public String updateProfile(HttpSession session, String Email, String Nickname
-			, @RequestParam("userprefer") List<String> prefer, @RequestParam("userallergy") List<String> allergy) {
+	public String updateProfile(HttpSession session, String Email, String Nickname,
+            @RequestParam(required = false) List<String> userprefer,
+            @RequestParam(required = false) List<String> userallergy) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
-		System.out.println("유저정보 업데이트 하기 ㅋㅋ : "+ allergy); 
-		String setprefer = String.join(",", prefer);
-		String setallergy = String.join(",", allergy);
-		System.out.println("유저 정보 저장할 allergy "+ setallergy);
+		String setprefer = null;
+		String setallergy = null;
+		if(userprefer != null) {
+			setprefer = String.join(",", userprefer);
+		}
+		if(userallergy != null) {
+			setallergy = String.join(",", userallergy);
+		}
 		user.setPrefer(setprefer);
 		user.setAllergy(setallergy);
 		user.setEmail(Email);
