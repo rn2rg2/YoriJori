@@ -33,7 +33,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
-
 	private KakaoService ms;
 	private MemberService userService;
 	private CategoryService categoryservice;

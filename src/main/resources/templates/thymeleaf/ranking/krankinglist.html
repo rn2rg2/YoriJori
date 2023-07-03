@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head>
-<link rel="stylesheet" type="text/css" href="/yorijori/common/css/ranking/kranking.css" />
-<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<th:block layout:fragment="header">
+	<link rel="stylesheet" type="text/css" href="/yorijori/common/css/ranking/kranking.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/yorijori/common/css/ranking/jqcloud.css" />
+	<script src="/yorijori/common/js/common/jqcloud-1.0.4.min.js"></script>
+	<style>
+.w10 {
+	color: #800026 !important;
+}
 
-</head>
-<body>
-	<div layout:fragment="content" class="mb-5 container">
+.w9 {
+	color: #bd0026 !important;
+}
+
+.w8 {
+	color: #e31a1c !important;
+}
+
+.w7 {
+	color: #fc4e2a !important;
+}
+
+.w6 {
+	color: #fd8d3c !important;
+}
+
+.w5 {
+	color: #feb24c !important;
+}
+
+.w4 {
+	color: #fed976 !important;
+}
+
+.w3 {
+	color: #ffeda0 !important;
+}
+
+.w2 {
+	color: #ffffcc !important;
+}
+
+.w1 {
+	color: #D63447 !important;
+}
+</style>
+</th:block>
+<th:block layout:fragment="content">
+	<div class="mb-5 container">
 		<h3 class="menu-h3-common">검색어 랭킹</h3>
-
 		<div class="container">
 			<div class="row">
-
-
-				<div class="col-lg-3">
-					<div class="sidebar">
+				<!-- <div class="col-lg-3">
+					<div class="sidebar">	
 
 						<div class="widget">
 							<div class="widget-title widget-collapse">
@@ -73,89 +112,96 @@
 						</div>
 					</div>
 				</div>
+ -->
+				<div class="col-lg-12 mb-5">
 
-				<div class="col-lg-9">
-					<div class="search_word" style="margin-bottom: 10px;">
-						<div class="col-md-12">
-							<thead>
-								<tr>
-									<th style="width: 10%">순위</th>
-									<th style="width: 75%">검색어</th>
-									<th style="width: 20%">조회수</th>
-								</tr>
-							</thead>
-						</div>
-						<ol>
-							<li style="display: flex; align-items: center;">
-								<div class="widget-26-job-title" style="display: inline-block;">
+					<div id="comments" style="min-height: 30em; border: 3px solid #C0D8C0; border-radius: 5%"></div>
+				</div>
+			</div>
+
+			<div class="col-lg-12">
+				<div class="search_word" style="margin-bottom: 10px;">
+					<!-- <div class="col-md-12">
+						<thead>
+							<tr>
+								<th style="width: 10%">순위</th>
+								<th style="width: 75%">검색어</th>
+								<th style="width: 20%">조회수</th>
+							</tr>
+						</thead>
+					</div> -->
+					<ol>
+						<li style="display: flex; align-items: center;" th:each="item, index : ${top10list}">
+							<div class="widget-26-job-title" style="display: inline-block;">
+								<th:block th:if="${index.count == 1}">
 									<img alt="N0_1" src="/yorijori/images/icon/NO.1.png" style="max-width: 50px; height: auto;">
-								</div> <a href="/recipe/list.html?q=오이 무침" style="display: block;">
-									오이 무침<span class="search_num">95,542</span>
-								</a>
-							</li>
-
-							<li>
-								<div class="widget-26-job-title" style="display: inline-block;">
+								</th:block>
+								<th:block th:if="${index.count == 2}">
 									<img alt="N0_2" src="/yorijori/images/icon/NO.2.png" style="max-width: 50px; height: auto;">
-								</div> <a href="/recipe/list.html?q=닭볶음탕">
-									닭볶음탕<span class="search_num">76,029</span>
-								</a>
-							</li>
-							<li style="display: flex; align-items: center;">
-								<div class="widget-26-job-title" style="display: inline-block;">
+								</th:block>
+								<th:block th:if="${index.count == 3}">
 									<img alt="N0_3" src="/yorijori/images/icon/NO.3.png" style="max-width: 50px; height: auto;">
-								</div> <a href="/recipe/list.html?q=제육 볶음">
-									제육 볶음<span class="search_num">72,967</span>
-								</a>
-							</li>
-							<li><a href="/recipe/list.html?q=두부 조림">
-									두부 조림<span class="search_num">72,303</span>
-								</a></li>
-							<li><a href="/recipe/list.html?q=감자">
-									감자<span class="search_num">65,556</span>
-								</a></li>
-							<li><a href="/recipe/list.html?q=감자 조림">
-									감자 조림<span class="search_num">63,226</span>
-								</a></li>
-							<li><a href="/recipe/list.html?q=오이 냉국">
-									오이 냉국<span class="search_num">62,006</span>
-								</a></li>
-							<li><a href="/recipe/list.html?q=두부 찌개">
-									두부 찌개<span class="search_num">61,414</span>
-								</a></li>
-							<li><a href="/recipe/list.html?q=김치 찌개">
-									김치 찌개<span class="search_num">57,882</span>
-								</a></li>
-							<li><a href="/recipe/list.html?q=오징어 볶음">
-									오징어 볶음<span class="search_num">56,599</span>
-								</a></li>
-						</ol>
-					</div>
+								</th:block>
 
-					<div class="row">
-					<div class="col-12 text-center mt-4 mt-sm-5">
-						<ul class="pagination justify-content-center mb-0">
-							<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">다음</a></li>
-						</ul>
-					</div>
+							</div> [[${index.count+" : "+item.keyword}]]
+							<div>
+								<span class="search_num">조회수 : [[${item.count}]]</span>
+							</div>
+
+						</li>
+
+						<!-- <li>
+							<div class="widget-26-job-title" style="display: inline-block;">
+								<img alt="N0_2" src="/yorijori/images/icon/NO.2.png" style="max-width: 50px; height: auto;">
+							</div> <a href="/recipe/list.html?q=닭볶음탕">
+								닭볶음탕<span class="search_num">76,029</span>
+							</a>
+						</li>
+						<li style="display: flex; align-items: center;">
+							<div class="widget-26-job-title" style="display: inline-block;">
+								<img alt="N0_3" src="/yorijori/images/icon/NO.3.png" style="max-width: 50px; height: auto;">
+							</div> <a href="/recipe/list.html?q=제육 볶음">
+								제육 볶음<span class="search_num">72,967</span>
+							</a>
+						</li>
+ -->
+					</ol>
 				</div>
-
-				</div>
-
-				
 
 
 			</div>
+
+
+
+
 		</div>
-
-
 	</div>
 
-	</div>
-</body>
+
+	<script th:inline="javascript">
+		$(document).ready(function() {
+			var word_list = [];
+			//db에서 조회한 결과로 wordcloud가 제작될 수 있도록 작업
+			//<c:forEach var="result" items="${resultList}">
+			var searchlist = [[${searchlist}]];
+			
+			$.each(searchlist, function(index, data){
+				var value = new Object();
+				value.text = data.keyword;
+				value.weight = data.count;
+				word_list.push(value);
+			});
+			$("#comments").jQCloud(word_list,{
+				autoResize: true,
+				
+			}); 
+			 /* classPattern: null,
+			  colors: ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976", "#ffeda0", "#ffffcc"],
+			  fontSize: {
+			    from: 0.1,
+			    to: 0.02
+			  } */
+		})
+	</script>
+</th:block>
 </html>
