@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,6 +87,16 @@ public class MyPageController {
 		model.addAttribute("ingredient", ingrelist);
 		model.addAttribute("allergy", allergy);
 		return "thymeleaf/mypage/my_user_info";
+	}
+	
+	@RequestMapping("/profile/read/{userId}")
+	public String readuser(Model model, @PathVariable String userId) {
+		System.out.println("readuserInfo 에서 pathvariable 체크 : "+userId);
+		UserInfo user = profileservice.readuser(userId);
+		System.out.println("readuser profile 에서 user 체크 : "+ user);
+		model.addAttribute("readuserInfo", user);
+		
+		return "thymeleaf/mypage/readuserInfo";		
 	}
 	
 	@PostMapping(value="/deleteUser") //produces = "application/json; charset=utf8")

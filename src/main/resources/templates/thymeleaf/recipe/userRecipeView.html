@@ -80,7 +80,6 @@
 							<th:block th:each="ingredient : ${ingrList}">
 								<p class="txt" th:text="${ingredient.matlName}"></p>
 							</th:block>
-
 						</div>
 						<!-- //details_con -->
 					</div>
@@ -133,22 +132,32 @@
 
 				<div class="view_step">
 					<div class="best_tit">
-						<b>레시피 작성자</b> <span> About the writer</span>
+						<b>레시피 작성자</b>
 					</div>
-					<div class="view_profile">
-						<div class="profile_pic">
-							<a href="/profile/index.html?uid=dongetable"><img
-								src="https://recipe1.ezmember.co.kr/cache/rpf/2023/06/12/a2ad0a2168b53f885a2c6ea3872fdf2d1.jpg"></a>
+					<div class="view_profile" style="display: flex">
+						<div class="profile_pic" style="width: 5em;">
+							<a
+								th:href="@{'/mypage/profile/read/' + ${data.userId.userId}}"><img
+								style="border-radius: 5em;"
+								th:src="@{'/data/user/' + ${data.userId.imgPath}}"></a>
 						</div>
-						<div class="profile_cont">
-							<p class="cont_name">동이</p>
-							<p class="cont_intro">손쉽게 할 수 있는 요리를 올리는 동이입니다</p>
+						<div class="profile_cont" style="margin-left: 2em;">
+							<p class="cont_name" style="margin-bottom: 0;">[[${data.userId.nickname}]]</p>
+							<p class="cont_intro">[[${data.userId.purpose}]]</p>
+						</div>
+						<div class="addchat" style="margin-top: 4em;"> 
+							<form>
+								<button class="btn btn-primary profile-button" type="submit"
+									style="background-color: red; width: 6em; height: 2.2em; margin-left: 53em;">채팅추가
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
-
-				<th:block
-					th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
+				<br />
+				<hr style="border-bottom: 1px solid gray" />
+				<br />
+				<th:block th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
 					<form class="form-block" name="myform" id="myform" method="post"
 						th:action="@{/recipe/reviewinsert/{recipeNo}(recipeNo=${data.recipeNo})}">
 						<div class="col-xs-12 col-sm-6 fl_icon">
