@@ -31,6 +31,7 @@ public class UserTray{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int trayNo;
 	private String userId;
+	private String trayName;
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp

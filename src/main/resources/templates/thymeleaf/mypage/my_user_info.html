@@ -125,7 +125,7 @@
 				</div>
 			</div>
 			<form action="/yorijori/mypage/updateprofile" method="post"
-				style="display: contents;" onsubmit="return boardSubmit(event);">
+				style="display: contents;" onsubmit="return boardSubmit(event);" id="mypageform">
 				<div class="col-md-8">
 					<div class="p-3 py-5">
 						<div
@@ -136,6 +136,7 @@
 						</div>
 
 						<div class="row mt-2">
+							
 							<div class="col-md-6">
 								<h6>이름</h6>
 								<input type="text" class="form-control"
@@ -161,7 +162,7 @@
 								<h6>닉네임</h6>
 								<input type="text" class="form-control" name="Nickname"
 									id="Nickname" th:value="${session.userInfo.nickname}"
-									placeholder="닉네임">
+									placeholder="(2~16글자까지 입력해주세요)" pattern=".{2,16}">
 
 							</div>
 						</div>
@@ -191,14 +192,10 @@
 						<br>
 						<h6>알레르기</h6>
 						<div class="input-group type-lg w-full">
-							<select name="allergy" id="allergy" multiple>
-								<option th:each="allergy : ${session.userInfo.allergy}"
-									th:value="${allergy}" th:text="${allergy}" th:selected="true"></option>
-								<option value="1">사과</option>
-								<option value="2">바나나</option>
-								<option value="3">버터</option>
-								<option value="4">우유</option>
-								<option value="5">돼지고기</option>
+							<select name="userallergy" id="allergy" multiple>
+								<option th:each="data : ${ingredient}" th:value="${data.matlName}"
+									th:text="${data.matlName}"
+									th:selected="${#lists.contains(allergy, data.matlName)}"></option>
 							</select>
 							<script>
 								new MultiSelectTag('allergy', {
@@ -209,7 +206,7 @@
 							</script>
 						</div>
 					</div>
-
+					
 					<div class="mt-5 text-right">
 						<button class="btn btn-primary profile-button" type="button"
 							id="deleteUserBtn">회원 탈퇴</button>
@@ -327,18 +324,35 @@
 			}
 
 			function boardSubmit(event) {
-				var EmailCheck = isEmpty($('#Email')); // 값이 없을 경우 true
-				var NicknameCheck = isEmpty($('#Nickname'));
-				if (EmailCheck) {
-					error_alert('이메일 미입력', '이메일');
-					return false;
-				} else if (NicknameCheck) {
-					error_alert('닉네임 미입력', '닉네임');
-					return false;
-				} else if (!EmailCheck && !NicknameCheck) {
-					return true;
-				}
+			    var EmailCheck = isEmpty($('#Email')); // 값이 없을 경우 true
+			    var NicknameCheck = isEmpty($('#Nickname'));
 
+			    if (EmailCheck) {
+			        error_alert('이메일 미입력', '이메일');
+			        return false;
+			    } else if (NicknameCheck) {
+			        error_alert('닉네임 미입력', '닉네임');
+			        return false;
+			    } else if (!EmailCheck && !NicknameCheck) {
+			        var inputNickname = $('#Nickname').val();
+			        
+			        // 서버로 닉네임 중복 확인 요청을 보냅니다.
+			        $.ajax({
+			            url: '/yorijori/mypage/checknickname',
+			            type: 'POST',
+			            data: { nickname: inputNickname },
+			            success: function(response) {
+			                if (response.nickname === inputNickname) {
+			                    error_alert('중복된 닉네임입니다.', '닉네임');
+			                } else {
+			                    // 닉네임이 중복되지 않으면 폼 제출
+			                	 document.getElementById('mypageform').submit();
+			                }
+			            }
+			        });
+			        
+			        return false; // 폼 제출 방지
+			    }
 			}
 			
 			/* css변경 */

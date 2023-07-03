@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.jpa.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,10 +17,14 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     UserInfo findByUserIdAndPass(String user_id, String pass);
     UserInfo findByKakaoID(String kakaoID);
     UserInfo findByUserId(String userId);    
+    UserInfo findByNickname(String nickname);
     boolean existsByUserId(String userId);
     boolean existsByNickname(String nickname);
     long countByRole(String role);
+    
+    
     Page<UserInfo> findAllByRole( Pageable pageable, String role);
+    List<UserInfo> findByState(int state);
     
     @Query(value="SELECT u.user_id, u.nickname, u.img_path " + 
     		"FROM user_info u " + 

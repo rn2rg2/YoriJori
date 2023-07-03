@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +74,21 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return list;
 
+	}
+
+
+    @Override
+    public void updateUserStateByUserId(String userId, int state) {
+        UserInfo user = memberRepository.findByUserId(userId);
+        if (user != null) {
+            user.setState(state);
+            memberRepository.save(user);
+        }
+    }
+
+
+	@Override
+	public List<UserInfo> selectall(int state) {
+		return memberRepository.findByState(state);
 	}
 }

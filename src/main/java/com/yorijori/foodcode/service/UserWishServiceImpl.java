@@ -30,6 +30,10 @@ public class UserWishServiceImpl implements UserWishService {
 		return userWishDAO.countAll();
 	}
 	
+	@Override
+	public long countAllByUserId(UserInfo userinfo) {
+		return userWishDAO.countAllByUserId(userinfo);
+	}
 	
 
 }

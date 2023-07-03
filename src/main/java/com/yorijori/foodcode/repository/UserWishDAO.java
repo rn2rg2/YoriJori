@@ -16,4 +16,6 @@ public interface UserWishDAO {
 
 	List<String> findRcpAndCategory(String userId, int recipeNo);
 
+	long countAllByUserId(UserInfo userinfo);
+
 }

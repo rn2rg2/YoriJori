@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,10 +27,11 @@ public class UserTrayList{
 	//private int trayNo;
 	private int trayOrder;
 	private int recipeNo;
-	private int state;
+	private int state = 0;
 	
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "trayNo", nullable = false)
+	@JsonIgnore
 	private UserTray trayNo;
 }
