@@ -3,7 +3,10 @@ package com.yorijori.foodcode.repository;
 import java.util.List;
 
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeQa;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserWishListApi;
+import com.yorijori.foodcode.service.ApiRecipeService;
 
 public interface ApiRecipeDAO {
 
@@ -18,9 +21,12 @@ public interface ApiRecipeDAO {
 	long countByRcpSeqByWishList(ApiRecipe apirecipe);
 
 	void deleteWishList(ApiRecipe apirecipe);
+	void reviewsave(ApiRecipeReview apirecipereview);
 
 	ApiRecipe findById(int rcpSeq);
 
 	List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType);
+    List<ApiRecipeReview> findByRcpSeq(int rcpSeq);
+	
 
 }
