@@ -31,6 +31,7 @@ public class SearchLogServiceImpl implements SearchLogService {
 		SearchLog dto = null;
 		dto = searchdao.findSearchLog(searchlog.getKeyword());
 		if (dto == null) {
+			searchlog.setCount(1);
 			searchdao.insertLog(searchlog);
 		} else {
 			searchdao.updateLog(searchlog);
