@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
+import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.RecipeService;
@@ -25,15 +26,17 @@ public class AdminController {
 	RecipeService rcpService;
 	IngredientService ingreService;
 	ApiRecipeService apircpService;
+	BoardService boardSerivce;
 
 	@Autowired
 	public AdminController(MemberService userService, RecipeService rcpService, IngredientService ingreService,
-			ApiRecipeService apircpService) {
+			ApiRecipeService apircpService, BoardService boardSerivce) {
 		super();
 		this.userService = userService;
 		this.rcpService = rcpService;
 		this.ingreService = ingreService;
 		this.apircpService = apircpService;
+		this.boardSerivce = boardSerivce;
 	}
 
 	@RequestMapping("")
@@ -102,5 +105,40 @@ public class AdminController {
 		return "thymeleaf/admin/recipe";
 
 	}
+	
+	@RequestMapping("/admin/board")
+	public String getBoardPage(Model model) {
+		long allcount = boardSerivce.countAll();
+		long rcpcount = boardSerivce.getCountByCategorysAndState("레시피질문");
+		long matzipcount = boardSerivce.getCountByCategorysAndState("맛집추천");
+		long todayeatcount = boardSerivce.getCountByCategorysAndState("오늘뭐먹지");
+		model.addAttribute("allcount", allcount);
+		model.addAttribute("rcpcount", rcpcount);
+		model.addAttribute("matzipcount", matzipcount);
+		model.addAttribute("todayeatcount", todayeatcount);
+		return "thymeleaf/admin/board";
+
+	}
+	
+	@RequestMapping("/admin/help")
+	public String getHelpPage(Model model) {
+		return "thymeleaf/admin/help";
+
+	}
+	
+	@RequestMapping("/admin/inquiry")
+	public String getInquiryPage(Model model) {
+		return "thymeleaf/admin/inquiry";
+
+	}
+	
+	@RequestMapping("/admin/noti")
+	public String getNotiPage(Model model) {
+		return "thymeleaf/admin/noti";
+
+	}
+	
+	
+	
 
 }
