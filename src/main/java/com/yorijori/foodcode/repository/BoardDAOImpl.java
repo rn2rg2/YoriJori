@@ -87,7 +87,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public long getCountByCategorysAndState(String category) {
 		int state = 0; // state 값이 0인 경우
-	    return repository.countByContentsContainingAndState(category, state);
+	    return repository.countByCategoryAndState(category, state);
 	}
 	@Override
 	public void delete(int commNo) {
