@@ -1,15 +1,9 @@
 package com.yorijori.foodcode.controller;
 
-import java.awt.print.Pageable;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.service.ApiRecipeService;
+import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.RecipeService;
 
@@ -26,12 +22,17 @@ import com.yorijori.foodcode.service.RecipeService;
 public class AdminController {
 	MemberService userService;
 	RecipeService rcpService;
+	IngredientService ingreService;
+	ApiRecipeService apircpService;
 
 	@Autowired
-	public AdminController(MemberService userService, RecipeService rcpService) {
+	public AdminController(MemberService userService, RecipeService rcpService, IngredientService ingreService,
+			ApiRecipeService apircpService) {
 		super();
 		this.userService = userService;
 		this.rcpService = rcpService;
+		this.ingreService = ingreService;
+		this.apircpService = apircpService;
 	}
 
 	@RequestMapping("/admin")
@@ -82,12 +83,21 @@ public class AdminController {
 		List<Long> countrylist = rcpService.countByCategoryNo(10, 13);
 		List<Long> typelist = rcpService.countByCategoryNo(15, 20);
 		List<Long> foodlist = rcpService.countByCategoryNo(21, 25);
+		
+		long rcpcount = rcpService.countAll();
+		long apicount = apircpService.countAll();
+		long ingrecount = ingreService.countAll();
+		
 		model.addAttribute("purposelist", purposelist);
 		model.addAttribute("countrylist", countrylist);
 		model.addAttribute("typelist", typelist);
 		model.addAttribute("foodlist", foodlist);
-		return "thymeleaf/admin/recipe";
 		
+		model.addAttribute("rcpcount", rcpcount);
+		model.addAttribute("apicount", apicount);
+		model.addAttribute("ingrecount", ingrecount);
+		return "thymeleaf/admin/recipe";
+
 	}
 
 }
