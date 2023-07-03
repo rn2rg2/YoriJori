@@ -1,44 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="/yorijori/common/css/ranking/cranking.css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/yorijori/common/css/ranking/cranking.css" />
+<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css" />
+
 
 
 
 </head>
 <body>
 	<div layout:fragment="content" class="mb-5 container">
-
-		<ul class="nav nav-tabs3" style="position: relative;">
-			<li role="presentation" class="active"><a
-				href="http://localhost:8088/yorijori/ranking/rlist">레시피</a></li>
-			<li role="presentation"><a
-				href="http://localhost:8088/yorijori/ranking/klist">검색어</a></li>
-			<li role="presentation"><a
-				href="http://localhost:8088/yorijori/ranking/clist">셰프</a></li>
-			<ul class="nav nav-tabs2 pull-right" style="position: relative;">
-				<li role="presentation" class="active"><a
-					href="/ranking/home_new.html?dtype=d&amp;rtype=r">일간</a></li>
-				<li role="presentation"><a
-					href="/ranking/home_new.html?dtype=w&amp;rtype=r">주간</a></li>
-				<li role="presentation"><a
-					href="/ranking/home_new.html?dtype=m&amp;rtype=r">월간</a></li>
-			</ul>
-		</ul>
-
-
 		<h3 class="menu-h3-common">셰프 랭킹</h3>
 		<div class="container">
-
 			<div class="row">
-				<div class="col-12">
+
+				<div class="col-lg-3">
+					<div class="sidebar">
+
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								<h5>분류</h5>
+								<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
+									<i class="fas fa-chevron-down"></i>
+								</a>
+							</div>
+							<div class="collapse show" id="dateposted">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="dateposted1">
+										<label class="custom-control-label" for="dateposted1">레시피</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="dateposted2">
+										<label class="custom-control-label" for="dateposted2">검색어</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="dateposted3">
+										<label class="custom-control-label" for="dateposted3">회원</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								<h5>기간</h5>
+								<a class="ml-auto" data-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism">
+									<i class="fas fa-chevron-down"></i>
+								</a>
+							</div>
+							<div class="collapse show" id="specialism">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="specialism1">
+										<label class="custom-control-label" for="specialism1">일간</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="specialism2">
+										<label class="custom-control-label" for="specialism2">주간</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="specialism3">
+										<label class="custom-control-label" for="specialism3">월간</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="widget border-0">
+							<div class="widget-add">
+								<img class="img-fluid" src="images/add-banner.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-lg-9">
 					<div class="card card-margin">
 						<div class="card-body">
 							<div class="row search-body">
@@ -52,6 +90,12 @@
 												<div class="col-lg-6">
 													<div class="records">셰프</div>
 												</div>
+												<div class="col-lg-6">
+													<div class="records">조회수</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="records">리뷰수</div>
+												</div>
 											</div>
 										</div>
 										<div class="result-body">
@@ -59,15 +103,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
-																	<img alt="N0_1" src="/yorijori/images/icon/NO.1.png">
+																	<img alt="N0_1" src="/yorijori/images/icon/NO.1.png" style="max-width: 50px; height: auto;">
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg1.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg1.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">김선생</a>
@@ -92,15 +135,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> 
-																		<svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -115,15 +152,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
-																	<img alt="N0_2" src="/yorijori/images/icon/NO.2.png">
+																	<img alt="N0_2" src="/yorijori/images/icon/NO.2.png" style="max-width: 50px; height: auto;">
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg2.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg2.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">민선생</a>
@@ -148,14 +184,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -170,15 +201,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
-																	<img alt="N0_3" src="/yorijori/images/icon/NO.3.png">
+																	<img alt="N0_3" src="/yorijori/images/icon/NO.3.png" style="max-width: 50px; height: auto;">
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg3.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg3.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">서선생</a>
@@ -203,14 +233,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -225,15 +250,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>4</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg4.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg4.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">손선생</a>
@@ -258,14 +282,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -276,15 +295,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>5</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg5.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg5.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">임선생</a>
@@ -309,14 +327,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -327,15 +340,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>6</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg6.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg6.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">최선생</a>
@@ -360,14 +372,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -378,15 +385,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>7</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg7.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg7.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">박선생</a>
@@ -411,14 +417,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -429,15 +430,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>8</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg8.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg8.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">강선생</a>
@@ -462,14 +462,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -480,15 +475,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>9</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg9.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg9.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">유선생</a>
@@ -513,14 +507,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 
@@ -533,15 +522,14 @@
 												<table class="table widget-26">
 													<tbody>
 														<tr>
-															<td>
+															<td class="rank">
 																<div class="widget-26-job-title">
 																	<b>10</b>
 																</div>
 															</td>
 															<td>
 																<div class="widget-26-job-emp-img">
-																	<img src="/yorijori/images/user/userimg10.jpeg"
-																		alt="Company" />
+																	<img src="/yorijori/images/user/userimg10.jpeg" alt="Company" />
 																</div>
 															</td>
 															<td><a href="#user profile">정선생</a>
@@ -566,14 +554,9 @@
 
 															<td>
 																<div class="widget-26-job-starred">
-																	<a href="#"> <svg
-																			xmlns="http://www.w3.org/2000/svg" width="40"
-																			height="40" viewBox="-10 -10 40 40" fill="none"
-																			stroke="currentColor" stroke-width="2"
-																			stroke-linecap="round" stroke-linejoin="round"
-																			class="feather feather-heart">
-    <path
-																				d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
+																	<a href="#">
+																		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -10 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+    <path d="M12 4.267c-3.542-5.876-12-3.268-12 4.624 0 6.382 9.308 10.988 12 14.109 2.692-3.121 12-7.727 12-14.109 0-7.892-8.458-10.5-12-4.624z"></path>
   </svg>
 																	</a>
 																</div>
@@ -586,31 +569,26 @@
 									</div>
 								</div>
 							</div>
-							<nav class="d-flex justify-content-center">
-								<ul
-									class="pagination pagination-base pagination-boxed pagination-square mb-0">
-									<li class="page-item"><a class="page-link no-border"
-										href="#"> <span aria-hidden="true">«</span> <span
-											class="sr-only">Previous</span>
-									</a></li>
-									<li class="page-item active"><a
-										class="page-link no-border" href="#">1</a></li>
-									<li class="page-item"><a class="page-link no-border"
-										href="#">2</a></li>
-									<li class="page-item"><a class="page-link no-border"
-										href="#">3</a></li>
-									<li class="page-item"><a class="page-link no-border"
-										href="#">4</a></li>
-									<li class="page-item"><a class="page-link no-border"
-										href="#"> <span aria-hidden="true">»</span> <span
-											class="sr-only">Next</span>
-									</a></li>
-								</ul>
-							</nav>
+						
 						</div>
 					</div>
+					
+					<div class="row">
+					<div class="col-12 text-center mt-4 mt-sm-5">
+						<ul class="pagination justify-content-center mb-0">
+							<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item"><a class="page-link" href="#">다음</a></li>
+						</ul>
+					</div>
+				</div>
+					
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </body>
