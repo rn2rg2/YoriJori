@@ -55,9 +55,9 @@ body {
     font-family: Helvetica;
     color: #999;
     font-size: 14px;
-    float: right;
+    /* float: right; */
     padding: 1px 8px 8px 15px;
-    width: 90px;
+    /* width: 90px; */
     text-align: right;
 }
 

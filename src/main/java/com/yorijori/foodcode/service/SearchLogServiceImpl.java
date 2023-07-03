@@ -42,4 +42,8 @@ public class SearchLogServiceImpl implements SearchLogService {
 	public List<SearchLog> findTop10ByCount(){
 		return searchdao.findTop10ByCount();
 	}
+	@Override
+	public List<SearchLog> findTop100ByCount(){
+		return searchdao.findTop100ByCount();
+	}
 }
