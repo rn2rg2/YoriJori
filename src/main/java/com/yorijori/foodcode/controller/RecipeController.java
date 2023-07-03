@@ -460,6 +460,8 @@ public class RecipeController {
 		model.addAttribute("pageNo", pageNo);
 		return "thymeleaf/recipe/recipelist";
 	}
+	
+	
 
 //	@RequestMapping("/list/server/{pageNo}")
 //	@ResponseBody

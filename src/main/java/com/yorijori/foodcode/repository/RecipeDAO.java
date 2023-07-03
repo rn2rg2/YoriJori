@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -56,6 +57,7 @@ public interface RecipeDAO {
 	List<Recipe> findAll(Specification<Recipe> spec, Sort sort);
 	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	long countByNameContaining(String name);
+	long countByCategoryNo(Category categoryNo);
     
 
 }

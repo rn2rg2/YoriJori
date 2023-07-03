@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -157,5 +158,18 @@ public class RecipeServiceImpl implements RecipeService {
 
 		return recipeDAO.selectBySearch(pageNo, searchData, pagePerCount);
 	}
+	
+	@Override
+	public List<Long> countByCategoryNo(int startnum, int endnum) {
+		List<Long> list = new ArrayList<Long>();
+		for ( int i = startnum ; i <= endnum; i ++  ) {
+			Category categoryNo = new Category();
+			categoryNo.setCategoryNo(i);
+			long count = recipeDAO.countByCategoryNo(categoryNo);
+			list.add(count);
+		}
+		return list;
+	}
+	
 
 }
