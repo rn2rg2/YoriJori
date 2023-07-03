@@ -1,160 +1,161 @@
 
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
-<head layout:fragment="header">
-<link rel="stylesheet" type="text/css"
-	href="/yorijori/common/css/ranking/kranking.css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
+<head>
+<link rel="stylesheet" type="text/css" href="/yorijori/common/css/ranking/kranking.css" />
+<link rel="stylesheet" href="/yorijori/common/css/recipe/recipelist.css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- <script src="/yorijori/common/js/mainpage/main.js"></script> -->
-<!-- <script src="/yorijori/common/js/mainpage/main2.js"></script> -->
-
-<script type="text/javascript">
-document.querySelector('button').addEventListener('click', () => {
-	document.querySelector('h2').classList.toggle('show');
-	setTimeout(() => document.querySelector('h2').classList.toggle('show'), 200);
-});
-</script>
-
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet">
 </head>
 <body>
 	<div layout:fragment="content" class="mb-5 container">
+		<h3 class="menu-h3-common">검색어 랭킹</h3>
 
-		<ul class="nav nav-tabs3" style="position: relative;">
-			<li role="presentation" class="active"><a
-				href="http://localhost:8088/yorijori/ranking/rlist">레시피</a></li>
-			<li role="presentation"><a
-				href="http://localhost:8088/yorijori/ranking/klist">검색어</a></li>
-			<li role="presentation"><a
-				href="http://localhost:8088/yorijori/ranking/clist">셰프</a></li>
-			<ul class="nav nav-tabs2 pull-right" style="position: relative;">
-				<li role="presentation" class="active"><a
-					href="/ranking/home_new.html?dtype=d&amp;rtype=r">일간</a></li>
-				<li role="presentation"><a
-					href="/ranking/home_new.html?dtype=w&amp;rtype=r">주간</a></li>
-				<li role="presentation"><a
-					href="/ranking/home_new.html?dtype=m&amp;rtype=r">월간</a></li>
-			</ul>
-		</ul>
+		<div class="container">
+			<div class="row">
 
-		<div class="ranking_top_t">
-			<h3 class="menu-h3-common">검색어 랭킹</h3>
-			<div class="dropdown clearfix pull-right">
-				<div class="dropdown" style="display: inline-block; float: left">
-					<button class="btn btn-default dropdown-toggle" type="button"
-						id="dropdownMenus1" data-toggle="dropdown" aria-expanded="false">
-						2023년<span class="glyphicon glyphicon-menu-down"></span>
-					</button>
-					<ul id="dropmenu1" class="dropdown-menu"
-						aria-labelledby="dropdownMenus1">
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2023');">2023년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2022');">2022년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2021');">2021년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2020');">2020년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2019');">2019년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2018');">2018년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2017');">2017년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2016');">2016년</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchYear('2015');">2015년</a></li>
-					</ul>
+
+				<div class="col-lg-3">
+					<div class="sidebar">
+
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								<h5>분류</h5>
+								<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
+									<i class="fas fa-chevron-down"></i>
+								</a>
+							</div>
+							<div class="collapse show" id="dateposted">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="dateposted1">
+										<label class="custom-control-label" for="dateposted1">레시피</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="dateposted2">
+										<label class="custom-control-label" for="dateposted2">검색어</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="dateposted3">
+										<label class="custom-control-label" for="dateposted3">회원</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								<h5>기간</h5>
+								<a class="ml-auto" data-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism">
+									<i class="fas fa-chevron-down"></i>
+								</a>
+							</div>
+							<div class="collapse show" id="specialism">
+								<div class="widget-content">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="specialism1">
+										<label class="custom-control-label" for="specialism1">일간</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="specialism2">
+										<label class="custom-control-label" for="specialism2">주간</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="specialism3">
+										<label class="custom-control-label" for="specialism3">월간</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="widget border-0">
+							<div class="widget-add">
+								<img class="img-fluid" src="images/add-banner.png" alt="">
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="dropdown clearfix pull-right"
-					style="display: inline-block;">
-					<button class="btn btn-default dropdown-toggle" type="button"
-						id="dropdownMenus2" data-toggle="dropdown" aria-expanded="false">
-						5월<span class="glyphicon glyphicon-menu-down"></span>
-					</button>
-					<ul id="dropmenu2" class="dropdown-menu"
-						aria-labelledby="dropdownMenus2">
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('01')">1월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('02')">2월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('03')">3월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('04')">4월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('05')">5월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('06')">6월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('07')">7월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('08')">8월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('09')">9월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('10')">10월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('11')">11월</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="goSearchMonth('12')">12월</a></li>
-					</ul>
+
+				<div class="col-lg-9">
+					<div class="search_word" style="margin-bottom: 10px;">
+						<div class="col-md-12">
+							<thead>
+								<tr>
+									<th style="width: 10%">순위</th>
+									<th style="width: 75%">검색어</th>
+									<th style="width: 20%">조회수</th>
+								</tr>
+							</thead>
+						</div>
+						<ol>
+							<li style="display: flex; align-items: center;">
+								<div class="widget-26-job-title" style="display: inline-block;">
+									<img alt="N0_1" src="/yorijori/images/icon/NO.1.png" style="max-width: 50px; height: auto;">
+								</div> <a href="/recipe/list.html?q=오이 무침" style="display: block;">
+									오이 무침<span class="search_num">95,542</span>
+								</a>
+							</li>
+
+							<li>
+								<div class="widget-26-job-title" style="display: inline-block;">
+									<img alt="N0_2" src="/yorijori/images/icon/NO.2.png" style="max-width: 50px; height: auto;">
+								</div> <a href="/recipe/list.html?q=닭볶음탕">
+									닭볶음탕<span class="search_num">76,029</span>
+								</a>
+							</li>
+							<li style="display: flex; align-items: center;">
+								<div class="widget-26-job-title" style="display: inline-block;">
+									<img alt="N0_3" src="/yorijori/images/icon/NO.3.png" style="max-width: 50px; height: auto;">
+								</div> <a href="/recipe/list.html?q=제육 볶음">
+									제육 볶음<span class="search_num">72,967</span>
+								</a>
+							</li>
+							<li><a href="/recipe/list.html?q=두부 조림">
+									두부 조림<span class="search_num">72,303</span>
+								</a></li>
+							<li><a href="/recipe/list.html?q=감자">
+									감자<span class="search_num">65,556</span>
+								</a></li>
+							<li><a href="/recipe/list.html?q=감자 조림">
+									감자 조림<span class="search_num">63,226</span>
+								</a></li>
+							<li><a href="/recipe/list.html?q=오이 냉국">
+									오이 냉국<span class="search_num">62,006</span>
+								</a></li>
+							<li><a href="/recipe/list.html?q=두부 찌개">
+									두부 찌개<span class="search_num">61,414</span>
+								</a></li>
+							<li><a href="/recipe/list.html?q=김치 찌개">
+									김치 찌개<span class="search_num">57,882</span>
+								</a></li>
+							<li><a href="/recipe/list.html?q=오징어 볶음">
+									오징어 볶음<span class="search_num">56,599</span>
+								</a></li>
+						</ol>
+					</div>
+
+					<div class="row">
+					<div class="col-12 text-center mt-4 mt-sm-5">
+						<ul class="pagination justify-content-center mb-0">
+							<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item"><a class="page-link" href="#">다음</a></li>
+						</ul>
+					</div>
 				</div>
+
+				</div>
+
+				
+
+
 			</div>
 		</div>
 
 
-
-		<div class="search_word" style="margin-bottom: 10px;">
-			<ol>
-				<li>
-				<div class="row">1</div>
-				<a href="/recipe/list.html?q=오이 무침">오이 무침<span
-						class="search_num">94,122</span></a>
-				</li>
-				<li><a href="/recipe/list.html?q=제육 볶음">제육볶음<span
-						class="search_num">76,607</span></a></li>
-				<li><a href="/recipe/list.html?q=두부 조림">두부조림<span
-						class="search_num">74,205</span></a></li>
-				<li><a href="/recipe/list.html?q=닭볶음탕">닭볶음탕<span
-						class="search_num">70,469</span></a></li>
-				<li><a href="/recipe/list.html?q=두부 찌개">두부찌개<span
-						class="search_num">67,220</span></a></li>
-				<li><a href="/recipe/list.html?q=김치 찌개">김치찌개<span
-						class="search_num">61,602</span></a></li>
-				<li><a href="/recipe/list.html?q=된장 찌개">된장찌개<span
-						class="search_num">59,021</span></a></li>
-				<li><a href="/recipe/list.html?q=오징어 볶음">오징어볶음<span
-						class="search_num">55,909</span></a></li>
-				<li><a href="/recipe/list.html?q=두부">두부<span
-						class="search_num">54,842</span></a></li>
-				<li><a href="/recipe/list.html?q=잡채">잡채<span
-						class="search_num">52,606</span></a></li>
-			</ol>
-			<nav class="d-flex justify-content-center">
-				<ul
-					class="pagination pagination-base pagination-boxed pagination-square mb-0">
-					<li class="page-item"><a class="page-link no-border" href="#">
-							<span aria-hidden="true">«</span> <span class="sr-only">Previous</span>
-					</a></li>
-					<li class="page-item active"><a class="page-link no-border"
-						href="#">1</a></li>
-					<li class="page-item"><a class="page-link no-border" href="#">2</a></li>
-					<li class="page-item"><a class="page-link no-border" href="#">3</a></li>
-					<li class="page-item"><a class="page-link no-border" href="#">4</a></li>
-					<li class="page-item"><a class="page-link no-border" href="#">
-							<span aria-hidden="true">»</span> <span class="sr-only">Next</span>
-					</a></li>
-				</ul>
-			</nav>
-		</div>
+	</div>
 
 	</div>
 </body>
