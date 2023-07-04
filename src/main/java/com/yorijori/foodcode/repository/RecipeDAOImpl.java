@@ -210,7 +210,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public long countByCategoryNo(Category categoryNo) {
-		return recipecategoryrepository.countByCategoryNo(categoryNo);
+		return recipecategoryrepository.countByCategoryNo(categoryNo.getCategoryNo());
 
 	}
 

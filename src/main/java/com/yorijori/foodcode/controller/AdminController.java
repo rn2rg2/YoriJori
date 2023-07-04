@@ -114,7 +114,7 @@ public class AdminController {
 
 	}
 
-	@RequestMapping("/admin/board")
+	@RequestMapping("/board")
 	public String getBoardPage(Model model) {
 		long allcount = boardSerivce.countAll();
 		long rcpcount = boardSerivce.getCountByCategorysAndState("레시피질문");
@@ -153,19 +153,19 @@ public class AdminController {
 		return ResponseEntity.ok().build();
 	}
 
-	@RequestMapping("/admin/help")
+	@RequestMapping("/help")
 	public String getHelpPage(Model model) {
 		return "thymeleaf/admin/help";
 
 	}
 
-	@RequestMapping("/admin/inquiry")
+	@RequestMapping("/inquiry")
 	public String getInquiryPage(Model model) {
 		return "thymeleaf/admin/inquiry";
 
 	}
 
-	@RequestMapping("/admin/noti")
+	@RequestMapping("/noti")
 	public String getNotiPage(Model model) {
 		return "thymeleaf/admin/noti";
 
