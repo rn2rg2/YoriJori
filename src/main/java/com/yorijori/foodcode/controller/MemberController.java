@@ -64,7 +64,7 @@ public class MemberController {
 			if (loginUser.getState() == 1) {
 				session.setAttribute("userInfo", loginUser);
 				if (loginUser.getRole().equals("관리자")) {
-					return "redirect:/admin/main";
+					return "redirect:/admin/User";
 				}
 				if (previousPage != null && !previousPage.isEmpty()) {
 					System.out.println("=====================");

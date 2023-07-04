@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.domain.Sort;
 
-
-
+import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -58,6 +57,7 @@ public interface RecipeService {
 	List<Long> countByCategoryNo(int startnum, int endnum);
 	long countRcpByUserId(UserInfo userId);
 	long countWishByUserId(UserInfo userId);
+	List<MonthlyRcpVO> getMonthlyData();
 
 	
 	

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
+import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
@@ -212,6 +213,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public long countByCategoryNo(Category categoryNo) {
 		return recipecategoryrepository.countByCategoryNo(categoryNo.getCategoryNo());
 
+	}
+	
+	@Override
+	public List<MonthlyRcpVO> getMonthlyData(){
+		return reciperepository.getMonthlyData();
 	}
 
 

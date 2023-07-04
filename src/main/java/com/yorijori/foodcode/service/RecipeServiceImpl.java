@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
@@ -209,6 +210,11 @@ public class RecipeServiceImpl implements RecipeService {
 
 		System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
 		return recipewishlist;
+	}
+	
+	@Override
+	public List<MonthlyRcpVO> getMonthlyData(){
+		return recipeDAO.getMonthlyData();
 	}
 	
 	

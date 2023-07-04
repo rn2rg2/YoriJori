@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 
@@ -97,6 +98,7 @@ public class AdminController {
 		List<Long> countrylist = rcpService.countByCategoryNo(10, 13);
 		List<Long> typelist = rcpService.countByCategoryNo(15, 20);
 		List<Long> foodlist = rcpService.countByCategoryNo(21, 25);
+		List<MonthlyRcpVO> monthlylist = rcpService.getMonthlyData();
 
 		long rcpcount = rcpService.countAll();
 		long apicount = apircpService.countAll();
@@ -106,6 +108,7 @@ public class AdminController {
 		model.addAttribute("countrylist", countrylist);
 		model.addAttribute("typelist", typelist);
 		model.addAttribute("foodlist", foodlist);
+		model.addAttribute("monthlylist", monthlylist);
 
 		model.addAttribute("rcpcount", rcpcount);
 		model.addAttribute("apicount", apicount);

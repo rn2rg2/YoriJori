@@ -233,6 +233,9 @@
 		var data3 = [[${typelist}]]
 		var data4 = [[${foodlist}]]
 		
+		var monthlydata = [[${monthlylist}]]
+		console.log(monthlydata);
+		
 		var donutOptions = {
 				maintainAspectRatio : false,
 				responsive : true,
@@ -319,6 +322,26 @@
 	      }
 	    }
 		
+		let monthdata = [];
+		console.log(monthlydata[0].mon)
+		for (let i = 1 ; i <= 12; i++){
+			let val = 0;
+			for ( let j = 0 ; j < monthlydata.length; j ++){
+				if ( i == monthlydata[j].mon){
+					val = monthlydata[j].value;
+				} else {
+					continue;
+				}
+			}
+			if ( val == 0 ){
+				monthdata.push(0);
+			} else {
+				monthdata.push(val);
+			}
+		}
+		console.log(monthdata);
+		
+		
 		var areaChartData = {
 		      labels  : ['1월', '2월', '3월', '4월', '5월', '6월', '7월','8월','9월','10월','11월','12월'],
 		      datasets: [
@@ -331,7 +354,7 @@
 		          pointStrokeColor    : 'rgba(60,141,188,1)',
 		          pointHighlightFill  : '#fff',
 		          pointHighlightStroke: 'rgba(60,141,188,1)',
-		          data                : [28, 48, 40, 19, 86, 27, 90]
+		          data                : monthdata
 		        }
 		      ]
 		    }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
@@ -64,6 +65,7 @@ public interface RecipeDAO {
 	List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int RecipeNo);
 	long countRcpByUserId(UserInfo userId);
 	long countWishByUserId(UserInfo userId);
+	List<MonthlyRcpVO> getMonthlyData();
 
     
 
