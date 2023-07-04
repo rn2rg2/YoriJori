@@ -229,6 +229,7 @@ const make_my_tray_list = function(type, data, dropId){
 }
 
 const getDetailTray = function(trayno){
+	clearTray();
 	let url = '/yorijori/mypage/tray/list/'+trayno;
 	$.ajax({
 		type : "GET",

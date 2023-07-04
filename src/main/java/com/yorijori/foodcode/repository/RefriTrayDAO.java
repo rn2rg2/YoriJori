@@ -28,4 +28,6 @@ public interface RefriTrayDAO {
 
 	UserTray selectTrayDetailByUserId(int trayNo, String userId);
 
+	void deleteTray(int trayNo);
+
 }

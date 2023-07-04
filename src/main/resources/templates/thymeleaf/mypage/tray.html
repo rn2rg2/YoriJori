@@ -59,18 +59,19 @@
 						<div></div>
 						<div class="row">
 							<!-- Gallery item -->
-							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4" th:each="tray, idx : ${tray}" th:onclick="getDetailTray([[${tray.trayNo}]])">
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4" th:each="tray, idx : ${tray}">
 								<div class="bg-white rounded shadow-sm">
-									<img th:src="|/yorijori/images/common/dosirak_${idx.count}.png|" alt="" class="img-fluid card-img-top">
+									<img th:src="|/yorijori/images/common/dosirak_${idx.count}.png|" alt="" class="img-fluid card-img-top" th:onclick="getDetailTray([[${tray.trayNo}]])">
 									<div class="p-4">
-										<h5>
+										<h5 style="display: contents;">
 											<a class="text-dark">[[${tray.trayName}]]</a>
 										</h5>
+										<button class="btn btn-success m-sm-1" type="button" th:onclick="deleteTray([[${tray.trayNo}]])">식판 삭제</button>
 									</div>
 								</div>
 							</div>
 							<!-- End -->
-<!-- 
+							<!-- 
 							Gallery item
 							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
 								<div class="bg-white rounded shadow-sm">
@@ -152,17 +153,21 @@
 
 			})
 		}
-		const checkTray = function(){
-			if ( isEmpty($('#inputtrayname'))){
+		const checkTray = function() {
+			if (isEmpty($('#inputtrayname'))) {
 				error_alert("식판 이름 미입력", "식판")
 				return false;
-			} 
-			if (idx < 5 ) {
-				Swal.fire("레시피가 부족합니다", '<b style="color:red;">'+(5-idx)+'개를 더 추가해주세요' , 'error')
+			}
+			if (idx < 5) {
+				Swal.fire("레시피가 부족합니다", '<b style="color:red;">' + (5 - idx) + '개를 더 추가해주세요', 'error')
 				return false;
 			}
-			
+
 			return true;
+		}
+
+		const deleteTray = function(data) {
+			 location.href = "/yorijori/mypage/tray/delete/" + data;
 		}
 	</script>
 </th:block>

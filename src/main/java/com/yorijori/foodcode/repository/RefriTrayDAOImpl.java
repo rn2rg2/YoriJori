@@ -83,5 +83,12 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	public RecipeVO findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
 		return frigerepository.searchPreferMatlNo(user.getPrefer(), userfrige.getMatlNo());
 	}
+	
+	@Override
+	public void deleteTray(int trayNo) {
+		UserTray tray = new UserTray();
+		tray.setTrayNo(trayNo);
+		trayrepository.delete(tray);
+	}
 
 }

@@ -88,4 +88,8 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 		return rtdao.findByPreferAndByMatlNo(user, userfrige);
 		
 	}
+	@Override
+	public void deleteTray(int trayNo) {
+		rtdao.deleteTray(trayNo);
+	}
 }

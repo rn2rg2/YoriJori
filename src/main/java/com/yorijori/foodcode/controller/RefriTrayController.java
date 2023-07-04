@@ -138,4 +138,8 @@ public class RefriTrayController {
 		long count = userWishService.countAllByUserId(userinfo);
 		return count;
 	}
+	@RequestMapping("/tray/delete/{trayNo}")
+	public void deleteTray(@PathVariable int trayNo) {
+		refriTrayService.deleteTray(trayNo);
+	}
 }

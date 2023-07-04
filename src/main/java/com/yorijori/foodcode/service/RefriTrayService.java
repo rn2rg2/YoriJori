@@ -23,4 +23,6 @@ public interface RefriTrayService {
 
 	UserTray selectTrayDetail(int trayNo, String userId);
 
+	void deleteTray(int trayNo);
+
 }
