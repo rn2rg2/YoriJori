@@ -219,6 +219,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public List<MonthlyRcpVO> getMonthlyData(){
 		return reciperepository.getMonthlyData();
 	}
-
+    @Override
+    public List<RecipeReview> getByRecipeNo(Recipe recipe) {
+        return recipereviewrepository.findByRecipeNo(recipe);
+    }
 
 }

@@ -19,4 +19,7 @@ public interface MemberDAO {
 	void updateUserStateByUserId(String userId, int state);
 	
 	List<UserInfo> selectall(int state);
+	
+	List<Long> countByUserRole(int startRole, int endRole);
+	List<Long> countByUserPoint(int startPoint, int endPoint);
 }

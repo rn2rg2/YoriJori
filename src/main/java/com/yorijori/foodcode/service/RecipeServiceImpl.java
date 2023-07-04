@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
@@ -216,7 +219,42 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<MonthlyRcpVO> getMonthlyData(){
 		return recipeDAO.getMonthlyData();
 	}
-	
+    @Override
+    public BigDecimal APIgetReviewAverage(List<ApiRecipeReview> review) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (ApiRecipeReview datareview : review) {
+            sum = sum.add(datareview.getStar());
+        }
+
+        BigDecimal average;
+        if (review.size() > 0) {
+            BigDecimal size = BigDecimal.valueOf(review.size());
+            average = sum.divide(size, 2, RoundingMode.HALF_UP);
+        } else {
+            average = BigDecimal.ZERO;
+        }
+        return average;
+    }   
+    @Override
+    public BigDecimal USERgetReviewAverage(List<RecipeReview> review) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (RecipeReview datareview : review) {
+            sum = sum.add(datareview.getStar());
+        }
+
+        BigDecimal average;
+        if (review.size() > 0) {
+            BigDecimal size = BigDecimal.valueOf(review.size());
+            average = sum.divide(size, 2, RoundingMode.HALF_UP);
+        } else {
+            average = BigDecimal.ZERO;
+        }
+        return average;
+    }
+    @Override
+    public List<RecipeReview> getByRecipeNo(Recipe recipe) {
+        return recipeDAO.getByRecipeNo(recipe);
+    }
 	
 
 }
