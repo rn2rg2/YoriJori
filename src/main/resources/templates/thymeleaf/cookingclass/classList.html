@@ -161,7 +161,7 @@
 								</div>
 								<div class="candidate-list-favourite-time">
 									<a class="candidate-list-favourite order-2" href="#프로필조회?">
-										<img th:src="|/yorijori/data/user/${class.userId.imgPath}|">
+										<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${class.userId.imgPath}|">
 									</a>
 									<span class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}원|"></span></span>
 

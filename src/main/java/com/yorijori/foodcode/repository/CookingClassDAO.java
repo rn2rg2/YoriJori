@@ -8,6 +8,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 import com.yorijori.foodcode.jpa.entity.Payment;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 public interface CookingClassDAO {
 	public void insertImage(CookingClassImage image);
@@ -26,5 +27,6 @@ public interface CookingClassDAO {
 	public CookingClass findById(Integer cookNo);
 	public List<CookingClass> selectAllClass(int state);
 	void restore(int cookNo);
+	List<CookingClass> findByUserId(UserInfo userId);
 	
 }

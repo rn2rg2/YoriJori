@@ -74,9 +74,10 @@ public class CookingclassController {
 	@RequestMapping("/read")
 	public String showCookingclass(Model model, int cookNo) {
 		CookingClass cookingclass = service.readClass(cookNo);
+		List<CookingClass> otherclass= service.findByUserId(cookingclass.getUserId()); 
 		
 		model.addAttribute("cookingclass", cookingclass);
-		
+		model.addAttribute("otherclass", otherclass);
 		return "thymeleaf/cookingclass/classRead";
 	}
 	@RequestMapping("/delete")
@@ -186,4 +187,6 @@ public class CookingclassController {
 	public String deleteSummernoteImageFile() {
 		return null;
 	}
+	
+	
 }

@@ -17,6 +17,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 import com.yorijori.foodcode.jpa.entity.Payment;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.CookingClassContentRepository;
 import com.yorijori.foodcode.jpa.repository.CookingClassCurriculumRepository;
 import com.yorijori.foodcode.jpa.repository.CookingClassFormRepository;
@@ -134,5 +135,9 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	@Override
 	public CookingClass findById(Integer cookNo) {
 		return classRepo.findById(cookNo).get();
+	}
+	@Override
+	public List<CookingClass> findByUserId(UserInfo userId) {
+		return classRepo.findByUserId(userId);
 	}
 }
