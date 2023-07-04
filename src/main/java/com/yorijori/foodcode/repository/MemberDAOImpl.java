@@ -1,6 +1,6 @@
 package com.yorijori.foodcode.repository;
 
-import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +90,32 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<UserInfo> selectall(int state) {
 		return memberRepository.findByState(state);
+	}
+	
+	@Override
+	public List<Long> countByUserRole(int startRole, int endRole) {
+	    List<Long> list = new ArrayList<Long>();
+	    for (int i = startRole; i <= endRole; i++) {
+	        String role;
+	        if (i == 1) {
+	            role = "회원";
+	        } else if (i == 2) {
+	            role = "전문가";
+	        } else {
+	            role = "관리자";
+	        }
+	        long count = memberRepository.countByRole(role);
+	        list.add(count);
+	    }
+	    return list;
+	}
+	@Override
+	public List<Long> countByUserPoint(int startPoint, int endPoint) {
+	    List<Long> list = new ArrayList<Long>();
+	    for (int i = startPoint; i <= endPoint; i++) {
+	        long count = memberRepository.countByPoint(i);
+	        list.add(count);
+	    }
+	    return list;
 	}
 }

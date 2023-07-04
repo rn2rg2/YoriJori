@@ -1,11 +1,13 @@
 package com.yorijori.foodcode.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.domain.Sort;
 
 import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
@@ -58,6 +60,10 @@ public interface RecipeService {
 	long countRcpByUserId(UserInfo userId);
 	long countWishByUserId(UserInfo userId);
 	List<MonthlyRcpVO> getMonthlyData();
+	
+	BigDecimal APIgetReviewAverage(List<ApiRecipeReview> review);
+	BigDecimal USERgetReviewAverage(List<RecipeReview> datareview);
+    List<RecipeReview> getByRecipeNo(Recipe recipe);
 
 	
 	

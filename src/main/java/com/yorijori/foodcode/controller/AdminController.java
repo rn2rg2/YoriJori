@@ -57,6 +57,11 @@ public class AdminController {
 	public String getAdminUserPage(Model model) {
 		List<UserInfo> list = userService.selectall(1);
 		List<UserInfo> list2 = userService.selectall(0);
+		List<Long> usercount = userService.countByUserRole(0, 2);
+		List<Long> counts = userService.countByUserPoint(1, 5);
+		System.out.println(counts);
+		
+		System.out.println(usercount);
 		int count = 0;
 		for (UserInfo userInfo : list) {
 			LocalDate date = userInfo.getDate().toLocalDate();
@@ -65,6 +70,8 @@ public class AdminController {
 			}
 		}
 		model.addAttribute("todayuser", count);
+		model.addAttribute("userinfo",usercount);
+		model.addAttribute("userpoint", counts);
 		model.addAttribute("userlist", list);
 		model.addAttribute("secessioncount", list2.size());
 		model.addAttribute("secessionlist", list2);
