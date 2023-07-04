@@ -1,0 +1,290 @@
+/* Candidate List */
+#user-profile{
+	display: flex;
+}
+#profile-detail {
+  display: flex;
+  align-items: center;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-role {
+  font-weight: bold;
+}
+
+.profile-date {
+  margin-top: 5px;
+}
+
+#profile-image img{
+	border-radius: 2em;
+	width: 5em;
+	height: 5em;
+}
+#profile-detail img{
+	width: 3em;
+	height: 3em;
+}
+
+.pagination_div {
+	width: 80%;
+	margin: auto;
+}
+/* Nav Bar */
+.nav {
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.navli {
+  text-decoration: none;
+  display: inline-block;
+  padding: 13px 13px;
+  border-top: 2px solid var(--main-theme-color-red);
+  color: #212529;
+}
+
+.selected {
+  text-decoration:none;
+  background-color: #f6c88b;
+  border-bottom: 2px solid var(--main-theme-color-red);
+  color: var(--main-theme-color-red)
+}
+.navli:hover{
+	color: var(--main-theme-color-red)
+}
+.navli.current {
+  border-bottom: 2px solid #1971c2;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    font-size: 1.1rem;
+  }
+  .navli {
+    padding: 20px 20px;
+  }
+
+}
+.navli{
+	width: calc(100%/4);
+}
+
+.navstyler{
+	
+}
+
+/* 탭 설정 */
+.all-tab{
+	margin-left: 50px;
+}
+.tab-title{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-family: "NanumHimNaeRaNeunMarBoDan";
+	font-size: 50px;
+}
+.tab-section b, .tab-section a{
+	color: #000 !important;
+}
+.tab-section b{
+	font-weight: bold;
+}
+.line-left{
+	margin-bottom: 30px;
+}
+.tab-section img {
+    vertical-align: middle;
+    margin-bottom: 30px;
+}
+.tab-section:after {
+	content: "";
+	display: block;
+	margin-bottom: 100px;
+}
+.line-title{
+	margin-top: 50px;
+}
+.tab-section ul{
+	
+}
+.tab-section li{
+	border: 2px solid var(--main-theme-color-red);
+	border-radius: 10px;
+	list-style: decimal;
+	padding: 10px;
+	margin-bottom:20px;
+	display: block;
+	position: relative;
+}
+li .time{
+	position:absolute;
+	color: var(--main-theme-color-red);
+	right: 10px;
+	font-family: "NanumHimNaeRaNeunMarBoDan";
+	font-size: 20px;
+	border: 2px solid #568acf;
+	border-radius: 50%;
+	padding-left: 10px;
+	padding-right: 10px;
+	bottom: 5px;
+}
+/* nav bar 안에 보여줄 목록들 css */
+.candidate-list {
+  background: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #eeeeee;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+  .candidate-list:hover {
+    -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+            box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+    position: relative;
+    z-index: 99; }
+    .candidate-list:hover a.candidate-list-favourite {
+      color: #e74c3c;
+      -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+              box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1); }
+
+.candidate-list .candidate-list-image {
+  margin-right: 25px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 80px;
+          flex: 0 0 80px;
+  border: none; }
+  .candidate-list .candidate-list-image img {
+    width: 80px;
+    height: 80px;
+    -o-object-fit: cover;
+       object-fit: cover; }
+
+.candidate-list-title {
+  margin-bottom: 5px; }
+
+.candidate-list-details ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 0px; }
+  .candidate-list-details ul li {
+    margin: 5px 10px 5px 0px;
+    font-size: 13px; }
+
+.candidate-list .candidate-list-favourite-time {
+  margin-left: auto;
+  text-align: center;
+  font-size: 13px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 90px;
+          flex: 0 0 90px; }
+  .candidate-list .candidate-list-favourite-time span {
+    display: block;
+    margin: 0 auto; }
+  .candidate-list .candidate-list-favourite-time .candidate-list-favourite {
+    display: inline-block;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border: 1px solid #eeeeee;
+    border-radius: 100%;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #646f79;
+    }
+    .candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
+      background: #ffffff;
+      color: #e74c3c; }
+
+.candidate-banner .candidate-list:hover {
+  position: inherit;
+  -webkit-box-shadow: inherit;
+          box-shadow: inherit;
+  z-index: inherit; }
+
+
+/* Candidate Grid */
+.candidate-list.candidate-grid {
+    padding: 0px;
+    display: block;
+    border-bottom: none;
+}
+
+.candidate-grid .candidate-list-image {
+    text-align: center;
+    margin-right: 0px;
+}
+.candidate-grid .candidate-list-image img {
+    height: 150px;
+    width: 100%;
+}
+
+.candidate-grid .candidate-list-details {
+    text-align: center;
+    padding: 20px 20px 0px 20px;
+    border: 1px solid #eeeeee;
+    border-top: none;
+}
+.candidate-grid .candidate-list-details ul {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.candidate-grid .candidate-list-details ul li {
+    margin: 2px 5px;
+}
+
+.candidate-grid .candidate-list-favourite-time {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-top: 1px solid #eeeeee;
+    margin-top: 10px;
+    padding: 10px 0;
+}
+.candidate-grid .candidate-list-favourite-time a {
+    margin-bottom: 0;
+    margin-left: auto;
+}
+.candidate-grid .candidate-list-favourite-time span {
+    display: inline-block;
+    margin: 0;
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+
+.candidate-list.candidate-grid .candidate-list-favourite-time .candidate-list-favourite {
+    margin-bottom: 0px;
+}
+
+.owl-carousel .candidate-list.candidate-grid {
+    margin-bottom: 20px;
+}

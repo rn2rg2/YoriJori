@@ -237,7 +237,7 @@ const make_rcp_list = function(page){
 		$('#list_page').empty();
 		// Create a jQuery element for the outer div
 		console.log(datas);
-		$('#results1').empty();
+		$('#results').empty();
 		$.each(datas, function(index, data) {
 			make_rcp_div(data);
 		})
@@ -291,7 +291,7 @@ const make_rcp_div = function(data){
 
 	  // Append the colDiv to an existing container
 	  // For example, if you have a container with id 'myContainer', you can do:
-	  $('#results1').append(colDiv);
+	  $('#results').append(colDiv);
 }
 
 const make_wish_list = function(page){
@@ -320,10 +320,10 @@ const make_wish_div = function(data){
 	  var h5Element = $('<h5></h5>');
 	  var linkElement = $('<a></a>').attr('href', "/yorijori/recipe/view/user/"+data.recipeNo).text(data.name);
 	  var candidateListOptionDiv = $('<div class="candidate-list-option"></div>');
-	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자 : " + data.userNickname);
+	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자" + data.userNickname);
 	  var brElement = $('<br>');
 	  var badge2 = $('<div class="badge badge-success px-3 rounded-pill font-weight-normal"></div>').text(data.time);
-	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>');
+	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">d</div>');
 	  var candidateListFavouriteTimeDiv = $('<div class="candidate-list-favourite-time justify-content-around"></div>');
 	  var ulElement = $('<ul class="list-unstyled list-inline"></ul>');
 	  var li1 = $('<li class="pr-2"></li>');
