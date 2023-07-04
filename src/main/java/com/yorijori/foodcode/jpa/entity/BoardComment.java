@@ -13,6 +13,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,11 +44,13 @@ public class BoardComment {
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
+	@JsonBackReference
 	private UserInfo userId;
 	
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "commNo", nullable = false)
+	@JsonBackReference
 	private Board commNo;
 	
 }

@@ -37,21 +37,21 @@ public class ChatRoomController {
 	public String chat(Model model, HttpSession session) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		// 모든 채팅방 목록 반환
-		List<ChatInfo> list = new ArrayList<ChatInfo>(); 
+		List<ChatInfo> list = new ArrayList<ChatInfo>();
 		list = chatService.findAllRoomByUserId(user);
-		
+
 		if (list.size() > 0) {
 			model.addAttribute("list", list);
 			model.addAttribute("chatId", list.get(0).getChatId());
-			//List<UserForChatVO> chatinfo = new ArrayList<UserForChatVO>();
+			// List<UserForChatVO> chatinfo = new ArrayList<UserForChatVO>();
 			List<UserForChatResponse> chatinfo = new ArrayList<UserForChatResponse>();
-			for ( ChatInfo info : list) {
+			for (ChatInfo info : list) {
 				// user1 이 현재 로그인 사람과 동일한 경우
 				UserForChatResponse res = new UserForChatResponse(info);
 				if (info.getUser1id().equals(user.getUserId())) {
 					res.setUserForChat(chatService.getUserInfoForChat(info.getUser2id()));
 				} else {
-				// user2 이 현재 로그인 사람과 동일한 경우
+					// user2 이 현재 로그인 사람과 동일한 경우
 					res.setUserForChat(chatService.getUserInfoForChat(info.getUser1id()));
 				}
 				chatinfo.add(res);

@@ -33,7 +33,7 @@ public class AdminController {
 	IngredientService ingreService;
 	ApiRecipeService apircpService;
 	BoardService boardSerivce;
-  CookingClassService classService;
+	CookingClassService classService;
 
 	@Autowired
 	public AdminController(MemberService userService, RecipeService rcpService, IngredientService ingreService,
@@ -44,7 +44,7 @@ public class AdminController {
 		this.ingreService = ingreService;
 		this.apircpService = apircpService;
 		this.boardSerivce = boardSerivce;
-    this.classService = classService;
+		this.classService = classService;
 	}
 
 	@RequestMapping("")
@@ -97,23 +97,23 @@ public class AdminController {
 		List<Long> countrylist = rcpService.countByCategoryNo(10, 13);
 		List<Long> typelist = rcpService.countByCategoryNo(15, 20);
 		List<Long> foodlist = rcpService.countByCategoryNo(21, 25);
-		
+
 		long rcpcount = rcpService.countAll();
 		long apicount = apircpService.countAll();
 		long ingrecount = ingreService.countAll();
-		
+
 		model.addAttribute("purposelist", purposelist);
 		model.addAttribute("countrylist", countrylist);
 		model.addAttribute("typelist", typelist);
 		model.addAttribute("foodlist", foodlist);
-		
+
 		model.addAttribute("rcpcount", rcpcount);
 		model.addAttribute("apicount", apicount);
 		model.addAttribute("ingrecount", ingrecount);
 		return "thymeleaf/admin/recipe";
 
 	}
-	
+
 	@RequestMapping("/admin/board")
 	public String getBoardPage(Model model) {
 		long allcount = boardSerivce.countAll();
@@ -127,28 +127,28 @@ public class AdminController {
 		return "thymeleaf/admin/board";
 
 	}
-	
 
 	@RequestMapping("/cooking")
 	public String getAdminCookingclass(Model model) {
-		List<CookingClass> list=classService.selectAllClass(0);
-		List<CookingClass> list2=classService.selectAllClass(1);
+		List<CookingClass> list = classService.selectAllClass(0);
+		List<CookingClass> list2 = classService.selectAllClass(1);
 		int count = 0;
-	    for (CookingClass cclass : list) {
-	        LocalDate date = cclass.getDate().toLocalDate();
-	        if (date.equals(LocalDate.now())) {
-	            count++;
-	        }
-	    }
-	    model.addAttribute("classlist", list);
-	    model.addAttribute("classlist2", list2);
+		for (CookingClass cclass : list) {
+			LocalDate date = cclass.getDate().toLocalDate();
+			if (date.equals(LocalDate.now())) {
+				count++;
+			}
+		}
+		model.addAttribute("classlist", list);
+		model.addAttribute("classlist2", list2);
 		model.addAttribute("date", LocalDate.now());
 		model.addAttribute("todayclass", count);
 		model.addAttribute("deleteclass", list2.size());
 		return "thymeleaf/admin/adminCookingclass";
 	}
+
 	@PostMapping("/classRestore")
-	public ResponseEntity classRestore(int cookNo){
+	public ResponseEntity classRestore(int cookNo) {
 		classService.restore(cookNo);
 		return ResponseEntity.ok().build();
 	}
@@ -158,21 +158,17 @@ public class AdminController {
 		return "thymeleaf/admin/help";
 
 	}
-	
+
 	@RequestMapping("/admin/inquiry")
 	public String getInquiryPage(Model model) {
 		return "thymeleaf/admin/inquiry";
 
 	}
-	
+
 	@RequestMapping("/admin/noti")
 	public String getNotiPage(Model model) {
 		return "thymeleaf/admin/noti";
 
 	}
-	
-	
-	
-
 
 }

@@ -53,6 +53,11 @@ public class BoardDAOImpl implements BoardDAO {
 	public long countAll() {
 		return repository.count(); 
 	}
+	
+	@Override
+	public long countByUserId(UserInfo user) {
+		return repository.countByUserId(user); 
+	}
 
 	@Override
 	public List<Board> selectByPage(int pageNo) {
@@ -122,5 +127,14 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<Board> findmyboardlist(UserInfo user) {
 		return repository.findByUserId(user);
+	}
+	
+	@Override
+	public List<Board> selectByPageByUser(int pageNo, int pagePerCount,UserInfo user) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		//Page<Board> page = repository.findAll(pageRequest);
+		Page<Board> page = repository.findByUserIdAndState(user, 0, pageRequest);
+		List<Board> list = page.getContent();
+		return list;
 	}
 }

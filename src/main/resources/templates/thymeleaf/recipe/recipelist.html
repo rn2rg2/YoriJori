@@ -425,6 +425,9 @@
 			let value = $(data).attr('value');
 			let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
 			//setTimeout(() => window.location.href=heartUrl, 2000);
+			getAjaxNoParam(heartUrl, function(data){
+				console.log(data);
+			})
 			let clickdata = $(data);
 			console.log(clickdata);
 			if (clickdata.hasClass('red_heart')) {

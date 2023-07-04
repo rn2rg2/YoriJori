@@ -27,5 +27,7 @@ public interface BoardService {
 	List<Board> selectByCategoryAndState(String category,int pageNo, int pagePerCount);
 	public long getCountByCategorysAndState(String category);
 	public List<Board> findmyboardlist(UserInfo user);
+	long countByUserId(UserInfo user);
+	List<Board> selectByPageByUser(int pageNo, int pagePerCount, UserInfo user);
 	
 }

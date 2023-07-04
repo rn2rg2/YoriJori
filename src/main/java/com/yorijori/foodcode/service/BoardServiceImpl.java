@@ -59,6 +59,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.countAll();
 	}
 	@Override
+	public long countByUserId(UserInfo user) {
+		return dao.countByUserId(user);
+	}
+	@Override
 	public List<Board> selectByPage(int pageNo) {
 		// TODO Auto-generated method stub
 		return dao.selectByPage(pageNo);
@@ -119,6 +123,11 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> findmyboardlist(UserInfo user) {
 		// TODO Auto-generated method stub
 		return dao.findmyboardlist(user);
+	}
+	
+	@Override
+	public List<Board> selectByPageByUser(int pageNo, int pagePerCount,UserInfo user){
+		return dao.selectByPageByUser(pageNo, pagePerCount, user);
 	}
 
 

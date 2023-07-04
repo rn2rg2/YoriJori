@@ -56,6 +56,8 @@ public interface RecipeService {
 	List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId);
 	List<Recipe> mylikeListByPage(int pageNo, int pagePerCount, UserInfo user);
 	List<Long> countByCategoryNo(int startnum, int endnum);
+	long countRcpByUserId(UserInfo userId);
+	long countWishByUserId(UserInfo userId);
 
 	
 	

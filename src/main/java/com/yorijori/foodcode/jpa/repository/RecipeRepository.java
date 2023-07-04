@@ -14,4 +14,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>,JpaSpec
     Long countByNameContaining(String name);
     Page<Recipe> findByUserId(UserInfo userid, Pageable pageable);
     Page<Recipe> findByRecipeNo(int RecipeNo, Pageable pageable);
+    Long countByUserId(UserInfo userId);
 }

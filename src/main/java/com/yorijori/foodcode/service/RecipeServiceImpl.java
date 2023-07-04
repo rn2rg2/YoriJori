@@ -39,6 +39,21 @@ public class RecipeServiceImpl implements RecipeService {
 	public long countAll() {
 		return recipeDAO.countAll();
 	}
+	
+	@Override
+	public long countByNameContaining(String name) {
+		return recipeDAO.countByNameContaining(name);
+	}
+	
+	@Override
+	public long countRcpByUserId(UserInfo userId) {
+		return recipeDAO.countRcpByUserId(userId);
+	}
+	
+	@Override
+	public long countWishByUserId(UserInfo userId) {
+		return recipeDAO.countWishByUserId(userId);
+	}
 
 	@Override
 	public List<Recipe> selectListByPage(int pageNo, int pagePerCount) {
@@ -47,12 +62,16 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public void wishList(UserInfo userId, Recipe recipeNo) {
-		long count = recipeDAO.countByRcpSeqByWishList(recipeNo);
+		long count = recipeDAO.countByRcpSeqByWishList(recipeNo,userId);
 		UserWishlist userwishlist = new UserWishlist();
 		userwishlist.setRecipeNo(recipeNo);
 		userwishlist.setUserId(userId);
+		System.out.println("======================");
+		System.out.println(count);
+		System.out.println("======================");
+		
 		if (count > 0) {
-			recipeDAO.deleteWishList(recipeNo);
+			recipeDAO.deleteWishList(recipeNo, userId);
 		} else {
 			recipeDAO.addWishList(userwishlist);
 		}
@@ -87,8 +106,8 @@ public class RecipeServiceImpl implements RecipeService {
 		for (int i = 0; i < categorylist.size(); i++) {
 			categorylist.get(i).setRecipeNo(recipedata);
 
-			//Category dto = categoryDAO.findById(categorylist.get(i).getCategoryNo());
-			//categorylist.get(i).setCategoryNo(dto);
+			// Category dto = categoryDAO.findById(categorylist.get(i).getCategoryNo());
+			// categorylist.get(i).setCategoryNo(dto);
 			System.out.println("============11=============");
 			System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
 			System.out.println("=========================");
@@ -149,10 +168,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 	}
 
-	@Override
-	public long countByNameContaining(String name) {
-		return recipeDAO.countByNameContaining(name);
-	}
+
 
 	@Override
 	public List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount) {
@@ -160,11 +176,11 @@ public class RecipeServiceImpl implements RecipeService {
 
 		return recipeDAO.selectBySearch(pageNo, searchData, pagePerCount);
 	}
-	
+
 	@Override
 	public List<Long> countByCategoryNo(int startnum, int endnum) {
 		List<Long> list = new ArrayList<Long>();
-		for ( int i = startnum ; i <= endnum; i ++  ) {
+		for (int i = startnum; i <= endnum; i++) {
 			Category categoryNo = new Category();
 			categoryNo.setCategoryNo(i);
 			long count = recipeDAO.countByCategoryNo(categoryNo);
@@ -172,7 +188,6 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 		return list;
 	}
-	
 
 	@Override
 	public List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId) {
@@ -182,17 +197,20 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public List<Recipe> mylikeListByPage(int pageNo, int pagePerCount, UserInfo user) {
-		 List<UserWishlist> wishlistItems = recipeDAO.mylikelist(user);
-		    System.out.println("mylikelistbyPage: " + wishlistItems + "\n\n\n\n\n");
-		    List<Recipe> recipewishlist = new ArrayList<>();
-		    
-		    for (UserWishlist wishlistItem : wishlistItems) {
-		        List<Recipe> recipes = recipeDAO.userwishListByPage(pageNo, pagePerCount, wishlistItem.getRecipeNo().getRecipeNo());
-		        recipewishlist.addAll(recipes);
-		    }
-		    
-		    System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
-		    return recipewishlist;
+		List<UserWishlist> wishlistItems = recipeDAO.mylikelist(user);
+		System.out.println("mylikelistbyPage: " + wishlistItems + "\n\n\n\n\n");
+		List<Recipe> recipewishlist = new ArrayList<>();
+
+		for (UserWishlist wishlistItem : wishlistItems) {
+			List<Recipe> recipes = recipeDAO.userwishListByPage(pageNo, pagePerCount, 
+					wishlistItem.getRecipeNo().getRecipeNo());
+			recipewishlist.addAll(recipes);
+		}
+
+		System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
+		return recipewishlist;
 	}
+	
+	
 
 }

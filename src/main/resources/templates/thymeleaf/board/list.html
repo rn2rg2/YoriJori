@@ -50,7 +50,7 @@
 									<thead>
 										<tr>
 											<th style="width: 10%">글번호</th>
-											<th style="width: 15%">카테고리</th>																			
+											<th style="width: 15%">카테고리</th>
 											<th style="width: 50%">제목</th>
 											<th style="width: 15%">작성자</th>
 											<th style="width: 10%">조회수</th>
@@ -67,7 +67,7 @@
 									</tbody>
 									<tr th:each="board:${boardlist}">
 										<td><span th:text="${board.commNo }"></span></td>
-										<td><span th:text="${board.category}"></span></td>									
+										<td><span th:text="${board.category}"></span></td>
 										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
 												<span th:text="${board.title }"></span>
 											</a></td>

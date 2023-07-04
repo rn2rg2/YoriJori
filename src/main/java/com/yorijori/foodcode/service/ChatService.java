@@ -64,16 +64,29 @@ public class ChatService {
 	// 채팅방 생성
 	public ChatInfo createRoom(String userId, String userId2) {
 		ChatInfo dto = new ChatInfo();
-		dto.setUser1id(userId);
-		dto.setUser2id(userId2);
-		return chatinforepo.save(dto);
+
+		ChatInfo dto1 = chatinforepo.findRoomUserIdBoth(userId, userId2);
+		ChatInfo dto2 = chatinforepo.findRoomUserIdReverse(userId, userId2);
+			// userid가 userId같고 userId2가 같은 경우
+		if (dto1 != null) {
+			return dto1;
+			// userid2가 userid랑 같고 userid가 userId2랑 같은경우
+		} else if (dto2 != null) {
+			return dto2;
+			// 둘다 없는 경우
+		} else {
+			dto.setUser1id(userId);
+			dto.setUser2id(userId2);
+			return chatinforepo.save(dto);
+		}
+
 	}
-	
-	//메세지 저장
+
+	// 메세지 저장
 	public ChatMsg insertMSG(ChatMsg chatmsg) {
 		return chatmsgrepo.save(chatmsg);
 	}
-	
+
 	// 유저 정보 가져오기
 	public UserForChatVO getUserInfoForChat(String userId) {
 		return memberrepo.getUserForChat(userId);

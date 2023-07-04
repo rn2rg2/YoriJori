@@ -612,7 +612,10 @@ function leadingZeros(n, digits) {
     return zero + n;
 }
 
-function makeChatRoom(userId){
+function makeChatRoom(sessionId,userId){
+	if (sessionId == userId) {
+		Swal.fire("채팅 대상이 잘못되었습니다", '<b style="color:red;">작성자</b>를 확인해주세요', 'error')
+	}
 	let url = "/yorijori/chat/room"
 	let param = {"userId2": userId }
 	$.ajax({
@@ -621,6 +624,7 @@ function makeChatRoom(userId){
 		data : param,
 		success : function(data, status, xr) {
 			console.log(data);
+			location.href="/yorijori/chat/list"
 		},
 		error : error_run
 	});

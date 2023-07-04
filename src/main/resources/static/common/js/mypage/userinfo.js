@@ -230,6 +230,173 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
         })
     }
 }
+const make_rcp_list = function(page){
+	const pagePerCount = 6;
+	const url = "/yorijori/recipe/myrecipe/user/"+page+"/"+pagePerCount;
+	getAjaxNoParam(url, function (datas){
+		$('#list_page').empty();
+		// Create a jQuery element for the outer div
+		console.log(datas);
+		$('#results1').empty();
+		$.each(datas, function(index, data) {
+			make_rcp_div(data);
+		})
+	});
+}
+const make_rcp_div = function(data){
+	 var colDiv = $('<div class="col-sm-6 col-lg-4 mb-4"></div>');
+	  var candidateListDiv = $('<div class="candidate-list candidate-grid"></div>');
+	  var candidateListImageDiv = $('<div class="candidate-list-image"></div>');
+	  var imageElement = $('<img class="img-fluid">').attr("src","/yorijori/data/recipethumbnail/"+data.thumbnail);
+	  var candidateListDetailsDiv = $('<div class="candidate-list-details"></div>');
+	  var candidateListInfoDiv = $('<div class="candidate-list-info"></div>');
+	  var candidateListTitleDiv = $('<div class="candidate-list-title"></div>');
+	  var h5Element = $('<h5></h5>');
+	  var linkElement = $('<a></a>').attr('th:href', '@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}').text(data.name);
+	  var candidateListOptionDiv = $('<div class="candidate-list-option"></div>');
+	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자 " + data.userNickname);
+	  var brElement = $('<br>');
+	  var badge2 = $('<div class="badge badge-success px-3 rounded-pill font-weight-normal"></div>').text(data.time);
+	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>');
+	  var candidateListFavouriteTimeDiv = $('<div class="candidate-list-favourite-time justify-content-around"></div>');
+	  var ulElement = $('<ul class="list-unstyled list-inline"></ul>');
+	  var li1 = $('<li class="pr-2"></li>');
+	  var a1 = $('<a class="recipe_info_data order-2"></a>');
+	  var i1 = $('<i class="far fa-comments pr-1"></i>').text(data.reviewlist.length);
+	  var li2 = $('<li class="pr-2"></li>');
+	  var a2 = $('<a class="recipe_info_data order-2"></a>');
+	  var i2 = $('<i class="fa-regular fa-eye"></i>').text(data.count);
+
+	  a1.append(i1);
+	  a2.append(i2);
+	  li1.append(a1);
+	  li2.append(a2);
+	  ulElement.append(li1);
+	  ulElement.append(li2);
+	  candidateListFavouriteTimeDiv.append(ulElement);
+	  candidateListOptionDiv.append(badge1);
+	  candidateListOptionDiv.append(brElement);
+	  candidateListOptionDiv.append(badge2);
+	  candidateListOptionDiv.append(badge3);
+	  candidateListTitleDiv.append(h5Element);
+	  candidateListTitleDiv.find('h5').append(linkElement);
+	  candidateListInfoDiv.append(candidateListTitleDiv);
+	  candidateListInfoDiv.append(candidateListOptionDiv);
+	  candidateListDetailsDiv.append(candidateListInfoDiv);
+	  candidateListDetailsDiv.append(candidateListFavouriteTimeDiv);
+	  candidateListImageDiv.append(imageElement);
+	  candidateListDiv.append(candidateListImageDiv);
+	  candidateListDiv.append(candidateListDetailsDiv);
+	  colDiv.append(candidateListDiv);
+
+	  // Append the colDiv to an existing container
+	  // For example, if you have a container with id 'myContainer', you can do:
+	  $('#results1').append(colDiv);
+}
+
+const make_wish_list = function(page){
+	const pagePerCount = 6;
+	const url = "/yorijori/recipe/mywish/user/"+page+"/"+pagePerCount;
+	getAjaxNoParam(url, function (datas){
+		$('#results2').empty();
+		// Create a jQuery element for the outer div
+		console.log(datas);
+		$.each(datas, function(index, data) {
+			make_wish_div(data);
+		})
+	});
+}
+const make_wish_div = function(data){
+	
+	var colDiv = $('<div class="col-sm-6 col-lg-4 mb-4"></div>');
+	  var candidateListDiv = $('<div class="candidate-list candidate-grid"></div>');
+	  var candidateListImageDiv = $('<div class="candidate-list-image"></div>');
+	  var imageElement = $('<img class="img-fluid">').attr('src', "/yorijori/data/recipethumbnail/"+data.thumbnail);
+	  // You can replace the commented-out line with the line below if you need the image source
+	  // var imageElement = $('<img class="img-fluid" th:src="@{/images/'+${recipe.thumbnail}+'}" alt="">');
+	  var candidateListDetailsDiv = $('<div class="candidate-list-details"></div>');
+	  var candidateListInfoDiv = $('<div class="candidate-list-info"></div>');
+	  var candidateListTitleDiv = $('<div class="candidate-list-title"></div>');
+	  var h5Element = $('<h5></h5>');
+	  var linkElement = $('<a></a>').attr('href', "/yorijori/recipe/view/user/"+data.recipeNo).text(data.name);
+	  var candidateListOptionDiv = $('<div class="candidate-list-option"></div>');
+	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자 : " + data.userNickname);
+	  var brElement = $('<br>');
+	  var badge2 = $('<div class="badge badge-success px-3 rounded-pill font-weight-normal"></div>').text(data.time);
+	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>');
+	  var candidateListFavouriteTimeDiv = $('<div class="candidate-list-favourite-time justify-content-around"></div>');
+	  var ulElement = $('<ul class="list-unstyled list-inline"></ul>');
+	  var li1 = $('<li class="pr-2"></li>');
+	  var a1 = $('<a class="recipe_info_data order-2"></a>');
+	  var i1 = $('<i class="far fa-comments pr-1"></i>').text(data.reviewlist.length);
+	  var li2 = $('<li class="pr-2"></li>');
+	  var a2 = $('<a class="recipe_info_data order-2"></a>');
+	  var i2 = $('<i class="fa-regular fa-eye"></i>').text(data.count);
+
+	  a1.append(i1);
+	  a2.append(i2);
+	  li1.append(a1);
+	  li2.append(a2);
+	  ulElement.append(li1);
+	  ulElement.append(li2);
+	  candidateListFavouriteTimeDiv.append(ulElement);
+	  candidateListOptionDiv.append(badge1);
+	  candidateListOptionDiv.append(brElement);
+	  candidateListOptionDiv.append(badge2);
+	  candidateListOptionDiv.append(badge3);
+	  candidateListTitleDiv.append(h5Element);
+	  candidateListTitleDiv.find('h5').append(linkElement);
+	  candidateListInfoDiv.append(candidateListTitleDiv);
+	  candidateListInfoDiv.append(candidateListOptionDiv);
+	  candidateListDetailsDiv.append(candidateListInfoDiv);
+	  candidateListDetailsDiv.append(candidateListFavouriteTimeDiv);
+	  candidateListImageDiv.append(imageElement);
+	  candidateListDiv.append(candidateListImageDiv);
+	  candidateListDiv.append(candidateListDetailsDiv);
+	  colDiv.append(candidateListDiv);
+
+	  $('#results2').append(colDiv);
+}
+
+const make_board_list = function(page){
+	const pagePerCount = 10;
+	const url = "/yorijori/board/ajax/list/" + page +"/"+ pagePerCount;
+	getAjaxNoParam(url, function (datas){
+		$('#board_tr').empty();
+		// Create a jQuery element for the outer div
+		console.log(datas);
+		$.each(datas, function(index, data) {
+			var trElement = $('<tr></tr>');
+			let commNo = make_board_div(data.commNo);
+			let cate =make_board_div(data.category);
+			let atag = make_board_adiv(data);
+			let count = make_board_div(data.count);
+			trElement.append(commNo);
+			trElement.append(cate);
+			trElement.append(atag);
+			trElement.append(count);
+			$('#board_tr').append(trElement);
+		})
+	});
+}
+const make_board_div = function(data){
+	  var tdElement = $('<td></td>');
+	  var spanElement = $('<span></span>').text(data);
+	  tdElement.append(spanElement);
+	  return tdElement
+}
+
+const make_board_adiv = function(data){
+		let url = "/yorijori/board/read/"+data.commNo+"/0";
+		var tdElement = $('<td></td>');
+	  var aElement = $('<a></a>').attr("href",url);
+	  var spanElement = $('<span></span>').text(data.title);
+	  aElement.append(spanElement);
+	  tdElement.append(aElement);
+	  return tdElement
+}
+
+
 
 //$(document).on('click', '.btn-container', function() {
 //	  // Ajax 요청
@@ -249,4 +416,115 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
 //	    }
 //	  });
 //	});
+
+
+
+function loadPage1(totalCount, pageSize, fn) {
+	let nowPage = 1;
+	let totalPages = totalCount / pageSize;
+
+	if (totalCount % pageSize > 0) {
+		totalPages++;
+	}
+
+	$('#pagination_div1').twbsPagination('destroy');
+	$('#pagination_div1').remove();
+	$('#pag1').html('<div id="pagination_div1" class="mb-3 pagination_div"></div>');
+
+	$('#pagination_div1').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : pageSize,
+		first : '<span sris-hidden="true">«</span>',
+		prev : "이전",
+		next : "다음",
+		last : '<span sris-hidden="true">»</span>',
+		initiateStartPageClick : false, // onPageClick 자동호출 방지
+		onPageClick : function(event, page) {
+			nowPage = page;
+			fn(page - 1);
+		}
+	});
+}
+
+function loadPage1(totalCount, pageSize, fn) {
+	let nowPage = 1;
+	let totalPages = totalCount / pageSize;
+
+	if (totalCount % pageSize > 0) {
+		totalPages++;
+	}
+
+	$('#pagination_div1').twbsPagination('destroy');
+	$('#pagination_div1').remove();
+	$('#pag1').html('<div id="pagination_div1" class="mb-3 pagination_div"></div>');
+
+	$('#pagination_div1').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : pageSize,
+		first : '<span sris-hidden="true">«</span>',
+		prev : "이전",
+		next : "다음",
+		last : '<span sris-hidden="true">»</span>',
+		initiateStartPageClick : false, // onPageClick 자동호출 방지
+		onPageClick : function(event, page) {
+			nowPage = page;
+			fn(page - 1);
+		}
+	});
+}
+
+
+function loadPage2(totalCount, pageSize, fn) {
+	let nowPage = 1;
+	let totalPages = totalCount / pageSize;
+
+	if (totalCount % pageSize > 0) {
+		totalPages++;
+	}
+
+	$('#pagination_div2').twbsPagination('destroy');
+	$('#pagination_div2').remove();
+	$('#pag2').html('<div id="pagination_div2" class="mb-3 pagination_div"></div>');
+
+	$('#pagination_div2').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : pageSize,
+		first : '<span sris-hidden="true">«</span>',
+		prev : "이전",
+		next : "다음",
+		last : '<span sris-hidden="true">»</span>',
+		initiateStartPageClick : false, // onPageClick 자동호출 방지
+		onPageClick : function(event, page) {
+			nowPage = page;
+			fn(page - 1);
+		}
+	});
+}
+
+function loadPage3(totalCount, pageSize, fn) {
+	let nowPage = 1;
+	let totalPages = totalCount / pageSize;
+
+	if (totalCount % pageSize > 0) {
+		totalPages++;
+	}
+
+	$('#pagination_div3').twbsPagination('destroy');
+	$('#pagination_div3').remove();
+	$('#pag3').html('<div id="pagination_div3" class="mb-3 pagination_div"></div>');
+
+	$('#pagination_div3').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : pageSize,
+		first : '<span sris-hidden="true">«</span>',
+		prev : "이전",
+		next : "다음",
+		last : '<span sris-hidden="true">»</span>',
+		initiateStartPageClick : false, // onPageClick 자동호출 방지
+		onPageClick : function(event, page) {
+			nowPage = page;
+			fn(page - 1);
+		}
+	});
+}
 

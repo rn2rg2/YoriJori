@@ -24,8 +24,6 @@ public interface RecipeDAO {
 	// 레시피 좋아요
 	void addWishList(UserWishlist userWishList);
 	
-	long countByRcpSeqByWishList(Recipe recipe);
-	void deleteWishList(Recipe recipeNo);
 	Recipe findById(int recipeNo);
 	
 	// 레시피의 대한 정보 조회
@@ -60,8 +58,12 @@ public interface RecipeDAO {
 	long countByNameContaining(String name);
 	List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId);
 	List<UserWishlist> mylikelist(UserInfo user);
-	List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int recipe);
 	long countByCategoryNo(Category categoryNo);
+	long countByRcpSeqByWishList(Recipe recipe, UserInfo userId);
+	void deleteWishList(Recipe recipeNo, UserInfo userId);
+	List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int RecipeNo);
+	long countRcpByUserId(UserInfo userId);
+	long countWishByUserId(UserInfo userId);
 
     
 

@@ -71,15 +71,21 @@ public class MyPageController {
 		List<Ingredients> ingrelist = ingreservice.selectAll();
 		
 		long count = recipeservice.countAll();
-		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 9, user);
-		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 9, user);
-		List<Board> myboardlist = boardservice.findmyboardlist(user);
+		long myrcpcount = recipeservice.countRcpByUserId(user);
+		long mywishcount = recipeservice.countWishByUserId(user);
+		long boardcount = boardservice.countByUserId(user);
+		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
+		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
+		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
 		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
 		// 모델에 데이터 추가
 		model.addAttribute("count", count);
 		model.addAttribute("mylist", mylist);
 		model.addAttribute("mylikelist", mylikelist);
 		model.addAttribute("myboardlist", myboardlist);
+		model.addAttribute("myrcpcount", myrcpcount);
+		model.addAttribute("mywishcount", mywishcount);
+		model.addAttribute("boardcount", boardcount);
 		
 		//System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
 		model.addAttribute("category", categorylist);
