@@ -85,5 +85,11 @@ public class ApiRecipeDAOImpl implements ApiRecipeDAO {
 	    ApiRecipe apirecipe = apiRecipeRepository.findById(rcpSeq).orElse(null);
 		return apirecipeqarepository.findByRcpSeq(apirecipe);
 	}
+
+	@Override
+	public List<ApiRecipeReview> getByRecipeNo(ApiRecipe recipe) {
+		// TODO Auto-generated method stub
+		return apirecipeqarepository.findByRcpSeq(recipe);
+	}
 	
 }

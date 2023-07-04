@@ -5,6 +5,8 @@ import java.util.List;
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
 import com.yorijori.foodcode.jpa.entity.ApiRecipeQa;
 import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
+import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserWishListApi;
 import com.yorijori.foodcode.service.ApiRecipeService;
 
@@ -27,6 +29,7 @@ public interface ApiRecipeDAO {
 
 	List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType);
     List<ApiRecipeReview> findByRcpSeq(int rcpSeq);
-	
+    List<ApiRecipeReview> getByRecipeNo(ApiRecipe recipe);
+
 
 }
