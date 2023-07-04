@@ -143,6 +143,7 @@ public class AdminController {
 		model.addAttribute("classlist2", list2);
 		model.addAttribute("date", LocalDate.now());
 		model.addAttribute("todayclass", count);
+		model.addAttribute("allclass",classService.countAll());
 		model.addAttribute("deleteclass", list2.size());
 		return "thymeleaf/admin/adminCookingclass";
 	}

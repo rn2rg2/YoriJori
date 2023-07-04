@@ -14,6 +14,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 import com.yorijori.foodcode.jpa.entity.Payment;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.repository.CookingClassDAO;
 
 @Service
@@ -129,5 +130,9 @@ public class CookingClassServiceImpl implements CookingClassService {
 	@Override
 	public CookingClass findById(Integer cookNo) {
 		return dao.findById(cookNo);
+	}
+	@Override
+	public List<CookingClass> findByUserId(UserInfo userId) {
+		return dao.findByUserId(userId);
 	}
 }

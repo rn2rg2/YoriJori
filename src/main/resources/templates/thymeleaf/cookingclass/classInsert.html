@@ -165,6 +165,13 @@
 
 						})
 	</script>
+	<style type="text/css">
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+  	-webkit-appearance: none;
+  	margin: 0;
+}	
+	</style>
 </th:block>
 <th:block layout:fragment="content">
 	<form action="/yorijori/cookingclass/in" method="post"
@@ -185,13 +192,13 @@
 					</div>
 
 					<div class="form-group form-insert inline">
-						<label>클래스 가격</label> <input type="text"
+						<label>클래스 가격</label> <input type="number"
 							class="insert-control price" id="price" placeholder=""
-							name="price"> 원
+							name="price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> 원
 					</div>
 					<div class="form-group form-insert inline">
-						<label>강의시간</label> <input type="text"
-							class="insert-control price" id="time" placeholder="" name="time">
+						<label>강의시간</label> <input type="number"
+							class="insert-control price" id="time" placeholder="" name="time" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 
 						분
 					</div>
@@ -285,9 +292,9 @@
 						<ul id="all-cur">
 							<li id="copy-cur"><input type="text"
 								class="insert-control cur" id="name" placeholder="재료 준비 및 손질"
-								name="curriList[0].curName" value=""> <input type="text"
+								name="curriList[0].curName" value=""> <input type="number"
 								class="insert-control time" id="time"
-								placeholder="10" name="curriList[0].curTime" value=""> 분</li>
+								placeholder="10" name="curriList[0].curTime" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> 분</li>
 						</ul>
 
 					</div>
