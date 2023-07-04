@@ -3,7 +3,10 @@ package com.yorijori.foodcode.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +28,7 @@ import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.CategoryService;
@@ -67,6 +71,7 @@ public class MyPageController {
 		if(user.getAllergy()!=null) {
 			allergy = user.getAllergy().split(",");
 		}
+		
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();
 		
@@ -74,8 +79,24 @@ public class MyPageController {
 		long myrcpcount = recipeservice.countRcpByUserId(user);
 		long mywishcount = recipeservice.countWishByUserId(user);
 		long boardcount = boardservice.countByUserId(user);
+		
 		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
+		for (Recipe recipe : mylist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
+		
 		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap2 = new HashMap<>();
+		for (Recipe recipe : mylikelist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap2.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap2", recipeNoAverageMap2);
 		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
 		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
 		// 모델에 데이터 추가
@@ -99,7 +120,39 @@ public class MyPageController {
 	public String readuser(Model model, @PathVariable String userId) {
 		System.out.println("readuserInfo 에서 pathvariable 체크 : "+userId);
 		UserInfo user = profileservice.readuser(userId);
-		System.out.println("readuser profile 에서 user 체크 : "+ user);
+		
+		long count = recipeservice.countAll();
+		long myrcpcount = recipeservice.countRcpByUserId(user);
+		long mywishcount = recipeservice.countWishByUserId(user);
+		long boardcount = boardservice.countByUserId(user);
+		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
+		for (Recipe recipe : mylist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
+		
+		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap2 = new HashMap<>();
+		for (Recipe recipe : mylikelist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap2.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap2", recipeNoAverageMap2);
+		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
+		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
+		// 모델에 데이터 추가
+		model.addAttribute("count", count);
+		model.addAttribute("mylist", mylist);
+		model.addAttribute("mylikelist", mylikelist);
+		model.addAttribute("myboardlist", myboardlist);
+		model.addAttribute("myrcpcount", myrcpcount);
+		model.addAttribute("mywishcount", mywishcount);
+		model.addAttribute("boardcount", boardcount);
+		
 		model.addAttribute("readuserInfo", user);
 		
 		return "thymeleaf/mypage/readuserInfo";		

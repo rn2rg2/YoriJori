@@ -128,9 +128,9 @@
 						<b>레시피 작성자</b>
 					</div>
 					<div class="view_profile" style="display: flex">
-						<div class="profile_pic" style="width: 5em;">
+						<div class="profile_pic">
 							<a th:href="@{'/mypage/profile/read/' + ${data.userId.userId}}">
-								<img style="border-radius: 5em;" th:src="@{'/data/user/' + ${data.userId.imgPath}}">
+								<img style="border-radius: 5em; width: 5em; height: 4.5em" th:src="@{'/data/user/' + ${data.userId.imgPath}}">
 							</a>
 						</div>
 						<div class="profile_cont" style="margin-left: 2em;">
