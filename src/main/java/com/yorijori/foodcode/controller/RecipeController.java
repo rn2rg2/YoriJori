@@ -244,12 +244,21 @@ public class RecipeController {
 			long count = recipeService.countAll();
 			// 페이지에 해당하는 레시피 목록 조회
 			List<Recipe> list = recipeService.selectListByPage(pageNo, 9);
-			System.out.println(list);
-			// 모델에 데이터 추가
-			model.addAttribute("count", count);
+			
+	        // 각 레시피 별 평균 평점 조회
+	        Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
+ 	        for (Recipe recipe : list) {
+	            List<RecipeReview> reviews = recipeService.getByRecipeNo(recipe);
+	            BigDecimal average = recipeService.USERgetReviewAverage(reviews);
+	            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
+	        }
+ 	        
+ 	        System.out.println(recipeNoAverageMap);
 			model.addAttribute("type", type);
+	        model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
 			model.addAttribute("list", list);
 			model.addAttribute("pageNo", pageNo);
+			
 		} else { // server recipea
 			long count = apiRecipeService.countAll();
 			// 페이지에 해당하는 서버 레시피 목록 조회
@@ -262,7 +271,6 @@ public class RecipeController {
 		}
 		return "thymeleaf/recipe/recipelist";
 	}
-
 	// 레시피 뷰
 	@RequestMapping("/view/{type}/{rcpSeq}")
 	public String getViewPage(Model model, @PathVariable String type, @PathVariable int rcpSeq, HttpServletRequest req,
@@ -274,103 +282,79 @@ public class RecipeController {
 		if (type.equals("server")) { // 서버 레시피 detail view
 			// 서버 레시피의 데이터 조회
 			ApiRecipe data = apiRecipeService.selectByRcpSeq(rcpSeq);
-			List<ApiRecipeReview> review = apiRecipeService.findByRcpSeq(rcpSeq);
+			List <ApiRecipeReview> review = apiRecipeService.findByRcpSeq(rcpSeq);
+			
+	        BigDecimal average = recipeService.APIgetReviewAverage(review);
 
-			// 평균값 계산
-			BigDecimal sum = BigDecimal.ZERO;
-			for (ApiRecipeReview datareview : review) {
-				sum = sum.add(datareview.getStar());
-			}
-
-			// 평균값 계산
-			BigDecimal average;
-			if (review.size() > 0) {
-				BigDecimal size = BigDecimal.valueOf(review.size());
-				average = sum.divide(size, 2, RoundingMode.HALF_UP);
-			} else {
-				average = BigDecimal.ZERO;
-			}
-
+			
 			System.out.println(review);
 			// 모델에 데이터 추가
 			model.addAttribute("review_average", average);
 			model.addAttribute("data", data);
 			model.addAttribute("type", type);
 			model.addAttribute("rcpSeq", rcpSeq);
-			model.addAttribute("review", review);
+			model.addAttribute("review",review);
 			// 조회수 증가
 			viewCountUp(rcpSeq, type, req, res);
 			// 뷰 페이지 설정
 			view = "thymeleaf/recipe/serverRecipeView";
-		} else { // user recipe detail view
-			// 사용자 레시피의 데이터 조회
-			Recipe data = recipeService.select(rcpSeq);
-			// 사용자 정보와 관련된 데이터 조회
-			UserInfo userId = data.getUserId();
-			List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
-			List<RecipeReview> datareview = recipeService.reviewselect(rcpSeq);
-			// 질문
-			List<RecipeQa> dataq = recipeService.QAselect(rcpSeq);
-			List<RecipeQa> depthLevelZeroList = new ArrayList<>();
-			List<RecipeQa> depthLevelOneList = new ArrayList<>();
-			List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);
-			List<Ingredients> idList = new ArrayList<>();
+			} else { // user recipe detail view
+				// 사용자 레시피의 데이터 조회
+				Recipe data = recipeService.select(rcpSeq);
+				// 사용자 정보와 관련된 데이터 조회
+				UserInfo userId = data.getUserId();
+				List<RecipeImage> dataimg = recipeService.imgselect(rcpSeq);
+				List<RecipeReview> datareview = recipeService.reviewselect(rcpSeq);
+				// 질문
+				List<RecipeQa> dataq = recipeService.QAselect(rcpSeq);
+				List<RecipeQa> depthLevelZeroList = new ArrayList<>();
+				List<RecipeQa> depthLevelOneList = new ArrayList<>();
+				List<RecipeIngredients> ingr = recipeService.selectingr(rcpSeq);
+				List<Ingredients> idList = new ArrayList<>();
+	
+		        BigDecimal average = recipeService.USERgetReviewAverage(datareview);
 
-			for (RecipeIngredients recipeIngredients : ingr) {
-				Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
-				idList.add(ingr2);
-			}
-			// 필터링 질문자 0과 1
-			// 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
-			for (RecipeQa item : dataq) {
-				if (item.getDepthLevel() == 0) {
-					depthLevelZeroList.add(item);
-					System.out.println(item);
-				} else if (item.getDepthLevel() == 1) {
-					depthLevelOneList.add(item);
-					System.out.println(item);
-
+				for (RecipeIngredients recipeIngredients : ingr) {
+					Ingredients ingr2 = ingredientservice.selectByMatlNo(recipeIngredients.getMatlNo());
+					idList.add(ingr2);
 				}
+				// 필터링 질문자 0과 1
+				// 이유 --> 타임리프로 depthLevel == 1 해도 0과1이 똑같이 출력되서 구분
+				for (RecipeQa item : dataq) {
+					if (item.getDepthLevel() == 0) {
+						depthLevelZeroList.add(item);
+						System.out.println(item);
+					} else if (item.getDepthLevel() == 1) {
+						depthLevelOneList.add(item);
+						System.out.println(item);
+	
+					}
+				}
+
+				// 모델에 데이터 추가
+				// 게시물 상세내용
+				model.addAttribute("data", data);
+				// 게시물 이미지 및 레시피방법
+				model.addAttribute("dataimg", dataimg);
+				// 사용저 이름
+				model.addAttribute("user", data.getUserId());
+				// 게시물 리뷰
+				model.addAttribute("review", datareview);
+				model.addAttribute("reviewcount", datareview.size());
+				
+				model.addAttribute("review_average", average);
+				model.addAttribute("dataq", depthLevelZeroList);
+				model.addAttribute("dataa", depthLevelOneList);
+				model.addAttribute("rcpSeq", rcpSeq);
+				model.addAttribute("ingrList", idList);
+				System.out.println("TESTTEST" + dataimg);
+	
+				viewCountUp(rcpSeq, type, req, res);
+	
+				view = "thymeleaf/recipe/userRecipeView";
 			}
-
-			BigDecimal sum = BigDecimal.ZERO;
-			for (RecipeReview review : datareview) {
-				sum = sum.add(review.getStar());
-			}
-
-			// 평균값 계산
-			BigDecimal average;
-			if (datareview.size() > 0) {
-				BigDecimal size = BigDecimal.valueOf(datareview.size());
-				average = sum.divide(size, 2, RoundingMode.HALF_UP);
-			} else {
-				average = BigDecimal.ZERO;
-			}
-
-			// 모델에 데이터 추가
-			// 게시물 상세내용
-			model.addAttribute("data", data);
-			// 게시물 이미지 및 레시피방법
-			model.addAttribute("dataimg", dataimg);
-			// 사용저 이름
-			model.addAttribute("user", data.getUserId());
-			// 게시물 리뷰
-			model.addAttribute("review", datareview);
-			model.addAttribute("reviewcount", datareview.size());
-
-			model.addAttribute("review_average", average);
-			model.addAttribute("dataq", depthLevelZeroList);
-			model.addAttribute("dataa", depthLevelOneList);
-			model.addAttribute("rcpSeq", rcpSeq);
-			model.addAttribute("ingrList", idList);
-			System.out.println("TESTTEST" + dataimg);
-
-			viewCountUp(rcpSeq, type, req, res);
-
-			view = "thymeleaf/recipe/userRecipeView";
+			return view;
 		}
-		return view;
-	}
 
 	// server recipe count
 	@RequestMapping("/list/servercount")

@@ -89,4 +89,16 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectall(state);
 	}
 
+	@Override
+	public List<Long> countByUserRole(int startRole, int endRole) {
+		// TODO Auto-generated method stub
+		return memberDAO.countByUserRole(startRole, endRole);
+	}
+
+	@Override
+	public List<Long> countByUserPoint(int startPoint, int endPoint) {
+		// TODO Auto-generated method stub
+		return memberDAO.countByUserPoint(startPoint, endPoint);
+	}
+
 }

@@ -21,7 +21,8 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     boolean existsByUserId(String userId);
     boolean existsByNickname(String nickname);
     long countByRole(String role);
-    
+    long countByPoint(int point);
+
     
     Page<UserInfo> findAllByRole( Pageable pageable, String role);
     List<UserInfo> findByState(int state);

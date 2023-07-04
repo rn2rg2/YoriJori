@@ -66,6 +66,7 @@ public interface RecipeDAO {
 	long countRcpByUserId(UserInfo userId);
 	long countWishByUserId(UserInfo userId);
 	List<MonthlyRcpVO> getMonthlyData();
+    List<RecipeReview> getByRecipeNo(Recipe recipe);
 
     
 

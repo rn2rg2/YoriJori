@@ -284,8 +284,11 @@
 												<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}" th:data-userid="${data.userId.userId}"></div>
 												<br>
 												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
-												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
-			
+												<th:block>
+												    <div class="badge badge-danger px-3 rounded-pill font-weight-normal">
+												       ★[[${recipeNoAverageMap.get(data.recipeNo)}]]점
+												    </div>
+												</th:block>
 											</div>
 										</div>
 										<div class="candidate-list-favourite-time justify-content-around">
@@ -425,9 +428,6 @@
 			let value = $(data).attr('value');
 			let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
 			//setTimeout(() => window.location.href=heartUrl, 2000);
-			getAjaxNoParam(heartUrl, function(data){
-				console.log(data);
-			})
 			let clickdata = $(data);
 			console.log(clickdata);
 			if (clickdata.hasClass('red_heart')) {
