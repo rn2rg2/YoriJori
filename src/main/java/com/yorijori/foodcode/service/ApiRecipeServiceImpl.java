@@ -75,4 +75,10 @@ public class ApiRecipeServiceImpl implements ApiRecipeService {
 		
 	}
 
+	@Override
+	public List<ApiRecipeReview> getAPIByRecipeNo(ApiRecipe recipe) {
+		// TODO Auto-generated method stub
+		return apiRecipeDAO.getByRecipeNo(recipe);
+	}
+
 }

@@ -262,10 +262,19 @@ public class RecipeController {
 		} else { // server recipea
 			long count = apiRecipeService.countAll();
 			// 페이지에 해당하는 서버 레시피 목록 조회
+			
+
 			List<ApiRecipe> list = apiRecipeService.getServerRecipe(pageNo, 9);
+	        Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
+ 	        for (ApiRecipe recipe : list) {
+	            List<ApiRecipeReview> reviews = apiRecipeService.getAPIByRecipeNo(recipe);
+	            BigDecimal average = recipeService.APIgetReviewAverage(reviews);
+	            recipeNoAverageMap.put(recipe.getRcpSeq(), average);
+	        }
 			// 모델에 데이터 추가
 			model.addAttribute("count", count);
 			model.addAttribute("type", type);
+	        model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
 			model.addAttribute("list", list);
 			model.addAttribute("pageNo", pageNo);
 		}

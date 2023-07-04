@@ -23,4 +23,6 @@ public interface ApiRecipeService {
 
 	List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType);
 	List<ApiRecipeReview> findByRcpSeq(int rcpSeq);
+    List<ApiRecipeReview> getAPIByRecipeNo(ApiRecipe recipe);
+
 }
