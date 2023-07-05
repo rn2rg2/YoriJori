@@ -3,9 +3,10 @@ package com.yorijori.foodcode.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,57 +23,148 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yorijori.foodcode.common.FileUploadLogic;
+import com.yorijori.foodcode.dto.UserInfoNicknameDTO;
+import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
+import com.yorijori.foodcode.jpa.entity.Recipe;
+import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.ProfileService;
+import com.yorijori.foodcode.service.RecipeService;
 
 
 @Controller
 @RequestMapping("/mypage")
-
 public class MyPageController {
-
-
-
 	ProfileService profileservice;
 	FileUploadLogic fileuploadlogic;
 	CategoryService categoryservice;
 	IngredientService ingreservice;
+	RecipeService recipeservice;
+	BoardService boardservice;
 
 	 @Autowired
 	 public MyPageController(ProfileService profileservice, FileUploadLogic fileuploadlogic, 
-			 CategoryService categoryservice, IngredientService ingreservice) {
+			 CategoryService categoryservice, IngredientService ingreservice, RecipeService recipeservice
+			 , BoardService boardservice) {
 		super();
 		this.profileservice = profileservice;
 		this.fileuploadlogic = fileuploadlogic;
 		this.categoryservice = categoryservice;
 		this.ingreservice = ingreservice;
+		this.recipeservice = recipeservice;
+		this.boardservice = boardservice;
 	}
 
 	@RequestMapping("/profile")
 	public String profile(Model model, HttpSession session) {
 		UserInfo user = (UserInfo)session.getAttribute("userInfo");
-		String[] prefer = user.getPrefer().split(",");
-		//List<String> preferList = Arrays.asList(prefer);
+		String[] prefer = null;
+		String[] allergy = null;
+		if(user.getPrefer()!=null) {
+			prefer = user.getPrefer().split(",");
+		}
+		if(user.getAllergy()!=null) {
+			allergy = user.getAllergy().split(",");
+		}
+		
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();
-		System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
+		
+		long count = recipeservice.countAll();
+		long myrcpcount = recipeservice.countRcpByUserId(user);
+		long mywishcount = recipeservice.countWishByUserId(user);
+		long boardcount = boardservice.countByUserId(user);
+		
+		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
+		for (Recipe recipe : mylist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
+		
+		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap2 = new HashMap<>();
+		for (Recipe recipe : mylikelist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap2.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap2", recipeNoAverageMap2);
+		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
+		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
+		// 모델에 데이터 추가
+		model.addAttribute("count", count);
+		model.addAttribute("mylist", mylist);
+		model.addAttribute("mylikelist", mylikelist);
+		model.addAttribute("myboardlist", myboardlist);
+		model.addAttribute("myrcpcount", myrcpcount);
+		model.addAttribute("mywishcount", mywishcount);
+		model.addAttribute("boardcount", boardcount);
+		
+		//System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
 		model.addAttribute("category", categorylist);
 		model.addAttribute("prefer", prefer);
 		model.addAttribute("ingredient", ingrelist);
+		model.addAttribute("allergy", allergy);
 		return "thymeleaf/mypage/my_user_info";
 	}
-
+	
+	@RequestMapping("/profile/read/{userId}")
+	public String readuser(Model model, @PathVariable String userId) {
+		System.out.println("readuserInfo 에서 pathvariable 체크 : "+userId);
+		UserInfo user = profileservice.readuser(userId);
+		
+		long count = recipeservice.countAll();
+		long myrcpcount = recipeservice.countRcpByUserId(user);
+		long mywishcount = recipeservice.countWishByUserId(user);
+		long boardcount = boardservice.countByUserId(user);
+		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
+		for (Recipe recipe : mylist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
+		
+		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
+		Map<Integer, BigDecimal> recipeNoAverageMap2 = new HashMap<>();
+		for (Recipe recipe : mylikelist) {
+            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
+            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
+            recipeNoAverageMap2.put(recipe.getRecipeNo(), average);
+        }
+		model.addAttribute("recipeNoAverageMap2", recipeNoAverageMap2);
+		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
+		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
+		// 모델에 데이터 추가
+		model.addAttribute("count", count);
+		model.addAttribute("mylist", mylist);
+		model.addAttribute("mylikelist", mylikelist);
+		model.addAttribute("myboardlist", myboardlist);
+		model.addAttribute("myrcpcount", myrcpcount);
+		model.addAttribute("mywishcount", mywishcount);
+		model.addAttribute("boardcount", boardcount);
+		
+		model.addAttribute("readuserInfo", user);
+		
+		return "thymeleaf/mypage/readuserInfo";		
+	}
+	
 	@PostMapping(value="/deleteUser") //produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String deleteuser(HttpSession session) {
 	    UserInfo user = (UserInfo) session.getAttribute("userInfo");
 	    user.setState(0);
 	    profileservice.updatestate(user);
-	    System.out.println("deleteUser 확인 : "+ user);
+	    //System.out.println("deleteUser 확인 : "+ user);
 	    if (session != null) {
 	        session.invalidate();
 	    }
@@ -86,6 +179,28 @@ public class MyPageController {
 //	    return categorylist;
 //	}
 	
+	@PostMapping("/changepass")
+	public String changepass(HttpSession session, String newpass) {
+		UserInfo user =(UserInfo)session.getAttribute("userInfo");
+		user.setPass(newpass);
+		user = profileservice.updatepassword(user);
+		return "redirect:/mypage/profile";
+	}
+	
+	@PostMapping(value= "checknickname", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public UserInfoNicknameDTO checknickname(String nickname) {
+		UserInfo user = new UserInfo();
+		user = profileservice.checknickname(nickname);
+		UserInfoNicknameDTO userDTO = new UserInfoNicknameDTO();
+		System.out.println("닉네임 체크할때 유저 값: " +user);
+		if(user != null) { //유저 중복
+			userDTO.setNickname(user.getNickname());
+		}else {
+			userDTO.setNickname("1");
+		}
+		return userDTO;
+	}
 	
 	@PostMapping("/updateprofileimage")
 	public String updateprofileimage(HttpSession session, MultipartFile profilephoto, String cookingpurpose) {
@@ -121,15 +236,23 @@ public class MyPageController {
 	}
 
 	@PostMapping("/updateprofile")
-	public String updateProfile(HttpSession session, String Email, String Nickname
-			, @RequestParam("userprefer") List<String> prefer) {
+	public String updateProfile(HttpSession session, String Email, String Nickname,
+            @RequestParam(required = false) List<String> userprefer,
+            @RequestParam(required = false) List<String> userallergy) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
-		//System.out.println("유저정보 업데이트 하기 ㅋㅋ : "+ prefer); 
-		String setprefer = String.join(",", prefer);
-		//System.out.println("유저 정보 저장할 prefer "+ joinedString);
+		String setprefer = null;
+		String setallergy = null;
+		if(userprefer != null) {
+			setprefer = String.join(",", userprefer);
+		}
+		if(userallergy != null) {
+			setallergy = String.join(",", userallergy);
+		}
 		user.setPrefer(setprefer);
+		user.setAllergy(setallergy);
 		user.setEmail(Email);
 		user.setNickname(Nickname);
+		System.out.println("업데이트할 유저 정보"+user);
 		user = profileservice.updateprofile(user);
 		session.setAttribute("userInfo", user);
 		return "redirect:/mypage/profile";
@@ -145,9 +268,6 @@ public class MyPageController {
 		return "thymeleaf/mypage/commentlist";
 	}
 
-	@RequestMapping("/chat")
-	public String chat() {
-		return "thymeleaf/mypage/chat";
-	}
+	
 
 }

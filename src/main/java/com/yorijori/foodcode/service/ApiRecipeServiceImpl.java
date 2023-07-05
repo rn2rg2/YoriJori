@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeQa;
+import com.yorijori.foodcode.jpa.entity.ApiRecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishListApi;
 import com.yorijori.foodcode.repository.ApiRecipeDAO;
@@ -59,6 +61,24 @@ public class ApiRecipeServiceImpl implements ApiRecipeService {
 	@Override
 	public List<ApiRecipe> selectListByPageAndSort(int page, int pagePerCount, String sortType){
 		return apiRecipeDAO.selectListByPageAndSort(page, pagePerCount, sortType);
+	}
+
+	@Override
+	public List<ApiRecipeReview> findByRcpSeq(int rcpSeq) {
+		// TODO Auto-generated method stub
+		return apiRecipeDAO.findByRcpSeq(rcpSeq);
+	}
+
+	@Override
+	public void reviewsave(ApiRecipeReview apirecipereview) {
+		apiRecipeDAO.reviewsave(apirecipereview);
+		
+	}
+
+	@Override
+	public List<ApiRecipeReview> getAPIByRecipeNo(ApiRecipe recipe) {
+		// TODO Auto-generated method stub
+		return apiRecipeDAO.getByRecipeNo(recipe);
 	}
 
 }

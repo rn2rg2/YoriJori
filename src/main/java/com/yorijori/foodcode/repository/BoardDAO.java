@@ -3,6 +3,7 @@ package com.yorijori.foodcode.repository;
 import java.util.List;
 
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 public interface BoardDAO {
 	//게시물등록
@@ -33,7 +34,11 @@ public interface BoardDAO {
 
 	public long getCountByCategorysAndState(String category);
 	
-	List<Board> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
+
+	public List<Board> findmyboardlist(UserInfo user);
+
+	long countByUserId(UserInfo user);
+	List<Board> selectByPageByUser(int pageNo, int pagePerCount, UserInfo user);
 
 }
 

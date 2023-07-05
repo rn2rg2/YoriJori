@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/admin/adminLayout}">
+<th:block layout:fragment="content">
+
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+
+
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">레시피 관리</h1>
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item active">레시피 관리</li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		<!-- Main content -->
+		<div class="container-fluid">
+			<!-- Small boxes (Stat box) -->
+			<div class="row">
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3>[[${apicount}]]</h3>
+
+							<p>서버 레시피 수</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-success">
+						<div class="inner">
+							<h3>[[${rcpcount}]]</h3>
+
+							<p>유저 레시피 수</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-stats-bars"></i>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3>[[${ingrecount}]]</h3>
+
+							<p>재료 수</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-person-add"></i>
+						</div>
+					</div>
+				</div>
+				<!-- ./col -->
+
+			</div>
+		</div>
+		<!-- Main content -->
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3">
+						<!-- DONUT CHART -->
+						<div class="card card-danger">
+							<div class="card-header">
+								<h3 class="card-title">음식 용도</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<canvas id="donutChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+					<div class="col-lg-3">
+						<!-- DONUT CHART -->
+						<div class="card card-danger">
+							<div class="card-header">
+								<h3 class="card-title">국가별</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<canvas id="donutChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+					<!-- /.col-md-6 -->
+					<div class="col-lg-3">
+						<!-- DONUT CHART -->
+						<div class="card card-danger">
+							<div class="card-header">
+								<h3 class="card-title">조리법</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<canvas id="donutChart3" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+					<div class="col-lg-3">
+						<!-- DONUT CHART -->
+						<div class="card card-danger">
+							<div class="card-header">
+								<h3 class="card-title">식품별</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<canvas id="donutChart4" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+
+					</div>
+					<!-- /.col-md-6 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content -->
+		<!-- Main content -->
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-6">
+						<!-- LINE CHART -->
+						<div class="card card-info">
+							<div class="card-header">
+								<h3 class="card-title">월간 유저 레시피 등록 수</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="chart">
+									<canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+								</div>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.content-wrapper -->
+	<script th:inline="javascript">
+		$(document).ready(function() {
+			$('#article-management').addClass('active');
+		})
+
+		//-------------
+		//- DONUT CHART -
+		//-------------
+		// Get context with jQuery - using jQuery's .get() method.
+		var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
+		var donutChartCanvas2 = $('#donutChart2').get(0).getContext('2d')
+		var donutChartCanvas3 = $('#donutChart3').get(0).getContext('2d')
+		var donutChartCanvas4 = $('#donutChart4').get(0).getContext('2d')
+		var labels1 = [ '파티용', '식사용', '후식용', '술안주용', '도시락'];
+		var labels2 = [ '한식', '중식', '일식', '양식'];
+		var labels3 = [ '찜', '끓임', '부침', '조림', '튀김','굽기'];
+		var labels4 = [ '분식', '고기', '볶음', '찌개류', '면류'];
+		
+		var data1 = [[${purposelist}]]
+		var data2 = [[${countrylist}]]
+		var data3 = [[${typelist}]]
+		var data4 = [[${foodlist}]]
+		
+		var monthlydata = [[${monthlylist}]]
+		console.log(monthlydata);
+		
+		var donutOptions = {
+				maintainAspectRatio : false,
+				responsive : true,
+			}
+		
+		var donutData1 = {
+			labels : labels1,
+			datasets : [ {
+				data : data1,
+				backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+			} ]
+		}
+		
+		var donutData2 = {
+				labels : labels2,
+				datasets : [ {
+					data : data2,
+					backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+				} ]
+			}
+		
+		var donutData3 = {
+				labels : labels3,
+				datasets : [ {
+					data : data3,
+					backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+				}]
+			}
+		
+		var donutData4 = {
+				labels : labels4,
+				datasets : [ {
+					data : data4,
+					backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+				} ]
+			}
+		
+		
+		
+		new Chart(donutChartCanvas1, {
+			type : 'doughnut',
+			data : donutData1,
+			options : donutOptions
+		})
+		
+		new Chart(donutChartCanvas2, {
+			type : 'doughnut',
+			data : donutData2,
+			options : donutOptions
+		})
+		
+		new Chart(donutChartCanvas3, {
+			type : 'doughnut',
+			data : donutData3,
+			options : donutOptions
+		})
+		
+		new Chart(donutChartCanvas4, {
+			type : 'doughnut',
+			data : donutData4,
+			options : donutOptions
+		})
+		
+		  //-------------
+	    //- LINE CHART -
+	    //--------------
+	    var areaChartOptions = {
+	      maintainAspectRatio : false,
+	      responsive : true,
+	      legend: {
+	        display: false
+	      },
+	      scales: {
+	        xAxes: [{
+	          gridLines : {
+	            display : false,
+	          }
+	        }],
+	        yAxes: [{
+	          gridLines : {
+	            display : false,
+	          }
+	        }]
+	      }
+	    }
+		
+		let monthdata = [];
+		console.log(monthlydata[0].mon)
+		for (let i = 1 ; i <= 12; i++){
+			let val = 0;
+			for ( let j = 0 ; j < monthlydata.length; j ++){
+				if ( i == monthlydata[j].mon){
+					val = monthlydata[j].value;
+				} else {
+					continue;
+				}
+			}
+			if ( val == 0 ){
+				monthdata.push(0);
+			} else {
+				monthdata.push(val);
+			}
+		}
+		console.log(monthdata);
+		
+		
+		var areaChartData = {
+		      labels  : ['1월', '2월', '3월', '4월', '5월', '6월', '7월','8월','9월','10월','11월','12월'],
+		      datasets: [
+		        {
+		          label               : '유저 레시피 등록 수',
+		          backgroundColor     : 'rgba(60,141,188,0.9)',
+		          borderColor         : 'rgba(60,141,188,0.8)',
+		          pointRadius          : false,
+		          pointColor          : '#3b8bba',
+		          pointStrokeColor    : 'rgba(60,141,188,1)',
+		          pointHighlightFill  : '#fff',
+		          pointHighlightStroke: 'rgba(60,141,188,1)',
+		          data                : monthdata
+		        }
+		      ]
+		    }
+	    
+	    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+	    var lineChartOptions = $.extend(true, {}, areaChartOptions)
+	    var lineChartData = $.extend(true, {}, areaChartData)
+	    lineChartData.datasets[0].fill = false;
+	    //lineChartData.datasets[1].fill = false;
+	    lineChartOptions.datasetFill = false
+
+	    var lineChart = new Chart(lineChartCanvas, {
+	      type: 'line',
+	      data: lineChartData,
+	      options: lineChartOptions
+	    })
+		
+		
+	</script>
+</th:block>
+</html>

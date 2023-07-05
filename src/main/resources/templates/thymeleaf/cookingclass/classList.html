@@ -16,6 +16,7 @@
 				$(this).addClass("active");
 
 			});
+			$(".options").children(":first").attr("class","option active")
 		})
 	</script>
 </th:block>
@@ -28,7 +29,7 @@
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
-						<img th:src="${top5.userId.imgPath}">
+						<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${top5.userId.imgPath}|">
 					</div>
 					<div class="info" th:onclick="|location.href='@{/cookingclass/read(cookNo=${top5.cookNo})}'|">
 						<div class="main" th:text="${top5.userId.nickname}"></div>
@@ -70,6 +71,10 @@
 									<input type="checkbox" class="custom-control-input" id="dateposted3">
 									<label class="custom-control-label" for="dateposted3">신청자 많은 순</label>
 								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="dateposted3">
+									<label class="custom-control-label" for="dateposted4">최신 순</label>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -103,66 +108,7 @@
 					</div>
 
 
-					<div class="widget">
-						<div class="widget-title widget-collapse">
-							<h6>Experience</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience">
-								<i class="fas fa-chevron-down"></i>
-							</a>
-						</div>
-						<div class="collapse show" id="experience">
-							<div class="widget-content">
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="experience2">
-									<label class="custom-control-label" for="experience2">1년전 게시물</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="experience3">
-									<label class="custom-control-label" for="experience3">2년전 게시물</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="experience4">
-									<label class="custom-control-label" for="experience4">3년전 게시물</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="experience5">
-									<label class="custom-control-label" for="experience5">4년전 게시물</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="widget">
-						<div class="widget-title widget-collapse">
-							<h6>좋아요</h6>
-							<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary">
-								<i class="fas fa-chevron-down"></i>
-							</a>
-						</div>
-						<div class="collapse show" id="Offeredsalary">
-							<div class="widget-content">
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="Offeredsalary1">
-									<label class="custom-control-label" for="Offeredsalary1">10k - 20k</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="Offeredsalary2">
-									<label class="custom-control-label" for="Offeredsalary2">20k - 30k</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="Offeredsalary3">
-									<label class="custom-control-label" for="Offeredsalary3">30k - 40k</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="Offeredsalary4">
-									<label class="custom-control-label" for="Offeredsalary4">40k - 50k</label>
-								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="Offeredsalary5">
-									<label class="custom-control-label" for="Offeredsalary5">50k - 60k</label>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 
 					<div class="widget border-0">
 						<div class="widget-add">
@@ -215,7 +161,7 @@
 								</div>
 								<div class="candidate-list-favourite-time">
 									<a class="candidate-list-favourite order-2" href="#프로필조회?">
-										<img th:src="${class.userId.imgPath}">
+										<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${class.userId.imgPath}|">
 									</a>
 									<span class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}원|"></span></span>
 
@@ -230,14 +176,9 @@
 				</div>
 				<div class="row">
 					<div class="col-12 text-center mt-4 mt-sm-5">
-						<ul class="pagination justify-content-center mb-0">
-							<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">다음</a></li>
-						</ul>
+						<div id="pag">
+								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -245,6 +186,34 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
-
+	<script th:inline="javascript">
+			// 현재 페이지
+			let currentPage = [[${pageNo}]];
+			// 한번에 보여줄 페
+			let pagePerCount = [[${pagePerCount}]];
+			// 게시물  카운트
+			let boardcount = [[${count}]];
+			
+			//불러왔을때 총 게시물 / pagePerCount
+			let totalPages = 1;
+			if ( boardcount > pagePerCount ){
+				totalPages = Math.ceil( boardcount /pagePerCount )
+			}
+			// pagination 들어갈 div
+			const pagination = $('#pagination_div');
+			
+			$(document).ready(function(){
+				
+				//pagePerCount 페이지별 눌렀을 때 click()
+				//pagePerCount 변수로 지정
+				//pagePerCount = 바뀌는 값
+				//window.location.href = "/yorijori/board/list/0/5";
+				makePagination(pagination, totalPages, pagePerCount, currentPage + 1, move_list);
+			});
+			const move_list = function(page) {
+				let url = "/yorijori/cookingclass/list/"+ page + "/" + pagePerCount;
+				window.location.href = url;
+			}
+			</script>
 </th:block>
 </html>

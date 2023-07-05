@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +27,11 @@ import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
+import com.yorijori.foodcode.jpa.entity.SearchLog;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardCommentService;
 import com.yorijori.foodcode.service.BoardService;
+import com.yorijori.foodcode.service.SearchLogService;
 
 @Controller
 @RequestMapping("/board")
@@ -40,13 +40,15 @@ public class BoardController {
 	BoardService service;
 	BoardCommentService commentService;
 	FileUploadLogic fileUploadLogic;
+	SearchLogService searchservice;
 	
 	@Autowired
-	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic) {
+	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic, SearchLogService searchservice) {
 		super();
 		this.service = service;
 		this.commentService = commentService;
 		this.fileUploadLogic = fileUploadLogic;
+		this.searchservice = searchservice;
 	}
 	
 //	//게시물 전체보기
@@ -100,6 +102,10 @@ public class BoardController {
 	    if (searchData != null && !searchData.isEmpty()) {
 	    	count = service.getCountByContentsAndState(searchData);
 	    	list = service.selectByPageAndpagePerCountSearch(pageNo, pagePerCount, searchData);
+	    	
+	    	SearchLog searchlog = new SearchLog();
+			searchlog.setKeyword(searchData);
+			searchservice.insertLog(searchlog);
 	    	
 	    	model.addAttribute("boardlist", list);
 		    model.addAttribute("count", count);
@@ -297,5 +303,13 @@ public class BoardController {
 	        response.addCookie(newCookie);
 	    }*/
 	//}
+	
+	@GetMapping("/ajax/list/{page}/{pagePerCount}")
+	@ResponseBody 
+	public List<Board> getListByUserId(@PathVariable int page,@PathVariable int pagePerCount, HttpSession session){
+		UserInfo user = (UserInfo) session.getAttribute("userInfo");
+		List<Board> list = service.selectByPageByUser(page, pagePerCount, user);
+		return list;
+	}
 
 }

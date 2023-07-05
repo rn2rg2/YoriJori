@@ -13,9 +13,10 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 
 public interface UserWishlistRepository extends JpaRepository<UserWishlist, Integer> {
-	void deleteByRecipeNo(Recipe recipeNo);
-	long countByRecipeNo(Recipe recipeNo);
+	void deleteByRecipeNoAndUserId(Recipe recipeNo, UserInfo user);
+	long countByRecipeNoAndUserId(Recipe recipeNo, UserInfo user);
 	Page<UserWishlist> findAllByUserId(UserInfo userId, Pageable pageable);
+	List<UserWishlist> findByUserId(UserInfo userId);
 	
 	@Query(value="SELECT DISTINCT j.*"
 			+ "FROM user_wishlist uw "
@@ -37,4 +38,6 @@ public interface UserWishlistRepository extends JpaRepository<UserWishlist, Inte
 			"WHERE uw.user_id = :userId " + 
 			"AND j.recipe_no = :recipeNo", nativeQuery = true)
 	List<String> findRcpAndCategory(@Param("userId") String userId, @Param("recipeNo") int recipeNo);
+	
+	long countByUserId(UserInfo userId);
 }

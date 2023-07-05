@@ -23,9 +23,11 @@
 				<ul>
 					<li><a th:text="${session.userInfo.name}"></a></li>
 					<li><a href="/yorijori/member/logout">로그아웃</a></li>
-					
-					<!-- <li><a href="/yorijori/member/signup1">회원가입</a></li> -->
 
+					<!-- <li><a href="/yorijori/member/signup1">회원가입</a></li> -->
+					<th:block th:if="${#strings.equals(session.userInfo.role, '관리자')}">
+						<li><a href="/yorijori/admin/User">관리자페이지</a></li>
+					</th:block>
 					<li><a href="/yorijori/cs/help">고객센터</a></li>
 				</ul>
 			</div>
@@ -52,15 +54,16 @@
 						<input type="text" name="userName" placeholder="Email"
 							style="font-size: 18px; border: none;"> <input
 							type="password" name="userPassword" placeholder="Password"
-							style="font-size: 18px; border: none;">
-						</br>
+							style="font-size: 18px; border: none;"> </br> <label
+							for="remember-check"> <input type="checkbox"
+							id="remember-check" style="margin-bottom: 20px; float: left;"><span
+							style="float: left; margin-right: 30px;">아이디 저장</span> <a
+							href="/yorijori/member/signup1" style="float: right;">아이디 찾기</a>
+							<span
+							style="float: right; padding-left: 10px; padding-right: 10px">|</span>
 
-						<label for="remember-check"> <input type="checkbox"
-							id="remember-check" style="margin-bottom: 20px; float: left; "><span style="float: left; margin-right: 30px;">아이디 저장</span>
-						<a href="/yorijori/member/signup1" style="float: right;">아이디 찾기</a>
-						<span style="float: right; padding-left: 10px; padding-right: 10px" >|</span>
-						
-						<a href="/yorijori/member/signup1" style="float: right;">비밀번호 찾기</a>
+							<a href="/yorijori/member/signup1" style="float: right;">비밀번호
+								찾기</a>
 
 						</label> <input type="submit" value="로그인"
 							style="color: white; background-color: #d15729; border: none;">
@@ -73,8 +76,30 @@
 			</div>
 		</div>
 		<!-- 팝업! -->
-
-
+		<!-- 유저 팝업! -->
+		<div class="modal fade" id="profilecardmodal" tabindex="-1"
+			role="dialog" aria-labelledby="profilecardmodalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="profilecard">유저 프로필</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="showuserinfo" style="">
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="addchat" style="background-color: #fd5d5d;">이
+							유저와 채팅하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 유저 팝업! -->
 		<div class="container-fluid px-md-5 mb-4">
 			<div class="row justify-content-between header_top_div">
 				<div class="col-md-5 d-flex logo_div">
@@ -87,25 +112,27 @@
 				<div class="col-md-7 order-md-last header_top_center">
 					<div class="row">
 						<div class="col-md-6 text-right">
-							<form action="#" class="searchform order-lg-last">
+							<div class="searchform order-lg-last">
 								<div class="form-group d-flex">
-									<input type="text" class="form-control pl-3"
+									<input type="text" class="form-control pl-3" id="searchData"
 										placeholder="레시피 검색" style="border-radius: 0px;">
-									<button type="submit" class="form-control search" style="border-radius: 0px;">
+
+									<button type="button" id="mainSearch"
+										class="form-control search" style="border-radius: 0px;">
 										<span class="fa fa-search"></span>
 									</button>
 								</div>
-							</form>
+							</div>
 						</div>
 						<div
 							class="col-md-6 d-md-flex justify-content-center mb-md-0 mb-7 mt-2">
 							<div class="col-md-4 d-flex">
 								<div class="social-media">
 									<p class="mb-0 d-flex">
-										<a href="/yorijori/mypage/recipelist"
+										<a href="/yorijori/recipe/insert"
 											class="d-flex align-items-center justify-content-center"><span
 											class="fa-solid fa-bowl-rice fa-bounce fa-lg"><i
-												class="sr-only">레시피</i></span></a> <a href="/yorijori/mypage/chat"
+												class="sr-only">레시피</i></span></a> <a href="/yorijori/chat/list"
 											class="d-flex align-items-center justify-content-center"><span
 											class="fa-regular fa-message fa-shake fa-lg"><i
 												class="sr-only">채팅</i></span></a> <a href="/yorijori/mypage/profile"
@@ -138,8 +165,8 @@
 							class="nav-link dropdown-toggle" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="/yorijori/recipe/list/user/0">레시피 목록</a>
-								<a class="dropdown-item" href="/yorijori/recipe/insert">레시피
+								<a class="dropdown-item" href="/yorijori/recipe/list/user/0">레시피
+									목록</a> <a class="dropdown-item" href="/yorijori/recipe/insert">레시피
 									등록 </a> <a class="dropdown-item"
 									href="/yorijori/ingredient/list/0/all">재료 목록 </a>
 							</div></li>
@@ -157,14 +184,14 @@
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">랭킹</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="/yorijori/ranking/rlist">레시피랭킹</a>
-								<a class="dropdown-item" href="/yorijori/ranking/klist">검색어랭킹</a> <a
-									class="dropdown-item" href="/yorijori/ranking/clist">회원랭킹</a>
+								<a class="dropdown-item" href="/yorijori/ranking/klist">검색어랭킹</a>
+								<a class="dropdown-item" href="/yorijori/ranking/clist">회원랭킹</a>
 							</div></li>
 						<li class="nav-item dropdown mr-xl-5"><a
 							class="nav-link dropdown-toggle" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">쿠킹클래스</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="/yorijori/cookingclass/list">목록보기</a>
+								<a class="dropdown-item" href="/yorijori/cookingclass/list/0/6">목록보기</a>
 								<a class="dropdown-item" href="/yorijori/cookingclass/in">클래스등록</a>
 								<a class="dropdown-item"
 									href="/yorijori/cookingclass/Instructor">강사목록</a> <a
@@ -176,12 +203,12 @@
 						</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="/yorijori/mypage/profile">내정보
-								</a> <a class="dropdown-item" href="/yorijori/mypage/recipelist">나의기록
-								</a> <a class="dropdown-item" href="/yorijori/mypage/commentlist">댓글/리뷰</a>
-								<a class="dropdown-item" href="/yorijori/mypage/chat">채팅목록 </a>
-								<a class="dropdown-item" href="/yorijori/mypage/refri">나만의
-									냉장고 </a> <a class="dropdown-item" href="/yorijori/mypage/tray">나의
-									식판 </a>
+								<!-- </a> <a class="dropdown-item" href="/yorijori/mypage/recipelist">나의기록
+								</a> <a class="dropdown-item" href="/yorijori/mypage/commentlist">댓글/리뷰</a> -->
+								<a class="dropdown-item" href="/yorijori/chat/list">채팅목록 </a> <a
+									class="dropdown-item" href="/yorijori/mypage/refri">나만의 냉장고
+								</a> <a class="dropdown-item" href="/yorijori/mypage/tray">나의 식판
+								</a>
 
 							</div></li>
 					</ul>
@@ -231,8 +258,28 @@
 				closeGreetingPopup();
 			}
 		});
+
+		// 검색 버튼 클릭 시 
+		$('#mainSearch').click(function() {
+			mainSearch();
+		})
+
+		// 검색 함수
+		const mainSearch = function() {
+			if (isEmpty($('#searchData'))) {
+				error_alert("검색어 미입력","검색어")
+			} else {
+				let searchData = $("#searchData").val();
+				let url = "/yorijori/recipe/search";
+				currentPage = 0;
+				window.location.href = url + "/" + searchData + "/"
+						+ currentPage;
+
+				return true;
+			}
+		}
 	</script>
-	
+
 </th:block>
 
 <!-- HEADER -->

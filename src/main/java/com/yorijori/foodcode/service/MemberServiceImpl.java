@@ -74,4 +74,34 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectListByPageAndSort(pageNo, pagePerCount, sortType);
 	}
 
+
+    @Override
+    public void updateUserStateByUserId(String userId, int state) {
+        memberDAO.updateUserStateByUserId(userId, state);
+    }
+
+
+	@Override
+	public List<UserInfo> selectall(int state) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectall(state);
+	}
+
+	@Override
+	public List<Long> countByUserRole(int startRole, int endRole) {
+		// TODO Auto-generated method stub
+		return memberDAO.countByUserRole(startRole, endRole);
+	}
+
+	@Override
+	public List<Long> countByUserPoint(int startPoint, int endPoint) {
+		// TODO Auto-generated method stub
+		return memberDAO.countByUserPoint(startPoint, endPoint);
+	}
+	
+	@Override
+	public  List<UserInfo> getTop10User(){
+		return memberDAO.getTop10User();
+	}
+
 }

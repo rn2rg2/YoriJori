@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
+import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeImage;
 import com.yorijori.foodcode.jpa.entity.RecipeIngredients;
 import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 
 public interface RecipeDAO {
@@ -22,8 +25,6 @@ public interface RecipeDAO {
 	// 레시피 좋아요
 	void addWishList(UserWishlist userWishList);
 	
-	long countByRcpSeqByWishList(Recipe recipe);
-	void deleteWishList(Recipe recipeNo);
 	Recipe findById(int recipeNo);
 	
 	// 레시피의 대한 정보 조회
@@ -54,6 +55,20 @@ public interface RecipeDAO {
 	List<RecipeIngredients> selectingr(int recipeNo);
 	List<Recipe> findAll(Specification<Recipe> spec);
 	List<Recipe> findAll(Specification<Recipe> spec, Sort sort);
+	List<Recipe> selectBySearch(int pageNo, String searchData, int pagePerCount);
+	long countByNameContaining(String name);
+	List<Recipe> profileselectListByPage(int pageNo, int pagePerCount, UserInfo userId);
+	List<UserWishlist> mylikelist(UserInfo user);
+	long countByCategoryNo(Category categoryNo);
+	long countByRcpSeqByWishList(Recipe recipe, UserInfo userId);
+	void deleteWishList(Recipe recipeNo, UserInfo userId);
+	List<Recipe> userwishListByPage(int pageNo, int pagePerCount, int RecipeNo);
+	long countRcpByUserId(UserInfo userId);
+	long countWishByUserId(UserInfo userId);
+	List<MonthlyRcpVO> getMonthlyData();
+    List<RecipeReview> getByRecipeNo(Recipe recipe);
+	List<Recipe> getTop15Recipe();
+
     
 
 }

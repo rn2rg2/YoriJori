@@ -1,15 +1,14 @@
 package com.yorijori.foodcode.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.MemberRepository;
 
@@ -68,10 +67,58 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
     public List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType){
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
-		Page<UserInfo> page = memberRepository.findAll(pageRequest);
+		Page<UserInfo> page = memberRepository.findAllByRole(pageRequest, "회원");
 		List<UserInfo> list = page.getContent();
 		
 		return list;
 
+	}
+
+
+    @Override
+    public void updateUserStateByUserId(String userId, int state) {
+        UserInfo user = memberRepository.findByUserId(userId);
+        if (user != null) {
+            user.setState(state);
+            memberRepository.save(user);
+        }
+    }
+
+
+	@Override
+	public List<UserInfo> selectall(int state) {
+		return memberRepository.findByState(state);
+	}
+	
+	@Override
+	public List<Long> countByUserRole(int startRole, int endRole) {
+	    List<Long> list = new ArrayList<Long>();
+	    for (int i = startRole; i <= endRole; i++) {
+	        String role;
+	        if (i == 1) {
+	            role = "회원";
+	        } else if (i == 2) {
+	            role = "전문가";
+	        } else {
+	            role = "관리자";
+	        }
+	        long count = memberRepository.countByRole(role);
+	        list.add(count);
+	    }
+	    return list;
+	}
+	@Override
+	public List<Long> countByUserPoint(int startPoint, int endPoint) {
+	    List<Long> list = new ArrayList<Long>();
+	    for (int i = startPoint; i <= endPoint; i++) {
+	        long count = memberRepository.countByPoint(i);
+	        list.add(count);
+	    }
+	    return list;
+	}
+	
+	@Override
+	public List<UserInfo> getTop10User(){
+		return memberRepository.findTop10ByOrderByPointDesc();
 	}
 }

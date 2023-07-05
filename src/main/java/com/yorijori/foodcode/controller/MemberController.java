@@ -33,7 +33,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
-
 	private KakaoService ms;
 	private MemberService userService;
 	private CategoryService categoryservice;
@@ -62,19 +61,24 @@ public class MemberController {
 		session.removeAttribute("previousPage");
 		
 		if (loginUser != null && loginUser.getPass().equals(userPassword)) {
-			session.setAttribute("userInfo", loginUser);
-			if (loginUser.getRole().equals("관리자")) {
-				return "redirect:/admin/main";
-			} 
-			if (previousPage != null && !previousPage.isEmpty()) {
-	            return "redirect:" + previousPage;
-			} else {
-				return "thymeleaf/index";
+			if (loginUser.getState() == 1) {
+				session.setAttribute("userInfo", loginUser);
+				if (loginUser.getRole().equals("관리자")) {
+					return "redirect:/admin/User";
+				}
+				if (previousPage != null && !previousPage.isEmpty()) {
+					System.out.println("=====================");
+					System.out.println(previousPage);
+					System.out.println("=====================");
+		            return "redirect:" + previousPage;
+				} else {
+					return "redirect:/main";
+				}
 			}
 		}
 		model.addAttribute("msg", "아이디 또는 비밀번호가 틀렸습니다.");
-		return "thymeleaf/member/loginpage";
 
+		return "thymeleaf/member/loginpage";
 	}
 
 	@GetMapping("/logout")
@@ -121,7 +125,7 @@ public class MemberController {
 		userinfodto.setEmail(email);
 		userinfodto.setRole("회원");
 		userinfodto.setPoint(36);
-		userinfodto.setState(0);
+		userinfodto.setState(1);
 		userinfodto.setImgPath("userimg.png");
 		userinfodto.setKakaoID(userinfodto.getKakaoID());
 		userinfodto.setDate(new java.sql.Date(today.getTime()));
@@ -162,11 +166,12 @@ public class MemberController {
 		String loginname = (String) userInfo.get("id");
 
 		UserInfo loginUser = userService.loginKakao(loginname);
-
+			//만약 카카오 로그인하는데 DB에 KaKao 토큰이 있을때
 		if (loginUser != null && loginUser.getKakaoID().equals(loginname)) {
 			session.setAttribute("userInfo", loginUser);
 			view = "thymeleaf/index";
 		} else {
+			//만약 카카오 로그인하는데 토근을 호출하고 KaKao 토큰번호가 DB에 없을떄
 			List<Category> categories = categoryservice.findByLevel(2);
 			List<String> categoryNames = new ArrayList<>();
 			for (Category category : categories) {

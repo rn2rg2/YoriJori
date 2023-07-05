@@ -1,6 +1,6 @@
 .widget-26-job-emp-img {
-  width: 156px;
-  height: 156px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -18,4 +18,15 @@
 b{
   font-weight: bold;
   font-size: 24px;
+}
+
+.col-lg-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.td.rank {
+	padding: 0px;
 }

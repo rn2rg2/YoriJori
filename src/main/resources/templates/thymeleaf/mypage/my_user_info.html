@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
 
 <th:block layout:fragment="header">
 	<!-- <link rel="stylesheet"
@@ -10,90 +8,72 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-	<link rel="stylesheet"
-		href="/yorijori/common/css/mypage/changepassmodal.css" />
-	<link rel="stylesheet"
-		href="/yorijori/common/css/mypage/changephotomodal.css" />
-	<link rel="stylesheet"
-		href="/yorijori/common/css/mypage/my_user_info.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/mypage/changepassmodal.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/mypage/changephotomodal.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/mypage/my_user_info.css" />
 	<!-- 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
 		integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
 		crossorigin="anonymous" /> -->
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
-	<link
-		href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet"> -->
 	<!-- 	<script -->
 	<!-- 		src="/yorijori/common/css/mypage/changepassmodal.js"></script> -->
 
 	<script src="/yorijori/common/js/mypage/userinfo.js"></script>
+
+	<style>
+.pagination_div {
+	width: 80%;
+	margin: auto;
+}
+</style>
 </th:block>
 
 <th:block layout:fragment="content">
 	<div class="container rounded bg-white mb-5">
 		<h3 class="menu-h3-common">유저 정보</h3>
 
-
-		<div class="modal fade" id="changepassmodal" tabindex="-1"
-			role="dialog" aria-labelledby="changepassmodalLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="changepassmodal" tabindex="-1" role="dialog" aria-labelledby="changepassmodalLabel" aria-hidden="true">
 			<th:block th:replace="~{thymeleaf/mypage/changepass :: changepass}"></th:block>
 		</div>
-		<div class="modal fade" id="changephotomodal" tabindex="-1"
-			role="dialog" aria-labelledby="changephotomodalLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="changephotomodal" tabindex="-1" role="dialog" aria-labelledby="changephotomodalLabel" aria-hidden="true">
 			<th:block th:replace="~{thymeleaf/mypage/changephoto :: changephoto}"></th:block>
 		</div>
 		<div class="row">
 			<div class="col-md-4 border-right">
-				<div
-					class="d-flex flex-column align-items-center text-center p-3 py-5">
+				<div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
 					<div class="image-container">
-						<img class="rounded-circle mt-5"
-							th:src="@{'/data/user/' + ${session.userInfo.imgPath}}">
+						<img class="rounded-circle mt-5" th:src="@{'/data/user/' + ${session.userInfo.imgPath}}">
 					</div>
 
-					<span class="font-weight-bold" th:text="${session.userInfo.userId}"></span>
-					<span th:text="${session.userInfo.nickname}"></span> <span
-						class="tool"
-						data-tip="사용자 평점이란?
+					<span class="font-weight-bold" th:text="${session.userInfo.userId}"></span> <span id="readuserInfo" th:text="${session.userInfo.nickname}"></span> <span class="tool" data-tip="사용자 평점이란?
 						
 						사용자가 작성한 레시피를 토대로 평균 평점을 산출하여 계산됩니다.
 						좋은 레시피를 공유하여 평점을 높여보세요!
-						"
-						tabindex="1" style="font-weight: bold; color: red;"
-						th:data-userPoint="${session.userInfo.point}">사용자의 현재 랭킹</span>
+						" tabindex="1" style="font-weight: bold; color: red;" th:data-userPoint="${session.userInfo.point}">사용자의 현재 랭킹</span>
 					<!-- 유저 평점에 따라 이미지를 바꿔줄 것 -->
 
 					<div th:if="${session.userInfo.point}==0">
-						<img src="/yorijori/images/userpoint/0tier.png"
-							style="width: 4em; height: 4em;">
+						<img src="/yorijori/images/userpoint/0tier.png" style="width: 4em; height: 4em;">
 					</div>
 					<div th:if="${session.userInfo.point}==1">
-						<img src="/yorijori/images/userpoint/1tier.png"
-							style="width: 4em; height: 4em;">
+						<img src="/yorijori/images/userpoint/1tier.png" style="width: 4em; height: 4em;">
 					</div>
 					<div th:if="${session.userInfo.point}==2">
-						<img src="/yorijori/images/userpoint/2tier.png"
-							style="width: 4em; height: 4em;">
+						<img src="/yorijori/images/userpoint/2tier.png" style="width: 4em; height: 4em;">
 					</div>
 					<div th:if="${session.userInfo.point}==3">
-						<img src="/yorijori/images/userpoint/3tier.png"
-							style="width: 4em; height: 4em;">
+						<img src="/yorijori/images/userpoint/3tier.png" style="width: 4em; height: 4em;">
 					</div>
 					<div th:if="${session.userInfo.point}==4">
-						<img src="/yorijori/images/userpoint/4tier.png"
-							style="width: 4em; height: 4em;">
+						<img src="/yorijori/images/userpoint/4tier.png" style="width: 4em; height: 4em;">
 					</div>
 					<div th:if="${session.userInfo.point}==5">
-						<img src="/yorijori/images/userpoint/5tier.png"
-							style="width: 4em; height: 4em;">
+						<img src="/yorijori/images/userpoint/5tier.png" style="width: 4em; height: 4em;">
 					</div>
-					<br /> <span style="font-weight: bold; color: #fd5d5d;">랭킹
-						정보</span>
+					<br /> <span style="font-weight: bold; color: #fd5d5d;">랭킹 정보</span>
 					<div class="tier_list">
 						<div class="tier" data-tierno="0">
 							<img src="/yorijori/images/userpoint/0tier.png">
@@ -115,31 +95,27 @@
 						</div>
 					</div>
 
-					<br /> <span id="purpose" th:text="${session.userInfo.purpose}">
-					</span>
+					<br /> <span id="purpose" th:text="${session.userInfo.purpose}"> </span>
 				</div>
 			</div>
-			<form action="/yorijori/mypage/updateprofile" method="post"
-				style="display: contents;" onsubmit="return boardSubmit(event);">
+			<form action="/yorijori/mypage/updateprofile" method="post" style="display: contents;" onsubmit="return boardSubmit(event);" id="mypageform">
 				<div class="col-md-8">
 					<div class="p-3 py-5">
-						<div
-							class="d-flex justify-content-between align-items-center mb-3">
+						<div class="d-flex justify-content-between align-items-center mb-3">
 
 							<h6 class="text-right">프로필 수정하기</h6>
 							<br />
 						</div>
 
 						<div class="row mt-2">
+
 							<div class="col-md-6">
 								<h6>이름</h6>
-								<input type="text" class="form-control"
-									th:value="${session.userInfo.name}" disabled="disabled">
+								<input type="text" class="form-control" th:value="${session.userInfo.name}" disabled="disabled">
 							</div>
 							<div class="col-md-6">
 								<h6>전화번호</h6>
-								<input type="text" class="form-control"
-									th:value="${session.userInfo.phoneNumber}" disabled="disabled">
+								<input type="text" class="form-control" th:value="${session.userInfo.phoneNumber}" disabled="disabled">
 							</div>
 						</div>
 
@@ -147,16 +123,13 @@
 
 							<div class="col-md-6">
 								<h6>이메일</h6>
-								<input type="text" class="form-control" placeholder="Email"
-									id="Email" name="Email" th:value="${session.userInfo.email}">
+								<input type="text" class="form-control" placeholder="Email" id="Email" name="Email" th:value="${session.userInfo.email}">
 
 							</div>
 
 							<div class="col-md-6">
 								<h6>닉네임</h6>
-								<input type="text" class="form-control" name="Nickname"
-									id="Nickname" th:value="${session.userInfo.nickname}"
-									placeholder="닉네임">
+								<input type="text" class="form-control" name="Nickname" id="Nickname" th:value="${session.userInfo.nickname}" th:data-prevnickname="${session.userInfo.nickname}" placeholder="(2~16글자까지 입력해주세요)" pattern=".{2,16}">
 
 							</div>
 						</div>
@@ -165,15 +138,13 @@
 						<h6>선호조리</h6>
 						<div class="input-group type-lg w-full">
 							<select name="userprefer" id="favoritefood" multiple>
-							<!-- 코드 설명 option 을 2개하면 동일한 value를 가진 애들이 2개가 생성이 됨 예를 들어서 
+								<!-- 코드 설명 option 을 2개하면 동일한 value를 가진 애들이 2개가 생성이 됨 예를 들어서 
 							유저 원래 선호식품이 한식이였는데 불러오는거에서도 한식이 있으니까 한식이 2개가 생겨버림
 							value 는 같애서 선택은 안되는데 뷰단에서 한식이 2개가 생겨버리는 불편한 상황이 생김(선택자체는 하나만 할 수 있어서 상관은 x)
 							이를 해결하기 위해서 옵션을 하나만 두고 th:selected 를 이용해서 prefer값을 받아서 prefer의 값이랑 categorylist의 데이터랑 이름이 같으면 select 되게끔 
 							만들어줬다. -->
-								<option th:each="data : ${category}" th:value="${data.name}"
-									th:text="${data.name}"
-									th:selected="${#lists.contains(prefer, data.name)}"></option>
-	
+								<option th:each="data : ${category}" th:value="${data.name}" th:text="${data.name}" th:selected="${prefer != null and #lists.contains(prefer, data.name)}"></option>
+
 							</select>
 							<script>
 								new MultiSelectTag('favoritefood', {
@@ -186,14 +157,8 @@
 						<br>
 						<h6>알레르기</h6>
 						<div class="input-group type-lg w-full">
-							<select name="allergy" id="allergy" multiple>
-								<option th:each="allergy : ${session.userInfo.allergy}"
-									th:value="${allergy}" th:text="${allergy}" th:selected="true"></option>
-								<option value="1">사과</option>
-								<option value="2">바나나</option>
-								<option value="3">버터</option>
-								<option value="4">우유</option>
-								<option value="5">돼지고기</option>
+							<select name="userallergy" id="allergy" multiple>
+								<option th:each="data : ${ingredient}" th:value="${data.matlName}" th:text="${data.matlName}" th:selected="${allergy != null and #lists.contains(allergy, data.matlName)}"></option>
 							</select>
 							<script>
 								new MultiSelectTag('allergy', {
@@ -206,45 +171,171 @@
 					</div>
 
 					<div class="mt-5 text-right">
-						<button class="btn btn-primary profile-button" type="button"
-							id="deleteUserBtn">회원 탈퇴</button>
-						<button class="btn btn-primary profile-button" type="submit">수정사항
-							저장</button>
-						<a href="#changepassmodal" class="btn btn-primary profile-button"
-							type="button" data-toggle="modal">비밀번호 변경</a>
+						<button class="btn btn-primary profile-button" type="button" id="deleteUserBtn">회원 탈퇴</button>
+						<button class="btn btn-primary profile-button" type="submit">수정사항 저장</button>
+						<a href="#changepassmodal" class="btn btn-primary profile-button" type="button" data-toggle="modal">비밀번호 변경</a>
 					</div>
 				</div>
 			</form>
 		</div>
+
 		<div style="height: 1em; border-bottom: 3px solid red;"></div>
 		<div class="divnav">
 			<nav class="nav" id="tab-button-nav">
-				<a href="javascript:" class="nav-link navli selected"
-					data-tab-section="tab-section-1">내가 작성한 레시피</a> <a
-					href="javascript:" class="nav-link navli"
-					data-tab-section="tab-section-2">내가 찜한 레시피</a> <a
-					href="javascript:" class="nav-link navli"
-					data-tab-section="tab-section-3">내가 작성한 게시판</a> <a
-					href="javascript:" class="nav-link navli"
-					data-tab-section="tab-section-4">문의목록</a>
+				<a href="javascript:" class="nav-link navli selected" data-tab-section="tab-section-1">내가 작성한 레시피</a>
+				<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-2">내가 찜한 레시피</a>
+				<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-3">내가 작성한 게시판</a>
+				<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-4">문의목록</a>
 			</nav>
 		</div>
 		<div class="all-tab">
 			<div id="tab-section-1" class="tab-section">
 				<h3 class="tab-title">" 내가 작성한 레시피 "</h3>
-				<div class="line-content"></div>
+
+				<div class="col-lg-12">
+					<div class="row recipe_content" id="results">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${mylist}" id="rcp_div">
+
+							<div class="candidate-list candidate-grid ">
+								<div class="candidate-list-image">
+									<!-- 								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|' alt="">
+								</div>
+
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+											<br>
+											<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+											<div class="badge badge-danger px-3 rounded-pill font-weight-normal"> ★[[${recipeNoAverageMap.get(data.recipeNo)}]]점</div>
+
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time justify-content-around">
+										<ul class="list-unstyled list-inline">
+											<li class="pr-2"><a class="recipe_info_data order-2">
+
+													<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewlist)}]]</i>
+												</a></li>
+											<li class="pr-2"><a class="recipe_info_data order-2">
+													<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+												</a></li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag1">
+								<nav>
+									<div id="pagination_div1" class="mb-3 pagination_div"></div>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 
 			<div id="tab-section-2" class="tab-section" hidden>
 				<!-- 강사소개: 클래스 소개와 형식 동일 -->
 				<h3 class="tab-title">" 내가 찜한 레시피"</h3>
-				<div class="line-content"></div>
+					<div class="col-lg-12">
+					<div class="row recipe_content" id="results1">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${mylikelist}" id="wishrcp_div">
+							<div class="candidate-list candidate-grid ">
+								<div class="candidate-list-image">
+									<!--  <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|' alt="">
+								</div>
+
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+											<br>
+											<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+											<div class="badge badge-danger px-3 rounded-pill font-weight-normal"> ★[[${recipeNoAverageMap2.get(data.recipeNo)}]]점</div>
+
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time justify-content-around">
+										<ul class="list-unstyled list-inline">
+											<li class="pr-2"><a class="recipe_info_data order-2">
+
+													<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewlist)}]]</i>
+												</a></li>
+											<li class="pr-2"><a class="recipe_info_data order-2">
+													<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+												</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag2">
+								<nav>
+									<div id="pagination_div2" class="mb-3 pagination_div"></div>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			
 			</div>
 
 			<div id="tab-section-3" class="tab-section" hidden>
 				<!-- 강사소개: 클래스 소개와 형식 동일 -->
 				<h3 class="tab-title">" 내가 작성한 게시판"</h3>
-				<div class="line-content"></div>
+				<div>
+					<table id="example" class="table table-haver">
+						<thead>
+							<tr>
+								<th style="width: 10%">글번호</th>
+								<th style="width: 15%">카테고리</th>
+								<th style="width: 50%">제목</th>
+								<th style="width: 10%">조회수</th>
+							</tr>
+						</thead>
+						<tbody id="board_tr">
+						<tr th:each="board:${myboardlist}" >
+							<td><span th:text="${board.commNo }"></span></td>
+							<td><span th:text="${board.category}"></span></td>
+							<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
+									<span th:text="${board.title }"></span>
+								</a></td>
+							<td><span th:text="${board.view}"></span></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="row">
+					<div class="col-12 text-center mt-4 mt-sm-5">
+						<div id="pag3">
+							<nav>
+								<div id="pagination_div3" class="mb-3 pagination_div"></div>
+							</nav>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div id="tab-section-4" class="tab-section" hidden>
@@ -253,11 +344,53 @@
 				<div class="line-content"></div>
 			</div>
 		</div>
+
+		<script th:inline="javascript">
+			// 현재 페이지
+			let currentPage = 0;
+			// 한번에 보여줄 페
+			let pagePerCount = 6;
+			// 게시판 한번에 보여줄 개수
+			let bpagePerCount = 10;
+			// 각각 전체 카운트
+			let myrcpcount = [[${myrcpcount}]];
+			let mywishcount = [[${mywishcount}]];
+			let boardcount = [[${boardcount}]];
+			//불러왔을때 총 게시물 / pagePerCount
+			// 총 페이지지 네이션 수 
+			let totalPages1 = 1;
+			let totalPages2 = 1;
+			let totalPages3 = 1;
+			if ( myrcpcount > pagePerCount ){
+				totalPages1 = myrcpcount/pagePerCount
+			}
+			if ( mywishcount > pagePerCount ){
+				totalPages2 = mywishcount/pagePerCount
+			}
+			if ( boardcount > bpagePerCount ){
+				totalPages3 = boardcount/bpagePerCount
+			}
+			// pagination 들어갈 div
+			const pagination1 = $('#pagination_div1');
+			const pagination2 = $('#pagination_div2');
+			const pagination3 = $('#pagination_div3');
+			
+			$(document).ready(function(){
+				make_wish_list(0);
+				loadPage1(myrcpcount, pagePerCount, make_rcp_list);
+				loadPage2(mywishcount, pagePerCount, make_wish_list);
+				loadPage3(boardcount, bpagePerCount, make_board_list);
+			});
+			
+			
+	</script>
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('.image-container').on('click', function() {
 					$('#changephotomodal').modal('show');
 				});
+				
 
 				var userPoint = $('[data-userPoint]').data('userpoint');
 				$('.tier').each(function() {
@@ -266,7 +399,28 @@
 						$(this).css('border', '0.2em solid red');
 					}
 				});
-				
+				var selectPrefer = $("#favoritefood");
+				  var selectAllergy = $("#allergy");
+
+				  selectPrefer.change(function() {
+				    var selectedOptions = selectPrefer.find("option:selected");
+
+				    if (selectedOptions.length === 0) {
+				      selectPrefer.removeAttr("name");
+				    } else {
+				      selectPrefer.attr("name", "userprefer");
+				    }
+				  });
+
+				  selectAllergy.change(function() {
+				    var selectedOptions = selectAllergy.find("option:selected");
+
+				    if (selectedOptions.length === 0) {
+				      selectAllergy.removeAttr("name");
+				    } else {
+				      selectAllergy.attr("name", "userallergy");
+				    }
+				  });
 				
 			});
 
@@ -318,18 +472,42 @@
 			}
 
 			function boardSubmit(event) {
-				var EmailCheck = isEmpty($('#Email')); // 값이 없을 경우 true
-				var NicknameCheck = isEmpty($('#Nickname'));
-				if (EmailCheck) {
-					error_alert('이메일 미입력', '이메일');
-					return false;
-				} else if (NicknameCheck) {
-					error_alert('닉네임 미입력', '닉네임');
-					return false;
-				} else if (!EmailCheck && !NicknameCheck) {
-					return true;
-				}
+			    var EmailCheck = isEmpty($('#Email')); // 값이 없을 경우 true
+			    var NicknameCheck = isEmpty($('#Nickname'));			
 
+			    if (EmailCheck) {
+			        error_alert('이메일 미입력', '이메일');
+			        return false;
+			    } else if (NicknameCheck) {
+			        error_alert('닉네임 미입력', '닉네임');
+			        return false;
+			    } else if (!EmailCheck && !NicknameCheck) {
+			    	var inputNickname = $('#Nickname').val();
+
+			        // 기존 닉네임 값 가져오기
+			        var previousNickname = $('#Nickname').data('prevnickname'); // 기존 닉네임 값을 여기에 할당합니다.
+			        if (inputNickname === previousNickname) {
+			            // 닉네임이 변경되지 않았을 경우에는 폼 제출
+			            document.getElementById('mypageform').submit();
+			        } else {
+			            // 서버로 닉네임 중복 확인 요청을 보냅니다.
+			            $.ajax({
+			                url: '/yorijori/mypage/checknickname',
+			                type: 'POST',
+			                data: { nickname: inputNickname },
+			                success: function(response) {
+			                    if (response.nickname === inputNickname) {
+			                        error_alert('중복된 닉네임입니다.', '닉네임');
+			                    } else {
+			                        // 닉네임이 중복되지 않으면 폼 제출
+			                        document.getElementById('mypageform').submit();
+			                    }
+			                }
+			            });
+			        }
+
+			        return false; // 폼 제출 방지
+			    }
 			}
 			
 			/* css변경 */
@@ -355,7 +533,10 @@
     			}
   				});
 			});
-		</script>
+			</script>
+
+
+
 	</div>
 </th:block>
 </html>

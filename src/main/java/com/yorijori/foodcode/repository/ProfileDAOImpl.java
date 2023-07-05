@@ -11,13 +11,12 @@ import com.yorijori.foodcode.jpa.repository.MemberRepository;
 @Repository
 public class ProfileDAOImpl implements ProfileDAO {
 	
-	private EntityManager entitymanager;
+	
 	private MemberRepository userrepo;
 	
 	@Autowired
-	public ProfileDAOImpl(EntityManager entitymanager, MemberRepository userrepo) {
+	public ProfileDAOImpl(MemberRepository userrepo) {
 		super();
-		this.entitymanager = entitymanager;
 		this.userrepo = userrepo;
 	}
 
@@ -33,13 +32,8 @@ public class ProfileDAOImpl implements ProfileDAO {
 		user.setPrefer(user_id.getPrefer());
 		user.setEmail(user_id.getEmail());
 		user.setNickname(user_id.getNickname());
+		user.setAllergy(user_id.getAllergy());
 		return user;
-	}
-	
-	@Override
-	public void updatepassword() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -57,6 +51,28 @@ public class ProfileDAOImpl implements ProfileDAO {
 		deleteuser.setState(user.getState());
 	}
 
+	@Override
+	public UserInfo readuserinfo(String nickname) {
+		UserInfo user = userrepo.findByUserId(nickname);
+		return user;
+	}
 
+	@Override
+	public UserInfo updatepassword(UserInfo user) {
+		UserInfo updateuser = userrepo.findByUserId(user.getUserId());
+		updateuser.setPass(user.getPass());
+		return updateuser;
+	}
 
+	@Override
+	public UserInfo checknickname(String nickname) {
+		UserInfo user = userrepo.findByNickname(nickname);
+		return user;
+	}
+
+	@Override
+	public UserInfo readuser(String userId) {
+		// TODO Auto-generated method stub
+		return userrepo.findByUserId(userId);
+	}
 }

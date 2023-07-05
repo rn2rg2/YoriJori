@@ -27,11 +27,6 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public void updatepassword() {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
 	public UserInfo updateprofileimage(UserInfo user) {
 		// TODO Auto-generated method stub
 		return profiledao.updateprofileimage(user);
@@ -40,6 +35,29 @@ public class ProfileServiceImpl implements ProfileService {
 	public void updatestate(UserInfo user) {
 		profiledao.updatestate(user);
 		
+	}
+
+	@Override
+	public UserInfo readuserinfo(String nickname) {
+		return profiledao.readuserinfo(nickname);
+	}
+
+	@Override
+	public UserInfo updatepassword(UserInfo user) {
+		
+		return profiledao.updatepassword(user);
+	}
+
+	@Override
+	public UserInfo checknickname(String nickname) {
+		
+		return profiledao.checknickname(nickname);
+	}
+
+	@Override
+	public UserInfo readuser(String userId) {
+		
+		return profiledao.readuser(userId);
 	}
 
 

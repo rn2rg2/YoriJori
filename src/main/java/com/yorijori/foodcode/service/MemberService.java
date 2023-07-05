@@ -11,5 +11,12 @@ public interface MemberService {
 	public boolean idcheck(String userId);   
 	public void save(UserInfo userinfodto);
 	long userCount(String role);
+	
 	List<UserInfo> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
+	void updateUserStateByUserId(String userId, int state);
+	List<UserInfo> selectall(int state);
+	List<Long> countByUserRole(int startRole, int endRole);
+	List<Long> countByUserPoint(int startPoint, int endPoint);
+	List<UserInfo> getTop10User();
+
 }

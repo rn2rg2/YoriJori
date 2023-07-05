@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.yorijori.foodcode.jpa.entity.Board;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.BoardRepository;
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -52,6 +53,11 @@ public class BoardDAOImpl implements BoardDAO {
 	public long countAll() {
 		return repository.count(); 
 	}
+	
+	@Override
+	public long countByUserId(UserInfo user) {
+		return repository.countByUserId(user); 
+	}
 
 	@Override
 	public List<Board> selectByPage(int pageNo) {
@@ -87,7 +93,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public long getCountByCategorysAndState(String category) {
 		int state = 0; // state 값이 0인 경우
-	    return repository.countByContentsContainingAndState(category, state);
+	    return repository.countByCategoryAndState(category, state);
 	}
 	@Override
 	public void delete(int commNo) {
@@ -118,14 +124,16 @@ public class BoardDAOImpl implements BoardDAO {
 	    return repository.countByContentsContainingAndState(contents, state);
 	}
 
+	public List<Board> findmyboardlist(UserInfo user) {
+		return repository.findByUserId(user);
+	}
+	
 	@Override
-	public List<Board> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType) {
-		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
-		Page<Board> page = repository.findAll(pageRequest);
+	public List<Board> selectByPageByUser(int pageNo, int pagePerCount,UserInfo user) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		//Page<Board> page = repository.findAll(pageRequest);
+		Page<Board> page = repository.findByUserIdAndState(user, 0, pageRequest);
 		List<Board> list = page.getContent();
-		
-		return list;	}
-
-
-
+		return list;
+	}
 }

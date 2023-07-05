@@ -38,7 +38,7 @@ public class ApiRecipeReview {
 	private Date date;		//작성일
 	@UpdateTimestamp
 	private Date upDate;	//수정일
-	private Date state;		//field
+	private int state;		//field
 	
 	@Exclude
 	@ManyToOne
@@ -49,5 +49,6 @@ public class ApiRecipeReview {
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable=false)
+	@JsonBackReference
 	private UserInfo userId;
 }

@@ -4,247 +4,120 @@
 	<link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
 </th:block>
 <th:block layout:fragment="content">
-	<div class="container-fluid tray-div mb-5">
-		<h3 class="menu-h3-common">나만의 식판</h3>
-		<div class="row">
-			<div class="col-md-9 tray_frame">
-				<div class="row drop-targets">
-					<div class="col-md-4 plate1 box"></div>
-					<div class="col-md-4 plate2 box"></div>
-					<div class="col-md-4 plate3 box"></div>
+	<form action="/yorijori/mypage/tray/insert" method="post" onsubmit="return checkTray()">
+		<div class="container-fluid tray-div mb-5">
+			<h3 class="menu-h3-common">나만의 식판</h3>
+			<div class="row">
+				<div class="col-md-9 tray_frame">
+					<div class="row drop-targets">
+						<div class="col-md-4 plate1 box"></div>
+						<div class="col-md-4 plate2 box"></div>
+						<div class="col-md-4 plate3 box"></div>
+					</div>
+					<div class="row drop-targets">
+						<div class="col-md-6 plate_rice box plate4"></div>
+						<div class="col-md-6 plate_soup box plate5"></div>
+					</div>
 				</div>
-				<div class="row drop-targets">
-					<div class="col-md-6 plate_rice box"></div>
-					<div class="col-md-6 plate_soup box"></div>
-				</div>
-			</div>
-			<div class="col-md-3 ingredients-layout">
-				<div class="ingredients-info">
-					<!-- search bar -->
-				</div>
-				<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchRecipe')}"></div>
-				<div>
+				<div class="col-md-3 ingredients-layout">
+					<div class="ingredients-info">
+						<!-- search bar -->
+					</div>
+					<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchRecipe')}"></div>
+					<div>
 
-					<!-- 레시피 목록 보기  -->
-					<div class="ingredient_list_view mb-3">
-						<div class="row wishlist_view"></div>
+						<!-- 레시피 목록 보기  -->
+						<div class="ingredient_list_view mb-3">
+							<div class="row wishlist_view"></div>
+						</div>
+
+					</div>
+
+					<!-- 페이지네이션  -->
+					<div id="pag">
+						<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+					</div>
+					<div class="mb-2">
+						<input type="text" class="form-control input-text" placeholder="식판 이름 적어주세요" id="inputtrayname" name="trayName">
+					</div>
+					<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
+						<button class="btn btn-success m-sm-1" type="button" onclick="clearTray();">식판 초기화</button>
+						<button class="btn btn-success m-sm-1" type="submit">식판 등록</button>
 					</div>
 
 				</div>
 
-				<!-- 페이지네이션  -->
-				<div id="pag">
-					<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+				<!-- 현재 식판 정보 -->
+				<div class="container-fluid">
+					<h3 class="menu-h3-common">식판에 있는 레시피</h3>
+					<div class="row ingredients-result"></div>
 				</div>
 
-				<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
+				<div class="container-fluid">
+					<h3 class="menu-h3-common">내 식판 목록</h3>
+					<div class="px-lg-5">
+						<div></div>
+						<div class="row">
+							<!-- Gallery item -->
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4" th:each="tray, idx : ${tray}">
+								<div class="bg-white rounded shadow-sm">
+									<img th:src="|/yorijori/images/common/dosirak_${idx.count}.png|" alt="" class="img-fluid card-img-top" th:onclick="getDetailTray([[${tray.trayNo}]])">
+									<div class="p-4">
+										<h5 style="display: contents;">
+											<a class="text-dark">[[${tray.trayName}]]</a>
+										</h5>
+										<button class="btn btn-success m-sm-1" type="button" th:onclick="deleteTray([[${tray.trayNo}]])">식판 삭제</button>
+									</div>
+								</div>
+							</div>
+							<!-- End -->
+							<!-- 
+							Gallery item
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/dosirak_2.png" alt="" class="img-fluid card-img-top">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">식판 이름 2</a>
+										</h5>
+									</div>
+								</div>
+							</div>
+							End
 
-					<button class="btn btn-success m-sm-1" type="button" onclick="clearTray();">식판 초기화</button>
-					<button class="btn btn-success m-sm-1" type="button">식판 등록</button>
-				</div>
+							Gallery item
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/dosirak_3.png" alt="" class="img-fluid card-img-top">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">식판 이름 3</a>
+										</h5>
+									</div>
+								</div>
+							</div>
+							End
 
-			</div>
-
-			<!-- 현재 식판 정보 -->
-			<div class="container-fluid">
-				<h3 class="menu-h3-common">식판에 있는 레시피</h3>
-				<div class="row ingredients-result">
-					<!-- <div class="col-md-2">
-						<div class="py-0 card-body mb-1">
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h4 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">한 끼 식판</a>
-											</h4>
-										</div>
+							Gallery item
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
+								<div class="bg-white rounded shadow-sm">
+									<img src="/yorijori/images/common/dosirak_4.png" alt="" class="img-fluid card-img-top">
+									<div class="p-4">
+										<h5>
+											<a href="#" class="text-dark">식판 이름 4</a>
+										</h5>
 									</div>
 								</div>
 							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 칼로리</a>
-												<span class="ms-2 text-primary badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 탄수화물</a>
-												<span class="ms-2 text-success badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 단백질</a>
-												<span class="ms-2 text-danger badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">총 지방</a>
-												<span class="ms-2 text-warning badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-
+							End -->
 						</div>
-
-					</div> -->
-
-					<!-- <div class="col-md-2" th:each="num : ${#numbers.sequence(1,5)}">
-						<div class="py-0 card-body mb-1">
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h4 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!" th:text="레시피명 + ${num}"></a>
-											</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">칼로리</a>
-												<span class="ms-2 text-primary badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">탄수화물</a>
-												<span class="ms-2 text-success badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">단백질</a>
-												<span class="ms-2 text-danger badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="position-relative align-items-center py-2 border-bottom border-200  row">
-								<div class="py-1 col">
-									<div class="d-flex align-items-center">
-										<div class="d-flex">
-											<h6 class="d-flex mb-0" align="center">
-												<a class="text-800 stretched-link" href="#!">지방</a>
-												<span class="ms-2 text-warning badge rounded-pill bg-200">90kcal</span>
-											</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div> -->
-
-				</div>
-			</div>
-			<div class="container-fluid">
-				<h3 class="menu-h3-common">내 식판 목록</h3>
-				<div class="px-lg-5">
-					<div></div>
-					<div class="row">
-						<!-- Gallery item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-							<div class="bg-white rounded shadow-sm">
-								<img src="/yorijori/images/common/dosirak_1.png" alt="" class="img-fluid card-img-top">
-								<div class="p-4">
-									<h5>
-										<a href="#" class="text-dark">식판 이름 1</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<!-- End -->
-
-						<!-- Gallery item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-							<div class="bg-white rounded shadow-sm">
-								<img src="/yorijori/images/common/dosirak_2.png" alt="" class="img-fluid card-img-top">
-								<div class="p-4">
-									<h5>
-										<a href="#" class="text-dark">식판 이름 2</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<!-- End -->
-
-						<!-- Gallery item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-							<div class="bg-white rounded shadow-sm">
-								<img src="/yorijori/images/common/dosirak_3.png" alt="" class="img-fluid card-img-top">
-								<div class="p-4">
-									<h5>
-										<a href="#" class="text-dark">식판 이름 3</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<!-- End -->
-
-						<!-- Gallery item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-							<div class="bg-white rounded shadow-sm">
-								<img src="/yorijori/images/common/dosirak_4.png" alt="" class="img-fluid card-img-top">
-								<div class="p-4">
-									<h5>
-										<a href="#" class="text-dark">식판 이름 4</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<!-- End -->
 					</div>
-				</div>
 
+				</div>
 			</div>
+
 		</div>
-
-	</div>
+	</form>
 	<script src="/yorijori/common/js/mypage/tray.js"></script>
 	<!-- <h1>JavaScript - Drag and Drop</h1>
 		<div class="drop-targets">
@@ -279,6 +152,22 @@
 				}
 
 			})
+		}
+		const checkTray = function() {
+			if (isEmpty($('#inputtrayname'))) {
+				error_alert("식판 이름 미입력", "식판")
+				return false;
+			}
+			if (idx < 5) {
+				Swal.fire("레시피가 부족합니다", '<b style="color:red;">' + (5 - idx) + '개를 더 추가해주세요', 'error')
+				return false;
+			}
+
+			return true;
+		}
+
+		const deleteTray = function(data) {
+			 location.href = "/yorijori/mypage/tray/delete/" + data;
 		}
 	</script>
 </th:block>

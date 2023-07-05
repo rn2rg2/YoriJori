@@ -57,10 +57,22 @@ public class Recipe {
 	@Exclude
 	@JsonBackReference
 	private UserInfo userId;
+	
+	public String getUserNickname() {
+		
+	    return userId.getNickname();
+	}
+	public String getUserImgPath() {
+		
+	    return userId.getImgPath();
+	}
 
+	
+	
+	
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Exclude
-	@JsonManagedReference
+	@JsonManagedReference 
 	private List<RecipeImage> imglist = new ArrayList<RecipeImage>();
 
 	@OneToMany(mappedBy = "recipeNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -91,5 +103,6 @@ public class Recipe {
 	public void viewCountUp(Recipe recipe) {
 		recipe.count++;
 	}
+	
 
 }

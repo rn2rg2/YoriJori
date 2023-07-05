@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<title>공통 왼쪽 사이드 바</title>
-</head>
-<body>
-	<aside class="main-sidebar sidebar-dark-info elevation-4"
-		th:fragment="sidebar">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:fragment="sidebar">
+	<aside class="main-sidebar sidebar-dark-infoelevation-4">
 		<!--/* Brand Logo */-->
-		<a id="admin-logo-link" class="brand-link"> <!-- <img src=""
+		<a id="admin-logo-link" class="brand-link">
+			<!-- <img src=""
 			alt="Admin Logo" class="brand-image img-circle elevation-3"
-			style="opacity: .8"> --> <span class="brand-text font-weight-light">요리조리
-				서비스 관리자</span>
+			style="opacity: .8"> -->
+			<span class="brand-text font-weight-light">요리조리 서비스 관리자</span>
 		</a>
 
 		<!--/* Sidebar */-->
@@ -20,16 +16,14 @@
 			<!--/* Sidebar user panel (optional) */-->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 				<div class="info">
-					<a id="user-profile" class="d-block">Foodcode</a>
+					<a href="/yorijori/admin" id="user-profile" class="d-block">Foodcode</a>
 				</div>
 			</div>
 
 			<!--/* SidebarSearch Form */-->
 			<div class="form-inline">
-				<div class="input-group" data-widget="sidebar-search"
-					data-min-length="1">
-					<input class="form-control form-control-sidebar" type="search"
-						placeholder="Search" aria-label="Search">
+				<div class="input-group" data-widget="sidebar-search" data-min-length="1">
+					<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
 					<div class="input-group-append">
 						<button class="btn btn-sidebar">
 							<i class="fas fa-search fa-fw"></i>
@@ -40,59 +34,56 @@
 
 			<!--/* Sidebar Menu */-->
 			<nav class="mt-2">
-				<ul class="nav nav-pills nav-sidebar flex-column"
-					data-widget="treeview" role="menu" data-accordion="false">
+				<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 					<!--/* Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library */-->
-					<li class="nav-item menu-open"><a id="management-category"
-						class="nav-link">
+					<li class="nav-item menu-open"><a id="management-category" class="nav-link">
 							<p>
 								관리 <i class="right fas fa-angle-left"></i>
 							</p>
-					</a>
+						</a>
 						<ul class="nav nav-treeview">
-							<li class="nav-item"><a id="user-account-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/User'"><a id="user-account-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
 									<p>회원 관리</p>
-							</a></li>
-							<li class="nav-item"><a id="article-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								</a></li>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/Recipe'"><a id="article-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
 									<p>레시피 관리</p>
-							</a></li>
-							<li class="nav-item"><a id="article-comment-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								</a></li>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/board'"><a id="article-comment-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
 									<p>게시물 관리</p>
-							</a></li>
-							<li class="nav-item"><a id="user-account-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
-									<p>댓글 관리</p>
-							</a></li>
+								</a></li>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/help'"><a id="help-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>자주 묻는 질문 관리</p>
+								</a></li>
 
-							<li class="nav-item"><a id="user-account-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/inquiry'"><a id="inquiry-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
 									<p>문의 관리</p>
-							</a></li>
-							<li class="nav-item"><a id="user-account-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								</a></li>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/noti'"><a id="notification-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
 									<p>공지사항 관리</p>
-							</a></li>
-							<li class="nav-item"><a id="user-account-management"
-								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								</a></li>
+							<li class="nav-item" onclick="location.href='/yorijori/admin/cooking'"><a id="cooking-management" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
 									<p>쿠킹클래스 관리</p>
-							</a></li>
+								</a></li>
 
 						</ul></li>
-					<li class="nav-item menu-open"><a id="admin-category"
-						class="nav-link">
+					<li class="nav-item menu-open"><a id="admin-category" class="nav-link">
 							<p>
 								어드민 항목 <i class="right fas fa-angle-left"></i>
 							</p>
-					</a>
+						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item"><a id="admin-members" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>어드민 계정</p>
-							</a></li>
+								</a></li>
 						</ul></li>
 				</ul>
 				<div class="small-box bg-info">
@@ -109,5 +100,5 @@
 		</div>
 		<!--/* /.sidebar */-->
 	</aside>
-</body>
+</th:block>
 </html>

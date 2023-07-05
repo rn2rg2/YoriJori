@@ -95,6 +95,7 @@ const make_search_list = function(page){
 		let url = "/yorijori/ingredient/getListBySearchData";
 		let param = {"page":page, "pagePerCount" : pagePerCount, "searchData" :searchData};
 		postAjax(url, param, function (datas){
+			console.log(datas);
 			$('#list_page').empty();
 			$.each(datas, function(index, data) {
 				make_div(data);

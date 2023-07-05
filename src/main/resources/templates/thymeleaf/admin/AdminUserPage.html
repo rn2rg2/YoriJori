@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/admin/adminLayout}">
+<html lang="en">
+<head>
+<style>
+@import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+
+/* Bootstrap Icons */
+@import
+	url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css")
+	;
+</style>
+</head>
+<body style="background-color: #343a40;">
+	<!-- Banner -->
+	<main id="layout-main" class="content-wrapper accent-dark"
+		layout:fragment="content">
+
+
+		<!-- Dashboard -->
+		<div
+			class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+			<!-- Vertical Navbar -->
+
+			<!-- Main content -->
+			<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+				<!-- Header -->
+				<header class="bg-surface-primary border-bottom pt-6">
+					<div class="container-fluid">
+						<div class="mb-npx">
+							<div class="row align-items-center">
+								<div class="col-sm-6 col-12 mb-4 mb-sm-0">
+									<!-- Title -->
+									<h1 class="h2 mb-0 ls-tight">유저 관리자페이지</h1>
+								</div>
+								<!-- Actions -->
+								<div class="col-sm-6 col-12 text-sm-end">
+									<div class="mx-n1">
+										<a href="#"
+											class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
+											<span class=" pe-2"> <i class="bi bi-pencil"></i>
+										</span> <span>멤버 추가하기</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- Nav -->
+							<ul class="nav nav-tabs mt-4 overflow-x border-0">
+								<li class="nav-item "><a href="#user-list"
+									class="nav-link active" data-toggle="tab">유저 목록</a></li>
+								<li class="nav-item"><a href="#user-chart"
+									class="nav-link font-regular" data-toggle="tab">탈퇴회원</a></li>
+								<li class="nav-item"><a href="#user-chartr"
+									class="nav-link font-regular" data-toggle="tab">차트</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</header>
+				<!-- Main -->
+				<main class="py-6 bg-surface-secondary tab-content">
+					<div class="container-fluid tab-pane active" id="user-list">
+						<!-- Card stats -->
+						<div class="row g-6 mb-6">
+							<div class="col-xl-3 col-sm-6 col-12">
+								<div class="card shadow border-0">
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<span
+													class="h6 font-semibold text-muted text-sm d-block mb-2">총
+													회원수</span> <span class="h3 font-bold mb-0" th:text="${usercount}"></span>
+											</div>
+											<div class="col-auto">
+												<div
+													class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+													<i class="bi bi-people"></i>
+												</div>
+											</div>
+										</div>
+										<div class="mt-2 mb-0 text-sm">
+											<span
+												class="badge badge-pill bg-soft-success text-success me-2">
+												<i class="bi bi-arrow-up me-1"></i>13% (미완성)
+											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
+												[[${date}]] </span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-sm-6 col-12">
+								<div class="card shadow border-0">
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<span
+													class="h6 font-semibold text-muted text-sm d-block mb-2">탈퇴한
+													회원 수</span> <span class="h3 font-bold mb-0">[[${secessioncount}]]</span>
+											</div>
+											<div class="col-auto">
+												<div
+													class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+													<i class="bi bi-people"></i>
+												</div>
+											</div>
+										</div>
+										<div class="mt-2 mb-0 text-sm">
+											<span
+												class="badge badge-pill bg-soft-success text-success me-2">
+												<i class="bi bi-arrow-up me-1"></i>30% (미완성)
+											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
+												[[${date}]] </span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-sm-6 col-12">
+								<div class="card shadow border-0">
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<span
+													class="h6 font-semibold text-muted text-sm d-block mb-2">오늘
+													가입한 회원 수</span> <span class="h3 font-bold mb-0">[[${todayuser}]]</span>
+											</div>
+											<div class="col-auto">
+												<div
+													class="icon icon-shape bg-info text-white text-lg rounded-circle">
+													<i class="bi bi-clock-history"></i>
+												</div>
+											</div>
+										</div>
+										<div class="mt-2 mb-0 text-sm">
+											<span
+												class="badge badge-pill bg-soft-danger text-danger me-2">
+												<i class="bi bi-arrow-down me-1"></i>-5% (미완성)
+											</span> <span class="text-nowrap text-xs text-muted">어제와 비교 </span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card shadow border-0 mb-7">
+							<div class="card-header">
+								<h5 class="mb-0">회원목록</h5>
+								<div class="searchBox">
+									<label>회원 검색: <input type="text" id="search"
+										onkeyup="filter()" placeholder="회원닉네임으로 검색" /></label>
+
+								</div>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-hover table-nowrap">
+									<thead class="thead-light">
+										<tr>
+											<th scope="col">닉네임</th>
+											<th scope="col">이메일</th>
+											<th scope="col">등급</th>
+											<th scope="col">생년월일</th>
+											<th scope="col">이름</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="userlist: ${userlist}">
+											<td class="nickname"><img alt="..."
+												src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+												class="avatar avatar-sm rounded-circle me-2"> <a
+												class="text-heading font-semibold" href="#">
+													[[${userlist.nickname}]] </a> </br></td>
+											<td>[[${userlist.email}]]</td>
+											<td><img alt="..."
+												src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
+												class="avatar avatar-xs rounded-circle me-2"> <a
+												class="text-heading font-semibold" href="#">
+													[[${userlist.role}]] </br> 점수 : [[${userlist.point}]]
+
+											</a></td>
+											<td>[[${userlist.ssn[0]}]][[${userlist.ssn[1]}]]년
+												[[${userlist.ssn[2]}]][[${userlist.ssn[3]}]]월
+												[[${userlist.ssn[4]}]][[${userlist.ssn[5]}]]일</td>
+											<td><span class="badge badge-lg badge-dot"> <i
+													class="bg-success"></i>[[${userlist.name}]]
+											</span></td>
+											<td class="text-end">
+												<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
+ -->
+												<button type="button"
+													class="btn btn-sm btn-square btn-neutral text-danger-hover"
+													id="click">
+													삭제 <input style="display: none;"
+														th:value="${userlist.userId}" id="dateposted10">
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="row">
+								<div class="col-12 text-center mt-4 mt-sm-5">
+									<div id="pag">
+										<!-- 후행 코드에 추가하세요 -->
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<div id="user-chart" class="tab-pane">
+						<div class="card shadow border-0 mb-7">
+							<div class="card-header">
+								<h5 class="mb-0">회원목록</h5>
+								<div class="searchBox">
+									<label>회원 검색: <input type="text" id="search"
+										onkeyup="filter2()" placeholder="회원닉네임으로 검색" /></label>
+
+								</div>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-hover table-nowrap">
+									<thead class="thead-light">
+										<tr>
+											<th scope="col">닉네임</th>
+											<th scope="col">이메일</th>
+											<th scope="col">등급</th>
+											<th scope="col">생년월일</th>
+											<th scope="col">이름</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="secessionlist : ${secessionlist}">
+											<td class="nickname"><img alt="..."
+												src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+												class="avatar avatar-sm rounded-circle me-2"> <a
+												class="text-heading font-semibold" href="#">
+													[[${secessionlist.nickname}]] </a> </br></td>
+											<td>[[${secessionlist.email}]]</td>
+											<td><img alt="..."
+												src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
+												class="avatar avatar-xs rounded-circle me-2"> <a
+												class="text-heading font-semibold" href="#">
+													[[${secessionlist.role}]] </br> 점수 : [[${secessionlist.point}]]
+
+											</a></td>
+											<td>
+												[[${secessionlist.ssn[0]}]][[${secessionlist.ssn[1]}]]년
+												[[${secessionlist.ssn[2]}]][[${secessionlist.ssn[3]}]]월
+												[[${secessionlist.ssn[4]}]][[${secessionlist.ssn[5]}]]일</td>
+											<td><span class="badge badge-lg badge-dot"> <i
+													class="bg-success"></i>[[${secessionlist.name}]]
+											</span></td>
+											<td class="text-end">
+												<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
+ -->
+												<button type="button"
+													class="btn btn-sm btn-square btn-neutral text-danger-hover"
+													id="reload">
+													삭제 <input style="display: none;"
+														th:value="${secessionlist.userId}" id="dateposted10">
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="row">
+								<div class="col-12 text-center mt-4 mt-sm-5">
+									<div id="pag">
+										<!-- 후행 코드에 추가하세요 -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="user-chartr" class="tab-pane">
+						<div class="container-fluid">
+							<!-- Small boxes (Stat box) -->
+							<div class="row">
+								<div class="col-lg-3 col-6">
+									<!-- small box -->
+									<div class="small-box bg-info">
+										<div class="inner">
+											<h3>[[${usercount}]]</h3>
+
+											<p>일반회원 User</p>
+										</div>
+										<div class="icon">
+											<i class="ion ion-bag"></i>
+										</div>
+									</div>
+								</div>
+								<!-- ./col -->
+								<div class="col-lg-3 col-6">
+									<!-- small box -->
+									<div class="small-box bg-success">
+										<div class="inner">
+											<h3>[[${usercount2}]]</h3>
+
+											<p>전문가 User</p>
+										</div>
+										<div class="icon">
+											<i class="ion ion-stats-bars"></i>
+										</div>
+									</div>
+								</div>
+								<!-- ./col -->
+								<!-- ./col -->
+
+							</div>
+						</div>
+						<!-- Main content -->
+						<div class="content">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-lg-3">
+										<!-- DONUT CHART -->
+										<div class="card card-danger">
+											<div class="card-header">
+												<h3 class="card-title">User 등급목록</h3>
+
+												<div class="card-tools">
+													<button type="button" class="btn btn-tool"
+														data-card-widget="collapse">
+														<i class="fas fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-tool"
+														data-card-widget="remove">
+														<i class="fas fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<div class="card-body">
+												<canvas id="donutChart1"
+													style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+											</div>
+											<!-- /.card-body -->
+										</div>
+										<!-- /.card -->
+									</div>
+									<div class="col-lg-3">
+										<!-- DONUT CHART -->
+										<div class="card card-danger">
+											<div class="card-header">
+												<h3 class="card-title">유저 레벨</h3>
+
+												<div class="card-tools">
+													<button type="button" class="btn btn-tool"
+														data-card-widget="collapse">
+														<i class="fas fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-tool"
+														data-card-widget="remove">
+														<i class="fas fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<div class="card-body">
+												<canvas id="donutChart2"
+													style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+											</div>
+											<!-- /.card-body -->
+										</div>
+										<!-- /.card -->
+									</div>
+									<!-- /.col-md-6 -->
+
+									<!-- /.col-md-6 -->
+								</div>
+								<!-- /.row -->
+							</div>
+							<!-- /.container-fluid -->
+						</div>
+						<!-- /.content -->
+						<!-- Main content -->
+						<div class="content">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-lg-6">
+										<!-- LINE CHART -->
+
+										<!-- /.card -->
+										<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		
+	<script>
+$(document).ready(function() {
+	  $('button#click').on('click', function() {
+	    const userId = $(this).find('input').val();
+	    console.log(userId);
+
+	    $.ajax({
+	      url: '/yorijori/UserDelete',
+	      type: 'POST',
+	      data: { userId: userId },
+	      success: function(result) {
+	        Swal.fire({
+	          icon: 'success',
+	          title: '회원 삭제완료',
+	        }).then(function() {
+	          location.reload(); // 현재 페이지를 리로드하여 변경된 내용을 반영합니다.
+	        });
+	      },
+	      error: function(xhr, status, error) {
+	        console.log('User Delete error');
+	      }
+	    });
+	  });
+	});
+
+</script>
+	<script>
+$(document).ready(function() {
+	  $('button#reload').on('click', function() {
+	    const userId = $(this).find('input').val();
+	    console.log(userId);
+
+	    $.ajax({
+	      url: '/yorijori/UserRestore',
+	      type: 'POST',
+	      data: { userId: userId },
+	      success: function(result) {
+	        Swal.fire({
+	          icon: 'success',
+	          title: '회원 복구완료',
+	        }).then(function() {
+	          location.reload(); // 현재 페이지를 리로드하여 변경된 내용을 반영합니다.
+	        });
+	      },
+	      error: function(xhr, status, error) {
+	        console.log('User Delete error');
+	      }
+	    });
+	  });
+	});
+
+</script>
+	<script>
+  function filter() {
+    let search = document.getElementById("search").value.toLowerCase();
+    let userList = document.querySelectorAll("#user-list tbody tr");
+
+    userList.forEach(function(user) {
+      let nickname = user.querySelector(".nickname").textContent.toLowerCase();
+      if (nickname.includes(search)) {
+        user.style.display = "table-row";
+      } else {
+        user.style.display = "none";
+      }
+    });
+  }
+</script>
+
+
+</script>
+	<script th:inline="javascript">
+	$(document).ready(function() {
+		$('#user-account-management').addClass('active');
+	})
+
+	//-------------
+	//- DONUT CHART -
+	//-------------
+	// Get context with jQuery - using jQuery's .get() method.
+	var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
+	var donutChartCanvas2 = $('#donutChart2').get(0).getContext('2d')
+
+	var labels1 = [ '관리자', '일반회원', '전문가'];
+	var labels2 = [ '1점','2점','3점','4점','5점',];
+
+	
+	var data1 = [[${userinfo}]]
+	var data2 = [[${userpoint}]]
+
+	
+	var donutOptions = {
+			maintainAspectRatio : false,
+			responsive : true,
+		}
+	
+	var donutData1 = {
+		labels : labels1,
+		datasets : [ {
+			data : data1,
+			backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+		} ]
+	}
+	var donutData2 = {
+			labels : labels2,
+			datasets : [ {
+				data : data2,
+				backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+			} ]
+		}
+	
+	
+	
+	
+	new Chart(donutChartCanvas1, {
+		type : 'doughnut',
+		data : donutData1,
+		options : donutOptions
+	})
+	new Chart(donutChartCanvas2, {
+		type : 'doughnut',
+		data : donutData2,
+		options : donutOptions
+	})
+
+	
+	  //-------------
+    //- LINE CHART -
+    //--------------
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+	
+	
+    
+    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+    var lineChartOptions = $.extend(true, {}, areaChartOptions)
+    var lineChartData = $.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    //lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    })
+		
+		
+	</script>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+			</div>
+	</main>
+	</div>
+	
+	</div>
+	</main>
+
+
+
+
+
+</body>
+</html>

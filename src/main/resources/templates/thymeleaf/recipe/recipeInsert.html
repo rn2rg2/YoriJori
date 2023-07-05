@@ -201,7 +201,7 @@
 					<div class="form-group form-insert">
 						<label>레시피 제목</label> <input type="text"
 							class="insert-control title" id="title" placeholder="맛좋은 게살 버거"
-							name="name">
+							name="name" maxlength="15">
 					</div>
 					<div class="form-group form-insert">
 						<label>요리 내용</label>
@@ -214,7 +214,7 @@
 						<label>카테고리</label>
 						<div class="category">
 							<input type="hidden" id="cookusage" class="categorysubmittest"
-								name="categorylist[0].categoryNo.categoryNo" value="" />
+								name="categorylist[0].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="cookusage">음식용도</button>
@@ -231,7 +231,7 @@
 
 						<div class="category">
 							<input type="hidden" id="cookcountry" class="categorysubmittest"
-								name="categorylist[1].categoryNo.categoryNo" value="" />
+								name="categorylist[1].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="cookcountry">국가별</button>
@@ -246,7 +246,7 @@
 						</div>
 						<div class="category">
 							<input type="hidden" id="cookmethod" class="categorysubmittest"
-								name="categorylist[2].categoryNo.categoryNo" value="" />
+								name="categorylist[2].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop"
 								data-toggle="dropdown" id="cookmethod">조리방법</button>
@@ -261,7 +261,7 @@
 						</div>
 						<div class="category">
 							<input type="hidden" id="foodtype" class="categorysubmittest"
-								name="categorylist[3].categoryNo.categoryNo" value="" />
+								name="categorylist[3].categoryNo" value="" />
 							<button type="button"
 								class="btn btn-primary dropdown-toggle insert-drop last-button"
 								data-toggle="dropdown" id="foodtype">식재품</button>

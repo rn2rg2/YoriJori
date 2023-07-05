@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/mypageLayout}">
+
+<th:block layout:fragment="header">
+	<!-- <link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<link rel="stylesheet"
+		href="/yorijori/common/css/mypage/readuserInfo.css" />
+	<!-- 	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+		integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+		crossorigin="anonymous" /> -->
+	<!-- 	<script -->
+	<!-- 		src="/yorijori/common/css/mypage/changepassmodal.js"></script> -->
+<script src="/yorijori/common/js/mypage/readuserinfo.js"></script>
+</th:block>
+
+<th:block layout:fragment="content">
+	<div class="container rounded bg-white mb-5">
+		<h3 class="menu-h3-common">유저정보</h3>
+		<section id="user-profile">
+			<div id="profile-image">
+				<img th:src="@{'/data/user/' + ${readuserInfo.imgPath}}">
+			</div>
+			<div id="user-info">
+				<h2 id="nickname" th:text="${readuserInfo.nickname}"></h2>
+				<div id="profile-detail">
+					<div class="profile-item">
+						<div class="profile-icon">
+							<img th:if="${readuserInfo.point}==0"
+								src="/yorijori/images/userpoint/0tier.png"> <img
+								th:if="${readuserInfo.point}==1"
+								src="/yorijori/images/userpoint/1tier.png"> <img
+								th:if="${readuserInfo.point}==2"
+								src="/yorijori/images/userpoint/2tier.png"> <img
+								th:if="${readuserInfo.point}==3"
+								src="/yorijori/images/userpoint/3tier.png"> <img
+								th:if="${readuserInfo.point}==4"
+								src="/yorijori/images/userpoint/4tier.png"> <img
+								th:if="${readuserInfo.point}==5"
+								src="/yorijori/images/userpoint/5tier.png">
+						</div>
+						<div class="profile-info">
+							<div class="profile-role" th:text="${readuserInfo.role}"></div>
+							<div class="profile-date">
+								가입날짜: <span th:text="${readuserInfo.date}"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		<br>
+		<div class="divnav">
+			<nav class="nav" id="tab-button-nav">
+				<a href="javascript:" class="nav-link navli selected" data-tab-section="tab-section-1">[[${readuserInfo.nickname}]]  이(가) 작성한 레시피</a>
+				<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-2">[[${readuserInfo.nickname}]] 이(가) 찜한 레시피</a>
+				<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-3">[[${readuserInfo.nickname}]] 이(가) 작성한 게시판</a>
+			</nav>
+		</div>
+		
+		<div class="all-tab">
+			<div id="tab-section-1" class="tab-section">
+				<h3 class="tab-title">"[[${readuserInfo.nickname}]] 이(가) 작성한 레시피 "</h3>
+
+				<div class="col-lg-12">
+					<div class="row recipe_content" id="results">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${mylist}" id="rcp_div">
+
+							<div class="candidate-list candidate-grid ">
+								<div class="candidate-list-image">
+									<!-- 								    <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|' alt="">
+								</div>
+
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+											<br>
+											<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+											<div class="badge badge-danger px-3 rounded-pill font-weight-normal"> ★[[${recipeNoAverageMap.get(data.recipeNo)}]]점</div>
+
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time justify-content-around">
+										<ul class="list-unstyled list-inline">
+											<li class="pr-2"><a class="recipe_info_data order-2">
+
+													<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewlist)}]]</i>
+												</a></li>
+											<li class="pr-2"><a class="recipe_info_data order-2">
+													<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+												</a></li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag1">
+								<nav>
+									<div id="pagination_div1" class="mb-3 pagination_div"></div>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div id="tab-section-2" class="tab-section" hidden>
+				<!-- 강사소개: 클래스 소개와 형식 동일 -->
+				<h3 class="tab-title">"[[${readuserInfo.nickname}]] 이(가) 찜한 레시피"</h3>
+					<div class="col-lg-12">
+					<div class="row recipe_content" id="results1">
+						<div class="col-sm-6 col-lg-4 mb-4" th:each="data, idx : ${mylikelist}" id="wishrcp_div">
+							<div class="candidate-list candidate-grid ">
+								<div class="candidate-list-image">
+									<!--  <img class="img-fluid" th:src="@{'/images/'+${recipe.thumbnail}}" alt=""> -->
+									<img class="img-fluid" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|' alt="">
+								</div>
+
+								<div class="candidate-list-details">
+									<div class="candidate-list-info">
+										<div class="candidate-list-title">
+											<h5>
+												<a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
+											</h5>
+										</div>
+										<div class="candidate-list-option">
+											<div class="badge badge-dark px-3 rounded-pill font-weight-normal" th:text="'작성자 ' + ${data.userId.nickname}"></div>
+											<br>
+											<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
+											<div class="badge badge-danger px-3 rounded-pill font-weight-normal"> ★[[${recipeNoAverageMap2.get(data.recipeNo)}]]점</div>
+
+										</div>
+									</div>
+									<div class="candidate-list-favourite-time justify-content-around">
+										<ul class="list-unstyled list-inline">
+											<li class="pr-2"><a class="recipe_info_data order-2">
+
+													<i class="far fa-comments pr-1"> [[${#lists.size(data.reviewlist)}]]</i>
+												</a></li>
+											<li class="pr-2"><a class="recipe_info_data order-2">
+													<i class="fa-regular fa-eye"> [[${data.count}]]</i>
+												</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center mt-4 mt-sm-5">
+							<div id="pag2">
+								<nav>
+									<div id="pagination_div2" class="mb-3 pagination_div"></div>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+
+			<div id="tab-section-3" class="tab-section" hidden>
+				<!-- 강사소개: 클래스 소개와 형식 동일 -->
+				<h3 class="tab-title">"[[${readuserInfo.nickname}]] 이(가) 작성한 게시판"</h3>
+				<div>
+					<table id="example" class="table table-haver">
+						<thead>
+							<tr>
+								<th style="width: 10%">글번호</th>
+								<th style="width: 15%">카테고리</th>
+								<th style="width: 50%">제목</th>
+								<th style="width: 10%">조회수</th>
+							</tr>
+						</thead>
+						<tbody id="board_tr">
+						<tr th:each="board:${myboardlist}" >
+							<td><span th:text="${board.commNo }"></span></td>
+							<td><span th:text="${board.category}"></span></td>
+							<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
+									<span th:text="${board.title }"></span>
+								</a></td>
+							<td><span th:text="${board.view}"></span></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="row">
+					<div class="col-12 text-center mt-4 mt-sm-5">
+						<div id="pag3">
+							<nav>
+								<div id="pagination_div3" class="mb-3 pagination_div"></div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+		/* css변경 */
+		$(".navli").click(function(){
+	    	$(".selected").attr("class","nav-link navli")
+	    	  $(this).attr("class","nav-link navli selected")
+	    })
+	    /* hidden 변경 */
+		const $nav = document.querySelector('#tab-button-nav')
+		const $sections = document.querySelectorAll('.tab-section');
+
+		$nav.addEventListener('click', (e) => {
+				 if (!e.target.classList.contains('navli')) {
+				return;
+					}
+			const focusedTabId = e.target.dataset.tabSection;
+
+			$sections.forEach(($section) => {
+			if ($section.id === focusedTabId) {
+  			$section.removeAttribute('hidden');
+		} else {
+  		$section.setAttribute('hidden', true);
+			}
+				});
+		});
+		</script>
+	</div>
+</th:block>
+</html>

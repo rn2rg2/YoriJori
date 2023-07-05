@@ -34,8 +34,6 @@ public class RecipeCategory {
 	@JsonBackReference
 	private Recipe recipeNo;
 	
-
-	
 	@ManyToOne
 	@JoinColumn(name="categoryNo", nullable = false)
 	@Exclude
