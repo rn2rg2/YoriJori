@@ -28,5 +28,6 @@ public interface CookingClassDAO {
 	public List<CookingClass> selectAllClass(int state);
 	void restore(int cookNo);
 	List<CookingClass> findByUserId(UserInfo userId);
+	long countByUserId(UserInfo user);
 	
 }

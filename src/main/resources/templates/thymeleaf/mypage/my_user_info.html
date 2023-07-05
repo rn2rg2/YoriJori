@@ -341,7 +341,54 @@
 			<div id="tab-section-4" class="tab-section" hidden>
 				<!-- 강사소개: 클래스 소개와 형식 동일 -->
 				<h3 class="tab-title">" 내가 작성한 쿠킹클래스 "</h3>
-				<div class="line-content"></div>
+				<div class="row" id="list">
+
+
+					<div class="col-sm-6 col-lg-6 mb-4" th:each="class:${classList}">
+
+						<div class="candidate-list candidate-grid" style="cursor: pointer;" th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|">
+							<div class="candidate-list-image">
+								<img class="img-fluid" th:src="${class.thumbnail}" style="object-fit: cover;">
+							</div>
+							<div class="candidate-list-details">
+								<div class="candidate-list-info">
+									<div class="candidate-list-title">
+										<h5>
+											<a th:onclick="|location.href='@{/cookingclass/read(cookNo=${class.cookNo})}'|">
+												<span th:text="${class.title}"></span>
+											</a>
+										</h5>
+									</div>
+									<div class="candidate-list-option">
+										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											<span th:text="${class.userId.userId}"></span>
+										</div>
+										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
+											<span th:text="${class.category}"></span>
+										</div>
+										</br>
+
+										<ul class="list-unstyled">
+											<li><i class="fa-solid fa-person"></i> <span th:text="${class.count}"></span><span>명</span></li>
+											<li><i class="fa-solid fa-clock"></i> <span th:text="${class.time}"></span><span>분</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="candidate-list-favourite-time">
+									<a class="candidate-list-favourite order-2" href="#프로필조회?">
+										<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${class.userId.imgPath}|">
+									</a>
+									<span class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}원|"></span></span>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
 			</div>
 		</div>
 
