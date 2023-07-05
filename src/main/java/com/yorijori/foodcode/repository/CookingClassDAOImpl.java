@@ -142,11 +142,17 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	}
 
 
+
 	@Override
 	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user){
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "count"));
 		Page<CookingClass> page = classRepo.findByUserId(user, pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;
+
+	@Override
+	public long countByUserId(UserInfo user) {
+		return classRepo.countByUserId(user);
+
 	}
 }

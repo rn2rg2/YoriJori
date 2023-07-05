@@ -145,9 +145,7 @@
 										</h5>
 									</div>
 									<div class="candidate-list-option">
-										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
-											<span th:text="${class.userId.userId}"></span>
-										</div>
+										
 										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
 											<span th:text="${class.category}"></span>
 										</div>
@@ -160,11 +158,13 @@
 									</div>
 								</div>
 								<div class="candidate-list-favourite-time">
-									<a class="candidate-list-favourite order-2" href="#프로필조회?">
+								
+									<a style="margin-left: 0.5rem;" class="candidate-list-favourite order-2">
 										<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${class.userId.imgPath}|">
 									</a>
-									<span class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}원|"></span></span>
-
+									
+									<span style="font-weight: bold;font-size: 15px;" class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}|"></span></span>
+									<span class="candidate-list-time order-1" style="float: right;margin-left:auto;font-weight: bold; ">[[${class.userId.nickname}]]</span>
 
 								</div>
 							</div>

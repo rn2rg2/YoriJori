@@ -137,8 +137,14 @@ public class CookingClassServiceImpl implements CookingClassService {
 	}
 
 
+
 	@Override
 	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user) {
 		return dao.classlistByPage(pageNo, pagePerCount, user);
+
+	@Override
+	public long countByUserId(UserInfo user) {
+		return dao.countByUserId(user);
+
 	}
 }

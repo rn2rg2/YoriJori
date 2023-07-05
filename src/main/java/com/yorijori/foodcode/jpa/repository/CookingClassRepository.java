@@ -17,5 +17,9 @@ public interface CookingClassRepository extends JpaRepository<CookingClass, Inte
 	public Page<CookingClass> findByState(int state, Pageable pageable);
 	public List<CookingClass> findTop5ByOrderByCountDesc();
 	public List<CookingClass> findByUserId(UserInfo userId);
+
 	public Page<CookingClass> findByUserId(UserInfo user, PageRequest pageRequest);
+
+	public long countByUserId(UserInfo user);
+
 }

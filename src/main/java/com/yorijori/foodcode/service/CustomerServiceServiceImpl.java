@@ -1,11 +1,10 @@
 package com.yorijori.foodcode.service;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import com.yorijori.foodcode.jpa.entity.CustomerService;
 import com.yorijori.foodcode.jpa.entity.Inquiry;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;

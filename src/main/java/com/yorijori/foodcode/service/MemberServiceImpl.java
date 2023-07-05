@@ -103,5 +103,10 @@ public class MemberServiceImpl implements MemberService {
 	public  List<UserInfo> getTop10User(){
 		return memberDAO.getTop10User();
 	}
+	
+	@Override
+	public List<UserInfo> getCookUser(int pageNo, int pagePerCount, String sortType){
+		return memberDAO.selectCookByPage(pageNo, pagePerCount, sortType);
+	}
 
 }
