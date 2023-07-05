@@ -135,4 +135,8 @@ public class CookingClassServiceImpl implements CookingClassService {
 	public List<CookingClass> findByUserId(UserInfo userId) {
 		return dao.findByUserId(userId);
 	}
+	@Override
+	public long countByUserId(UserInfo user) {
+		return dao.countByUserId(user);
+	}
 }

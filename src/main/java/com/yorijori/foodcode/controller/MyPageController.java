@@ -75,8 +75,11 @@ public class MyPageController {
 		if(user.getAllergy()!=null) {
 			allergy = user.getAllergy().split(",");
 		}
+		//쿠킹클래스
 		if(user.getRole()!="회원") {
 			List<CookingClass> classlist=classservice.findByUserId(user);
+			long classcount = classservice.countByUserId(user);
+			model.addAttribute("classList",classlist);
 		}
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();

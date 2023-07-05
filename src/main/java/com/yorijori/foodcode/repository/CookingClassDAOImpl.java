@@ -140,4 +140,8 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	public List<CookingClass> findByUserId(UserInfo userId) {
 		return classRepo.findByUserId(userId);
 	}
+	@Override
+	public long countByUserId(UserInfo user) {
+		return classRepo.countByUserId(user);
+	}
 }
