@@ -1,5 +1,7 @@
 package com.yorijori.foodcode.jpa.entity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,22 @@ public class Recipe {
 	public String getUserImgPath() {
 		
 	    return userId.getImgPath();
+	}
+	public BigDecimal getAverage() {
+		List<RecipeReview> reviews = getReviewlist();
+		BigDecimal sum = BigDecimal.ZERO;
+        for (RecipeReview datareview : reviews) {
+            sum = sum.add(datareview.getStar());
+        }
+
+        BigDecimal average;
+        if (reviews.size() > 0) {
+            BigDecimal size = BigDecimal.valueOf(reviews.size());
+            average = sum.divide(size, 2, RoundingMode.HALF_UP);
+        } else {
+            average = BigDecimal.ZERO;
+        }
+        return average;
 	}
 
 	

@@ -538,6 +538,7 @@ public class RecipeController {
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		if (type.equals("user")) {
 			list = recipeService.mylikeListByPage(page, pagePerCount, userInfo);
+			
 		} else {
 			// 서버인경우
 		}
