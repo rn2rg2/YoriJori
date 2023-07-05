@@ -26,12 +26,14 @@ import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.dto.UserInfoNicknameDTO;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Category;
+import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.CategoryService;
+import com.yorijori.foodcode.service.CookingClassService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.ProfileService;
 import com.yorijori.foodcode.service.RecipeService;
@@ -46,11 +48,12 @@ public class MyPageController {
 	IngredientService ingreservice;
 	RecipeService recipeservice;
 	BoardService boardservice;
-
+	CookingClassService classservice;
+	
 	 @Autowired
 	 public MyPageController(ProfileService profileservice, FileUploadLogic fileuploadlogic, 
 			 CategoryService categoryservice, IngredientService ingreservice, RecipeService recipeservice
-			 , BoardService boardservice) {
+			 , BoardService boardservice, CookingClassService classservice) {
 		super();
 		this.profileservice = profileservice;
 		this.fileuploadlogic = fileuploadlogic;
@@ -58,6 +61,7 @@ public class MyPageController {
 		this.ingreservice = ingreservice;
 		this.recipeservice = recipeservice;
 		this.boardservice = boardservice;
+		this.classservice=classservice;
 	}
 
 	@RequestMapping("/profile")
@@ -71,7 +75,9 @@ public class MyPageController {
 		if(user.getAllergy()!=null) {
 			allergy = user.getAllergy().split(",");
 		}
-		
+		if(user.getRole()!="회원") {
+			List<CookingClass> classlist=classservice.findByUserId(user);
+		}
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();
 		
