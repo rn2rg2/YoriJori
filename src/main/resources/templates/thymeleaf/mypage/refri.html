@@ -49,6 +49,7 @@
 						</div>
 						<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
 
+							<button class="btn btn-success m-sm-1" type="button" id="clearSearchlistiBtn">검색 초기화</button>
 							<button class="btn btn-success m-sm-1" type="button" id="clearRefriBtn">냉장고 초기화</button>
 							<button class="btn btn-success m-sm-1" type="submit" id="registerRefriBtn">냉장고 등록</button>
 						</div>
@@ -184,6 +185,11 @@
 					// 냉장고 초기화
 					$('#clearRefriBtn').click(function(){
 						clean_refri();
+					})
+					//검색 결과 초기화
+					$('#clearSearchlistiBtn').click(function(){
+						make_list(0);
+						getListCount();
 					})
 					
 					for ( let i = 0 ; i < refrilist.length; i++){
