@@ -31,7 +31,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	CookingClassCurriculumRepository curriculumRepo;
 	CookingClassFormRepository formRepo;
 	PaymentRepository payRepo;
-	
+
 	@Autowired
 	public CookingClassDAOImpl(CookingClassRepository classRepo, CookingClassContentRepository contentRepo,
 			CookingClassCurriculumRepository curriculumRepo, CookingClassFormRepository formRepo,
@@ -44,20 +44,21 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 		this.payRepo = payRepo;
 	}
 
-
 	@Override
 	public void delete(int cookNo) {
-		CookingClass cookingclass= classRepo.findById(cookNo).get();
+		CookingClass cookingclass = classRepo.findById(cookNo).get();
 		cookingclass.setCookNo(cookNo);
 		cookingclass.setState(1);
-		
+
 	}
+
 	@Override
 	public void restore(int cookNo) {
-		CookingClass cookingclass= classRepo.findById(cookNo).get();
+		CookingClass cookingclass = classRepo.findById(cookNo).get();
 		cookingclass.setCookNo(cookNo);
 		cookingclass.setState(0);
 	}
+
 	@Override
 	public List<CookingClass> selectAllClass(int state) {
 		return classRepo.findByState(state);
@@ -65,19 +66,18 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public void updateClass(CookingClass cookingclass) {
-		
+
 	}
 
 	@Override
 	public void updateContent(CookingClassContent content) {
-		
-		
+
 	}
 
 	@Override
 	public void updateCurriculum(CookingClassCurriculum curriculum) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -87,27 +87,25 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public List<CookingClassContent> readContent(int cookNo) {
-		List<CookingClassContent> result=contentRepo.findByCookNo(cookNo);
+		List<CookingClassContent> result = contentRepo.findByCookNo(cookNo);
 		return result;
 	}
 
 	@Override
 	public List<CookingClassCurriculum> readCurriculum(int cookNo) {
-		List<CookingClassCurriculum> result=curriculumRepo.findByCookNo(cookNo);
+		List<CookingClassCurriculum> result = curriculumRepo.findByCookNo(cookNo);
 		return result;
 	}
 
-	
 	@Override
 	public void insertClassTest(CookingClass cookingclass) {
 		classRepo.save(cookingclass);
 	}
 
-
 	@Override
 	public void insertImage(CookingClassImage image) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -119,36 +117,38 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	public long countAll() {
 		return classRepo.count();
 	}
+
 	@Override
 	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
-		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"cookNo"));								
-		//Page<Board> page = repository.findAll(pageRequest);
-		 Page<CookingClass> page = classRepo.findByState(0, pageRequest);
-		 List<CookingClass> list = page.getContent();
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "cookNo"));
+		// Page<Board> page = repository.findAll(pageRequest);
+		Page<CookingClass> page = classRepo.findByState(0, pageRequest);
+		List<CookingClass> list = page.getContent();
 		return list;
 	}
-	
+
 	@Override
 	public void formInsert(CookingClassForm form) {
 		formRepo.save(form);
 	}
+
 	@Override
 	public CookingClass findById(Integer cookNo) {
 		return classRepo.findById(cookNo).get();
 	}
+
 	@Override
 	public List<CookingClass> findByUserId(UserInfo userId) {
 		return classRepo.findByUserId(userId);
 	}
 
-
-
 	@Override
-	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user){
+	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user) {
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "count"));
 		Page<CookingClass> page = classRepo.findByUserId(user, pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;
+	}
 
 	@Override
 	public long countByUserId(UserInfo user) {
