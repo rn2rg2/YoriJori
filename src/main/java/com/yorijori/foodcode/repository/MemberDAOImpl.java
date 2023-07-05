@@ -58,6 +58,16 @@ public class MemberDAOImpl implements MemberDAO {
     	return memberRepository.countByRole(role);
     }
     
+    @Override
+    public List<UserInfo> selectCookByPage(int pageNo, int pagePerCount, String sortType){
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
+		Page<UserInfo> page = memberRepository.findAllByRole(pageRequest, "전문가");
+		List<UserInfo> list = page.getContent();
+		
+		return list;
+
+	}
+    
   //userId로 UserInfo찾기
     @Override
     public UserInfo findByUserId(String userId) {

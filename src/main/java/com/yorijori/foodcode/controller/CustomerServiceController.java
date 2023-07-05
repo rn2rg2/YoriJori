@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yorijori.foodcode.common.FileUploadLogic;
-import com.yorijori.foodcode.jpa.entity.CustomerService;
 import com.yorijori.foodcode.jpa.entity.Inquiry;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;

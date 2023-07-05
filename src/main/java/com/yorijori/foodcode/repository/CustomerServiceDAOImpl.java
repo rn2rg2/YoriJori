@@ -2,14 +2,12 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.yorijori.foodcode.jpa.entity.CustomerService;
 import com.yorijori.foodcode.jpa.entity.Inquiry;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;
