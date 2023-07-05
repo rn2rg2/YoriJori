@@ -10,20 +10,10 @@
 <script
 	src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 	
-		<script>
-		$(document).on("click", ".update", function() {
-	        $.ajax({
-	        url : "/yorijori/member/category",
-	        type : "POST",
-	        data : $("#categoryNames"),
-	        dataType: 'JSON',
-	        });  //ajax
-
-	    });
-	</script>
+		<script src="/yorijori/common/js/member/SingUpForm2_validator.js"></script>
 <script>
 function fnSubmit (){
-	var requiredId = $("#id").val();
+	var requiredId = $("#es2").val();
 	var requiredName = $("#requiredname").val();
 	var requiredNickName = $("#nickName").val();
 	var requiredPassword = $("#password").val();
@@ -37,23 +27,10 @@ function fnSubmit (){
 	}
 }
 
-  </script>
-  <script>
-function fnSubmit (){
-	var requiredId = $("#id").val();
-	var requiredName = $("#requiredname").val();
-	var requiredNickName = $("#nickName").val();
-	var requiredPassword = $("#password").val();
-	
 
 
-	if (requiredId.trim() === "" || requiredName.trim() === "" || requiredNickName.trim() === "" || requiredPassword.trim() === "") {
-	      alert("필수 항목을 모두 입력해주세요.");
-	}else{
-		location.href='/yorijori/member/signup3';
-	}
-}
   </script>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function areYouSure() {
@@ -89,28 +66,28 @@ function fnSubmit (){
 			<fieldset class="form-group-area">
 				<legend style="font-size: 22px;">회원가입을 위해 항목을 작성해주세요</legend>
 				<!-- 아이디 -->
-				<div class="form-group">
-					<div class="form-head">
-						<label for="member-join-general-id-text" class="form-label">아이디<i
-							class="es2"></i></label>
-					</div>
-					<!--// form-head -->
-					<div class="input-group type-lg w-full">
-						<input type="text" 
-							style="width: 88%" name="userId"
-							id = "userId"
-							class="input-text w571 required-select" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
-							value=""> 
-							<span class="input-group-btn">
-							<button type="button" id="btn-id-check"
-								class="btn-form btn-default-ex">
-								<span>중복확인</span>
-							</button>
-							</span>
-					</div>
-				</div>
-			    <span class="failure-message hide">아이디는 네글자 이상이여야 합니다.</span>
-			    <span class="success-message hide">사용할 수 있는 아이디 입니다.</span>
+<div class="form-group">
+  <div class="form-head">
+    <label for="member-join-general-id-text" id='username' class="form-label">아이디<i class="es2"></i></label>
+  </div>
+  <!--// form-head -->
+  <div class="input-group type-lg w-full">
+    <input type="text" 
+      style="width: 88%" name="userId"
+      id="userId" 
+      class="input-text w571 required-select" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
+      value=""> 
+      <span class="input-group-btn">
+      <button type="button" id="btn-id-check" 
+        class="btn-form btn-default-ex" style="background-color: #4d4d4d">
+        <span>중복확인</span>
+      </button>
+      </span>
+  </div>
+</div>
+<span class="failure-message-idlength hide"style="font-size: 15px; color: #D63447">4~16자만 사용이 가능합니다.</span>
+<span class="failure-message-idenglish hide"style="font-size: 15px; color: #D63447">영문 또는 숫자만 사용 가능합니다.</span>
+<span class="success-messageid hide" style="font-size: 15px; color: #008000">사용할 수 있는 아이디 입니다.</span>
 				
 				<br />
 				<br />
@@ -124,25 +101,38 @@ function fnSubmit (){
     				class="input-text w571 required-select"
     				th:value="${nickname != null ? nickname : ''}" placeholder="기본">					
     				</div>
+    				<span class="failure-message-name-special-characters hide" style="font-size: 15px; color: #D63447">이름에 특수 기호를 입력할 수 없습니다.</span>
+    				<br/>	
+    				<span class="failure-message-name-special-characters2 hide" style="font-size: 15px; color: #D63447">3글자 이상 입력해야합니다.</span>
+    				
 				</div>
 				<div class="form-group">
 					<div class="form-head">
 						<label class="form-label" >닉네임
 						<i class="es2"></i></label>
-					</div>
+					</div>					
 					<!--// form-head -->
 					<div class="input-group type-lg w-full">
 						<input type="text" style="width: 88%"
 						id="nickName" name="nickname"
-							class="input-text w571" placeholder="" value=""> 
+							class="input-text w571" placeholder="4~10자 이상" value=""> 
 							<span class="input-group-btn">
+							
 							<button type="button" id="btn-nickname-check"
 								class="btn-form btn-default-ex">
 								<span>중복확인</span>
 							</button>
+							
 							</span>
+							
 					</div>
+					
 				</div>
+			<span class="failure-message-special-characters hide" style="font-size: 15px; color: #D63447">특수 문자는 입력할 수 없습니다.</span>
+			<span class="failure-message-length hide"style="font-size: 15px; color: #D63447">닉네임은 3~10자로 입력해주세요.</span>
+			<span class="success-message hide" style="font-size: 15px; color: #008000">사용 가능한 닉네임입니다.</span>
+<br/>
+				<br/>
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<!--// form-head -->
@@ -155,6 +145,13 @@ function fnSubmit (){
 							name="pass" class="input-text w571 required-select"
 							placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수">
 					</div>
+					<span class="failure-message-passlength hide"style="font-size: 15px; color: #D63447">6 ~ 16자 영문, 숫자 혼용해야합니다.</span>
+					<br/>
+					<span class="failure-message-passenglish hide" style="font-size: 15px; color: #D63447">특수문자 1개 이상씩 혼용해야합니다.,특수문자(!, @, #, $, %, ^, &, *)만 사용 가능합니다.</span>
+					<br/>
+					<span class="failure-message-passenglish hide"style="font-size: 15px; color: #D63447">영문 또는 숫자만 사용 가능합니다.</span>
+					<span class="success-messagepass hide" style="font-size: 15px; color: #008000">사용할 수 있는 비밀번호 입니다.</span>
+					
 					<div class="input-group type-lg w-full">
 						<label for="member-join-general-pw-confirm-text " class="blind">비밀번호
 							확인</label> 
@@ -163,20 +160,10 @@ function fnSubmit (){
 							name="member-join-general-pw-confirm-text"
 							class="input-text w571 required-select" placeholder="비밀번호 확인">
 					</div>
-					<p class="text-guide-sm2" id="pw-guide-text1"
-						style="display: none;">※ 6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수.</p>
-					<p class="text-guide-sm2" id="pw-guide-text2"
-						style="display: none;">※ 특수문자는 !, @, #, $, %, ^, &amp;, * 만 사용
-						가능.</p>
-					<p class="valid error" id="pw-error-text1" style="display: none;">비밀번호가
-						일치하지 않습니다.</p>
-				</div>
-			</div>
-		<div class="form-group">
-					<div class="form-head">
-						<label class="form-label">주민등록번호<i class="es2"></i></label>
+					<span class="failure-message-passonelengthfalse hide"style="font-size: 15px; color: #D63447">비밀번호가 일치하지 않습니다.</span>
+					<span class="failure-message-passonelength hide"style="font-size: 15px; color: #008000">비밀번호가 일치합니다.</span>
 					</div>
-					<!--// form-head -->
+					<label for="member-join-general-pw-text" class="blind">주민등록번호</label> 
 					<div class="input-group type-lg w-full">
 						<input type="text" 
 							style="width: 48%; padding-right: 6px;"
@@ -184,14 +171,14 @@ function fnSubmit (){
 							name="ssn" class="input-text w571"
 							value=""> 
 							<span style="padding: 7px;"> - </span> <span>
-							<input type="text" style="width: 48%" 
+							<input type="password" style="width: 48%" 
 							id="ssn2" name="ssh2"
 							class="input-text w571">
 						</span> <span class="input-group-btn"> </span>
 					</div>
 				</div>
 				<!--// form-group -->
-
+			
 				<div class="form-group">
 					<div class="form-head">
 						<label for="member-join-general-email-text" class="form-label">이메일<i
@@ -212,6 +199,7 @@ function fnSubmit (){
 						</select>
 						</span>
 					</div>
+					<span class="failure-message-special-charactersemail hide" style="font-size: 15px; color: #D63447">특수 문자는 입력할 수 없습니다.<br> 4글자이상 입력하세요.</span>					
 				</div>
 				<div class="form-group">
 					<div class="form-head">
@@ -237,35 +225,27 @@ function fnSubmit (){
 						</select>
 						</span> 
 						<span>-</span> 
-						<input type="text" id=selectPhone name="num2"
+						<input type="text" id=selectPhone class="selectPhone" name="num2"
 							style="width: 30%;"> <span>-</span> 
-						<input type="text" id=selectPhone style="width: 30%;" name="num3">
+						<input type="text" id=selectPhone class="selectPhone" style="width: 30%;" name="num3">
 						<button type="button" id="btn-phone"
 							class="btn-form btn-default-ex" style="height: 50px; width: 15%;">
 							<span>인증번호전송</span>
 						</button>
-						<div class="form-head">
-							<label class="form-label">인증번호
-								입력<i class="es2"></i>
-							</label>
-						</div>
-						<div>
-							<input type="text" id=selectPhone style="width: 30%;">
-						</div>
 					</div>
 				</div>
-				<div class="form-group">
+<!-- 				<div class="form-group">
 					<div class="form-head">
 						<label class="form-label">가입이유</label>
 					</div>
-					<!--// form-head -->
+					// form-head
 					<div class="input-group type-lg w-full">
 						<input type="text" style="width: 100%" 
 							class="input-text w571" > 
 							<span class="input-group-btn"> </span>
 					</div>
 					<div id="member-join-general-id-text-error"></div>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 					<div class="form-head">
@@ -311,9 +291,8 @@ function fnSubmit (){
 				<div id="member-join-general-email-text-error"></div>
 			</fieldset>
 			<div class="btn-bottom-area">
-				<button type="submit" id="member-join-general-submit-btn"
-					class="btn-basic-lg2 btn-dim"
-					onclick="javascript:fnSubmit();">
+				<button type="submit" id="member-join-general-submit-btn2"
+					class="btn-basic-lg2 btn-dim"  onclick="javascript:fnSubmit();">
 					<span>회원가입</span>
 				</button>
 				<!-- 활성화시 removeClass btn-dim -->
