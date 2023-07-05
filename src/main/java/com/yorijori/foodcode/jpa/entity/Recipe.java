@@ -74,7 +74,6 @@ public class Recipe {
         for (RecipeReview datareview : reviews) {
             sum = sum.add(datareview.getStar());
         }
-
         BigDecimal average;
         if (reviews.size() > 0) {
             BigDecimal size = BigDecimal.valueOf(reviews.size());
