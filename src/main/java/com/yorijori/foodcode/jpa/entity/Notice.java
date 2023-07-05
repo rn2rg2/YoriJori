@@ -45,7 +45,4 @@ public class Notice {
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
 	
-	@Exclude
-	@OneToMany(mappedBy = "noticeNo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<NoticeFile> imgList = new ArrayList<NoticeFile>();
 }

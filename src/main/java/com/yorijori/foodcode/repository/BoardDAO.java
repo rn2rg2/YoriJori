@@ -34,10 +34,12 @@ public interface BoardDAO {
 
 	public long getCountByCategorysAndState(String category);
 	
+
 	public List<Board> findmyboardlist(UserInfo user);
 
 	long countByUserId(UserInfo user);
 	List<Board> selectByPageByUser(int pageNo, int pagePerCount, UserInfo user);
+
 }
 
 

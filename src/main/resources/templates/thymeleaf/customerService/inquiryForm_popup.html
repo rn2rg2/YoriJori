@@ -1,22 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <th:block th:replace="~{thymeleaf/include/header :: header}"></th:block>
+
 <link rel="stylesheet"
 	href="/yorijori/common/css/customerService/inquiryForm_popup.css" />
 <meta charset="UTF-8">
-<title>팝업</title>
-</head>
+<script src="/yorijori/common/js/recipe/recipe.js"></script>
+
+
 <body>
+
 	<div class="all-margin">
 		<div class="all-content">
-		<form action="">
+		<form action="/yorijori/cs/inquiry/insert"  method="post" onsubmit="return inquirySubmit(event);">
 			<h2>문의</h2>
-			<p>제목</p><input type="text" class="title">
-			<p>내용</p><textarea class="con"></textarea>
+			<p>제목</p><input type="text" name ="title" class="title">
+			<p>내용</p><textarea name="contents" class="contents"></textarea>
+          	
 			<input type="submit" value="문의하기">
 		</form>
 		</div>
 	</div>
 </body>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function inquirySubmit(event) {
+            event.preventDefault();
+
+            var title = $('input[name="title"]').val().trim();
+            var contents = $('textarea[name="contents"]').val().trim();
+
+            if (title === '') {
+                alert('제목을 입력해주세요.');
+                return false;
+            } else if (contents === '') {
+                alert('내용을 입력해주세요.');
+                return false;
+            } else {
+                // 데이터를 서버로 전송
+                $.ajax({
+                    type: "POST",
+                    url: "/yorijori/cs/inquiry/insert",
+                    data: {
+                        title: title,
+                        contents: contents
+                    },
+                    success: function () {
+                        alert('문의가 성공적으로 제출되었습니다.');
+                        return true;
+                    },
+                    error: function () {
+                        alert('문의 제출 중 오류가 발생했습니다.');
+                        return false;
+                    }
+                });
+            }
+        }
+    </script>
 </html>
