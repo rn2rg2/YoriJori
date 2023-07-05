@@ -4,11 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
-import com.yorijori.foodcode.jpa.entity.CookingClassContent;
-import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
-import com.yorijori.foodcode.jpa.entity.Payment;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.CookingClassService;
 import com.yorijori.foodcode.service.MemberService;
@@ -48,8 +43,14 @@ public class CookingclassController {
 		this.fileUploadLogic = fileUploadLogic;
 	}
 	
-	@RequestMapping("/Instructor")
-	public String classListInstructor() {
+	@RequestMapping("/Instructor/{pageNo}/{pagePerCount}")
+	public String classListInstructor(Model model, @PathVariable int pageNo, @PathVariable int pagePerCount) {
+		List<UserInfo> list =  memservice.getCookUser(pageNo, pagePerCount, "point");
+		long count = memservice.userCount("전문가");
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagePerCount", pagePerCount);
 		return "thymeleaf/cookingclass/classListInstructor";
 	}
 	

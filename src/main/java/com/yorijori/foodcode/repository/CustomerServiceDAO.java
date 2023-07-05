@@ -2,7 +2,6 @@ package com.yorijori.foodcode.repository;
 
 import java.util.List;
 
-import com.yorijori.foodcode.jpa.entity.CustomerService;
 import com.yorijori.foodcode.jpa.entity.Inquiry;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;

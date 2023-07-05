@@ -18,5 +18,6 @@ public interface MemberService {
 	List<Long> countByUserRole(int startRole, int endRole);
 	List<Long> countByUserPoint(int startPoint, int endPoint);
 	List<UserInfo> getTop10User();
+	List<UserInfo> getCookUser(int pageNo, int pagePerCount, String sortType);
 
 }
