@@ -22,4 +22,5 @@ public interface MemberDAO {
 	
 	List<Long> countByUserRole(int startRole, int endRole);
 	List<Long> countByUserPoint(int startPoint, int endPoint);
+	List<UserInfo> getTop10User();
 }

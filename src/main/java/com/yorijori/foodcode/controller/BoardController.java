@@ -213,13 +213,19 @@ public class BoardController {
 	
 	//게시판 글쓰기 view
 	@GetMapping("/write")
-	public String boardWrite(HttpSession session) {
+	public String boardWrite(@RequestParam(value = "mode", required = false) String mode,
+							@PathVariable int commNo, @PathVariable int state,Model model) {
+		if (mode == "modify") {
+			model.addAttribute("detail", service.select(commNo));
+		}
+		
+		model.addAttribute("mode", mode);
 		return "thymeleaf/board/write";
 	}
 
 	//게시판 글쓰기 기능
 	@PostMapping("/write")
-	public String boardwrite(Board board, HttpSession session) {
+	public String boardwrite(Board board, HttpSession session,@RequestParam(value = "mode", required = false) String mode) {
 //		System.out.println("Controller");
 //		System.out.println("================================");
 //		System.out.println(board);
@@ -228,7 +234,13 @@ public class BoardController {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		board.setUserId(user);
 		board.setView(0);
-		service.insert(board);
+		
+		if (mode == "add") {
+			service.insert(board);
+		} else {
+			service.update(board);
+		}
+		
 		return "redirect:/board/list/0/10";
 	}
 

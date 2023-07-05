@@ -25,4 +25,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>,JpaSpec
     		"FROM recipe r " + 
     		"GROUP BY Mon", nativeQuery = true)
     List<MonthlyRcpVO> getMonthlyData();
+    List<Recipe> findTop15ByOrderByCountDesc();
 }

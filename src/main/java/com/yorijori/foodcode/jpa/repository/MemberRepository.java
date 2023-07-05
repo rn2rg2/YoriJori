@@ -32,4 +32,6 @@ public interface MemberRepository extends JpaRepository<UserInfo, Long> {
     		"WHERE u.user_id = :userId", nativeQuery = true)
     UserForChatVO getUserForChat(@Param("userId") String userId);
     
+    List<UserInfo> findTop10ByOrderByPointDesc();
+    
 }

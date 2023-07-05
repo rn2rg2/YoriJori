@@ -120,6 +120,7 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getCountByCategorysAndState(category);
 	}
 	@Override
+
 	public List<Board> findmyboardlist(UserInfo user) {
 		// TODO Auto-generated method stub
 		return dao.findmyboardlist(user);

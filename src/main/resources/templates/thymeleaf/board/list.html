@@ -84,7 +84,7 @@
 									<option value="10" selected="selected">10줄 보기</option>
 									<option value="20">20줄 보기</option>
 								</select>
-								<button type="reset" class="btn btn-default" style="float: right;" onclick="location.href='/yorijori/board/write'">등록</button>
+								<button type="reset" class="btn btn-default" style="float: right;" onclick="location.href='/yorijori/board/write?mode=add'">등록</button>
 							</div>
 						</div>
 					</div>
@@ -143,6 +143,7 @@
 			const pagination = $('#pagination_div');
 			
 			$(document).ready(function(){
+				
 				$('#viewablePages').on('change', function(){
 					pagePerCount = parseInt($(this).val());
 					window.location.href = "/yorijori/board/list/0/"+pagePerCount;

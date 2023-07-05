@@ -255,6 +255,12 @@ public class RecipeServiceImpl implements RecipeService {
     public List<RecipeReview> getByRecipeNo(Recipe recipe) {
         return recipeDAO.getByRecipeNo(recipe);
     }
+    
+    @Override
+    public List<Recipe> getTop15Recipe(){
+    	return recipeDAO.getTop15Recipe();
+    }
+    
 
 	
 

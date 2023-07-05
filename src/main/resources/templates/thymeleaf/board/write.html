@@ -63,12 +63,12 @@
 </th:block>
 <th:block layout:fragment="content">
 	<div class="mb-5" style="width: 80%; margin: auto;">
-		<form id="myForm" method="post" enctype="multipart/form-data" action="/yorijori/board/write"
+		<form id="myForm" method="post" enctype="multipart/form-data" action="/yorijori/board/write?mode=${mode}"
 			onsubmit="return boardSubmit(event);">
 			<div class="mb-5">
 
 				<label for="title">제목</label> <input type="text"
-					class="form-control" name="title" id="title"
+					class="form-control" name="title" id="title" th:value="${title}"
 					placeholder="제목을 입력해 주세요">
 
 			</div>

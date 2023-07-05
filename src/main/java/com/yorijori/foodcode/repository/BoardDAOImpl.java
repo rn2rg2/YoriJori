@@ -124,7 +124,6 @@ public class BoardDAOImpl implements BoardDAO {
 	    return repository.countByContentsContainingAndState(contents, state);
 	}
 
-	@Override
 	public List<Board> findmyboardlist(UserInfo user) {
 		return repository.findByUserId(user);
 	}

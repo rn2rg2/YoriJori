@@ -244,6 +244,7 @@ const make_rcp_list = function(page){
 	});
 }
 const make_rcp_div = function(data){
+	console.log(data);
 	 var colDiv = $('<div class="col-sm-6 col-lg-4 mb-4"></div>');
 	  var candidateListDiv = $('<div class="candidate-list candidate-grid"></div>');
 	  var candidateListImageDiv = $('<div class="candidate-list-image"></div>');
@@ -257,7 +258,7 @@ const make_rcp_div = function(data){
 	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자 " + data.userNickname);
 	  var brElement = $('<br>');
 	  var badge2 = $('<div class="badge badge-success px-3 rounded-pill font-weight-normal"></div>').text(data.time);
-	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>');
+	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal"></div>').text();;
 	  var candidateListFavouriteTimeDiv = $('<div class="candidate-list-favourite-time justify-content-around"></div>');
 	  var ulElement = $('<ul class="list-unstyled list-inline"></ul>');
 	  var li1 = $('<li class="pr-2"></li>');
@@ -298,7 +299,7 @@ const make_wish_list = function(page){
 	const pagePerCount = 6;
 	const url = "/yorijori/recipe/mywish/user/"+page+"/"+pagePerCount;
 	getAjaxNoParam(url, function (datas){
-		$('#results2').empty();
+		$('#results1').empty();
 		// Create a jQuery element for the outer div
 		console.log(datas);
 		$.each(datas, function(index, data) {
@@ -355,7 +356,7 @@ const make_wish_div = function(data){
 	  candidateListDiv.append(candidateListDetailsDiv);
 	  colDiv.append(candidateListDiv);
 
-	  $('#results2').append(colDiv);
+	  $('#results1').append(colDiv);
 }
 
 const make_board_list = function(page){
