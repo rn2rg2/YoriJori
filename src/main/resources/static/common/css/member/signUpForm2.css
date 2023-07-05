@@ -121,13 +121,23 @@ group .form-head ~ .input-group .form-group .input-group ~ .input-group {
     margin-top: 5px;
     height: 50px;
 }
+
+#member-join-general-submit-btn2 {
+	color: #fff; 
+    background: #4d4d4d;
+    border: 1px solid #ccc;
+    width: 690px;
+    border-right: 5px;
+    border-radius: 6px;
+    margin-top: 5px;
+    height: 50px;
+}
+
 .btn-bottom-area{position:relative;text-align:center;}
 
 #selectPhone{
 	border-radius: 6px;
 }
-
 .hide {
   display: none;
 }
-

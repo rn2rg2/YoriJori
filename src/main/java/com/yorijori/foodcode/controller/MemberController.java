@@ -144,7 +144,6 @@ public class MemberController {
 	@ResponseBody
 	public boolean checkUserId(@RequestParam("userId") String userId) {
 		boolean check = memberService.idcheck(userId);
-		System.out.println(userId);
 		return check;
 	}
 
