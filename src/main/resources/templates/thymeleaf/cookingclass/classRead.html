@@ -52,15 +52,33 @@
 							th:text="|${#numbers.formatInteger(cookingclass.price, 0, 'COMMA')}원|"></p>
 
 						<!-- <p class="del">80,000원</p> -->
-						<a class="app_block_link_remove user_info2_pic"> <img
-							th:src="|/yorijori/data/user/${cookingclass.userId.imgPath}|">
-						</a>
-						<div class="nickname" th:text="${cookingclass.userId.nickname}"></div>
-						<i class="fa-regular fa-message"
-							style="color: #000; border: 1px solid #aaaaaa; padding: 8px; border-radius: 50%; transform: scaleX(-1); float: right; margin: 45px 10px 0 0; font-size: 20px; cursor: pointer;"></i>
 					</div>
 				</div>
-
+				
+				<div class="view_step">
+					<div class="best_tit">
+						<b>레시피 작성자</b>
+					</div>
+					<div class="view_profile" style="display: flex">
+						<div class="profile_pic">
+							<a th:href="@{'/mypage/profile/read/' + ${cookingclass.userId.userId}}">
+								<img style="border-radius: 5em; width: 5em; height: 4.5em" th:src="@{'/data/user/' + ${cookingclass.userId.imgPath}}">
+							</a>
+						</div>
+						<div class="profile_cont" style="margin-left: 2em;">
+							<p class="cont_name" style="margin-bottom: 0;">[[${cookingclass.userId.nickname}]]</p>
+							<p class="cont_intro">[[${cookingclass.userId.purpose}]]</p>
+						</div>
+						<div class="addchat" style="margin-top: 4em;">
+							<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
+							<form>
+								<button class="btn btn-primary profile-button" type="button" th:onclick="makeChatRoom([[${session.userInfo.userId}]],[[${cookingclass.userId.userId}]])" style="background-color: red; width: 6em; height: 2.2em; margin-left: 53em;">채팅하기</button>
+							</form>
+							</th:block>
+						</div>
+					</div>
+				</div>
+				
 				<div class="view2_summary_info">
 					<dl class="info_delivery">
 						<dt>
