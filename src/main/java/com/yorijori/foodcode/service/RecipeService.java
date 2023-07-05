@@ -64,6 +64,7 @@ public interface RecipeService {
 	BigDecimal APIgetReviewAverage(List<ApiRecipeReview> review);
 	BigDecimal USERgetReviewAverage(List<RecipeReview> datareview);
     List<RecipeReview> getByRecipeNo(Recipe recipe);
+	List<Recipe> getTop15Recipe();
 
 	
 	

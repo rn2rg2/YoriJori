@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.yorijori.foodcode.jpa.entity.Ingredients;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.MemberRepository;
 
@@ -117,5 +115,10 @@ public class MemberDAOImpl implements MemberDAO {
 	        list.add(count);
 	    }
 	    return list;
+	}
+	
+	@Override
+	public List<UserInfo> getTop10User(){
+		return memberRepository.findTop10ByOrderByPointDesc();
 	}
 }

@@ -2,13 +2,11 @@ package com.yorijori.foodcode.service;
 
 
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -99,6 +97,11 @@ public class MemberServiceImpl implements MemberService {
 	public List<Long> countByUserPoint(int startPoint, int endPoint) {
 		// TODO Auto-generated method stub
 		return memberDAO.countByUserPoint(startPoint, endPoint);
+	}
+	
+	@Override
+	public  List<UserInfo> getTop10User(){
+		return memberDAO.getTop10User();
 	}
 
 }

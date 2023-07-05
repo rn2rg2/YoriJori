@@ -84,25 +84,11 @@
 
 				<section class="hero-section mb-5">
 					<div class="card-grid" style="border: none;">
-						<a class="card" href="#" style="border: none;">
-							<div class="card__background" style="background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjFfNDIg%2FMDAxNjc5Mzc2MDExOTE1.uoIBbE3W05Jr-9_Q6DA723eu99VzCQuFM0Psh_xXxzQg.dvo3Xl9tj62HpAHFvoLGWZolLqNtFL7G524Mg2ZX7Zwg.JPEG.dongin326%2FKakaoTalk_20230321_131450661.jpg&type=sc960_832)"></div>
+						<a class="card" th:href="|/yorijori/recipe/view/user/${data.recipeNo}|" style="border: none;" th:each="data, index : ${top3list}">
+							<div class="card__background" th:style="|background-image: url('/yorijori/data/recipethumbnail/${data.thumbnail}')|"></div>
 							<div class="card__content">
-								<p class="card__category">1위</p>
-								<h3 class="card__heading">소불고기</h3>
-							</div>
-						</a>
-						<a class="card" href="#" style="border: none;">
-							<div class="card__background" style="background-image: url(https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202109/01/234cd540-11d0-452e-8656-98f2eb5dfe4b.jpg)"></div>
-							<div class="card__content">
-								<p class="card__category">2위</p>
-								<h3 class="card__heading">닭볶음탕</h3>
-							</div>
-						</a>
-						<a class="card" href="#" style="border: none;">
-							<div class="card__background" style="background-image: url(https://recipe1.ezmember.co.kr/cache/recipe/2019/02/09/9377ac695a85566adfda9817b73438f31.jpg)"></div>
-							<div class="card__content">
-								<p class="card__category">3위</p>
-								<h3 class="card__heading">갈비찜</h3>
+								<p class="card__category">[[${index.count}]]위</p>
+								<h3 class="card__heading">[[${data.name}]]</h3>
 							</div>
 						</a>
 
@@ -111,16 +97,15 @@
 				<div class="container">
 
 					<div class="row">
-						<div class="col-md-3 col-sm-6">
-							<div class="name">4위 차돌된장찌개</div>
-							<a href="#" class="gallery-popup" title="Open Imagination">
+						<div class="col-md-3 col-sm-6" th:each="data, index : ${rcplist}">
+							<div class="name">[[${index.count+3}]]위 [[${data.name}]]</div>
+							<a th:href="|/yorijori/recipe/view/user/${data.recipeNo}|" class="gallery-popup" title="Open Imagination">
 								<div class="project-item">
 									<div class="overlay-container">
-										<img src="https://cdn.shopify.com/s/files/1/0585/8495/7094/files/main_aa3eb255-e48e-49cf-924b-f114e8437059.jpg?v=1632270374" alt="img" class="gallery-thumb-img">
+										<img th:src="|/yorijori/data/recipethumbnail/${data.thumbnail}|" alt="img" class="gallery-thumb-img">
 										<div class="project-item-overlay">
-											<h4>Open Imagination</h4>
 											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
+												<img th:src="|/yorijori/data/user/${data.userImgPath}|" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">[[${data.userNickname}]]</span>
 											</p>
 										</div>
 									</div>
@@ -128,211 +113,15 @@
 							</a>
 						</div>
 
-						<div class="col-md-3 col-sm-6">
-							<div class="name">5위 계란말이</div>
-							<a href="#" class="gallery-popup" title="Locked Steel Gate">
-								<div class="project-item">
-									<div class="overlay-container">
-										<img src="https://img-cf.kurly.com/shop/data/goodsview/20221118/gv10000453362_1.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Locked Steel Gate</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
 
-						<div class="col-md-3 col-sm-6">
-							<div class="name">6위 제육볶음</div>
-							<a href="#" class="gallery-popup" title="Mac Sunglasses">
-								<div class="project-item">
-									<div class="overlay-container">
-										<img src="https://www.meathome.net/app/dubu_shop/docs/imgs/product/75200/md_%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_400g_%EB%A9%94%EC%9D%B8%EC%BB%B7.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Mac Sunglasses</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Morning Dew">
-								<div class="name">7위 시금치나물</div>
-								<div class="project-item">
-									<div class="overlay-container">
-										<img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/09/24/61c3fb938805ae855f4e303ad138e0911.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Morning Dew</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Console Activity">
-								<div class="name">8위 열무김치</div>
-								<div class="project-item">
-									<div class="overlay-container">
-										<img src="https://img.choroc.com/newshop/goods/024447/024447_1.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Console Activity</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Shake It!">
-								<div class="name">9위 멸치볶음</div>
-								<div class="project-item">
-									<div class="overlay-container">
-										<img src="https://shop.biumfood.com/upload/1565225496image_product071.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Shake It!</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Backpack Content">
-								<div class="project-item">
-									<div class="name">10위 두부조림</div>
-									<div class="overlay-container">
-										<img src="https://img-cf.kurly.com/shop/data/goodsview/20230522/gv10000698839_1.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Backpack Content</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Sunset Bulb Glow">
-								<div class="project-item">
-									<div class="name">11위 수육</div>
-									<div class="overlay-container">
-										<img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA0MDlfOTkg/MDAxNTg2NDIyMjE4NDMx.BvtROyhsYjuiCQ0BXdsjB99c6Wns6QTz8usOfHBzRDIg.7Ei7A_JMoAn_WqJKZY_7dDOc4_whjMLzeBupRirOYFUg.JPEG.dew36/1.jpg?type=w800" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Sunset Bulb Glow</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Open Imagination">
-								<div class="project-item">
-									<div class="name">12위 소고기 장조림</div>
-									<div class="overlay-container">
-										<img src="https://m.easychan.co.kr/web/product/big/202203/17d83fda72cb776f56fb4f7300ca6e23.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Open Imagination</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Console Activity">
-								<div class="project-item">
-									<div class="name">13위 깻잎무침</div>
-									<div class="overlay-container">
-										<img src="https://beatmarket.speedgabia.com/page/180504_1_5.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Console Activity</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Open Imagination">
-								<div class="project-item">
-									<div class="name">14위 오이소박이</div>
-									<div class="overlay-container">
-										<img src="https://static.coupangcdn.com/image/retail/images/2020/10/12/11/2/aafd042a-3914-4c4e-bed0-aecf32e2ec78.jpg	" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Open Imagination</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<a href="#" class="gallery-popup" title="Shake It!">
-								<div class="project-item">
-									<div class="name">15위 연근조림</div>
-									<div class="overlay-container">
-										<img src="https://img-cf.kurly.com/shop/data/goodsview/20221126/gv20000456870_1.jpg" alt="img" class="gallery-thumb-img">
-										<div class="project-item-overlay">
-											<h4>Shake It!</h4>
-											<p>
-												<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" class="thumb-sm rounded-circle"> <span class="ml-2">Curtis Marion</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col-12 text-center mt-4 mt-sm-5">
-							<ul class="pagination justify-content-center mb-0">
-								<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">4</a></li>
-								<li class="page-item"><a class="page-link" href="#">5</a></li>
-								<li class="page-item"><a class="page-link" href="#">다음</a></li>
-							</ul>
-						</div>
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</div>
+	<script th:inline="javascript">
+		console.log([[${top3list}]])
+	</script>
 </th:block>
 </html>

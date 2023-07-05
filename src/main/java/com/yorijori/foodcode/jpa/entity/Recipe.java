@@ -62,6 +62,10 @@ public class Recipe {
 		
 	    return userId.getNickname();
 	}
+	public String getUserImgPath() {
+		
+	    return userId.getImgPath();
+	}
 
 	
 	

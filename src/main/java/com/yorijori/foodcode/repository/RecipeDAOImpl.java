@@ -223,5 +223,11 @@ public class RecipeDAOImpl implements RecipeDAO {
     public List<RecipeReview> getByRecipeNo(Recipe recipe) {
         return recipereviewrepository.findByRecipeNo(recipe);
     }
+    
+    @Override
+    public List<Recipe> getTop15Recipe(){
+    	return reciperepository.findTop15ByOrderByCountDesc();
+    }
+    
 
 }
