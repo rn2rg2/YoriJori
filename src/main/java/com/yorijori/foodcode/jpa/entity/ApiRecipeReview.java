@@ -49,5 +49,6 @@ public class ApiRecipeReview {
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable=false)
+	@JsonBackReference
 	private UserInfo userId;
 }
