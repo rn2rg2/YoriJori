@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yorijori.foodcode.jpa.entity.ApiRecipe;
+import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
@@ -56,7 +57,8 @@ public class IndexController {
 		List<UserInfo> userList = memberService.selectListByPageAndSort(0, 3, "point");
 		
 		// 게시물 목록
-		
+		List<Board> boardList = boardService.selectListByPageAndSort(0, 3 , "view");
+
 		
 		// count 관련
 		model.addAttribute("userCount", userCount);
@@ -69,7 +71,8 @@ public class IndexController {
 		model.addAttribute("rcpList", rcpList);
 		model.addAttribute("apircpList", apircpList);
 		model.addAttribute("userList", userList);
-		
+		model.addAttribute("boardList", boardList);
+
 		return "thymeleaf/index";
 		
 	}

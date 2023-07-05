@@ -26,6 +26,8 @@ public interface BoardService {
 	List<Board> selectByCategoryAndState(String category,int pageNo, int pagePerCount);
 	public long getCountByCategorysAndState(String category);
 	
+	List<Board> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType);
+
 	
 
 

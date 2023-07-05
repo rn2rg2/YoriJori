@@ -296,18 +296,19 @@
 		</ul>
 		<div class="tab-content bg-transparent">
 			<div id="note-full-container" class="note-has-grid row">
-				<div class="col-md-4 single-note-item all-category" style="">
-					<div class="card card-body">
+				<div class="col-md-4 single-note-item all-category"  th:each="data, idx : ${boardList}" style="">
+					<div class="card card-body" >
 						<span class="side-stick"></span>
-						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie">
-							Book a Ticket for Movie <i class="point fa fa-circle ml-1 font-10"></i>
+						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie"
+						 >
+						[[${data.title}]] <i class="point fa fa-circle ml-1 font-10"></i>
 						</h5>
-						<p class="note-date font-12 text-muted">11 March 2009</p>
+						<p class="note-date font-12 text-muted">[[${data.date}]] </p>
 						<div class="note-content">
-							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.</p>
+							<p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis." th:text="${data.contents.replaceAll('<.*?>', '')}"> </p>
 						</div>
 						<div class="d-flex align-items-center">
-							<span class="mr-1"><i class="fa-solid fa-eye"></i>232 조회</span>
+							<span class="mr-1"><i class="fa-solid fa-eye"></i>[[${data.view}]] </span>
 							<div class="ml-auto">
 								<div class="category-selector btn-group">
 									<div class="dropdown-menu dropdown-menu-right category-menu">
@@ -326,7 +327,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 single-note-item all-category note-important" style="">
+				<!-- <div class="col-md-4 single-note-item all-category note-important" style="">
 					<div class="card card-body">
 						<span class="side-stick"></span>
 						<h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Go for lunch">
@@ -477,7 +478,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

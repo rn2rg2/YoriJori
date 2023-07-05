@@ -22,8 +22,10 @@
 	<div class="container concon">
 		<div class="deskTitle">
 			<h3 class="menu-h3-common">자주 묻는 질문</h3>
-			<i onclick="location.href='http://localhost:8088/yorijori/cs/insert'"
-				class="fa-sharp fa-solid fa-circle-plus"></i>
+			<th:block th:if="${#session.getAttribute('userInfo').role == '관리자'}">	
+				<i onclick="location.href='http://localhost:8088/yorijori/cs/help/insert'" class="fa-sharp fa-solid fa-circle-plus">
+				</i>
+			</th:block>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -91,16 +93,21 @@
 						</div>
 					</li>
 
-					<li>
+					<li th:each="question:${questionList}">
 						<h6>
-							<a href="javascript:0">상품에 대해 더 궁금한 점이 있어요.</a>
+							<a href="javascript:0" th:text="${question.title}">상품에 대해 더 궁금한 점이 있어요.</a>
 						</h6>
 						<div class="hide">
-							<p>
-								카카오톡 상담 신청을 통해 사이즈 또는 상품 문의 주시면 빠른 답변 도와드리도록 하겟습니다 카카오톡 상담 신청을
-								통해 사이즈 또는 상품 문의 주시면 빠른 답변 도와드리도록 하겟습니다 카카오톡 상담 신청을 통해 사이즈 또는 상품
-								문의 주시면 빠른 답변 도와드리도록 하겟습니다</a>
-						</div>
+							<p th:text="${#strings.replace(#strings.replace(question.contents, '<p>', ''), '</p>', '')}">
+								카카오톡 상담 신청을 통해 레시피 관련 문의를 주시면 빠른 답변 드리겠습니다.
+							</p>
+						 	<span style="float: right;">
+						   		<i class="pull-right" style="float: right;">
+							    	<a th:href="@{/cs/help/delete(questionNo=${question.questionNo})}">
+							    	<i class="fa-solid fa-trash"></i>
+							    	</a>
+							    </i>						   	
+							</span>
 					</li>
 
 					<li>
@@ -114,7 +121,41 @@
 					</li>
 				</ul>
 			</div>
+			<!-- 페이징 자리 -->				
+			<div class="col-12 text-center mt-4 mt-sm-5">
+				<div id="pag">
+					<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+				</div>
+			</div>
 	</div>
-	</div>
+</div>
+<script th:inline="javascript">
+		// 현재 페이지
+		let currentPage = [[${pageNo}]];
+		// 한번에 보여줄 페
+		let pagePerCount = [[${pagePerCount}]];
+		// 게시물  카운트
+		let questionCount = [[${count}]];
+		//불러왔을때 총 게시물 / pagePerCount
+		let totalPages = 1;
+		//공통url
+		let url = "/yorijori/cs/help/";
+		
+		if ( questionCount > pagePerCount ){
+			totalPages = Math.ceil( questionCount /pagePerCount )
+		}
+		// pagination 들어갈 div
+		const pagination = $('#pagination_div');
+		
+		$(document).ready(function(){
+			
+			makePagination(pagination, totalPages, pagePerCount, currentPage + 1, move_list);
+
+		});
+		const move_list = function(page) {
+				let url = "/yorijori/cs/help/"+ page + "/" + pagePerCount;
+				window.location.href = url;
+		}
+		</script>
 </th:block>
 </html>

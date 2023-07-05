@@ -114,6 +114,10 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.getCountByCategorysAndState(category);
 	}
+	@Override
+	public List<Board> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType) {
+		return dao.selectListByPageAndSort(pageNo, pagePerCount, sortType);
+	}
 
 
 	

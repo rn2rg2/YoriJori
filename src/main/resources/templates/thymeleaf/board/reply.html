@@ -24,7 +24,8 @@
 						<hr />
 						<ul class="comments">
 							<li class="clearfix" th:each="comment:${boardCommentList}"><th:block th:if="${comment.display_order_no < 1}">
-									<img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+									<img src="https://bootdey.com/img/Content/user_2.jpg" 
+									th:src="|/yorijori/data/user/${board.userId.imgPath}|" class="avatar" alt="">
 									<div class="post-comments">
 										<p class="meta">
 											<a class="commentsName" href="#" th:text="|${comment.user_id} ${comment.date}|"></a>
@@ -58,7 +59,7 @@
 									</div>
 								</th:block> <th:block th:if="${comment.display_order_no > 0}">
 									<ul class="comments">
-										<li class="clearfix"><img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+										<li class="clearfix"><img th:src="|/yorijori/data/user/${board.userId.imgPath}|" class="avatar" alt="">
 											<div class="post-comments">
 												<p class="meta">
 													<a class="commentsName" th:text="|${comment.user_id} ${comment.date}|"></a>

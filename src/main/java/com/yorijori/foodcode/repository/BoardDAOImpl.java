@@ -118,6 +118,14 @@ public class BoardDAOImpl implements BoardDAO {
 	    return repository.countByContentsContainingAndState(contents, state);
 	}
 
+	@Override
+	public List<Board> selectListByPageAndSort(int pageNo, int pagePerCount, String sortType) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, sortType));
+		Page<Board> page = repository.findAll(pageRequest);
+		List<Board> list = page.getContent();
+		
+		return list;	}
+
 
 
 }
