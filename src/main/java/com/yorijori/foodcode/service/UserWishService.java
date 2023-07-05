@@ -2,6 +2,7 @@ package com.yorijori.foodcode.service;
 
 import java.util.List;
 
+import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
 
@@ -12,6 +13,8 @@ public interface UserWishService {
 	long countAll();
 
 	long countAllByUserId(UserInfo userinfo);
+
+	List<UserWishlist> findRecipeNoByUserId(UserInfo user);
 
 
 }

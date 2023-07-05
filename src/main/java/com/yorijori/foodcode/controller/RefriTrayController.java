@@ -139,7 +139,8 @@ public class RefriTrayController {
 		return count;
 	}
 	@RequestMapping("/tray/delete/{trayNo}")
-	public void deleteTray(@PathVariable int trayNo) {
+	public String deleteTray(@PathVariable int trayNo) {
 		refriTrayService.deleteTray(trayNo);
+		return "redirect:/mypage/tray";
 	}
 }

@@ -299,7 +299,8 @@
 													</a></li>
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 
-													<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
+<!-- 													<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)"> -->
+													<li class="pr-2"><a class="candidate-list-favourite order-2 black_heart" th:id="|wishNo${data.recipeNo}|" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
 															<i class="fa fa-heart me-2" aria-hidden="true"></i>
 														</a></li>
 
@@ -383,6 +384,7 @@
 		// pagination 들어갈 div
 		const $pagination = $('#pagination_div');
 		
+		
 		// 총 페이지지 네이션 수 
 		let totalPages = 1;
 		if ( userRecipeCount > pagePerCount ){
@@ -419,6 +421,22 @@
 				makePagination($pagination, totalPages, pagePerCount, currentPage + 1, move_list_api);
 			}
 	
+			console.log([[${wishlist}]])
+			const wishlist = [[${wishlist}]]
+			const rcplist = [[${list}]]
+			if (rcplist != null && wishlist != null){
+				for ( let i = 0 ; i < rcplist.length ; i ++ ) {
+					for ( let j = 0 ; j < wishlist.length; j++){
+						if ( rcplist[i].recipeNo == wishlist[j].recipeNo.recipeNo){
+							$("#wishNo"+rcplist[i].recipeNo).removeClass('black_heart')
+							$("#wishNo"+rcplist[i].recipeNo).addClass('red_heart')
+						}
+						
+					}
+				}
+				
+				
+			}
 			
 		});
 	
@@ -428,6 +446,9 @@
 			let value = $(data).attr('value');
 			let heartUrl = "/yorijori/recipe/like/"+ type +"/" +value;
 			//setTimeout(() => window.location.href=heartUrl, 2000);
+			getAjaxNoParam(heartUrl, function(data){
+				console.log(data);
+			})
 			let clickdata = $(data);
 			console.log(clickdata);
 			if (clickdata.hasClass('red_heart')) {

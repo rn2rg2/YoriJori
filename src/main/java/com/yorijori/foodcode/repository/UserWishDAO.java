@@ -18,4 +18,6 @@ public interface UserWishDAO {
 
 	long countAllByUserId(UserInfo userinfo);
 
+	List<UserWishlist> findByUserId(UserInfo user);
+
 }

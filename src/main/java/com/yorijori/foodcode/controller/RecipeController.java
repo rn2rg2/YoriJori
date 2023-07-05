@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,11 +46,13 @@ import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.SearchLog;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.jpa.entity.UserWishlist;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.CategoryService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.RecipeService;
 import com.yorijori.foodcode.service.SearchLogService;
+import com.yorijori.foodcode.service.UserWishService;
 
 @RequestMapping("/recipe")
 @Controller
@@ -63,14 +64,15 @@ public class RecipeController {
 	CategoryService categoryservice;
 	FileUploadLogic fileuploadlogic;
 	SearchLogService searchservice;
-
+	UserWishService userwishservice;
+	
 	@Value("${file.dir}") // c://project/upload
 	private String uploadpath;
 
 	@Autowired
 	public RecipeController(RecipeService recipeService, RecipeDataFetcher recipeDataFetcher,
 			ApiRecipeService apiRecipeService, IngredientService ingredientservice, CategoryService categoryservice,
-			FileUploadLogic fileuploadlogic, SearchLogService searchservice) {
+			FileUploadLogic fileuploadlogic, SearchLogService searchservice,UserWishService userwishservice) {
 		super();
 		this.recipeService = recipeService;
 		this.recipeDataFetcher = recipeDataFetcher;
@@ -79,6 +81,7 @@ public class RecipeController {
 		this.categoryservice = categoryservice;
 		this.fileuploadlogic = fileuploadlogic;
 		this.searchservice = searchservice;
+		this.userwishservice = userwishservice;
 	}
 
 	// 질문
@@ -238,7 +241,8 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/list/{type}/{pageNo}")
-	public String listRecipe(Model model, @PathVariable String type, @PathVariable int pageNo) throws IOException {
+	public String listRecipe(Model model, @PathVariable String type, @PathVariable int pageNo, HttpSession session) throws IOException {
+		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		if (type.equals("user")) { // user recipe
 			// 전체 레시피 수 조회
 			long count = recipeService.countAll();
@@ -252,8 +256,13 @@ public class RecipeController {
 	            BigDecimal average = recipeService.USERgetReviewAverage(reviews);
 	            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
 	        }
- 	        
  	        System.out.println(recipeNoAverageMap);
+ 	        
+ 	        //회원 로그인 시
+ 	        if ( user != null ) {
+ 	        	List<UserWishlist> wishlist = userwishservice.findRecipeNoByUserId(user);
+ 	        	model.addAttribute("wishlist", wishlist);
+ 	        }
 			model.addAttribute("type", type);
 	        model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
 			model.addAttribute("list", list);
@@ -262,8 +271,6 @@ public class RecipeController {
 		} else { // server recipea
 			long count = apiRecipeService.countAll();
 			// 페이지에 해당하는 서버 레시피 목록 조회
-			
-
 			List<ApiRecipe> list = apiRecipeService.getServerRecipe(pageNo, 9);
 	        Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
  	        for (ApiRecipe recipe : list) {
@@ -375,6 +382,7 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/like/{type}/{rcpNo}")
+	@ResponseBody
 	public String addWishList(@PathVariable String type, @PathVariable int rcpNo, HttpSession session,
 			HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
@@ -394,7 +402,7 @@ public class RecipeController {
 			apirecipe.setRcpSeq(rcpNo);
 			apiRecipeService.wishList(userinfo, apirecipe);
 		}
-		return "redirect:" + referer;
+		return "success";
 	}
 
 //	@PostMapping("/reviewinsert/{rcpNo}")

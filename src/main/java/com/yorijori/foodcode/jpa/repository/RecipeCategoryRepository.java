@@ -6,6 +6,6 @@ import com.yorijori.foodcode.jpa.entity.Category;
 import com.yorijori.foodcode.jpa.entity.RecipeCategory;
 
 public interface RecipeCategoryRepository extends JpaRepository<RecipeCategory, Integer> {
-	long countByCategoryNo(int categoryNo);
+	long countByCategoryNo(Category categoryNo);
 
 }

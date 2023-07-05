@@ -23,7 +23,6 @@ import com.yorijori.foodcode.jpa.entity.RecipeQa;
 import com.yorijori.foodcode.jpa.entity.RecipeReview;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.entity.UserWishlist;
-import com.yorijori.foodcode.repository.ApiRecipeDAO;
 import com.yorijori.foodcode.repository.CategoryDAO;
 import com.yorijori.foodcode.repository.RecipeDAO;
 

@@ -35,5 +35,10 @@ public class UserWishServiceImpl implements UserWishService {
 		return userWishDAO.countAllByUserId(userinfo);
 	}
 	
+	@Override
+	public List<UserWishlist> findRecipeNoByUserId(UserInfo user){
+		return userWishDAO.findByUserId(user);
+	}
+	
 
 }
