@@ -11,7 +11,7 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 public interface BoardService {
 	public Board insert(Board board);
 	List<Board> selectAll();
-	void update(Board board);
+	public int boardUpdate(int commNo, Board board);
 	void delete(int commNo);
 	long countAll();
 	List<Board> search();

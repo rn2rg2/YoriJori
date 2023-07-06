@@ -57,13 +57,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="notice">
-											<td>공지</td>
-											<td>공지사항</td>
-											<td><a href="/yorijori/board/read">게시판 사용 시 주의사항</a></td>
-											<td>관리자</td>
-											<td>5</td>
-										</tr>
+									
 									</tbody>
 									<tr th:each="board:${boardlist}">
 										<td><span th:text="${board.commNo }"></span></td>
@@ -71,7 +65,7 @@
 										<td><a th:href="@{/board/read/{commNo}/{state}(commNo=${board.commNo},state=${board.state})}">
 												<span th:text="${board.title }"></span>
 											</a></td>
-										<td><span th:text="${board.userId.userId}" class="readuserinfo" th:data-userid="${board.userId.userId}"></span></td>
+										<td><span th:text="${board.userId.nickname}" class="readuserinfo" th:data-userid="${board.userId.userId}"></span></td>
 										<td><span th:text="${board.view}"></span></td>
 									</tr>
 								</table>
@@ -84,7 +78,7 @@
 									<option value="10" selected="selected">10줄 보기</option>
 									<option value="20">20줄 보기</option>
 								</select>
-								<button type="reset" class="btn btn-default" style="float: right;" onclick="location.href='/yorijori/board/write?mode=add'">등록</button>
+								<button type="button" class="btn btn-default" style="float: right;" onclick="location.href='/yorijori/board/write?mode=add'">등록</button>
 							</div>
 						</div>
 					</div>

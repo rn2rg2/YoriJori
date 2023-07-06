@@ -45,9 +45,25 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void update(Board board) {
-		// TODO Auto-generated method stub
-		
+	public int boardUpdate(int commNo, Board board) {
+	    // commNo를 사용하여 특정 게시글을 조회하고 업데이트를 수행하는 코드
+
+	    // commNo를 사용하여 특정 게시글을 조회
+	    Board existingBoard = repository.findById(commNo).orElse(null);
+
+	    if (existingBoard != null) {
+	        // Board 객체에서 필요한 정보를 가져와서 게시글을 업데이트
+	        existingBoard.setTitle(board.getTitle());
+	        existingBoard.setContents(board.getContents());
+	        System.out.println(board.getTitle());
+	        System.out.println(board.getContents());
+	        // 업데이트된 게시글을 저장
+	        repository.save(existingBoard);
+
+	        return existingBoard.getCommNo(); // 업데이트된 게시글의 commNo 반환
+	    }
+
+	    return 0; // 게시글이 존재하지 않는 경우 0 반환
 	}
 
 	@Override

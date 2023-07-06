@@ -15,7 +15,7 @@ public interface BoardDAO {
 	
 	List<Board> selectByPage(int pageNo);
 	//게시물수정	
-	public void update(Board board);
+	public int boardUpdate(int commNo, Board board);
 	//게시물삭제
 	public void delete(int commNo);
 	//검색

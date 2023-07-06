@@ -32,7 +32,7 @@
 					<div class="btns" style="float: right;">
 						<th:block th:if="${!#strings.isEmpty(session.userInfo) and board.userId.userId == session.userInfo.userId}">		
 							<button type="button" class="buttons btn-primary"
-								onclick="location.href='/yorijori/board/write'">수정</button>
+								th:onclick="|location.href='@{/board/write?mode=modify(commNo=${board.commNo})}'|">수정</button>
 							<button type="button" class="buttons btn-primary"
 								th:onclick="|location.href='@{/board/delete(commNo=${board.commNo})}'|">삭제</button>
 						</th:block>
