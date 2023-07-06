@@ -21,5 +21,6 @@ public interface CookingClassRepository extends JpaRepository<CookingClass, Inte
 	public Page<CookingClass> findByUserId(UserInfo user, PageRequest pageRequest);
 
 	public long countByUserId(UserInfo user);
-
+	Page<CookingClass> findByTitleContaining(String keyword,Pageable pageable);
+	Long countByTitleContaining(String title);
 }

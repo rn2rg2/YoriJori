@@ -32,6 +32,8 @@ public interface CookingClassDAO {
 	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user);
 
 	long countByUserId(UserInfo user);
+	List<CookingClass> selectBySearch(int pageNo, String searchData, int pagePerCount);
+	long countByTitleContaining(String name);
 
 	
 }

@@ -13,6 +13,7 @@ import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
 import com.yorijori.foodcode.jpa.entity.Payment;
+import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.repository.CookingClassDAO;
 
@@ -140,5 +141,14 @@ public class CookingClassServiceImpl implements CookingClassService {
 	public long countByUserId(UserInfo user) {
 		return dao.countByUserId(user);
 
+	}
+	@Override
+	public List<CookingClass> selectBySearch(int pageNo, String searchData, int pagePerCount) {
+
+		return dao.selectBySearch(pageNo, searchData, pagePerCount);
+	}
+	@Override
+	public long countByTitleContaining(String title) {
+		return dao.countByTitleContaining(title);
 	}
 }
