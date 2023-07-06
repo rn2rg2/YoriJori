@@ -40,6 +40,8 @@ public interface BoardDAO {
 	long countByUserId(UserInfo user);
 	List<Board> selectByPageByUser(int pageNo, int pagePerCount, UserInfo user);
 
+	long countBycommNo(Board commNo);
+
 }
 
 

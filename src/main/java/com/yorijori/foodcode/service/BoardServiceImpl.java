@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -129,6 +130,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> selectByPageByUser(int pageNo, int pagePerCount,UserInfo user){
 		return dao.selectByPageByUser(pageNo, pagePerCount, user);
+	}
+	@Override
+	public List<Long> countBycommNo(int startnum, int endnum) {
+		List<Long> list = new ArrayList<Long>();
+		for (int i = startnum; i <= endnum; i++) {
+			Board commNo = new Board();
+			commNo.setCommNo(i);
+			long count = dao.countBycommNo(commNo);
+			list.add(count);
+		}
+		return list;
 	}
 
 
