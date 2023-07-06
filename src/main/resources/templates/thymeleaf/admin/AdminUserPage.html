@@ -80,13 +80,6 @@
 												</div>
 											</div>
 										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>13% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												[[${date}]] </span>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -105,13 +98,6 @@
 													<i class="bi bi-people"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>30% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												[[${date}]] </span>
 										</div>
 									</div>
 								</div>
@@ -132,12 +118,6 @@
 												</div>
 											</div>
 										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-danger text-danger me-2">
-												<i class="bi bi-arrow-down me-1"></i>-5% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">어제와 비교 </span>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -146,7 +126,7 @@
 							<div class="card-header">
 								<h5 class="mb-0">회원목록</h5>
 								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
+									<label>회원검색: <input type="text" id="search"
 										onkeyup="filter()" placeholder="회원닉네임으로 검색" /></label>
 
 								</div>
@@ -214,7 +194,7 @@
 							<div class="card-header">
 								<h5 class="mb-0">회원목록</h5>
 								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
+									<label>회원검색: <input type="text" id="search"
 										onkeyup="filter2()" placeholder="회원닉네임으로 검색" /></label>
 
 								</div>
@@ -259,7 +239,7 @@
 												<button type="button"
 													class="btn btn-sm btn-square btn-neutral text-danger-hover"
 													id="reload">
-													삭제 <input style="display: none;"
+													복원 <input style="display: none;"
 														th:value="${secessionlist.userId}" id="dateposted10">
 												</button>
 											</td>

@@ -311,5 +311,12 @@ public class BoardController {
 		List<Board> list = service.selectByPageByUser(page, pagePerCount, user);
 		return list;
 	}
+	
+	@GetMapping("/list/{page}/{pagePerCount}")
+	@ResponseBody 
+	public List<Board> getListByUserId(@PathVariable int page,@PathVariable int pagePerCount){
+		List<Board> list = service.selectByPageAndpagePerCount(page, pagePerCount);
+		return list;
+	}
 
 }

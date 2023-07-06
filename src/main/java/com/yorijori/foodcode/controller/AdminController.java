@@ -127,6 +127,7 @@ public class AdminController {
 		long rcpcount = boardSerivce.getCountByCategorysAndState("레시피질문");
 		long matzipcount = boardSerivce.getCountByCategorysAndState("맛집추천");
 		long todayeatcount = boardSerivce.getCountByCategorysAndState("오늘뭐먹지");
+		
 		model.addAttribute("allcount", allcount);
 		model.addAttribute("rcpcount", rcpcount);
 		model.addAttribute("matzipcount", matzipcount);
