@@ -90,7 +90,6 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 
 	@Override
 	public List<Inquiry> inquirySelectByPageAndpagePerCount(int pageNo, int pagePerCount) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -121,8 +120,20 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	}
 
 	@Override
-	public void inquiryCommentDelete(int id) {
-		dao.inquiryCommentDelete(id);
+	public InquiryComment inquiryCommentDelete(int id) {
+		return dao.inquiryCommentDelete(id);
+	}
+
+	@Override
+	public List<Inquiry> getAllInquiries() {
+		// TODO Auto-generated method stub
+		return dao.getAllInquiries();
+	}
+
+	@Override
+	public List<InquiryComment> getInquiryCommentsByState(int inquiryNo, int state) {
+		// TODO Auto-generated method stub
+		return dao.getInquiryCommentsByState(inquiryNo, state);
 	}
 
 }

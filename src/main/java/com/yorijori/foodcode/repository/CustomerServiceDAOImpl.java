@@ -147,10 +147,23 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 	}
 
 	@Override
-	public void inquiryCommentDelete(int id) {
+	public InquiryComment inquiryCommentDelete(int id) {
 		InquiryComment inquiryComment = inquiryCommentRepository.findById(id).get();
 		inquiryComment.setId(id);
 		inquiryComment.setState(1);
+		return inquiryComment;
+	}
+
+	@Override
+	public List<Inquiry> getAllInquiries() {
+		// TODO Auto-generated method stub
+		return inquiryRepository.findAll();
+	}
+
+	@Override
+	public List<InquiryComment> getInquiryCommentsByState(int inquiryNo, int state) {
+		// TODO Auto-generated method stub
+        return inquiryCommentRepository.findByInquiryNoAndState(inquiryNo, state);
 	}
 
 }
