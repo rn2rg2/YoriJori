@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -309,12 +310,49 @@ public class BoardController {
 		List<Board> list = service.selectByPageByUser(page, pagePerCount, user);
 		return list;
 	}
-	
-	@GetMapping("/list/{page}/{pagePerCount}")
+	@GetMapping("/list/all/{page}/{pagePerCount}")
 	@ResponseBody 
-	public List<Board> getListByUserId(@PathVariable int page,@PathVariable int pagePerCount){
+	public List<Board> getListAll(@PathVariable int page,@PathVariable int pagePerCount){
 		List<Board> list = service.selectByPageAndpagePerCount(page, pagePerCount);
 		return list;
 	}
+	@GetMapping("/list/delete/{page}/{pagePerCount}")
+	@ResponseBody 
+	public List<Board> getListDetele(@PathVariable int page,@PathVariable int pagePerCount){
+		List<Board> list = service.selectByPageAndpagePerCount(page, pagePerCount,1);
+		return list;
+	}
+	
+	@GetMapping("/delete/count")
+	@ResponseBody 
+	public long getallCount(){
+		long count = service.countByState(0);
+		return count;
+	}
+	
+	@GetMapping("/all/count")
+	@ResponseBody 
+	public long getDeleteCount(){
+		long count =  service.countByState(1);
+		return count;
+	}
+	
+	@ResponseBody
+	@PostMapping("/ajax/delete")
+	public ResponseEntity deleteBoard(@RequestParam("commNo") int commNo) {
+		service.delete(commNo);
+		return ResponseEntity.ok().build();
+	}
+	
+	@ResponseBody
+	@PostMapping("/ajax/restore")
+	public ResponseEntity restoreBoard(@RequestParam("commNo") int commNo) {
+		Board board = new Board();
+		board.setCommNo(commNo);
+		service.update(board);
+		return ResponseEntity.ok().build();
+	}
+	
+	
 
 }

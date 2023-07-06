@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
-import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
 import com.yorijori.foodcode.service.BoardService;
 import com.yorijori.foodcode.service.CookingClassService;
+import com.yorijori.foodcode.service.CustomerServiceService;
 import com.yorijori.foodcode.service.IngredientService;
 import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.RecipeService;
@@ -33,10 +33,11 @@ public class AdminController {
 	ApiRecipeService apircpService;
 	BoardService boardSerivce;
 	CookingClassService classService;
+	CustomerServiceService customerService;
 
 	@Autowired
 	public AdminController(MemberService userService, RecipeService rcpService, IngredientService ingreService,
-			ApiRecipeService apircpService, BoardService boardSerivce, CookingClassService classService) {
+			ApiRecipeService apircpService, BoardService boardSerivce, CookingClassService classService,CustomerServiceService customerService) {
 		super();
 		this.userService = userService;
 		this.rcpService = rcpService;
@@ -44,6 +45,7 @@ public class AdminController {
 		this.apircpService = apircpService;
 		this.boardSerivce = boardSerivce;
 		this.classService = classService;
+		this.customerService = customerService;
 	}
 
 	@RequestMapping("")
@@ -125,21 +127,24 @@ public class AdminController {
 	@RequestMapping("/board")
 	public String getBoardPage(Model model) {
 		
-		//List<Board> boardrlist = 
-		//List<Board> boardrcplist = 
-		//List<Board> storelist =
-		//List<Board> eatlist = 
-
-		
 		long allcount = boardSerivce.countAll();
 		long rcpcount = boardSerivce.getCountByCategorysAndState("레시피질문");
 		long matzipcount = boardSerivce.getCountByCategorysAndState("맛집추천");
 		long todayeatcount = boardSerivce.getCountByCategorysAndState("오늘뭐먹지");
+		long deletecount = boardSerivce.countByState(1);
+		
+		long noticecount = customerService.noticeCountAll();
+		long questioncount = customerService.questionCountAll();
+		long inquirycount = customerService.inquiryCountAll();
 		
 		model.addAttribute("allcount", allcount);
 		model.addAttribute("rcpcount", rcpcount);
 		model.addAttribute("matzipcount", matzipcount);
 		model.addAttribute("todayeatcount", todayeatcount);
+		model.addAttribute("deletecount", deletecount);
+		model.addAttribute("noticecount", noticecount);
+		model.addAttribute("questioncount", questioncount);
+		model.addAttribute("inquirycount", inquirycount);
 		return "thymeleaf/admin/board";
 
 	}

@@ -26,6 +26,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString.Exclude;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -60,6 +61,14 @@ public class Board {
 	@OneToMany(mappedBy = "commNo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<BoardComment> commentList = new ArrayList<BoardComment>();
-
+	
+	public String getUserNickname() {
+		
+	    return userId.getNickname();
+	}
+	public String getUserImgPath() {
+		
+	    return userId.getImgPath();
+	}
+	
 }
-

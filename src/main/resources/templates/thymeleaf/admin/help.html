@@ -65,13 +65,6 @@
 												</div>
 											</div>
 										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>13% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												<!-- [[${date}]] --> </span>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -90,13 +83,6 @@
 													<i class="bi bi-people"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>30% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												<!-- [[${date}]] --> </span>
 										</div>
 									</div>
 								</div>
@@ -117,24 +103,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-danger text-danger me-2">
-												<i class="bi bi-arrow-down me-1"></i>-5% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">어제와 비교 </span>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="card shadow border-0 mb-7">
 							<div class="card-header">
-								<h5 class="mb-0">회원목록</h5>
-								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
-										onkeyup="filter()" placeholder="회원닉네임으로 검색" /></label>
-
-								</div>
+								<h5 class="mb-0">자주묻는질문목록</h5>
 							</div>
 							<div class="table-responsive">
 								<table class="table table-hover table-nowrap">
@@ -197,12 +172,7 @@
 					<div id="user-chart" class="tab-pane">
 						<div class="card shadow border-0 mb-7">
 							<div class="card-header">
-								<h5 class="mb-0">회원목록</h5>
-								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
-										onkeyup="filter2()" placeholder="회원닉네임으로 검색" /></label>
-
-								</div>
+								<h5 class="mb-0">자주묻는질문목록</h5>
 							</div>
 							<div class="table-responsive">
 								<table class="table table-hover table-nowrap">
@@ -427,27 +397,10 @@ $(document).ready(function() {
 	});
 
 </script>
-	<script>
-  function filter() {
-    let search = document.getElementById("search").value.toLowerCase();
-    let userList = document.querySelectorAll("#user-list tbody tr");
-
-    userList.forEach(function(user) {
-      let nickname = user.querySelector(".nickname").textContent.toLowerCase();
-      if (nickname.includes(search)) {
-        user.style.display = "table-row";
-      } else {
-        user.style.display = "none";
-      }
-    });
-  }
-</script>
 
 
-</script>
-	<script th:inline="javascript">
+<script th:inline="javascript">
 	$(document).ready(function() {
-		$('#user-account-management').addClass('active');
 	})
 
 	//-------------
