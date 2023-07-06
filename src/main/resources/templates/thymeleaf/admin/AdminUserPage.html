@@ -397,7 +397,7 @@ $(document).ready(function() {
 	    console.log(userId);
 
 	    $.ajax({
-	      url: '/yorijori/UserDelete',
+	      url: '/yorijori/admin/UserDelete',
 	      type: 'POST',
 	      data: { userId: userId },
 	      success: function(result) {
@@ -423,7 +423,7 @@ $(document).ready(function() {
 	    console.log(userId);
 
 	    $.ajax({
-	      url: '/yorijori/UserRestore',
+	      url: '/yorijori/admin/UserRestore',
 	      type: 'POST',
 	      data: { userId: userId },
 	      success: function(result) {
