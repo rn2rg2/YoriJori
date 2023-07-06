@@ -9,8 +9,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.yorijori.foodcode.jpa.entity.Inquiry;
+import com.yorijori.foodcode.jpa.entity.InquiryComment;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
+import com.yorijori.foodcode.jpa.repository.InquiryCommentRepository;
 import com.yorijori.foodcode.jpa.repository.NoticeRepository;
 import com.yorijori.foodcode.jpa.repository.QuestionRepository;
 import com.yorijori.foodcode.jpa.repository.inquiryRepository;
@@ -19,15 +22,17 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 	private QuestionRepository questionRepository;
 	private inquiryRepository inquiryRepository;
 	private NoticeRepository noticeRepository;
-	
+	private InquiryCommentRepository inquiryCommentRepository;
 
+	@Autowired
 	public CustomerServiceDAOImpl(QuestionRepository questionRepository,
-			com.yorijori.foodcode.jpa.repository.inquiryRepository inquiryRepository,
-			NoticeRepository noticeRepository) {
+			com.yorijori.foodcode.jpa.repository.inquiryRepository inquiryRepository, NoticeRepository noticeRepository,
+			InquiryCommentRepository inquiryCommentRepository) {
 		super();
 		this.questionRepository = questionRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.noticeRepository = noticeRepository;
+		this.inquiryCommentRepository = inquiryCommentRepository;
 	}
 
 	@Override
@@ -92,8 +97,59 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 
 	@Override
 	public Inquiry inquiryInsert(Inquiry inquery) {
-		System.out.println("iiiiiiiiiinqdao");
+		//System.out.println("iiiiiiiiiinqdao");
 		return inquiryRepository.save(inquery);
+	}
+
+	@Override
+	public List<Inquiry> inquirySelectByPageAndpagePerCount(int pageNo, int pagePerCount) {
+		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "questionNo"));
+		Page<Inquiry> page = inquiryRepository.findByState(0, pageable);
+		List<Inquiry> list = page.getContent(); 
+		//System.out.println("dao"+list);
+		return list; 
+	}
+
+	@Override
+	public long inquiryCountAll() {
+
+		return inquiryRepository.count();
+	}
+
+	@Override
+	public void inquiryDelete(int inquiryNo) {
+		Inquiry inquiry = inquiryRepository.findById(inquiryNo).get();
+		inquiry.setInquiryNo(inquiryNo);
+		inquiry.setState(1);
+	}
+
+	@Override
+	public List<Inquiry> findByUserId(UserInfo user) {
+		return inquiryRepository.findByUserId(user);
+	}
+
+	@Override
+	public Inquiry select(int inquiryNo) {
+
+		return inquiryRepository.findByInquiryNo(inquiryNo);
+	}
+
+	@Override
+	public InquiryComment inquiryCommentInsert(InquiryComment inquiryComment) {
+		return inquiryCommentRepository.save(inquiryComment);
+	}
+
+	@Override
+	public List<InquiryComment> inquiryCommentList(int inquiryNo) {
+		// TODO Auto-generated method stub
+		return inquiryCommentRepository.findByInquiryNo(inquiryNo);
+	}
+
+	@Override
+	public void inquiryCommentDelete(int id) {
+		InquiryComment inquiryComment = inquiryCommentRepository.findById(id).get();
+		inquiryComment.setId(id);
+		inquiryComment.setState(1);
 	}
 
 }

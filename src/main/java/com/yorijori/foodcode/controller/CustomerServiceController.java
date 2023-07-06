@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.jpa.entity.Inquiry;
+import com.yorijori.foodcode.jpa.entity.InquiryComment;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
@@ -102,12 +103,12 @@ public class CustomerServiceController {
 		return "redirect:/cs/help/0/10";
 	}
 	
-	
 
-	@RequestMapping("/inquiry") //
-	public String showInquiry() {
-		return "thymeleaf/customerService/inquiry"; 
-	}
+	//문의사항
+	/*
+	 * @RequestMapping("/inquiry") public String showInquiry() { return
+	 * "thymeleaf/customerService/inquiry"; }
+	 */
 	
 	@GetMapping("/inquiry/insert") //유저용
 	public String showInquiryForm() {
@@ -119,12 +120,51 @@ public class CustomerServiceController {
 	public String inquiryInsert(Inquiry inquiry, HttpSession session) { 
 		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
 		inquiry.setUserId(user);
-		System.out.println("iiiiiiiiiinqco"); 
+		//System.out.println("iiiiiiiiiinqco"); 
 		service.inquiryInsert(inquiry);
 	    return "redirect:/cs/inquiry"; // 문의 성공 시 success 파라미터를 전달하여 리다이렉트합니다
 
 	}
-	 
+	
+
+	@RequestMapping("/inquiry")
+	public String showinquiryList(Model model,HttpSession session) {
+		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
+		List <Inquiry> inquiryList = service.findByUserId(user);
+		model.addAttribute("inquiryList",inquiryList);
+		return "thymeleaf/customerService/inquiry"; 
+	}
+	
+	@RequestMapping("/inquiry/read/{inquiryNo}")
+	public String inquiryRead(@PathVariable int inquiryNo, Model model,HttpSession session) {
+		Inquiry inquiry = service.select(inquiryNo);
+		//List<InquiryComment> commentList = service.inquiryCommentList(inquiryNo);
+		model.addAttribute("inquiry",inquiry);
+		//model.addAttribute("commentList",commentList);
+
+		return "thymeleaf/customerService/inquiryRead"; 
+	}
+	
+	@GetMapping("/inquiry/delete")
+	public String inquiryDelete(int inquiryNo) {
+		service.inquiryDelete(inquiryNo);
+		return "redirect:/cs/inquiryNo/list";
+	}
+	
+	//문의사항 댓글
+
+	
+	@PostMapping("/inquiryComment/insert") 
+	public String inquiryCommentInsert(@PathVariable int inquiryNo, InquiryComment inquiryComment, HttpSession session) { 
+		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
+		inquiryComment.setUserId(user);
+		//System.out.println("iiiiiiiiiinqco"); 
+		service.inquiryCommentInsert(inquiryComment);
+	    return "redirect:/cs/inquiry/read/{inquiryNo}";
+
+	}
+	
+	
 	@RequestMapping("/test") //관리자용
 	public String test() {
 		return "thymeleaf/customerService/CSpageNavigation"; 

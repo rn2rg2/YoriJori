@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yorijori.foodcode.jpa.VO.MonthlyRcpVO;
+import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.CookingClass;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.ApiRecipeService;
@@ -123,6 +124,13 @@ public class AdminController {
 
 	@RequestMapping("/board")
 	public String getBoardPage(Model model) {
+		
+		//List<Board> boardrlist = 
+		//List<Board> boardrcplist = 
+		//List<Board> storelist =
+		//List<Board> eatlist = 
+
+		
 		long allcount = boardSerivce.countAll();
 		long rcpcount = boardSerivce.getCountByCategorysAndState("레시피질문");
 		long matzipcount = boardSerivce.getCountByCategorysAndState("맛집추천");

@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.yorijori.foodcode.jpa.entity.Inquiry;
+import com.yorijori.foodcode.jpa.entity.InquiryComment;
 import com.yorijori.foodcode.jpa.entity.Notice;
 import com.yorijori.foodcode.jpa.entity.Question;
+import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.repository.CustomerServiceDAO;
 @Transactional
 @Service
@@ -78,6 +81,49 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 
 		return dao.inquiryInsert(inquiry);
 		
+	}
+
+	@Override
+	public long inquiryCountAll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Inquiry> inquirySelectByPageAndpagePerCount(int pageNo, int pagePerCount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void inquiryDelete(int inquiryNo) {
+		dao.inquiryDelete(inquiryNo);
+	}
+
+	@Override
+	public List<Inquiry> findByUserId(UserInfo user) {
+		return dao.findByUserId(user);
+	}
+
+	@Override
+	public Inquiry select(int inquiryNo) {
+		return dao.select(inquiryNo);
+	}
+
+	@Override
+	public InquiryComment inquiryCommentInsert(InquiryComment inquiryComment) {
+		return dao.inquiryCommentInsert(inquiryComment);
+	}
+
+	@Override
+	public List<InquiryComment> inquiryCommentList(int inquiryNo) {
+		// TODO Auto-generated method stub
+		return dao.inquiryCommentList(inquiryNo);
+	}
+
+	@Override
+	public void inquiryCommentDelete(int id) {
+		dao.inquiryCommentDelete(id);
 	}
 
 }
