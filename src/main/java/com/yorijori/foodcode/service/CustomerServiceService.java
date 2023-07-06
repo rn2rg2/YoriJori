@@ -44,13 +44,19 @@ public interface CustomerServiceService {
 
 	Inquiry select(int inquiryNo);
 	
+	List<Inquiry> getAllInquiries();
+
+	
 	//문의하기 댓글
 	
 	public	InquiryComment	inquiryCommentInsert(InquiryComment  inquiryComment);
 	
 	List<InquiryComment> inquiryCommentList(int inquiryNo);	
 
-	public void inquiryCommentDelete(int id);
+	public InquiryComment inquiryCommentDelete(int id);
+	
+	public List<InquiryComment> getInquiryCommentsByState(int inquiryNo, int state);
+
 	
 
 }

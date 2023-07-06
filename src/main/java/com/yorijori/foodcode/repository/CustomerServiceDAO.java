@@ -26,7 +26,7 @@ public interface CustomerServiceDAO {
 	
 	long questionCountAll();
 	
-	List<Question> questionSelectByPageAndpagePerCount(int pageNo,int pagePerCount );
+	List<Question> questionSelectByPageAndpagePerCount(int pageNo,int pagePerCount);
 
 	public void questionDelete(int questionNo);
 	
@@ -35,7 +35,7 @@ public interface CustomerServiceDAO {
 	
 	long inquiryCountAll();
 	
-	List<Inquiry> inquirySelectByPageAndpagePerCount(int pageNo,int pagePerCount );
+	List<Inquiry> inquirySelectByPageAndpagePerCount(int pageNo,int pagePerCount);
 	
 	List<Inquiry> findByUserId(UserInfo user);
 
@@ -43,13 +43,19 @@ public interface CustomerServiceDAO {
 	
 	Inquiry select(int inquiryNo);
 	
+	List<Inquiry> getAllInquiries();
+	
 	//문의하기 댓글
+	
 	
 	public	InquiryComment	inquiryCommentInsert(InquiryComment  inquiryComment);
 	
 	List<InquiryComment> inquiryCommentList(int inquiryNo);	
 
-	public void inquiryCommentDelete(int id);
+	public InquiryComment inquiryCommentDelete(int id);
 	
+	public List<InquiryComment> getInquiryCommentsByState(int inquiryNo, int state);
 
+	
+	
 }

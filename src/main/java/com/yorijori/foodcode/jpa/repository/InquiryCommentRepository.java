@@ -16,4 +16,7 @@ public interface InquiryCommentRepository extends JpaRepository<InquiryComment, 
 	//List<InquiryComment> findByUserId(UserInfo user);
 	
 	List<InquiryComment> findByInquiryNo(int inquiryNo);
+	
+    List<InquiryComment> findByInquiryNoAndState(int inquiryNo, int state);
+
 }

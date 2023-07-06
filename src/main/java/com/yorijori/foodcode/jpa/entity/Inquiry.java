@@ -45,8 +45,9 @@ public class Inquiry{
 	@JoinColumn(name = "userId", nullable = false)
 	private UserInfo userId;
 	
-	@OneToMany(mappedBy = "inquiryNo")
-	private List<InquiryComment> comments;
+//	@Exclude
+//	@OneToMany(mappedBy = "inquiryNo",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//	private List<InquiryComment> comments;
 	
 	
 }

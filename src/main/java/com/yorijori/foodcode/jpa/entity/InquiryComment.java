@@ -3,7 +3,9 @@ package com.yorijori.foodcode.jpa.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +33,7 @@ public class InquiryComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String contents;
+	private int inquiryNo;
 	@CreationTimestamp
 	private Date date;
 	@UpdateTimestamp
@@ -44,9 +47,9 @@ public class InquiryComment {
 	private UserInfo userId;
 	
 	
-	@Exclude
-	@ManyToOne
-	@JoinColumn(name = "inquiryNo", nullable = false)
-	private Inquiry inquiryNo;
+//	@Exclude
+//	@ManyToOne
+//	@JoinColumn(name = "inquiryNo", nullable = false)
+//	private Inquiry inquiryNo;
 	
 }
