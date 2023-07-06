@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.BoardRepository;
+
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 	private BoardRepository repository;
@@ -135,5 +136,10 @@ public class BoardDAOImpl implements BoardDAO {
 		Page<Board> page = repository.findByUserIdAndState(user, 0, pageRequest);
 		List<Board> list = page.getContent();
 		return list;
+	}
+
+	@Override
+	public long countBycommNo(Board commNo) {
+		return repository.countBycommNo(commNo);
 	}
 }

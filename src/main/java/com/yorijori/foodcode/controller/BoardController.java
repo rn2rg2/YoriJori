@@ -89,8 +89,6 @@ public class BoardController {
 			list = service.selectByCategoryAndState(category, pageNo, pagePerCount);
 			count = service.getCountByCategorysAndState(category);
 			
-			model.addAttribute("boardlist", list);
-		    model.addAttribute("count", count);
 		    model.addAttribute("pageNo", pageNo);
 		    model.addAttribute("pagePerCount", pagePerCount);
 		    model.addAttribute("category", category);
