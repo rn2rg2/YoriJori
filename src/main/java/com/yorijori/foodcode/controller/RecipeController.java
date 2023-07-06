@@ -153,10 +153,10 @@ public class RecipeController {
 				spec = spec.and(RecipeSpecification.orderByViewCount());
 			}
 			if (order.contains("great")) {
-				spec = spec.and(RecipeSpecification.orderByViewCount());
+				spec = spec.and(RecipeSpecification.orderByWishlist());
 			}
 			if (order.contains("comments")) {
-				spec = spec.and(RecipeSpecification.orderByWishlist());
+				spec = spec.and(RecipeSpecification.orderByReviewCount());
 			}
 			if (order.contains("registration")) {
 				spec = spec.and(RecipeSpecification.orderByCreatedDatetime());
