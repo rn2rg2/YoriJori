@@ -381,12 +381,14 @@
 			let url = "/yorijori/board/ajax/delete";
 			let param = {"commNo" : data}
 			postAjax(url, param, function(data){
-				make_board_list(currentPage);
-				make_delete_list(currentPage2);
 				getAllCount();
 				getDeleteCount();
+				console.log(boardcount)
+				console.log(deletecount)
 				loadPage(boardcount, pagePerCount, make_board_list);
 				loadPage2(deletecount, pagePerCount, make_delete_list);
+				make_board_list(currentPage);
+				make_delete_list(currentPage2);
 			});
 			
 		}
@@ -394,25 +396,28 @@
 			let url = "/yorijori/board/ajax/restore";
 			let param = {"commNo" : data}
 			postAjax(url, param, function(data){
-				make_delete_list(currentPage2);
-				make_board_list(currentPage);
 				getAllCount();
 				getDeleteCount();
+				console.log(boardcount)
+				console.log(deletecount)
 				loadPage(boardcount, pagePerCount, make_board_list);
 				loadPage2(deletecount, pagePerCount, make_delete_list);
+				make_delete_list(currentPage2);
+				make_board_list(currentPage);
 			});
 			
 		}
 		const getAllCount = function(){
 			let url = "/yorijori/board/all/count"
 			getAjaxNoParam(url,function(data){
-				boardcount = data;
+				deletecount = data;
 			})
+			
 		}
 		const getDeleteCount = function(){
 			let url = "/yorijori/board/delete/count"
 			getAjaxNoParam(url,function(data){
-				deletecount = data;
+				boardcount = data;
 			})
 		}
 		function generateTableRow(data) {
