@@ -91,7 +91,7 @@
 		$("#appform").on('submit',function(e){
 			let tel=$('#phone').val()
 			IMP.request_pay({
-				  pg: "kcp",
+				  pg: "html5_inicis",
 				  pay_method: "card",
 				  merchant_uid: 'merchant_' + new Date().getTime()	,   // 주문번호
 				  name: "[[${cookingClass.title}]]",
