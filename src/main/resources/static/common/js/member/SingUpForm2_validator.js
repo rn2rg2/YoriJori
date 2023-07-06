@@ -305,6 +305,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	  const isValidName = isNoSpecialCharacters(elInputName.value) && isLengthValid(elInputName.value, 3);
 	  const isEmailSelected = getSelectedEmail() !== '';
 	  const isValidPhoneNumber = isPhoneNumberValid(elInputPhoneNum1.value, elInputPhoneNum2.value);
+	  const isPhoneNumberInputComplete = elInputPhoneNum1.value.length > 0 && elInputPhoneNum2.value.length > 0;
+
 	  if (
 			    isValidUsername &&
 			    isValidNickname &&
@@ -317,7 +319,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			    isNicknameAvailable &&
 			    isValidName &&
 			    isEmailSelected &&// 이메일 유효성 결과 추가
-			    isValidPhoneNumber 
+			    isValidPhoneNumber &&
+			    isPhoneNumberInputComplete
 	  ) {
 	    enableJoinButton();
 	  } else {
@@ -336,7 +339,9 @@ document.addEventListener('DOMContentLoaded', function() {
   elInputSsn1.addEventListener('input', validateForm);
   elInputSsn2.addEventListener('input', validateForm);
   elInputName.addEventListener('input', validateForm); // 이름 입력 변경 시 유효성 검사 추가
-
+  elInputPhoneNum1.addEventListener('input', validateForm);
+  elInputPhoneNum2.addEventListener('input', validateForm);
+  
   // 중복 ID 체크 버튼 클릭 시
   $("#btn-id-check").click(function() {
     var userId = $("#userId").val();
