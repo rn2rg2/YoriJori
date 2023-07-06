@@ -59,7 +59,7 @@ public class KakaoService {
 			sb.append("grant_type=authorization_code"); // 인증 코드 값 전달
             
 			sb.append("&client_id=45497eb8c2b23537157164970e87e0f1"); //본인이 발급받은 key
-			sb.append("&redirect_uri=http://127.0.0.1:8088/yorijori/member/signkakao"); // 본인이  리다이렉트 주소 설정한
+			sb.append("&redirect_uri=http://49.50.160.15:8088/yorijori/member/signkakao"); // 본인이  리다이렉트 주소 설정한
             
 			sb.append("&code=" + authorize_code); // 사용자 인증 코드
 			bw.write(sb.toString());

@@ -26,4 +26,9 @@ public interface CookingClassService {
 	public List<CookingClass> selectAllClass(int state);
 	void restore(int cookNo);
 	List<CookingClass> findByUserId(UserInfo userId);
+
+	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user);
+
+	long countByUserId(UserInfo user);
+
 }

@@ -270,15 +270,6 @@
 .tab-section ul{
 	
 }
-.tab-section li{
-	border: 2px solid var(--main-theme-color-red);
-	border-radius: 10px;
-	list-style: decimal;
-	padding: 10px;
-	margin-bottom:20px;
-	display: block;
-	position: relative;
-}
 li .time{
 	position:absolute;
 	color: var(--main-theme-color-red);
