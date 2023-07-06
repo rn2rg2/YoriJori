@@ -130,17 +130,30 @@ public class CustomerServiceController {
 	@RequestMapping("/inquiry")
 	public String showinquiryList(Model model,HttpSession session) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
-		List <Inquiry> inquiryList = service.findByUserId(user);
-		model.addAttribute("inquiryList",inquiryList);
-		return "thymeleaf/customerService/inquiry"; 
+		String role = user.getRole();
+		
+		 if ("관리자".equals(role)) {
+		        // 관리자 동작 수행
+		        List<Inquiry> inquiryList = service.getAllInquiries();
+		        model.addAttribute("inquiryList", inquiryList);
+		        return "thymeleaf/customerService/inquiry"; 
+		    } else {
+		        // 사용자 동작 수행
+		        List<Inquiry> inquiryList = service.findByUserId(user);
+		        model.addAttribute("inquiryList", inquiryList);
+		        return "thymeleaf/customerService/inquiry"; 
+		    }
 	}
+	
+   
+
 	
 	@RequestMapping("/inquiry/read/{inquiryNo}")
 	public String inquiryRead(@PathVariable int inquiryNo, Model model,HttpSession session) {
 		Inquiry inquiry = service.select(inquiryNo);
-		//List<InquiryComment> commentList = service.inquiryCommentList(inquiryNo);
+		List<InquiryComment> commentList = service.getInquiryCommentsByState(inquiryNo, 0);
 		model.addAttribute("inquiry",inquiry);
-		//model.addAttribute("commentList",commentList);
+		model.addAttribute("commentList",commentList);
 
 		return "thymeleaf/customerService/inquiryRead"; 
 	}
@@ -155,15 +168,24 @@ public class CustomerServiceController {
 
 	
 	@PostMapping("/inquiryComment/insert") 
-	public String inquiryCommentInsert(@PathVariable int inquiryNo, InquiryComment inquiryComment, HttpSession session) { 
+	public String inquiryCommentInsert( InquiryComment inquiryComment, HttpSession session) { 
 		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
 		inquiryComment.setUserId(user);
-		//System.out.println("iiiiiiiiiinqco"); 
+		System.out.println(inquiryComment); 
+		System.out.println(inquiryComment.getInquiryNo()); 
 		service.inquiryCommentInsert(inquiryComment);
-	    return "redirect:/cs/inquiry/read/{inquiryNo}";
+		String url = "redirect:/cs/inquiry/read/"+inquiryComment.getInquiryNo();
+	    return url;
 
 	}
-	
+	@GetMapping("/inquiryComment/delete")
+	public String inquiryCommentDelete(int id) {
+		InquiryComment inquiryComment= service.inquiryCommentDelete(id);
+		System.out.println(inquiryComment.getId());
+		System.out.println(inquiryComment.getInquiryNo());
+
+		return "redirect:/cs/inquiry/read/"+inquiryComment.getInquiryNo();
+	}	
 	
 	@RequestMapping("/test") //관리자용
 	public String test() {

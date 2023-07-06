@@ -69,29 +69,30 @@
                 <div class="blog-comment">
                     <h2 class="text-success-comments"></h2>
                     <form id="myForm" action="/yorijori/cs/inquiryComment/insert" method="post">
-     
-                        <textarea class="form-control" placeholder="답변을 입력해주세요" rows="3" name="contents"></textarea>
-                        <br>
+                    	<input type="hidden" name="inquiryNo" th:value="${inquiry.inquiryNo}" />
+                    	<th:block th:if="${#session.getAttribute('userInfo').role == '관리자'}"> 	
+                   		<textarea class="form-control" placeholder="답변을 입력해주세요" rows="3" name="contents"></textarea>
+                        <br>         
                         <button type="submit" class="btn btn-info pull-right" style="float: right;">Post</button>
+                    	</th:block>
                     </form>
                     <div class="clearfix"></div>
                     <hr />
-                    
-                   <!--  <ul class="comments">
-                       
-                        <li class="clearfix" th:each="comment : ${commentList}" th:if="${commentList.size() > 0}">
-                            <img th:src="|/yorijori/data/user/${comment.userId.imgPath}|" class="avatar" alt="">
-                            <div class="post-comments">
-                                <p class="meta">
-                                    <a class="commentsName" href="#" th:text="${comment.userId.nickname}"></a>
-                                 
-                                    <i class="pull-right" style="float: right;"><a th:href="@{/board/boardCommentDelete(commentNo=${comment.comment_no})}">
-                                    <i class="fa-solid fa-trash"></i></a></i>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                     -->
+                    <ul class="comments">
+    <li class="clearfix" th:each="comment : ${commentList}">
+        <img th:src="|/yorijori/data/user/${comment.userId.imgPath}|" class="avatar" alt="">
+        <div class="post-comments">
+            <p class="meta">
+                <a class="commentsName" href="#" th:text="|${comment.userId.nickname} ${comment.date}|"></a>
+                <th:block th:if="${#session.getAttribute('userInfo').role == '관리자'}"> 	       
+                	<i class="pull-right" style="float: right;"><a th:href="@{/cs/inquiryComment/delete(id=${comment.id})}">
+                	<i class="fa-solid fa-trash"></i></a></i>
+                </th:block>
+            </p>
+            <p th:text="${comment.contents}" class="meta"></p>
+        </div>
+    </li>
+</ul>          
                 </div>
             </div>
         </div>
