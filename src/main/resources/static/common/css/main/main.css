@@ -1,5 +1,5 @@
 /********** Template CSS **********/
-:root {
+/* :root {
     --primary: #3CB815;
     --secondary: #F65005;
     --light: #F7F8FC;
@@ -27,11 +27,11 @@
 .bg-icon {
     background: url(../img/bg-icon.png) center center repeat;
     background-size: contain;
-}
+} */
 
 
 /*** Spinner ***/
-#spinner {
+/* #spinner {
     opacity: 0;
     visibility: hidden;
     transition: opacity .5s ease-out, visibility 0s linear .5s;
@@ -43,10 +43,10 @@
     visibility: visible;
     opacity: 1;
 }
-
+ */
 
 /*** Button ***/
-.btn {
+/* .btn {
     font-weight: 500;
     transition: .5s;
 }
@@ -81,11 +81,11 @@
     align-items: center;
     justify-content: center;
     font-weight: normal;
-}
+} */
 
 
 /*** Navbar ***/
-.fixed-top {
+/* .fixed-top {
     transition: .5s;
 }
 
@@ -113,8 +113,8 @@
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
     color: var(--dark);
-}
-
+} */
+/* 
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         margin-top: 10px;
@@ -145,10 +145,10 @@
         opacity: 1;
     }
 }
-
+ */
 
 /*** Header ***/
-.carousel-caption {
+/* .carousel-caption {
     top: 0;
     left: 0;
     right: 0;
@@ -198,7 +198,7 @@
 .breadcrumb-item+.breadcrumb-item::before {
     color: #999999;
 }
-
+ */
 
 /*** Section Header ***/
 .section-header {
