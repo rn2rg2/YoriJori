@@ -10,13 +10,11 @@
 	<script type="text/javascript"
 		src="/yorijori/common/js/customerService/CSpageNavigation.js"></script>
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							$(".current").attr("class", "nav-link")
 							$("#inquiry").attr("class", "nav-link current")
 
-							$(".insert")
+							$("#insert")
 									.on(
 											"click",
 											function() {
@@ -31,13 +29,47 @@
 
 <th:block layout:fragment="content">
 	<div class="container">
+		<div class="deskTitle">
 		<h3 class="menu-h3-common">문의하기</h3>
+		<i id="insert"  class="fa-sharp fa-solid fa-circle-plus">
+		</i>
+		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-md-12">
+				
+					<table id="example" class="table table-haver">
+						<thead>
+							<tr>
+								<th style="width: 10%">글번호</th>
+								<th style="width: 50%">제목</th>
+								<th style="width: 15%">작성자</th>
+								<th style="width: 15%">작성날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+									<tr th:each="inquiry:${inquiryList}">									
+										<td><span th:text="${inquiry.inquiryNo }"></span></td>
+										<td><a th:href="@{/cs/inquiry/read/{inquiryNo}(inquiryNo=${inquiry.inquiryNo})}"><span th:text="${inquiry.title}"></span>
+										</a></td>
+	
+										<td><span th:text="${inquiry.userId.userId}" class="readuserinfo" th:data-userid="${inquiry.userId.userId}"></span></td>
+										<td><span th:text="${inquiry.date}"></span></td>
+									</tr>
+									<!-- 게시물이 없을 경우 -->
+							        <tr th:if="${#lists.isEmpty(inquiryList)}">
+							            <td colspan="4" class="text-center">등록된 문의사항이 없습니다.</td>
+							        </tr>
+						</tbody>			
+					</table>
+				</div>
+			</div>	
+			<!-- <div class="col-md-12">
 				<button type="button" class="insert">문의하기</button>
-
-			</div>
+			</div>  -->
 		</div>
 	</div>
+</div>
 </th:block>
 </html>

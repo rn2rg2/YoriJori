@@ -96,6 +96,11 @@ public class UserInfo {
 	@Exclude
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonManagedReference
+	private List<InquiryComment> inquirycommentList = new ArrayList<InquiryComment>();
+	
+	@Exclude
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<BoardComment> boardcommentList = new ArrayList<BoardComment>();
 	
 	@Exclude

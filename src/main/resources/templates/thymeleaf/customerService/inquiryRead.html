@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{thymeleaf/layout/CSLayout}">
+<th:block layout:fragment="header">
+	<link rel="stylesheet"
+		href="/yorijori/common/css/customerService/inquiry.css" />
+	<link rel="stylesheet"
+		href="/yorijori/common/css/customerService/list.css" />
+	<script type="text/javascript"
+		src="/yorijori/common/js/customerService/CSpageNavigation.js"></script>
+<link rel="stylesheet" href="/yorijori/common/css/board/read.css"/>
+<link rel="stylesheet" href="/yorijori/common/css/board/reply.css" />
+
+</th:block>
+<th:block layout:fragment="content">
+	<section class="main-section mb-5"
+		style="width: 80%; margin: auto;">
+		<div class="container">
+			<h3 class="menu-h3-common">문의하기</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-bordered">
+						<tr>
+							<th>번호</th>
+							<td th:text="${inquiry.inquiryNo}"></td>
+							<th>작성자</th>
+							<td th:text="${inquiry.userId.nickname}"></td>
+						</tr>
+						<tr>
+							<th>날짜</th>
+							<td th:text="${inquiry.date}"></td>
+						</tr>
+						<tr>
+							<th>제목</th>
+							<td colspan="3" th:text="${inquiry.title}"></td>
+						</tr>
+					</table>
+					<div id="inquiry_content">
+					
+					</div>
+
+					<div class="btns" style="float: right;">
+						<th:block th:if="${!#strings.isEmpty(session.userInfo) and inquiry.userId.userId == session.userInfo.userId}">		
+							<button type="button" class="buttons btn-primary"
+								th:onclick="|location.href='@{/cs/inquiry/delete(inquiryNo=${inquiry.inquiryNo})}'|">삭제</button>
+						</th:block>
+							<button type="button" class="buttons btn-primary" 
+							th:onclick="|location.href='@{/cs/inquiry/list'}|">목록</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script th:inline="javascript">
+	$(document).ready(function(){
+		let content= [[${inquiry.contents}]];
+		$('#inquiry_content').html(content);
+	})
+	
+	</script>
+
+<
+<div class="main-section mb-5">
+    <div class="container bootstrap snippets bootdey">
+        <h3 class="menu-h3-common">답변</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-comment">
+                    <h2 class="text-success-comments"></h2>
+                    <form id="myForm" action="/yorijori/cs/inquiryComment/insert" method="post">
+                    	<input type="hidden" name="inquiryNo" th:value="${inquiry.inquiryNo}" />
+                    	<th:block th:if="${#session.getAttribute('userInfo').role == '관리자'}"> 	
+                   		<textarea class="form-control" placeholder="답변을 입력해주세요" rows="3" name="contents"></textarea>
+                        <br>         
+                        <button type="submit" class="btn btn-info pull-right" style="float: right;">Post</button>
+                    	</th:block>
+                    </form>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <ul class="comments">
+    <li class="clearfix" th:each="comment : ${commentList}">
+        <img th:src="|/yorijori/data/user/${comment.userId.imgPath}|" class="avatar" alt="">
+        <div class="post-comments">
+            <p class="meta">
+                <a class="commentsName" href="#" th:text="|${comment.userId.nickname} ${comment.date}|"></a>
+                <th:block th:if="${#session.getAttribute('userInfo').role == '관리자'}"> 	       
+                	<i class="pull-right" style="float: right;"><a th:href="@{/cs/inquiryComment/delete(id=${comment.id})}">
+                	<i class="fa-solid fa-trash"></i></a></i>
+                </th:block>
+            </p>
+            <p th:text="${comment.contents}" class="meta"></p>
+        </div>
+    </li>
+</ul>          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+</th:block>
+</html>

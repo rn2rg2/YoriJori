@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.yorijori.foodcode.jpa.entity.Board;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.BoardRepository;
+
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 	private BoardRepository repository;
@@ -46,12 +47,18 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void update(Board board) {
 		// TODO Auto-generated method stub
+		Board dto =repository.findById(board.getCommNo()).get();
+		dto.setState(0);
 		
 	}
 
 	@Override
 	public long countAll() {
 		return repository.count(); 
+	}
+	@Override
+	public long countByState(int state) {
+		return repository.countByState(state); 
 	}
 	
 	@Override
@@ -117,6 +124,14 @@ public class BoardDAOImpl implements BoardDAO {
 		List<Board> list = page.getContent();
 		return list;
 	}
+	@Override
+	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount, int state) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		//Page<Board> page = repository.findAll(pageRequest);
+		Page<Board> page = repository.findByState(state, pageRequest);
+		List<Board> list = page.getContent();
+		return list;
+	}
 
 	@Override
 	public long getCountByContentsAndState(String contents) {
@@ -135,5 +150,10 @@ public class BoardDAOImpl implements BoardDAO {
 		Page<Board> page = repository.findByUserIdAndState(user, 0, pageRequest);
 		List<Board> list = page.getContent();
 		return list;
+	}
+
+	@Override
+	public long countBycommNo(Board commNo) {
+		return repository.countBycommNo(commNo);
 	}
 }
