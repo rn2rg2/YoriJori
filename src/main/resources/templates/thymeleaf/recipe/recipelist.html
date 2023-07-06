@@ -283,7 +283,7 @@
 												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
 												<th:block>
 												    <div class="badge badge-danger px-3 rounded-pill font-weight-normal">
-												       ★[[${recipeNoAverageMap.get(data.recipeNo)}]]점
+												       ★[[${data.average}]]점
 												    </div>
 												</th:block>
 											</div>
@@ -550,16 +550,7 @@
 	                	var userinfo = $('#userinfo').val()
 	                	console.log(userinfo);
 						console.log(recipe)
-						if(userinfo){
-							heartElement = `
-			                    <li class="pr-2"><a class="" value="${recipe.recipeNo}" onclick="clickHeart(this, addHeart)">
-		                        <i class="fa fa-heart me-2" aria-hidden="true"></i>
-		                    </a></li>
-		                `;				
-							
-						}else{
-							heartElement =``
-						}
+
 						
 						
 	                    const content = `
@@ -575,9 +566,11 @@
 	                                </div>
 	                                <div class="candidate-list-option">
 	                                <div class="badge badge-dark px-3 rounded-pill font-weight-normal">${recipe.userNickname}</div>
+									<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
+								       ★${recipe.average}점
+								    </div>
 	                                    <br>
 	                                    <div class="badge badge-success px-3 rounded-pill font-weight-normal">${recipe.time}</div>
-	                                    <div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>
 	                                </div>
 	                            </div>
 	                            <div class="candidate-list-favourite-time justify-content-around">
@@ -588,7 +581,6 @@
 	                                    <li class="pr-2"><a class="recipe_info_data order-2">
 	                                            <i class="fa-regular fa-eye"> ${recipe.count}</i>
 	                                        </a></li>
-	                                        ${heartElement}
 	                                </ul>
 	                            </div>
 	                        </div>

@@ -244,6 +244,7 @@ const make_rcp_list = function(page){
 	});
 }
 const make_rcp_div = function(data){
+	console.log(data);
 	 var colDiv = $('<div class="col-sm-6 col-lg-4 mb-4"></div>');
 	  var candidateListDiv = $('<div class="candidate-list candidate-grid"></div>');
 	  var candidateListImageDiv = $('<div class="candidate-list-image"></div>');
@@ -252,12 +253,12 @@ const make_rcp_div = function(data){
 	  var candidateListInfoDiv = $('<div class="candidate-list-info"></div>');
 	  var candidateListTitleDiv = $('<div class="candidate-list-title"></div>');
 	  var h5Element = $('<h5></h5>');
-	  var linkElement = $('<a></a>').attr('th:href', '@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}').text(data.name);
+	  var linkElement = $('<a></a>').attr('href', "/yorijori/recipe/view/user/"+data.recipeNo).text(data.name);
 	  var candidateListOptionDiv = $('<div class="candidate-list-option"></div>');
 	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자 " + data.userNickname);
 	  var brElement = $('<br>');
 	  var badge2 = $('<div class="badge badge-success px-3 rounded-pill font-weight-normal"></div>').text(data.time);
-	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">4.22</div>');
+	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal"></div>').text('★' + data.average + '점');
 	  var candidateListFavouriteTimeDiv = $('<div class="candidate-list-favourite-time justify-content-around"></div>');
 	  var ulElement = $('<ul class="list-unstyled list-inline"></ul>');
 	  var li1 = $('<li class="pr-2"></li>');
@@ -298,7 +299,7 @@ const make_wish_list = function(page){
 	const pagePerCount = 6;
 	const url = "/yorijori/recipe/mywish/user/"+page+"/"+pagePerCount;
 	getAjaxNoParam(url, function (datas){
-		$('#results2').empty();
+		$('#results1').empty();
 		// Create a jQuery element for the outer div
 		console.log(datas);
 		$.each(datas, function(index, data) {
@@ -323,7 +324,7 @@ const make_wish_div = function(data){
 	  var badge1 = $('<div class="badge badge-dark px-3 rounded-pill font-weight-normal"></div>').text("작성자" + data.userNickname);
 	  var brElement = $('<br>');
 	  var badge2 = $('<div class="badge badge-success px-3 rounded-pill font-weight-normal"></div>').text(data.time);
-	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal">d</div>');
+	  var badge3 = $('<div class="badge badge-danger px-3 rounded-pill font-weight-normal"></div>').text('★' + data.average + '점');
 	  var candidateListFavouriteTimeDiv = $('<div class="candidate-list-favourite-time justify-content-around"></div>');
 	  var ulElement = $('<ul class="list-unstyled list-inline"></ul>');
 	  var li1 = $('<li class="pr-2"></li>');
@@ -355,7 +356,7 @@ const make_wish_div = function(data){
 	  candidateListDiv.append(candidateListDetailsDiv);
 	  colDiv.append(candidateListDiv);
 
-	  $('#results2').append(colDiv);
+	  $('#results1').append(colDiv);
 }
 
 const make_board_list = function(page){
@@ -447,31 +448,35 @@ function loadPage1(totalCount, pageSize, fn) {
 }
 
 function loadPage1(totalCount, pageSize, fn) {
-	let nowPage = 1;
-	let totalPages = totalCount / pageSize;
+	  let nowPage = 1;
+	  let totalPages = 1; // 기본적으로 1 페이지만 표시됨
 
-	if (totalCount % pageSize > 0) {
-		totalPages++;
+	  if (totalCount > 0) {
+	    totalPages = totalCount / pageSize;
+
+	    if (totalCount % pageSize > 0) {
+	      totalPages++;
+	    }
+	  }
+
+	  $('#pagination_div1').twbsPagination('destroy');
+	  $('#pagination_div1').remove();
+	  $('#pag1').html('<div id="pagination_div1" class="mb-3 pagination_div"></div>');
+
+	  $('#pagination_div1').twbsPagination({
+	    totalPages: totalPages,
+	    visiblePages: pageSize,
+	    first: '<span sris-hidden="true">«</span>',
+	    prev: "이전",
+	    next: "다음",
+	    last: '<span sris-hidden="true">»</span>',
+	    initiateStartPageClick: false, // onPageClick 자동호출 방지
+	    onPageClick: function (event, page) {
+	      nowPage = page;
+	      fn(page - 1);
+	    }
+	  });
 	}
-
-	$('#pagination_div1').twbsPagination('destroy');
-	$('#pagination_div1').remove();
-	$('#pag1').html('<div id="pagination_div1" class="mb-3 pagination_div"></div>');
-
-	$('#pagination_div1').twbsPagination({
-		totalPages : totalPages,
-		visiblePages : pageSize,
-		first : '<span sris-hidden="true">«</span>',
-		prev : "이전",
-		next : "다음",
-		last : '<span sris-hidden="true">»</span>',
-		initiateStartPageClick : false, // onPageClick 자동호출 방지
-		onPageClick : function(event, page) {
-			nowPage = page;
-			fn(page - 1);
-		}
-	});
-}
 
 
 function loadPage2(totalCount, pageSize, fn) {

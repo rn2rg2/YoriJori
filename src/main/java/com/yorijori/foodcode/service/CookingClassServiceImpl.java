@@ -3,7 +3,6 @@ package com.yorijori.foodcode.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,17 +20,18 @@ import com.yorijori.foodcode.repository.CookingClassDAO;
 @Transactional
 public class CookingClassServiceImpl implements CookingClassService {
 	CookingClassDAO dao;
+
 	@Autowired
 	public CookingClassServiceImpl(CookingClassDAO dao) {
 		super();
 		this.dao = dao;
 	}
-	
 
 	@Override
 	public void delete(int cookNo) {
 		dao.delete(cookNo);
 	}
+
 	@Override
 	public void restore(int cookNo) {
 		dao.restore(cookNo);
@@ -47,26 +47,24 @@ public class CookingClassServiceImpl implements CookingClassService {
 //		cookingclass = dao.insertClass(cookingclass);
 		List<CookingClassContent> contentList = cookingclass.getContentList();
 		List<CookingClassCurriculum> curriList = cookingclass.getCurriList();
-		//컨텐츠 insert
-		
+		// 컨텐츠 insert
+
 //		System.out.println("--------------------------------");
 //		System.out.println(cookingclass);
 //		System.out.println("--------------------------------");
 
-		for(int i=0;i<contentList.size();i++) {
+		for (int i = 0; i < contentList.size(); i++) {
 			contentList.get(i).setCookNo(cookingclass);
 		}
-		
-		//커리큘럼 insert
-		for(int i=0;i<curriList.size();i++)
-		{
+
+		// 커리큘럼 insert
+		for (int i = 0; i < curriList.size(); i++) {
 			curriList.get(i).setCookNo(cookingclass);
 		}
 		cookingclass.setContentList(contentList);
 		cookingclass.setCurriList(curriList);
 		dao.insertClassTest(cookingclass);
 	}
-
 
 	@Override
 	public void update(CookingClass cookingclass, CookingClassContent content, CookingClassCurriculum curriculum) {
@@ -75,44 +73,39 @@ public class CookingClassServiceImpl implements CookingClassService {
 		dao.updateCurriculum(curriculum);
 	}
 
-
 	@Override
 	public CookingClass readClass(int cookNo) {
 		return dao.readClass(cookNo);
 	}
-
 
 	@Override
 	public List<CookingClassContent> readContent(int cookNo) {
 		return dao.readContent(cookNo);
 	}
 
-
 	@Override
 	public List<CookingClassCurriculum> readCurriculum(int cookNo) {
 		return dao.readCurriculum(cookNo);
 	}
 
-
 	@Override
 	public void insertImage(CookingClassImage image) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public List<CookingClass> findTop5ByOrderByCount() {
 		return dao.findTop5ByOrderByCount();
 	}
 
-
 	@Override
 	public long countAll() {
 		return dao.countAll();
 	}
+
 	@Override
-	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount){
+	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
 		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
 	}
 
@@ -127,12 +120,25 @@ public class CookingClassServiceImpl implements CookingClassService {
 		System.out.println("*************\n\n\n\n\n\n");
 		dao.formInsert(form);
 	}
+
 	@Override
 	public CookingClass findById(Integer cookNo) {
 		return dao.findById(cookNo);
 	}
+
 	@Override
 	public List<CookingClass> findByUserId(UserInfo userId) {
 		return dao.findByUserId(userId);
+	}
+
+	@Override
+	public List<CookingClass> classlistByPage(int pageNo, int pagePerCount, UserInfo user) {
+		return dao.classlistByPage(pageNo, pagePerCount, user);
+	}
+
+	@Override
+	public long countByUserId(UserInfo user) {
+		return dao.countByUserId(user);
+
 	}
 }

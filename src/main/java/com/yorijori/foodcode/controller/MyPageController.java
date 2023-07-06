@@ -75,9 +75,14 @@ public class MyPageController {
 		if(user.getAllergy()!=null) {
 			allergy = user.getAllergy().split(",");
 		}
+
+		//쿠킹클래스
 		if(user.getRole()!="회원") {
 			List<CookingClass> classlist=classservice.findByUserId(user);
+			long classcount = classservice.countByUserId(user);
+			model.addAttribute("classList",classlist);
 		}
+
 		List<Category> categorylist =  categoryservice.findByLevel(2);
 		List<Ingredients> ingrelist = ingreservice.selectAll();
 		
@@ -86,26 +91,15 @@ public class MyPageController {
 		long mywishcount = recipeservice.countWishByUserId(user);
 		long boardcount = boardservice.countByUserId(user);
 		
+		List<CookingClass> classlist=classservice.classlistByPage(0, 4, user);
 		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
-		Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
-		for (Recipe recipe : mylist) {
-            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
-            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
-            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
-        }
-		model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
-		
 		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
-		Map<Integer, BigDecimal> recipeNoAverageMap2 = new HashMap<>();
-		for (Recipe recipe : mylikelist) {
-            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
-            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
-            recipeNoAverageMap2.put(recipe.getRecipeNo(), average);
-        }
-		model.addAttribute("recipeNoAverageMap2", recipeNoAverageMap2);
 		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
+		
+		System.out.println("classlist 프로필에서 조회" + classlist);
 		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
 		// 모델에 데이터 추가
+		model.addAttribute("classlist", classlist);
 		model.addAttribute("count", count);
 		model.addAttribute("mylist", mylist);
 		model.addAttribute("mylikelist", mylikelist);
@@ -131,26 +125,14 @@ public class MyPageController {
 		long myrcpcount = recipeservice.countRcpByUserId(user);
 		long mywishcount = recipeservice.countWishByUserId(user);
 		long boardcount = boardservice.countByUserId(user);
-		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
-		Map<Integer, BigDecimal> recipeNoAverageMap = new HashMap<>();
-		for (Recipe recipe : mylist) {
-            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
-            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
-            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
-        }
-		model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
 		
+		List<CookingClass> classlist=classservice.classlistByPage(0, 4, user);
+		List<Recipe> mylist = recipeservice.profileselectListByPage(0, 6, user);
 		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
-		Map<Integer, BigDecimal> recipeNoAverageMap2 = new HashMap<>();
-		for (Recipe recipe : mylikelist) {
-            List<RecipeReview> reviews = recipeservice.getByRecipeNo(recipe);
-            BigDecimal average = recipeservice.USERgetReviewAverage(reviews);
-            recipeNoAverageMap2.put(recipe.getRecipeNo(), average);
-        }
-		model.addAttribute("recipeNoAverageMap2", recipeNoAverageMap2);
 		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
 		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
 		// 모델에 데이터 추가
+		model.addAttribute("classlist", classlist);
 		model.addAttribute("count", count);
 		model.addAttribute("mylist", mylist);
 		model.addAttribute("mylikelist", mylikelist);
