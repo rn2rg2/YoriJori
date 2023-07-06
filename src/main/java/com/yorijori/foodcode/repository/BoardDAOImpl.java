@@ -64,11 +64,16 @@ public class BoardDAOImpl implements BoardDAO {
 	    }
 
 	    return 0; // 게시글이 존재하지 않는 경우 0 반환
+
 	}
 
 	@Override
 	public long countAll() {
 		return repository.count(); 
+	}
+	@Override
+	public long countByState(int state) {
+		return repository.countByState(state); 
 	}
 	
 	@Override
@@ -131,6 +136,14 @@ public class BoardDAOImpl implements BoardDAO {
 		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
 		//Page<Board> page = repository.findAll(pageRequest);
 		Page<Board> page = repository.findByState(0, pageRequest);
+		List<Board> list = page.getContent();
+		return list;
+	}
+	@Override
+	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount, int state) {
+		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC,"commNo"));								
+		//Page<Board> page = repository.findAll(pageRequest);
+		Page<Board> page = repository.findByState(state, pageRequest);
 		List<Board> list = page.getContent();
 		return list;
 	}

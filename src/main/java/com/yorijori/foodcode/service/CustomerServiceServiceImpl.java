@@ -86,7 +86,7 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	@Override
 	public long inquiryCountAll() {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.inquiryCountAll();
 	}
 
 	@Override

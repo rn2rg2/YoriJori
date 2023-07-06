@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/admin/adminLayout}">
 
 <th:block layout:fragment="content">
-<th:block>
-<style>
+	<th:block>
+		<style>
 @import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
 
 /* Bootstrap Icons */
@@ -11,108 +11,9 @@
 	url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css")
 	;
 </style>
-</th:block>
+	</th:block>
 	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<div class="content-header">
-			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0">공지사항 관리</h1>
-					</div>
-					<!-- /.col -->
-					<div class="col-sm-6">
-						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item active">공지사항 관리</li>
-						</ol>
-					</div>
-					<!-- /.col -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /.container-fluid -->
-		</div>
-		<!-- /.content-header -->
-		<!-- Main content -->
-		<div class="container-fluid">
-			<!-- Small boxes (Stat box) -->
-			<div class="row">
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-info">
-						<div class="inner">
-							<h3>150</h3>
-
-							<p>New Orders</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-bag"></i>
-						</div>
-						<a href="#" class="small-box-footer">
-							More info <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-success">
-						<div class="inner">
-							<h3>
-								53<sup style="font-size: 20px">%</sup>
-							</h3>
-
-							<p>Bounce Rate</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-stats-bars"></i>
-						</div>
-						<a href="#" class="small-box-footer">
-							More info <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-warning">
-						<div class="inner">
-							<h3>44</h3>
-
-							<p>User Registrations</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-person-add"></i>
-						</div>
-						<a href="#" class="small-box-footer">
-							More info <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-danger">
-						<div class="inner">
-							<h3>65</h3>
-
-							<p>Unique Visitors</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-pie-graph"></i>
-						</div>
-						<a href="#" class="small-box-footer">
-							More info <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<!-- ./col -->
-			</div>
-			<!-- /.row -->
-			<!-- Main row -->
-		</div>
-		<div
-			class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+		<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
 			<!-- Vertical Navbar -->
 
 			<!-- Main content -->
@@ -126,25 +27,12 @@
 									<!-- Title -->
 									<h1 class="h2 mb-0 ls-tight">공지사항 관리페이지</h1>
 								</div>
-								<!-- Actions -->
-								<div class="col-sm-6 col-12 text-sm-end">
-									<div class="mx-n1">
-										<a href="#"
-											class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
-											<span class=" pe-2"> <i class="bi bi-pencil"></i>
-										</span> <span>멤버 추가하기</span>
-										</a>
-									</div>
-								</div>
 							</div>
 							<!-- Nav -->
 							<ul class="nav nav-tabs mt-4 overflow-x border-0">
-								<li class="nav-item "><a href="#user-list"
-									class="nav-link active" data-toggle="tab">유저 목록</a></li>
-								<li class="nav-item"><a href="#user-chart"
-									class="nav-link font-regular" data-toggle="tab">탈퇴회원</a></li>
-								<li class="nav-item"><a href="#user-chartr"
-									class="nav-link font-regular" data-toggle="tab">차트</a></li>
+								<li class="nav-item "><a href="#user-list" class="nav-link active" data-toggle="tab">유저 목록</a></li>
+								<li class="nav-item"><a href="#user-chart" class="nav-link font-regular" data-toggle="tab">탈퇴회원</a></li>
+								<li class="nav-item"><a href="#user-chartr" class="nav-link font-regular" data-toggle="tab">차트</a></li>
 							</ul>
 						</div>
 
@@ -160,23 +48,13 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col">
-												<span
-													class="h6 font-semibold text-muted text-sm d-block mb-2">총
-													회원수</span> <span class="h3 font-bold mb-0" th:text="${usercount}"></span>
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">총 회원수</span> <span class="h3 font-bold mb-0" th:text="${usercount}"></span>
 											</div>
 											<div class="col-auto">
-												<div
-													class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+												<div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
 													<i class="bi bi-people"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>13% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												<!-- [[${date}]] --> </span>
 										</div>
 									</div>
 								</div>
@@ -186,23 +64,15 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col">
-												<span
-													class="h6 font-semibold text-muted text-sm d-block mb-2">탈퇴한
-													회원 수</span> <span class="h3 font-bold mb-0"><!-- [[${secessioncount}]] --></span>
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">탈퇴한 회원 수</span> <span class="h3 font-bold mb-0">
+													<!-- [[${secessioncount}]] -->
+												</span>
 											</div>
 											<div class="col-auto">
-												<div
-													class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+												<div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
 													<i class="bi bi-people"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>30% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												<!-- [[${date}]] --> </span>
 										</div>
 									</div>
 								</div>
@@ -212,22 +82,15 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col">
-												<span
-													class="h6 font-semibold text-muted text-sm d-block mb-2">오늘
-													가입한 회원 수</span> <span class="h3 font-bold mb-0"><!-- [[${todayuser}]] --></span>
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">오늘 가입한 회원 수</span> <span class="h3 font-bold mb-0">
+													<!-- [[${todayuser}]] -->
+												</span>
 											</div>
 											<div class="col-auto">
-												<div
-													class="icon icon-shape bg-info text-white text-lg rounded-circle">
+												<div class="icon icon-shape bg-info text-white text-lg rounded-circle">
 													<i class="bi bi-clock-history"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-danger text-danger me-2">
-												<i class="bi bi-arrow-down me-1"></i>-5% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">어제와 비교 </span>
 										</div>
 									</div>
 								</div>
@@ -235,12 +98,7 @@
 						</div>
 						<div class="card shadow border-0 mb-7">
 							<div class="card-header">
-								<h5 class="mb-0">회원목록</h5>
-								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
-										onkeyup="filter()" placeholder="회원닉네임으로 검색" /></label>
-
-								</div>
+								<h5 class="mb-0">공지사항목록</h5>
 							</div>
 							<div class="table-responsive">
 								<table class="table table-hover table-nowrap">
@@ -256,33 +114,29 @@
 									</thead>
 									<tbody>
 										<tr th:each="userlist: ${userlist}">
-											<td class="nickname"><img alt="..."
-												src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-												class="avatar avatar-sm rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													<!-- [[${userlist.nickname}]] --> </a> </br></td>
-											<td><!-- [[${userlist.email}]] --></td>
-											<td><img alt="..."
-												src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-												class="avatar avatar-xs rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													<!-- [[${userlist.role}]] --> </br> 점수 : <!-- [[${userlist.point}]] -->
+											<td class="nickname"><img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2"> <a class="text-heading font-semibold" href="#">
+													<!-- [[${userlist.nickname}]] -->
+												</a> </br></td>
+											<td>
+												<!-- [[${userlist.email}]] -->
+											</td>
+											<td><img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2"> <a class="text-heading font-semibold" href="#">
+													<!-- [[${userlist.role}]] -->
+													</br> 점수 :
+													<!-- [[${userlist.point}]] -->
 
-											</a></td>
-											<td><!-- [[${userlist.ssn[0]}]][[${userlist.ssn[1]}]]년 -->
-												<!-- [[${userlist.ssn[2]}]][[${userlist.ssn[3]}]]월 -->
-												<!-- [[${userlist.ssn[4]}]][[${userlist.ssn[5]}]]일 --></td>
-											<td><span class="badge badge-lg badge-dot"> <i
-													class="bg-success"></i>[[${userlist.name}]]
+												</a></td>
+											<td>
+												<!-- [[${userlist.ssn[0]}]][[${userlist.ssn[1]}]]년 --> <!-- [[${userlist.ssn[2]}]][[${userlist.ssn[3]}]]월 --> <!-- [[${userlist.ssn[4]}]][[${userlist.ssn[5]}]]일 -->
+											</td>
+											<td><span class="badge badge-lg badge-dot"> <i class="bg-success"></i>[[${userlist.name}]]
 											</span></td>
 											<td class="text-end">
 												<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
  -->
-												<button type="button"
-													class="btn btn-sm btn-square btn-neutral text-danger-hover"
-													id="click">
-													삭제 <input style="display: none;"
-														th:value="${userlist.userId}" id="dateposted10">
+												<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" id="click">
+													삭제
+													<input style="display: none;" th:value="${userlist.userId}" id="dateposted10">
 												</button>
 											</td>
 										</tr>
@@ -303,12 +157,7 @@
 					<div id="user-chart" class="tab-pane">
 						<div class="card shadow border-0 mb-7">
 							<div class="card-header">
-								<h5 class="mb-0">회원목록</h5>
-								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
-										onkeyup="filter2()" placeholder="회원닉네임으로 검색" /></label>
-
-								</div>
+								<h5 class="mb-0">공지사항목록</h5>
 							</div>
 							<div class="table-responsive">
 								<table class="table table-hover table-nowrap">
@@ -324,34 +173,29 @@
 									</thead>
 									<tbody>
 										<tr th:each="secessionlist : ${secessionlist}">
-											<td class="nickname"><img alt="..."
-												src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-												class="avatar avatar-sm rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													<!-- [[${secessionlist.nickname}]] --> </a> </br></td>
-											<td><!-- [[${secessionlist.email}]] --></td>
-											<td><img alt="..."
-												src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-												class="avatar avatar-xs rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
+											<td class="nickname"><img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2"> <a class="text-heading font-semibold" href="#">
+													<!-- [[${secessionlist.nickname}]] -->
+												</a> </br></td>
+											<td>
+												<!-- [[${secessionlist.email}]] -->
+											</td>
+											<td><img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2"> <a class="text-heading font-semibold" href="#">
 													[[${secessionlist.role}]] </br> 점수 : [[${secessionlist.point}]]
 
-											</a></td>
+												</a></td>
 											<td>
-<!-- 												[[${secessionlist.ssn[0]}]][[${secessionlist.ssn[1]}]]년
+												<!-- 												[[${secessionlist.ssn[0]}]][[${secessionlist.ssn[1]}]]년
 												[[${secessionlist.ssn[2]}]][[${secessionlist.ssn[3]}]]월
-												[[${secessionlist.ssn[4]}]][[${secessionlist.ssn[5]}]]일 --></td>
-											<td><span class="badge badge-lg badge-dot"> <i
-													class="bg-success"></i>[[${secessionlist.name}]]
+												[[${secessionlist.ssn[4]}]][[${secessionlist.ssn[5]}]]일 -->
+											</td>
+											<td><span class="badge badge-lg badge-dot"> <i class="bg-success"></i>[[${secessionlist.name}]]
 											</span></td>
 											<td class="text-end">
 												<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
  -->
-												<button type="button"
-													class="btn btn-sm btn-square btn-neutral text-danger-hover"
-													id="reload">
-													삭제 <input style="display: none;"
-														th:value="${secessionlist.userId}" id="dateposted10">
+												<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" id="reload">
+													삭제
+													<input style="display: none;" th:value="${secessionlist.userId}" id="dateposted10">
 												</button>
 											</td>
 										</tr>
@@ -414,19 +258,16 @@
 												<h3 class="card-title">User 등급목록</h3>
 
 												<div class="card-tools">
-													<button type="button" class="btn btn-tool"
-														data-card-widget="collapse">
+													<button type="button" class="btn btn-tool" data-card-widget="collapse">
 														<i class="fas fa-minus"></i>
 													</button>
-													<button type="button" class="btn btn-tool"
-														data-card-widget="remove">
+													<button type="button" class="btn btn-tool" data-card-widget="remove">
 														<i class="fas fa-times"></i>
 													</button>
 												</div>
 											</div>
 											<div class="card-body">
-												<canvas id="donutChart1"
-													style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+												<canvas id="donutChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
 											</div>
 											<!-- /.card-body -->
 										</div>
@@ -439,19 +280,16 @@
 												<h3 class="card-title">유저 레벨</h3>
 
 												<div class="card-tools">
-													<button type="button" class="btn btn-tool"
-														data-card-widget="collapse">
+													<button type="button" class="btn btn-tool" data-card-widget="collapse">
 														<i class="fas fa-minus"></i>
 													</button>
-													<button type="button" class="btn btn-tool"
-														data-card-widget="remove">
+													<button type="button" class="btn btn-tool" data-card-widget="remove">
 														<i class="fas fa-times"></i>
 													</button>
 												</div>
 											</div>
 											<div class="card-body">
-												<canvas id="donutChart2"
-													style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+												<canvas id="donutChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
 											</div>
 											<!-- /.card-body -->
 										</div>
@@ -475,13 +313,11 @@
 
 										<!-- /.card -->
 										<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	<script
-		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		
-	<script>
+										<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+										<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+										<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+										<script>
 $(document).ready(function() {
 	  $('button#click').on('click', function() {
 	    const userId = $(this).find('input').val();
@@ -507,7 +343,7 @@ $(document).ready(function() {
 	});
 
 </script>
-	<script>
+										<script>
 $(document).ready(function() {
 	  $('button#reload').on('click', function() {
 	    const userId = $(this).find('input').val();
@@ -533,7 +369,7 @@ $(document).ready(function() {
 	});
 
 </script>
-	<script>
+										<script>
   function filter() {
     let search = document.getElementById("search").value.toLowerCase();
     let userList = document.querySelectorAll("#user-list tbody tr");
@@ -550,8 +386,8 @@ $(document).ready(function() {
 </script>
 
 
-</script>
-	<script th:inline="javascript">
+										</script>
+										<script th:inline="javascript">
 	$(document).ready(function() {
 		$('#user-account-management').addClass('active');
 	})
@@ -653,7 +489,7 @@ $(document).ready(function() {
 
 					</div>
 			</div>
-	</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {

@@ -2,102 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/admin/adminLayout}">
 
 <th:block layout:fragment="content">
-<th:block>
-<style>
+	<th:block>
+		<style>
 @import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
 
 /* Bootstrap Icons */
 @import
 	url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css")
 	;
+
+.pagination_div {
+	width: 80%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.page-item.active .page-link {
+	color: white;
+	background-color: blue;
+	border-color: blue;
+}
 </style>
-</th:block>
+	</th:block>
 	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<div class="content-header">
-			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0">게시물 관리</h1>
-					</div>
-					<!-- /.col -->
-					<div class="col-sm-6">
-						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item active">게시물 관리</li>
-						</ol>
-					</div>
-					<!-- /.col -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /.container-fluid -->
-		</div>
-		<!-- /.content-header -->
-		<!-- Main content -->
-		<div class="container-fluid">
-			<!-- Small boxes (Stat box) -->
-			<div class="row">
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-info">
-						<div class="inner">
-							<h3>[[${allcount}]]</h3>
-							<p>총 게시물 수</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-bag"></i>
-						</div>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-success">
-						<div class="inner">
-							<h3>[[${rcpcount}]]</h3>
-
-							<p>레시피 질문</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-stats-bars"></i>
-						</div>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-warning">
-						<div class="inner">
-							<h3>[[${matzipcount}]]</h3>
-
-							<p>맛집추천</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-person-add"></i>
-						</div>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-danger">
-						<div class="inner">
-							<h3>[[${todayeatcount}]]</h3>
-
-							<p>오늘 머 먹지</p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-pie-graph"></i>
-						</div>
-					</div>
-				</div>
-				<!-- ./col -->
-			</div>
-			<!-- /.row -->
-			<!-- Main row -->
-
-			<div
-			class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+		<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
 			<!-- Vertical Navbar -->
 
 			<!-- Main content -->
@@ -111,25 +40,16 @@
 									<!-- Title -->
 									<h1 class="h2 mb-0 ls-tight">게시물 관리페이지</h1>
 								</div>
-								<!-- Actions -->
-								<div class="col-sm-6 col-12 text-sm-end">
-									<div class="mx-n1">
-										<a href="#"
-											class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
-											<span class=" pe-2"> <i class="bi bi-pencil"></i>
-										</span> <span>멤버 추가하기</span>
-										</a>
-									</div>
-								</div>
 							</div>
 							<!-- Nav -->
 							<ul class="nav nav-tabs mt-4 overflow-x border-0">
-								<li class="nav-item "><a href="#user-list"
-									class="nav-link active" data-toggle="tab">유저 목록</a></li>
-								<li class="nav-item"><a href="#user-chart"
-									class="nav-link font-regular" data-toggle="tab">탈퇴회원</a></li>
-								<li class="nav-item"><a href="#user-chartr"
-									class="nav-link font-regular" data-toggle="tab">차트</a></li>
+								<li class="nav-item "><a href="#user-list" class="nav-link active" data-toggle="tab">게시물 목록</a></li>
+								<li class="nav-item"><a href="#user-chart" class="nav-link font-regular" data-toggle="tab">삭제된 게시물</a></li>
+								<li class="nav-item"><a href="/yorijori/cs/help/0/10" class="nav-link font-regular">자주묻는질문</a></li>
+								<li class="nav-item"><a href="/yorijori/cs/notice/0/10" class="nav-link font-regular">공지사항</a></li>
+								<li class="nav-item"><a href="/yorijori/cs/inquiry" class="nav-link font-regular">문의사항</a></li>
+								<li class="nav-item"><a href="#user-chartr" class="nav-link font-regular" data-toggle="tab">차트</a></li>
+
 							</ul>
 						</div>
 
@@ -145,23 +65,13 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col">
-												<span
-													class="h6 font-semibold text-muted text-sm d-block mb-2">총
-													회원수</span> <span class="h3 font-bold mb-0" th:text="${usercount}"></span>
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">총 게시물 수</span> <span class="h3 font-bold mb-0" th:text="${allcount}"></span>
 											</div>
 											<div class="col-auto">
-												<div
-													class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-													<i class="bi bi-people"></i>
+												<div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+													<i class="fa-regular fa-clipboard"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>13% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												<!-- [[${date}]] --> </span>
 										</div>
 									</div>
 								</div>
@@ -171,23 +81,13 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col">
-												<span
-													class="h6 font-semibold text-muted text-sm d-block mb-2">탈퇴한
-													회원 수</span> <span class="h3 font-bold mb-0"><!-- [[${secessioncount}]] --></span>
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">레시피 질문</span> <span class="h3 font-bold mb-0"> [[${rcpcount}]] </span>
 											</div>
 											<div class="col-auto">
-												<div
-													class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-													<i class="bi bi-people"></i>
+												<div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+													<i class="fa-regular fa-clipboard"></i>
 												</div>
 											</div>
-										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-success text-success me-2">
-												<i class="bi bi-arrow-up me-1"></i>30% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">오늘 기준
-												<!-- [[${date}]] --> </span>
 										</div>
 									</div>
 								</div>
@@ -197,22 +97,29 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col">
-												<span
-													class="h6 font-semibold text-muted text-sm d-block mb-2">오늘
-													가입한 회원 수</span> <span class="h3 font-bold mb-0"><!-- [[${todayuser}]] --></span>
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">맛집 추천</span> <span class="h3 font-bold mb-0"> [[${matzipcount}]] </span>
 											</div>
 											<div class="col-auto">
-												<div
-													class="icon icon-shape bg-info text-white text-lg rounded-circle">
-													<i class="bi bi-clock-history"></i>
+												<div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+													<i class="fa-regular fa-clipboard"></i>
 												</div>
 											</div>
 										</div>
-										<div class="mt-2 mb-0 text-sm">
-											<span
-												class="badge badge-pill bg-soft-danger text-danger me-2">
-												<i class="bi bi-arrow-down me-1"></i>-5% (미완성)
-											</span> <span class="text-nowrap text-xs text-muted">어제와 비교 </span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-sm-6 col-12">
+								<div class="card shadow border-0">
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<span class="h6 font-semibold text-muted text-sm d-block mb-2">오늘 뭐 먹지</span> <span class="h3 font-bold mb-0"> [[${todayeatcount}]] </span>
+											</div>
+											<div class="col-auto">
+												<div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+													<i class="fa-regular fa-clipboard"></i>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -220,10 +127,12 @@
 						</div>
 						<div class="card shadow border-0 mb-7">
 							<div class="card-header">
-								<h5 class="mb-0">회원목록</h5>
+								<h5 class="mb-0">게시물목록</h5>
 								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
-										onkeyup="filter()" placeholder="회원닉네임으로 검색" /></label>
+									<label>
+										게시물검색:
+										<input type="text" id="search" onkeyup="filter()" placeholder="게시물 내용으로 검색" />
+									</label>
 
 								</div>
 							</div>
@@ -231,53 +140,26 @@
 								<table class="table table-hover table-nowrap">
 									<thead class="thead-light">
 										<tr>
-											<th scope="col">닉네임</th>
-											<th scope="col">이메일</th>
-											<th scope="col">등급</th>
-											<th scope="col">생년월일</th>
-											<th scope="col">이름</th>
+											<th scope="col">게시물번호</th>
+											<th scope="col">카테고리</th>
+											<th scope="col">제목</th>
+											<th scope="col">작성자</th>
+											<th scope="col">조회수</th>
+											<th scope="col" class="text-right">보기/삭제</th>
 											<th></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr th:each="userlist: ${userlist}">
-											<td class="nickname"><img alt="..."
-												src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-												class="avatar avatar-sm rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													<!-- [[${userlist.nickname}]] --> </a> </br></td>
-											<td><!-- [[${userlist.email}]] --></td>
-											<td><img alt="..."
-												src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-												class="avatar avatar-xs rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													<!-- [[${userlist.role}]] --> </br> 점수 : <!-- [[${userlist.point}]] -->
-
-											</a></td>
-											<td><!-- [[${userlist.ssn[0]}]][[${userlist.ssn[1]}]]년 -->
-												<!-- [[${userlist.ssn[2]}]][[${userlist.ssn[3]}]]월 -->
-												<!-- [[${userlist.ssn[4]}]][[${userlist.ssn[5]}]]일 --></td>
-											<td><span class="badge badge-lg badge-dot"> <i
-													class="bg-success"></i>[[${userlist.name}]]
-											</span></td>
-											<td class="text-end">
-												<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
- -->
-												<button type="button"
-													class="btn btn-sm btn-square btn-neutral text-danger-hover"
-													id="click">
-													삭제 <input style="display: none;"
-														th:value="${userlist.userId}" id="dateposted10">
-												</button>
-											</td>
-										</tr>
+									<tbody id="board_tbody">
 									</tbody>
 								</table>
 							</div>
+
 							<div class="row">
 								<div class="col-12 text-center mt-4 mt-sm-5">
-									<div id="pag">
-										<!-- 후행 코드에 추가하세요 -->
+									<div id="pag" class="pagination_div">
+										<nav>
+											<div id="pagination_div" class="mb-3"></div>
+										</nav>
 									</div>
 								</div>
 							</div>
@@ -286,385 +168,388 @@
 
 					</div>
 					<div id="user-chart" class="tab-pane">
-						<div class="card shadow border-0 mb-7">
-							<div class="card-header">
-								<h5 class="mb-0">회원목록</h5>
-								<div class="searchBox">
-									<label>회원 검색: <input type="text" id="search"
-										onkeyup="filter2()" placeholder="회원닉네임으로 검색" /></label>
+						<div class="container-fluid tab-pane active" id="user-list">
+							<div class="card shadow border-0 mb-7">
+								<div class="card-header">
+									<h5 class="mb-0">게시물목록</h5>
+									<div class="searchBox">
+										<label>
+											게시물검색:
+											<input type="text" id="search" onkeyup="filter2()" placeholder="게시물내용 검색" />
+										</label>
 
+									</div>
 								</div>
-							</div>
-							<div class="table-responsive">
-								<table class="table table-hover table-nowrap">
-									<thead class="thead-light">
-										<tr>
-											<th scope="col">닉네임</th>
-											<th scope="col">이메일</th>
-											<th scope="col">등급</th>
-											<th scope="col">생년월일</th>
-											<th scope="col">이름</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="secessionlist : ${secessionlist}">
-											<td class="nickname"><img alt="..."
-												src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-												class="avatar avatar-sm rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													<!-- [[${secessionlist.nickname}]] --> </a> </br></td>
-											<td><!-- [[${secessionlist.email}]] --></td>
-											<td><img alt="..."
-												src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-												class="avatar avatar-xs rounded-circle me-2"> <a
-												class="text-heading font-semibold" href="#">
-													[[${secessionlist.role}]] </br> 점수 : [[${secessionlist.point}]]
-
-											</a></td>
-											<td>
-<!-- 												[[${secessionlist.ssn[0]}]][[${secessionlist.ssn[1]}]]년
-												[[${secessionlist.ssn[2]}]][[${secessionlist.ssn[3]}]]월
-												[[${secessionlist.ssn[4]}]][[${secessionlist.ssn[5]}]]일 --></td>
-											<td><span class="badge badge-lg badge-dot"> <i
-													class="bg-success"></i>[[${secessionlist.name}]]
-											</span></td>
-											<td class="text-end">
-												<!--                                       <a href="#" class="btn btn-sm btn-neutral">View</a>
- -->
-												<button type="button"
-													class="btn btn-sm btn-square btn-neutral text-danger-hover"
-													id="reload">
-													삭제 <input style="display: none;"
-														th:value="${secessionlist.userId}" id="dateposted10">
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="row">
-								<div class="col-12 text-center mt-4 mt-sm-5">
-									<div id="pag">
-										<!-- 후행 코드에 추가하세요 -->
+								<div class="table-responsive">
+									<table class="table table-hover table-nowrap">
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">게시물번호</th>
+												<th scope="col">카테고리</th>
+												<th scope="col">제목</th>
+												<th scope="col">작성자</th>
+												<th scope="col">조회수</th>
+												<th scope="col" class="text-right">보기/복원</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody id="delete_tbody">
+										</tbody>
+									</table>
+								</div>
+								<div class="row">
+									<div class="col-12 text-center mt-4 mt-sm-5">
+										<div id="pag2" class="pagination_div">
+											<nav>
+												<div id="pagination_div2" class="mb-3"></div>
+											</nav>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div id="user-chartr" class="tab-pane">
-						<div class="container-fluid">
-							<!-- Small boxes (Stat box) -->
-							<div class="row">
-								<div class="col-lg-3 col-6">
-									<!-- small box -->
-									<div class="small-box bg-info">
-										<div class="inner">
-											<h3>5</h3>
-
-											<p>일반회원 User</p>
-										</div>
-										<div class="icon">
-											<i class="ion ion-bag"></i>
-										</div>
-									</div>
-								</div>
-								<!-- ./col -->
-								<div class="col-lg-3 col-6">
-									<!-- small box -->
-									<div class="small-box bg-success">
-										<div class="inner">
-											<h3>5</h3>
-
-											<p>전문가 User</p>
-										</div>
-										<div class="icon">
-											<i class="ion ion-stats-bars"></i>
-										</div>
-									</div>
-								</div>
-								<!-- ./col -->
-								<!-- ./col -->
-
-							</div>
-						</div>
-						<!-- Main content -->
-						<div class="content">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-lg-3">
-										<!-- DONUT CHART -->
-										<div class="card card-danger">
-											<div class="card-header">
-												<h3 class="card-title">User 등급목록</h3>
-
-												<div class="card-tools">
-													<button type="button" class="btn btn-tool"
-														data-card-widget="collapse">
-														<i class="fas fa-minus"></i>
-													</button>
-													<button type="button" class="btn btn-tool"
-														data-card-widget="remove">
-														<i class="fas fa-times"></i>
-													</button>
+						<!-- Card stats -->
+						<div class="container-fluid tab-pane active" id="user-list">
+							<div class="row g-6 mb-6">
+								<div class="col-xl-3 col-sm-6 col-12">
+									<div class="card shadow border-0">
+										<div class="card-body">
+											<div class="row">
+												<div class="col">
+													<span class="h6 font-semibold text-muted text-sm d-block mb-2">총 게시물 수</span> <span class="h3 font-bold mb-0" th:text="${allcount}"></span>
+												</div>
+												<div class="col-auto">
+													<div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+														<i class="fa-regular fa-clipboard"></i>
+													</div>
 												</div>
 											</div>
-											<div class="card-body">
-												<canvas id="donutChart1"
-													style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-											</div>
-											<!-- /.card-body -->
 										</div>
-										<!-- /.card -->
 									</div>
-									<div class="col-lg-3">
-										<!-- DONUT CHART -->
-										<div class="card card-danger">
-											<div class="card-header">
-												<h3 class="card-title">유저 레벨</h3>
-
-												<div class="card-tools">
-													<button type="button" class="btn btn-tool"
-														data-card-widget="collapse">
-														<i class="fas fa-minus"></i>
-													</button>
-													<button type="button" class="btn btn-tool"
-														data-card-widget="remove">
-														<i class="fas fa-times"></i>
-													</button>
+								</div>
+								<div class="col-xl-3 col-sm-6 col-12">
+									<div class="card shadow border-0">
+										<div class="card-body">
+											<div class="row">
+												<div class="col">
+													<span class="h6 font-semibold text-muted text-sm d-block mb-2">자주 묻는 질문</span> <span class="h3 font-bold mb-0"> [[${questioncount}]] </span>
+												</div>
+												<div class="col-auto">
+													<div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+														<i class="fa-regular fa-clipboard"></i>
+													</div>
 												</div>
 											</div>
-											<div class="card-body">
-												<canvas id="donutChart2"
-													style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-											</div>
-											<!-- /.card-body -->
 										</div>
-										<!-- /.card -->
 									</div>
-									<!-- /.col-md-6 -->
-
-									<!-- /.col-md-6 -->
 								</div>
-								<!-- /.row -->
+								<div class="col-xl-3 col-sm-6 col-12">
+									<div class="card shadow border-0">
+										<div class="card-body">
+											<div class="row">
+												<div class="col">
+													<span class="h6 font-semibold text-muted text-sm d-block mb-2">공지사항</span> <span class="h3 font-bold mb-0"> [[${noticecount}]] </span>
+												</div>
+												<div class="col-auto">
+													<div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+														<i class="fa-regular fa-clipboard"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-sm-6 col-12">
+									<div class="card shadow border-0">
+										<div class="card-body">
+											<div class="row">
+												<div class="col">
+													<span class="h6 font-semibold text-muted text-sm d-block mb-2">문의사항</span> <span class="h3 font-bold mb-0"> [[${inquirycount}]] </span>
+												</div>
+												<div class="col-auto">
+													<div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+														<i class="fa-regular fa-clipboard"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<!-- /.container-fluid -->
 						</div>
+
 						<!-- /.content -->
 						<!-- Main content -->
 						<div class="content">
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-lg-6">
-										<!-- LINE CHART -->
+										<!-- DONUT CHART -->
+										<div class="card card-danger">
+											<div class="card-header">
+												<h3 class="card-title">게시판 카테고리별</h3>
 
+												<div class="card-tools">
+													<button type="button" class="btn btn-tool" data-card-widget="collapse">
+														<i class="fas fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-tool" data-card-widget="remove">
+														<i class="fas fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<div class="card-body">
+												<canvas id="donutChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+											</div>
+											<!-- /.card-body -->
+										</div>
 										<!-- /.card -->
-										<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	<script
-		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		
-	<script>
-$(document).ready(function() {
-	  $('button#click').on('click', function() {
-	    const userId = $(this).find('input').val();
-	    console.log(userId);
-
-	    $.ajax({
-	      url: '/yorijori/UserDelete',
-	      type: 'POST',
-	      data: { userId: userId },
-	      success: function(result) {
-	        Swal.fire({
-	          icon: 'success',
-	          title: '회원 삭제완료',
-	        }).then(function() {
-	          location.reload(); // 현재 페이지를 리로드하여 변경된 내용을 반영합니다.
-	        });
-	      },
-	      error: function(xhr, status, error) {
-	        console.log('User Delete error');
-	      }
-	    });
-	  });
-	});
-
-</script>
-	<script>
-$(document).ready(function() {
-	  $('button#reload').on('click', function() {
-	    const userId = $(this).find('input').val();
-	    console.log(userId);
-
-	    $.ajax({
-	      url: '/yorijori/UserRestore',
-	      type: 'POST',
-	      data: { userId: userId },
-	      success: function(result) {
-	        Swal.fire({
-	          icon: 'success',
-	          title: '회원 복구완료',
-	        }).then(function() {
-	          location.reload(); // 현재 페이지를 리로드하여 변경된 내용을 반영합니다.
-	        });
-	      },
-	      error: function(xhr, status, error) {
-	        console.log('User Delete error');
-	      }
-	    });
-	  });
-	});
-
-</script>
-	<script>
-  function filter() {
-    let search = document.getElementById("search").value.toLowerCase();
-    let userList = document.querySelectorAll("#user-list tbody tr");
-
-    userList.forEach(function(user) {
-      let nickname = user.querySelector(".nickname").textContent.toLowerCase();
-      if (nickname.includes(search)) {
-        user.style.display = "table-row";
-      } else {
-        user.style.display = "none";
-      }
-    });
-  }
-</script>
-
-
-</script>
-	<script th:inline="javascript">
-	$(document).ready(function() {
-		$('#user-account-management').addClass('active');
-	})
-
-	//-------------
-	//- DONUT CHART -
-	//-------------
-	// Get context with jQuery - using jQuery's .get() method.
-	var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
-	var donutChartCanvas2 = $('#donutChart2').get(0).getContext('2d')
-
-	var labels1 = [ '관리자', '일반회원', '전문가'];
-	var labels2 = [ '1점','2점','3점','4점','5점',];
-
-	
-	var data1 = 
-	var data2 = 
-
-	
-	var donutOptions = {
-			maintainAspectRatio : false,
-			responsive : true,
-		}
-	
-	var donutData1 = {
-		labels : labels1,
-		datasets : [ {
-			data : data1,
-			backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
-		} ]
-	}
-	var donutData2 = {
-			labels : labels2,
-			datasets : [ {
-				data : data2,
-				backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
-			} ]
-		}
-	
-	
-	
-	
-	new Chart(donutChartCanvas1, {
-		type : 'doughnut',
-		data : donutData1,
-		options : donutOptions
-	})
-	new Chart(donutChartCanvas2, {
-		type : 'doughnut',
-		data : donutData2,
-		options : donutOptions
-	})
-
-	
-	  //-------------
-    //- LINE CHART -
-    //--------------
-    var areaChartOptions = {
-      maintainAspectRatio : false,
-      responsive : true,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }],
-        yAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }]
-      }
-    }
-	
-	
-    
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-    var lineChartOptions = $.extend(true, {}, areaChartOptions)
-    var lineChartData = $.extend(true, {}, areaChartData)
-    lineChartData.datasets[0].fill = false;
-    //lineChartData.datasets[1].fill = false;
-    lineChartOptions.datasetFill = false
-
-    var lineChart = new Chart(lineChartCanvas, {
-      type: 'line',
-      data: lineChartData,
-      options: lineChartOptions
-    })
-		
-		
-	</script>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 			</div>
-	</div>
 		</div>
-		<script th:inline="javascript">
-			$(document).ready(function() {
-				$('#article-comment-management').addClass('active');
-			})
-		</script>
-
-		<script>
-			$(function() {
-				$("#example1").DataTable({
-					"responsive" : true,
-					"lengthChange" : false,
-					"autoWidth" : false,
-					"buttons" : [ "copy", "csv", "excel", "pdf", "print", "colvis" ]
-				}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-				$('#example1').DataTable({
-					"paging" : true,
-					"lengthChange" : false,
-					"searching" : false,
-					"ordering" : true,
-					"info" : true,
-					"autoWidth" : false,
-					"responsive" : true,
-				});
-			});
-		</script>
 	</div>
+	</div>
+
+	<!-- /.card -->
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+	<script th:inline="javascript">
+	// 현재 페이지
+	let currentPage = 0;
+	let currentPage2 = 0;
+	// 한번에 보여줄 페
+	let pagePerCount = 10;
+	
+	let boardcount = [[${allcount}]];
+	let deletecount = [[${deletecount}]];
+	
+	let totalPages = 1;
+	if ( boardcount > pagePerCount ){
+		totalPages = boardcount/pagePerCount;
+	}
+	let totalPages2 = 1;
+	if ( deletecount > pagePerCount ){
+		totalPages2 = deletecount/pagePerCount;
+	}
+
+	
+		const pagination = $('#pagination_div');
+		const pagination2 = $('#pagination_div2');
+		
+		$(document).ready(function() {
+			$('#article-comment-management').addClass('active');
+			make_board_list(0);
+			make_delete_list(0);
+			loadPage(boardcount, pagePerCount, make_board_list);
+			loadPage2(deletecount, pagePerCount, make_delete_list);
+		})
+
+		
+		const make_board_list = function(page){
+			const pagePerCount = 10;
+			currentPage = page;
+			const url = "/yorijori/board/list/all/" + page +"/"+ pagePerCount;
+			getAjaxNoParam(url, function (datas){
+				$('#board_tbody').empty();
+				// Create a jQuery element for the outer div
+				console.log(datas);
+				$.each(datas, function(index, data) {
+					generateTableRow(data);
+				})
+			});
+		}
+		const make_delete_list = function(page){
+			const pagePerCount = 10;
+			currentPage2 = page;
+			const url = "/yorijori/board/list/delete/" + page +"/"+ pagePerCount;
+			getAjaxNoParam(url, function (datas){
+				$('#delete_tbody').empty();
+				// Create a jQuery element for the outer div
+				console.log(datas);
+				$.each(datas, function(index, data) {
+					generateDeleteRow(data);
+				})
+			});
+		}
+		const deleteBoard = function(data){
+			let url = "/yorijori/board/ajax/delete";
+			let param = {"commNo" : data}
+			postAjax(url, param, function(data){
+				getAllCount();
+				getDeleteCount();
+				console.log(boardcount)
+				console.log(deletecount)
+				loadPage(boardcount, pagePerCount, make_board_list);
+				loadPage2(deletecount, pagePerCount, make_delete_list);
+				make_board_list(currentPage);
+				make_delete_list(currentPage2);
+			});
+			
+		}
+		const updateBoard = function(data){
+			let url = "/yorijori/board/ajax/restore";
+			let param = {"commNo" : data}
+			postAjax(url, param, function(data){
+				getAllCount();
+				getDeleteCount();
+				console.log(boardcount)
+				console.log(deletecount)
+				loadPage(boardcount, pagePerCount, make_board_list);
+				loadPage2(deletecount, pagePerCount, make_delete_list);
+				make_delete_list(currentPage2);
+				make_board_list(currentPage);
+			});
+			
+		}
+		const getAllCount = function(){
+			let url = "/yorijori/board/all/count"
+			getAjaxNoParam(url,function(data){
+				deletecount = data;
+			})
+			
+		}
+		const getDeleteCount = function(){
+			let url = "/yorijori/board/delete/count"
+			getAjaxNoParam(url,function(data){
+				boardcount = data;
+			})
+		}
+		function generateTableRow(data) {
+			var row = $('<tr>');
+
+			var logoCell = $('<td>');
+			var logoLink = $('<a>').addClass('text-heading font-semibold').attr('href', '/yorijori/board/read/'+data.commNo+'/0/').text(data.commNo);
+			logoCell.append(logoLink);
+			row.append(logoCell);
+
+			var amountCell = $('<td>').text(data.category);
+			row.append(amountCell);
+
+			var statusCell = $('<td>');
+			var statusBadge = $('<span>').addClass('badge badge-lg badge-dot').html('<i class="bg-success"></i>' + data.title);
+			statusCell.append(statusBadge);
+			row.append(statusCell);
+			
+			var nicknameCell = $('<td>');
+			var nicknameImage = $('<img>').attr('src', '/yorijori/data/user/'+data.userImgPath).addClass('avatar avatar-sm rounded-circle me-2');
+			var nicknameLink = $('<a>').addClass('text-heading font-semibold').text(data.userNickname);
+			nicknameCell.append(nicknameImage, nicknameLink);
+			row.append(nicknameCell);
+			
+			var dateCell = $('<td>').text(data.view);
+			row.append(dateCell);
+
+			var actionCell = $('<td>').addClass('text-end');
+			var viewButton = $('<a>').attr('href', '/yorijori/board/read/'+data.commNo+'/0').addClass('btn btn-sm btn-neutral').text('View');
+			var deleteButton = $('<button>').attr('type', 'button').attr("onclick","deleteBoard("+data.commNo+")").addClass('btn btn-sm btn-square btn-neutral text-danger-hover').html('<i class="bi bi-trash"></i>');
+			actionCell.append(viewButton, deleteButton);
+			row.append(actionCell);
+
+			$('#board_tbody').append(row);
+		}
+		
+		
+		function generateDeleteRow(data) {
+			var row = $('<tr>');
+
+			var logoCell = $('<td>');
+			var logoLink = $('<a>').addClass('text-heading font-semibold').attr('href', '/yorijori/board/read/'+data.commNo+'/0/').text(data.commNo);
+			logoCell.append(logoLink);
+			row.append(logoCell);
+
+			var amountCell = $('<td>').text(data.category);
+			row.append(amountCell);
+
+			var statusCell = $('<td>');
+			var statusBadge = $('<span>').addClass('badge badge-lg badge-dot').html('<i class="bg-success"></i>' + data.title);
+			statusCell.append(statusBadge);
+			row.append(statusCell);
+			
+			var nicknameCell = $('<td>');
+			var nicknameImage = $('<img>').attr('src', '/yorijori/data/user/'+data.userImgPath).addClass('avatar avatar-sm rounded-circle me-2');
+			var nicknameLink = $('<a>').addClass('text-heading font-semibold').text(data.userNickname);
+			nicknameCell.append(nicknameImage, nicknameLink);
+			row.append(nicknameCell);
+			
+			var dateCell = $('<td>').text(data.view);
+			row.append(dateCell);
+
+			var actionCell = $('<td>').addClass('text-end');
+			var viewButton = $('<a>').attr('href', '/yorijori/board/read/'+data.commNo+'/0').addClass('btn btn-sm btn-neutral').text('View');
+			var deleteButton = $('<button>').attr('type', 'button').attr("onclick","updateBoard("+data.commNo+")").addClass('btn btn-sm btn-square btn-neutral text-danger-hover').html('<i class="fa-solid fa-plus"></i>');
+			actionCell.append(viewButton, deleteButton);
+			row.append(actionCell);
+
+			$('#delete_tbody').append(row);
+		}
+		
+		function loadPage2(totalCount, pageSize, fn) {
+			let nowPage = 1;
+			let totalPages = totalCount / pageSize;
+
+			if (totalCount % pageSize > 0) {
+				totalPages++;
+			}
+
+			$('#pagination_div2').twbsPagination('destroy');
+			$('#pagination_div2').remove();
+			$('#pag2').html('<div id="pagination_div2" class="mb-3"></div>');
+
+			$('#pagination_div2').twbsPagination({
+				totalPages : totalPages,
+				visiblePages : pageSize,
+				first : '<span sris-hidden="true">«</span>',
+				prev : "이전",
+				next : "다음",
+				last : '<span sris-hidden="true">»</span>',
+				initiateStartPageClick : false, // onPageClick 자동호출 방지
+				onPageClick : function(event, page) {
+					nowPage = page;
+					fn(page - 1);
+				}
+			});
+		}
+		
+		//-------------
+		//- DONUT CHART -
+		//-------------
+		// Get context with jQuery - using jQuery's .get() method.
+		var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
+		var labels1 = [ '레시피질문', '맛집추천', '오늘뭐먹지'];
+		
+		var data1 = [];
+		
+		let rcpcount = [[${rcpcount}]];
+		let matzipcount = [[${matzipcount}]];
+		let todayeatcount = [[${todayeatcount}]];
+		data1.push(rcpcount)
+		data1.push(matzipcount)
+		data1.push(todayeatcount)
+		
+		
+		var donutOptions = {
+				responsive : true,
+			}
+		
+		var donutData1 = {
+			labels : labels1,
+			datasets : [ {
+				data : data1,
+				backgroundColor : [ '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' ]
+			} ]
+		}
+		
+		new Chart(donutChartCanvas1, {
+			type : 'doughnut',
+			data : donutData1,
+			options : donutOptions
+		})
+	</script>
 </th:block>
 </html>

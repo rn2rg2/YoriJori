@@ -60,6 +60,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.countAll();
 	}
 	@Override
+	public long countByState(int state) {
+		return dao.countByState(state);
+	}
+	@Override
 	public long countByUserId(UserInfo user) {
 		return dao.countByUserId(user);
 	}
@@ -73,6 +77,13 @@ public class BoardServiceImpl implements BoardService {
 	
 		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
 	}
+	
+	@Override
+	public List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount,int state) {
+	
+		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount,state);
+	}
+
 
 	@Override
 	public int boardUpdate(int commNo, Board board) {

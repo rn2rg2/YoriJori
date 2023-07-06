@@ -47,7 +47,7 @@
 				<div class="sidebar">
 					<div class="widget border-0">
 						<div class="search">
-							<th:block th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,inputId,btnId)}">
+							<th:block th:replace="~{thymeleaf/common/search :: searchbar(검색어입력,keyword,searchbtn)}">
 						</div>
 					</div>
 					<div class="widget">
@@ -213,6 +213,19 @@
 			const move_list = function(page) {
 				let url = "/yorijori/cookingclass/list/"+ page + "/" + pagePerCount;
 				window.location.href = url;
+			}
+			
+			// 검색 버튼 클릭 시 
+			$('#searchbtn').click(function(){
+				fnSearch();
+			})
+			
+			// 검색 함수
+			const fnSearch = function(){
+				let searchData = $("#keyword").val();
+				let url = "/yorijori/cookingclass/search";
+				currentPage = 0 ;
+				window.location.href = url + "/" + searchData + "/" + currentPage;
 			}
 			</script>
 </th:block>

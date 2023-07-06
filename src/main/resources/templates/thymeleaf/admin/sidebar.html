@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block th:fragment="sidebar">
-	<aside class="main-sidebar sidebar-dark-infoelevation-4">
+	<aside class="main-sidebar sidebar-dark-infoelevation-4" style="position:fixed;">
 		<!--/* Brand Logo */-->
 		<a id="admin-logo-link" class="brand-link">
 			<!-- <img src=""
@@ -21,7 +21,7 @@
 			</div>
 
 			<!--/* SidebarSearch Form */-->
-			<div class="form-inline">
+			<!-- <div class="form-inline">
 				<div class="input-group" data-widget="sidebar-search" data-min-length="1">
 					<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
 					<div class="input-group-append">
@@ -30,7 +30,7 @@
 						</button>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<!--/* Sidebar Menu */-->
 			<nav class="mt-2">
@@ -55,7 +55,7 @@
 									<i class="far fa-circle nav-icon"></i>
 									<p>게시물 관리</p>
 								</a></li>
-							<li class="nav-item" onclick="location.href='/yorijori/admin/help'"><a id="help-management" class="nav-link">
+							<!-- <li class="nav-item" onclick="location.href='/yorijori/admin/help'"><a id="help-management" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>자주 묻는 질문 관리</p>
 								</a></li>
@@ -67,34 +67,14 @@
 							<li class="nav-item" onclick="location.href='/yorijori/admin/noti'"><a id="notification-management" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>공지사항 관리</p>
-								</a></li>
+								</a></li> -->
 							<li class="nav-item" onclick="location.href='/yorijori/admin/cooking'"><a id="cooking-management" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>쿠킹클래스 관리</p>
 								</a></li>
 
 						</ul></li>
-					<li class="nav-item menu-open"><a id="admin-category" class="nav-link">
-							<p>
-								어드민 항목 <i class="right fas fa-angle-left"></i>
-							</p>
-						</a>
-						<ul class="nav nav-treeview">
-							<li class="nav-item"><a id="admin-members" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>어드민 계정</p>
-								</a></li>
-						</ul></li>
 				</ul>
-				<div class="small-box bg-info">
-					<div class="inner">
-						<h3 id="visit-count">0</h3>
-						<p>방문 횟수</p>
-					</div>
-					<div class="icon">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
 			</nav>
 			<!--/* /.sidebar-menu */-->
 		</div>

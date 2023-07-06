@@ -31,5 +31,7 @@ public interface BoardService {
 	List<Board> selectByPageByUser(int pageNo, int pagePerCount, UserInfo user);
 	
 	List<Long> countBycommNo(int startnum, int endnum);
+	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount, int state);
+	long countByState(int state);
 
 }
