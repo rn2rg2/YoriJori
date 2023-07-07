@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yorijori.board">
 	<select id="selectComment" resultType="com.yorijori.foodcode.dto.BoardDTO">
-		select *
+		<!-- select *
 		from
 		(select
 			comment_no
@@ -22,7 +22,23 @@
 		(select a.group_no, max(a.display_order_no) + 1 as new_display_order_no from community_comment a where a.comm_no = #{commNo} group by a.group_no) c
 		on b.group_no = c.group_no
 		order by group_no asc, display_order_no asc) abc
-		where comm_no = #{commNo}
+		where comm_no = #{commNo} -->
+			SELECT c.comment_no, c.comm_no, c.user_id, c.contents, c.date, c.up_date, c.state, c.group_no, c.display_order_no,
+			       c.new_display_order_no, u.nickname, u.img_path
+			FROM (
+			    SELECT b.comment_no, b.comm_no, b.user_id, b.contents, b.date, b.up_date, b.state, b.group_no, b.display_order_no,
+			           c.new_display_order_no
+			    FROM community_comment b
+			    LEFT OUTER JOIN (
+			        SELECT a.group_no, MAX(a.display_order_no) + 1 AS new_display_order_no
+			        FROM community_comment a
+			        WHERE a.comm_no = #{commNo}
+			        GROUP BY a.group_no
+			    ) c ON b.group_no = c.group_no
+			    WHERE b.comm_no =  #{commNo}
+			    ORDER BY b.group_no ASC, b.display_order_no ASC
+			) c
+			LEFT OUTER JOIN user_info u ON c.user_id = u.user_id
 	</select>
 	
 	<update id="updateGroupNo">
