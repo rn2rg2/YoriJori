@@ -14,10 +14,7 @@ button.btn.btn-info.pull-right {
 	font-weight:bold;
 	color: #FD5D5D;
 }
-.form-control{
 
-	font-size : 1.5em !important;
-}
 small, .meta,  .commentsName, .pull-right  {
 
 	font-weight:bold;
@@ -35,7 +32,7 @@ hr {
 }
 
 a {
-    color: #82b440;
+    
     text-decoration: none;
 }
 .blog-comment::before,
@@ -92,7 +89,7 @@ a {
 }
 
 .blog-comment .meta {
-	font-size: 1.5em;
+	font-size: 1.3em;
 	color: #aaaaaa;
 	padding-bottom: 8px;
 	margin-bottom: 10px !important;

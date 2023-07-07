@@ -33,6 +33,7 @@ import com.yorijori.foodcode.jpa.entity.SearchLog;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardCommentService;
 import com.yorijori.foodcode.service.BoardService;
+import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.SearchLogService;
 
 @Controller
@@ -43,14 +44,17 @@ public class BoardController {
 	BoardCommentService commentService;
 	FileUploadLogic fileUploadLogic;
 	SearchLogService searchservice;
+	MemberService memberservice;
 	
 	@Autowired
-	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic, SearchLogService searchservice) {
+	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic, SearchLogService searchservice,MemberService memberservice) {
 		super();
 		this.service = service;
 		this.commentService = commentService;
 		this.fileUploadLogic = fileUploadLogic;
 		this.searchservice = searchservice;
+		this.memberservice = memberservice;
+
 	}
 	
 //	//게시물 전체보기
@@ -172,6 +176,7 @@ public class BoardController {
 		//List<BoardComment> boardCommentList = commentService.selectByPageAndpagePerCount(pageNo, pagePerCount);
 		//long count = commentService.countAll();
 		List<BoardDTO> boardCommentList = commentService.selectComment(commNo);
+		
 		model.addAttribute("boardCommentList", boardCommentList);
 		model.addAttribute("board", board);
 		//model.addAttribute("count",count);
@@ -204,12 +209,17 @@ public class BoardController {
 	
 	//댓글 전체 조회
 	@RequestMapping("/boardCommentList")
-	public String boardCommentList(BoardDTO boardDTO ,BoardComment boardComment,Model model) {
+	public String boardCommentList(BoardDTO boardDTO ,BoardComment boardComment,Model model,UserInfo user) {
 		List<BoardDTO> boardCommentList = commentService.selectComment(boardDTO.getComm_no());
+	     
 		model.addAttribute("boardCommentList", boardCommentList);
-		System.out.println("commmmmmment"+boardCommentList);
+		
+		//System.out.println("commmmmmment"+boardCommentList);
 		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();
 	}
+	
+
+	
 	
 	@GetMapping("/write")
 	public String boardWrite(@RequestParam(value = "mode", required = false) String mode,
