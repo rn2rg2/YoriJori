@@ -263,6 +263,7 @@ public class RecipeController {
  	        	List<UserWishlist> wishlist = userwishservice.findRecipeNoByUserId(user);
  	        	model.addAttribute("wishlist", wishlist);
  	        }
+ 	        model.addAttribute("count", count);
 			model.addAttribute("type", type);
 	        model.addAttribute("recipeNoAverageMap", recipeNoAverageMap);
 			model.addAttribute("list", list);

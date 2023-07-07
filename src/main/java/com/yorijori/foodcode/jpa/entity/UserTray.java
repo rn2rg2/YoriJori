@@ -36,6 +36,7 @@ public class UserTray{
 	private Date date;
 	@UpdateTimestamp
 	private Date upDate;
+	private String imgPath;
 	
 //	@Exclude
 //	@ManyToOne

@@ -1,10 +1,13 @@
 package com.yorijori.foodcode.controller;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yorijori.foodcode.common.FileUploadLogic;
 import com.yorijori.foodcode.jpa.VO.RecipeVO;
 import com.yorijori.foodcode.jpa.VO.UserTrayListResponse;
 import com.yorijori.foodcode.jpa.entity.Recipe;
@@ -34,14 +38,16 @@ public class RefriTrayController {
 	RefriTrayService refriTrayService;
 	UserWishService userWishService;
 	RecipeService recipeService;
+	FileUploadLogic fileuploadlogic;
 
 	@Autowired
-	public RefriTrayController(IngredientService ingreService, RefriTrayService refriTrayService, UserWishService userWishService, RecipeService recipeService) {
+	public RefriTrayController(IngredientService ingreService, RefriTrayService refriTrayService, UserWishService userWishService, RecipeService recipeService, FileUploadLogic fileuploadlogic) {
 		super();
 		this.ingreService = ingreService;
 		this.refriTrayService = refriTrayService;
 		this.userWishService = userWishService;
 		this.recipeService = recipeService;
+		this.fileuploadlogic = fileuploadlogic;
 	}
 
 	@RequestMapping("/refri")
@@ -146,4 +152,46 @@ public class RefriTrayController {
 		refriTrayService.deleteTray(trayNo);
 		return "redirect:/mypage/tray";
 	}
+	
+	@RequestMapping(value = "/tray/image", produces = "application/text;charset=utf-8")
+    @ResponseBody
+    public String imgSaveTest(String imgSrc) throws Exception {
+        //ModelMap map = new ModelMap();
+		String imgPath = "";
+        System.out.println("^%^%^%^%^%^%");
+        //String binaryData = request.getParameter("imgSrc");
+        System.out.println(imgSrc);
+        String binaryData = imgSrc;
+        System.out.println(binaryData);
+        FileOutputStream stream = null;
+        try{
+            System.out.println("binary file   "  + binaryData);
+            if(binaryData == null || binaryData.trim().equals("")) {
+                throw new Exception();
+            }
+            binaryData = binaryData.replaceAll("data:image/png;base64,", "");
+            byte[] file = Base64.decodeBase64(binaryData);
+            String fileName=  UUID.randomUUID().toString();
+
+            String fileRoot = fileuploadlogic.getUploadpath("tray/");
+            stream = new FileOutputStream(fileRoot+fileName+".png");
+            imgPath = fileName+".png";
+            System.out.println(file);
+            System.out.println(fileName+"------------------------");
+            stream.write(file);
+            stream.close();
+            System.out.println("캡처 저장");
+
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("에러 발생");
+        }finally{
+            if(stream != null) {
+                stream.close();
+            }
+        }
+
+    //    map.addAttribute("resultMap", "");
+        return imgPath;
+    }
 }

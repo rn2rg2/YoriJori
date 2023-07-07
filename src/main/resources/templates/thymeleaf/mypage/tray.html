@@ -2,13 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mypageLayout}">
 <th:block layout:fragment="header">
 	<link rel="stylesheet" href="/yorijori/common/css/mypage/tray.css" />
+	<!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js%22%3E"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+._search_btn:hover {
+	color: #fff;
+}
+._search_btn{
+	border-radius: 25px;
+}
+.input-text:focus {
+	box-shadow: 0px 0px 0px;
+	border-color: var(--main-theme-color-red);
+	outline: 0px;
+}
+
+.form-control {
+	border: 2px solid var(--main-theme-color-red);
+	border-radius: 25px;
+}
+</style>
 </th:block>
 <th:block layout:fragment="content">
 	<form action="/yorijori/mypage/tray/insert" method="post" onsubmit="return checkTray()">
+		<input type="hidden" name="imgPath" value="" id="imgPath">
 		<div class="container-fluid tray-div mb-5">
 			<h3 class="menu-h3-common">나만의 식판</h3>
 			<div class="row">
-				<div class="col-md-9 tray_frame">
+				<div class="col-md-9 tray_frame" id="myCarousel">
 					<div class="row drop-targets">
 						<div class="col-md-4 plate1 box"></div>
 						<div class="col-md-4 plate2 box"></div>
@@ -22,9 +43,9 @@
 				<div class="col-md-3 ingredients-layout">
 					<div class="ingredients-info">
 						<!-- search bar -->
-					</div>
+					<!-- </div>
 					<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchRecipe')}"></div>
-					<div>
+					<div> -->
 
 						<!-- 레시피 목록 보기  -->
 						<div class="ingredient_list_view mb-3">
@@ -42,6 +63,7 @@
 					</div>
 					<div class="btn-group align-items-center justify-content-center about_tray_btn mb-2" role="group">
 						<button class="btn btn-success m-sm-1" type="button" onclick="clearTray();">식판 초기화</button>
+						<button class="btn btn-success m-sm-1" type="button" onclick="screenshot();">식판 이미지 저장</button>
 						<button class="btn btn-success m-sm-1" type="submit">식판 등록</button>
 					</div>
 
@@ -61,7 +83,7 @@
 							<!-- Gallery item -->
 							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4" th:each="tray, idx : ${tray}">
 								<div class="bg-white rounded shadow-sm">
-									<img th:src="|/yorijori/images/common/dosirak_${idx.count}.png|" alt="" class="img-fluid card-img-top" th:onclick="getDetailTray([[${tray.trayNo}]])">
+									<img th:src="|/yorijori/data/tray/${tray.imgPath}|" alt="" class="img-fluid card-img-top" th:onclick="getDetailTray([[${tray.trayNo}]])">
 									<div class="p-4">
 										<h5 style="display: contents;">
 											<a class="text-dark">[[${tray.trayName}]]</a>
@@ -70,46 +92,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- End -->
-							<!-- 
-							Gallery item
-							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-								<div class="bg-white rounded shadow-sm">
-									<img src="/yorijori/images/common/dosirak_2.png" alt="" class="img-fluid card-img-top">
-									<div class="p-4">
-										<h5>
-											<a href="#" class="text-dark">식판 이름 2</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-							End
-
-							Gallery item
-							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-								<div class="bg-white rounded shadow-sm">
-									<img src="/yorijori/images/common/dosirak_3.png" alt="" class="img-fluid card-img-top">
-									<div class="p-4">
-										<h5>
-											<a href="#" class="text-dark">식판 이름 3</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-							End
-
-							Gallery item
-							<div class="col-xl-3 col-lg-4 col-md-6 mb-4 mt-4">
-								<div class="bg-white rounded shadow-sm">
-									<img src="/yorijori/images/common/dosirak_4.png" alt="" class="img-fluid card-img-top">
-									<div class="p-4">
-										<h5>
-											<a href="#" class="text-dark">식판 이름 4</a>
-										</h5>
-									</div>
-								</div>
-							</div>
-							End -->
 						</div>
 					</div>
 
@@ -164,9 +146,85 @@
 				Swal.fire("레시피가 부족합니다", '<b style="color:red;">' + (5 - idx) + '개를 더 추가해주세요', 'error')
 				return false;
 			}
+			
+			if (isEmpty($('#imgPath'))) {
+				Swal.fire("식판 이미지 저장필요", '<b style="color:red;">식판이미지를 먼저 찍어주세요', 'error')
+				return false;
+			}
 
 			return true;
+            
+			
 		}
+		const screenshot = function(){
+			if (idx < 5) {
+				Swal.fire("레시피가 부족합니다", '<b style="color:red;">' + (5 - idx) + '개를 더 추가해주세요', 'error')
+				
+			} else {
+			 const Toast = Swal.mixin({
+			      toast: true,
+			      position: 'center-center',
+			      showConfirmButton: false,
+			      timer: 1000,
+			      timerProgressBar: true,
+			      didOpen: (toast) => {
+			        toast.addEventListener('mouseenter', Swal.stopTimer)
+			        toast.addEventListener('mouseleave', Swal.resumeTimer)
+			      }
+			    })
+
+			    Toast.fire({
+			      icon: 'success',
+			      title: '식판 이미지 저장이 시작됩니다. 잠시만 기다려주세요'
+			    })
+			
+
+			target = $("#myCarousel")
+             if (target != null && target.length > 0) {
+                var t = target[0];
+                html2canvas(t).then(function(canvas) {
+                	var thumbnailWidth = 350; // Width of the thumbnail image
+                    var thumbnailHeight = 200; // Height of the thumbnail image
+
+                    var tempCanvas = document.createElement('canvas');
+                    var tempContext = tempCanvas.getContext('2d');
+
+                    tempCanvas.width = thumbnailWidth;
+                    tempCanvas.height = thumbnailHeight;
+
+                    tempContext.drawImage(canvas, 0, 0, thumbnailWidth, thumbnailHeight);
+
+                    var myImg = tempCanvas.toDataURL("image/png");
+                    //var myImg = canvas.toDataURL("image/png");
+                    myImg = myImg.replace("data:image/png;base64,", "");
+                    $.ajax({
+                        url:"/yorijori/mypage/tray/image",
+                        type:"post",
+                        data:{
+                            "imgSrc":myImg
+                        },
+                        success:function(data) {
+                            console.log(data);
+                            $('#imgPath').val(data);
+                            Swal.fire({
+                                icon: 'success',
+                                title: '이미지 저장 완료',
+                                text: '식판 이미지가 저장완료되었습니다.',
+                              });
+            
+                        },
+                        error:function(a, b, c) {
+                            alert("저장에 실패했습니다");
+            
+                        }
+                    });
+                })
+            }
+			
+			
+		}
+		}
+		
 
 		const deleteTray = function(data) {
 			 location.href = "/yorijori/mypage/tray/delete/" + data;

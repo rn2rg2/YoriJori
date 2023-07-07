@@ -83,7 +83,7 @@
 	
 }
 .recipe_info{
-	min-height : 20em;
+/* 	min-height : 20em; */
 	max-height : 20em;
 }
 .recipe_info > img{
