@@ -124,7 +124,7 @@ public class MemberController {
 		userinfodto.setPhoneNumber(Integer.parseInt(number));
 		userinfodto.setEmail(email);
 		userinfodto.setRole("회원");
-		userinfodto.setPoint(36);
+		userinfodto.setPoint(1);
 		userinfodto.setState(1);
 		userinfodto.setImgPath("userimg.png");
 		userinfodto.setKakaoID(userinfodto.getKakaoID());
