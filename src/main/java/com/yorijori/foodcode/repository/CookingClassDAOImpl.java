@@ -1,9 +1,6 @@
 package com.yorijori.foodcode.repository;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +13,6 @@ import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
-import com.yorijori.foodcode.jpa.entity.Payment;
-import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.CookingClassContentRepository;
 import com.yorijori.foodcode.jpa.repository.CookingClassCurriculumRepository;
@@ -48,7 +43,6 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	@Override
 	public void delete(int cookNo) {
 		CookingClass cookingclass = classRepo.findById(cookNo).get();
-		cookingclass.setCookNo(cookNo);
 		cookingclass.setState(1);
 
 	}
