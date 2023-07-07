@@ -146,8 +146,10 @@
 				type : "post",
 				success : function(data) {
 					console.log(data);
-
 					totalCount = data;
+					if (totalCount == 0 ){
+						totalCount = 1;
+					}
 					loadPage(totalCount, pageSize, get_wish_data);
 				}
 
