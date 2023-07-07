@@ -3,8 +3,8 @@
 	width: 120px; 
 }
 tr, td, th{
-	font-family: 'NanumAInMamSonGeurSsi';
-	font-size: 1.4em;
+
+	font-size: 1.1em;
 }
 .main-section{
 	min-height : 45em;
@@ -23,9 +23,8 @@ button.buttons.btn-primary {
 	background-color: #FD5D5D;    
     border-radius: 10px;
     color: white;
-   	font-family: 'NanumAInMamSonGeurSsi';
    	border-color: #FD5D5D;
-   	font-size : 1.5em
+   	font-size : 1.4em
     
 }
 

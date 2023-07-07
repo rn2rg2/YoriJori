@@ -86,8 +86,8 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public void update(Board board) {
-		dao.update(board);
+	public int boardUpdate(int commNo, Board board) {
+		return dao.boardUpdate(commNo, board);
 	}
 	@Override
 	public void delete(int commNo) {
