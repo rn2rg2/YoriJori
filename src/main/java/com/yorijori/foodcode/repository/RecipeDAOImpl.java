@@ -68,11 +68,20 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public Recipe findById(int recipeNo) {
 		return reciperepository.findById(recipeNo).orElseThrow(() -> new RuntimeException());
 	}
+	@Override
+	public List<Recipe> findByUserId(UserInfo userId) {
+		return reciperepository.findAllByUserId(userId);
+	}
 
 	@Override
 	public long countAll() {
 		return reciperepository.count();
 	}
+	@Override
+	public long countByUserId(UserInfo userId) {
+		return reciperepository.countByUserId(userId);
+	}
+	
 	@Override
 	public long countRcpByUserId(UserInfo userId) {
 		return reciperepository.countByUserId(userId);

@@ -62,7 +62,9 @@ public class MemberController {
 		
 		if (loginUser != null && loginUser.getPass().equals(userPassword)) {
 			if (loginUser.getState() == 1) {
+				loginUser = userService.updatePoint(loginUser);
 				session.setAttribute("userInfo", loginUser);
+				
 				if (loginUser.getRole().equals("관리자")) {
 					return "redirect:/admin/User";
 				}

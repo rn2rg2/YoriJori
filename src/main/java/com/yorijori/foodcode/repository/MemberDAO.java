@@ -11,7 +11,7 @@ public interface MemberDAO {
     public boolean idCheck(String userId);
     public void save(UserInfo userInfo);
 
-	void update(UserInfo userInfo);
+	UserInfo update(UserInfo userInfo);
 
 	long userCount(String role);
 	UserInfo findByUserId(String userId);

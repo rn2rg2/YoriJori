@@ -68,6 +68,8 @@ public interface RecipeDAO {
 	List<MonthlyRcpVO> getMonthlyData();
     List<RecipeReview> getByRecipeNo(Recipe recipe);
 	List<Recipe> getTop15Recipe();
+	long countByUserId(UserInfo userId);
+	List<Recipe> findByUserId(UserInfo userId);
 
     
 

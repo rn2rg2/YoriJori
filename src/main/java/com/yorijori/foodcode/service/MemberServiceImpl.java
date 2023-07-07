@@ -2,6 +2,8 @@ package com.yorijori.foodcode.service;
 
 
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,18 +11,22 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.repository.MemberDAO;
+import com.yorijori.foodcode.repository.RecipeDAO;
 
 
 @Service
 @Transactional
 public class MemberServiceImpl implements MemberService {
 	MemberDAO memberDAO;
+	RecipeDAO recipeDAO;
     
     @Autowired
-    public MemberServiceImpl(MemberDAO memberDAO) {
+    public MemberServiceImpl(MemberDAO memberDAO,RecipeDAO recipeDAO) {
         this.memberDAO = memberDAO;
+        this.recipeDAO = recipeDAO;
     }
    
     //회원가입
@@ -107,6 +113,33 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<UserInfo> getCookUser(int pageNo, int pagePerCount, String sortType){
 		return memberDAO.selectCookByPage(pageNo, pagePerCount, sortType);
+	}
+	
+	@Override
+	public UserInfo updatePoint(UserInfo userInfo) {
+		long count = recipeDAO.countByUserId(userInfo);
+		if (count >= 10) {
+			List<Recipe> list = recipeDAO.findByUserId(userInfo);
+			int size = 0;
+			float sum = 0;
+			for ( Recipe rcp : list) {
+				BigDecimal avg = rcp.getAverage();
+				size ++;
+				sum += avg.floatValue();
+			}
+			int result = (int) (sum / size);
+			System.out.println("==================point avg ==========================");
+			System.out.println(result);
+			System.out.println("==================point avg ==========================");
+			userInfo.setPoint(result);
+			if ( result >= 4 ) {
+				userInfo.setRole("전문가");
+			} else {
+				userInfo.setRole("회원");
+			}
+			userInfo = memberDAO.update(userInfo);
+		}
+		return userInfo;
 	}
 
 }
