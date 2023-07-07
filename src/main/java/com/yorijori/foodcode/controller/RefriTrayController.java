@@ -59,11 +59,14 @@ public class RefriTrayController {
 				maxSize = refrilist.size();
 			}
 			for ( int i = 0 ; i < maxSize; i ++ ) {
+				System.out.println("=================================");
+				System.out.println(refrilist.get(i));
+				System.out.println("=================================");
 				RecipeVO rcp = refriTrayService.getRecommendList(userinfo, refrilist.get(i));
 				if (rcp != null ) {
 					rcplist.add(rcp);
 				}
-				System.out.println("=================================");
+				System.out.println("=============rcp====================");
 				System.out.println(rcp);
 				System.out.println("=================================");
 			}

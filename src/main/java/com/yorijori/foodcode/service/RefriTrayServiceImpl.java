@@ -89,12 +89,15 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	public RecipeVO getRecommendList(UserInfo user, UserFrige userfrige) {
 		String str = user.getPrefer();
 
-		String[] strArr = str.split("j");
+		String[] strArr = str.split(",");
 
 		System.out.println(Arrays.toString(strArr)); // []
 		if ( strArr.length > 0 ) {
 			str = strArr[0];
 		} 
+		System.out.println("===================str==============");
+		System.out.println(str);
+		System.out.println("=================================");
 		return rtdao.findByPreferAndByMatlNo(str, userfrige);
 
 	}
