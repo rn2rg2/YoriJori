@@ -22,7 +22,6 @@ public interface CookingClassDAO {
 	void insertClassTest(CookingClass cookingclass);
 	public List<CookingClass> findTop5ByOrderByCount();
 	public long countAll();
-	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount);
 	public void formInsert(CookingClassForm form);
 	public CookingClass findById(Integer cookNo);
 	public List<CookingClass> selectAllClass(int state);
@@ -34,6 +33,9 @@ public interface CookingClassDAO {
 	long countByUserId(UserInfo user);
 	List<CookingClass> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	long countByTitleContaining(String name);
+	List<CookingClass> selectByPageAndpagePerCount(int pageNo);
+	List<CookingClass> selectBySort(int pageNo, String sort);
+	List<CookingClass> selectBySortAndCategory(int pageNo, String sort, String category);
 
 	
 }

@@ -59,22 +59,19 @@
 						</div>
 						<div class="collapse show" id="dateposted">
 							<div class="widget-content">
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted1">
-									<label class="custom-control-label" for="dateposted1">이름 순</label>
+							<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="dateposted1" checked="checked" name="sort" value="date">
+									<label class="custom-control-label" for="dateposted1">최신 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted2">
-									<label class="custom-control-label" for="dateposted2">등록 순</label>
+									<input type="checkbox" class="custom-control-input" id="dateposted2" name="sort" value="title">
+									<label class="custom-control-label" for="dateposted2">이름 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted3">
+									<input type="checkbox" class="custom-control-input" id="dateposted3" name="sort" value="count">
 									<label class="custom-control-label" for="dateposted3">신청자 많은 순</label>
 								</div>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted3">
-									<label class="custom-control-label" for="dateposted4">최신 순</label>
-								</div>
+							
 							</div>
 						</div>
 					</div>
@@ -88,19 +85,19 @@
 						<div class="collapse show" id="specialism">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism1">
+									<input type="checkbox" class="custom-control-input" id="specialism1" name="category" value="한식">
 									<label class="custom-control-label" for="specialism1">한식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism2">
+									<input type="checkbox" class="custom-control-input" id="specialism2" name="category" value="중식">
 									<label class="custom-control-label" for="specialism2">중식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism3">
+									<input type="checkbox" class="custom-control-input" id="specialism3" name="category" value="일식">
 									<label class="custom-control-label" for="specialism3">일식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism4">
+									<input type="checkbox" class="custom-control-input" id="specialism4" name="category" value="양식">
 									<label class="custom-control-label" for="specialism4">양식</label>
 								</div>
 							</div>
@@ -190,10 +187,13 @@
 			// 현재 페이지
 			let currentPage = [[${pageNo}]];
 			// 한번에 보여줄 페
-			let pagePerCount = [[${pagePerCount}]];
+			let pagePerCount = 6;
 			// 게시물  카운트
 			let boardcount = [[${count}]];
-			
+			//sort
+			let sort=$("input[type='checkbox'][name='sort']:checked").val();
+			//category
+			let category= $("input[type='checkbox'][name='category']:checked").val();
 			//불러왔을때 총 게시물 / pagePerCount
 			let totalPages = 1;
 			if ( boardcount > pagePerCount ){
@@ -211,7 +211,7 @@
 				makePagination(pagination, totalPages, pagePerCount, currentPage + 1, move_list);
 			});
 			const move_list = function(page) {
-				let url = "/yorijori/cookingclass/list/"+ page + "/" + pagePerCount;
+				let url = "/yorijori/cookingclass/list/"+ page + "/" + sort + "/" + category
 				window.location.href = url;
 			}
 			
@@ -227,6 +227,30 @@
 				currentPage = 0 ;
 				window.location.href = url + "/" + searchData + "/" + currentPage;
 			}
+			//체크상태유지
+			$('.custom-control').each(function(index, item){
+				var inputbox = $(this).siblings('.custom-control-input')
+				if ( replaceSpace(item.textContent) == category ) {
+					inputbox.prop('checked', true);
+				};
+				
+			});
+			//카테고리
+			$('.custom-control').change(function() {
+			      if (this.checked) {
+		    	 	category = $(this).siblings('.custom-control').text();
+		    	 	category = replaceSpace(category);
+		    	 	sort= $("input[type='checkbox'][name='sort']:checked").val();
+		    	 	currentPage = 0;
+		    	 	url = url + "/" + currentPage +"/"+ sort +"/" + category;
+		    	 	/* if (searchData == null ) { // 값이 빈경우
+		    	 		console.log("search box no value")
+		    	 	} else { // 값이 있는 경우
+		    	 		url = url + "/" + searchData;
+		    	 	} */
+		    	 	window.location.href = url;
+			      }
+			    });
 			</script>
 </th:block>
 </html>

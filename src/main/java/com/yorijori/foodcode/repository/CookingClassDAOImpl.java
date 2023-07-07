@@ -120,10 +120,25 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	}
 
 	@Override
-	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
-		PageRequest pageRequest = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "cookNo"));
+	public List<CookingClass> selectByPageAndpagePerCount(int pageNo) {
+		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, "cookNo"));
 		// Page<Board> page = repository.findAll(pageRequest);
 		Page<CookingClass> page = classRepo.findByState(0, pageRequest);
+		List<CookingClass> list = page.getContent();
+		return list;
+	}
+	
+	@Override
+	public List<CookingClass> selectBySort(int pageNo, String sort) {
+		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		Page<CookingClass> page = classRepo.findByState(0,pageRequest);
+		List<CookingClass> list = page.getContent();
+		return list;
+	}
+	@Override
+	public List<CookingClass> selectBySortAndCategory(int pageNo, String sort, String category) {
+		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		Page<CookingClass> page = classRepo.findByStateAndCategory(0,category, pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;
 	}
@@ -131,6 +146,8 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	@Override
 	public void formInsert(CookingClassForm form) {
 		formRepo.save(form);
+		CookingClass updateclass=form.getCookNo();
+		updateclass.setCount(updateclass.getCount()+1);
 	}
 
 	@Override
@@ -167,5 +184,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	public long countByTitleContaining(String name) {
 		return classRepo.countByTitleContaining(name);
 	}
+
+	
 
 }
