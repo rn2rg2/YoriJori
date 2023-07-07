@@ -154,6 +154,10 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public void update(Board board) {
+		dao.update(board);
+	}
 
 	
 }

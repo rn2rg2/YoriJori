@@ -50,4 +50,6 @@ public interface BoardDAO {
 
 	long countByState(int state);
 
+	void update(Board board);
+
 }

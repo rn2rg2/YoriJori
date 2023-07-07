@@ -33,5 +33,6 @@ public interface BoardService {
 	List<Long> countBycommNo(int startnum, int endnum);
 	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount, int state);
 	long countByState(int state);
+	void update(Board board);
 
 }

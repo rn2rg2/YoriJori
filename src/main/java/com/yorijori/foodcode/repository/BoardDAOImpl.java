@@ -171,4 +171,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public long countBycommNo(Board commNo) {
 		return repository.countBycommNo(commNo);
 	}
+	
+	@Override
+	public void update(Board board) {
+		// TODO Auto-generated method stub
+		Board dto =repository.findById(board.getCommNo()).get();
+		dto.setState(0);
+
+	}
 }
