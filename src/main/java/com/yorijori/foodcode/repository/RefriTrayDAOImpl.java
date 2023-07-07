@@ -80,8 +80,8 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	}
 	
 	@Override
-	public RecipeVO findByPreferAndByMatlNo(UserInfo user, UserFrige userfrige){
-		return frigerepository.searchPreferMatlNo(user.getPrefer(), userfrige.getMatlNo());
+	public RecipeVO findByPreferAndByMatlNo(String prefer, UserFrige userfrige){
+		return frigerepository.searchPreferMatlNo(prefer, userfrige.getMatlNo());
 	}
 	
 	@Override

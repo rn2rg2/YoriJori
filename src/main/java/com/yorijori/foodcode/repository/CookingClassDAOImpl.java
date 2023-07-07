@@ -1,9 +1,6 @@
 package com.yorijori.foodcode.repository;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +13,6 @@ import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
-import com.yorijori.foodcode.jpa.entity.Payment;
-import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.jpa.repository.CookingClassContentRepository;
 import com.yorijori.foodcode.jpa.repository.CookingClassCurriculumRepository;
@@ -48,7 +43,6 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	@Override
 	public void delete(int cookNo) {
 		CookingClass cookingclass = classRepo.findById(cookNo).get();
-		cookingclass.setCookNo(cookNo);
 		cookingclass.setState(1);
 
 	}
@@ -130,14 +124,24 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	
 	@Override
 	public List<CookingClass> selectBySort(int pageNo, String sort) {
-		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		PageRequest pageRequest = null;
+		if ( sort.equals("title")) {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.ASC, sort));
+		} else {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		}
 		Page<CookingClass> page = classRepo.findByState(0,pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;
 	}
 	@Override
 	public List<CookingClass> selectBySortAndCategory(int pageNo, String sort, String category) {
-		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		PageRequest pageRequest = null;
+		if ( sort.equals("title")) {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.ASC, sort));
+		} else {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		}
 		Page<CookingClass> page = classRepo.findByStateAndCategory(0,category, pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;

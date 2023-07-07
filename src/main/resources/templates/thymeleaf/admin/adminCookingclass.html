@@ -162,11 +162,11 @@
 											href="javascript::0" class="btn btn-sm btn-neutral">View</a>
 											<button type="button"
 												class="btn btn-sm btn-square btn-neutral text-danger-hover"
-												id="click">
+												id="click" th:value="${classlist.cookNo}">
 												<i class="bi bi-trash"></i>
-											</button> <input style="display: none;" th:value="${classlist.cookNo}"
+											</button> <input style="display: none;" 
 											id="dateposted10">
-											</button></td>
+											</td>
 									</tr>
 								</tbody>
 							</table>
@@ -224,11 +224,11 @@
 											href="javascript::0" class="btn btn-sm btn-neutral">View</a>
 											<button type="button"
 												class="btn btn-sm btn-square btn-neutral text-danger-hover"
-												id="reload">
+												id="reload" th:value="${classlist2.cookNo}">
 												<i class="fa-solid fa-plus"></i>
 											</button> <input style="display: none;"
-											th:value="${classlist2.cookNo}" id="dateposted10">
-											</button></td>
+											 id="dateposted10">
+											</td>
 									</tr>
 								</tbody>
 							</table>
@@ -252,7 +252,7 @@
 		<script>
 			$(document).ready(function() {
 				$('button#click').on('click', function() {
-					const cookNo = $(this).find('input').val();
+					const cookNo = $(this).val();
 					console.log(cookNo);
 
 					$.ajax({
@@ -280,7 +280,7 @@
 			$(document).ready(function() {
 				$('#cooking-management').addClass('active');
 				$('button#reload').on('click', function() {
-					const cookNo = $(this).find('input').val();
+					const cookNo = $(this).val();
 					console.log(cookNo);
 
 					$.ajax({

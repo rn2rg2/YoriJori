@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,11 +43,13 @@ public class RecipeQa {
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "recipeNo", nullable=false)
+	@JsonBackReference
 	private Recipe recipeNo;
 	
 
 	@Exclude
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable=false)
+	@JsonBackReference
 	private UserInfo userId;
 }

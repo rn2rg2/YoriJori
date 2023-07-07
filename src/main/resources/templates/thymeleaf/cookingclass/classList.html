@@ -24,8 +24,8 @@
 	<div class="container mb-4">
 
 		<h3 class="menu-h3-common">추천 클래스 목록</h3>
-		<div class="options" >
-			<div th:each="top5:${topclasslist}" class="option" th:style="'Background-image:url(' + ${top5. thumbnail} + ');'" >
+		<div class="options">
+			<div th:each="top5:${topclasslist}" class="option" th:style="'Background-image:url(' + ${top5. thumbnail} + ');'">
 				<div class="shadow"></div>
 				<div class="label">
 					<div class="icon">
@@ -37,7 +37,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<div class="container">
@@ -59,19 +59,19 @@
 						</div>
 						<div class="collapse show" id="dateposted">
 							<div class="widget-content">
-							<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted1" checked="checked" name="sort" value="date">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input sort_class" id="dateposted1" name="sort" value="date">
 									<label class="custom-control-label" for="dateposted1">최신 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted2" name="sort" value="title">
+									<input type="checkbox" class="custom-control-input sort_class" id="dateposted2" name="sort" value="title">
 									<label class="custom-control-label" for="dateposted2">이름 순</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="dateposted3" name="sort" value="count">
+									<input type="checkbox" class="custom-control-input sort_class" id="dateposted3" name="sort" value="count">
 									<label class="custom-control-label" for="dateposted3">신청자 많은 순</label>
 								</div>
-							
+
 							</div>
 						</div>
 					</div>
@@ -85,27 +85,27 @@
 						<div class="collapse show" id="specialism">
 							<div class="widget-content">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism1" name="category" value="한식">
-									<label class="custom-control-label" for="specialism1">한식</label>
+									<input type="checkbox" class="custom-control-input specialism" id="specialism1" name="category" value="한식">
+									<label class="custom-control-label specialism-label" for="specialism1">한식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism2" name="category" value="중식">
-									<label class="custom-control-label" for="specialism2">중식</label>
+									<input type="checkbox" class="custom-control-input specialism" id="specialism2" name="category" value="중식">
+									<label class="custom-control-label specialism-label" for="specialism2">중식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism3" name="category" value="일식">
-									<label class="custom-control-label" for="specialism3">일식</label>
+									<input type="checkbox" class="custom-control-input specialism" id="specialism3" name="category" value="일식">
+									<label class="custom-control-label specialism-label" for="specialism3">일식</label>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="specialism4" name="category" value="양식">
-									<label class="custom-control-label" for="specialism4">양식</label>
+									<input type="checkbox" class="custom-control-input specialism" id="specialism4" name="category" value="양식">
+									<label class="custom-control-label specialism-label" for="specialism4">양식</label>
 								</div>
 							</div>
 						</div>
 					</div>
 
 
-					
+
 
 					<div class="widget border-0">
 						<div class="widget-add">
@@ -142,7 +142,7 @@
 										</h5>
 									</div>
 									<div class="candidate-list-option">
-										
+
 										<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
 											<span th:text="${class.category}"></span>
 										</div>
@@ -155,13 +155,12 @@
 									</div>
 								</div>
 								<div class="candidate-list-favourite-time">
-								
+
 									<a style="margin-left: 0.5rem;" class="candidate-list-favourite order-2">
 										<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${class.userId.imgPath}|">
 									</a>
-									
-									<span style="font-weight: bold;font-size: 15px;" class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}|"></span></span>
-									<span class="candidate-list-time order-1" style="float: right;margin-left:auto;font-weight: bold; ">[[${class.userId.nickname}]]</span>
+
+									<span style="font-weight: bold; font-size: 15px;" class="candidate-list-time order-1"><i class="fa-solid fa-won-sign"></i> <span th:text="|${#numbers.formatInteger(class.price, 0, 'COMMA')}|"></span></span> <span class="candidate-list-time order-1" style="float: right; margin-left: auto; font-weight: bold;">[[${class.userId.nickname}]]</span>
 
 								</div>
 							</div>
@@ -174,8 +173,8 @@
 				<div class="row">
 					<div class="col-12 text-center mt-4 mt-sm-5">
 						<div id="pag">
-								<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
-							</div>
+							<nav th:insert="~{thymeleaf/common/pagination :: pagination}"></nav>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -191,16 +190,21 @@
 			// 게시물  카운트
 			let boardcount = [[${count}]];
 			//sort
-			let sort=$("input[type='checkbox'][name='sort']:checked").val();
+			//let sort=$("input[type='checkbox'][name='sort']:checked").val();
 			//category
-			let category= $("input[type='checkbox'][name='category']:checked").val();
+			//let category= $("input[type='checkbox'][name='category']:checked").val();
 			//불러왔을때 총 게시물 / pagePerCount
 			let totalPages = 1;
 			if ( boardcount > pagePerCount ){
 				totalPages = Math.ceil( boardcount /pagePerCount )
 			}
+			
+			let category = [[${category}]]
+		    let sort = [[${sort}]]
 			// pagination 들어갈 div
 			const pagination = $('#pagination_div');
+			
+			
 			
 			$(document).ready(function(){
 				
@@ -228,29 +232,53 @@
 				window.location.href = url + "/" + searchData + "/" + currentPage;
 			}
 			//체크상태유지
-			$('.custom-control').each(function(index, item){
-				var inputbox = $(this).siblings('.custom-control-input')
-				if ( replaceSpace(item.textContent) == category ) {
+			$('.sort_class').each(function(index, item){
+				var inputbox = $(this)
+				if ( inputbox.val() == sort ) {
 					inputbox.prop('checked', true);
 				};
 				
 			});
-			//카테고리
-			$('.custom-control').change(function() {
-			      if (this.checked) {
-		    	 	category = $(this).siblings('.custom-control').text();
-		    	 	category = replaceSpace(category);
-		    	 	sort= $("input[type='checkbox'][name='sort']:checked").val();
-		    	 	currentPage = 0;
-		    	 	url = url + "/" + currentPage +"/"+ sort +"/" + category;
-		    	 	/* if (searchData == null ) { // 값이 빈경우
-		    	 		console.log("search box no value")
-		    	 	} else { // 값이 있는 경우
-		    	 		url = url + "/" + searchData;
-		    	 	} */
-		    	 	window.location.href = url;
-			      }
-			    });
+			
+			$('.specialism').each(function(index, item){
+				var inputbox = $(this)
+				if ( inputbox.val() == category ) {
+					inputbox.prop('checked', true);
+				};
+				
+			});
+			
+		    
+			// sort 별 분류
+			$('.sort_class').change(function() {
+		      if (this.checked) {
+	    	 	sort= $(this).val();
+	    	 	currentPage = 0;
+	    	 	url = "/yorijori/cookingclass/list/" + currentPage +"/"+ sort +"/" + category;
+	    	 	window.location.href = url;
+		      } else {
+		    	sort = "date";
+		    	currentPage = 0;
+	    	 	url = "/yorijori/cookingclass/list/" + currentPage +"/"+ sort +"/" + category;
+	    	 	window.location.href = url;
+		      }
+		    });
+			
+			// sort 별 분류
+			$('.specialism').change(function() {
+		      if (this.checked) {
+	    	 	category= $(this).val();
+	    	 	currentPage = 0;
+	    	 	url = "/yorijori/cookingclass/list/" + currentPage +"/"+ sort +"/" + category;
+	    	 	window.location.href = url;
+		      } else {
+	    	    category = "all"
+    		    currentPage = 0;
+	    	 	url = "/yorijori/cookingclass/list/" + currentPage +"/"+ sort +"/" + category;
+	    	 	window.location.href = url;
+		      }
+		    });
+			
 			</script>
 </th:block>
 </html>

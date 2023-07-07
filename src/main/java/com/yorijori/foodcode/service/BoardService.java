@@ -11,7 +11,7 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 public interface BoardService {
 	public Board insert(Board board);
 	List<Board> selectAll();
-	void update(Board board);
+	public Board boardUpdate(int commNo, Board board);
 	void delete(int commNo);
 	long countAll();
 	List<Board> search();
@@ -33,5 +33,6 @@ public interface BoardService {
 	List<Long> countBycommNo(int startnum, int endnum);
 	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount, int state);
 	long countByState(int state);
+	void update(Board board);
 
 }

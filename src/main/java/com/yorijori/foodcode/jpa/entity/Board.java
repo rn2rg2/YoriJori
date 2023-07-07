@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -50,6 +51,14 @@ public class Board {
 	private Date upDate;
 	//default =0 삭제가 =1  1일때 따로 표시하게!! 삭제된 게시물이라는것을 보여주기
 	private int state;
+	@Transient
+	private String mode;
+	@Transient
+	private String msg;
+	public void update(String title, String contents) {
+	    this.title = title;
+	    this.contents = contents;
+	}
 	
 	@Exclude
 	@ManyToOne

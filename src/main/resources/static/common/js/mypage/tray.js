@@ -7,8 +7,9 @@ let idx = 0;
 function dragStart(e) {
 	e.dataTransfer.setData('text',"");
 	e.dataTransfer.setData('text', e.target.id);
-	//console.log(e.target.attributes[4].nodeValue);
-	let data_drag = e.target.attributes[4].nodeValue;
+	console.log(e);
+	console.log(e.target.attributes[5].nodeValue);
+	let data_drag = e.target.attributes[5].nodeValue;
 	
 	jsonData = JSON.parse(data_drag);
 	
@@ -17,7 +18,7 @@ function dragStart(e) {
 	dropdata['purpose'] = jsonData.recipeNo.categorylist[0].categoryNo.name;
 	dropdata['country'] = jsonData.recipeNo.categorylist[1].categoryNo.name;
 	dropdata['type'] = jsonData.recipeNo.categorylist[2].categoryNo.name;
-	//dropdata['food'] = jsonData.recipeNo.categorylist[3].categoryNo.name;
+	dropdata['food'] = jsonData.recipeNo.categorylist[3].categoryNo.name;
 	
 	
 	
@@ -124,10 +125,10 @@ const make_wish_list = function( datas ){
 		console.log(data);
 	var parentContainer = $('<div class="col-xl-6 col-lg-6 col-md-6 mb-5"></div>');
 	  // Create the recipe_info item container
-	  var recipeInfoItem = $('<div class="bg-white rounded shadow-sm item recipe_info" draggable="true"></div>');
+	  var recipeInfoItem = $('<div class="bg-white rounded shadow-sm item recipe_info"></div>');
 
 	  // Create the thumbnail image element
-	  var thumbnailImg = $('<img alt="" class="img-thumbnail card-img-top"/>')
+	  var thumbnailImg = $('<img alt="" class="img-thumbnail card-img-top" draggable="true"/>')
 	    .attr('src', "/yorijori/data/recipethumbnail/"+data.recipeNo.thumbnail)
 	    .attr('id', data.recipeNo.recipeNo)
 	    .attr('value', JSON.stringify(data));

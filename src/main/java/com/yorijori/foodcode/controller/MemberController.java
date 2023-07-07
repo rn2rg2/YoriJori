@@ -62,7 +62,9 @@ public class MemberController {
 		
 		if (loginUser != null && loginUser.getPass().equals(userPassword)) {
 			if (loginUser.getState() == 1) {
+				loginUser = userService.updatePoint(loginUser);
 				session.setAttribute("userInfo", loginUser);
+				
 				if (loginUser.getRole().equals("관리자")) {
 					return "redirect:/admin/User";
 				}
@@ -124,7 +126,7 @@ public class MemberController {
 		userinfodto.setPhoneNumber(Integer.parseInt(number));
 		userinfodto.setEmail(email);
 		userinfodto.setRole("회원");
-		userinfodto.setPoint(36);
+		userinfodto.setPoint(1);
 		userinfodto.setState(1);
 		userinfodto.setImgPath("userimg.png");
 		userinfodto.setKakaoID(userinfodto.getKakaoID());

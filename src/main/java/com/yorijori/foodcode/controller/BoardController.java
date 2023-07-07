@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +33,7 @@ import com.yorijori.foodcode.jpa.entity.SearchLog;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.service.BoardCommentService;
 import com.yorijori.foodcode.service.BoardService;
+import com.yorijori.foodcode.service.MemberService;
 import com.yorijori.foodcode.service.SearchLogService;
 
 @Controller
@@ -42,14 +44,17 @@ public class BoardController {
 	BoardCommentService commentService;
 	FileUploadLogic fileUploadLogic;
 	SearchLogService searchservice;
+	MemberService memberservice;
 	
 	@Autowired
-	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic, SearchLogService searchservice) {
+	public BoardController(BoardService service, BoardCommentService commentService,FileUploadLogic fileUploadLogic, SearchLogService searchservice,MemberService memberservice) {
 		super();
 		this.service = service;
 		this.commentService = commentService;
 		this.fileUploadLogic = fileUploadLogic;
 		this.searchservice = searchservice;
+		this.memberservice = memberservice;
+
 	}
 	
 //	//게시물 전체보기
@@ -171,6 +176,7 @@ public class BoardController {
 		//List<BoardComment> boardCommentList = commentService.selectByPageAndpagePerCount(pageNo, pagePerCount);
 		//long count = commentService.countAll();
 		List<BoardDTO> boardCommentList = commentService.selectComment(commNo);
+		
 		model.addAttribute("boardCommentList", boardCommentList);
 		model.addAttribute("board", board);
 		//model.addAttribute("count",count);
@@ -203,44 +209,66 @@ public class BoardController {
 	
 	//댓글 전체 조회
 	@RequestMapping("/boardCommentList")
-	public String boardCommentList(BoardDTO boardDTO ,BoardComment boardComment,Model model) {
+	public String boardCommentList(BoardDTO boardDTO ,BoardComment boardComment,Model model,UserInfo user) {
 		List<BoardDTO> boardCommentList = commentService.selectComment(boardDTO.getComm_no());
+	     
 		model.addAttribute("boardCommentList", boardCommentList);
-		System.out.println("commmmmmment"+boardCommentList);
+		
+		//System.out.println("commmmmmment"+boardCommentList);
 		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();
 	}
 	
-	//게시판 글쓰기 view
+
+	
+	
 	@GetMapping("/write")
 	public String boardWrite(@RequestParam(value = "mode", required = false) String mode,
-							@PathVariable int commNo, @PathVariable int state,Model model) {
-		if (mode == "modify") {
-			model.addAttribute("detail", service.select(commNo));
-		}
+	                         @RequestParam(value = "commNo", required = false) Integer commNo,
+	                         Model model, Board board, HttpSession session) {
 		
-		model.addAttribute("mode", mode);
-		return "thymeleaf/board/write";
+	    UserInfo userId = (UserInfo) session.getAttribute("userInfo");
+		if ("modify".equals(mode)) {
+	        if (commNo != null) {
+	            // 게시물 수정 모드일 때
+	            Board existingBoard = service.select(commNo);
+	            model.addAttribute("detail", existingBoard);
+	            System.out.println("cccccccccc");
+	            System.out.println(mode);
+	        }
+	    } else if ("add".equals(mode)) {
+	        // 게시물 추가 모드일 때
+	    	
+	    	Board dto = new Board();
+	    	dto.setUserId(userId);
+	    	
+	        model.addAttribute("detail", dto);
+	    }
+
+	    model.addAttribute("mode", mode);
+	    return "thymeleaf/board/write";
 	}
 
-	//게시판 글쓰기 기능
-	@PostMapping("/write")
-	public String boardwrite(Board board, HttpSession session,@RequestParam(value = "mode", required = false) String mode) {
-//		System.out.println("Controller");
-//		System.out.println("================================");
-//		System.out.println(board);
-//		System.out.println(board.getUserId());
-//		System.out.println("================================");
-		UserInfo user = (UserInfo) session.getAttribute("userInfo");
-		board.setUserId(user);
-		board.setView(0);
+	@PostMapping("/writeAction")
+	@ResponseBody
+	public Board boardWriteSubmit(Board board
+			, HttpSession session
+			, Model model,  HttpServletResponse response) {
+	    UserInfo user = (UserInfo) session.getAttribute("userInfo");
+	    board.setUserId(user);
+	    board.setView(0);
+	    
+	    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	    System.out.println(board.toString());
+	    
 		
-		if (mode == "add") {
-			service.insert(board);
-		} else {
-			service.update(board);
+	    if ("add".equals(board.getMode())) { 
+	    	board = service.insert(board);
+		  } else { 
+			board = service.boardUpdate(board.getCommNo(), board); 
 		}
-		
-		return "redirect:/board/list/0/10";
+	    
+	    return board;
+	
 	}
 
 	//게시글 삭제

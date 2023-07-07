@@ -1,6 +1,7 @@
 package com.yorijori.foodcode.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -24,7 +25,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	IngredientDAO ingredao;
 
 	@Autowired
-	public RefriTrayServiceImpl(RefriTrayDAO rtdao,IngredientDAO ingredao) {
+	public RefriTrayServiceImpl(RefriTrayDAO rtdao, IngredientDAO ingredao) {
 		super();
 		this.rtdao = rtdao;
 		this.ingredao = ingredao;
@@ -32,7 +33,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 
 	@Override
 	public List<UserFrige> selectAll(String userId) {
-		List<UserFrige> list = new ArrayList<UserFrige>(); 
+		List<UserFrige> list = new ArrayList<UserFrige>();
 		list = rtdao.selectAll(userId);
 		System.out.println("===============================");
 		System.out.println(list);
@@ -44,6 +45,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 		}
 		return list;
 	}
+
 	@Override
 	public List<UserTray> selectTrayByUserId(String userId) {
 		return rtdao.selectTrayByUserId(userId);
@@ -53,6 +55,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	public UserTray selectTrayDetail(int trayNo, String userId) {
 		return rtdao.selectTrayDetailByUserId(trayNo, userId);
 	}
+
 	@Override
 	public long countByUserId(String userId) {
 		return rtdao.countByUserId(userId);
@@ -62,7 +65,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	public void insert(UserFrige userfrige, String userId) {
 		rtdao.deleteByUserId(userId);
 		List<UserFrige> refrilist = new ArrayList<UserFrige>();
-		for ( Ingredients ingre : userfrige.getMatlList()) {
+		for (Ingredients ingre : userfrige.getMatlList()) {
 			UserFrige frige = new UserFrige();
 			frige.setUserId(userfrige.getUserId());
 			frige.setMatlNo(ingre.getMatlNo());
@@ -70,7 +73,7 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 		}
 		rtdao.insertAll(refrilist);
 	}
-	
+
 	@Override
 	public void insertTray(UserTray usertray) {
 		System.out.println("===================");
@@ -81,13 +84,24 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 		}
 		rtdao.insertTray(usertray);
 	}
-	
-	
-	@Override 
+
+	@Override
 	public RecipeVO getRecommendList(UserInfo user, UserFrige userfrige) {
-		return rtdao.findByPreferAndByMatlNo(user, userfrige);
-		
+		String str = user.getPrefer();
+
+		String[] strArr = str.split(",");
+
+		System.out.println(Arrays.toString(strArr)); // []
+		if ( strArr.length > 0 ) {
+			str = strArr[0];
+		} 
+		System.out.println("===================str==============");
+		System.out.println(str);
+		System.out.println("=================================");
+		return rtdao.findByPreferAndByMatlNo(str, userfrige);
+
 	}
+
 	@Override
 	public void deleteTray(int trayNo) {
 		rtdao.deleteTray(trayNo);

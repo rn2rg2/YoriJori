@@ -1,6 +1,5 @@
 package com.yorijori.foodcode.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import com.yorijori.foodcode.jpa.entity.CookingClassContent;
 import com.yorijori.foodcode.jpa.entity.CookingClassCurriculum;
 import com.yorijori.foodcode.jpa.entity.CookingClassForm;
 import com.yorijori.foodcode.jpa.entity.CookingClassImage;
-import com.yorijori.foodcode.jpa.entity.Payment;
-import com.yorijori.foodcode.jpa.entity.Recipe;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 import com.yorijori.foodcode.repository.CookingClassDAO;
 

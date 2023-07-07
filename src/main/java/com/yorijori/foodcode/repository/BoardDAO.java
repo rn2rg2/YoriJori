@@ -16,10 +16,10 @@ public interface BoardDAO {
 
 	List<Board> selectByPage(int pageNo);
 
-	// 게시물수정
-	public void update(Board board);
-
-	// 게시물삭제
+	//게시물수정	
+	public Board boardUpdate(int commNo, Board board);
+  
+	//게시물삭제
 	public void delete(int commNo);
 
 	// 검색
@@ -49,5 +49,7 @@ public interface BoardDAO {
 	List<Board> selectByPageAndpagePerCount(int pageNo, int pagePerCount, int state);
 
 	long countByState(int state);
+
+	void update(Board board);
 
 }

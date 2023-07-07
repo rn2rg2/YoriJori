@@ -26,6 +26,8 @@ Spring Boot
 - swiper ( 이미지 slide )
 - jqcloud ( 워드 클라우드 )
 - chart.js ( 관리자 페이지 차트 )
+- html2canvas ( div 스크린샷 )
+- summernote ( 스마트 에디터 )
 
 사용한 공공 데이터
 - 식품안전나라 식재료 DB 및 레시피 정보

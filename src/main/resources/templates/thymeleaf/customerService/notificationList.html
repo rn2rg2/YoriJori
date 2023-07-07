@@ -36,17 +36,18 @@
 						  <li th:each="notice:${noticeList}">
 						    <h6>
 						    <a href="#" th:text="${notice.title}"></a>
-						    </h6>
-							   
+						    </h6>   
 						    <div class="hide">
      						<a th:text="${#strings.replace(#strings.replace(notice.contents, '<p>', ''), '</p>', '')}">글 내용</a>
-						   	<span style="float: right;">
-						   		<i class="pull-right" style="float: right;">
-							    	<a th:href="@{/cs/notice/delete(noticeNo=${notice.noticeNo})}">
-							    	<i class="fa-solid fa-trash"></i>
-							    	</a>
-							    </i>						   	
-							</span>
+							<th:block th:if="${#session.getAttribute('userInfo').role == '관리자'}"> 
+							   	<span style="float: right;">
+							   		<i class="pull-right" style="float: right;">
+								    	<a th:href="@{/cs/notice/delete(noticeNo=${notice.noticeNo})}">
+								    	<i class="fa-solid fa-trash"></i>
+								    	</a>
+								    </i>						   	
+								</span>
+						   	</th:block>
 						    </div>
 						  </li>
 					</ul>

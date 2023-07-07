@@ -48,9 +48,12 @@ public class MemberDAOImpl implements MemberDAO {
     }
 
 	@Override
-	public void update(UserInfo userInfo) {
+	public UserInfo update(UserInfo userInfo) {
 		// TODO Auto-generated method stub
-
+		UserInfo user = memberRepository.findByUserId(userInfo.getUserId());
+		user.setRole(userInfo.getRole());
+		user.setPoint(userInfo.getPoint());
+		return user;
 	}
     
     @Override
