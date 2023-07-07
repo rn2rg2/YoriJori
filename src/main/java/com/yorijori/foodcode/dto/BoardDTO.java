@@ -24,4 +24,6 @@ public class BoardDTO {
 	private int new_display_order_no;
 	private String is_first_comment;
 	private int parents_comment_no;
+	private String nickname;
+	private String img_path;
 }

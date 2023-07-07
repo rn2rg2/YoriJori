@@ -24,11 +24,13 @@
 						<hr />
 						<ul class="comments">
 							<li class="clearfix" th:each="comment:${boardCommentList}"><th:block th:if="${comment.display_order_no < 1}">
-									<img src="https://bootdey.com/img/Content/user_2.jpg" 
-									th:src="|/yorijori/data/user/${board.userId.imgPath}|" class="avatar" alt="">
-									<div class="post-comments">
+								<img src="https://bootdey.com/img/Content/user_2.jpg" 
+									th:src="|/yorijori/data/user/${comment.img_path}|" class="avatar" alt="">
+									
+									<div class="post-comments" >
 										<p class="meta">
-											<a class="commentsName" href="#" th:text="|${comment.user_id} ${comment.date}|"></a>
+										<!--  -->
+											<a class="commentsName" href="#" th:text="|${comment.nickname} ${comment.date}|"></a>
 											says :
 											<th:block th:if="${!#strings.isEmpty(session.userInfo) and comment.user_id == session.userInfo.userId}">
 												<!-- 유저정보가 있는 경우 -->
@@ -60,10 +62,10 @@
 								</th:block> 
 								<th:block th:if="${comment.display_order_no > 0}">
 									<ul class="comments">
-										<li class="clearfix"><img th:src="|/yorijori/data/user/${board.userId.imgPath}|" class="avatar" alt="">
+										<li class="clearfix"><img th:src="|/yorijori/data/user/${comment.img_path}|" class="avatar" alt="">
 											<div class="post-comments">
 												<p class="meta">
-													<a class="commentsName" th:text="|${comment.user_id} ${comment.date}|"></a>
+													<a class="commentsName" th:text="|${comment.nickname} ${comment.date}|"></a>
 													says :
 													<th:block th:if="${!#strings.isEmpty(session.userInfo) and comment.user_id == session.userInfo.userId}">
 														<!-- 유저정보가 있는 경우 -->
