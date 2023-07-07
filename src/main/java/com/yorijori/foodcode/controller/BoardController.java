@@ -215,7 +215,9 @@ public class BoardController {
 	public String boardWrite(@RequestParam(value = "mode", required = false) String mode,
 	                         @RequestParam(value = "commNo", required = false) Integer commNo,
 	                         Model model, Board board, HttpSession session) {
-	    if ("modify".equals(mode)) {
+		
+	    UserInfo userId = (UserInfo) session.getAttribute("userInfo");
+		if ("modify".equals(mode)) {
 	        if (commNo != null) {
 	            // 게시물 수정 모드일 때
 	            Board existingBoard = service.select(commNo);
@@ -225,7 +227,11 @@ public class BoardController {
 	        }
 	    } else if ("add".equals(mode)) {
 	        // 게시물 추가 모드일 때
-	        model.addAttribute("detail", new Board());
+	    	
+	    	Board dto = new Board();
+	    	dto.setUserId(userId);
+	    	
+	        model.addAttribute("detail", dto);
 	    }
 
 	    model.addAttribute("mode", mode);
@@ -234,7 +240,7 @@ public class BoardController {
 
 	@PostMapping("/writeAction")
 	@ResponseBody
-	public void boardWriteSubmit(Board board
+	public Board boardWriteSubmit(Board board
 			, HttpSession session
 			, Model model,  HttpServletResponse response) {
 	    UserInfo user = (UserInfo) session.getAttribute("userInfo");
@@ -246,13 +252,12 @@ public class BoardController {
 	    
 		
 	    if ("add".equals(board.getMode())) { 
-	    	service.insert(board);
-	    	model.addAttribute("commNo", board.getCommNo());
-	    	System.out.println("Bbbbbbbbbbbbbbbbbbb");
-	    	System.out.println(board.getCommNo());		  
+	    	board = service.insert(board);
 		  } else { 
-			  service.boardUpdate(board.getCommNo(), board); 
+			board = service.boardUpdate(board.getCommNo(), board); 
 		}
+	    
+	    return board;
 	
 	}
 
