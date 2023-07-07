@@ -111,7 +111,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public List<CookingClass> findTop5ByOrderByCount() {
-		return classRepo.findTop5ByOrderByCountDesc();
+		return classRepo.findTop5ByStateOrderByCountDesc(0);
 	}
 
 	@Override

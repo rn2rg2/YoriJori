@@ -15,7 +15,7 @@ import com.yorijori.foodcode.jpa.entity.UserInfo;
 public interface CookingClassRepository extends JpaRepository<CookingClass, Integer>{
 	public List<CookingClass> findByState(int state);
 	public Page<CookingClass> findByState(int state, Pageable pageable);
-	public List<CookingClass> findTop5ByOrderByCountDesc();
+	public List<CookingClass> findTop5ByStateOrderByCountDesc(int state);
 	public List<CookingClass> findByUserId(UserInfo userId);
 
 	public Page<CookingClass> findByUserId(UserInfo user, PageRequest pageRequest);
