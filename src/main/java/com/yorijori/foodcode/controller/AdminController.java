@@ -168,7 +168,11 @@ public class AdminController {
 		model.addAttribute("deleteclass", list2.size());
 		return "thymeleaf/admin/adminCookingclass";
 	}
-
+	@PostMapping("/classDelete")
+	public ResponseEntity classDelete(int cookNo) {
+		classService.delete(cookNo);
+		return ResponseEntity.ok().build();
+	}
 	@PostMapping("/classRestore")
 	public ResponseEntity classRestore(int cookNo) {
 		classService.restore(cookNo);
