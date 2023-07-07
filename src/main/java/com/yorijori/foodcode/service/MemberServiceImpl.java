@@ -118,12 +118,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public UserInfo updatePoint(UserInfo userInfo) {
 		long count = recipeDAO.countByUserId(userInfo);
-		if (count >= 10) {
+		if (count >= 5) {
 			List<Recipe> list = recipeDAO.findByUserId(userInfo);
 			int size = 0;
 			float sum = 0;
 			for ( Recipe rcp : list) {
 				BigDecimal avg = rcp.getAverage();
+				System.out.println("================== avg ==========================");
+				System.out.println(avg.floatValue());
+				System.out.println("================== avg ==========================");
 				size ++;
 				sum += avg.floatValue();
 			}
