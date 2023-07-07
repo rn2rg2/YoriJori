@@ -1,5 +1,6 @@
 package com.yorijori.foodcode.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -148,7 +150,14 @@ public class RefriTrayController {
 		return count;
 	}
 	@RequestMapping("/tray/delete/{trayNo}")
-	public String deleteTray(@PathVariable int trayNo) {
+	public String deleteTray(@PathVariable int trayNo, HttpSession session) {
+		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
+		UserTray tray = refriTrayService.selectTrayDetail(trayNo, userinfo.getUserId());
+		String imgPath = tray.getImgPath();
+		String fileRoot = fileuploadlogic.getUploadpath("tray/");
+		File targetFile = new File(fileRoot + imgPath);
+		FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+		
 		refriTrayService.deleteTray(trayNo);
 		return "redirect:/mypage/tray";
 	}
