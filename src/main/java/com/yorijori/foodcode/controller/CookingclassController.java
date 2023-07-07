@@ -175,19 +175,21 @@ public class CookingclassController {
 		System.out.println("======================");
 		return jsonvalue;
 	}
-	@RequestMapping("/list/{pageNo}/{pagePerCount}")
-	public String showCookingclassList(Model model, @PathVariable int pageNo, @PathVariable int pagePerCount) {
-		List<CookingClass> classList = service.selectByPageAndpagePerCount(pageNo, pagePerCount);
+	@RequestMapping("/list/{pageNo}/{sort}/{category}")
+	public String showCookingclassList(Model model, @PathVariable int pageNo, @PathVariable String sort,@PathVariable String category) {
+		List<CookingClass> classList = service.selectByPageAndpagePerCount(pageNo, sort,category);
 		List<CookingClass> top5class = service.findTop5ByOrderByCount();
+		long count = service.countAll();
+		model.addAttribute("pageNo", pageNo);
+		if (category.equals("all")) {
+			model.addAttribute("count", count);
+		} else {
+			model.addAttribute("count", classList.size());
+		}
 		model.addAttribute("classList", classList);
 		model.addAttribute("topclasslist", top5class);
 
-		// 페이징
-		long count = service.countAll();
-		model.addAttribute("count", count);
-		model.addAttribute("pageNo", pageNo);
-		model.addAttribute("pagePerCount", pagePerCount);
-
+		// 페이징s
 		return "thymeleaf/cookingclass/classList";
 	}
 	@RequestMapping("/search/{data}/{pageNo}")

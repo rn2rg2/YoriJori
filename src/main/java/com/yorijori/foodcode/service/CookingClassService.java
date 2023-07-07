@@ -20,7 +20,6 @@ public interface CookingClassService {
 	public void insertImage(CookingClassImage image);
 	public List<CookingClass> findTop5ByOrderByCount();
 	public long countAll();
-	List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount);
 	void formInsert(CookingClassForm form);
 	CookingClass findById(Integer cookNo);
 	public List<CookingClass> selectAllClass(int state);
@@ -32,5 +31,6 @@ public interface CookingClassService {
 	long countByUserId(UserInfo user);
 	List<CookingClass> selectBySearch(int pageNo, String searchData, int pagePerCount);
 	long countByTitleContaining(String title);
+	List<CookingClass> selectByPageAndpagePerCount(int pageNo, String sort, String category);
 
 }

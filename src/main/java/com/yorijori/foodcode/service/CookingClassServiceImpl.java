@@ -106,8 +106,14 @@ public class CookingClassServiceImpl implements CookingClassService {
 	}
 
 	@Override
-	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, int pagePerCount) {
-		return dao.selectByPageAndpagePerCount(pageNo, pagePerCount);
+	public List<CookingClass> selectByPageAndpagePerCount(int pageNo, String sort, String category) {
+		List<CookingClass> list=null;
+		if (category.equals("all")) {
+			list = dao.selectBySort(pageNo,sort);
+		} else {
+			list = dao.selectBySortAndCategory(pageNo,sort,category);
+		}
+		return list;
 	}
 
 	@Override
