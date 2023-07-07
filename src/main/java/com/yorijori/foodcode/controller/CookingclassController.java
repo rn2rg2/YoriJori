@@ -188,6 +188,8 @@ public class CookingclassController {
 		}
 		model.addAttribute("classList", classList);
 		model.addAttribute("topclasslist", top5class);
+		model.addAttribute("sort", sort);
+		model.addAttribute("category", category);
 
 		// 페이징s
 		return "thymeleaf/cookingclass/classList";

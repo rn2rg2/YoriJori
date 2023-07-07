@@ -130,14 +130,24 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 	
 	@Override
 	public List<CookingClass> selectBySort(int pageNo, String sort) {
-		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		PageRequest pageRequest = null;
+		if ( sort.equals("title")) {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.ASC, sort));
+		} else {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		}
 		Page<CookingClass> page = classRepo.findByState(0,pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;
 	}
 	@Override
 	public List<CookingClass> selectBySortAndCategory(int pageNo, String sort, String category) {
-		PageRequest pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		PageRequest pageRequest = null;
+		if ( sort.equals("title")) {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.ASC, sort));
+		} else {
+			pageRequest = PageRequest.of(pageNo, 6, Sort.by(Sort.Direction.DESC, sort));
+		}
 		Page<CookingClass> page = classRepo.findByStateAndCategory(0,category, pageRequest);
 		List<CookingClass> list = page.getContent();
 		return list;
