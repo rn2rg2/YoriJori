@@ -1,3 +1,4 @@
+
 package com.yorijori.foodcode;
 
 import org.springframework.boot.SpringApplication;
