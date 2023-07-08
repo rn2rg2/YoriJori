@@ -27,7 +27,7 @@
 							//유저판별
 							let $userrole="[[${session.userInfo.role}]]"
 							if($userrole=="회원"){
-								alert("전문가 이상의 회원만 가능합니다.");
+								Swal.fire("전문가 등급이상 가능", '<b style="color:red;">등급</b>을 확인해주세요', 'error')
 								history.back();
 							}
 							//써머노트
