@@ -94,14 +94,12 @@ public class BoardController {
 		if (category != null && !category.isEmpty()) {
 			list = service.selectByCategoryAndState(category, pageNo, pagePerCount);
 			count = service.getCountByCategorysAndState(category);
-			/*
-			 * System.out.println("cccccccccccc"); System.out.println(category);
-			 */
-	    	model.addAttribute("boardlist", list);
+			
+	    	
 		    model.addAttribute("pageNo", pageNo);
 		    model.addAttribute("pagePerCount", pagePerCount);
 		    model.addAttribute("category", category);
-			
+		    model.addAttribute("boardlist", list);
 			return "thymeleaf/board/list";
 		}
 	    
