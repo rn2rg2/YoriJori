@@ -161,7 +161,7 @@ public class CookingClassDAOImpl implements CookingClassDAO {
 
 	@Override
 	public List<CookingClass> findByUserId(UserInfo userId) {
-		return classRepo.findByUserId(userId);
+		return classRepo.findByUserIdAndState(userId, 0);
 	}
 
 	@Override

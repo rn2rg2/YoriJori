@@ -74,7 +74,7 @@ public class CookingclassController {
 	@RequestMapping("/delete")
 	public String deleteClass(int cookNo) {
 		service.delete(cookNo);
-		return "redirect:/cookingclass/list/0/6";
+		return "redirect:/cookingclass/list/0/date/all";
 	}
 
 	@RequestMapping("/application")
@@ -100,7 +100,7 @@ public class CookingclassController {
 		System.out.println(form.getPayment());
 		System.out.println("*************\n\n\n\n\n\n");
 		service.formInsert(form);
-		return "redirect:/cookingclass/list";
+		return "redirect:/cookingclass/list/0/date/all";
 	}
 
 	@RequestMapping("/in")
@@ -142,7 +142,7 @@ public class CookingclassController {
 			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
 			e.printStackTrace();
 		}
-		return "redirect:/cookingclass/list/0/6";
+		return "redirect:/cookingclass/list/0/date/all";
 	}
 
 	@PostMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
