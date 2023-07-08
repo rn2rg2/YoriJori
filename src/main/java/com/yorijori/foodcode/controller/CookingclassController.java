@@ -93,12 +93,12 @@ public class CookingclassController {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		form.setUserId(user);
 		form.setCookNo(service.findById(classNo));
-		System.out.println("\n\n\n\n\n\n*************c");
-		System.out.println(form);
-		System.out.println(form.getUserId());
-		System.out.println(form.getCookNo());
-		System.out.println(form.getPayment());
-		System.out.println("*************\n\n\n\n\n\n");
+		//System.out.println("\n\n\n\n\n\n*************c");
+		//System.out.println(form);
+		//System.out.println(form.getUserId());
+		//System.out.println(form.getCookNo());
+		//System.out.println(form.getPayment());
+		//System.out.println("*************\n\n\n\n\n\n");
 		service.formInsert(form);
 		return "redirect:/cookingclass/list/0/date/all";
 	}
@@ -120,7 +120,7 @@ public class CookingclassController {
 	public String insertCookingclass(CookingClass cookingclass, @RequestParam("file") MultipartFile multipartFile) {
 
 		JsonObject json = new JsonObject();
-		System.out.println(cookingclass.getContentList().get(0).getContent());
+		//System.out.println(cookingclass.getContentList().get(0).getContent());
 		String fileRoot = fileUploadLogic.getUploadpath("thumbnail/"); // 저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
@@ -133,10 +133,10 @@ public class CookingclassController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 			String url = "/yorijori/data/thumbnail/" + savedFileName;
 			cookingclass.setThumbnail(url);
-//			System.out.println("url이름: "+url);
-//			System.out.println(cookingclass);
-//			System.out.println(cookingclass.getContentList().get(1));
-//			System.out.println(cookingclass.getCurriList().get(0));
+//			//System.out.println("url이름: "+url);
+//			//System.out.println(cookingclass);
+//			//System.out.println(cookingclass.getContentList().get(1));
+//			//System.out.println(cookingclass.getCurriList().get(0));
 			service.insert(cookingclass);
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
@@ -169,9 +169,9 @@ public class CookingclassController {
 			e.printStackTrace();
 		}
 		String jsonvalue = json.toString();
-		System.out.println("======================");
-		System.out.println(jsonvalue);
-		System.out.println("======================");
+		//System.out.println("======================");
+		//System.out.println(jsonvalue);
+		//System.out.println("======================");
 		return jsonvalue;
 	}
 	@RequestMapping("/list/{pageNo}/{sort}/{category}")
@@ -197,7 +197,7 @@ public class CookingclassController {
 	public String search(@PathVariable String data, @PathVariable int pageNo, Model model) {
 		long count =service.countByTitleContaining(data);
 		List<CookingClass> list = service.selectBySearch(pageNo, data, 6);
-		System.out.println("\n\n\n"+list+"\n\n\n");
+		//System.out.println("\n\n\n"+list+"\n\n\n");
 		SearchLog searchlog = new SearchLog();
 		searchlog.setKeyword(data);
 		searchservice.insertLog(searchlog);

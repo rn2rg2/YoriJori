@@ -92,7 +92,7 @@ public class MyPageController {
 		List<Recipe> mylikelist = recipeservice.mylikeListByPage(0, 6, user);
 		List<Board> myboardlist = boardservice.selectByPageByUser(0,10,user);
 		
-		System.out.println("classlist 프로필에서 조회" + classlist);
+		//System.out.println("classlist 프로필에서 조회" + classlist);
 		//List<Recipe> list = recipeservice.selectListByPage(0, 9);
 		// 모델에 데이터 추가
 		model.addAttribute("classlist", classlist);
@@ -104,7 +104,7 @@ public class MyPageController {
 		model.addAttribute("mywishcount", mywishcount);
 		model.addAttribute("boardcount", boardcount);
 		
-		//System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
+		////System.out.println("프로필에서 , 로 나누기 : "+ Arrays.toString(prefer));
 		model.addAttribute("category", categorylist);
 		model.addAttribute("prefer", prefer);
 		model.addAttribute("ingredient", ingrelist);
@@ -114,7 +114,7 @@ public class MyPageController {
 	
 	@RequestMapping("/profile/read/{userId}")
 	public String readuser(Model model, @PathVariable String userId) {
-		System.out.println("readuserInfo 에서 pathvariable 체크 : "+userId);
+		//System.out.println("readuserInfo 에서 pathvariable 체크 : "+userId);
 		UserInfo user = profileservice.readuser(userId);
 		
 		long count = recipeservice.countAll();
@@ -148,7 +148,7 @@ public class MyPageController {
 	    UserInfo user = (UserInfo) session.getAttribute("userInfo");
 	    user.setState(0);
 	    profileservice.updatestate(user);
-	    //System.out.println("deleteUser 확인 : "+ user);
+	    ////System.out.println("deleteUser 확인 : "+ user);
 	    if (session != null) {
 	        session.invalidate();
 	    }
@@ -159,7 +159,7 @@ public class MyPageController {
 //	@ResponseBody
 //	public List<Category> getprefer() {
 //	    List<Category> categorylist = categoryservice.findAll();
-//	    System.out.println("getprefer: "+categorylist);
+//	    //System.out.println("getprefer: "+categorylist);
 //	    return categorylist;
 //	}
 	
@@ -177,7 +177,7 @@ public class MyPageController {
 		UserInfo user = new UserInfo();
 		user = profileservice.checknickname(nickname);
 		UserInfoNicknameDTO userDTO = new UserInfoNicknameDTO();
-		System.out.println("닉네임 체크할때 유저 값: " +user);
+		//System.out.println("닉네임 체크할때 유저 값: " +user);
 		if(user != null) { //유저 중복
 			userDTO.setNickname(user.getNickname());
 		}else {
@@ -199,14 +199,14 @@ public class MyPageController {
 			String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 			File targetFile = new File(fileRoot + savedFileName);
 			File imagefile = new File(imagePath);
-			System.out.println("파일 시스아웃" + imagefile);
+			//System.out.println("파일 시스아웃" + imagefile);
 			
 
 			try {
 				InputStream fileStream = profilephoto.getInputStream();
 				FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 				user.setImgPath(savedFileName);
-				System.out.println(user);
+				//System.out.println(user);
 				UserInfo updateduser = profileservice.updateprofileimage(user);
 				if(updateduser != null) {
 					imagefile.delete();
@@ -236,7 +236,7 @@ public class MyPageController {
 		user.setAllergy(setallergy);
 		user.setEmail(Email);
 		user.setNickname(Nickname);
-		System.out.println("업데이트할 유저 정보"+user);
+		//System.out.println("업데이트할 유저 정보"+user);
 		user = profileservice.updateprofile(user);
 		session.setAttribute("userInfo", user);
 		return "redirect:/mypage/profile";

@@ -253,7 +253,7 @@
 			$(document).ready(function() {
 				$('button#click').on('click', function() {
 					const cookNo = $(this).val();
-					console.log(cookNo);
+					////console.log(cookNo);
 
 					$.ajax({
 						url : '/yorijori/admin/classDelete',
@@ -270,7 +270,7 @@
 							});
 						},
 						error : function(xhr, status, error) {
-							console.log(error);
+							////console.log(error);
 						}
 					});
 				});
@@ -281,7 +281,7 @@
 				$('#cooking-management').addClass('active');
 				$('button#reload').on('click', function() {
 					const cookNo = $(this).val();
-					console.log(cookNo);
+					////console.log(cookNo);
 
 					$.ajax({
 						url : '/yorijori/admin/classRestore',
@@ -298,7 +298,7 @@
 							});
 						},
 						error : function(xhr, status, error) {
-							console.log(error);
+							////console.log(error);
 						}
 					});
 				});

@@ -75,7 +75,7 @@ public class RefriTrayDAOImpl implements RefriTrayDAO {
 	public void deleteByUserId(String userId) {
 		// frigerepository.findAllByUserId(userFrige.getUserId());
 		// frigerepository.delete(userFrige);
-		//System.out.println("delet by user id");
+		//////System.out.println("delet by user id");
 		frigerepository.deleteByUserId(userId);
 	}
 	

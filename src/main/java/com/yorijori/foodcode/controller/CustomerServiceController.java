@@ -55,7 +55,7 @@ public class CustomerServiceController {
 	}
 	@PostMapping("/notice/insert") //관리자용
 	public String notificationInsert(Notice notice, HttpSession session) {
-		//System.out.println("connnnnnnntroller");
+		////System.out.println("connnnnnnntroller");
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		notice.setUserId(user); 
 		service.noticeInsert(notice);
@@ -90,7 +90,7 @@ public class CustomerServiceController {
 	
 	@PostMapping("/help/insert") 
 	public String HelpInsert(Question question, HttpSession session) {
-		//System.out.println("connnnnnnntroller");
+		////System.out.println("connnnnnnntroller");
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
 		question.setUserId(user); 
 		service.questionInsert(question);
@@ -120,7 +120,7 @@ public class CustomerServiceController {
 	public String inquiryInsert(Inquiry inquiry, HttpSession session) { 
 		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
 		inquiry.setUserId(user);
-		//System.out.println("iiiiiiiiiinqco"); 
+		////System.out.println("iiiiiiiiiinqco"); 
 		service.inquiryInsert(inquiry);
 	    return "redirect:/cs/inquiry"; // 문의 성공 시 success 파라미터를 전달하여 리다이렉트합니다
 
@@ -171,8 +171,8 @@ public class CustomerServiceController {
 	public String inquiryCommentInsert( InquiryComment inquiryComment, HttpSession session) { 
 		UserInfo user = (UserInfo) session.getAttribute("userInfo"); 
 		inquiryComment.setUserId(user);
-		System.out.println(inquiryComment); 
-		System.out.println(inquiryComment.getInquiryNo()); 
+		//System.out.println(inquiryComment); 
+		//System.out.println(inquiryComment.getInquiryNo()); 
 		service.inquiryCommentInsert(inquiryComment);
 		String url = "redirect:/cs/inquiry/read/"+inquiryComment.getInquiryNo();
 	    return url;
@@ -181,8 +181,8 @@ public class CustomerServiceController {
 	@GetMapping("/inquiryComment/delete")
 	public String inquiryCommentDelete(int id) {
 		InquiryComment inquiryComment= service.inquiryCommentDelete(id);
-		System.out.println(inquiryComment.getId());
-		System.out.println(inquiryComment.getInquiryNo());
+		//System.out.println(inquiryComment.getId());
+		//System.out.println(inquiryComment.getInquiryNo());
 
 		return "redirect:/cs/inquiry/read/"+inquiryComment.getInquiryNo();
 	}	

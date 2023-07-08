@@ -67,16 +67,16 @@ public class RefriTrayController {
 				maxSize = refrilist.size();
 			}
 			for ( int i = 0 ; i < maxSize; i ++ ) {
-				System.out.println("=================================");
-				System.out.println(refrilist.get(i));
-				System.out.println("=================================");
+				//System.out.println("=================================");
+				//System.out.println(refrilist.get(i));
+				//System.out.println("=================================");
 				RecipeVO rcp = refriTrayService.getRecommendList(userinfo, refrilist.get(i));
 				if (rcp != null ) {
 					rcplist.add(rcp);
 				}
-				System.out.println("=============rcp====================");
-				System.out.println(rcp);
-				System.out.println("=================================");
+				//System.out.println("=============rcp====================");
+				//System.out.println(rcp);
+				//System.out.println("=================================");
 			}
 			if ( rcplist.size() > 0 ) {
 				model.addAttribute("rcplist", rcplist);
@@ -137,7 +137,7 @@ public class RefriTrayController {
 	public List<UserWishlist> getWishListByPage(@PathVariable int pageNo, @PathVariable int pagePerCount, HttpSession session) {
 		UserInfo userinfo= (UserInfo)session.getAttribute("userInfo");
 		//List<RcpCategoryDTO> list = userWishService.selectRcpAndCategory(userinfo);
-		//System.out.println(list);
+		////System.out.println(list);
 		List<UserWishlist> list = userWishService.selectAll(userinfo,pageNo, pagePerCount);
 		return list;
 	}
@@ -167,14 +167,14 @@ public class RefriTrayController {
     public String imgSaveTest(String imgSrc) throws Exception {
         //ModelMap map = new ModelMap();
 		String imgPath = "";
-        System.out.println("^%^%^%^%^%^%");
+        //System.out.println("^%^%^%^%^%^%");
         //String binaryData = request.getParameter("imgSrc");
-        System.out.println(imgSrc);
+        //System.out.println(imgSrc);
         String binaryData = imgSrc;
-        System.out.println(binaryData);
+        //System.out.println(binaryData);
         FileOutputStream stream = null;
         try{
-            System.out.println("binary file   "  + binaryData);
+            //System.out.println("binary file   "  + binaryData);
             if(binaryData == null || binaryData.trim().equals("")) {
                 throw new Exception();
             }
@@ -185,15 +185,15 @@ public class RefriTrayController {
             String fileRoot = fileuploadlogic.getUploadpath("tray/");
             stream = new FileOutputStream(fileRoot+fileName+".png");
             imgPath = fileName+".png";
-            System.out.println(file);
-            System.out.println(fileName+"------------------------");
+            //System.out.println(file);
+            //System.out.println(fileName+"------------------------");
             stream.write(file);
             stream.close();
-            System.out.println("캡처 저장");
+            //System.out.println("캡처 저장");
 
         }catch(Exception e){
             e.printStackTrace();
-            System.out.println("에러 발생");
+            //System.out.println("에러 발생");
         }finally{
             if(stream != null) {
                 stream.close();

@@ -135,7 +135,7 @@ public class RecipeController {
 	@PostMapping("/filtersearch")
 	@ResponseBody
 	public Map<String, Object> search(@RequestBody FilterDTO filterDTO) {
-		System.out.println(filterDTO);
+		//System.out.println(filterDTO);
 
 		Specification<Recipe> spec = RecipeSpecification.any();
 		List<Recipe> recipes = recipeService.findAll(spec);
@@ -220,16 +220,16 @@ public class RecipeController {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 			recipedata.setThumbnail(savedFileName);
-			System.out.println(recipedata);
-			System.out.println(recipedata.getCategorylist());
+			//System.out.println(recipedata);
+			//System.out.println(recipedata.getCategorylist());
 
 			for (RecipeCategory test : recipedata.getCategorylist()) {
-				System.out.println(test.getCategoryNo());
+				//System.out.println(test.getCategoryNo());
 			}
-			System.out.println(recipedata.getImglist());
-			System.out.println(recipedata.getIngrelist());
+			//System.out.println(recipedata.getImglist());
+			//System.out.println(recipedata.getIngrelist());
 			for (RecipeIngredients test : recipedata.getIngrelist()) {
-				System.out.println(test.getMatlNo());
+				//System.out.println(test.getMatlNo());
 			}
 			recipeService.insertAll(recipedata);
 		} catch (IOException e) {
@@ -256,7 +256,7 @@ public class RecipeController {
 	            BigDecimal average = recipeService.USERgetReviewAverage(reviews);
 	            recipeNoAverageMap.put(recipe.getRecipeNo(), average);
 	        }
- 	        System.out.println(recipeNoAverageMap);
+ 	        //System.out.println(recipeNoAverageMap);
  	        
  	        //회원 로그인 시
  	        if ( user != null ) {
@@ -304,7 +304,7 @@ public class RecipeController {
 	        BigDecimal average = recipeService.APIgetReviewAverage(review);
 
 			
-			System.out.println(review);
+			//System.out.println(review);
 			// 모델에 데이터 추가
 			model.addAttribute("review_average", average);
 			model.addAttribute("data", data);
@@ -340,10 +340,10 @@ public class RecipeController {
 				for (RecipeQa item : dataq) {
 					if (item.getDepthLevel() == 0) {
 						depthLevelZeroList.add(item);
-						System.out.println(item);
+						//System.out.println(item);
 					} else if (item.getDepthLevel() == 1) {
 						depthLevelOneList.add(item);
-						System.out.println(item);
+						//System.out.println(item);
 	
 					}
 				}
@@ -364,7 +364,7 @@ public class RecipeController {
 				model.addAttribute("dataa", depthLevelOneList);
 				model.addAttribute("rcpSeq", rcpSeq);
 				model.addAttribute("ingrList", idList);
-				System.out.println("TESTTEST" + dataimg);
+				//System.out.println("TESTTEST" + dataimg);
 	
 				viewCountUp(rcpSeq, type, req, res);
 	
@@ -387,10 +387,10 @@ public class RecipeController {
 	public String addWishList(@PathVariable String type, @PathVariable int rcpNo, HttpSession session,
 			HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
-		System.out.println("==================");
-		System.out.println(type);
-		System.out.println(rcpNo);
-		System.out.println("==================");
+		//System.out.println("==================");
+		//System.out.println(type);
+		//System.out.println(rcpNo);
+		//System.out.println("==================");
 		UserInfo userinfo = (UserInfo) session.getAttribute("userInfo");
 		if (type.equals("user")) {
 			// 사용자 레시피의 경우
@@ -450,12 +450,12 @@ public class RecipeController {
 			}
 			if (type.equals("server")) {
 				apirecipe.setRcpSeq(rcpNo);
-				System.out.println("test");
+				//System.out.println("test");
 				APIrecipereview.setState(1);
 				APIrecipereview.setRcpSeq(apirecipe);
 				APIrecipereview.setUserId(userInfo);
 				apiRecipeService.reviewsave(APIrecipereview);
-				System.out.println("서버");
+				//System.out.println("서버");
 			}
 		}
 
@@ -507,7 +507,7 @@ public class RecipeController {
 	public String searchRecipe(@PathVariable String data, @PathVariable int pageNo, Model model) {
 		long count = recipeService.countByNameContaining(data);
 		List<Recipe> list = recipeService.selectBySearch(pageNo, data, 9);
-		System.out.println(list);
+		//System.out.println(list);
 		SearchLog searchlog = new SearchLog();
 		searchlog.setKeyword(data);
 		searchservice.insertLog(searchlog);
@@ -551,7 +551,7 @@ public class RecipeController {
 //	@ResponseBody
 //	public List<ApiRecipe> listApiRecipe(@PathVariable int pageNo) throws IOException {
 //		List<ApiRecipe> list = apiRecipeService.getServerRecipe(pageNo, 9);
-//		System.out.println("list : " + list);
+//		//System.out.println("list : " + list);
 //		return list;
 //	}
 

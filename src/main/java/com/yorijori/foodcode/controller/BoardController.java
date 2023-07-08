@@ -64,7 +64,7 @@ public class BoardController {
 //		long count = service.countAll();
 //		model.addAttribute("boardlist",list);
 //		model.addAttribute("count",count);
-//		System.out.println("aaaaaaaaaaaaaa"+list); 
+//		//System.out.println("aaaaaaaaaaaaaa"+list); 
 //		return "thymeleaf/board/list";
 //	}
 	//게시물 전체보기
@@ -139,12 +139,12 @@ public class BoardController {
 	 * 
 	 * @RequestParam(value = "category", required = false) String category,
 	 * 
-	 * @PathVariable String contentKeyword) { System.out.println(contentKeyword);
+	 * @PathVariable String contentKeyword) { //System.out.println(contentKeyword);
 	 * List<Board> list = service.selectByPageAndpagePerCountSearch(pageNo,
 	 * pagePerCount, contentKeyword); long count =
 	 * service.getCountByContentsAndState(contentKeyword);
 	 * 
-	 * System.out.println("zzzzzzzzzz컨트롤러search"); model.addAttribute("boardlist",
+	 * //System.out.println("zzzzzzzzzz컨트롤러search"); model.addAttribute("boardlist",
 	 * list); model.addAttribute("count", count); model.addAttribute("pageNo",
 	 * pageNo); model.addAttribute("pagePerCount", pagePerCount);
 	 * model.addAttribute("searchData", contentKeyword);
@@ -158,7 +158,7 @@ public class BoardController {
 	 * pagePerCount,
 	 * 
 	 * @RequestParam(value = "category", required = false) String category) {
-	 * System.out.println(category); List<Board> list =
+	 * //System.out.println(category); List<Board> list =
 	 * service.selectByCategoryAndState(category, pageNo, pagePerCount); long count
 	 * = service.getCountByCategorysAndState(category);
 	 * model.addAttribute("boardlist", list); model.addAttribute("count", count);
@@ -204,7 +204,7 @@ public class BoardController {
 	public String boardCommentDelete(BoardDTO boardDTO , int commentNo, HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
 		commentService.delete(commentNo);
-		System.out.println("댓글삭제cccrrrrrrrrrrrr");
+		//System.out.println("댓글삭제cccrrrrrrrrrrrr");
 		return "redirect:"+ referer;
 	}
 	
@@ -215,7 +215,7 @@ public class BoardController {
 	     
 		model.addAttribute("boardCommentList", boardCommentList);
 		
-		//System.out.println("commmmmmment"+boardCommentList);
+		////System.out.println("commmmmmment"+boardCommentList);
 		return "redirect:/board/read/" + boardComment.getCommNo() + "/" + boardComment.getState();
 	}
 	
@@ -233,8 +233,8 @@ public class BoardController {
 	            // 게시물 수정 모드일 때
 	            Board existingBoard = service.select(commNo);
 	            model.addAttribute("detail", existingBoard);
-	            System.out.println("cccccccccc");
-	            System.out.println(mode);
+	            //System.out.println("cccccccccc");
+	            //System.out.println(mode);
 	        }
 	    } else if ("add".equals(mode)) {
 	        // 게시물 추가 모드일 때
@@ -258,8 +258,8 @@ public class BoardController {
 	    board.setUserId(user);
 	    board.setView(0);
 	    
-	    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-	    System.out.println(board.toString());
+	    //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	    //System.out.println(board.toString());
 	    
 		
 	    if ("add".equals(board.getMode())) { 
@@ -304,8 +304,8 @@ public class BoardController {
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
-		System.out.println("ccccccccccccccontroller");
-		System.out.println(jsonObject.toString());
+		//System.out.println("ccccccccccccccontroller");
+		//System.out.println(jsonObject.toString());
 		String jsonvalue = jsonObject.toString();
 		return jsonvalue;
 	}

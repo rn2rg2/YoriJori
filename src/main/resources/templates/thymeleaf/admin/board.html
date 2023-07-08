@@ -358,7 +358,7 @@
 			getAjaxNoParam(url, function (datas){
 				$('#board_tbody').empty();
 				// Create a jQuery element for the outer div
-				console.log(datas);
+				//console.log(datas);
 				$.each(datas, function(index, data) {
 					generateTableRow(data);
 				})
@@ -371,7 +371,7 @@
 			getAjaxNoParam(url, function (datas){
 				$('#delete_tbody').empty();
 				// Create a jQuery element for the outer div
-				console.log(datas);
+				//console.log(datas);
 				$.each(datas, function(index, data) {
 					generateDeleteRow(data);
 				})
@@ -383,8 +383,8 @@
 			postAjax(url, param, function(data){
 				getAllCount();
 				getDeleteCount();
-				console.log(boardcount)
-				console.log(deletecount)
+				//console.log(boardcount)
+				//console.log(deletecount)
 				loadPage(boardcount, pagePerCount, make_board_list);
 				loadPage2(deletecount, pagePerCount, make_delete_list);
 				make_board_list(currentPage);
@@ -398,8 +398,8 @@
 			postAjax(url, param, function(data){
 				getAllCount();
 				getDeleteCount();
-				console.log(boardcount)
-				console.log(deletecount)
+				//console.log(boardcount)
+				//console.log(deletecount)
 				loadPage(boardcount, pagePerCount, make_board_list);
 				loadPage2(deletecount, pagePerCount, make_delete_list);
 				make_delete_list(currentPage2);
