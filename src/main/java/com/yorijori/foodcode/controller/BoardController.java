@@ -95,10 +95,11 @@ public class BoardController {
 			list = service.selectByCategoryAndState(category, pageNo, pagePerCount);
 			count = service.getCountByCategorysAndState(category);
 			
+	    	
 		    model.addAttribute("pageNo", pageNo);
 		    model.addAttribute("pagePerCount", pagePerCount);
 		    model.addAttribute("category", category);
-			
+		    model.addAttribute("boardlist", list);
 			return "thymeleaf/board/list";
 		}
 	    

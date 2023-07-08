@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-  .btn-success, .btn-default{
-  width: 100px;
+  .btns-success, .btns-default{
   background-color: #FD5D5D;
   border: none;
   border-radius: 10px;
   color: white;
+  width: 100px;
  }
