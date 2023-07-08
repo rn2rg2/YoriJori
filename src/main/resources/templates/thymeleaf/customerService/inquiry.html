@@ -42,7 +42,7 @@
 					<table id="example" class="table table-haver">
 						<thead>
 							<tr>
-								<th style="width: 10%">글번호</th>
+								<th style="width: 10%">분류</th>
 								<th style="width: 50%">제목</th>
 								<th style="width: 15%">작성자</th>
 								<th style="width: 15%">작성날짜</th>
@@ -50,11 +50,11 @@
 						</thead>
 						<tbody>
 									<tr th:each="inquiry:${inquiryList}">									
-										<td><span th:text="${inquiry.inquiryNo }"></span></td>
+										<td><span >문의</span></td>
 										<td><a th:href="@{/cs/inquiry/read/{inquiryNo}(inquiryNo=${inquiry.inquiryNo})}"><span th:text="${inquiry.title}"></span>
 										</a></td>
 	
-										<td><span th:text="${inquiry.userId.userId}" class="readuserinfo" th:data-userid="${inquiry.userId.userId}"></span></td>
+										<td><span th:text="${inquiry.userId.nickname}" class="readuserinfo" th:data-userid="${inquiry.userId.userId}"></span></td>
 										<td><span th:text="${inquiry.date}"></span></td>
 									</tr>
 									<!-- 게시물이 없을 경우 -->
