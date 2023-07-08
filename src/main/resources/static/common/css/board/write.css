@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-  .btn-success, .btn-default{
+  .btns-success, .btns-default{
   width: 100px;
   background-color: #FD5D5D;
   border: none;

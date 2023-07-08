@@ -20,8 +20,20 @@
 											function() {
 												var url = "/yorijori/cs/inquiry/insert";
 												var name = "요리조리 문의하기";
-												var option = "width = 500, height = 500, top = 100, left = 200, location = no ,scrollbars=no"
-												window.open(url, name, option);
+												
+
+										        // Calculate the centered position
+										        var screenWidth = window.screen.availWidth;
+										        var screenHeight = window.screen.availHeight;
+										        var popupWidth = 500;
+										        var popupHeight = 500;
+										        var top = (screenHeight - popupHeight) / 2;
+										        var left = (screenWidth - popupWidth) / 2;
+
+										        var option = "width=500, height=500, top=" + top + ", left=" + left + ", location=no, scrollbars=no";
+										        window.open(url, name, option);
+												/* var option = "width = 500, height = 500, top = 100, left = 200, location = no ,scrollbars=no"
+												window.open(url, name, option); */
 											})
 						})
 	</script>
