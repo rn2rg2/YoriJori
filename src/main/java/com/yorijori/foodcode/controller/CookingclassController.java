@@ -80,7 +80,7 @@ public class CookingclassController {
 	@RequestMapping("/application")
 	public String applicateClass(int cookNo, HttpSession session, Model model) {
 		if (session.getAttribute("userInfo") == null) {
-			return "redirect:/main";
+			return "redirect:/member/loginpage";
 		} else {
 			CookingClass cookingClass = service.readClass(cookNo);
 			model.addAttribute("cookingClass", cookingClass);
@@ -106,9 +106,9 @@ public class CookingclassController {
 	@RequestMapping("/in")
 	public String showInsertCookingclass(HttpSession session) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");
-		if (user.getRole().equals("회원")) {
-			return "redirect:/main";
-		}
+//		if (user.getRole().equals("회원")) {
+//			return "redirect:/main";
+//		}
 		return "thymeleaf/cookingclass/classInsert";
 	}
 //	@RequestMapping("/upload")

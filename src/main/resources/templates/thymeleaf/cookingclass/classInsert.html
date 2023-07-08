@@ -24,6 +24,13 @@
 		$(document)
 				.ready(
 						function() {
+							//유저판별
+							let $userrole="[[${session.userInfo.role}]]"
+							if($userrole=="회원"){
+								alert("전문가 이상의 회원만 가능합니다.");
+								history.back();
+							}
+							//써머노트
 							$('.summernote')
 									.summernote(
 											{
@@ -165,6 +172,7 @@
 
 						})
 	</script>
+	
 	<style type="text/css">
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
