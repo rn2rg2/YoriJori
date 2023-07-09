@@ -248,11 +248,24 @@
 
 							<th:block th:each="dataa : ${dataa}">
 								<th:block th:if="${dataa.title} == ${dataq.title}">
-									<dd class="bl_faq_a" style="display: none;">
-										<img class="bl_faq_icon" src="https://audition.hanbiton.com/Boarddata1/Files/1001/2022/10/19/10190947152022580396869.jpg">
-										<div class="bl_faq_a_body"></div>
+								
+								<dd class="bl_faq_a" style="display: none;">
+										<img class="bl_faq_icon" th:src='|/yorijori/data/recipethumbnail/${dataq.userId.imgPath}|'>
 										<div class="bl_faq_a_body">
-											<span style="font-size: 20px">Q</span> <span style="font-size: 14px" th:text="${dataa.userId.nickname}"></span>
+										</div>
+										<div class="bl_faq_a_body">
+											<span style="font-size: 20px">Q</span> <span style="font-size: 14px" th:text="${dataq.userId.nickname}"></span>
+											<p class="bl_faq_a_txt" th:text=${dataq.contents}></p>
+										</div>
+										<!-- /.bl_faq_a_body -->
+									</dd>
+									<dd class="bl_faq_a" style="display: none;">
+										<img class="bl_faq_icon" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|'>
+										<div class="bl_faq_a_body">
+										
+										</div>
+										<div class="bl_faq_a_body">
+											<span style="font-size: 20px">A</span> <span style="font-size: 14px" th:text="${dataa.userId.nickname}"></span>
 											<p class="bl_faq_a_txt" th:text=${dataa.contents}></p>
 										</div>
 										<!-- /.bl_faq_a_body -->
