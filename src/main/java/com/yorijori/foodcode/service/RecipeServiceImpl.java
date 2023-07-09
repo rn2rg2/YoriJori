@@ -58,6 +58,12 @@ public class RecipeServiceImpl implements RecipeService {
 	public long countWishByUserId(UserInfo userId) {
 		return recipeDAO.countWishByUserId(userId);
 	}
+	@Override
+	public long countReviewByUserIdAndRcpNo(UserInfo userId, int rcpSeq) {
+		Recipe rcp = new Recipe();
+		rcp.setRecipeNo(rcpSeq);
+		return recipeDAO.countReviewByUserIdAndRcpNo(userId,rcp);
+	}
 
 	@Override
 	public List<Recipe> selectListByPage(int pageNo, int pagePerCount) {

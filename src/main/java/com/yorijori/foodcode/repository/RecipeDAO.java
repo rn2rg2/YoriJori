@@ -70,6 +70,7 @@ public interface RecipeDAO {
 	List<Recipe> getTop15Recipe();
 	long countByUserId(UserInfo userId);
 	List<Recipe> findByUserId(UserInfo userId);
+	long countReviewByUserIdAndRcpNo(UserInfo userId, Recipe rcpSeq);
 
     
 
