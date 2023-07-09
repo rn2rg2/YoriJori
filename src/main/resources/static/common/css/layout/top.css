@@ -12904,3 +12904,12 @@ body .options .option .label .info .main {
 body .options .option .label .info .sub {
   transition-delay: 0.1s;
 }
+#ftco-nav>ul>li>div{
+	z-index:9999;
+}
+
+#ftco-nav>ul>li>div>a{
+	font-weight: 700;
+    font-family: 'NanumMasIssNeunCe';
+    font-size: 1.5em;
+}
