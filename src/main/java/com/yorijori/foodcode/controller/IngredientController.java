@@ -69,9 +69,6 @@ public class IngredientController {
 	}
 	@PostMapping("/insert")
 	public String InsertPage(Ingredients ingredients, @RequestParam("file") MultipartFile multipartFile) {
-		System.out.println("==========================");
-		System.out.println(ingredients);
-		System.out.println("==========================");
 		String fileRoot = fileUploadLogic.getUploadpath("ingredient/"); // 저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
