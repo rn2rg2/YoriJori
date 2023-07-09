@@ -187,6 +187,11 @@
 							      });
 							  return true;
 							}
+						document.addEventListener('keydown', function(event) {
+							  if (event.keyCode === 13) {
+							    event.preventDefault();
+							  };
+							}, true);
 						
 	</script>
 </th:block>
@@ -339,7 +344,7 @@
 							</th:block>
 							
 						</select> <span class="addingredient">찾으시는 재료가 없으신가요? <a
-							href="/yorijori/mypage/profile"
+							href="/yorijori/ingredient/insert"
 							style="text-decoration: underline;">여기</a> 를 클릭하여 재료 추가하기
 						</span> <br /> <br /> <label>재료량</label>
 						<div id="ingredientContainer">

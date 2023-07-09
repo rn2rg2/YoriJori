@@ -9,15 +9,6 @@
 			<!--=============================================================================-->
 			<!--############################# Contents START#############################-->
 			<!--=============================================================================-->
-			<form class="form-horizontal" id="frmSch" name="frmSch" onsubmit="return false;">
-				<input type="hidden" id="pageIndex" name="pageIndex" value="">
-				<input type="hidden" id="prodSnn" name="prodSnn" value="559">
-				<input type="hidden" id="prodNmSel" name="prodNmSel" value="">
-				<input type="hidden" id="userRxSnn" name="userRxSnn" value="">
-				<input type="hidden" id="eventPartakerSnn" name="eventPartakerSnn" value="">
-				<input type="hidden" id="rxEventSnn" name="rxEventSnn" value="">
-			</form>
-
 			<!-- food_product_view -->
 			<div class="recipe_view food_recipe_view food_product_view">
 				<!-- details_top -->
@@ -33,7 +24,7 @@
 					<!-- details_photo -->
 					<div class="details_photo">
 						<div class="card_img">
-							<img alt="" th:src="| /yorijori/data/ingredient/${data.imgPath}| ">
+							<img alt="" th:src="| /yorijori/data/ingredient/${data.imgPath}| " style="width:425px; height:340px;">
 						</div>
 					</div>
 					<!-- details_con -->
