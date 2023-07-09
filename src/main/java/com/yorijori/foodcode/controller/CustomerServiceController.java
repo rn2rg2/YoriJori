@@ -161,7 +161,7 @@ public class CustomerServiceController {
 	@GetMapping("/inquiry/delete")
 	public String inquiryDelete(int inquiryNo) {
 		service.inquiryDelete(inquiryNo);
-		return "redirect:/cs/inquiryNo/list";
+		return "redirect:/cs/inquiry";
 	}
 	
 	//문의사항 댓글

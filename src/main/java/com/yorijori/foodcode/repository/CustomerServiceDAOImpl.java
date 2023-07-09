@@ -126,7 +126,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 
 	@Override
 	public List<Inquiry> findByUserId(UserInfo user) {
-		return inquiryRepository.findByUserId(user);
+		return inquiryRepository.findByUserIdAndState(user, 0);
 	}
 
 	@Override
