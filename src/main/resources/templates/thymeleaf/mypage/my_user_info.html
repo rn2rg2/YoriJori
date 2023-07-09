@@ -115,7 +115,7 @@
 							</div>
 							<div class="col-md-6">
 								<h6>전화번호</h6>
-								<input type="text" class="form-control" th:value="${session.userInfo.phoneNumber}" disabled="disabled">
+								<input type="text" class="form-control" th:value="'0' + ${session.userInfo.phoneNumber}" disabled="disabled">
 							</div>
 						</div>
 

@@ -83,7 +83,7 @@ public class BoardCommentDAOImpl implements BoardCommentDAO {
 		BoardComment boardComment = repository.findById(commentNo).get();
 		boardComment.setCommentNo(commentNo);
 		boardComment.setState(1);
-		System.out.println("댓글삭제servvvvvv");
+		//System.out.println("댓글삭제servvvvvv");
 
 	
 	}

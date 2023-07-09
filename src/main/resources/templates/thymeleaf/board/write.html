@@ -102,13 +102,13 @@
 			<input type="hidden" id="commNo" name="commNo" th:value="${detail.commNo}">
 			<input type="hidden" id="state" name="state" th:value="${detail.state}">
 			
-			<div class="mb-5">
+			<div >
 				<label for="title">제목</label> <input type="text"
 					class="form-control" name="title" id="title" th:value="${title}"
 					placeholder="제목을 입력해 주세요">
 
 			</div>
-			<div class="mb-5">
+			<div>
 				<label id="user_id" for="reg_id"></label><!-- <input type="hidden"
 					name="userId" th:text="${session.userInfo.userId}"
 					th:value="${session.userInfo}"> -->
@@ -132,10 +132,11 @@
 			</div>
 			<div class="form-group mb-5">
 				<div class="text-center">
-					<button type="submit" class="btn btn-success" style="float: right;">취소</button>
+					<!--  -->
+					<button type="submit" class="btn btns-success" style="float: right;">취소</button>
 				</div>
 				<div class="text-center">
-					<button  onclick="javscript:fnWriteAction();" class="btn btn-default"
+					<button  onclick="javscript:fnWriteAction();" class="btn btns-default"
 						style="width: 100px; float: right;">등록</button>
 				</div>
 			</div>

@@ -59,9 +59,9 @@ public class AdminController {
 		List<UserInfo> list2 = userService.selectall(0);
 		List<Long> usercount = userService.countByUserRole(0, 2);
 		List<Long> counts = userService.countByUserPoint(1, 5);
-		System.out.println(counts);
+		//System.out.println(counts);
 		
-		System.out.println(usercount);
+		//System.out.println(usercount);
 		int count = 0;
 		for (UserInfo userInfo : list) {
 			LocalDate date = userInfo.getDate().toLocalDate();
@@ -86,7 +86,7 @@ public class AdminController {
 	@ResponseBody
 	@PostMapping("/UserDelete")
 	public ResponseEntity deleteUser(@RequestParam("userId") String userId) {
-		System.out.println(userId);
+		//System.out.println(userId);
 		userService.updateUserStateByUserId(userId, 0);
 		return ResponseEntity.ok().build();
 	}
@@ -94,7 +94,7 @@ public class AdminController {
 	@ResponseBody
 	@PostMapping("/UserRestore")
 	public ResponseEntity restoreUser(@RequestParam("userId") String userId) {
-		System.out.println(userId);
+		//System.out.println(userId);
 		userService.updateUserStateByUserId(userId, 1);
 		return ResponseEntity.ok().build();
 	}

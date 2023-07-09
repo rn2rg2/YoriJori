@@ -79,21 +79,20 @@
 			<div class="container-fluid mt-2 mb-5">
 				<h3 class="menu-h3-common">레시피 추천</h3>
 				<div class="options">
-				<th:block th:if="${!#strings.isEmpty(rcplist)}">
-					<div th:each="rcp, idx :${rcplist}" th:class="${idx.index} == 0 ? 'option active' : 'option' " th:style="|Background-image:url(/yorijori/data/recipethumbnail/${rcp.thumbnail});|">
-						<div class="shadow"></div>
-						<div class="label">
-							<!-- <div class="icon">
+					<th:block th:if="${!#strings.isEmpty(rcplist)}">
+						<div th:each="rcp, idx :${rcplist}" th:class="${idx.index} == 0 ? 'option active' : 'option' " th:style="|Background-image:url(/yorijori/data/recipethumbnail/${rcp.thumbnail});|">
+							<div class="shadow"></div>
+							<div class="label">
+								<!-- <div class="icon">
 								<img th:src="${rcp.userId.imgPath}">
 							</div> -->
-							<div class="info" th:onclick="|location.href='@{/recipe/view/user/{recipeNo}(recipeNo=${rcp.recipe_no})}'|">
-								<div class="main" th:text="${rcp.user_id}"></div>
-								<div class="sub" th:text="${rcp.name}"></div>
+								<div class="info" th:onclick="|location.href='@{/recipe/view/user/{recipeNo}(recipeNo=${rcp.recipe_no})}'|">
+									<div class="main" th:text="${rcp.user_id}" style="color: black;"></div>
+									<div class="sub" th:text="${rcp.name}" style="color: black;"></div>
+								</div>
 							</div>
 						</div>
-					</div>
-				<th:block>
-
+						<th:block>
 				</div>
 			</div>
 

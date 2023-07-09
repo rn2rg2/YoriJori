@@ -27,8 +27,8 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public Board insert(Board board) {
-		//System.out.println("DAO");
-		//System.out.println(board.toString());
+		////System.out.println("DAO");
+		////System.out.println(board.toString());
 
 		return repository.save(board);
 	}
@@ -55,8 +55,8 @@ public class BoardDAOImpl implements BoardDAO {
 	        // Board 객체에서 필요한 정보를 가져와서 게시글을 업데이트
 	        existingBoard.setTitle(board.getTitle());
 	        existingBoard.setContents(board.getContents());
-	        System.out.println(board.getTitle());
-	        System.out.println(board.getContents());
+	        //System.out.println(board.getTitle());
+	        //System.out.println(board.getContents());
 	        // 업데이트된 게시글을 저장
 	        repository.save(existingBoard);
 
@@ -93,19 +93,19 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<Board> selectByPageAndpagePerCountandSearch(int pageNo, int pagePerCount,String contentKeyword) {
-		System.out.println(pageNo);
-		System.out.println(pagePerCount);
+		//System.out.println(pageNo);
+		//System.out.println(pagePerCount);
 		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "commNo"));
 		//Page<Board> page =repository.findAll(pageRequest); 
 		Page<Board> page = repository.findByContentsContainingAndState(contentKeyword, 0,pageable);
 		List<Board> list = page.getContent(); 
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!serarhdao"+list);
+		//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!serarhdao"+list);
 		return list; 
 	}
 	
 	@Override
 	public List<Board> selectByCategoryAndState(String category, int pageNo, int pagePerCount) {
-		System.out.println("daaaaaaao"+category);
+		//System.out.println("daaaaaaao"+category);
 		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "commNo"));		
 		Page<Board> page = repository.findByCategoryAndState(category, 0, pageable);
 		List<Board> list = page.getContent(); 
@@ -126,7 +126,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void bulletinBoardViews(int commNo) {
-		//System.out.println("service count");
+		////System.out.println("service count");
 		repository.bulletinBoardViews(commNo);
 	
 	}

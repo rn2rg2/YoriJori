@@ -123,6 +123,10 @@
 					</table>
 				</div>
 
+				<div class="board_button">
+					<button class="cancel" id="btn_list" onclick="location.href='/yorijori/recipe/list/user/0'" type="button">목록으로</button>
+				</div>
+
 				<div class="view_step">
 					<div class="best_tit">
 						<b>레시피 작성자</b>
@@ -139,9 +143,11 @@
 						</div>
 						<div class="addchat" style="margin-top: 4em;">
 							<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-							<form>
-								<button class="btn btn-primary profile-button" type="button" th:onclick="makeChatRoom([[${session.userInfo.userId}]],[[${data.userId.userId}]])" style="background-color: red; width: 6em; height: 2.2em; margin-left: 53em;">채팅하기</button>
-							</form>
+								<th:block th:if="${!#strings.equals(session.userInfo.userId, data.userId.userId)}">
+									<form>
+										<button class="btn btn-primary profile-button" type="button" th:onclick="makeChatRoom([[${session.userInfo.userId}]],[[${data.userId.userId}]])" style="background-color: red; width: 6em; height: 2.2em; margin-left: 53em;">채팅하기</button>
+									</form>
+								</th:block>
 							</th:block>
 						</div>
 					</div>
@@ -149,7 +155,7 @@
 				<br />
 				<hr style="border-bottom: 1px solid gray" />
 				<br />
-				<th:block th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId)}">
+				<th:block th:if="${session == null or (session.userInfo != null and session.userInfo.userId != data.userId.userId and userreviewcount < 1)}">
 					<form class="form-block" name="myform" id="myform" method="post" th:action="@{/recipe/reviewinsert/user/{recipeNo}(recipeNo=${data.recipeNo})}">
 						<div class="col-xs-12 col-sm-6 fl_icon">
 							<fieldset class="rate">
@@ -169,7 +175,7 @@
 							<div class="form-group">
 								<textarea class="form-input" name="comment" required="" placeholder="리뷰에 대한 내용을 적어주세요."></textarea>
 							</div>
-							<button>등록</button>
+								<button>등록</button>
 						</div>
 					</form>
 				</th:block>
@@ -242,11 +248,24 @@
 
 							<th:block th:each="dataa : ${dataa}">
 								<th:block th:if="${dataa.title} == ${dataq.title}">
-									<dd class="bl_faq_a" style="display: none;">
-										<img class="bl_faq_icon" src="https://audition.hanbiton.com/Boarddata1/Files/1001/2022/10/19/10190947152022580396869.jpg">
-										<div class="bl_faq_a_body"></div>
+								
+								<dd class="bl_faq_a" style="display: none;">
+										<img class="bl_faq_icon" th:src='|/yorijori/data/recipethumbnail/${dataq.userId.imgPath}|'>
 										<div class="bl_faq_a_body">
-											<span style="font-size: 20px">Q</span> <span style="font-size: 14px" th:text="${dataa.userId.nickname}"></span>
+										</div>
+										<div class="bl_faq_a_body">
+											<span style="font-size: 20px">Q</span> <span style="font-size: 14px" th:text="${dataq.userId.nickname}"></span>
+											<p class="bl_faq_a_txt" th:text=${dataq.contents}></p>
+										</div>
+										<!-- /.bl_faq_a_body -->
+									</dd>
+									<dd class="bl_faq_a" style="display: none;">
+										<img class="bl_faq_icon" th:src='|/yorijori/data/recipethumbnail/${data.thumbnail}|'>
+										<div class="bl_faq_a_body">
+										
+										</div>
+										<div class="bl_faq_a_body">
+											<span style="font-size: 20px">A</span> <span style="font-size: 14px" th:text="${dataa.userId.nickname}"></span>
 											<p class="bl_faq_a_txt" th:text=${dataa.contents}></p>
 										</div>
 										<!-- /.bl_faq_a_body -->

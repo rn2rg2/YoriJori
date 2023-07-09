@@ -24,7 +24,7 @@ public class IngredientDAOImpl implements IngredientDAO {
 	@Override
 	public Ingredients insert(Ingredients ingredients) {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.save(ingredients);
 	}
 	
 

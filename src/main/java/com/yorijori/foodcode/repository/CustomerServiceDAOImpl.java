@@ -48,7 +48,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 	
 	@Override
 	public Notice noticeInsert(Notice notice) {
-		//System.out.println("dddddddao");
+		////System.out.println("dddddddao");
 		return noticeRepository.save(notice);
 	}
 
@@ -58,7 +58,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "noticeNo"));
 		Page<Notice> page = noticeRepository.findByState(0, pageable);
 		List<Notice> list = page.getContent(); 
-		//System.out.println("dao"+list);
+		////System.out.println("dao"+list);
 		return list; 
 	}
 
@@ -85,7 +85,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "questionNo"));
 		Page<Question> page = questionRepository.findByState(0, pageable);
 		List<Question> list = page.getContent(); 
-		//System.out.println("dao"+list);
+		////System.out.println("dao"+list);
 		return list; 
 	}
 
@@ -98,7 +98,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 
 	@Override
 	public Inquiry inquiryInsert(Inquiry inquery) {
-		//System.out.println("iiiiiiiiiinqdao");
+		////System.out.println("iiiiiiiiiinqdao");
 		return inquiryRepository.save(inquery);
 	}
 
@@ -107,7 +107,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 		Pageable pageable = PageRequest.of(pageNo, pagePerCount, Sort.by(Sort.Direction.DESC, "questionNo"));
 		Page<Inquiry> page = inquiryRepository.findByState(0, pageable);
 		List<Inquiry> list = page.getContent(); 
-		//System.out.println("dao"+list);
+		////System.out.println("dao"+list);
 		return list; 
 	}
 
@@ -126,7 +126,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 
 	@Override
 	public List<Inquiry> findByUserId(UserInfo user) {
-		return inquiryRepository.findByUserId(user);
+		return inquiryRepository.findByUserIdAndState(user, 0);
 	}
 
 	@Override

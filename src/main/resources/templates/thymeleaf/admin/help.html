@@ -349,7 +349,7 @@
 $(document).ready(function() {
 	  $('button#click').on('click', function() {
 	    const userId = $(this).find('input').val();
-	    console.log(userId);
+	    //console.log(userId);
 
 	    $.ajax({
 	      url: '/yorijori/UserDelete',
@@ -364,7 +364,7 @@ $(document).ready(function() {
 	        });
 	      },
 	      error: function(xhr, status, error) {
-	        console.log('User Delete error');
+	        //console.log('User Delete error');
 	      }
 	    });
 	  });
@@ -375,7 +375,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	  $('button#reload').on('click', function() {
 	    const userId = $(this).find('input').val();
-	    console.log(userId);
+	    //console.log(userId);
 
 	    $.ajax({
 	      url: '/yorijori/UserRestore',
@@ -390,7 +390,7 @@ $(document).ready(function() {
 	        });
 	      },
 	      error: function(xhr, status, error) {
-	        console.log('User Delete error');
+	        //console.log('User Delete error');
 	      }
 	    });
 	  });

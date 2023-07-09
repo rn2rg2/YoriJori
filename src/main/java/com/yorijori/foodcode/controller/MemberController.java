@@ -69,9 +69,9 @@ public class MemberController {
 					return "redirect:/admin/User";
 				}
 				if (previousPage != null && !previousPage.isEmpty()) {
-					System.out.println("=====================");
-					System.out.println(previousPage);
-					System.out.println("=====================");
+					//System.out.println("=====================");
+					//System.out.println(previousPage);
+					//System.out.println("=====================");
 		            return "redirect:" + previousPage;
 				} else {
 					return "redirect:/main";
@@ -120,9 +120,9 @@ public class MemberController {
 		Date today = new Date();
 		String kakaoID = userinfodto.getKakaoID();
 		String email = userinfodto.getEmail().replace(",", "");
-		System.out.println(userinfodto.getPhoneNumber());
-		System.out.println(num2);
-		System.out.println(Integer.parseInt(number));
+		//System.out.println(userinfodto.getPhoneNumber());
+		//System.out.println(num2);
+		//System.out.println(Integer.parseInt(number));
 		userinfodto.setPhoneNumber(Integer.parseInt(number));
 		userinfodto.setEmail(email);
 		userinfodto.setRole("회원");
@@ -132,9 +132,9 @@ public class MemberController {
 		userinfodto.setKakaoID(userinfodto.getKakaoID());
 		userinfodto.setDate(new java.sql.Date(today.getTime()));
 
-		System.out.println("test:::" + userinfodto.getKakaoID());
+		//System.out.println("test:::" + userinfodto.getKakaoID());
 
-		System.out.println(userinfodto);
+		//System.out.println(userinfodto);
 		memberService.save(userinfodto);
 		return "thymeleaf/member/signUpForm3";
 	}

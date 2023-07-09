@@ -212,8 +212,8 @@ const clean_refri = function(){
 	$('#refri_count').text(0);
 	i = 0;
 }
+let imgCount = 0; 
 function refriImgView(data){
-	let i = 0; 
 	var newDiv = $("<div>").addClass("tray_info_box");
 
 	var newImg = $("<img>").attr({
@@ -225,12 +225,12 @@ function refriImgView(data){
 	});
 
 	newDiv.append(newImg);
-	if ( i % 2 == 0){
+	if ( imgCount % 2 == 0){
 		$('.refri-top').append(newDiv);
 	} else {
 		$('.refri-bottom').append(newDiv);
 	}
-	i++;
+	imgCount++;
 }
 
 function dragSetting(){

@@ -58,6 +58,12 @@ public class RecipeServiceImpl implements RecipeService {
 	public long countWishByUserId(UserInfo userId) {
 		return recipeDAO.countWishByUserId(userId);
 	}
+	@Override
+	public long countReviewByUserIdAndRcpNo(UserInfo userId, int rcpSeq) {
+		Recipe rcp = new Recipe();
+		rcp.setRecipeNo(rcpSeq);
+		return recipeDAO.countReviewByUserIdAndRcpNo(userId,rcp);
+	}
 
 	@Override
 	public List<Recipe> selectListByPage(int pageNo, int pagePerCount) {
@@ -70,9 +76,9 @@ public class RecipeServiceImpl implements RecipeService {
 		UserWishlist userwishlist = new UserWishlist();
 		userwishlist.setRecipeNo(recipeNo);
 		userwishlist.setUserId(userId);
-		System.out.println("======================");
-		System.out.println(count);
-		System.out.println("======================");
+		////System.out.println("======================");
+		////System.out.println(count);
+		////System.out.println("======================");
 		
 		if (count > 0) {
 			recipeDAO.deleteWishList(recipeNo, userId);
@@ -112,9 +118,9 @@ public class RecipeServiceImpl implements RecipeService {
 
 			// Category dto = categoryDAO.findById(categorylist.get(i).getCategoryNo());
 			// categorylist.get(i).setCategoryNo(dto);
-			System.out.println("============11=============");
-			System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
-			System.out.println("=========================");
+			////System.out.println("============11=============");
+			////System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
+			////System.out.println("=========================");
 
 		}
 		for (int i = 0; i < imglist.size(); i++) {
@@ -202,7 +208,7 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public List<Recipe> mylikeListByPage(int pageNo, int pagePerCount, UserInfo user) {
 		List<UserWishlist> wishlistItems = recipeDAO.mylikelist(user);
-		System.out.println("mylikelistbyPage: " + wishlistItems + "\n\n\n\n\n");
+		////System.out.println("mylikelistbyPage: " + wishlistItems + "\n\n\n\n\n");
 		List<Recipe> recipewishlist = new ArrayList<>();
 
 		for (UserWishlist wishlistItem : wishlistItems) {
@@ -211,7 +217,7 @@ public class RecipeServiceImpl implements RecipeService {
 			recipewishlist.addAll(recipes);
 		}
 
-		System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
+		////System.out.println("mylikelistbypage에서 레시피 목록: " + recipewishlist);
 		return recipewishlist;
 	}
 	

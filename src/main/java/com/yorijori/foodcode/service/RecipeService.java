@@ -65,6 +65,7 @@ public interface RecipeService {
 	BigDecimal USERgetReviewAverage(List<RecipeReview> datareview);
     List<RecipeReview> getByRecipeNo(Recipe recipe);
 	List<Recipe> getTop15Recipe();
+	long countReviewByUserIdAndRcpNo(UserInfo userId, int rcpSeq);
 
 	
 	

@@ -35,10 +35,10 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 	public List<UserFrige> selectAll(String userId) {
 		List<UserFrige> list = new ArrayList<UserFrige>();
 		list = rtdao.selectAll(userId);
-		System.out.println("===============================");
-		System.out.println(list);
-		System.out.println(list.size());
-		System.out.println("===============================");
+		//System.out.println("===============================");
+		//System.out.println(list);
+		//System.out.println(list.size());
+		//System.out.println("===============================");
 		for (UserFrige dto : list) {
 			Ingredients ingredto = ingredao.selectByMatlNo(dto.getMatlNo());
 			dto.setIngredients(ingredto);
@@ -76,9 +76,9 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 
 	@Override
 	public void insertTray(UserTray usertray) {
-		System.out.println("===================");
-		System.out.println(usertray);
-		System.out.println("===================");
+		//System.out.println("===================");
+		//System.out.println(usertray);
+		//System.out.println("===================");
 		for (UserTrayList list : usertray.getTrayList()) {
 			list.setTrayNo(usertray);
 		}
@@ -91,13 +91,13 @@ public class RefriTrayServiceImpl implements RefriTrayService {
 
 		String[] strArr = str.split(",");
 
-		System.out.println(Arrays.toString(strArr)); // []
+		//System.out.println(Arrays.toString(strArr)); // []
 		if ( strArr.length > 0 ) {
 			str = strArr[0];
 		} 
-		System.out.println("===================str==============");
-		System.out.println(str);
-		System.out.println("=================================");
+		//System.out.println("===================str==============");
+		//System.out.println(str);
+		//System.out.println("=================================");
 		return rtdao.findByPreferAndByMatlNo(str, userfrige);
 
 	}

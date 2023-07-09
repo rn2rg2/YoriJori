@@ -7,14 +7,13 @@ let idx = 0;
 function dragStart(e) {
 	e.dataTransfer.setData('text',"");
 	e.dataTransfer.setData('text', e.target.id);
-	console.log(e);
-	console.log(e.target.attributes[5].nodeValue);
 	let data_drag = e.target.attributes[5].nodeValue;
 	
 	jsonData = JSON.parse(data_drag);
 	
 	dropdata['recipeNo'] = jsonData.recipeNo.recipeNo;
 	dropdata['recipeName'] = jsonData.recipeNo.name;
+	dropdata['thumbnail'] = jsonData.recipeNo.thumbnail;
 	dropdata['purpose'] = jsonData.recipeNo.categorylist[0].categoryNo.name;
 	dropdata['country'] = jsonData.recipeNo.categorylist[1].categoryNo.name;
 	dropdata['type'] = jsonData.recipeNo.categorylist[2].categoryNo.name;
@@ -139,19 +138,24 @@ const make_wish_list = function( datas ){
 
 	  // Create the category badges
 	  var categoryBadges = $('<div style="text-align:center;"></div>');
+	  var categoryBadges2 = $('<div style="text-align:center;"></div>');
 
 	  $.each(data.recipeNo.categorylist, function(index, category) {
 	    var categoryBadge = $('<div class="badge badge-danger px-3 rounded-pill"></div>')
 	      .append($('<p class="small text-light mb-0"></p>').text(category.categoryNo.name));
-
-	    categoryBadges.append(categoryBadge);
+	    if ( index < 2 ){
+	    	categoryBadges.append(categoryBadge);
+	    } else {
+	    	categoryBadges2.append(categoryBadge);
+	    }
 	  });
 
 	  // Append all the elements to the recipe_info item container
 	  recipeInfoItem.append(thumbnailImg);
 	  recipeInfoItem.append($('<div class="p-2"></div>')
 	    .append(titleHeading)
-	    .append(categoryBadges));
+	    .append(categoryBadges)
+	    .append(categoryBadges2));
 
 	  // Append the recipe_info item container to the parent container
 	  parentContainer.append(recipeInfoItem);
@@ -165,7 +169,7 @@ const make_wish_list = function( datas ){
 }
 const make_card_body = function (data){
 		dropId = "dropId"+data
-	  var colDiv = $('<div>').addClass('col-md-6');
+	  var colDiv = $('<div>').addClass('col-xl-2 col-lg-2 col-md-2 mb-1');
 	  var cardBodyDiv = $('<div>').addClass('py-0 card-body mb-1').attr('id', dropId).attr("onclick","location.href='/yorijori/recipe/view/user/"+data+ "'")
 	  
 	  var traylist_recipeNo = $('<input>').attr({
@@ -179,18 +183,27 @@ const make_card_body = function (data){
 	    value: idx+1,
 	    name : "trayList[" +idx+"].trayOrder"
 	  });
+	  
+	  var $img = $('<img>').attr('src', '/yorijori/data/recipethumbnail/'+dropdata['thumbnail']).addClass('img-thumbnail card-img-top');
+	  var $textDiv = $('<div>').addClass('p-2 text-center');
+	  var $h5 = $('<h5>');
+	  var $a = $('<a>').attr('href', "/yorijori/recipe/view/user/"+data).addClass('text-dark').text(dropdata['recipeName']);
+
+	  $textDiv.append($h5.append($a));
+	  colDiv.append($img).append($textDiv);
 
 	  colDiv.append(cardBodyDiv);
 	  colDiv.append(traylist_recipeNo);
 	  colDiv.append(traylist_trayOrder);
 	  
+	 
 	  $('.ingredients-result').append(colDiv);
 	 
-	make_card_rcp_name(dropdata['recipeName'], dropId );
-	make_my_tray_list("음식용도", dropdata['purpose'],dropId);
-	make_my_tray_list("국가별", dropdata['country'] ,dropId);
-	make_my_tray_list('조리법', dropdata['type'],dropId );
-	make_my_tray_list('식품별', dropdata['food'] ,dropId);
+//	make_card_rcp_name(dropdata['recipeName'], dropId );
+//	make_my_tray_list("음식용도", dropdata['purpose'],dropId);
+//	make_my_tray_list("국가별", dropdata['country'] ,dropId);
+//	make_my_tray_list('조리법', dropdata['type'],dropId );
+//	make_my_tray_list('식품별', dropdata['food'] ,dropId);
 	
 	idx++;
 }
@@ -250,18 +263,37 @@ const getDetailTray = function(trayno){
 			    $('.plate'+(i+1)).append(div);
 			    
 			    dropId = "dropId"+i
-			  var colDiv = $('<div>').addClass('col-md-6').attr("onclick","location.href='/yorijori/recipe/view/user/"+data[i].recipeNo.recipeNo+ "'");
-			  var cardBodyDiv = $('<div>').addClass('py-0 card-body mb-1').attr('id', dropId);
+//			  var colDiv = $('<div>').addClass('col-md-6').attr("onclick","location.href='/yorijori/recipe/view/user/"+data[i].recipeNo.recipeNo+ "'");
+//			  var cardBodyDiv = $('<div>').addClass('py-0 card-body mb-1').attr('id', dropId);
+//			  
+//			  colDiv.append(cardBodyDiv);
+//			  
+//			  $('.ingredients-result').append(colDiv);
 			  
-			  colDiv.append(cardBodyDiv);
+				  var colDiv = $('<div>').addClass('col-xl-2 col-lg-2 col-md-2 mb-1');
+				  var cardBodyDiv = $('<div>').addClass('py-0 card-body mb-1').attr('id', dropId).attr("onclick","location.href='/yorijori/recipe/view/user/"+data[i].recipeNo.recipeNo+ "'");
+				  
+				  
+				  var $img = $('<img>').attr('src', '/yorijori/data/recipethumbnail/'+data[i].recipeNo.thumbnail).addClass('img-thumbnail card-img-top');
+				  var $textDiv = $('<div>').addClass('p-2 text-center');
+				  var $h5 = $('<h5>');
+				  var $a = $('<a>').attr('href', "/yorijori/recipe/view/user/"+data).addClass('text-dark').text(data[i].recipeNo.name);
+
+				  $textDiv.append($h5.append($a));
+				  colDiv.append($img).append($textDiv);
+
+				  colDiv.append(cardBodyDiv);
+				  
+				 
+				  $('.ingredients-result').append(colDiv);
 			  
-			  $('.ingredients-result').append(colDiv);
+			  idx++;
 			    
-			    const arr = ["음식용도", "국가별", '조리법','식품별'];
-			    make_card_rcp_name(data[i].recipeNo.name, dropId);
-			    for (let j = 0 ; j < data[i].recipeNo.categorylist.length; j++ ) {
-			    	make_my_tray_list(arr[j], data[i].recipeNo.categorylist[j].categoryNo.name, dropId);
-			    }
+//			    const arr = ["음식용도", "국가별", '조리법','식품별'];
+//			    make_card_rcp_name(data[i].recipeNo.name, dropId);
+//			    for (let j = 0 ; j < data[i].recipeNo.categorylist.length; j++ ) {
+//			    	make_my_tray_list(arr[j], data[i].recipeNo.categorylist[j].categoryNo.name, dropId);
+//			    }
 			    
 //				make_my_tray_list("음식용도", data[i].recipeNo.categorylist[0].categoryNo.name, i);
 //				make_my_tray_list("국가별", data[i].recipeNo.categorylist[1].categoryNo.name, i);

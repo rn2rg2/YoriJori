@@ -61,7 +61,7 @@
      /*  const socket = new SockJS('/chat');
       stompClient = Stomp.over(socket);
       stompClient.connect({}, function (frame) {
-        console.log('Chat connected: ' + frame);
+        //console.log('Chat connected: ' + frame);
         stompClient.subscribe('/topic/chat', function (webSocketMessage) {
           respondMessage(JSON.parse(webSocketMessage.body).content);
         });

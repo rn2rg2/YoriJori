@@ -19,8 +19,8 @@ public class MyWebConfig implements WebMvcConfigurer {
 		// TODO Auto-generated method stub
 		//특정 path로 요청하는 경우 실제 파일이 저장된 위치를 연결해서 리소스를 가져올 수 있도록 처리
 		registry.addResourceHandler("/data/**")
-//		.addResourceLocations("file:/project/upload/");
-		.addResourceLocations("file:///C:/project/upload/");
+		.addResourceLocations("file:/project/upload/");
+//		.addResourceLocations("file:///C:/project/upload/");
 	}
 
 	/*
@@ -30,7 +30,7 @@ public class MyWebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		registry.addInterceptor(new LoginCheckInterceptor())//.order(1) //
-		  .addPathPatterns("/board/boardCommentInsert","/board/write","/recipe/insert","/mypage/**","/cookingclass/in","/cs/inquiry", "/recipe/like/**","/chat/**","/admin/**") //
+		  .addPathPatterns("/board/boardCommentInsert","/board/write","/recipe/insert","/mypage/**","/cookingclass/in","/cs/**", "/recipe/like/**","/chat/**","/admin/**","/ingredient/insert") //
 		  .excludePathPatterns("/mypage/profile/read/**");
 		  //.excludePathPatterns("/yorijori/main","/emp/login.do","/emp/spring/login",
 		  //"/board/list.do","/board/ajax/list.do","/images/**","/common/css/**","/common/js/**","/common/font/**");

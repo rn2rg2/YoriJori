@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{thymeleaf/layout/mainLayout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layout/mainLayout}">
 <th:block layout:fragment="header">
-	<link rel="stylesheet"
-		href="/yorijori/common/css/cookingclass/classRead.css" />
+	<link rel="stylesheet" href="/yorijori/common/css/cookingclass/classRead.css" />
 
 
 	<script>
@@ -27,19 +24,14 @@
 					<!-- <th:block th:if="${#strings.isEmpty(session.userInfo)}">
 					</th:block> -->
 					<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-						<a
-							th:if="${cookingclass.userId.userId == session.userInfo.userId}"
-							th:href="@{/cookingclass/delete(cookNo=${cookingclass.cookNo})}"
-							style="font-size: 0.9rem; position: absolute; right: 1rem; bottom: 5px; color: #c1c1c6; font-weight: normal;">게시글
-							삭제 </a>
+						<a th:if="${cookingclass.userId.userId == session.userInfo.userId}" th:href="@{/cookingclass/delete(cookNo=${cookingclass.cookNo})}" style="font-size: 0.9rem; position: absolute; right: 1rem; bottom: 5px; color: #c1c1c6; font-weight: normal;">게시글 삭제 </a>
 					</th:block>
 
 
 				</h3>
 				<div class="view2_pic">
 					<div class="centeredcrop">
-						<img id="main_thumbs" th:src="${cookingclass.thumbnail}"
-							class="portrait">
+						<img id="main_thumbs" th:src="${cookingclass.thumbnail}" class="portrait">
 					</div>
 				</div>
 				<div class="view2_summary st2">
@@ -48,13 +40,12 @@
 							63<small>%</small>
 						</p> -->
 
-						<p class="price"
-							th:text="|${#numbers.formatInteger(cookingclass.price, 0, 'COMMA')}원|"></p>
+						<p class="price" th:text="|${#numbers.formatInteger(cookingclass.price, 0, 'COMMA')}원|"></p>
 
 						<!-- <p class="del">80,000원</p> -->
 					</div>
 				</div>
-				
+
 				<div class="view_step">
 					<div class="best_tit">
 						<b>레시피 작성자</b>
@@ -71,20 +62,20 @@
 						</div>
 						<div class="addchat" style="margin-top: 4em;">
 							<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
-							<form>
-								<button class="btn btn-primary profile-button" type="button" th:onclick="makeChatRoom([[${session.userInfo.userId}]],[[${cookingclass.userId.userId}]])" style="background-color: red; width: 6em; height: 2.2em; margin-left: 53em;">채팅하기</button>
-							</form>
+								<th:block th:if="${!#strings.equals(session.userInfo.userId, cookingclass.userId.userId)}">
+									<form>
+										<button class="btn btn-primary profile-button" type="button" th:onclick="makeChatRoom([[${session.userInfo.userId}]],[[${cookingclass.userId.userId}]])" style="background-color: red; width: 6em; height: 2.2em; margin-left: 53em;">채팅하기</button>
+									</form>
+								</th:block>
 							</th:block>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="view2_summary_info">
 					<dl class="info_delivery">
 						<dt>
-							<img
-								src="https://recipe1.ezmember.co.kr/img/mobile/icon_clock2.png"
-								alt="시간아이콘" width="29">
+							<img src="https://recipe1.ezmember.co.kr/img/mobile/icon_clock2.png" alt="시간아이콘" width="29">
 
 						</dt>
 						<dd>
@@ -92,25 +83,17 @@
 						</dd>
 					</dl>
 					<div class="info_ea">
-						<img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_people.png"
-							alt="수강아이콘" width="29"
-							style="padding-right: 5px; vertical-align: text-bottom;"> <b
-							th:text="${cookingclass.count}"></b>명 수강
+						<img src="https://recipe1.ezmember.co.kr/img/mobile/icon_people.png" alt="수강아이콘" width="29" style="padding-right: 5px; vertical-align: text-bottom;">
+						<b th:text="${cookingclass.count}"></b>명 수강
 
 					</div>
 				</div>
-				<button type="button" class="insert"
-					th:onclick="|location.href='@{/cookingclass/application(cookNo=${cookingclass.cookNo})}'|">지금바로
-					신청하기</button>
+				<button type="button" class="insert" th:onclick="|location.href='@{/cookingclass/application(cookNo=${cookingclass.cookNo})}'|">지금바로 신청하기</button>
 				<nav class="nav" id="tab-button-nav">
-					<a href="javascript:" class="nav-link navli selected"
-						data-tab-section="tab-section-1">클래스 소개</a> <a href="javascript:"
-						class="nav-link navli" data-tab-section="tab-section-2">강사소개</a> <a
-						href="javascript:" class="nav-link navli"
-						data-tab-section="tab-section-3">커리큘럼</a> <a href="javascript:"
-						class="nav-link navli" data-tab-section="tab-section-4">강사님의
-						다른 클래스</a>
+					<a href="javascript:" class="nav-link navli selected" data-tab-section="tab-section-1">클래스 소개</a>
+					<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-2">강사소개</a>
+					<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-3">커리큘럼</a>
+					<a href="javascript:" class="nav-link navli" data-tab-section="tab-section-4">강사님의 다른 클래스</a>
 				</nav>
 				<div class="all-tab">
 					<div id="tab-section-1" class="tab-section">
@@ -135,11 +118,7 @@
 						<!--  -->
 						<h3 class="tab-title">" 커리큘럼 "</h3>
 						<ul>
-							<li th:each="curri:${cookingclass.curriList}"><i
-								class="fa-solid fa-check"
-								style="margin-right: 20px; color: var(- -main-theme-color-red); font-size: 20px; font-weight: bold;"></i><b
-								th:text="${curri.curName}" style="font-size: 20px;"></b> <a
-								class="time">[[${curri.curTime}]]분</a></li>
+							<li th:each="curri:${cookingclass.curriList}"><i class="fa-solid fa-check" style="margin-right: 20px; color: var(- -main-theme-color-red); font-size: 20px; font-weight: bold;"></i><b th:text="${curri.curName}" style="font-size: 20px;"></b> <a class="time">[[${curri.curTime}]]분</a></li>
 
 						</ul>
 					</div>
@@ -149,16 +128,13 @@
 						<h3 class="tab-title">" 강사님의 다른 클래스 "</h3>
 
 						<div class="options">
-							<div th:each="other:${otherclass}" class="option"
-								th:style="'Background-image:url(' + ${other. thumbnail} + ');'">
+							<div th:each="other:${otherclass}" class="option" th:style="'Background-image:url(' + ${other. thumbnail} + ');'">
 								<div class="shadow"></div>
 								<div class="label">
 									<div class="icon">
-										<img style="border-radius: 50%;"
-											th:src="|/yorijori/data/user/${other.userId.imgPath}|">
+										<img style="border-radius: 50%;" th:src="|/yorijori/data/user/${other.userId.imgPath}|">
 									</div>
-									<div class="info"
-										th:onclick="|location.href='@{/cookingclass/read(cookNo=${other.cookNo})}'|">
+									<div class="info" th:onclick="|location.href='@{/cookingclass/read(cookNo=${other.cookNo})}'|">
 										<div class="main" th:text="${other.userId.nickname}"></div>
 										<div class="sub" th:text="${other.title}"></div>
 									</div>

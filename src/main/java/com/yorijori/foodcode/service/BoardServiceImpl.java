@@ -51,8 +51,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board insert(Board board) {
 		// TODO Auto-generated method stub
-		//System.out.println("Serivce");
-		//System.out.println(board.toString());
+		////System.out.println("Serivce");
+		////System.out.println(board.toString());
 		return dao.insert(board);
 	}
 	@Override
@@ -97,7 +97,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void bulletinBoardViews(int commNo) {
 		dao.bulletinBoardViews(commNo);
-		System.out.println("service count");
+		//System.out.println("service count");
 		//board.viewCountUp();
 	}
 	@Override
@@ -108,7 +108,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> selectByPageAndpagePerCountSearch(int pageNo, int pagePerCount,String contentKeyword) {
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!searchservice");
+		//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!searchservice");
 		return dao.selectByPageAndpagePerCountandSearch(pageNo, pagePerCount, contentKeyword);
 	}
 	@Override
@@ -123,7 +123,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> selectByCategoryAndState(String category, int pageNo, int pagePerCount) {
 		// TODO Auto-generated method stub
-		System.out.println("ssssssservice category");
+		//System.out.println("ssssssservice category");
 		return dao.selectByCategoryAndState(category, pageNo, pagePerCount);
 	}
 	@Override

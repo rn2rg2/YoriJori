@@ -19,7 +19,7 @@ public interface IngredientsRepository extends JpaRepository<Ingredients, Intege
 	Page<Ingredients> findByMatlNameContaining(String matlName, Pageable pageable);
 
 	@Query("SELECT COUNT(e) FROM Ingredients e WHERE e.matlName LIKE %:matlName%")
-    Long countByMatlNameContaining(String matlName);
+    Long countByMatlNameContaining(@Param("matlName") String matlName);
 	
 	Ingredients findByMatlNo(int matlNo);
 	

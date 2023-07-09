@@ -23,9 +23,9 @@ public class MessageController {
     
     @MessageMapping(value="/chat/enter") //pub/chat/enter
     public void enter(ChatMsg message) {
-    	System.out.println("=================================");
-    	System.out.println(message.getSenderId() + "님 채팅 방 입장");
-    	System.out.println("=================================");
+    	//System.out.println("=================================");
+    	//System.out.println(message.getSenderId() + "님 채팅 방 입장");
+    	//System.out.println("=================================");
     	//message.setMsg(message.getSenderId() + "님이 채팅방에 참여하였습니다.");
         //template.convertAndSend("/sub/chat/room/" + message.getChatId(), message);
     	//template.convertAndSend("/sub/chat/room/"+message.getChatId(),message);

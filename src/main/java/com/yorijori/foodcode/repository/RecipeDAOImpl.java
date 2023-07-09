@@ -92,6 +92,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return userwishlistrepo.countByUserId(userId);
 		
 	}
+	@Override
+	public long countReviewByUserIdAndRcpNo(UserInfo userId, Recipe recipeNo) {
+		return recipereviewrepository.countByUserIdAndRecipeNo(userId, recipeNo);
+		
+	}
+	
 
 	@Override
 	public long countByRcpSeqByWishList(Recipe recipe, UserInfo userId) {
