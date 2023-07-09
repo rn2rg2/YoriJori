@@ -13,7 +13,7 @@ public interface inquiryRepository extends JpaRepository<Inquiry, Integer>{
 
 	Page<Inquiry> findByState(int state, Pageable pageable);
 	
-	List<Inquiry> findByUserId(UserInfo user);
+	List<Inquiry> findByUserIdAndState(UserInfo user, int state);
 	
 	Inquiry findByInquiryNo(int inquiryNo);
 
