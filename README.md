@@ -36,3 +36,16 @@ Spring Boot
 ERD 
 
 ![image](https://github.com/sgustjd2/YoriJori/assets/49851554/c270b72e-1c13-425e-987c-1c0ae78a7910)
+
+페이지 소개 자료
+https://docs.google.com/presentation/d/1OcN6pLcRFmTBzFpZcRaazxSkNo5hf7_HhVdL1u4LG9k/edit?usp=sharing
+
+참고영상 링크
+- 회원가입 : https://youtu.be/VLuAhoMf-3U
+- 로그인 : https://youtu.be/uCXH3HvvI3o
+- 카카오로그인 : https://youtu.be/xVhEKVfIRgA
+- 쿠킹클래스 만들기 : https://youtu.be/u1GmN7MFg7k
+- 쿠킹클래스 결제 : https://youtu.be/h2Sbm6zZXUQ
+- 공지사항 등록 : https://youtu.be/YKd0irdaOjM
+- 게시글 등록 : https://youtu.be/oTlqhbuK7Jc
+
