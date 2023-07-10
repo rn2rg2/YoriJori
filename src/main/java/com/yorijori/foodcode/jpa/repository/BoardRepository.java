@@ -35,7 +35,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 	
 	List<Board> findByUserId(UserInfo user);
 
-	long countByUserId(UserInfo user);
+	long countByUserIdAndState(UserInfo user,int State);
 	
 	long countBycommNo(Board commNo);
 	

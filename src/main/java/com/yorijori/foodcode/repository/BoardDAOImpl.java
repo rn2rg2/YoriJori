@@ -78,7 +78,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public long countByUserId(UserInfo user) {
-		return repository.countByUserId(user); 
+		return repository.countByUserIdAndState(user,0); 
 	}
 
 	@Override
