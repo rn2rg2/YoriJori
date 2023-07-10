@@ -38,7 +38,7 @@ ERD
 ![image](https://github.com/sgustjd2/YoriJori/assets/49851554/c270b72e-1c13-425e-987c-1c0ae78a7910)
 
 페이지 소개 자료
-https://docs.google.com/presentation/d/1OcN6pLcRFmTBzFpZcRaazxSkNo5hf7_HhVdL1u4LG9k/edit?usp=sharing
+[https://docs.google.com/presentation/d/1OcN6pLcRFmTBzFpZcRaazxSkNo5hf7_HhVdL1u4LG9k/edit?usp=sharing](https://docs.google.com/presentation/d/1GvA5XhQFVsL_Aewuh3lfljsCHiXUz47MfTmk-AXTd38/edit?usp=sharing)
 
 참고영상 링크
 
@@ -58,6 +58,7 @@ https://docs.google.com/presentation/d/1OcN6pLcRFmTBzFpZcRaazxSkNo5hf7_HhVdL1u4L
 - 레시피 등록 : https://youtu.be/6ZxssJKbBbg
 - 레시피 상세보기 : https://youtu.be/x32vCvrcqc0
 - 레시피 필터 : https://youtu.be/Xqb071KUzrA
+- 채팅 : https://www.youtube.com/watch?v=9so10OoHGbk&feature=youtu.be
 
 
 
