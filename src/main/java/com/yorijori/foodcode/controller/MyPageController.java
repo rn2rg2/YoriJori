@@ -209,7 +209,11 @@ public class MyPageController {
 				//System.out.println(user);
 				UserInfo updateduser = profileservice.updateprofileimage(user);
 				if(updateduser != null) {
-					imagefile.delete();
+					if (user.getImgPath().equals("userimg.png")) {
+						System.out.println("기본이미지 유지");
+					} else {
+						imagefile.delete();
+					}
 				}
 			} catch (IOException e) {
 				FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제

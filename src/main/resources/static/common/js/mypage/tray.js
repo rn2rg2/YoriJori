@@ -187,7 +187,7 @@ const make_card_body = function (data){
 	  var $img = $('<img>').attr('src', '/yorijori/data/recipethumbnail/'+dropdata['thumbnail']).addClass('img-thumbnail card-img-top');
 	  var $textDiv = $('<div>').addClass('p-2 text-center');
 	  var $h5 = $('<h5>');
-	  var $a = $('<a>').attr('href', "/yorijori/recipe/view/user/"+data).addClass('text-dark').text(dropdata['recipeName']);
+	  var $a = $('<a>').attr('href', "/yorijori/recipe/view/user/"+data).addClass('text-dark text-truncate').text(dropdata['recipeName']);
 
 	  $textDiv.append($h5.append($a));
 	  colDiv.append($img).append($textDiv);
@@ -277,7 +277,7 @@ const getDetailTray = function(trayno){
 				  var $img = $('<img>').attr('src', '/yorijori/data/recipethumbnail/'+data[i].recipeNo.thumbnail).addClass('img-thumbnail card-img-top');
 				  var $textDiv = $('<div>').addClass('p-2 text-center');
 				  var $h5 = $('<h5>');
-				  var $a = $('<a>').attr('href', "/yorijori/recipe/view/user/"+data).addClass('text-dark').text(data[i].recipeNo.name);
+				  var $a = $('<a>').attr('href', "/yorijori/recipe/view/user/"+data).addClass('text-dark text-truncate').text(data[i].recipeNo.name);
 
 				  $textDiv.append($h5.append($a));
 				  colDiv.append($img).append($textDiv);

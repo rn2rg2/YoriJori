@@ -41,7 +41,7 @@
 
 					<div class="card-header px-4 pt-4">
 						<h5 class="card-title mb-0">
-							<a
+							<a class="text-truncate" 
 								th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}"
 								style="color: black;">[[${data.name}]]</a>
 						</h5>
@@ -79,7 +79,7 @@
 
 					<div class="card-header px-4 pt-4">
 						<h5 class="card-title mb-0">
-							<a
+							<a class="text-truncate" 
 								th:href="@{/recipe/view/server/{rcpSeq}(rcpSeq=${data.rcpSeq})}"
 								style="color: black;">[[${data.rcpNm}]]</a>
 						</h5>

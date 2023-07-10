@@ -26,13 +26,15 @@
 							<div id="searbar_ingredient" th:insert="~{thymeleaf/common/search :: searchbar('레시피를 입력해주세요','inputSearchData','searchIngredient')}"></div>
 						</div>
 						<form action="" method="post">
-							<div class="widget border-0">
-								<div class="apply job-alert-bt mr-3" style="text-align: center;">
-									<a class="btn btn-md btn-dark" href="#">
-										<i class="fa-regular fa-circle-check"></i> 필터 적용
-									</a>
+							<th:block th:if="${#strings.equals(type, 'user')}">
+								<div class="widget border-0">
+									<div class="apply job-alert-bt mr-3" style="text-align: center;">
+										<a class="btn btn-md btn-dark" href="#">
+											<i class="fa-regular fa-circle-check"></i> 필터 적용
+										</a>
+									</div>
 								</div>
-							</div>
+							</th:block>
 
 							<div class="widget">
 
@@ -56,163 +58,163 @@
 								</div>
 							</div>
 							<th:block th:if="${#strings.equals(type, 'user')}">
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>필터</h6>
-									<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
-										<i class="fas fa-chevron-down"></i>
-									</a>
-								</div>
-								<div class="collapse show" id="dateposted">
-									<div class="widget-content">
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="볶음" id="dateposted10">
-											<label class="custom-control-label" for="dateposted10">볶음</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="찜" id="dateposted11">
-											<label class="custom-control-label" for="dateposted11">찜</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="끓임" id="dateposted12">
-											<label class="custom-control-label" for="dateposted12">끓임</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="조림" id="dateposted13">
-											<label class="custom-control-label" for="dateposted13">조림</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="튀김" id="dateposted15">
-											<label class="custom-control-label" for="dateposted15">튀김</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="굽기" id="dateposted16">
-											<label class="custom-control-label" for="dateposted16">굽기</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="부침" id="dateposted17">
-											<label class="custom-control-label" for="dateposted17">부침</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="볶음" id="dateposted18">
-											<label class="custom-control-label" for="dateposted18">볶음</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="면류" id="dateposted19">
-											<label class="custom-control-label" for="dateposted19">면류</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="찌개류" id="dateposted20">
-											<label class="custom-control-label" for="dateposted20">찌개류</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="고기" id="dateposted21">
-											<label class="custom-control-label" for="dateposted21">고기</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="분식" id="dateposted22">
-											<label class="custom-control-label" for="dateposted22">분식</label>
+								<div class="widget">
+									<div class="widget-title widget-collapse">
+										<h6>필터</h6>
+										<a class="ml-auto" data-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">
+											<i class="fas fa-chevron-down"></i>
+										</a>
+									</div>
+									<div class="collapse show" id="dateposted">
+										<div class="widget-content">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="볶음" id="dateposted10">
+												<label class="custom-control-label" for="dateposted10">볶음</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="찜" id="dateposted11">
+												<label class="custom-control-label" for="dateposted11">찜</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="끓임" id="dateposted12">
+												<label class="custom-control-label" for="dateposted12">끓임</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="조림" id="dateposted13">
+												<label class="custom-control-label" for="dateposted13">조림</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="튀김" id="dateposted15">
+												<label class="custom-control-label" for="dateposted15">튀김</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="굽기" id="dateposted16">
+												<label class="custom-control-label" for="dateposted16">굽기</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="부침" id="dateposted17">
+												<label class="custom-control-label" for="dateposted17">부침</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="볶음" id="dateposted18">
+												<label class="custom-control-label" for="dateposted18">볶음</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="면류" id="dateposted19">
+												<label class="custom-control-label" for="dateposted19">면류</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="찌개류" id="dateposted20">
+												<label class="custom-control-label" for="dateposted20">찌개류</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="고기" id="dateposted21">
+												<label class="custom-control-label" for="dateposted21">고기</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="recipe" value="분식" id="dateposted22">
+												<label class="custom-control-label" for="dateposted22">분식</label>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>인분</h6>
 
-									<a class="ml-auto" data-toggle="collapse" href="#jobtype" role="button" aria-expanded="false" aria-controls="jobtype">
+								<div class="widget">
+									<div class="widget-title widget-collapse">
+										<h6>인분</h6>
 
-										<i class="fas fa-chevron-down"></i>
-									</a>
-								</div>
-								<div class="collapse show" id="jobtype">
-									<div class="widget-content">
-										<div class="custom-control custom-checkbox fulltime-job">
+										<a class="ml-auto" data-toggle="collapse" href="#jobtype" role="button" aria-expanded="false" aria-controls="jobtype">
 
-											<input type="checkbox" class="custom-control-input dateposted" name="serving" value="1인분" id="menutype1" onclick="handleMenutype(this)">
-											<label class="custom-control-label" for="menutype1">1인분</label>
-										</div>
-										<div class="custom-control custom-checkbox parttime-job">
-											<input type="checkbox" class="custom-control-input dateposted" name="serving" value="2인분" id="menutype2" onclick="handleMenutype(this)">
-											<label class="custom-control-label" for="menutype2">2인분</label>
-										</div>
-										<div class="custom-control custom-checkbox freelance-job">
-											<input type="checkbox" class="custom-control-input dateposted" name="serving" value="3인분" id="menutype3" onclick="handleMenutype(this)">
-											<label class="custom-control-label" for="menutype3">3인분</label>
-										</div>
-										<div class="custom-control custom-checkbox freelance-job">
-											<input type="checkbox" class="custom-control-input dateposted" name="serving" value="4인분" id="menutype4" onclick="handleMenutype(this)">
-											<label class="custom-control-label" for="menutype4">4인분</label>
+											<i class="fas fa-chevron-down"></i>
+										</a>
+									</div>
+									<div class="collapse show" id="jobtype">
+										<div class="widget-content">
+											<div class="custom-control custom-checkbox fulltime-job">
 
+												<input type="checkbox" class="custom-control-input dateposted" name="serving" value="1인분" id="menutype1" onclick="handleMenutype(this)">
+												<label class="custom-control-label" for="menutype1">1인분</label>
+											</div>
+											<div class="custom-control custom-checkbox parttime-job">
+												<input type="checkbox" class="custom-control-input dateposted" name="serving" value="2인분" id="menutype2" onclick="handleMenutype(this)">
+												<label class="custom-control-label" for="menutype2">2인분</label>
+											</div>
+											<div class="custom-control custom-checkbox freelance-job">
+												<input type="checkbox" class="custom-control-input dateposted" name="serving" value="3인분" id="menutype3" onclick="handleMenutype(this)">
+												<label class="custom-control-label" for="menutype3">3인분</label>
+											</div>
+											<div class="custom-control custom-checkbox freelance-job">
+												<input type="checkbox" class="custom-control-input dateposted" name="serving" value="4인분" id="menutype4" onclick="handleMenutype(this)">
+												<label class="custom-control-label" for="menutype4">4인분</label>
+
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>조리 시간</h6>
+								<div class="widget">
+									<div class="widget-title widget-collapse">
+										<h6>조리 시간</h6>
 
-									<a class="ml-auto" data-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience">
+										<a class="ml-auto" data-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience">
 
-										<i class="fas fa-chevron-down"></i>
-									</a>
-								</div>
-								<div class="collapse show" id="experience">
-									<div class="widget-content">
-										<div class="custom-control custom-checkbox">
+											<i class="fas fa-chevron-down"></i>
+										</a>
+									</div>
+									<div class="collapse show" id="experience">
+										<div class="widget-content">
+											<div class="custom-control custom-checkbox">
 
-											<input type="checkbox" class="custom-control-input dateposted" name="min" value="15분" id="experience2" onclick="handleExperience(this)">
-											<label class="custom-control-label" for="experience2">15분</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="min" value="30분" id="experience3" onclick="handleExperience(this)">
-											<label class="custom-control-label" for="experience3">30분</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="min" value="45분" id="experience4" onclick="handleExperience(this)">
-											<label class="custom-control-label" for="experience4">45분</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="min" value="60분" id="experience5" onclick="handleExperience(this)">
-											<label class="custom-control-label" for="experience5">60분</label>
+												<input type="checkbox" class="custom-control-input dateposted" name="min" value="15분" id="experience2" onclick="handleExperience(this)">
+												<label class="custom-control-label" for="experience2">15분</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="min" value="30분" id="experience3" onclick="handleExperience(this)">
+												<label class="custom-control-label" for="experience3">30분</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="min" value="45분" id="experience4" onclick="handleExperience(this)">
+												<label class="custom-control-label" for="experience4">45분</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="min" value="60분" id="experience5" onclick="handleExperience(this)">
+												<label class="custom-control-label" for="experience5">60분</label>
 
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>나라별 음식</h6>
+								<div class="widget">
+									<div class="widget-title widget-collapse">
+										<h6>나라별 음식</h6>
 
-									<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary">
-										<i class="fas fa-chevron-down"></i>
+										<a class="ml-auto" data-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary">
+											<i class="fas fa-chevron-down"></i>
 
-									</a>
-								</div>
-								<div class="collapse show" id="Offeredsalary">
-									<div class="widget-content">
-										<div class="custom-control custom-checkbox">
+										</a>
+									</div>
+									<div class="collapse show" id="Offeredsalary">
+										<div class="widget-content">
+											<div class="custom-control custom-checkbox">
 
-											<input type="checkbox" class="custom-control-input dateposted" name="country" value="한식" id="likeCount1" onclick="handleLikeCount(this)">
-											<label class="custom-control-label" for="likeCount1">한식</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="country" value="중식" id="likeCount2" onclick="handleCheckboxChange(this)">
-											<label class="custom-control-label" for="likeCount2">중식</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="country" value="일식" id="likeCount3" onclick="handleCheckboxChange(this)">
-											<label class="custom-control-label" for="likeCount3">일식</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input dateposted" name="country" value="양식" id="likeCount4" onclick="handleCheckboxChange(this)">
-											<label class="custom-control-label" for="likeCount4">양식</label>
+												<input type="checkbox" class="custom-control-input dateposted" name="country" value="한식" id="likeCount1" onclick="handleLikeCount(this)">
+												<label class="custom-control-label" for="likeCount1">한식</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="country" value="중식" id="likeCount2" onclick="handleCheckboxChange(this)">
+												<label class="custom-control-label" for="likeCount2">중식</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="country" value="일식" id="likeCount3" onclick="handleCheckboxChange(this)">
+												<label class="custom-control-label" for="likeCount3">일식</label>
+											</div>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input dateposted" name="country" value="양식" id="likeCount4" onclick="handleCheckboxChange(this)">
+												<label class="custom-control-label" for="likeCount4">양식</label>
 
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 							</th:block>
 							<div class="widget border-0">
 								<div class="widget-add">
@@ -278,7 +280,7 @@
 											<div class="candidate-list-title">
 												<h5>
 
-													<a th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
+													<a class="text-truncate" th:href="@{/recipe/view/user/{recipeNo}(recipeNo=${data.recipeNo})}" th:text="${data.name}"></a>
 												</h5>
 											</div>
 											<div class="candidate-list-option">
@@ -286,9 +288,7 @@
 												<br>
 												<div class="badge badge-success px-3 rounded-pill font-weight-normal" th:text="${data.time}"></div>
 												<th:block>
-												    <div class="badge badge-danger px-3 rounded-pill font-weight-normal">
-												       ★[[${data.average}]]점
-												    </div>
+													<div class="badge badge-danger px-3 rounded-pill font-weight-normal">★[[${data.average}]]점</div>
 												</th:block>
 											</div>
 										</div>
@@ -303,7 +303,7 @@
 													</a></li>
 												<th:block th:if="${!#strings.isEmpty(session.userInfo)}">
 
-<!-- 													<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)"> -->
+													<!-- 													<li class="pr-2"><a th:class="${#lists.size(data.wishlist) == 0 ?'candidate-list-favourite order-2 black_heart':'candidate-list-favourite order-2 red_heart'}" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)"> -->
 													<li class="pr-2"><a class="candidate-list-favourite order-2 black_heart" th:id="|wishNo${data.recipeNo}|" th:value="${data.recipeNo}" onclick="clickHeart(this,addHeart)">
 															<i class="fa fa-heart me-2" aria-hidden="true"></i>
 														</a></li>
@@ -331,9 +331,7 @@
 											</div>
 											<div class="candidate-list-option">
 												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">[[${data.rcpPat2}]]</div>
-												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">
-												       ★[[${recipeNoAverageMap.get(data.rcpSeq)}]]점
-												    </div>
+												<div class="badge badge-danger px-3 rounded-pill font-weight-normal">★[[${recipeNoAverageMap.get(data.rcpSeq)}]]점</div>
 												<br>
 												<ul class="list-unstyled"></ul>
 											</div>
