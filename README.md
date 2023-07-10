@@ -57,7 +57,7 @@ https://docs.google.com/presentation/d/1OcN6pLcRFmTBzFpZcRaazxSkNo5hf7_HhVdL1u4L
 - 마이페이지 비밀번호 변경 : https://youtu.be/LkyMiA-csD8
 - 레시피 등록 : https://youtu.be/6ZxssJKbBbg
 - 레시피 상세보기 : https://youtu.be/x32vCvrcqc0
-- 레시피 리스트: https://youtu.be/0zijiJyyEg8
+- 레시피 필터 : https://youtu.be/Xqb071KUzrA
 
 
 
