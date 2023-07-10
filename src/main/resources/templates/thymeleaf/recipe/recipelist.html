@@ -55,6 +55,7 @@
 									</div>
 								</div>
 							</div>
+							<th:block th:if="${#strings.equals(type, 'user')}">
 							<div class="widget">
 								<div class="widget-title widget-collapse">
 									<h6>필터</h6>
@@ -115,6 +116,7 @@
 									</div>
 								</div>
 							</div>
+							
 							<div class="widget">
 								<div class="widget-title widget-collapse">
 									<h6>인분</h6>
@@ -211,7 +213,7 @@
 									</div>
 								</div>
 							</div>
-
+							</th:block>
 							<div class="widget border-0">
 								<div class="widget-add">
 									<!-- <img class="img-fluid" src="images/add-banner.png" alt=""> -->
@@ -221,43 +223,45 @@
 					</div>
 				</div>
 				<div class="col-lg-9">
-					<div class="job-filter mb-4 d-sm-flex align-items-center">
-						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark" href="/yorijori/recipe/insert">
-								<i class="fa-solid fa-utensils"></i>ㅤ레시피 등록
-							</a>
+					<th:block th:if="${#strings.equals(type, 'user')}">
+						<div class="job-filter mb-4 d-sm-flex align-items-center">
+							<div class="job-alert-bt mr-3">
+								<a class="btn btn-md btn-dark" href="/yorijori/recipe/insert">
+									<i class="fa-solid fa-utensils"></i>ㅤ레시피 등록
+								</a>
+							</div>
+							<div class="job-alert-bt mr-3">
+								<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0">
+									<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
+								</a>
+							</div>
+							<div class="job-alert-bt mr-3">
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input dateposted" name="order" value="viewed" id="dateposted1">
+									<label class="custom-control-label" for="dateposted1">조회수 순</label>
+								</div>
+							</div>
+							<div class="job-alert-bt mr-3">
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input dateposted" name="order" value="great" id="dateposted2">
+									<label class="custom-control-label" for="dateposted2">좋아요 순</label>
+								</div>
+							</div>
+							<div class="job-alert-bt mr-3">
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input dateposted" name="order" value="comments" id="dateposted3">
+									<label class="custom-control-label" for="dateposted3">리뷰 많은 순</label>
+								</div>
+							</div>
+							<div class="job-alert-bt mr-3">
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input dateposted" name="order" value="registration" id="dateposted4">
+									<label class="custom-control-label" for="dateposted4">등록 순</label>
+								</div>
+							</div>
+							<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
 						</div>
-						<div class="job-alert-bt mr-3">
-							<a class="btn btn-md btn-dark" href="/yorijori/recipe/list/user/0">
-								<i class="fa-solid fa-rotate-right"></i>ㅤ필터 초기화
-							</a>
-						</div>
-						<div class="job-alert-bt mr-3">
-						    <div class="custom-control custom-radio">
-						        <input type="radio" class="custom-control-input dateposted" name="order" value="viewed" id="dateposted1">
-						        <label class="custom-control-label" for="dateposted1">조회수 순</label>
-						    </div>
-						</div>
-						<div class="job-alert-bt mr-3">
-						    <div class="custom-control custom-radio">
-						        <input type="radio" class="custom-control-input dateposted" name="order" value="great" id="dateposted2">
-						        <label class="custom-control-label" for="dateposted2">좋아요 순</label>
-						    </div>
-						</div>
-						<div class="job-alert-bt mr-3">
-						    <div class="custom-control custom-radio">
-						        <input type="radio" class="custom-control-input dateposted" name="order" value="comments" id="dateposted3">
-						        <label class="custom-control-label" for="dateposted3">리뷰 많은 순</label>
-						    </div>
-						</div>
-						<div class="job-alert-bt mr-3">
-						    <div class="custom-control custom-radio">
-						        <input type="radio" class="custom-control-input dateposted" name="order" value="registration" id="dateposted4">
-						        <label class="custom-control-label" for="dateposted4">등록 순</label>
-						    </div>
-						</div>
-						<div class="job-shortby ml-sm-auto d-flex align-items-center"></div>
-					</div>
+					</th:block>
 
 					<div class="row recipe_content" id="results">
 						<th:block th:if="${type} == 'user'">
