@@ -170,7 +170,7 @@ public class MemberController {
 			//만약 카카오 로그인하는데 DB에 KaKao 토큰이 있을때
 		if (loginUser != null && loginUser.getKakaoID().equals(loginname)) {
 			session.setAttribute("userInfo", loginUser);
-			view = "thymeleaf/index";
+			view = "redirect:/main";
 		} else {
 			//만약 카카오 로그인하는데 토근을 호출하고 KaKao 토큰번호가 DB에 없을떄
 			List<Category> categories = categoryservice.findByLevel(2);
