@@ -190,6 +190,7 @@ public class MyPageController {
 	public String updateprofileimage(HttpSession session, MultipartFile profilephoto, String cookingpurpose) {
 		UserInfo user = (UserInfo) session.getAttribute("userInfo");	
 		String imagePath = fileuploadlogic.getUploadpath("user/" + user.getImgPath());
+		String defaultImg = user.getImgPath();
 		user.setPurpose(cookingpurpose);
 
 		if (profilephoto != null) {	
@@ -209,7 +210,7 @@ public class MyPageController {
 				//System.out.println(user);
 				UserInfo updateduser = profileservice.updateprofileimage(user);
 				if(updateduser != null) {
-					if (user.getImgPath().equals("userimg.png")) {
+					if (defaultImg.equals("userimg.png")) {
 						System.out.println("기본이미지 유지");
 					} else {
 						imagefile.delete();
