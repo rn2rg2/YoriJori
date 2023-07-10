@@ -96,7 +96,7 @@
 </th:block>
 <th:block layout:fragment="content">
 	<div class="mb-5" style="width: 80%; margin: auto;">
-		<form id="myForm" method="post" enctype="multipart/form-data"
+		<form id="myForm" method="post" enctype="multipart/form-data" action="/yorijori/board/writeAction"
 			onsubmit="return boardSubmit(event);">
 			<input type="hidden" id="mode" name="mode" th:value="${mode}">
 			<input type="hidden" id="commNo" name="commNo" th:value="${detail.commNo}">
@@ -136,7 +136,7 @@
 					<button type="submit" class="btn btns-success" style="float: right;">취소</button>
 				</div>
 				<div class="text-center">
-					<button  onclick="javscript:fnWriteAction();" class="btn btns-default"
+					<button class="btn btns-default"
 						style="width: 100px; float: right;">등록</button>
 				</div>
 			</div>

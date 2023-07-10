@@ -250,16 +250,18 @@ public class BoardController {
 	}
 
 	@PostMapping("/writeAction")
-	@ResponseBody
-	public Board boardWriteSubmit(Board board
+//	@ResponseBody
+	public String boardWriteSubmit(Board board
 			, HttpSession session
 			, Model model,  HttpServletResponse response) {
 	    UserInfo user = (UserInfo) session.getAttribute("userInfo");
 	    board.setUserId(user);
 	    board.setView(0);
 	    
-	    //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	    System.out.println("aaaaaaaaaaaaaa===================mode=-============aaaaaaaaaaaaaa");
 	    //System.out.println(board.toString());
+	    System.out.println(board.getMode());
+	    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	    
 		
 	    if ("add".equals(board.getMode())) { 
@@ -268,7 +270,7 @@ public class BoardController {
 			board = service.boardUpdate(board.getCommNo(), board); 
 		}
 	    
-	    return board;
+	    return "redirect:/board/list/0/10";
 	
 	}
 
