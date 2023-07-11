@@ -129,7 +129,8 @@
 
 							<div class="col-md-6">
 								<h6>닉네임</h6>
-								<input type="text" class="form-control" name="Nickname" id="Nickname" th:value="${session.userInfo.nickname}" th:data-prevnickname="${session.userInfo.nickname}" placeholder="(2~16글자까지 입력해주세요)" pattern=".{2,16}">
+								<input type="text" class="form-control" name="Nickname" id="Nickname" th:value="${session.userInfo.nickname}" th:data-prevnickname="${session.userInfo.nickname}" 
+								placeholder="(2~16글자&특수문자 사용 금지)" pattern="[a-zA-Z0-9ㄱ-ㅎ가-힣]{2,16}">
 
 							</div>
 						</div>
