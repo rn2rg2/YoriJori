@@ -12,10 +12,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString.Exclude;
 
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -35,4 +39,9 @@ public class RecipeImage {
 	@JoinColumn(name = "recipeNo", nullable=false)
 	@JsonBackReference
 	private Recipe recipeNo;
+
+	public void setImgNo(int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }	

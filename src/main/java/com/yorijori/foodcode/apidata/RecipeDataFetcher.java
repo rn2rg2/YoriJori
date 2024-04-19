@@ -24,8 +24,9 @@ public class RecipeDataFetcher {
 	@Autowired
 	public RecipeDataFetcher(ApiRecipeRepository apiRecipeRepository) {
 		super();
-		this.apiRecipeRepository = apiRecipeRepository;
+		this.apiRecipeRepository = apiRecipeRepository;		
 	}
+	
 	
 	public void fetchRecipeData(int firstIdx, int lastIdx) throws IOException {
 		// http://openapi.foodsafetykorea.go.kr/api/"+

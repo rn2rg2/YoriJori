@@ -13,7 +13,7 @@ import com.yorijori.foodcode.jpa.VO.UserForChatVO;
 import com.yorijori.foodcode.jpa.entity.UserInfo;
 
 @Repository
-public interface MemberRepository extends JpaRepository<UserInfo, Long> {
+public interface MemberRepository extends JpaRepository<UserInfo, String> {
     UserInfo findByUserIdAndPass(String user_id, String pass);
     UserInfo findByKakaoID(String kakaoID);
     UserInfo findByUserId(String userId);    

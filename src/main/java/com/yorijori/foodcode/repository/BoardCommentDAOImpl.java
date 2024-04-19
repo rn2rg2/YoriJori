@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.yorijori.foodcode.dto.BoardDTO;
 import com.yorijori.foodcode.jpa.entity.BoardComment;
 import com.yorijori.foodcode.jpa.repository.BoardCommentRepository;
+
 @Repository
 public class BoardCommentDAOImpl implements BoardCommentDAO {
 	BoardCommentRepository repository;

@@ -249,8 +249,9 @@ public class BoardController {
 	    return "thymeleaf/board/write";
 	}
 
+	
 	@PostMapping("/writeAction")
-//	@ResponseBody
+	//@ResponseBody
 	public String boardWriteSubmit(Board board
 			, HttpSession session
 			, Model model,  HttpServletResponse response) {
@@ -268,10 +269,10 @@ public class BoardController {
 	    	board = service.insert(board);
 		  } else { 
 			board = service.boardUpdate(board.getCommNo(), board); 
-		}
+		  }
 	    
 	    return "redirect:/board/list/0/10";
-	
+		  
 	}
 
 	//게시글 삭제

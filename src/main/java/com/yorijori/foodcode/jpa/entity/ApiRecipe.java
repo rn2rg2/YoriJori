@@ -14,10 +14,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString.Exclude;
 
 @Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -64,5 +68,10 @@ public class ApiRecipe {
 
 	public void viewCountUp(ApiRecipe apiRecipe) {
 		apiRecipe.count++;
+	}
+
+	public void setRcpSeq(int asInt) {
+		// TODO Auto-generated method stub
+		
 	}
 }
