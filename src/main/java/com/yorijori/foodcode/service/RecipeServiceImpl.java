@@ -121,7 +121,6 @@ public class RecipeServiceImpl implements RecipeService {
 			////System.out.println("============11=============");
 			////System.out.println(recipedata.getCategorylist().get(i).getCategoryNo());
 			////System.out.println("=========================");
-
 		}
 		for (int i = 0; i < imglist.size(); i++) {
 			imglist.get(i).setRecipeNo(recipedata);
